@@ -2,17 +2,82 @@ project:
   type: website
 
 website:
-  title: "Math326_Quarto4"
+  title: "Math326 Notebook"
   navbar:
     background: primary
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    - text: "Foundations of Experimental Design"
+      menu:
+        - text: "Principles of Experimentation"
+#This will include randomization, replication, local control, blocking (maybe) and crossing (maybe)
+          href: RCommands.html
+        - text: "Choosing a response variable"
+          href: RMarkdownHints.html
+        - text: "Choosing conditions"
+          href: RCheatSheetsAndNotes.html
+        - text: "Choosing units/experimental material"
+          href: DataSources.html
+    - text: "Specific Designs"
+      menu:
+         - text: "Completely Randomized, Basic Factorial Designs"
+           href: BasicFactorial.html
+         - text: "Block Designs"
+           href: Block.html
+         - text: "Covariate Designs"
+           href: Covariate.html
+         - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
+           href: NestedFactor.html
+        # - text: "1 Factor, Completely Randomized, Basic Factorial"
+        #   href: GraphicalSummaries.html
+        # - text: "2 Factor, Completely Randomized, Basic Factorial"
+        #   href: NumericalSummaries.html
+        # - text: "3 Factor, Completely Randomized, Basic Factorial"
+        #   href: NumericalSummaries.html
+        # - text: "1 Factor, Complete Block"
+        #   href: NumericalSummaries.html
+        # - text: "Latin Square"
+        #   href: NumericalSummaries.html
+        # - text: "ANCOVA"
+        #   href: NumericalSummaries.html
+        # - text: "Split Plot/Repeated Measures"
+        #   href: NumericalSummaries.html
+    - text: "Broad Topics"
+      menu:
+        - text: "ANOVA Model and Assumptions"
+          href: anova_basics.html
+        - text: "quarto experiment"
+          href: junko.html
+        - text: "Extending the Basic Designs"
+          href: LogisticRegression.html
+        - text: "Notation"
+          href: ANOVA.html
+        - text: "Multiple Pairwise Testing"
+          href: MakingInference.html
+        - text: "Power"
+          href: Kruskal.html
+        - text: "Random Factors"
+          href: LogisticRegression.html
+        - text: "Unbalanced Datasets"
+          href: WilcoxonTests.html
+    - text: "R Instructions"
+      menu:
+        - text: "Descriptive Summaries"
+          href: DescribeData.html
+        - text: "Model diagnostics"
+          href: model_diagnostics.html
+  right:
+    - text: "Datasets"
+      menu:
+        - text: "XYZ"
+          href: ./Data/AnalysisRubric.html
+        - text: "yadda yadda"
+          href: ./Data/StudentHousing.html
+
+output_dir: '.'
 
 format:
   html:
-    theme: cosmo
+    theme: cerulean
     css: styles.css
     toc: true
 
