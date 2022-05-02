@@ -1,0 +1,360 @@
+
+.hoverchunk {
+    border: 1px solid #cccccc;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-right: 8px;
+    font-family: Monospace, sans-serif;
+    margin-top: .5em;
+}
+
+.hoverchunk:hover {
+    border: 1px solid #cccccc;
+    background-color: #c8c8c8;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-right: 8px;
+    font-family: Monospace, sans-serif;
+    margin-top: .5em;
+}
+
+.tooltipr {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipr .tooltiprtext {
+    display: none;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -170px;
+}
+
+.tooltipr:hover .tooltiprtext {
+    display: block;
+}
+
+.tooltipr:hover {
+    background-color: #f8f8f8;
+    border-radius: 6px;
+}
+
+
+
+
+
+.tooltipr .tooltipRtext {
+    display: none;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+}
+
+.tooltipr:hover .tooltipRtext {
+    display: block;
+}
+
+
+
+.tooltiprout {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiprout .tooltiprouttext {
+    display: none;
+    width: 200px;
+    background-color: darkgray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+}
+
+.tooltiprout:hover .tooltiprouttext {
+    display: block;
+}
+
+.tooltiprout:hover {
+    background-color: #888888;
+    color: #f3f3f3;
+    border-radius: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+.expand-caption {
+   font-size: .8em;
+   color: darkgray;
+   padding-left: 60px;
+}
+
+
+/* This text is in Monaco */
+.rconsole { 
+	font-family: monaco,Consolas,Lucida Console,monospace; 
+	font-size: .7em;
+}
+
+
+
+.fancytable {
+  width: 100%;
+}
+
+.fancytable th {
+  border-bottom:1px solid #ddd;
+  padding: 12px;
+}
+
+.fancytable td {
+  padding:12px;
+  vertical-align: top;
+}
+
+
+
+
+
+
+.tooltiprbold {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiprbold .tooltiprtext {
+    display: none;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -170px;
+}
+
+.tooltiprbold:hover .tooltiprtext {
+    display: block;
+}
+
+.tooltiprbold:hover {
+    background-color: #585858;
+    color: #f2f2f2;
+    border-radius: 6px;
+}
+
+
+
+
+
+.tooltiprbold .tooltipRtext {
+    display: none;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+}
+
+.tooltiprbold:hover .tooltipRtext {
+    display: block;
+}
+
+
+
+
+
+.note {
+  padding-left: 20px;
+  color: gray;
+  size: .8em;
+}
+
+
+
+
+
+
+.tooltipimage {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipimage .tooltipimagetext {
+    display: none;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: 1px;
+}
+
+.tooltipimage:hover .tooltipimagetext {
+    display: block;
+}
+
+.tooltipimage:hover {
+    background: radial-gradient(circle at 50% 30%, #f1f2f3, #ffffff);
+    border-radius: 6px;
+}
+
+
+
+
+
+.myhover {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 125px;
+  height: 105px;
+}
+
+.myhover:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+
+
+
+
+.gallerygraphs {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+}
+
+.gallerygraphs:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+
+
+
+
+
+
+.tooltipgallery {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipgallery .tooltipgallerytext {
+    display: none;
+    width: 700px;
+    background-color: gray;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 2px 10px 15px 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 20%;
+    margin-left: 0px;
+}
+
+.tooltipgallery:hover .tooltipgallerytext {
+    display: block;
+}
+
+.tooltipgallery:hover {
+    background-color: #f8f8f8;
+    border-radius: 6px;
+}

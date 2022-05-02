@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BYU-Idaho Math326: Design and Analysis of Experiments",
+    "section": "",
+    "text": "This book is meant to be a starting point for you to learn design and analysis of experiments. You should feel free to edit the Rmarkdown files so that the book becomes your own.\n\n\nUnder Principles of Experiments the most foundational issues that face each experimenter are described.\nThe Specific Designs section addresses specific designs we will learn about in this course. Each design will have an image next to it representing the diagram of the structural factors. Within each of these designs there are subsections:\n\nOverview contains the model, factor structure and hypotheses\nDesign discusses how the randomization is implemented and why\nDecomposition is a bridge between the design and analysis. It walks through creating an ANOVA table by hand for the given design to allow you to see how the factor structure affects the analysis.\nR instructions provides interactive code illustrating how to run the model\nResources contains worked examples and a space for you to store other links and info\n\nThe section labeled Broad Topics seeks to address topics that are relevant to many experiment designs.\nFinally, a section dedicated to R code that can be used in multiple designs. This includes numerical and graphical data summaries as well as code for model diagnostics/assumption checking.\nYou should add additional topics and designs as you learn more, even after the course is over. The book is meant to be fully customizable and growing to reflect your growing understanding.\n\n\nThis book was specifically designed for the Math326 Design and Analysis of Experiments class at BYU-Idaho, as it stands in 2022. BYU-I follows a 14 week semester. After introducing some foundational principles of experimental design, the recommended sequence follows the general pattern of\n\nIntroduce a specific design: suitability/benefits of the design, explanation of the design, factor structure and decomposition, steps for analysis (including R code)\nDiscuss new topics/complexities/considerations associated with that design located in the Broad Topics list."
+  },
+  {
+    "objectID": "index.html#book-scope",
+    "href": "index.html#book-scope",
+    "title": "BYU-Idaho Math326: Design and Analysis of Experiments",
+    "section": "Book Scope",
+    "text": "Book Scope\nThis is an introductory book intended to familiarize students with foundational concepts and vocabulary in the design and analysis of experiments. The designs covered in this book are the most basic and all assume a continuous response variable. Hopefully with this foundation students will be prepared to excel in experimental design and analysis courses in grad school, or be able to extend these principles to more complex designs as practitioners."
+  }
+]
