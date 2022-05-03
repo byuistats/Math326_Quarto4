@@ -1,0 +1,364 @@
+---
+title: "Describing Data"
+date: "1/27/2022"
+output: html_document
+---
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mosaic)
+library(pander)
+library(tidyverse)
+```
+
+## Numerical Summaries
+
+### Treatment Means
+
+In the following explanations
+
+* `Y` must be a “numeric” vector of the quantitative response variable.
+* `X` is a qualitative variable. It would represent a treatment factor. 
+* `YourDataSet` is the name of your data set.
+
+You can take a tidyverse approach or a mosaic package approach to calculating numerical summaries for each treatment.
+
+#### mosaic package:
+
+Calculating treatment means for **one factor**:
+
+```{r eval = FALSE, echo = TRUE}
+library(mosaic)
+library(pander)
+favstats(Y~X, data=YourDataSet)
+```
+
+Example code:
+
+<a href="javascript:showhide('mosaic_mean')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(mosaic)
+<span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span>
+</span><br><span class="tooltipr">
+library(pander)
+<span class="tooltiprtext">pander is an R Package that makes R output look pretty</span>
+</span><br><span class="tooltipr">
+favstats(
+  <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span>
+</span><span class="tooltipr">
+Temp
+  <span class="tooltipRtext">This is our response variable. From `?airquality` you can see in the help file that Temp is the maximum daily temp in degrees F at La Gaurdia Aiport during 1973</span>
+</span><span class="tooltipr">
+~
+  <span class="tooltipRtext">"~" is the tilde symbol. It can be interpreted as "y broken down by x"; "y modeled by x"; "y explained by x", etc. Where y is on the left of the tilde and x is on the right. </span>
+</span><span class="tooltipr">
+Month,
+  <span class="tooltiprtext">"Month" is a column from the airquality dataset that can be treated as qualitative.</span>
+</span><span class="tooltipr">
+data = airquality
+ <span class="tooltiprtext">You have to tell R what dataset the variables Temp and Month come from. 'airquality' is a preloaded dataset in R. </span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to view output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
+<div id="mosaic_mean" style="display:none;">
+
+```{r, echo=FALSE}
+favstats(Temp~Month, data=airquality)
+```
+
+</div>
+
+
+<br>
+
+When calculating treatment **means for combinations of 2 or more factors** you can use `+` or `|` to separate the factors. `|` (read as 'vertical bar' or 'pipe') has the advantage that in addition to calculating means for every factor level combination, favstats will also output the marginal means for each level of the last factor listed. 
+
+*NOTE:* unlike it's use in the `aov()` command, using the `*` within favstats does not yield expected results and should NOT be used.
+
+```{r eval = FALSE, echo = TRUE}
+library(mosaic)
+favstats(Y ~ X + Z, data = YourDataSet) 
+#OR
+favstats(Y ~ X | Z, data = YourDataSet)
+```
+
+Example code:
+
+
+<a href="javascript:showhide('favstats_plus')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(mosaic)
+<span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span>
+</span><br><span class="tooltipr">
+favstats(
+  <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span>
+</span><span class="tooltipr">
+mpg
+  <span class="tooltipRtext">This is a quantitative variable (numerical vector) from the mtcars dataset</span>
+</span><span class="tooltipr">
+~
+  <span class="tooltipRtext">"~" is the tilde symbol. It can be interpreted as "y broken down by x"; "y modeled by x"; "y explained by x", etc. Where y is on the left of the tilde and x variables are on the right. </span>
+</span><span class="tooltipr">
+am 
+  <span class="tooltiprtext">A qualitative variable from the mtcars dataset. It is coded as 0 and 1 and so therefore is treated as numeric. That is a key distinction when creating the model, but it does not matter when calling favstats().</span>
+</span><span class="tooltipr">
++ 
+ <span class="tooltiprtext">This allows us to create additional subgroups within 'am' for each level of 'cyl'.</span>
+</span><span class="tooltipr">
+cyl, 
+ <span class="tooltiprtext">A variable from the mtcars dataset with 3 distinct values: 4, 6, and 8. Though it is a numeric column we want to treat it as a factor. This is a key distinction when creating the model, but it does not matter when calling favstats().</span>
+</span><span class="tooltipr">
+ data = mtcars
+ <span class="tooltiprtext">You have to tell R what dataset the variables 'mpg', 'am', and 'cyl' come from. 'mtcars' is a preloaded dataset in R. </span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to view output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
+<div id="favstats_plus" style="display:none;">
+
+```{r, echo=FALSE}
+favstats(mpg ~ am + cyl, data=mtcars)
+```
+
+</div>
+
+
+<br>
+
+Notice that the first column in the output contains the factor level combinations of `am` and `cyl`. So, '0.4' is interpreted as level 0 for `am` and level 4 for `cyl`. Or in other words, the summary statistics on that row are for automatic tranmission, 4 cylinder engine vehicles. The column label of 'am.cyl' indicates which factor is represented on which side of the period. The next example uses the same way of labeling the factor level combinations, but the column label is not as intuitive or helpful.
+
+<br>
+
+<a href="javascript:showhide('favstats_bar')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(mosaic)
+<span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span>
+</span><br><span class="tooltipr">
+favstats(
+  <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span>
+</span><span class="tooltipr">
+mpg 
+  <span class="tooltipRtext">This is a quantitative variable (numerical vector) from the mtcars dataset</span>
+</span><span class="tooltipr">
+~ 
+  <span class="tooltipRtext">"~" is the tilde symbol. It can be interpreted as "y broken down by x"; "y modeled by x"; "y explained by x", etc. Where y is on the left of the tilde and x variables are on the right. </span>
+</span><span class="tooltipr">
+am 
+  <span class="tooltiprtext">A qualitative variable from the mtcars dataset. It is coded as 0 and 1 and so therefore is treated as numeric. That is a key distinction when creating the model, but it does not matter when calling favstats().</span>
+</span><span class="tooltipr">
+| 
+ <span class="tooltiprtext">Referred to as a vertical bar or pipe, this symbol further defines subgroups of the variable on its left, using the values of the variable on its right side </span>
+</span><span class="tooltipr">
+cyl, 
+ <span class="tooltiprtext">A variable from the mtcars dataset with 3 distinct values: 4, 6, and 8. Though it is a numeric column we want to treat it as a factor. This is a key distinction when creating the model, but it does not matter when calling favstats().</span>
+</span><span class="tooltipr">
+ data = mtcars
+ <span class="tooltiprtext">You have to tell R what dataset the variables 'mpg', 'am', and 'cyl' come from. 'mtcars' is a preloaded dataset in R. </span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to View Output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
+<div id="favstats_bar" style="display:none;">
+
+```{r, echo=FALSE}
+favstats(mpg ~ am | cyl, data=mtcars)
+```
+
+</div>
+
+
+<br>
+
+#### tidyverse approach
+
+Calculating treatment means for **one factor**:
+
+```{r eval = FALSE, echo = TRUE}
+library(tidyverse)
+YourDataSet %>%
+  Group_by(X) %>%
+  Summarise(MeanY = mean(Y), sdY = sd(Y), sampleSize = n()) 
+```
+
+
+<a href="javascript:showhide('mean3')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(tidyverse)
+<span class="tooltiprtext">tidyverse is an R Package that is very useful for working with data.</span>
+</span><br><span class="tooltipr">
+airquality
+  <span class="tooltipRtext">`airquality` is a dataset in R.</span>
+</span><span class="tooltipr">
+&nbsp;%>%&nbsp;
+  <span class="tooltipRtext">The pipe operator that will send the `airquality` dataset down inside of the code on the following line.</span>
+</span><br/><span class="tooltipr">
+&nbsp;&nbsp; group_by(
+  <span class="tooltipRtext">"group_by" is a function from library(tidyverse) that allows us to split the airquality dataset into "little" datasets, one dataset for each value in the "Month" column.</span>
+</span><span class="tooltipr">
+Month
+  <span class="tooltiprtext">"Month" is a column from the airquality dataset that can be treated as qualitative.</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+&nbsp;%>%&nbsp;
+  <span class="tooltipRtext">The pipe operator that will send the grouped version of the `airquality` dataset down inside of the code on the following line.</span>
+</span><br/><span class="tooltipr">
+&nbsp;&nbsp; summarise(
+  <span class="tooltipRtext">"summarise" is a function from library(tidyverse) that allows us to compute numerical summaries on data.</span>
+</span><span class="tooltipr">
+aveTemp =&nbsp;
+  <span class="tooltiprtext">"AveTemp" is just a name we made up. It will contain the results of the mean(...) function.</span>
+</span><span class="tooltipr">
+mean(
+  <span class="tooltiprtext">"mean" is an R function used to calculate the mean.</span>
+</span><span class="tooltipr">
+Temp
+  <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+&nbsp;&nbsp;&nbsp;&nbsp;  
+  <span class="tooltiprtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to View Output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
+<div id="mean3" style="display:none;">
+
+```{r, echo=FALSE}
+airquality %>% 
+  group_by(Month) %>%
+  summarise(aveTemp = mean(Temp)) %>%
+  pander()
+```
+
+
+Note that R calculated the mean `Temp` for each month in `Month` from the `airquality` dataset. 
+
+May (5), June (6), July (7), August (8), and September (9), respectively.
+
+Further, note that to get the "nicely formatted" table, you would have to use
+
+```{}
+library(pander)
+airquality %>% 
+  group_by(Month) %>%
+  summarise(aveTemp = mean(Temp)) %>%
+  pander()
+```
+
+</div>
+
+<br>
+
+To calculate treatment means for each combination of factor levels of **2 or more factors**, simply add the additional variable to the `group_by()` statement.
+
+Example code:
+
+
+<a href="javascript:showhide('mean_tidy2')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(tidyverse)
+<span class="tooltiprtext">tidyverse is an R Package that is very useful for working with data.</span>
+</span><br><span class="tooltipr">
+mpg
+  <span class="tooltipRtext">`mtcars` is a dataset in preloaded in R.</span>
+</span><span class="tooltipr">
+&nbsp;%>%&nbsp;
+  <span class="tooltipRtext">The pipe operator that will send the `mtcars` dataset down inside of the code on the following line.</span>
+</span><br/><span class="tooltipr">
+&nbsp;&nbsp; group_by(
+  <span class="tooltipRtext">"group_by" is a function from library(tidyverse) that allows us to split the mtcars dataset into "little" datasets, one dataset for each combination of values in the 'am' and 'cyl' variables</span>
+</span><span class="tooltipr">
+am, cyl
+  <span class="tooltiprtext">'am' and 'cyl' are both columns in mtcars. By listing them both here we are going to get output for each combination of 'am' and 'cyl' that exists in the dataset</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+&nbsp;%>%&nbsp;
+  <span class="tooltipRtext">The pipe operator that will send the grouped version of the `airquality` dataset down inside of the code on the following line.</span>
+</span><br/><span class="tooltipr">
+&nbsp;&nbsp; summarise(
+  <span class="tooltipRtext">"summarise" is a function from library(tidyverse) that allows us to compute numerical summaries on data.</span>
+</span><span class="tooltipr">
+mean_mpg =&nbsp;
+  <span class="tooltiprtext">"mean_mpg" is just a name we made up. It will contain the results of the mean(...) function.</span>
+</span><span class="tooltipr">
+mean(
+  <span class="tooltiprtext">"mean" is an R function used to calculate the mean.</span>
+</span><span class="tooltipr">
+mpg
+  <span class="tooltiprtext">mpg is a quantitative variable (numeric vector) from the mtcars dataset.</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr">
+&nbsp;&nbsp;&nbsp;&nbsp;  
+  <span class="tooltiprtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to View Output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
+<div id="mean_tidy2" style="display:none;">
+
+```{r, echo=FALSE}
+mtcars %>% 
+  group_by(am, cyl) %>%
+  summarise(mean_mpg = mean(mpg)) %>%
+  pander()
+```
+
+</div>
+
+-----
+
+### Treatment Effects
+
+---
+
+## Graphical Summaries
+
+I'm thinking of boxplot, a scatter/jitter plot with means connected by a line, and an interaction plot. Try to decide the degree to teach base R vs. ggplot.
+
+

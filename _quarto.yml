@@ -6,10 +6,11 @@ website:
   title: "Math326 Notebook"
   navbar:
     background: primary
+    search: true
     left:
-    - text: "Foundations of Experimental Design"
+    - text: "Basics of Design"
       menu:
-        - text: "Principles of Experimentation"
+        - text: "Key Principles"
 #This will include randomization, replication, local control, blocking (maybe) and crossing (maybe)
           href: RCommands.html
         - text: "Choosing a response variable"
@@ -44,10 +45,10 @@ website:
         #   href: NumericalSummaries.html
     - text: "Broad Topics"
       menu:
-        - text: "ANOVA Model and Assumptions"
-          href: anova_basics.html
-        - text: "quarto experiment"
-          href: junko.html
+        - text: "Factor Structure"
+          file: factor_structure.qmd
+        - text: "Effects Model"
+          file: Effects_model.qmd
         - text: "Extending the Basic Designs"
           href: LogisticRegression.html
         - text: "Notation"
