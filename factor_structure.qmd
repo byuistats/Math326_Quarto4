@@ -13,11 +13,11 @@ execute:
  }
 </script>
 ```
-In this section you will learn factors in context of analyzing results of an experiment:
+In this section you will learn about factors in context of analyzing results of an experiment:
 
--   how to identify factors,
--   a vocabulary to describe how factors are related to one another, and
--   a method for diagramming factors. This method for diagramming factors should help provide a more visual understanding of how the design is related to the analysis of an experiment.
+-   How to identify factors
+-   A method for diagramming factors. This method for diagramming factors should help provide a more visual understanding of how the design is related to the analysis of an experiment
+-   A vocabulary to describe how factors are related to one another.
 
 # Identifying and Diagramming Factors
 
@@ -40,15 +40,9 @@ bf1 %>%  pander()
 ```
 :::
 
-When analyzing our data we will want to compare the averages for each toothbrush type. We can group observations together that used the same brush type and then calculate the average of the group. The figure below shows the observations for each type of toothbrush are grouped into columns.
+When analyzing our data we will want to compare the averages for each toothbrush type. We can group observations together that used the same type of brush and then calculate the average of the group. The figure below shows observations for each type of toothbrush grouped into columns.
 
 ![](images/toothbrush_factor_column.JPG){width="360"}
-
-::: {.callout-note appearance="minimal" icon="false"}
-*The column orientation is not considered a distinct factor from a row-wise grouping (shown below) since the method for drawing the partitions is the same: splitting by toothbrush type. The key is that after choosing an orientation (row vs. column) you should be consistent in how you represent it throughout your analysis.*
-
-![](images/toothbrush_factor_row.JPG){width="476"}
-:::
 
 To compute the mean for the manual toothbrush I would sum together the observation for manual and divide by 6 (the number of pieces information in that factor level):
 
@@ -60,7 +54,7 @@ I can likewise compute the mean for the other factor levels and display them:
 
 ![](images/toothbrush_factor_means.JPG){#toothbrush_factor_means width="389"}
 
-As just described, we can think of a factor as a particular way of grouping, or partitioning, the data set. Of course, there are many, many more ways I could have grouped the observations; but the averages of those groups would not result in anything meaningful.
+We can think of a factor as a meaningful way of grouping, or partitioning, the data set. Of course, there are many, many more ways I could have grouped the observations; but the averages of those groups would not result in anything meaningful.
 
 ::: {.callout-tip appearance="default"}
 ## Factors and Factor Levels
@@ -68,7 +62,13 @@ As just described, we can think of a factor as a particular way of grouping, or 
 Each unique way of partitioning the data set into meaningful groups of observations is considered a factor. Each individual partition (or group) is a factor level. In a given factor, each observation belongs to exactly one group.
 :::
 
-::: {.callout-caution icon="minimal"}
+::: {.callout-note appearance="minimal" icon="false"}
+*The column orientation is not considered a distinct factor from a row-wise grouping (shown below) since the method for drawing the partitions is the same: splitting by toothbrush type. The key is that after choosing an orientation (row vs. column) you should be consistent in how you represent it throughout your analysis.*
+
+![](images/toothbrush_factor_row.JPG){width="476"}
+:::
+
+::: {.callout-caution}
 ## Factors in Design vs. Analysis
 
 It is important to note, that use of the word "factor" here is different from (albeit related to) the way it is used in the principles of experimental design section of the book. In that section of the book the variables that are purposefully manipulated and assigned to subjects are referred to as factors. That section of the book deals strictly with *design.* But when doing the *analysis* of the resulting data, this new definition of factor (a meaningful way to group observations) is used. Later we will formally define a mathematical model to aid in our analysis. In our model, each of these analysis factors will be represented by a separate term in the model. Thus, some of the confusion may decrease because we can refer to terms in a model and reserve the word "factor" primarily to refer to an experiment's design.
