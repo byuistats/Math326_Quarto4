@@ -444,7 +444,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </tbody>
 </table>
 <p>You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a <em>blocked design</em> to prevent “unlucky” ordering and pairing.</p>
-<p>Consider the following example. An experiment was done to asses different modes of virtual training in how to launch a lifeboat. Sixteen students in the maritime safety training institute were a part of the study, and each of the students were assigned one of four possible virtual training experiences. The four experiences included:</p>
+<p>Consider the following example. An experiment was done to assess different modes of virtual training in how to launch a lifeboat. Sixteen students in the maritime safety training institute were a part of the study, and each of the students were assigned one of four possible virtual training experiences. The four experiences included:</p>
 <ol type="1">
 <li>Lecture/Materials (Control)</li>
 <li>Monitor/Keyboard</li>
@@ -1031,7 +1031,38 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
 </section>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p>Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or mean plots (i.e.&nbsp;a scatterplot of the data with the means also plotted, and sometimes connected with a line). Instructions for how to create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<p>You then create the model using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>myaov</code> is some name you come up with to store the results of the aov() model.</li>
+<li><code>Y</code> must be a “numeric” vector of the quantitative response variable.</li>
+<li><code>X</code> is a qualitative variable (should have class(X) equal to factor or character. If it does not, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(X),...)</code> command.</li>
+<li><code>YourDataSet</code> is the name of your data set.</li>
+</ul>
+<p><strong>Example Code</strong></p>
+<a href="javascript:showhide('bf1_aov')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> df <span class="tooltiprtext">A name you come up with for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv( <span class="tooltiprtext">a command from the tidyverse to read in csv files</span> </span><span class="tooltipr"> “data/toothpaste_BF2.csv” <span class="tooltiprtext">The path to the csv file containing the data</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><br><span class="tooltipr"> plaque_aov <span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ‘~’ is like an equal sign in the model. Items on the left of ‘~’ represent y, on the right you define independent factors (i.e.&nbsp;x’s). </span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes. </span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><br><span class="tooltipr"> summary( <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table. </span> </span><span class="tooltipr"> plaque_aov <span class="tooltiprtext">Whatever you named your ANOVA model in the previous line</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="bf1_aov" style="display:none;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+Brush        3  86.31  28.769   3.822 0.0258 *
+Residuals   20 150.56   7.528                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</div>
+<p>We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="contrasts.qmd">contrasts</a>.</p>
+<p>Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at <a href="assumptions.qmd">R Instructions-&gt;Model Assumptions</a> section of the book.</p>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <section id="examples" class="level4">
