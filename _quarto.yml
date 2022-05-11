@@ -48,18 +48,20 @@ website:
         - text: "Factor Structure"
           file: factor_structure.qmd
         - text: "Effects Model"
-          file: Effects_model.qmd
-        - text: "Extending the Basic Designs"
-          href: LogisticRegression.html
-        - text: "Notation"
+          file: effects_model.qmd
+        - text: "ANOVA and the F-test"
+          href: Anova_F-test.qmd
+        - text: "ZModel Assumptions"
           href: ANOVA.html
-        - text: "Multiple Pairwise Testing"
+        - text: "ZMultiple Pairwise Testing"
           href: MakingInference.html
-        - text: "Power"
+        - text: "ZMultiple Pairwise Testing"
+          href: MakingInference.html
+        - text: "ZPower"
           href: Kruskal.html
-        - text: "Random Factors"
+        - text: "ZRandom Factors"
           href: LogisticRegression.html
-        - text: "Unbalanced Datasets"
+        - text: "ZUnbalanced Datasets"
           href: WilcoxonTests.html
     - text: "R Instructions"
       menu:

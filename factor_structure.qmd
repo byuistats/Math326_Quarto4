@@ -32,10 +32,10 @@ library(pander)
 
 <a href="javascript:showhide('toothbrushBF1')">[click to show/hide data]{style="font-size:8pt;"}</a>
 
-::: {}
+::: {#toothbrushBF1}
 ```{r}
 #| message: false
-bf1 <- read_csv("data/toothpaste_BF2.csv") %>% select(-Brush)
+bf1 <- read_csv("data/toothpaste_BF2.csv") %>% select(-Toothpaste)
 bf1 %>%  pander()
 ```
 :::
@@ -116,7 +116,7 @@ The way of organizing data that is taught here and used throughout the book is N
 
 A factor structure for an experimental design can help provide an effective way to organize and plan for the type of data needed for an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in that section. Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
 
-Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design). 
+Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design).
 
 ## Inside and Outside
 
@@ -159,14 +159,10 @@ Let's pause here to clarify a common misunderstanding, consider an experiment wh
 
 Two factors are crossed when their partition lines cross in a way that creates new groups of observations that represent every possible combination of the factor levels. More succinctly stated, **factors are crossed when all factor level combinations are present in the study**. We saw this in the toothbrush study when brand of toothpaste was included in the experiment. Toothbrush and toothpaste are neither inside nor outside of each other; rather, they are crossed.
 
-
-
 ::: {#crossed-interaction .column-page-shaded layout-ncol="2"}
 ![](images/toothbrush_crossed1.JPG)
 
 ![](images/toothbrush_crossed2.JPG)
-
-
 :::
 
 <br>
@@ -179,7 +175,7 @@ The crossing of toothpaste brand and toothbrush created an interaction factor
 
 # General Rules
 
-At the beginning of this section I mentioned that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on Effects Model and ANOVA will help explain why these rules are true; but for now, you will just take to take it on faith. 
+At the beginning of this section I mentioned that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on Effects Model and ANOVA will help explain why these rules are true; but for now, you will just take to take it on faith.
 
 ::: callout-tip
 ## General Rule for Effect Size

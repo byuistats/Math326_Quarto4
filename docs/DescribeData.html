@@ -116,6 +116,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -181,36 +189,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.qmd">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Effects_model.qmd">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">Extending the Basic Designs</span></a>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./ANOVA.html">
- <span class="dropdown-text">Notation</span></a>
+ <span class="dropdown-text">ZModel Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">Multiple Pairwise Testing</span></a>
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
- <span class="dropdown-text">Power</span></a>
+ <span class="dropdown-text">ZPower</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">Random Factors</span></a>
+ <span class="dropdown-text">ZRandom Factors</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">Unbalanced Datasets</span></a>
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
   </li>  
     </ul>
   </li>
@@ -244,10 +256,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link active" data-scroll-target="#numerical-summaries">Numerical Summaries</a>
   <ul class="collapse">
-  <li><a href="#treatment-means" id="toc-treatment-means" class="nav-link" data-scroll-target="#treatment-means">Treatment Means</a></li>
-  <li><a href="#treatment-effects" id="toc-treatment-effects" class="nav-link" data-scroll-target="#treatment-effects">Treatment Effects</a></li>
+  <li><a href="#means-standard-deviations-and-sample-size" id="toc-means-standard-deviations-and-sample-size" class="nav-link" data-scroll-target="#means-standard-deviations-and-sample-size">Means, standard deviations, and sample size</a></li>
   </ul></li>
-  <li><a href="#graphical-summaries" id="toc-graphical-summaries" class="nav-link" data-scroll-target="#graphical-summaries">Graphical Summaries</a></li>
+  <li><a href="#graphical-summaries" id="toc-graphical-summaries" class="nav-link" data-scroll-target="#graphical-summaries">Graphical Summaries</a>
+  <ul class="collapse">
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots">Boxplots</a></li>
+  <li><a href="#scatterplot-with-means" id="toc-scatterplot-with-means" class="nav-link" data-scroll-target="#scatterplot-with-means">Scatterplot, with Means</a></li>
+  <li><a href="#interaction-plot" id="toc-interaction-plot" class="nav-link" data-scroll-target="#interaction-plot">Interaction Plot</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -283,11 +299,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     var e = document.getElementById(id);
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
 </script>
 <section id="numerical-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h2>
-<section id="treatment-means" class="level3">
-<h3 class="anchored" data-anchor-id="treatment-means">Treatment Means</h3>
+<section id="means-standard-deviations-and-sample-size" class="level3">
+<h3 class="anchored" data-anchor-id="means-standard-deviations-and-sample-size">Means, standard deviations, and sample size</h3>
 <p>In the following explanations</p>
 <ul>
 <li><code>Y</code> must be a “numeric” vector of the quantitative response variable.</li>
@@ -295,8 +326,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p>You can take a tidyverse approach or a mosaic package approach to calculating numerical summaries for each treatment.</p>
-<section id="mosaic-package" class="level4">
-<h4 class="anchored" data-anchor-id="mosaic-package">mosaic package:</h4>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">mosaic package:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">tidyverse approach</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Calculating treatment means for <strong>one factor</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
@@ -321,7 +354,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><br></p>
 <p>When calculating treatment <strong>means for combinations of 2 or more factors</strong> you can use <code>+</code> or <code>|</code> to separate the factors. <code>|</code> (read as ‘vertical bar’ or ‘pipe’) has the advantage that in addition to calculating means for every factor level combination, favstats will also output the marginal means for each level of the last factor listed.</p>
 <p><em>NOTE:</em> unlike it’s use in the <code>aov()</code> command, using the <code>*</code> within favstats does not yield expected results and should NOT be used.</p>
 <div class="cell">
@@ -330,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#OR</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Y <span class="sc">~</span> X <span class="sc">|</span> Z, <span class="at">data =</span> YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Example code:</p>
+<p><strong>Example code:</strong></p>
 <a href="javascript:showhide('favstats_plus')">
 <div class="hoverchunk">
 <p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span> </span><br><span class="tooltipr"> favstats( <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span> </span><span class="tooltipr"> mpg <span class="tooltipRtext">This is a quantitative variable (numerical vector) from the mtcars dataset</span> </span><span class="tooltipr"> ~ <span class="tooltipRtext">“~” is the tilde symbol. It can be interpreted as “y broken down by x”; “y modeled by x”; “y explained by x”, etc. Where y is on the left of the tilde and x variables are on the right. </span> </span><span class="tooltipr"> am <span class="tooltiprtext">A qualitative variable from the mtcars dataset. It is coded as 0 and 1 and so therefore is treated as numeric. That is a key distinction when creating the model, but it does not matter when calling favstats().</span> </span><span class="tooltipr"> + <span class="tooltiprtext">This allows us to create additional subgroups within ‘am’ for each level of ‘cyl’.</span> </span><span class="tooltipr"> cyl, <span class="tooltiprtext">A variable from the mtcars dataset with 3 distinct values: 4, 6, and 8. Though it is a numeric column we want to treat it as a factor. This is a key distinction when creating the model, but it does not matter when calling favstats().</span> </span><span class="tooltipr"> data = mtcars <span class="tooltiprtext">You have to tell R what dataset the variables ‘mpg’, ‘am’, and ‘cyl’ come from. ‘mtcars’ is a preloaded dataset in R. </span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;Click to view output&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
@@ -349,9 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><br></p>
 <p>Notice that the first column in the output contains the factor level combinations of <code>am</code> and <code>cyl</code>. So, ‘0.4’ is interpreted as level 0 for <code>am</code> and level 4 for <code>cyl</code>. Or in other words, the summary statistics on that row are for automatic tranmission, 4 cylinder engine vehicles. The column label of ‘am.cyl’ indicates which factor is represented on which side of the period. The next example uses the same way of labeling the factor level combinations, but the column label is not as intuitive or helpful.</p>
-<p><br></p>
 <a href="javascript:showhide('favstats_bar')">
 <div class="hoverchunk">
 <p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span> </span><br><span class="tooltipr"> favstats( <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span> </span><span class="tooltipr"> mpg <span class="tooltipRtext">This is a quantitative variable (numerical vector) from the mtcars dataset</span> </span><span class="tooltipr"> ~ <span class="tooltipRtext">“~” is the tilde symbol. It can be interpreted as “y broken down by x”; “y modeled by x”; “y explained by x”, etc. Where y is on the left of the tilde and x variables are on the right. </span> </span><span class="tooltipr"> am <span class="tooltiprtext">A qualitative variable from the mtcars dataset. It is coded as 0 and 1 and so therefore is treated as numeric. That is a key distinction when creating the model, but it does not matter when calling favstats().</span> </span><span class="tooltipr"> | <span class="tooltiprtext">Referred to as a vertical bar or pipe, this symbol further defines subgroups of the variable on its left, using the values of the variable on its right side </span> </span><span class="tooltipr"> cyl, <span class="tooltiprtext">A variable from the mtcars dataset with 3 distinct values: 4, 6, and 8. Though it is a numeric column we want to treat it as a factor. This is a key distinction when creating the model, but it does not matter when calling favstats().</span> </span><span class="tooltipr"> data = mtcars <span class="tooltiprtext">You have to tell R what dataset the variables ‘mpg’, ‘am’, and ‘cyl’ come from. ‘mtcars’ is a preloaded dataset in R. </span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;Click to View Output&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
@@ -374,9 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><br></p>
-</section>
-<section id="tidyverse-approach" class="level4">
-<h4 class="anchored" data-anchor-id="tidyverse-approach">tidyverse approach</h4>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Calculating treatment means for <strong>one factor</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -438,9 +467,8 @@ airquality %&gt;%
   summarise(aveTemp = mean(Temp)) %&gt;%
   pander()</code></pre>
 </div>
-<p><br></p>
 <p>To calculate treatment means for each combination of factor levels of <strong>2 or more factors</strong>, simply add the additional variable to the <code>group_by()</code> statement.</p>
-<p>Example code:</p>
+<p><strong>Example code:</strong></p>
 <a href="javascript:showhide('mean_tidy2')">
 <div class="hoverchunk">
 <p><span class="tooltipr"> library(tidyverse) <span class="tooltiprtext">tidyverse is an R Package that is very useful for working with data.</span> </span><br><span class="tooltipr"> mpg <span class="tooltipRtext"><code>mtcars</code> is a dataset in preloaded in R.</span> </span><span class="tooltipr"> &nbsp;%&gt;%&nbsp; <span class="tooltipRtext">The pipe operator that will send the <code>mtcars</code> dataset down inside of the code on the following line.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; group_by( <span class="tooltipRtext">“group_by” is a function from library(tidyverse) that allows us to split the mtcars dataset into “little” datasets, one dataset for each combination of values in the ‘am’ and ‘cyl’ variables</span> </span><span class="tooltipr"> am, cyl <span class="tooltiprtext">‘am’ and ‘cyl’ are both columns in mtcars. By listing them both here we are going to get output for each combination of ‘am’ and ‘cyl’ that exists in the dataset</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;%&gt;%&nbsp; <span class="tooltipRtext">The pipe operator that will send the grouped version of the <code>airquality</code> dataset down inside of the code on the following line.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; summarise( <span class="tooltipRtext">“summarise” is a function from library(tidyverse) that allows us to compute numerical summaries on data.</span> </span><span class="tooltipr"> mean_mpg =&nbsp; <span class="tooltiprtext">“mean_mpg” is just a name we made up. It will contain the results of the mean(…) function.</span> </span><span class="tooltipr"> mean( <span class="tooltiprtext">“mean” is an R function used to calculate the mean.</span> </span><span class="tooltipr"> mpg <span class="tooltiprtext">mpg is a quantitative variable (numeric vector) from the mtcars dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
@@ -502,19 +530,474 @@ airquality %&gt;%
 </div>
 </div>
 </div>
-<hr>
-</section>
-</section>
-<section id="treatment-effects" class="level3">
-<h3 class="anchored" data-anchor-id="treatment-effects">Treatment Effects</h3>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
 <section id="graphical-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h2>
-<p>I’m thinking of boxplot, a scatter/jitter plot with means connected by a line, and an interaction plot. Try to decide the degree to teach base R vs.&nbsp;ggplot.</p>
+<section id="boxplots" class="level3">
+<h3 class="anchored" data-anchor-id="boxplots">Boxplots</h3>
+<div style="float:left;width:125px;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="96"></p>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">R Instructions</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Explanation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div style="padding-left:125px;">
+<p>Graphical depiction of the five-number summary. Great for comparing the distributions of data across several groups or categories. Provides a quick visual understanding of the location of the median as well as the range of the data. Can be useful in showing outliers. Sample size should be larger than at least five, or computing the <em>five</em>-number summary is not very meaningful.</p>
+</div>
+<hr>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div style="padding-left:125px;">
+<div class="tab">
+<p><button class="tablinks" onclick="openTab(event, 'BaseBoxplot')">Base R</button> <button class="tablinks" onclick="openTab(event, 'ggplot2Boxplot')">ggplot2</button> <button class="tablinks" onclick="openTab(event, 'plotlyBoxplot')">plotly</button></p>
+</div>
+<div id="BaseBoxplot" class="tabcontent">
+<p>
+</p><p>To make a boxplot in R use the function:</p>
+<p><code>boxplot(object)</code></p>
+<p>To make side-by-side boxplots:</p>
+<p><code>boxplot(object ~ group, data=NameOfYourData, ...)</code></p>
+<ul>
+<li><code>object</code> must be quantitative data. R refers to this as a “numeric vector.”</li>
+<li><code>group</code> must be qualitative data. R refers to this as either a “character vector” or a “factor.” However, a “numeric vector” can also act as a qualitative variable.</li>
+<li><code>NameOfYourData</code> is the name of the dataset containing <code>object</code> and <code>group</code>.</li>
+<li><code>...</code> implies there are many other options that can be given to the <code>boxplot()</code> function. Type <code>?boxplot</code> in your <strong>R Console</strong> for more details.</li>
+</ul>
+<p><strong>Example Code</strong></p>
+<p><em>Basic Single Boxplot</em></p>
+<a href="javascript:showhide('boxplot0')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> boxplot <span class="tooltiprtext">An R function “boxplot” used to create boxplots.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="boxplot0" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><em>More Useful… Basic Side-by-Side Boxplot</em></p>
+<a href="javascript:showhide('boxplot1')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> boxplot <span class="tooltiprtext">An R function “boxplot” used to create boxplots.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> &nbsp;~&nbsp; <span class="tooltiprtext">The ~ is used to tell R that you want one boxplot of the quantitative variable (“Temp”) for each group found in the qualitative variable (“Month”).</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">“Month” is a qualitative variable (in this case a “numeric vector” defining months by 5, 6, 7, 8, and 9) from the “airquality” dataset.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the “boxplot()” function.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R that the “Temp” and “Month” variables are located in the <span style="font-weight:bold">airquality</span> dataset. Without this, R will not know where to find “Temp” and “Month” and the command will give an error.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="boxplot1" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><em>Add Names under each Box</em></p>
+<a href="javascript:showhide('boxplot2a')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> boxplot <span class="tooltiprtext">An R function “boxplot” used to create boxplots.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> &nbsp;~&nbsp; <span class="tooltiprtext">The ~ is used to tell R that you want one boxplot of the quantitative variable (“Temp”) for each group found in the qualitative variable (“Month”).</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">“Month” is a qualitative variable (in this case a “numeric vector” defining months by 5, 6, 7, 8, and 9) from the “airquality” dataset.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the “boxplot()” function.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R that the “Temp” and “Month” variables are located in the <span style="font-weight:bold">airquality</span> dataset. Without this, R will not know where to find “Temp” and “Month” and the command will give an error.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the “boxplot()” function.</span> </span><span class="tooltipr"> names=c(“May”,“June”,“July”,“Aug”,“Sep”) <span class="tooltiprtext">names= is used to tell R what labels to place on the x-axis below each boxplot.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="boxplot2a" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><em>Add Color and Labels</em></p>
+<a href="javascript:showhide('boxplot2')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> boxplot(Temp ~ Month, data=airquality <span class="tooltiprtext">This code was explained in the previous example code.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma is used to separate each additional command to a function.</span> </span><span class="tooltipr"> xlab=“Month of the Year” <span class="tooltiprtext">xlab= stands for “x label.” Use it to specify the text to print on the plot under the x-axis. The desired text must always be contained in quotes.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma is used to separate each additional command to a function.</span> </span><span class="tooltipr"> ylab=“Temperature” <span class="tooltiprtext">ylab= stands for “y label.” Use it to specify the text to print on the plot next to the y-axis. The desired text must always be contained in quotes.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma is used to separate each additional command to a function.</span> </span><span class="tooltipr"> main=“La Guardia Airport Daily Temperatures” <span class="tooltiprtext">main= stands for the “main label” of the plot, which is placed at the top center of the plot. The desired text must always be contained in quotes.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma is used to separate each additional command to a function.</span> </span><span class="tooltipr"> col=“wheat” <span class="tooltiprtext">col= stands for the “color” of the plot. The color name “wheat” is an available color in R. Type colors() in the R Console to see more options. The color name must always be placed in quotes.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="boxplot2" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<div id="ggplot2Boxplot" class="tabcontent">
+<p>
+</p><p>To make a boxplot in R using the ggplot approach, first ensure</p>
+<p><code>library(ggplot2)</code></p>
+<p>is loaded. Then,</p>
+<p><code>ggplot(data, aes(x=groupsColumn, y=dataColumn) +</code></p>
+<p>&nbsp;&nbsp;<code>geom_boxplot()</code></p>
+<ul>
+<li><code>data</code> is the name of your dataset.</li>
+<li><code>groupsColumn</code> is a column of data from your dataset that is qualitative and represents the groups that should each have a boxplot.</li>
+<li><code>dataColumn</code> is a column of data from your dataset that is quantitative.</li>
+<li>The aesthetic helper function <code>aes(x= , y=)</code> is how you tell the gpplot to make the x-axis have the values in your <code>groupsColumn</code> of data, the y-axis become your <code>dataColumn</code>. <strong>Note</strong> <em>if <code>groupsColumn</code> is not a factor, use <code>factor(groupsColumn)</code> instead.</em></li>
+<li>The geometry helper function <code>geom_boxplot()</code> causes the ggplot to become a boxplot.</li>
+</ul>
+<p><br></p>
+<p><strong>Example Code</strong></p>
+<p><em>Basic Single Boxplot</em></p>
+<a href="javascript:showhide('box1ggplot')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> ggplot <span class="tooltiprtext">An R function “ggplot” used to create a framework for a graphic that will have elements added to it with the <code>+</code> sign.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma allows us to specify optional commands to the function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell the ggplot how it should appear. This includes things like what the y-axis should become.</span> </span><span class="tooltipr"> y=Temp <span class="tooltiprtext">“y=” declares which variable will become the y-axis of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the aes function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the ggplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; geom_boxplot() <span class="tooltiprtext">The “geom_boxplot()” function causes the ggplot to become a boxplot. There are many other “geom_” functions that could be used.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="box1ggplot" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br> <em>Side-by-side Boxplot and Color Change</em></p>
+<a href="javascript:showhide('box2ggplot')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> ggplot <span class="tooltiprtext">An R function “ggplot” used to create a framework for a graphic that will have elements added to it with the <code>+</code> sign.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma allows us to specify optional commands to the function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell the ggplot how it should appear. This includes things like what the x-axis or y-axis should become.</span> </span><span class="tooltipr"> x=factor(Month),&nbsp; <span class="tooltiprtext">“x=” declares which variable will become the x-axis of the graphic. Since Month is “numeric” we must use “factor(Month)” instead of just “Month”.</span> </span><span class="tooltipr"> y=Temp <span class="tooltiprtext">“y=” declares which variable will become the y-axis of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the aes function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the ggplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; geom_boxplot( <span class="tooltiprtext">The “geom_boxplot()” function causes the ggplot to become a boxplot. There are many other “geom_” functions that could be used.</span> </span><span class="tooltipr"> fill=“skyblue”,&nbsp; <span class="tooltiprtext">The “fill” command controls the color of the insides of each box in the boxplot.</span> </span><span class="tooltipr"> color=“black” <span class="tooltiprtext">The “color” command controls the color of the edges of each box.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="box2ggplot" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<em>Add Labels</em> <a href="javascript:showhide('box3ggplot')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> ggplot <span class="tooltiprtext">An R function “ggplot” used to create a framework for a graphic that will have elements added to it with the <code>+</code> sign.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma allows us to specify optional commands to the function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell the ggplot how it should appear. This includes things like what the x-axis or y-axis should become.</span> </span><span class="tooltipr"> x=factor(Month),&nbsp; <span class="tooltiprtext">“x=” declares which variable will become the x-axis of the graphic. Since Month is “numeric” we must use “factor(Month)” instead of just “Month”.</span> </span><span class="tooltipr"> y=Temp <span class="tooltiprtext">“y=” declares which variable will become the y-axis of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the aes function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the ggplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; geom_boxplot( <span class="tooltiprtext">The “geom_histogram()” function causes the ggplot to become a histogram. There are many other “geom_” functions that could be used.</span> </span><span class="tooltipr"> fill=“skyblue”,&nbsp; <span class="tooltiprtext">The “fill” command controls the color of the insides of each box.</span> </span><span class="tooltipr"> color=“black” <span class="tooltiprtext">The “color” command controls the color of the edges of each box.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; labs( <span class="tooltiprtext">The “labs” function is used to add labels to the plot, like a main title, x-label and y-label.</span> </span><span class="tooltipr"> title=“La Guardia Airport Daily Mean Temperature”,&nbsp; <span class="tooltiprtext">The “title=” command allows you to control the main title at the top of the graphic.</span> </span><span class="tooltipr"> x=“Month of the Year”,&nbsp; <span class="tooltiprtext">The “x=” command allows you to control the x-label of the graphic.</span> </span><span class="tooltipr"> y=“Daily Mean Temperature” <span class="tooltiprtext">The “y=” command allows you to control the y-label of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the labs function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="box3ggplot" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>Gallery</strong></p>
+<p>See what past students have done…</p>
+<p><a href="javascript:showhide('boxplotgalleryggplot')">Click to view.</a></p>
+<div id="boxplotgalleryggplot" style="display:none;">
+<p>Hover to see code.</p>
+<p><span class="tooltipgallery"> <img class="gallerygraphs" src="./images/boxplotggplotgallery1.png"><br>
+<span class="tooltipgallerytext"> <code>ggplot(data = mtcars, aes(x = as.factor(cyl), y = mpg, fill=as.factor(cyl))) +</code> <br> <code>geom_boxplot()  +</code> <br> <code>stat_summary(fun.y = mean, geom = "errorbar", aes(ymax = ..y.., ymin = ..y..),</code> <br> &nbsp;&nbsp; <code>width = .75, linetype = "dashed", color="firebrick") +</code> <br> <code>theme_light() +</code> <br> <code>theme(panel.grid.major=element_blank()) +</code> <br> <code>scale_fill_brewer(palette="Dark2") +</code> <br> <code>geom_jitter(width=0.1, height=0) +</code> <br> <code>labs(title = "Miles Per Gallon Based on Cylinders",</code> <br> &nbsp;&nbsp; <code>x="Number of Cylinders",</code> <br> &nbsp;&nbsp; <code>fill="Cylinders",</code> <br> &nbsp;&nbsp; <code>y="Miles Per Gallon")</code> <br> </span> </span></p>
+<p><span class="tooltipgallery"> <img class="gallerygraphs" src="./images/boxplotggplotgallery2.png"><br>
+<span class="tooltipgallerytext"> <code>ggplot(data = ToothGrowth, aes(x = as.factor(dose), y = len, fill=as.factor(dose))) +</code> <br> <code>geom_boxplot( )  +</code> <br> <code>facet_wrap(~supp) +</code> <br> <code>theme_bw() +</code> <br> <code>scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9")) +</code> <br> <code>geom_jitter(width=0.1, height=0) +</code> <br> <code>labs(title = "Tooth Length Based on Doses</code> <br> &nbsp;&nbsp; <code>According to Supplement Type",</code> <br> &nbsp;&nbsp; <code>fill="Doses",</code> <br> &nbsp;&nbsp; <code>x="Dosage Amount(mg)",</code> <br> &nbsp;&nbsp; <code>y="Tooth Length" )</code> <br> </span> </span></p>
+</div>
+<p></p>
+</div>
+<div id="plotlyBoxplot" class="tabcontent">
+<p>
+</p><p>To make a histogram in plotly first load</p>
+<p><code>library(plotly)</code></p>
+<p>Then, use the function:</p>
+<p><code>plot_ly(dataName, y=~columnNameY, x=~columnNameX, type="box")</code></p>
+<ul>
+<li><code>dataName</code> is the name of a data set</li>
+<li><code>columnNameY</code> must be the name of a column of quantitative data. R refers to this as a “numeric vector.” This will become the y-axis of the plot.</li>
+<li><code>columnNameX</code> must be the name of a column of qualitative data. This will provide the “groups” forming each individual box in the boxplot.</li>
+<li><code>type="box"</code> tells the plot_ly(…) function to create a boxplot.</li>
+</ul>
+<p>Visit <a href="https://plotly.com/r/box-plots/">plotly.com/r/box-plots</a> for more details.</p>
+<p><br></p>
+<p><strong>Example Code</strong></p>
+<p>Hover your mouse over the example codes to learn more. Click on them to see what they create.</p>
+<p><em>Basic Boxplot</em></p>
+<a href="javascript:showhide('plotlybox1')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot_ly <span class="tooltiprtext">An R function “plot_ly” from library(plotly) used to create any plotly plot.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality,&nbsp; <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> y= <span class="tooltiprtext">The y= allows us to declare which column of the data set will become the y-axis of the boxplot. In other words, the quantitative data we are interested in studying for each group.</span> </span><span class="tooltipr"> ~Temp, &nbsp; <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset. The <code>~</code> is required before column names inside all plot_ly(…) commands.</span> </span><span class="tooltipr"> x= <span class="tooltiprtext">The x= allows us to declare which column of the data set will become the x-axis of the boxplot. In other words, the “groups” forming each separate box in the boxplot.</span> </span><span class="tooltipr"> ~as.factor(Month), &nbsp; <span class="tooltiprtext">since “Month” is a quantitative variable (numeric vector) from the “airquality” dataset we have to change it to a “factor” which forces R to treat it as a qualitative (groups) variable. The <code>~</code> is required before column names inside all plot_ly(…) commands.</span> </span><span class="tooltipr"> type=“box” <span class="tooltiprtext">This option tells the plot_ly(…) function what “type” of graph to make. In this case, a boxplot.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the plot_ly function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="plotlybox1" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-c476f709decf66a763a0" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c476f709decf66a763a0">{"x":{"visdat":{"2d3469475e63":["function () ","plotlyVisDat"]},"cur_data":"2d3469475e63","attrs":{"2d3469475e63":{"y":{},"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"as.factor(Month)","type":"category","categoryorder":"array","categoryarray":["5","6","7","8","9"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Temp"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"rgba(31,119,180,0.5)","y":[67,72,74,62,56,66,65,59,61,69,74,69,66,68,58,64,66,57,68,62,59,73,61,61,57,58,57,67,81,79,76,78,74,67,84,85,79,82,87,90,87,93,92,82,80,79,77,72,65,73,76,77,76,76,76,75,78,73,80,77,83,84,85,81,84,83,83,88,92,92,89,82,73,81,91,80,81,82,84,87,85,74,81,82,86,85,82,86,88,86,83,81,81,81,82,86,85,87,89,90,90,92,86,86,82,80,79,77,79,76,78,78,77,72,75,79,81,86,88,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,77,75,76,68],"x":["5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9"],"type":"box","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><em>Change Color</em></p>
+<a href="javascript:showhide('plotlybox3')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot_ly(airquality, y=~Temp, x=~as.factor(Month), type=“box”,&nbsp; <span class="tooltiprtext">This code was explained in the first example code.</span> </span><span class="tooltipr"> fillcolor=“skyblue”,&nbsp; <span class="tooltiprtext">this changes the fill color of the boxes in the boxplot to the color specified, in this case “skyblue.”</span> </span><span class="tooltipr"> line=list(color=“darkgray”, width=3),&nbsp; <span class="tooltiprtext">this “list(…)” of options that will be specified will effect the edges of the boxes in the boxplot. We are changing their color to “darkgray” and their width to 3 pixels wide.</span> </span><span class="tooltipr"> marker=list( <span class="tooltiprtext">this “list(…)” of options that will be specified will effect the outlying dots shown in the boxplots beyond the “fences” of each box.</span> </span><span class="tooltipr"> color = “orange”,&nbsp; <span class="tooltiprtext">this will change the color of the dots to orange.</span> </span><span class="tooltipr"> line = list(,&nbsp; <span class="tooltiprtext">this opens a list of options to specify for the “lines” around the “markers.”</span> </span><span class="tooltipr"> color = “red”,&nbsp; <span class="tooltiprtext">this will change the color of the lines around the outlier dots to red.</span> </span><span class="tooltipr"> width = 1 <span class="tooltiprtext">this will change the width of the lines around the outlier dots to 1 pixel.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="plotlybox3" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-6f864c4d65aad134d2bd" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6f864c4d65aad134d2bd">{"x":{"visdat":{"2d34f1e721d":["function () ","plotlyVisDat"]},"cur_data":"2d34f1e721d","attrs":{"2d34f1e721d":{"y":{},"x":{},"fillcolor":"skyblue","line":{"color":"darkgray","width":3},"marker":{"color":"orange","line":{"color":"red","width":1}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"as.factor(Month)","type":"category","categoryorder":"array","categoryarray":["5","6","7","8","9"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Temp"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"skyblue","y":[67,72,74,62,56,66,65,59,61,69,74,69,66,68,58,64,66,57,68,62,59,73,61,61,57,58,57,67,81,79,76,78,74,67,84,85,79,82,87,90,87,93,92,82,80,79,77,72,65,73,76,77,76,76,76,75,78,73,80,77,83,84,85,81,84,83,83,88,92,92,89,82,73,81,91,80,81,82,84,87,85,74,81,82,86,85,82,86,88,86,83,81,81,81,82,86,85,87,89,90,90,92,86,86,82,80,79,77,79,76,78,78,77,72,75,79,81,86,88,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,77,75,76,68],"x":["5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9"],"line":{"color":"darkgray","width":3},"marker":{"color":"orange","line":{"color":"red","width":1}},"type":"box","name":"skyblue","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><em>Add Titles</em></p>
+<a href="javascript:showhide('plotlybox2')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot_ly(airquality, y=~Temp, x=~as.factor(Month), type=“box”, fillcolor=“skyblue”, line=list(color=“darkgray”, width=3), marker = list(color=“orange”, line = list(color=“red”, width=1)))&nbsp; <span class="tooltiprtext">This code was explained in the above example code.</span> </span><span class="tooltipr"> %&gt;% <span class="tooltiprtext">the pipe operator sends the completed plot_ly(…) code into the layout function.</span> </span><br><span class="tooltipr"> layout( <span class="tooltiprtext">The layout(…) function is used for specifying details about the axes and their labels.</span> </span><span class="tooltipr"> title=“La Guardia Airport Daily Mean Temperatures” <span class="tooltiprtext">This declares a main title for the top of the graph.</span> </span><span class="tooltipr"> xaxis=list( <span class="tooltiprtext">This declares a list of options to be specified for the xaxis. The same can be done for the yaxis(…).</span> </span><span class="tooltipr"> title=“Month of the Year” <span class="tooltiprtext">This declares a title underneath the x-axis.</span> </span><span class="tooltipr"> ),&nbsp; <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> yaxis=list( <span class="tooltiprtext">This declares a list of options to be specified for the y-axis.</span> </span><span class="tooltipr"> title=“Temperature in Degrees F” <span class="tooltiprtext">This declares a title beside the y-axis.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="plotlybox2" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-87dbf06c99b6ce8a0efa" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-87dbf06c99b6ce8a0efa">{"x":{"visdat":{"2d341f6a18bc":["function () ","plotlyVisDat"]},"cur_data":"2d341f6a18bc","attrs":{"2d341f6a18bc":{"y":{},"x":{},"fillcolor":"skyblue","line":{"color":"darkgray","width":3},"marker":{"color":"orange","line":{"color":"red","width":1}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"La Guardia Airport Daily Mean Temperatures","yaxis":{"domain":[0,1],"automargin":true,"title":"Temperature in Degrees F"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Month of the Year","type":"category","categoryorder":"array","categoryarray":["5","6","7","8","9"]},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"skyblue","y":[67,72,74,62,56,66,65,59,61,69,74,69,66,68,58,64,66,57,68,62,59,73,61,61,57,58,57,67,81,79,76,78,74,67,84,85,79,82,87,90,87,93,92,82,80,79,77,72,65,73,76,77,76,76,76,75,78,73,80,77,83,84,85,81,84,83,83,88,92,92,89,82,73,81,91,80,81,82,84,87,85,74,81,82,86,85,82,86,88,86,83,81,81,81,82,86,85,87,89,90,90,92,86,86,82,80,79,77,79,76,78,78,77,72,75,79,81,86,88,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,77,75,76,68],"x":["5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","8","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9"],"line":{"color":"darkgray","width":3},"marker":{"color":"orange","line":{"color":"red","width":1}},"type":"box","name":"skyblue","xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+</div>
+<hr>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div style="padding-left:125px;">
+<p>Understanding how a boxplot is created is the best way to understand what the boxplot shows.</p>
+<section id="how-boxplots-are-made" class="level5">
+<h5 class="anchored" data-anchor-id="how-boxplots-are-made">How Boxplots are Made</h5>
+<ol type="1">
+<li>The five-number summary is computed.</li>
+<li>A box is drawn with one edge located at the first quartile and the opposite edge located at the third quartile.</li>
+<li>This box is then divided into two boxes by placing another line inside the box at the location of the median.</li>
+<li>The maximum value and minimum value are marked on the plot.</li>
+<li>Whiskers are drawn from the first quartile out towards the minimum and from the third quartile out towards the maximum.</li>
+<li>If the minimum or maximum is too far away, then the whisker is ended early.</li>
+<li>Any points beyond the line ending the whisker are marked on the plot as dots. This helps identify possible outliers in the data.</li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="scatterplot-with-means" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-with-means">Scatterplot, with Means</h3>
+<div style="float:left;width:125px;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="96"></p>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R Instructions</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Scatterplots of a catgorical variable on the x axis and quantitative variable on the y axis are sometimes called strip charts, or side-by-side strip charts. When sample sizes are not too big and there are not too many repeated value this type of chart is an excellent way to see the variability in the data without the abstraction of a boxplot. By plotting individual observations you also can see the size of the sample for each factor level. Including factor level means on the plot adds additional insight. The mean of each factor level is often connected with a line for visual impact.</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div style="padding-left:125px;">
+<div class="tab">
+<p><button class="tablinks" onclick="openTab(event, 'mosaic_scatter')">mosaic</button> <button class="tablinks" onclick="openTab(event, 'ggplot2_scatter')">ggplot2</button> <button class="tablinks" onclick="openTab(event, 'plotly_scatter')">plotly</button></p>
+</div>
+<div id="mosaic_scatter" class="tabcontent">
+<p>
+</p><p>To make a scatterplot use the function:</p>
+<p><code>xyplot(y~x, data = mydata)</code></p>
+<ul>
+<li><code>y</code> is the quantitative response variable, i.e., “numeric vector.”</li>
+<li><code>x</code> is the independent, explanatory variable</li>
+<li><code>my</code> is the name of the dataset containing <code>y</code> and <code>x</code>.</li>
+</ul>
+<p>This will return a scatterplot regardless of how your <code>x</code> variable is stored in R (numeric, character, factor). This function is flexible and with minimal effort can include averages or make an interaction plot. <code>xyplot()</code> is a part of the <code>lattice</code> package, which is loaded when the <code>mosaic</code> package is loaded.</p>
+<p><em>Note: <code>plot()</code> from base R will also give a scatterplot, but only if the <code>x</code> variable is quantitative. If <code>x</code> is a character or factor variable the default is to return a boxplot plot.</em></p>
+<p><strong>Example Code</strong></p>
+<p>By reading the documentation for the dataset (visible when <code>?ToothGrowth</code> is run in the console) we can see that our “x” variable, “dose”, is a numeric variable in R. Because of this the x-axis maintains the relative distance of doses on the x-axis.</p>
+<p>By reading the documentation for the dataset (visible when <code>?ToothGrowth</code> is run in the console) we can see that our “x” variable, “dose”, is a numeric variable in R. Because of this the x-axis maintains the relative distance of doses on the x-axis.</p>
+<!-- Example Code 1 -->
+<a href="javascript:showhide('scatterplot1')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> xyplot <span class="tooltiprtext">An R function used to create a scatterplot.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> len <span class="tooltiprtext">“len” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the response variable (y-axis) for this plot.</span> </span><span class="tooltipr"> &nbsp;~&nbsp; <span class="tooltiprtext">The ~ is used to tell R that you want a scatterplot with the quantitative variable “len” on the y-axis and the variable “dose” on the x-axis.</span> </span><span class="tooltipr"> dose <span class="tooltiprtext">“dose” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the explanatory variable (x-axis) for this plot.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> data=ToothGrowth <span class="tooltiprtext">data= is used to tell R that the “len” and “dose” variables are located in the <span style="font-weight:bold">ToothGrowth</span> dataset. Without this, R will not know where to find “len” and “dose”. Learn more about the dataset by entering <code>?ToothGrowth</code> into the console.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> xlab = “Vitamin C dose in mg/day” <span class="tooltiprtext">xlab= allows you to specify an x-axis label. The units mg/day is explained in the dataset documentation, visible when <code>?ToothGrowth</code> is run in the console. </span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> ylab = “Length” <span class="tooltiprtext">ylab= allows you to specify an y-axis label.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="scatterplot1" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>If you start with a numeric x variable, you may or may not want to convert it to a factor variable. Doing so will make each factor level, or category, equally spaced along the x-axis. It also “cleans up” the axis by removing additional tic-marks and axis values that aren’t needed. Compare the output of the previous example code with this example code. This example code converts our x variable of “dose” to a factor variable.</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('scatterplot2')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> xyplot <span class="tooltiprtext">An R function used to create a scatterplot.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> len <span class="tooltiprtext">“len” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the response variable (y-axis) for this plot.</span> </span><span class="tooltipr"> &nbsp;~&nbsp; <span class="tooltiprtext">The ~ is used to tell R that you want a scatterplot with the quantitative variable “len” on the y-axis and the variable “dose” on the x-axis.</span> </span><span class="tooltipr"> factor <span class="tooltiprtext">An R function to convert how data is stored in a variable. The variable input into this function will now be treated as a factor variable in this command</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> dose <span class="tooltiprtext">“dose” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the explanatory variable (x-axis) for this plot. Because it is an input to the factor function it will be treated as a factor variable</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> data=ToothGrowth <span class="tooltiprtext">data= is used to tell R that the “len” and “dose” variables are located in the <span style="font-weight:bold">ToothGrowth</span> dataset. Without this, R will not know where to find “len” and “dose”. Learn more about the dataset by entering <code>?ToothGrowth</code> into the console.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> xlab = “Vitamin C dose in mg/day” <span class="tooltiprtext">xlab= allows you to specify an x-axis label. The units mg/day is explained in the dataset documentation, visible when <code>?ToothGrowth</code> is run in the console. </span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> ylab = “Length” <span class="tooltiprtext">ylab= allows you to specify an y-axis label.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="scatterplot2" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>To include the means on the plot and connect them with a line use this code</p>
+<!-- Example Code 3 -->
+<a href="javascript:showhide('scatterplot3')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> xyplot <span class="tooltiprtext">An R function used to create a scatterplot.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> len <span class="tooltiprtext">“len” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the response variable (y-axis) for this plot.</span> </span><span class="tooltipr"> &nbsp;~&nbsp; <span class="tooltiprtext">The ~ is used to tell R that you want a scatterplot with the quantitative variable “len” on the y-axis and the variable “dose” on the x-axis.</span> </span><span class="tooltipr"> factor <span class="tooltiprtext">An R function to convert how data is stored in a variable. The variable input into this function will now be treated as a factor variable in this command</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> dose <span class="tooltiprtext">“dose” is a quantitative variable (numeric vector) from the “ToothGrowth” dataset that is being used as the explanatory variable (x-axis) for this plot. Because it is an input to the factor function it will be treated as a factor variable</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> data=ToothGrowth <span class="tooltiprtext">data= is used to tell R that the “len” and “dose” variables are located in the <span style="font-weight:bold">ToothGrowth</span> dataset. Without this, R will not know where to find “len” and “dose”. Learn more about the dataset by entering <code>?ToothGrowth</code> into the console.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> xlab = “Vitamin C dose in mg/day” <span class="tooltiprtext">xlab= allows you to specify an x-axis label. The units mg/day is explained in the dataset documentation, visible when <code>?ToothGrowth</code> is run in the console. </span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> ylab = “Length” <span class="tooltiprtext">ylab= allows you to specify an y-axis label.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> type =<br>
+<span class="tooltiprtext">The type argument allows you to add different types of lines to the plot. Run ?panel.xyplot() to read more about values for this argument</span> </span><span class="tooltipr"> c( <span class="tooltiprtext">Combines the following values into one vector. This allows me to pass multiple values as one input to “type =”. Useful for if I want to plot something in addition to the default of plotting points.</span> </span><span class="tooltipr"> ‘p’<br>
+<span class="tooltiprtext">This requests the points to be plotted. It is the default value. Other acceptable values for the type argument can be seen by running ?panel.xyplot() in the console.</span> </span><span class="tooltipr"> ,&nbsp;<br>
+<span class="tooltiprtext">The “,” is required to start specifying additional commands for the function.</span> </span><span class="tooltipr"> ‘a’ <span class="tooltiprtext">This requests the average for each factor level to be connected with a line. Other acceptable values for the type argument can be seen by running ?panel.xyplot() in the console.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="scatterplot3" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<div id="ggplot2_scatter" class="tabcontent">
+<p>
+</p><p>To make a scatterplot in R using the ggplot approach, first ensure</p>
+<p><code>library(ggplot2)</code></p>
+<p>is loaded. Then,</p>
+<p><code>ggplot(data, aes(x=groupsColumn, y=dataColumn) +</code></p>
+<p>&nbsp;&nbsp;<code>geom_point()</code></p>
+<ul>
+<li><code>data</code> is the name of your dataset.</li>
+<li><code>groupsColumn</code> is a column of data from your dataset that is qualitative and represents the groups that should each have a boxplot.</li>
+<li><code>dataColumn</code> is a column of data from your dataset that is quantitative.</li>
+<li>The aesthetic helper function <code>aes(x= , y=)</code> is how you tell the gpplot to make the x-axis have the values in your <code>groupsColumn</code> of data, the y-axis become your <code>dataColumn</code>. <strong>Note</strong> <em>if <code>groupsColumn</code> is not a factor, use <code>factor(groupsColumn)</code> instead.</em></li>
+<li>The geometry helper function <code>geom_point()</code> causes the ggplot to become a scatterplot; or in other words to draw points to represent data.</li>
+</ul>
+<p><br></p>
+<p><strong>Example Code</strong></p>
+<a href="javascript:showhide('scatter_ggplot')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> ggplot <span class="tooltiprtext">An R function “ggplot” used to create a framework for a graphic that will have elements added to it with the <code>+</code> sign.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> ToothGrowth <span class="tooltiprtext">“ToothGrowth” is a dataset. Type “View(ToothGrowth)” in R to see it.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma allows us to specify optional commands to the function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell the ggplot how it should appear. This includes things like what the x-axis or y-axis should become.</span> </span><span class="tooltipr"> x=dose,&nbsp; <span class="tooltiprtext">“x=” declares which variable will become the x-axis of the graphic.</span> </span><span class="tooltipr"> y=len <span class="tooltiprtext">“y=” declares which variable will become the y-axis of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the aes function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the ggplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; geom_boxplot( <span class="tooltiprtext">The “geom_point()” function causes the ggplot to draw data as points, thus it become a scatterplot. There are many other “geom_” functions that could be used.</span> </span><span class="tooltipr"> color=“blue” <span class="tooltiprtext">The “color” command controls the color of the points. It can be confusing to know when to use “color” vs.&nbsp;“fill”.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="scatter_ggplot" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br> If you start with a numeric x variable, you may or may not want to convert it to a factor variable. You do this by using ‘factor(x)’ instead of just ‘x’ as shown below. Doing so will make each factor level, or category, equally spaced along the x-axis. It also “cleans up” the axis by removing additional tic-marks and axis values that aren’t needed.</p>
+<p><code>ggplot(ToothGrowth, aes(x = factor(dose), y = len)) +</code> &nbsp;&nbsp;<code>geom_point(color = "blue")</code></p>
+<p>Adding averages to the plot and connecting them with a line requires a little more effort and is demonstrated in the code below. I also add some more descriptive labels to the chart.</p>
+<p>Note the use of <code>stat_summary</code> to indicate I want to add a layer that plots a numerical summary, not the original data. Some geoms have stat summaries built in to them (like geom_bar or geom_boxplot), but in our case we have to define the summary.</p>
+<p>In the <code>stat_summary</code> I provide additional arguments to the aesthetics helper function. Defining the aesthetics in <code>ggplot()</code> is like a global definition, all additional layers inherit those aesthetic mappings. Defining them in a geom_* or a stats_* allows you to add to or override what was defined in <code>ggplot()</code> for that layer only. The <code>group</code> aesthetic is required in order to use a line geometry. In this case, <code>group</code> could just as easily have been defined in <code>ggplot(aes())</code>.</p>
+<a href="javascript:showhide('meanline_ggplot')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> ggplot <span class="tooltiprtext">An R function “ggplot” used to create a framework for a graphic that will have elements added to it with the <code>+</code> sign.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> ToothGrowth <span class="tooltiprtext">“ToothGrowth” is a dataset. Type “View(ToothGrowth)” in R to see it.</span> </span><span class="tooltipr"> ,&nbsp; <span class="tooltiprtext">The comma allows us to specify optional commands to the function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell the ggplot how it should appear. This includes things like what the x-axis or y-axis should become.</span> </span><span class="tooltipr"> x=dose,&nbsp; <span class="tooltiprtext">“x=” declares which variable will become the x-axis of the graphic.</span> </span><span class="tooltipr"> y=len <span class="tooltiprtext">“y=” declares which variable will become the y-axis of the graphic.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the aes function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the ggplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><br><span class="tooltipr"> &nbsp;&nbsp; geom_point( <span class="tooltiprtext">The “geom_point()” function causes the ggplot to draw data as points, thus it become a scatterplot. There are many other “geom_” functions that could be used.</span> </span><span class="tooltipr"> color=“blue” <span class="tooltiprtext">The “color” command controls the color of the points. It can be confusing to know when to use “color” vs.&nbsp;“fill”.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><span class="tooltipr"> &nbsp;&nbsp;stat_summary( <span class="tooltiprtext">This function will calculate a statistical summary to be plotted on the chart</span> </span><span class="tooltipr"> fun = mean, <span class="tooltiprtext">fun is short for function. The summary function I want to apply to my y variable is “mean”.</span> </span><span class="tooltipr"> geom = “line”, <span class="tooltiprtext">The “geom=” argument is used to tell what kind of geometry should be drawn to represent the means. Here we are asking for the means to be connected with a line.</span> </span><span class="tooltipr"> aes( <span class="tooltiprtext">The <code>aes</code> or “aesthetics” function allows you to tell ggplot what variables should be mapped to what visual aspects of the chart; including what the x-axis or y-axis should become. Including it her means the aesthetic will only be applied to this layer.</span> </span><span class="tooltipr"> group = 1 <span class="tooltiprtext">indicates which variable should be grouped by when drawing multiple lines (one line for each factor level). We write the number 1 to indicate there is just 1 group; we are not further splitting the data.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;+&nbsp; <span class="tooltiprtext">The addition symbol <code>+</code> is used to add further elements to the ggplot.</span> </span><span class="tooltipr"> &nbsp;&nbsp;labs( <span class="tooltiprtext">Function to edit labels of the plot</span> </span><span class="tooltipr"> x = “Vitamin C mg/day”, <span class="tooltiprtext">Edit the x-axis label</span> </span><span class="tooltipr"> y = “Length”, <span class="tooltiprtext">Edit the y-axis label</span> </span><span class="tooltipr"> title = “Tooth Growth in Guinea Pigs” <span class="tooltiprtext">Edit the chart title</span> </span><span class="tooltipr"> )<br>
+<span class="tooltiprtext">Closing parenthesis for the geom_boxplot function.</span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="meanline_ggplot" style="display:none;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p></p>
+</div>
+<div id="plotly_scatter" class="tabcontent">
+<p>
+</p><p>Under construction.</p>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="interaction-plot" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-plot">Interaction Plot</h3>
+<div style="float:left;width:125px;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DescribeData_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="96"></p>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">R Instructions</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Under construction</p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div style="padding-left:125px;">
+<div class="tab">
+<p><button class="tablinks" onclick="openTab(event, 'mosaic_interaction')">mosaic</button> <button class="tablinks" onclick="openTab(event, 'ggplot2_interaction')">ggplot2</button> <button class="tablinks" onclick="openTab(event, 'plotly_interaction')">plotly</button></p>
+</div>
+<p>Under construction</p>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

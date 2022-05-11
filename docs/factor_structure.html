@@ -122,32 +122,36 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Effects_model.qmd">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">Extending the Basic Designs</span></a>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./ANOVA.html">
- <span class="dropdown-text">Notation</span></a>
+ <span class="dropdown-text">ZModel Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">Multiple Pairwise Testing</span></a>
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
- <span class="dropdown-text">Power</span></a>
+ <span class="dropdown-text">ZPower</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">Random Factors</span></a>
+ <span class="dropdown-text">ZRandom Factors</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">Unbalanced Datasets</span></a>
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
   </li>  
     </ul>
   </li>
@@ -226,141 +230,141 @@ ul.task-list{list-style: none;}
 <h1>Identifying and Diagramming Factors</h1>
 <p>To begin, consider a particular example. Researchers were interested in comparing the effectiveness of certain types of toothbrushes: Manual, Oscillating, Sonic and Ultrasonic. Twenty-four people were recruited to participate in the study. Each person was assigned to use one of the 4 toothbrush types. After using the toothbrush, the total percent surface area of the teeth with plaque for each person was recorded. Here are the data.</p>
 <p><a href="javascript:showhide('toothbrushBF1')"><span style="font-size:8pt;">click to show/hide data</span></a></p>
-<div>
+<div id="toothbrushBF1">
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 15%">
-<col style="width: 18%">
+<col style="width: 19%">
 <col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">PersonID</th>
-<th style="text-align: center;">Toothpaste</th>
+<th style="text-align: center;">Brush</th>
 <th style="text-align: center;">Plaque</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">32.74</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">24.21</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">22.09</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">21.6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">21.45</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">23.31</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">19.87</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">8</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">23.81</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">9</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">19.12</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">10</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">23.4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">11</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">24.39</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">12</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">23.42</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">13</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">21.27</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">14</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">15</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">18.56</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">16</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">26.88</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">17</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">24.21</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">18</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">25.58</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">19</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Manual</td>
 <td style="text-align: center;">23.35</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">20</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">17.62</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">21</td>
-<td style="text-align: center;">NameBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">18.99</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">22</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Ultrasonic</td>
 <td style="text-align: center;">25.67</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">23</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Sonic</td>
 <td style="text-align: center;">23.09</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">24</td>
-<td style="text-align: center;">OffBrand</td>
+<td style="text-align: center;">Oscillating</td>
 <td style="text-align: center;">21.72</td>
 </tr>
 </tbody>

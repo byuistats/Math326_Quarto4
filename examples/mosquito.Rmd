@@ -1,0 +1,126 @@
+---
+title: "Mosquitos"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+---
+
+
+```{r, warning=FALSE, message=FALSE}
+library(mosaic)
+library(DT)
+library(pander)
+library(car)
+library(tidyverse)
+
+## Data from original article:
+mosquito <- read_csv("../data/mosquito_patch.csv") 
+
+```
+
+## Background
+
+Five pre-treated patches were compared to to see which material did the best in reducing mosquito human contact for the Armed Forces in India. The five treatments included Odomos(1), Deltamethrin (2), Cyfluthrin(3), D+O(4), C+O(5) Each of the treatments included 30 replicates per treatment
+
+Source: A. Bhatnagar and V.K. Mehta (2007). "Efficacy of Deltamethrin and Cyfluthrin Impregnated Cloth Over Uniform Against Mosquito Bites," Medical Journal Armed Forces India, Vol. 63, pp. 120-122
+
+<!-- ## The Data -->
+
+<!-- ```{r, out.width=300} -->
+<!-- #Show the full width of the "Wide" version of the late data: -->
+<!-- pander(mosquito, split.tables = Inf) -->
+<!-- ``` -->
+
+
+## Analysis
+
+Applying a one-way ANOVA to this study, we have the following model:
+
+$$
+y_{ij} = \mu + \alpha_i + \epsilon_{ij}
+$$
+
+Where 
+$y_{ij}$ is the $j^{th}$ observation from treatment $i$
+
+$\mu$ is the grand mean of the dataset. Also referred to as an overall mean or benchmark.
+
+$\alpha_i$ is the effect of the treatment as described in the background.
+
+$\epsilon_{ik}$: the error term, or residual term of the model. Since there are 30 subjects for each treatment, $j$ ranges from 1 to 30.
+
+Applying a one-way ANOVA to this study, we have the null hypothesis that the effect of human mosquito contact, represented by α, is equal for each of the factors. This is formally written as follows.
+$$ H_0:\alpha_\text{Odomos} = \alpha_\text{Deltamethrin} = \alpha_\text{Cyfluthrin} = \alpha_\text{D+O} = \alpha_\text{C+O} = 0 $$
+The alternative hypothesis states that at least one of the effects due to material is different than zero
+$$ H_a: \text{at least one } \alpha \text{ is different than 0} $$
+Using these hypotheses will allow for us to address the question whether any of the materials are better at minimizing mosquito-human contact.
+
+### Hypothesis test
+
+We will use a level of significance of α = 0.05 for the analysis.
+
+For the analysis, we perform the following one-way ANOVA
+
+```{r,warning=FALSE, message=FALSE}
+mosquito <- mosquito %>% 
+   mutate(
+         Treatment = case_when(
+           trt.mosq %in% 1  ~ "Odomos",
+           trt.mosq %in% 2  ~ "Deltamethrin",
+           trt.mosq %in% 3  ~ "Cyfluthrin",
+           trt.mosq %in% 4  ~ "D+O",
+           trt.mosq %in% 5  ~ "C+O"
+          )
+        )
+
+mosquito.aov <- aov(y.mosq ~ Treatment, data=mosquito)
+summary(mosquito.aov) %>% pander()
+```
+
+The p-value for this test is significant (p = 0.001924).  Based on this result, the null hypothesis is rejected and we have sufficient evidence that at least one of the effects due to material is different for human mosquito contact.
+
+The requirements of equal variances for ANOVA is met.  This is shown by the residual versus fitted plot, which shows roughly a constant variance within each vertical group of dots.  The QQ-plot of residuals on the right shows some non-normality as evidenced by some of the points outside of the dashed line boundaries. However, it is not severe and we will move forward with the analysis.  
+
+```{r}
+par(mfrow=c(1,2))
+plot(mosquito.aov, which=1, pch=16)
+qqPlot(mosquito.aov, id=FALSE)
+```
+   
+The following plot shows which types of material minimize the human mosquito contact.
+
+```{r,warning=FALSE, message=FALSE}
+boxplot(y.mosq ~ as.factor(Treatment), data=mosquito, main="Human Mosquito Contact Based on Type of Material", xlab ="Treatment", ylab = "Amount of Mosquito Human Contact")
+```
+
+The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials.
+```{r,warning=FALSE, message=FALSE}
+favstats(y.mosq ~ Treatment, data=mosquito) %>% 
+  select(Treatment,mean,sd,n) %>% 
+  arrange(mean) %>% 
+  pander()
+```
+
+### Pairwise comparisons
+
+We now that smallest mean (C+O) must be different than the largest mean (Deltamethrin) because the F-test was significant above. In order to better understand which treatments perform better than which other treatments we will look at all pairwise comparisons and apply Tukey's correction to the family error rate.
+
+```{r}
+#This code would work, but...
+# TukeyHSD(mosquito.aov, "Treatment")
+
+#I want to do this fancy stuff below to sort the output
+TukeyHSD(mosquito.aov, "Treatment")$Treatment %>% 
+  as_tibble(rownames = "id") %>% 
+  arrange(`p adj`) %>% #Have to put the column name in back ticks since it has a space
+  pander() 
+```
+
+C+O is significantly lower than 3 of the treatments at the 0.05 level; and no other treatment has a sample mean lower than C+O's.
+
+## Interpretation
+
+It appears the the best type of material is the C+O material to minimize the amount of mosquito human contact.  The lowest mean came from the C+O material where the average amount of mosquito/human contact was 5.367. With a mean of 6.333, D+O was not significantly different than C+O and could also be an option. Conducting a new experiment that focuses on the difference between C+O and D+O and gives them a larger sample size in order to better detect significant would be reasonable. 
+
+A future study could look into other types of material as well as doing this analysis at different locations throughout the world.  
