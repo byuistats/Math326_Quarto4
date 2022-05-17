@@ -4,7 +4,6 @@ execute:
   code-fold: true
 toc: true
 toc-depth: 4
-
 ---
 
 ```{=html}
@@ -15,7 +14,6 @@ toc-depth: 4
  }
 </script>
 ```
-
 ```{r}
 #| label: setup
 #| include: false
@@ -106,8 +104,6 @@ A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the f
 2)  The error term of the model ($\epsilon_{ik}$) is normally distributed. This assumption is met when the residuals are normally distributed (as seen in a qq-plot).
 3)  The population variance of each group is equal. This is often called the homogeneity of variance, or constant variance assumption. This is considered met when each group of residuals in the residual vs. fitted-values plot shows a similar vertical spread.
 
-------------------------------------------------------------------------
-
 ## Design
 
 In a one factor design, one factor is purposefully varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.
@@ -182,8 +178,6 @@ tibble(Subject, sample(Treatment, 16)) %>% pander()
 ```
 
 We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.
-
-------------------------------------------------------------------------
 
 ## Decomposition
 
@@ -452,27 +446,13 @@ summary(myaov)
 
 **Example Code**
 
-<a href="javascript:showhide('bf1_aov')">
+```{r child="hoveRmd/BF1_R_Instructions.Rmd"}
 
-[df]{.tooltipr}[A name you come up with for your dataset]{.tooltiprtext} [\<-]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [read_csv(]{.tooltipr}[a command from the tidyverse to read in csv files]{.tooltiprtext} ["data/toothpaste_BF2.csv"]{.tooltipr}[The path to the csv file containing the data]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} <br/>[plaque_aov]{.tooltipr}[A name you come up with for your model]{.tooltiprtext} [\<-]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [aov(]{.tooltipr}[A function to define the model]{.tooltiprtext} [Plaque]{.tooltipr}[The response, or y, variable in the model. It is numeric]{.tooltiprtext} [\~]{.tooltipr}[The '\~' is like an equal sign in the model. Items on the left of '\~' represent y, on the right you define independent factors (i.e. x's).]{.tooltiprtext} [Brush,]{.tooltipr}[The independent variable containing the names for the 4 types of toothbrushes.]{.tooltiprtext} [data = df]{.tooltipr}[Tell the model to look in the dataset named "df" for Plaque and Brush variables]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} <br/>[summary(]{.tooltipr}[Give important information about an object. When called on an aov object the default is to print the ANOVA table.]{.tooltiprtext} [plaque_aov]{.tooltipr}[Whatever you named your ANOVA model in the previous line]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} [    \
-]{.tooltipr}[Press Enter to run the code.]{.tooltiprtext} [ ... ]{.tooltipr style="float:right;"}[Click to View Output.]{.tooltiprtext}
-
-</a>
-
-::: {#bf1_aov style="display:none;"}
-```{r}
-#| message: false
-#| echo: false
-
-df <- read_csv("data/toothpaste_BF2.csv")
-plaque_aov <- aov(Plaque ~ Brush, data = df)
-summary(plaque_aov)
 ```
-:::
 
-We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
+We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand *which* factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
 
-Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
+Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
 
 ## Resources
 
@@ -485,3 +465,7 @@ Now that the model is created the assumption need to be checked. Code and explan
 #### Links to outside resources
 
 Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.
+
+------------------------------------------------------------------------
+
+# BF2

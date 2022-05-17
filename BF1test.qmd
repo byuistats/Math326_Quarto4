@@ -14,6 +14,7 @@ toc-depth: 4
  }
 </script>
 ```
+
 ```{r}
 #| label: setup
 #| include: false
@@ -446,77 +447,13 @@ summary(myaov)
 
 **Example Code**
 
-<a href="javascript:showhide('bff1')">
-<div class="hoverchunk">
-  <span class="tooltipr">
-df
-  <span class="tooltiprtext">A name you come up with for your dataset</span>
-  </span><span class="tooltipr">
-<-
-  <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
-  </span><span class="tooltipr">
-read_csv(
-  <span class="tooltiprtext">a command from the tidyverse to read in csv files</span>
-  </span><span class="tooltipr">
-"data/toothpaste_BF2.csv"
-  <span class="tooltiprtext">The path to the csv file containing the data</span>
-  </span><span class="tooltipr">
-)
-  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
-  </span><br/><span class="tooltipr">
-plaque_aov<span class="tooltiprtext">A name you come up with for your model</span>
-  </span><span class="tooltipr">
-<-
-    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
-  </span><span class="tooltipr">
-aov(
-  <span class="tooltiprtext">A function to define the model</span>
-  </span><span class="tooltipr">
-Plaque
-  <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span>
-  </span><span class="tooltipr">
-~
-  <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e. x's).</span>
-  </span><span class="tooltipr">
-Brush,
-  <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span>
-  </span><span class="tooltipr">
-data = df
-  <span class="tooltiprtext">Tell the model to look in the dataset named "df" for Plaque and Brush variables</span>
-  </span><span class="tooltipr">
-)
-<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
-  </span><br/><span class="tooltipr">
-summary(
-  <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table</span>
-  </span><span class="tooltipr">
-plaque_aov
-  <span class="tooltiprtext">
-  Whatever you named your ANOVA model in the previous line
-  </span></span>
-  <span class="tooltipr">
-)
-  <span class="tooltiprtext">
-  Functions always end with a closing parenthesis
-  </span></span><br/><span class="tooltipr" style="float:right;">
-Click to view output 
-  <span class="tooltiprtext">Click to View Output.</span>
-</span>
-</div>
-</a>
-<div id="bff1" style="display:none;">
+```{r child="hoveRmd/BF1_R_Instructions.Rmd"}
 
-```{r message = FALSE}
-df <- read_csv("data/toothpaste_BF2.csv")
-plaque_aov <- aov(Plaque ~ Brush, data = df)
-summary(plaque_aov)
 ```
 
-</div>
+We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand *which* factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
 
-We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
-
-Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
+Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found in the [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
 
 ## Resources
 

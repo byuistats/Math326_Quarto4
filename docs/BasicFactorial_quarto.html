@@ -274,6 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#links-to-outside-resources" id="toc-links-to-outside-resources" class="nav-link" data-scroll-target="#links-to-outside-resources">Links to outside resources</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#bf2" id="toc-bf2" class="nav-link" data-scroll-target="#bf2">BF2</a></li>
   </ul>
 </nav>
     </div>
@@ -377,7 +378,6 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <li>The error term of the model (<span class="math inline">\(\epsilon_{ik}\)</span>) is normally distributed. This assumption is met when the residuals are normally distributed (as seen in a qq-plot).</li>
 <li>The population variance of each group is equal. This is often called the homogeneity of variance, or constant variance assumption. This is considered met when each group of residuals in the residual vs.&nbsp;fitted-values plot shows a similar vertical spread.</li>
 </ol>
-<hr>
 </section>
 </section>
 <section id="design" class="level2">
@@ -669,7 +669,6 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </div>
 </div>
 <p>We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.</p>
-<hr>
 </section>
 <section id="decomposition" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="decomposition">Decomposition</h2>
@@ -1070,11 +1069,18 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p><strong>Example Code</strong></p>
-<p><a href="javascript:showhide('bf1_aov')"></a></p><a href="javascript:showhide('bf1_aov')">
-<p><span class="tooltipr">df</span><span class="tooltiprtext">A name you come up with for your dataset</span> <span class="tooltipr">&lt;-</span><span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> <span class="tooltipr">read_csv(</span><span class="tooltiprtext">a command from the tidyverse to read in csv files</span> <span class="tooltipr">“data/toothpaste_BF2.csv”</span><span class="tooltiprtext">The path to the csv file containing the data</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <br><span class="tooltipr">plaque_aov</span><span class="tooltiprtext">A name you come up with for your model</span> <span class="tooltipr">&lt;-</span><span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> <span class="tooltipr">aov(</span><span class="tooltiprtext">A function to define the model</span> <span class="tooltipr">Plaque</span><span class="tooltiprtext">The response, or y, variable in the model. It is numeric</span> <span class="tooltipr">~</span><span class="tooltiprtext">The ‘~’ is like an equal sign in the model. Items on the left of ‘~’ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> <span class="tooltipr">Brush,</span><span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> <span class="tooltipr">data = df</span><span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <br><span class="tooltipr">summary(</span><span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table.</span> <span class="tooltipr">plaque_aov</span><span class="tooltiprtext">Whatever you named your ANOVA model in the previous line</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <span class="tooltipr">&nbsp;&nbsp;&nbsp;&nbsp;<br>
-</span><span class="tooltiprtext">Press Enter to run the code.</span> <span class="tooltipr" style="float:right;">&nbsp;…&nbsp;</span><span class="tooltiprtext">Click to View Output.</span></p>
-</a><p><a href="javascript:showhide('bf1_aov')"></a></p>
-<div id="bf1_aov" style="display:none;">
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+<a href="javascript:showhide('bff1')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> df <span class="tooltiprtext">A name you come up with for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv( <span class="tooltiprtext">a command from the tidyverse to read in csv files</span> </span><span class="tooltipr"> “data/toothpaste_BF2.csv” <span class="tooltiprtext">The path to the csv file containing the data</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> plaque_aov<span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> summary( <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table</span> </span><span class="tooltipr"> plaque_aov <span class="tooltiprtext"> Whatever you named your ANOVA model in the previous line </span></span> <span class="tooltipr"> ) <span class="tooltiprtext"> Functions always end with a closing parenthesis </span></span><br><span class="tooltipr" style="float:right;"> Click to view output <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a>
+<div id="bff1" style="display:none;">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
@@ -1085,8 +1091,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>
-<p>We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="contrasts.qmd">contrasts</a>.</p>
-<p>Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at <a href="./assumptions.html">R Instructions-&gt;Model Assumptions</a> section of the book.</p>
+<p>We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand <em>which</em> factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="contrasts.qmd">contrasts</a>.</p>
+<p>Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the <a href="./assumptions.html">R Instructions-&gt;Model Assumptions</a> section of the book.</p>
 </section>
 <section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">Resources</h2>
@@ -1098,10 +1104,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="links-to-outside-resources" class="level4">
 <h4 class="anchored" data-anchor-id="links-to-outside-resources">Links to outside resources</h4>
 <p>Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.</p>
-
-
+<hr>
 </section>
 </section>
+</section>
+<section id="bf2" class="level1">
+<h1>BF2</h1>
+
+
 </section>
 
 </main> <!-- /main -->

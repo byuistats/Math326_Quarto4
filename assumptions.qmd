@@ -177,7 +177,6 @@ The details of Levene's test will not be covered here, but essentially the test 
 It is tempting to turn off your brain and simply run the test or use a rule without looking at the data or thinking of the impact. Do NOT do this. In fact, you can often get by without running this test at all. It is better to consider the sample sizes, outliers, general shapes of the distributions, and effect sizes relative to variance within each factor level. Think about how different the groups of residuals really are rather than blindly trusting a rule.
 :::
 
-
 ```{r}
 #| label: tbl-levene
 #| message: false
@@ -356,11 +355,10 @@ First, **your p-value and test statistic values will be wrong proportional to th
 
 In fact, **ANOVA is robust to minor/moderate violations of the assumptions**. This is the second principle to keep in mind. This means that you can still obtain reasonably trustworthy results even when there are minor or moderate violations of the assumptions. This is true with regard to the mathematical assumptions only; if bias exists in the study, ANOVA cannot overcome that.
 
-Third, **take into account the purpose and context of the study in the broader context**. If violated assumptions can be easily fixed with a few extra lines of code, there is no reason you should not try to improve the situation. As the remedy becomes more difficult/requires more effort, the cost-benefit analysis of trying something else changes. Think about deadlines, project cost, degree of assumption violation, desired precision, and severity of consequences if a wrong conclusion is reached as you decide how to pursue solutions to violated assumptions. 
+Third, **take into account the purpose and context of the study in the broader context**. If violated assumptions can be easily fixed with a few extra lines of code, there is no reason you should not try to improve the situation. As the remedy becomes more difficult/requires more effort, the cost-benefit analysis of trying something else changes. Think about deadlines, project cost, degree of assumption violation, desired precision, and severity of consequences if a wrong conclusion is reached as you decide how to pursue solutions to violated assumptions.
 
 ::: column-margin
 Lack of time due to procrastination is not a good reason to violate assumptions.
 :::
 
-Rather than simply stating if the assumption is met or not met, it is wise to consider the pros and cons of proceeding with the analysis and then document and explain your decision. Consider sample sizes, effect sizes, outliers, and the degree to which assumptions are met when interpreting your results. ANOVA is just one family of models, there are alternative ways to approach a problem. If the ANOVA model does not seem like a good fit, do not be afraid to ask for help or learn a new technique. 
-
+Rather than simply stating if the assumption is met or not met, it is wise to consider the pros and cons of proceeding with the analysis and then document and explain your decision. Consider sample sizes, effect sizes, outliers, and the degree to which assumptions are met when interpreting your results. ANOVA is just one family of models, there are alternative ways to approach a problem. If the ANOVA model does not seem like a good fit, do not be afraid to ask for help or learn a new technique.

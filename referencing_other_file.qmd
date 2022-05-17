@@ -1,0 +1,7 @@
+---
+title: "referencing another file"
+---
+
+```{r child="testrmd.Rmd"}
+
+```

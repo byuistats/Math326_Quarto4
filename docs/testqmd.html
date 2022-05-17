@@ -116,6 +116,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet">
+<script src="site_libs/tippyjs-3.2.0/tippy.all.min.js"></script>
+<script src="site_libs/tippy-binding-0.1.0/tippy.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -242,7 +249,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-section-to-reference-another-file" id="toc-a-section-to-reference-another-file" class="nav-link active" data-scroll-target="#a-section-to-reference-another-file">A section to reference another file</a></li>
+  <li><a href="#new-section" id="toc-new-section" class="nav-link" data-scroll-target="#new-section">New section</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,25 +306,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
  
 </script>
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell">
+<div class="cell-output-display">
+<span id="htmlwidget-f9c4b3d5d17612eafa7f" class="tippy html-widget" width="100%" height="464px"></span>
+<script type="application/json" data-for="htmlwidget-f9c4b3d5d17612eafa7f">{"x":{"opts":{"content":"Definition of word that pops up in a box upon hovering"},"text":"word."},"evals":[],"jsHooks":[]}</script>
 </div>
-<div class="callout-caption-container flex-fill">
-Balanced vs.&nbsp;Unbalanced Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I feel like we need a disclaimer or caveat somewhere in the book to explain that the formulas presented here only work for balanced designs. A similar approach is used for unbalanced data, but the formulas would need to be adjusted to weight the groups according to their size. Maybe the disclaimer belongs here, maybe in the effects model or anova sections. Or maybe it has it’s own “broad topic”…?</p>
+<div class="cell-output-display">
+<span id="htmlwidget-4d420daafab52c6dba4f" class="tippy html-widget" width="100%" height="464px"></span>
+<script type="application/json" data-for="htmlwidget-4d420daafab52c6dba4f">{"x":{"opts":{"content":"next word"},"text":"word2"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>DP</p>
+<section id="a-section-to-reference-another-file" class="level3">
+<h3 class="anchored" data-anchor-id="a-section-to-reference-another-file">A section to reference another file</h3>
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
+</script>
 <p>Calculating treatment means for <strong>one factor</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Y<span class="sc">~</span>X, <span class="at">data=</span>YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>DP Example code:</p>
+<a href="javascript:showhide('mosaic_mean')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span> </span><br><span class="tooltipr"> library(pander) <span class="tooltiprtext">pander is an R Package that makes R output look pretty</span> </span><br><span class="tooltipr"> favstats( <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span> </span><span class="tooltipr"> Temp <span class="tooltipRtext">This is our response variable. From <code>?airquality</code> you can see in the help file that Temp is the maximum daily temp in degrees F at La Gaurdia Aiport during 1973</span> </span><span class="tooltipr"> ~ <span class="tooltipRtext">“~” is the tilde symbol. It can be interpreted as “y broken down by x”; “y modeled by x”; “y explained by x”, etc. Where y is on the left of the tilde and x is on the right. </span> </span><span class="tooltipr"> Month, <span class="tooltiprtext">“Month” is a column from the airquality dataset that can be treated as qualitative.</span> </span><span class="tooltipr"> data = airquality <span class="tooltiprtext">You have to tell R what dataset the variables Temp and Month come from. ‘airquality’ is a preloaded dataset in R. </span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;Click to view output&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('mosaic_mean')"></a></p>
+</section>
+<section id="new-section" class="level3">
+<h3 class="anchored" data-anchor-id="new-section">New section</h3>
+<p>Calculating treatment means for <strong>one factor</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Y<span class="sc">~</span>X, <span class="at">data=</span>YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example code:</p>
 <a href="javascript:showhide('mosaic_mean')">
@@ -320,6 +368,7 @@ Balanced vs.&nbsp;Unbalanced Data
 </a><p><a href="javascript:showhide('mosaic_mean')"></a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

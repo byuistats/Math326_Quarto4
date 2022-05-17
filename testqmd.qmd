@@ -26,22 +26,28 @@ output: html_document
  
 </script>
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(mosaic)
 library(pander)
 library(tidyverse)
 library(plotly)
+library(tippy)
 ```
 
-::: callout-warning
-## Balanced vs. Unbalanced Data
+```{r echo = FALSE}
+tippy("word.", tooltip = "Definition of word that pops up in a box upon hovering")
+tippy("word2", tooltip = "next word")
+```
 
-I feel like we need a disclaimer or caveat somewhere in the book to explain that the formulas presented here only work for balanced designs. A similar approach is used for unbalanced data, but the formulas would need to be adjusted to weight the groups according to their size. Maybe the disclaimer belongs here, maybe in the effects model or anova sections. Or maybe it has it's own "broad topic"...?
-:::
+### A section to reference another file
 
-DP
+```{r child="testrmd.Rmd"}
 
+```
+
+
+### New section
 
 Calculating treatment means for **one factor**:
 
