@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.344">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - ANOVA Assumptions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./RCommands.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./RMarkdownHints.html">
+ <span class="dropdown-text">Choosing a response variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./RCheatSheetsAndNotes.html">
+ <span class="dropdown-text">Choosing conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./DataSources.html">
+ <span class="dropdown-text">Choosing units/experimental material</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial.html">
+ <span class="dropdown-text">Completely Randomized, Basic Factorial Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Block.html">
+ <span class="dropdown-text">Block Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./WilcoxonTests.html">
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./model_diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#center" id="toc-center" class="nav-link active" data-scroll-target="#center">Center</a></li>
+  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a>
+  <ul class="collapse">
+  <li><a href="#more-than-1-structural-factor" id="toc-more-than-1-structural-factor" class="nav-link" data-scroll-target="#more-than-1-structural-factor">More than 1 structural factor</a></li>
+  </ul></li>
+  <li><a href="#shape-normal-residual-distribution" id="toc-shape-normal-residual-distribution" class="nav-link" data-scroll-target="#shape-normal-residual-distribution">Shape: normal residual distribution</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations">Independent observations</a></li>
+  <li><a href="#assumptions-summary" id="toc-assumptions-summary" class="nav-link" data-scroll-target="#assumptions-summary">Assumptions Summary</a></li>
+  <li><a href="#what-to-do-if-assumptions-are-violated" id="toc-what-to-do-if-assumptions-are-violated" class="nav-link" data-scroll-target="#what-to-do-if-assumptions-are-violated">What to do if assumptions are violated?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ANOVA Assumptions</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+<p>For our ANOVA F test results and model predictions to be trusted, certain assumptions, or requirements must be met.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The terms “requirements” and “assumptions” are often used interchangeably when referring to the set of conditions that must be met for the model to be a valid representation of the data.</p>
+</div></div><p>By way of review, here is the mathematical expression of the model for 1 structural factor. If we incorporated more factors into our study we would need to add additional terms to the model to represent that factor’s effects, as well as any interaction effects.</p>
+<p><span id="eq-model1"><span class="math display">\[
+y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
+\qquad(1)\]</span></span></p>
+<p>Where</p>
+<ul>
+<li><span class="math inline">\(y_\text{ij}\)</span> is an observation</li>
+<li><span class="math inline">\(\mu\)</span> is the grand mean</li>
+<li><span class="math inline">\(\alpha_i\)</span> represents the effect of factor level <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual error for the <span class="math inline">\(j^\text{th}\)</span> observation in factor level <span class="math inline">\(i\)</span></li>
+</ul>
+<p><span class="math inline">\(\epsilon_\text{ij}\)</span> is a random variable and most of the assumptions are focused on defining the distribution of this random variable. Namely, we assume that each residual comes from the same normal distribution, with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span>. <a href="#fig-effects">Figure&nbsp;1</a> illustrates the same residual distribution visually applied to three distinct factor levels. The assumptions and how to check them are explained in more detail below.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">15</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">rnorm</span>(<span class="dv">30</span>,<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">18</span>),<span class="at">each=</span><span class="dv">10</span>),<span class="dv">2</span>), <span class="at">g =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">each=</span><span class="dv">10</span>)) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yi<span class="sc">~</span>g, <span class="at">data=</span>y, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xaxt=</span><span class="st">'n'</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">3.75</span>), <span class="at">ylab=</span><span class="fu">expression</span>(y[ik]), <span class="at">xlab=</span><span class="st">""</span>, <span class="at">cex=</span>.<span class="dv">8</span>, <span class="at">yaxt=</span><span class="st">'n'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">labels=</span><span class="fu">paste</span>(<span class="st">"Group"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">18</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>myi <span class="ot">&lt;-</span> <span class="fu">mean</span>(y<span class="sc">$</span>yi)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mai <span class="ot">&lt;-</span> <span class="fu">mean</span>(yi <span class="sc">~</span> g, <span class="at">data=</span>y)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ai <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">18</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>yval <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">7</span>,<span class="dv">23</span>, <span class="at">length.out=</span><span class="dv">100</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dy1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(yval, <span class="dv">12</span>, <span class="dv">2</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dy2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(yval, <span class="dv">14</span>, <span class="dv">2</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>dy3 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(yval, <span class="dv">18</span>, <span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dy1<span class="sc">+</span><span class="dv">1</span>, yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">100</span>), yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dy2<span class="sc">+</span><span class="dv">2</span>, yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">100</span>), yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dy3<span class="sc">+</span><span class="dv">3</span>, yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">100</span>), yval, <span class="at">col=</span><span class="st">'darkgray'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#lines(c(.75,3.5), rep(mu, 2), lty=2)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#text(.65,mu, expression(mu))</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#lines(rep(1+.21,2), c(ai[1],mu), lty=2, col='firebrick')</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="fl">-.2</span>,<span class="dv">1</span><span class="fl">+.21</span>), <span class="fu">rep</span>(ai[<span class="dv">1</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span><span class="fl">-.4</span>,ai[<span class="dv">1</span>], <span class="fu">expression</span>(mu[<span class="dv">1</span>]))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#text(1+.21, (ai[1]+mu)/2, expression(alpha[1]), pos=4, cex=0.8)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#lines(rep(2+.21,2), c(ai[2],mu), lty=2, col='firebrick')</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="fl">-.2</span>,<span class="dv">2</span><span class="fl">+.21</span>), <span class="fu">rep</span>(ai[<span class="dv">2</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2</span><span class="fl">-.4</span>,ai[<span class="dv">2</span>], <span class="fu">expression</span>(mu[<span class="dv">2</span>]))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#text(2+.21, (ai[2]+mu)/2, expression(alpha[2]), pos=4, cex=0.8)</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">#lines(rep(3+.21,2), c(ai[3],mu), lty=2, col='firebrick')</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">3</span><span class="fl">-.2</span>,<span class="dv">3</span><span class="fl">+.21</span>), <span class="fu">rep</span>(ai[<span class="dv">3</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span><span class="fl">-.4</span>,ai[<span class="dv">3</span>], <span class="fu">expression</span>(mu[<span class="dv">3</span>]))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">#text(3+.21, (ai[3]+mu)/2, expression(alpha[3]), pos=4, cex=0.8)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">3</span><span class="fl">-.1</span>,<span class="dv">2</span>), <span class="fu">c</span>(ai[<span class="dv">3</span>],y<span class="sc">$</span>yi[<span class="dv">25</span>]), <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'firebrick'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">3</span><span class="fl">-.2</span>,<span class="dv">3</span>), <span class="fu">rep</span>(y<span class="sc">$</span>yi[<span class="dv">25</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#text(3-.21,y$yi[25], expression(y[3][","][5] == mu[3]+epsilon[3][","][5]), pos=2, cex=0.8)</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span><span class="fl">-.1</span>, (y<span class="sc">$</span>yi[<span class="dv">25</span>]<span class="sc">+</span>ai[<span class="dv">3</span>])<span class="sc">/</span><span class="dv">2</span>, <span class="fu">expression</span>(epsilon[<span class="dv">3</span>][<span class="st">","</span>][<span class="dv">5</span>]), <span class="at">pos=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-effects" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-effects-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Same distribution can be used to describe the residuals from each factor level</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="center" class="level2">
+<h2 class="anchored" data-anchor-id="center">Center</h2>
+<p>The model assumes the mean of the residuals equals zero. Even though the observations for each factor level will be centered at their respective mean, the residuals have a mean distance of zero. This assumption is the reason calculating a mean of observations makes sense as an estimate of the true mean of a factor level. Each observation is made up of two parts: a true part and some random error. If we have 3 observations all from the same factor level:</p>
+<ul>
+<li><span class="math inline">\(y_1 = \text{true factor level mean} + \text{error}_1\)</span></li>
+<li><span class="math inline">\(y_2 = \text{true factor level mean} + \text{error}_2\)</span></li>
+<li><span class="math inline">\(y_3 = \text{true factor level mean} + \text{error}_3\)</span></li>
+</ul>
+<p>We estimate the true mean of the factor level by taking the mean of the 3 values:</p>
+<p><span class="math display">\[
+\text{Mean of observations} = \frac{y_1 + y_2 + y_3}{3} = \frac{\text{truth} + \text{error}_1 + \text{truth} + \text{error}_2 + \text{truth} + \text{error}_3)}{3}
+\]</span></p>
+<p>Rearranging terms gets:</p>
+<p><span class="math display">\[
+\text{Mean of observations} = \text{truth} + \frac{\text{error}_1 + \text{error}_2 + \text{error}_3}{3}
+\]</span></p>
+<p>Since we know the mean of the residual errors is zero, the second term goes to zero and the mean of observations is equal to the true value. Of course, the more observations we average over the better our estimate of the truth will be.</p>
+<p>This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects.</p>
+</section>
+<section id="constant-variance" class="level2">
+<h2 class="anchored" data-anchor-id="constant-variance">Constant Variance</h2>
+<p>We express the spread of the distribution of residuals in terms of the variance, <span class="math inline">\(\sigma^2\)</span>. We assume that the variance of residuals is the same regardless of the factor level. Consider our conveyor belt example. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.</p>
+<p>The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance. (When the spread is not the same it is called heterogeneity of variance).</p>
+<p><a href="#fig-variance">Figure&nbsp;2</a> shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>brush_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-variance" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-variance-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Residual vs.&nbsp;Fitted plot to check constant variance assumption</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Red Line in the Residual Plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ignore the red line in the residual plot. It can trick your eyes and draw your attention to the wrong thing. It is not meant to gauge constant variance.</p>
+</div>
+</div>
+<p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis is fitted values. Each toothbrush has a different fitted, or predicted, value. The vertical group on the far left appears less spread out than the vertical group of points on the far right. Of course, the groupings will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated?</p>
+<p>As a rule of thumb, you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-favstats" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 1: Summary statistics for each toothbrush</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Brush</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">Q1</th>
+<th style="text-align: right;">median</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Manual</td>
+<td style="text-align: right;">19.12</td>
+<td style="text-align: right;">22.04</td>
+<td style="text-align: right;">23.38</td>
+<td style="text-align: right;">24.01</td>
+<td style="text-align: right;">26.88</td>
+<td style="text-align: right;">23.09</td>
+<td style="text-align: right;">2.60</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oscillating</td>
+<td style="text-align: right;">17.62</td>
+<td style="text-align: right;">18.89</td>
+<td style="text-align: right;">19.94</td>
+<td style="text-align: right;">21.29</td>
+<td style="text-align: right;">22.09</td>
+<td style="text-align: right;">19.98</td>
+<td style="text-align: right;">1.74</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonic</td>
+<td style="text-align: right;">18.99</td>
+<td style="text-align: right;">21.73</td>
+<td style="text-align: right;">23.20</td>
+<td style="text-align: right;">23.68</td>
+<td style="text-align: right;">25.58</td>
+<td style="text-align: right;">22.67</td>
+<td style="text-align: right;">2.27</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ultrasonic</td>
+<td style="text-align: right;">21.45</td>
+<td style="text-align: right;">23.62</td>
+<td style="text-align: right;">24.30</td>
+<td style="text-align: right;">25.35</td>
+<td style="text-align: right;">32.74</td>
+<td style="text-align: right;">25.31</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is Levene’s test. Actually, Modified Levene’s test is usually recommended and is the default in R’s <code>car</code> package. The hypothesis for this test is</p>
+<p><span class="math display">\[
+H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
+\]</span> <span class="math display">\[
+H_a: \text{At least one sigma is different from the rest}
+\]</span></p>
+<p>The details of Levene’s test will not be covered here, but essentially the test runs an ANOVA F-test on the factor level variances to determine if the variances are equal. If the p-value of the test is low and the null is rejected, then you would consider the assumption violated. As the researcher, you are hoping to fail to reject the null hypothesis so that you may continue on with your analysis.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Don’t Forget to Think
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is tempting to turn off your brain and simply run the test or use a rule without looking at the data or thinking of the impact. Do NOT do this. In fact, you can often get by without running this test at all. It is better to consider the sample sizes, outliers, general shapes of the distributions, and effect sizes relative to variance within each factor level. Think about how different the groups of residuals really are rather than blindly trusting a rule.</p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-levene" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 2: Levene’s test output for the toothbrush example</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">group</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.2498376</td>
+<td style="text-align: right;">0.8604884</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the constant variance assumption is met. It is not uncommon for this hypothesis test to disagree with the rule of thumb. It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
+<p>I am not suggesting to remove that point from the analysis, rather to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don’t agree.</p>
+<section id="more-than-1-structural-factor" class="level3">
+<h3 class="anchored" data-anchor-id="more-than-1-structural-factor">More than 1 structural factor</h3>
+<p>If you have more than 1 structural factor, multiple residual plots should be examined (or examine one plot that contains all factor level combinations). Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs.&nbsp;off brand), toothbrush type, and their interaction.</p>
+<p>In this case, the residual vs.&nbsp;fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. You should not be concerned about looking at each group individually. Rather, look for overall trends or megaphone shapes in the data. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-variance2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-variance2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Residual vs.&nbsp;Fitted plot to check constant variance assumption for the 2-factor example</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-variance2">Figure&nbsp;3</a> shows a slight megaphone shape. As we move from left to right along the x-axis the spread of the points increases (with the exception of the points at x=24.5). We can use a Levene’s test to help us determine if heterogeneity of variance is a problem. The result is shown in <a href="#tbl-levene2">Table&nbsp;3</a>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-levene2" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 3: Levene’s test output for the 2-factor example</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">group</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.8834329</td>
+<td style="text-align: right;">0.5409189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>With a p-value of .541 we fail to reject the null hypothesis. It appears the constant variance assumption is met.</p>
+</section>
+</section>
+<section id="shape-normal-residual-distribution" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="shape-normal-residual-distribution">Shape: normal residual distribution</h2>
+<p>The ANOVA model assumes that residuals will follow a (approximately) normal distribution. To check this assumption we use a Q-Q plot.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>There are statistical tests for normality as well, but each come with their own set of drawbacks. Due to the robust nature of the F test, a visual assessment is usually sufficient.</p>
+</div></div><p>The “Q” in Q-Q plot stands for quantile. For an explanation of quantiles and their relationship to percentiles <a href="https://www.statisticshowto.com/quantile-definition-find-easy-steps/">go here</a>. There are many variations of Q-Q plots and each software computes it slightly differently. The general concept is to plot two quantities on a scatter plot:</p>
+<ul>
+<li>Residual from the model<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>The value from the standard normal distribution (i.e.&nbsp;Z distribution) associated with the sample quantile.</li>
+</ul>
+<p><a href="javascript:showhide('qqplot')"><span style="font-size:10pt;">Click to show/hide detailed explanation of Q-Q plot construction</span></a></p>
+<div id="qqplot" style="display:none;">
+<div>
+<p>The scatterplot is created from ordered pairs. Each ordered pair consists of a residual from the model (that’s easy to find!) and the quantile from the normal distribution associated with that residual.</p>
+<p><strong>But how do you find a quantile from the normal distribution?</strong> To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From <a href="#fig-qnorm-1">Figure&nbsp;4 (a)</a> I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.</p>
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-qnorm-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-qnorm-1.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">(a) 5th percentile</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-qnorm-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-qnorm-2.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">(b) 10th percentile</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Z-score calculations from desired percentile</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>The next point on the Q-Q plot would be my second smallest residual on the y-axis and the <span class="math inline">\(2/20 = .10\)</span> quantile from the Z distribution on the x-axis. The 0.10 quantile is -1.282 as seen in <a href="#fig-qnorm-2">Figure&nbsp;4 (b)</a>.</p>
+<p>This process would be repeated for all 20 residuals.</p>
+</div>
+</div>
+<p>If the sample data is normally distributed then the resulting plot of the two quantities will roughly be a straight line. The residuals will never be exactly normal, of course. Some amount of “wiggle” should be allowed.</p>
+<p><a href="#fig-qqplot_brush1">Figure&nbsp;5</a> is a Q-Q plot for the toothbrush example.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-qqplot_brush1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-qqplot_brush1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It can be difficult to tell if the line is straight enough. <code>qqPlot</code> from the <code>car</code> package (see <a href="#fig-QQPlot_brush2">Figure&nbsp;6</a>) adds boundary lines to help you determine if the points are out of bounds<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 9</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-QQPlot_brush2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-QQPlot_brush2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 6: Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A point on the far right is clearly out of the dashed boundary. It is not uncommon for the last 1 or 2 points be stray from from the line. Overall, however, the points tend to follow the line and stay in bounds. I would conclude that the assumption of normally distributed residuals is met.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>So far we have shown the residuals come from a normal distribution, with mean zero and a standard deviation (sigma). This is expressed mathematically as <span class="math inline">\(\epsilon\)</span> ~ N( 0, <span class="math inline">\(\sigma\)</span> ).</p>
+</div>
+</div>
+</section>
+<section id="independent-observations" class="level2">
+<h2 class="anchored" data-anchor-id="independent-observations">Independent observations</h2>
+<p>In addition to making assumptions about the distribution of residuals, we also make an assumption regarding individual observations, or realizations, from the distribution of errors. Specifically, we assume <strong>each observation from the error distribution is independent of the rest.</strong> In other words, the residuals are not correlated with each other in any way.</p>
+<p>This is violated when something is affecting the response that was not adequately randomized, controlled for, or included in the model. Not adequately accounting for time or space is often a culprit. For example, suppose you run an experiment where respondents were given a task to complete under 3 distinct conditions. If you did not randomize the order of the conditions or neglected to account for the fact the same respondent provided 3 observations, you would have violated this assumption.</p>
+<p>Sometimes the looking at the data can provide a clue this requirement is violated, sometimes it cannot. For example, when a model over predicts all observations in condition 1 and under predicted all observations in condition 3 it may be an indicator that you neglected to address something important (i.e.&nbsp;subject identification, or order of conditions) in your experiment.</p>
+<p>An order plot can be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. <a href="#fig-order">Figure&nbsp;7</a> contains the order plot for our simple toothbrush example, assuming the rows number indicates the order in which each observation was actually made.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-order" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 7: Order plot for 1-factor toothbrush example</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It is interesting to see in this plot that the very first observation is a bit of an outlier. Perhaps the technology wasn’t working right or the assistant had not yet learned the correct procedure for measuring percent area with plaque. As the researcher, this is something you would want to dig deeper into. An equally plausible explanation for the outlying value is that the person really did have more plaque. Throwing out the datapoint simply because it doesn’t meet your expectations or messes up your analysis is not good research.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should not throw out data points based alone on the fact that they appear anomalous.</p>
+</div>
+</div>
+<p>In this case, no other trends are evident in <a href="#fig-order">Figure&nbsp;7</a>. If patterns/trends <em>are</em> evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. <strong>Bias in your design or execution will lead to violating this assumption.</strong></p>
+<p>In many cases, the data will not indicate there is bias unless you know exactly what to look for. These unknown sources of bias are particularly difficult to detect. Planning the study in great detail, thinking critically about your results, being familiar with the protocols of the experiment, and getting help from others to provide fresh perspectives is ultimately the best way to check this assumption and ensure bias does not affect your results.</p>
+</section>
+<section id="assumptions-summary" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-summary">Assumptions Summary</h2>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Residual Assumption</th>
+<th>Method for Checking</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean is zero</td>
+<td>Doesn’t need to be checked. This will be a direct result of how we create the model.</td>
+</tr>
+<tr class="even">
+<td>Constant variance across factor levels</td>
+<td><ul>
+<li>Rule of thumb comparing standard deviations</li>
+<li>Residual vs.&nbsp;fitted plot</li>
+<li>Levene’s Test</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Normally distributed</td>
+<td>Q-Q plot</td>
+</tr>
+<tr class="even">
+<td>Independent of each other</td>
+<td><ul>
+<li>Critical thinking</li>
+<li>Order plot</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-to-do-if-assumptions-are-violated" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-to-do-if-assumptions-are-violated">What to do if assumptions are violated?</h2>
+<p>You now have some tools to help assess whether the ANOVA assumptions have been met. It is extremely common in practice to be faced with data that is in the “gray area”, and making this determination is not always easy. There are a couple of principles to keep in mind as you decide whether to proceed with the analysis or try to address potential assumption violations.</p>
+<p>First, <strong>your p-value and test statistic values will be wrong proportional to the degree your assumptions are violated.</strong> For example, a minor violation of the homogeneity of variance assumption slightly degrades the accuracy, or truthfulness, of your F statistic. If the F statistic is quite extreme, then being off a little bit will not change the conclusions of your study.</p>
+<p>In fact, <strong>ANOVA is robust to minor/moderate violations of the assumptions</strong>. This is the second principle to keep in mind. This means that you can still obtain reasonably trustworthy results even when there are minor or moderate violations of the assumptions. This is true with regard to the mathematical assumptions only; if bias exists in the study, ANOVA cannot overcome that.</p>
+<p>Third, <strong>take into account the purpose and context of the study in the broader context</strong>. If violated assumptions can be easily fixed with a few extra lines of code, there is no reason you should not try to improve the situation. As the remedy becomes more difficult/requires more effort, the cost-benefit analysis of trying something else changes. Think about deadlines, project cost, degree of assumption violation, desired precision, and severity of consequences if a wrong conclusion is reached as you decide how to pursue solutions to violated assumptions.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Lack of time due to procrastination is not a good reason to violate assumptions.</p>
+</div></div><p>Rather than simply stating if the assumption is met or not met, it is wise to consider the pros and cons of proceeding with the analysis and then document and explain your decision. Consider sample sizes, effect sizes, outliers, and the degree to which assumptions are met when interpreting your results. ANOVA is just one family of models, there are alternative ways to approach a problem. If the ANOVA model does not seem like a good fit, do not be afraid to ask for help or learn a new technique.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>The name “Q-Q plot” (with 2 q’s) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><code>qqPlot</code> also does a few other calculations differently, most notably it uses <a href="https://online.stat.psu.edu/stat462/node/247/">studentized residuals</a> instead of standardized residuals.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

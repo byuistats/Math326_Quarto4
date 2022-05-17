@@ -195,8 +195,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ANOVA.html">
- <span class="dropdown-text">ZModel Assumptions</span></a>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
@@ -248,7 +248,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bf1" id="toc-bf1" class="nav-link active" data-scroll-target="#bf1">BF[1]</a></li>
+  <li><a href="#bf1" id="toc-bf1" class="nav-link active" data-scroll-target="#bf1">BF[1]</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#factor-structure" id="toc-factor-structure" class="nav-link" data-scroll-target="#factor-structure">Factor Structure</a></li>
+  <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  </ul></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#factor-effects" id="toc-factor-effects" class="nav-link" data-scroll-target="#factor-effects">Factor Effects</a>
+  <ul class="collapse">
+  <li><a href="#calculate-means" id="toc-calculate-means" class="nav-link" data-scroll-target="#calculate-means">Calculate means</a></li>
+  <li><a href="#calculate-effects" id="toc-calculate-effects" class="nav-link" data-scroll-target="#calculate-effects">Calculate effects</a></li>
+  </ul></li>
+  <li><a href="#completing-the-anova-table" id="toc-completing-the-anova-table" class="nav-link" data-scroll-target="#completing-the-anova-table">Completing the ANOVA table</a></li>
+  </ul></li>
+  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#links-to-outside-resources" id="toc-links-to-outside-resources" class="nav-link" data-scroll-target="#links-to-outside-resources">Links to outside resources</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -311,10 +336,8 @@ Balanced vs.&nbsp;Unbalanced Data
 <section id="bf1" class="level1 page-columns page-full">
 <h1>BF[1]</h1>
 <p>A study with just one factor that is varied in the design.</p>
-<div class="panel-tabset page-columns page-full">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Design</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Decomposition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Analysis in R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Resources</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<section id="overview" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>In a basic one-way factorial design (BF[1]), only one factor is purposefully varied. Each experimental unit belongs to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)</p>
 <section id="factor-structure" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-structure">Factor Structure</h3>
@@ -356,8 +379,9 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </ol>
 <hr>
 </section>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+</section>
+<section id="design" class="level2">
+<h2 class="anchored" data-anchor-id="design">Design</h2>
 <p>In a one factor design, one factor is purposefully varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.</p>
 <p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. It is common to keep the number of units assigned to each treatment the same to ensure balance. This can be done by listing all the subjects, then listing the treatments, as seen below:</p>
 <table class="table">
@@ -646,8 +670,9 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </div>
 <p>We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.</p>
 <hr>
-</div>
-<div id="tabset-1-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+</section>
+<section id="decomposition" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="decomposition">Decomposition</h2>
 <p>This section serves as a bridge between the design and the analysis of an experiment. It is equivalent to doing the analysis by hand. The primary goal is to see how the design decisions impact the analysis; including a deeper understanding of what the numbers in an ANOVA table mean and how they are calculated.</p>
 <p>The factor structure diagram of an experimental design is an effective way to organize and plan for the type of data needed for an experiment. Recall that in our lifeboat example there were four levels of training method with six replicates for each (the actual study used 16 observations per treatment). The diagram below gives the factor structure of the design, and the accompanying mathematical model.</p>
 <div class="column-page">
@@ -665,8 +690,8 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <li>The <strong>treatment factor</strong> involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean (or effect).</li>
 <li>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and treatment effect. Each of the cells represent a distinct value for the residual error.</li>
 </ul>
-<section id="degrees-of-freedom" class="level4">
-<h4 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h4>
+<section id="degrees-of-freedom" class="level3">
+<h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
 <p>We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the <strong>benchmark</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 16 observations - or pieces of information. In other words, we have 16 degrees of freedom that need to be allocated to the 3 factors.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -689,8 +714,8 @@ General Rule for Degrees of Freedom
 <p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both benchmark and treatment are outside factors for the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for benchmark and treatment (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
 <p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.</p>
 </section>
-<section id="factor-effects" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="factor-effects">Factor Effects</h4>
+<section id="factor-effects" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="factor-effects">Factor Effects</h3>
 <p>We can use our understanding of inside vs.&nbsp;outside factors to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -705,8 +730,8 @@ General Rule for Effect Size
 <p>Effect size = factor level mean - the sum of the effects of all outside factors</p>
 </div>
 </div>
-<section id="calculate-means" class="level5 page-columns page-full">
-<h5 class="anchored" data-anchor-id="calculate-means">Calculate means</h5>
+<section id="calculate-means" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="calculate-means">Calculate means</h4>
 <p>To estimate all the factor effects we must first calculate the mean for the benchmark factor and the means for each level of training method.</p>
 <p>For benchmark, get the mean of all 24 observations. The mean for all the observations is 6.5846. There is only one level for benchmark so this number is placed into each of the cells for the benchmark factor in <a href="#fig-benchmark">Figure&nbsp;2</a>.</p>
 <div class="column-page">
@@ -731,8 +756,8 @@ General Rule for Effect Size
 </div>
 </div>
 </section>
-<section id="calculate-effects" class="level5 page-columns page-full">
-<h5 class="anchored" data-anchor-id="calculate-effects">Calculate effects</h5>
+<section id="calculate-effects" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="calculate-effects">Calculate effects</h4>
 <p>From here we can calculate the effects for benchmark, training method and residual errors. We will use the general formula for calculating effect size as stated above.</p>
 <p>For the benchmark, there is only one level and there are no outside factors. Therefore, the effect due to benchmark is 6.5846 (equivalent to its mean) and this affect is applied to all 24 observations.</p>
 <p>The training method factor has four levels: one for each method. To calculate the effect of a training method, take the training method mean and subtract it from the effect due to benchmark. For the “Control” method, this looks like:</p>
@@ -767,8 +792,9 @@ General Rule for Effect Size
 </div>
 </div>
 </section>
-<section id="completing-the-anova-table" class="level5">
-<h5 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA table</h5>
+</section>
+<section id="completing-the-anova-table" class="level3">
+<h3 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA table</h3>
 <p>Now that we have calculated degrees of freedom and effects for each factor in a basic one-way factorial design, we can calculate the remaining pieces of the ANOVA table: <strong>Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value</strong>. An ANOVA table essentially steps through the variance calculation that is needed to calculate the F statistics of an ANOVA test. In other words, a completed ANOVA table enables us to conduct a hypothesis test of the significance of the treatment.</p>
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
@@ -1029,8 +1055,8 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
 </div>
 </section>
 </section>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<section id="analysis-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-in-r">Analysis in R</h2>
 <p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
 <p>You then create the model using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> function.</p>
 <div class="cell">
@@ -1044,12 +1070,10 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p><strong>Example Code</strong></p>
-<a href="javascript:showhide('bf1_aov')">
-<div class="hoverchunk">
-<p><span class="tooltipr"> df <span class="tooltiprtext">A name you come up with for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv( <span class="tooltiprtext">a command from the tidyverse to read in csv files</span> </span><span class="tooltipr"> “data/toothpaste_BF2.csv” <span class="tooltiprtext">The path to the csv file containing the data</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><br><span class="tooltipr"> plaque_aov <span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ‘~’ is like an equal sign in the model. Items on the left of ‘~’ represent y, on the right you define independent factors (i.e.&nbsp;x’s). </span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes. </span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><br><span class="tooltipr"> summary( <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table. </span> </span><span class="tooltipr"> plaque_aov <span class="tooltiprtext">Whatever you named your ANOVA model in the previous line</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis. </span> </span><span class="tooltipr"> &nbsp;&nbsp;&nbsp;&nbsp;<br>
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;…&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
-</div>
-</a>
+<p><a href="javascript:showhide('bf1_aov')"></a></p><a href="javascript:showhide('bf1_aov')">
+<p><span class="tooltipr">df</span><span class="tooltiprtext">A name you come up with for your dataset</span> <span class="tooltipr">&lt;-</span><span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> <span class="tooltipr">read_csv(</span><span class="tooltiprtext">a command from the tidyverse to read in csv files</span> <span class="tooltipr">“data/toothpaste_BF2.csv”</span><span class="tooltiprtext">The path to the csv file containing the data</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <br><span class="tooltipr">plaque_aov</span><span class="tooltiprtext">A name you come up with for your model</span> <span class="tooltipr">&lt;-</span><span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> <span class="tooltipr">aov(</span><span class="tooltiprtext">A function to define the model</span> <span class="tooltipr">Plaque</span><span class="tooltiprtext">The response, or y, variable in the model. It is numeric</span> <span class="tooltipr">~</span><span class="tooltiprtext">The ‘~’ is like an equal sign in the model. Items on the left of ‘~’ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> <span class="tooltipr">Brush,</span><span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> <span class="tooltipr">data = df</span><span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <br><span class="tooltipr">summary(</span><span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table.</span> <span class="tooltipr">plaque_aov</span><span class="tooltiprtext">Whatever you named your ANOVA model in the previous line</span> <span class="tooltipr">)</span><span class="tooltiprtext">Functions always end with a closing parenthesis.</span> <span class="tooltipr">&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</span><span class="tooltiprtext">Press Enter to run the code.</span> <span class="tooltipr" style="float:right;">&nbsp;…&nbsp;</span><span class="tooltiprtext">Click to View Output.</span></p>
+</a><p><a href="javascript:showhide('bf1_aov')"></a></p>
 <div id="bf1_aov" style="display:none;">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1062,9 +1086,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="contrasts.qmd">contrasts</a>.</p>
-<p>Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at <a href="assumptions.qmd">R Instructions-&gt;Model Assumptions</a> section of the book.</p>
-</div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p>Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at <a href="./assumptions.html">R Instructions-&gt;Model Assumptions</a> section of the book.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <section id="examples" class="level4">
 <h4 class="anchored" data-anchor-id="examples">Examples</h4>
 <p><a href="examples/VirtualTrain.html">Lifeboat launch training</a></p>
@@ -1073,12 +1098,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="links-to-outside-resources" class="level4">
 <h4 class="anchored" data-anchor-id="links-to-outside-resources">Links to outside resources</h4>
 <p>Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.</p>
+
+
 </section>
-</div>
-</div>
-</div>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

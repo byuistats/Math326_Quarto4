@@ -2,6 +2,9 @@
 title: "Basic Factorial"
 execute:
   code-fold: true
+toc: true
+toc-depth: 4
+
 ---
 
 ```{=html}
@@ -12,6 +15,7 @@ execute:
  }
 </script>
 ```
+
 ```{r}
 #| label: setup
 #| include: false
@@ -40,7 +44,6 @@ Contrast a factorial design with the one-at-a-time approach. In a one-at-a-time 
 1.  They are a more efficient use of our time and material: I can get information about both of my factors from just one observation
 2.  Perhaps most importantly, factorial designs allow the researcher to estimate interaction effects. Or in other words, we can observe how one factor's effect on the response variable changes for different levels of the other factor.
 
-
 In summary, "factorial" refers to how you determine which fact level combinations will be included in the study, and "completely randomized" refers to how treatments are assigned to subjects.
 
 ::: callout-warning
@@ -55,7 +58,6 @@ I feel like we need a disclaimer or caveat somewhere in the book to explain that
 
 A study with just one factor that is varied in the design.
 
-::: panel-tabset 
 ## Overview
 
 In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied. Each experimental unit belongs to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
@@ -200,7 +202,7 @@ A basic one-way factorial design has three analysis factors: the benchmark, trea
 -   The **treatment factor** involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean (or effect).
 -   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and treatment effect. Each of the cells represent a distinct value for the residual error.
 
-#### Degrees of Freedom
+### Degrees of Freedom
 
 We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the **benchmark**, **treatment**, and **residual errors** factors. We start with 16 observations - or pieces of information. In other words, we have 16 degrees of freedom that need to be allocated to the 3 factors.
 
@@ -224,7 +226,7 @@ For **residual errors**, there are 24 levels of the factor (as shown by the 24 c
 
 The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.
 
-#### Factor Effects
+### Factor Effects
 
 We can use our understanding of inside vs. outside factors to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
 
@@ -234,7 +236,7 @@ We can use our understanding of inside vs. outside factors to estimate the effec
 Effect size = factor level mean - the sum of the effects of all outside factors
 :::
 
-##### Calculate means
+#### Calculate means
 
 To estimate all the factor effects we must first calculate the mean for the benchmark factor and the means for each level of training method.
 
@@ -256,7 +258,7 @@ You can similarly find the mean for monitor keyboard is 7.8492, the mean for hea
 ![Raw data and means for benchmark and training factors](images/BF1_means_decomp.png){#fig-training-means}
 :::
 
-##### Calculate effects
+#### Calculate effects
 
 From here we can calculate the effects for benchmark, training method and residual errors. We will use the general formula for calculating effect size as stated above.
 
@@ -294,7 +296,7 @@ Repeat this process for all the remaining 22 residual values. The result is show
 ![Residual Effects](images/BF1_effect_boat_decomp.png){#fig-residual-effects fig-align="center"}
 :::
 
-##### Completing the ANOVA table
+### Completing the ANOVA table
 
 Now that we have calculated degrees of freedom and effects for each factor in a basic one-way factorial design, we can calculate the remaining pieces of the ANOVA table: **Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value**. An ANOVA table essentially steps through the variance calculation that is needed to calculate the F statistics of an ANOVA test. In other words, a completed ANOVA table enables us to conduct a hypothesis test of the significance of the treatment.
 
@@ -443,73 +445,21 @@ myaov <- aov(Y ~ X, data=YourDataSet)
 summary(myaov)
 ```
 
--  `myaov` is some name you come up with to store the results of the aov() model.
--  `Y` must be a “numeric” vector of the quantitative response variable.
--  `X` is a qualitative variable (should have class(X) equal to factor or character. If it does not, use `factor(X)` inside the `aov(Y ~ factor(X),...)` command.
--  `YourDataSet` is the name of your data set.
+-   `myaov` is some name you come up with to store the results of the aov() model.
+-   `Y` must be a "numeric" vector of the quantitative response variable.
+-   `X` is a qualitative variable (should have class(X) equal to factor or character. If it does not, use `factor(X)` inside the `aov(Y ~ factor(X),...)` command.
+-   `YourDataSet` is the name of your data set.
 
 **Example Code**
 
 <a href="javascript:showhide('bf1_aov')">
-<div class="hoverchunk">
-<span class="tooltipr">
-df
-  <span class="tooltiprtext">A name you come up with for your dataset</span>
-</span><span class="tooltipr">
-<-
-  <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
-</span><span class="tooltipr">
-read_csv(
-  <span class="tooltiprtext">a command from the tidyverse to read in csv files</span>
-</span><span class="tooltipr">
-"data/toothpaste_BF2.csv"
-  <span class="tooltiprtext">The path to the csv file containing the data</span>
-</span><span class="tooltipr">
-)
-  <span class="tooltiprtext">Functions always end with a closing parenthesis. </span>
-</span><br/><span class="tooltipr">
-plaque_aov
-  <span class="tooltiprtext">A name you come up with for your model</span>
-</span><span class="tooltipr">
-<- 
-  <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
-</span><span class="tooltipr">
-aov(
-  <span class="tooltiprtext">A function to define the model</span>
-</span><span class="tooltipr">
-Plaque
-  <span class="tooltiprtext">The response, or y, variable in the model. It is numeric</span>
-</span><span class="tooltipr">
-~
-  <span class="tooltiprtext">The '~' is like an equal sign in the model. Items on the left of '~' represent y, on the right you define independent factors (i.e. x's). </span>
-</span><span class="tooltipr">
-Brush,
-  <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes. </span>
-</span><span class="tooltipr">
-data = df
-  <span class="tooltiprtext">Tell the model to look in the dataset named "df" for Plaque and Brush variables</span>
-</span><span class="tooltipr">
-)
-  <span class="tooltiprtext">Functions always end with a closing parenthesis. </span>
-</span><br/><span class="tooltipr">
-summary(
-  <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table. </span>
-</span><span class="tooltipr">
-plaque_aov
-  <span class="tooltiprtext">Whatever you named your ANOVA model in the previous line</span>
-</span><span class="tooltipr">
-)
-  <span class="tooltiprtext">Functions always end with a closing parenthesis. </span>
-</span><span class="tooltipr">
-&nbsp;&nbsp;&nbsp;&nbsp;  
-  <span class="tooltiprtext">Press Enter to run the code.</span>
-</span><span class="tooltipr" style="float:right;">
-&nbsp;...&nbsp; 
-  <span class="tooltiprtext">Click to View Output.</span>
-</span>
-</div>
+
+[df]{.tooltipr}[A name you come up with for your dataset]{.tooltiprtext} [\<-]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [read_csv(]{.tooltipr}[a command from the tidyverse to read in csv files]{.tooltiprtext} ["data/toothpaste_BF2.csv"]{.tooltipr}[The path to the csv file containing the data]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} <br/>[plaque_aov]{.tooltipr}[A name you come up with for your model]{.tooltiprtext} [\<-]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [aov(]{.tooltipr}[A function to define the model]{.tooltiprtext} [Plaque]{.tooltipr}[The response, or y, variable in the model. It is numeric]{.tooltiprtext} [\~]{.tooltipr}[The '\~' is like an equal sign in the model. Items on the left of '\~' represent y, on the right you define independent factors (i.e. x's).]{.tooltiprtext} [Brush,]{.tooltipr}[The independent variable containing the names for the 4 types of toothbrushes.]{.tooltiprtext} [data = df]{.tooltipr}[Tell the model to look in the dataset named "df" for Plaque and Brush variables]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} <br/>[summary(]{.tooltipr}[Give important information about an object. When called on an aov object the default is to print the ANOVA table.]{.tooltiprtext} [plaque_aov]{.tooltipr}[Whatever you named your ANOVA model in the previous line]{.tooltiprtext} [)]{.tooltipr}[Functions always end with a closing parenthesis.]{.tooltiprtext} [    \
+]{.tooltipr}[Press Enter to run the code.]{.tooltiprtext} [ ... ]{.tooltipr style="float:right;"}[Click to View Output.]{.tooltiprtext}
+
 </a>
-<div id="bf1_aov" style="display:none;">
+
+::: {#bf1_aov style="display:none;"}
 ```{r}
 #| message: false
 #| echo: false
@@ -518,12 +468,11 @@ df <- read_csv("data/toothpaste_BF2.csv")
 plaque_aov <- aov(Plaque ~ Brush, data = df)
 summary(plaque_aov)
 ```
-</div>
+:::
 
 We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
 
 Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
-
 
 ## Resources
 
@@ -536,7 +485,3 @@ Now that the model is created the assumption need to be checked. Code and explan
 #### Links to outside resources
 
 Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.
-
-:::
-
-

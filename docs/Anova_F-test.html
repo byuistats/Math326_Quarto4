@@ -130,8 +130,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ANOVA.html">
- <span class="dropdown-text">ZModel Assumptions</span></a>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
@@ -220,11 +220,9 @@ ul.task-list{list-style: none;}
 </header>
 
 <p>With the effects model defined we will want to test whether the treatment factor(s) has a statistically significant effect on the response variable. In other words we are interested in testing the hypotheses:</p>
-<p><span id="eq-hypotheses"><span class="math display">\[
+<p><span class="math display">\[
 H_0: \alpha_1 = \alpha_2 = ... = 0
-\\
-\newline
-\\
+\]</span> <span id="eq-hypotheses"><span class="math display">\[
 H_a: \alpha_i \ne 0 \text{ for at least one i}
 \qquad(1)\]</span></span></p>
 <p>Where <span class="math inline">\(\alpha_i\)</span> represents the effect of a factor level.</p>
@@ -372,12 +370,12 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 <table class="table">
 <caption>Table 2: Blank ANOVA summary table for an experiment with 1 treatment factor</caption>
 <colgroup>
-<col style="width: 26%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -449,12 +447,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <p>Here, the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
 <table class="table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -511,12 +509,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 </div></div><p>To avoid this problem, statisticians square the distances before summing them. This results in a value that summarizes the total amount of spread in the dataset. This quantity, the Sum of Squares, is important and so it has its own column in the ANOVA summary table.</p>
 <table class="table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -586,11 +584,11 @@ Degrees of Freedom
 <table class="table">
 <caption>Table 3: Only n-1 values are free to vary when the mean of the values is known</caption>
 <colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 22%">
-<col style="width: 19%">
-<col style="width: 19%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">

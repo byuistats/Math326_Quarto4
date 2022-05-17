@@ -68,7 +68,7 @@ Each unique way of partitioning the data set into meaningful groups of observati
 ![](images/toothbrush_factor_row.JPG){width="476"}
 :::
 
-::: {.callout-caution}
+::: callout-caution
 ## Factors in Design vs. Analysis
 
 It is important to note, that use of the word "factor" here is different from (albeit related to) the way it is used in the principles of experimental design section of the book. In that section of the book the variables that are purposefully manipulated and assigned to subjects are referred to as factors. That section of the book deals strictly with *design.* But when doing the *analysis* of the resulting data, this new definition of factor (a meaningful way to group observations) is used. Later we will formally define a mathematical model to aid in our analysis. In our model, each of these analysis factors will be represented by a separate term in the model. Thus, some of the confusion may decrease because we can refer to terms in a model and reserve the word "factor" primarily to refer to an experiment's design.

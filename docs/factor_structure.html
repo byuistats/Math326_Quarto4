@@ -130,8 +130,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ANOVA.html">
- <span class="dropdown-text">ZModel Assumptions</span></a>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
@@ -220,11 +220,11 @@ ul.task-list{list-style: none;}
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
-<p>In this section you will learn factors in context of analyzing results of an experiment:</p>
+<p>In this section you will learn about factors in context of analyzing results of an experiment:</p>
 <ul>
-<li>how to identify factors,</li>
-<li>a vocabulary to describe how factors are related to one another, and</li>
-<li>a method for diagramming factors. This method for diagramming factors should help provide a more visual understanding of how the design is related to the analysis of an experiment.</li>
+<li>How to identify factors</li>
+<li>A method for diagramming factors. This method for diagramming factors should help provide a more visual understanding of how the design is related to the analysis of an experiment</li>
+<li>A vocabulary to describe how factors are related to one another.</li>
 </ul>
 <section id="identifying-and-diagramming-factors" class="level1 page-columns page-full">
 <h1>Identifying and Diagramming Factors</h1>
@@ -372,26 +372,15 @@ ul.task-list{list-style: none;}
 </div>
 </div>
 </div>
-<p>When analyzing our data we will want to compare the averages for each toothbrush type. We can group observations together that used the same brush type and then calculate the average of the group. The figure below shows the observations for each type of toothbrush are grouped into columns.</p>
+<p>When analyzing our data we will want to compare the averages for each toothbrush type. We can group observations together that used the same type of brush and then calculate the average of the group. The figure below shows observations for each type of toothbrush grouped into columns.</p>
 <p><img src="images/toothbrush_factor_column.JPG" class="img-fluid" width="360"></p>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><em>The column orientation is not considered a distinct factor from a row-wise grouping (shown below) since the method for drawing the partitions is the same: splitting by toothbrush type. The key is that after choosing an orientation (row vs.&nbsp;column) you should be consistent in how you represent it throughout your analysis.</em></p>
-<p><img src="images/toothbrush_factor_row.JPG" class="img-fluid" width="476"></p>
-</div>
-</div>
-</div>
 <p>To compute the mean for the manual toothbrush I would sum together the observation for manual and divide by 6 (the number of pieces information in that factor level):</p>
 <p><span id="eq-manual-mean"><span class="math display">\[
 \bar{y}_\text{manual} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
 \qquad(1)\]</span></span></p>
 <p>I can likewise compute the mean for the other factor levels and display them:</p>
 <p><img src="images/toothbrush_factor_means.JPG" id="toothbrush_factor_means" class="img-fluid" width="389"></p>
-<p>As just described, we can think of a factor as a particular way of grouping, or partitioning, the data set. Of course, there are many, many more ways I could have grouped the observations; but the averages of those groups would not result in anything meaningful.</p>
+<p>We can think of a factor as a meaningful way of grouping, or partitioning, the data set. Of course, there are many, many more ways I could have grouped the observations; but the averages of those groups would not result in anything meaningful.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -403,6 +392,17 @@ Factors and Factor Levels
 </div>
 <div class="callout-body-container callout-body">
 <p>Each unique way of partitioning the data set into meaningful groups of observations is considered a factor. Each individual partition (or group) is a factor level. In a given factor, each observation belongs to exactly one group.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><em>The column orientation is not considered a distinct factor from a row-wise grouping (shown below) since the method for drawing the partitions is the same: splitting by toothbrush type. The key is that after choosing an orientation (row vs.&nbsp;column) you should be consistent in how you represent it throughout your analysis.</em></p>
+<p><img src="images/toothbrush_factor_row.JPG" class="img-fluid" width="476"></p>
+</div>
 </div>
 </div>
 <div class="callout-caution callout callout-style-default callout-captioned">

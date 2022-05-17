@@ -51,8 +51,8 @@ website:
           file: effects_model.qmd
         - text: "ANOVA and the F-test"
           href: Anova_F-test.qmd
-        - text: "ZModel Assumptions"
-          href: ANOVA.html
+        - text: "Assumptions"
+          href: assumptions.qmd
         - text: "ZMultiple Pairwise Testing"
           href: MakingInference.html
         - text: "ZMultiple Pairwise Testing"

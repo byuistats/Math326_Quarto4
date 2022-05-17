@@ -1,0 +1,53 @@
+---
+title: "Describing Data"
+date: "1/27/2022"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mosaic)
+```
+
+Calculating treatment means for **one factor**:
+
+```{r eval = FALSE, echo = TRUE}
+library(mosaic)
+favstats(Y~X, data=YourDataSet)
+```
+
+Example code:
+
+<a href="javascript:showhide('mosaic_mean')">
+
+::: hoverchunk
+[ library(mosaic) ]{.tooltipr}[mosaic is an R Package that is useful in
+the teaching of statistics to beginning programmers.]{.tooltiprtext}
+<br>[ library(pander) ]{.tooltipr}[pander is an R Package that makes R
+output look pretty]{.tooltiprtext} <br>[ favstats( ]{.tooltipr}[a
+function from the mosaic package that returns a set of favorite summary
+statistics]{.tooltipRtext} [ Temp ]{.tooltipr}[This is our response
+variable. From `?airquality` you can see in the help file that Temp is
+the maximum daily temp in degrees F at La Gaurdia Aiport during
+1973]{.tooltipRtext} [ \~ ]{.tooltipr}["\~" is the tilde symbol. It can
+be interpreted as "y broken down by x"; "y modeled by x"; "y explained
+by x", etc. Where y is on the left of the tilde and x is on the right.
+]{.tooltipRtext} [ Month, ]{.tooltipr}["Month" is a column from the
+airquality dataset that can be treated as qualitative.]{.tooltiprtext} [
+data = airquality ]{.tooltipr}[You have to tell R what dataset the
+variables Temp and Month come from. 'airquality' is a preloaded dataset
+in R. ]{.tooltiprtext} [ ) ]{.tooltipr}[Functions must always end with a
+closing parenthesis.]{.tooltiprtext} [  Click to view output 
+]{.tooltipr style="float:right;"}[Click to View Output.]{.tooltiprtext}
+:::
+
+</a>
+
+::: {#mosaic_mean style="display:none;"}
+```{r, echo=FALSE}
+favstats(Temp~Month, data=airquality)
+```
+:::

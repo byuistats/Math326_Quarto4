@@ -258,7 +258,7 @@ You can imagine that each data point in your data set is created by going down a
 
 ![](images/assembly_line.jpg){fig-align="center"}
 
-In the toothbrush **and** toothpaste experiment all the points start the assembly line at the same value: the benchmark value, or the grand mean of the data set. The first station on the line receives the data point and adds to it because the instructions say "manual". The next station alters the value depending what the instructions for that data point say: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station. 
+In the toothbrush **and** toothpaste experiment all the points start the assembly line at the same value: the benchmark value, or the grand mean of the data set. The first station on the line receives the data point and adds to it because the instructions say "manual". The next station alters the value depending what the instructions for that data point say: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station.
 
 The last station is worked by a person who makes random adjustments! Some adjustments will be big, and some will be small; some will be positive, and some will be negative. (In a typical factory this person would be fired. But we would rather have randomness than unknown systematic adjustments). Though the adjustments at this last station for residual error are random, they do follow a pattern. Namely, the errors average out to zero and they follow a normal distribution.
 
@@ -291,7 +291,6 @@ $$
 $$ {#eq-one-obs}
 
 @fig-one-obs-build puts this in context of our factor structure diagram.
-
 
 ::: column-page
 ![An observation can be broken into the sum of its factor effects](images/toothbrush_one_obs_build.JPG){#fig-one-obs-build fig-align="center"}

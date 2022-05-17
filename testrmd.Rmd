@@ -1,0 +1,89 @@
+---
+title: "Describing Data"
+date: "1/27/2022"
+output: html_document
+---
+
+
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
+</script>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mosaic)
+library(pander)
+library(tidyverse)
+library(plotly)
+```
+
+::: callout-warning
+## Balanced vs. Unbalanced Data
+
+I feel like we need a disclaimer or caveat somewhere in the book to explain that the formulas presented here only work for balanced designs. A similar approach is used for unbalanced data, but the formulas would need to be adjusted to weight the groups according to their size. Maybe the disclaimer belongs here, maybe in the effects model or anova sections. Or maybe it has it's own "broad topic"...?
+:::
+
+
+Calculating treatment means for **one factor**:
+
+```{r eval = FALSE, echo = TRUE}
+library(mosaic)
+library(pander)
+favstats(Y~X, data=YourDataSet)
+```
+
+Example code:
+
+<a href="javascript:showhide('mosaic_mean')">
+<div class="hoverchunk">
+<span class="tooltipr">
+library(mosaic)
+<span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span>
+</span><br><span class="tooltipr">
+library(pander)
+<span class="tooltiprtext">pander is an R Package that makes R output look pretty</span>
+</span><br><span class="tooltipr">
+favstats(
+  <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span>
+</span><span class="tooltipr">
+Temp
+  <span class="tooltipRtext">This is our response variable. From `?airquality` you can see in the help file that Temp is the maximum daily temp in degrees F at La Gaurdia Aiport during 1973</span>
+</span><span class="tooltipr">
+~
+  <span class="tooltipRtext">"~" is the tilde symbol. It can be interpreted as "y broken down by x"; "y modeled by x"; "y explained by x", etc. Where y is on the left of the tilde and x is on the right. </span>
+</span><span class="tooltipr">
+Month,
+  <span class="tooltiprtext">"Month" is a column from the airquality dataset that can be treated as qualitative.</span>
+</span><span class="tooltipr">
+data = airquality
+ <span class="tooltiprtext">You have to tell R what dataset the variables Temp and Month come from. 'airquality' is a preloaded dataset in R. </span>
+</span><span class="tooltipr">
+)
+ <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span>
+</span><span class="tooltipr" style="float:right;">
+&nbsp;Click to view output&nbsp; 
+  <span class="tooltiprtext">Click to View Output.</span>
+</span>
+</div>
+</a>
