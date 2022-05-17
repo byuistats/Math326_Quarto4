@@ -21,7 +21,7 @@ website:
           href: DataSources.html
     - text: "Specific Designs"
       menu:
-         - text: "Completely Randomized, Basic Factorial Designs"
+         - text: "Basic Factorial Designs"
            href: BasicFactorial_quarto.qmd
          - text: "Block Designs"
            href: Block.html

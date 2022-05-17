@@ -2,6 +2,11 @@
 title: "BF1 R Instructions"
 output: html_document
 ---
+
+```{r message = FALSE, include = FALSE}
+library(tidyverse)
+```
+
 <a href="javascript:showhide('bff1')">
 <div class="hoverchunk">
   <span class="tooltipr">

@@ -6,8 +6,10 @@ output:
     code_folding: hide
 ---
 
-
 ```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+
+
 library(mosaic)
 library(DT)
 library(pander)
@@ -21,20 +23,19 @@ virtual <- read.csv("../data/virtual_training.csv", header=TRUE)
 
 ## Background
 
+An experiment was done to help train people in the procedure to launch a lifeboat. This was a Completely Randomized Design with 16 subjects per treatment, for a total of 64 subjects. The response variable is the performance on a procedural knowledge test. The treatments included: Lecture/Materials (Control) (1), Monitor/Keyboard (2), Head Monitor Display/Joypad (3), and Head Monitor Display/Wearables (4)
 
-
-An experiment was done to help train people in the procedure to launch a lifeboat. This was a Completely Randomized Design with 16 subjects per treatment, for a total of 64 subjects. The response variable is the performance on a procedural knowledge test.  The treatments included: Lecture/Materials (Control) (1), Monitor/Keyboard (2), Head Monitor Display/Joypad (3), and Head Monitor Display/Wearables (4)
-
-Source: J.Jung and Y.J. Ahn (2018). "Effects of Interface on Procedural Skill Transfer in Virtual Training: Lifeboat Launching Operation Study,"
-Computer Animation & Virtual Worlds, Vol. 29, pp. e1812. https://doi.org/10.1002/cav.1812
+Source: J.Jung and Y.J. Ahn (2018). "Effects of Interface on Procedural Skill Transfer in Virtual Training: Lifeboat Launching Operation Study," Computer Animation & Virtual Worlds, Vol. 29, pp. e1812. https://doi.org/10.1002/cav.1812
 
 <!-- ## The Data -->
 
 <!-- ```{r, out.width=300} -->
-<!-- #Show the full width of the "Wide" version of the late data: -->
-<!-- pander(virtual, split.tables = Inf) -->
-<!-- ``` -->
 
+<!-- #Show the full width of the "Wide" version of the late data: -->
+
+<!-- pander(virtual, split.tables = Inf) -->
+
+<!-- ``` -->
 
 ## Analysis
 
@@ -44,8 +45,7 @@ $$
 y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 $$
 
-Where 
-$y_{ij}$ is the $j^{th}$ observation from treatment $i$
+Where $y_{ij}$ is the $j^{th}$ observation from treatment $i$
 
 $\mu$ is the grand mean of the dataset. Also referred to as an overall mean or benchmark.
 
@@ -59,8 +59,7 @@ The null hypothesis is that the effect of all training methods, represented by Î
 
 $$ H_0:\alpha_\text{Control} = \alpha_\text{Monitor/Keyboard} = \alpha_\text{Joypad} = \alpha_\text{Wearables} = 0 $$
 
-The alternative hypothesis states that at least one of the effects due to material is different than zero
-$$ H_a: \text{at least one } \alpha \text{ is different than 0} $$
+The alternative hypothesis states that at least one of the effects due to material is different than zero $$ H_a: \text{at least one } \alpha \text{ is different than 0} $$
 
 Using these hypotheses will allow for us to address the question whether any of the type of training is different to improve test score.
 
@@ -69,6 +68,9 @@ We will use a level of significance of Î± = 0.05 for the analysis.
 For the analysis, we perform the following one-way ANOVA
 
 ```{r,warning=FALSE, message=FALSE}
+#| code-fold: true
+
+
 virtual <- virtual %>% 
    mutate(
          Treatment = case_when(
@@ -83,32 +85,43 @@ virtual.aov <- aov(procKnow ~ Treatment, data=virtual)
 summary(virtual.aov) %>% pander()
 ```
 
-The p-value for this test is significant (p = 0.003931).  Based on this result, the null hypothesis is rejected and we have sufficient evidence that at least one of the effects due to training is different for post test score.
+The p-value for this test is significant (p = 0.003931). Based on this result, the null hypothesis is rejected and we have sufficient evidence that at least one of the effects due to training is different for post test score.
 
 ### Check Requirements
 
-In order to trust this result, we must verify the requirements for the ANOVA model are met. The requirement of equal variances appears to be met since the residuals versus fitted plot shows roughly a constant variance within each vertical group of dots.  
+In order to trust this result, we must verify the requirements for the ANOVA model are met. The requirement of equal variances appears to be met since the residuals versus fitted plot shows roughly a constant variance within each vertical group of dots.
 
-The QQ-plot of residuals on the right is used to check whether residuals are normally distributed.  There are a few points outside the boundaries that might be a concern for this ANOVA requirement, but generally there are no strong departures from normality and so we consider this requirement to be met also.
+The QQ-plot of residuals on the right is used to check whether residuals are normally distributed. There are a few points outside the boundaries that might be a concern for this ANOVA requirement, but generally there are no strong departures from normality and so we consider this requirement to be met also.
 
 ```{r}
+#| code-fold: true
+
+
 par(mfrow=c(1,2))
 plot(virtual.aov, which=1, pch=16)
 qqPlot(virtual.aov, id=FALSE)
 ```
-  
+
 ### Training method's effect on test score
 
 The following plot shows which types of training increases the post test score.
+
 ```{r,warning=FALSE, message=FALSE}
+#| code-fold: true
+
+
 xyplot(procKnow ~ as.factor(Treatment), data=virtual, type=c("p","a"), main="Score based on Type of Training", xlab ="Treatment", ylab = "Test Score")
 ```
 
 The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials.
+
 ```{r,warning=FALSE, message=FALSE}
+#| code-fold: true
+
+
 pander(favstats(procKnow ~ Treatment, data=virtual)[,c("Treatment","mean","sd","n")])
 ```
 
 ## Interpretation
 
-It appears the the best type of training may be the Monitor/Keyboard type training.  The highest mean came from the Monitor/Keyboard where the average procedural knowledge post test score was 7.708. The head monitor training methods may perform better on different types of assessments that were not part of this study. A future study could look into other training methods to improve readiness in lifeboat launching. 
+It appears the the best type of training may be the Monitor/Keyboard type training. The highest mean came from the Monitor/Keyboard where the average procedural knowledge post test score was 7.708. The head monitor training methods may perform better on different types of assessments that were not part of this study. A future study could look into other training methods to improve readiness in lifeboat launching.

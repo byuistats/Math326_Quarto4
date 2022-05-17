@@ -160,8 +160,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="../BasicFactorial.html">
- <span class="dropdown-text">Completely Randomized, Basic Factorial Designs</span></a>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">Basic Factorial Designs</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Block.html">
@@ -193,8 +193,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../ANOVA.html">
- <span class="dropdown-text">ZModel Assumptions</span></a>
+    <a class="dropdown-item" href="../assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../MakingInference.html">
@@ -279,6 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
@@ -287,6 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Data from original article:</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>virtual <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/virtual_training.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -317,6 +320,8 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <p>We will use a level of significance of α = 0.05 for the analysis.</p>
 <p>For the analysis, we perform the following one-way ANOVA</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>virtual <span class="ot">&lt;-</span> virtual <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Treatment =</span> <span class="fu">case_when</span>(</span>
@@ -329,6 +334,7 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>virtual.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(procKnow <span class="sc">~</span> Treatment, <span class="at">data=</span>virtual)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(virtual.aov) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <caption>Analysis of Variance Model</caption>
@@ -378,26 +384,37 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <p>In order to trust this result, we must verify the requirements for the ANOVA model are met. The requirement of equal variances appears to be met since the residuals versus fitted plot shows roughly a constant variance within each vertical group of dots.</p>
 <p>The QQ-plot of residuals on the right is used to check whether residuals are normally distributed. There are a few points outside the boundaries that might be a concern for this ANOVA requirement, but generally there are no strong departures from normality and so we consider this requirement to be met also.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(virtual.aov, <span class="at">which=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(virtual.aov, <span class="at">id=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="VirtualTrain_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="VirtualTrain_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="training-methods-effect-on-test-score" class="level3">
 <h3 class="anchored" data-anchor-id="training-methods-effect-on-test-score">Training method’s effect on test score</h3>
-<p>The following plot shows which types of training increases the post test score. ::: {.cell}</p>
+<p>The following plot shows which types of training increases the post test score.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(procKnow <span class="sc">~</span> <span class="fu">as.factor</span>(Treatment), <span class="at">data=</span>virtual, <span class="at">type=</span><span class="fu">c</span>(<span class="st">"p"</span>,<span class="st">"a"</span>), <span class="at">main=</span><span class="st">"Score based on Type of Training"</span>, <span class="at">xlab =</span><span class="st">"Treatment"</span>, <span class="at">ylab =</span> <span class="st">"Test Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="VirtualTrain_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="VirtualTrain_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>:::</p>
-<p>The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials. ::: {.cell}</p>
+</div>
+<p>The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">favstats</span>(procKnow <span class="sc">~</span> Treatment, <span class="at">data=</span>virtual)[,<span class="fu">c</span>(<span class="st">"Treatment"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"n"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<table class="table">
+<table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 11%">
@@ -440,7 +457,7 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 </tbody>
 </table>
 </div>
-<p>:::</p>
+</div>
 </section>
 </section>
 <section id="interpretation" class="level2">

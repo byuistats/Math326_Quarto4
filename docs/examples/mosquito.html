@@ -160,8 +160,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="../BasicFactorial.html">
- <span class="dropdown-text">Completely Randomized, Basic Factorial Designs</span></a>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">Basic Factorial Designs</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Block.html">
@@ -193,8 +193,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../ANOVA.html">
- <span class="dropdown-text">ZModel Assumptions</span></a>
+    <a class="dropdown-item" href="../assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../MakingInference.html">
@@ -278,6 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
@@ -286,6 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Data from original article:</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>mosquito <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/mosquito_patch.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -313,6 +316,8 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <p>We will use a level of significance of α = 0.05 for the analysis.</p>
 <p>For the analysis, we perform the following one-way ANOVA</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mosquito <span class="ot">&lt;-</span> mosquito <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Treatment =</span> <span class="fu">case_when</span>(</span>
@@ -326,6 +331,7 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>mosquito.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(y.mosq <span class="sc">~</span> Treatment, <span class="at">data=</span>mosquito)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mosquito.aov) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <caption>Analysis of Variance Model</caption>
@@ -371,27 +377,37 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <p>The p-value for this test is significant (p = 0.001924). Based on this result, the null hypothesis is rejected and we have sufficient evidence that at least one of the effects due to material is different for human mosquito contact.</p>
 <p>The requirements of equal variances for ANOVA is met. This is shown by the residual versus fitted plot, which shows roughly a constant variance within each vertical group of dots. The QQ-plot of residuals on the right shows some non-normality as evidenced by some of the points outside of the dashed line boundaries. However, it is not severe and we will move forward with the analysis.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mosquito.aov, <span class="at">which=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(mosquito.aov, <span class="at">id=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="mosquito_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="mosquito_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The following plot shows which types of material minimize the human mosquito contact.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(y.mosq <span class="sc">~</span> <span class="fu">as.factor</span>(Treatment), <span class="at">data=</span>mosquito, <span class="at">main=</span><span class="st">"Human Mosquito Contact Based on Type of Material"</span>, <span class="at">xlab =</span><span class="st">"Treatment"</span>, <span class="at">ylab =</span> <span class="st">"Amount of Mosquito Human Contact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="mosquito_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="mosquito_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials. ::: {.cell}</p>
+<p>The averages are illustrated with the blue line in the plot above and the table below shows the means, standard deviations, and sample sizes for each of the five different materials.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(y.mosq <span class="sc">~</span> Treatment, <span class="at">data=</span>mosquito) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Treatment,mean,sd,n) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<table class="table">
+<table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 11%">
@@ -440,12 +456,14 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 </tbody>
 </table>
 </div>
-<p>:::</p>
+</div>
 </section>
 <section id="pairwise-comparisons" class="level3">
 <h3 class="anchored" data-anchor-id="pairwise-comparisons">Pairwise comparisons</h3>
 <p>We now that smallest mean (C+O) must be different than the largest mean (Deltamethrin) because the F-test was significant above. In order to better understand which treatments perform better than which other treatments we will look at all pairwise comparisons and apply Tukey’s correction to the family error rate.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This code would work, but...</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># TukeyHSD(mosquito.aov, "Treatment")</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -454,6 +472,7 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">`</span><span class="at">p adj</span><span class="st">`</span>) <span class="sc">%&gt;%</span> <span class="co">#Have to put the column name in back ticks since it has a space</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
