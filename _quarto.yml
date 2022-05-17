@@ -22,7 +22,7 @@ website:
     - text: "Specific Designs"
       menu:
          - text: "Completely Randomized, Basic Factorial Designs"
-           href: BasicFactorial.html
+           href: BasicFactorial_quarto.qmd
          - text: "Block Designs"
            href: Block.html
          - text: "Covariate Designs"

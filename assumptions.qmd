@@ -289,8 +289,9 @@ It can be difficult to tell if the line is straight enough. `qqPlot` from the `c
 #| fig-cap: "Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example"
 #| code-fold: true
 
-car::qqPlot(brush_aov, envelope = list(style = "lines"))
 #The envelope argument controls whether the region between the lines is shaded or not
+car::qqPlot(brush_aov, envelope = list(style = "lines"))
+
 ```
 
 A point on the far right is clearly out of the dashed boundary. It is not uncommon for the last 1 or 2 points be stray from from the line. Overall, however, the points tend to follow the line and stay in bounds. I would conclude that the assumption of normally distributed residuals is met.

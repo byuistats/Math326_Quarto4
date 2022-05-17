@@ -1,23 +1,7 @@
 ---
+title: "BF1 R Instructions"
 output: html_document
 ---
-
-```{=html}
-<script type="text/javascript">
- function showhide(id) {
-    var e = document.getElementById(id);
-    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
- }
-</script>
-```
-
-```{r}
-#| include: false
-
-library(tidyverse)
-```
-
-
 <a href="javascript:showhide('bff1')">
 <div class="hoverchunk">
   <span class="tooltipr">
@@ -76,10 +60,9 @@ Click to view output
 </span>
 </div>
 </a>
-<div id="bff1" style="display:none;">
+<div id="bff1" style="display:show;">
 
-```{r message = FALSE}
-#| echo: false
+```{r message = FALSE, echo = FALSE}
 df <- read_csv("../data/toothpaste_BF2.csv")
 plaque_aov <- aov(Plaque ~ Brush, data = df)
 summary(plaque_aov)

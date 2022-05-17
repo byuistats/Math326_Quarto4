@@ -446,13 +446,25 @@ summary(myaov)
 
 **Example Code**
 
-```{r child="hoveRmd/BF1_R_Instructions.Rmd"}
+<a href="javascript:showhide('bff1')">
 
+::: hoverchunk
+[ df ]{.tooltipr}[A name you come up with for your dataset]{.tooltiprtext} [ \<- ]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [ read_csv( ]{.tooltipr}[a command from the tidyverse to read in csv files]{.tooltiprtext} [ "data/toothpaste_BF2.csv" ]{.tooltipr}[The path to the csv file containing the data]{.tooltiprtext} [ ) ]{.tooltipr}[Functions always end with a closing parenthesis]{.tooltiprtext} <br/>[ plaque_aov]{.tooltipr}[A name you come up with for your model]{.tooltiprtext} [ \<- ]{.tooltipr}[The assignment operator. The result to the right of it gets stored in an object specified on the left]{.tooltiprtext} [ aov( ]{.tooltipr}[A function to define the model]{.tooltiprtext} [ Plaque ]{.tooltipr}[The response, or y, variable in the model. It is numeric.]{.tooltiprtext} [ \~ ]{.tooltipr}[The \~ is like an equal sign in the model. Items on the left of \~ represent y, on the right you define independent factors (i.e. x's).]{.tooltiprtext} [ Brush, ]{.tooltipr}[The independent variable containing the names for the 4 types of toothbrushes.]{.tooltiprtext} [ data = df ]{.tooltipr}[Tell the model to look in the dataset named "df" for Plaque and Brush variables]{.tooltiprtext} [ ) ]{.tooltipr}[Functions always end with a closing parenthesis]{.tooltiprtext} <br/>[ summary( ]{.tooltipr}[Give important information about an object. When called on an aov object the default is to print the ANOVA table]{.tooltiprtext} [ plaque_aov ]{.tooltipr}[ Whatever you named your ANOVA model in the previous line ]{.tooltiprtext} [ ) ]{.tooltipr}[ Functions always end with a closing parenthesis ]{.tooltiprtext}<br/>[ Click to view output ]{.tooltipr style="float:right;"}[Click to View Output.]{.tooltiprtext}
+:::
+
+</a>
+
+::: {#bff1 style="display:none;"}
+```{r message = FALSE}
+df <- read_csv("data/toothpaste_BF2.csv")
+plaque_aov <- aov(Plaque ~ Brush, data = df)
+summary(plaque_aov)
 ```
+:::
 
-We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand *which* factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
+We then interpret the results. Since the p-value is significant we may be able to the graphical summaries to understand which factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
 
-Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found in the [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
+Now that the model is created the assumption need to be checked. Code and explanation for assumption checking can be found at [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
 
 ## Resources
 
