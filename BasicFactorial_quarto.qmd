@@ -452,7 +452,7 @@ summary(myaov)
 
 We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand *which* factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrasts.qmd).
 
-Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the [R Instructions-\>Model Assumptions](assumptions.qmd) section of the book.
+Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the [R Instructions-\>Model Diagnostics](docs/model_diagnostics.html) section of the book.
 
 ## Resources
 

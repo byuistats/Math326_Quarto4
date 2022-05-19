@@ -125,7 +125,9 @@ This requirement does not need to be checked since we are guaranteed this will o
 
 We express the spread of the distribution of residuals in terms of the variance, $\sigma^2$. We assume that the variance of residuals is the same regardless of the factor level. Consider our conveyor belt example. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.
 
-The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance. (When the spread is not the same it is called heterogeneity of variance).
+In the F-statistic calculation the denominator is a pooled variance; or in other words, an average of the within factor level variances. When factor level sample sizes are unequal, then the average variance is biased toward the factor level with the largest sample size. Thus, it becomes important to show that the within variance estimate for each factor level is (relatively) equal when sample sizes are not. The greater disparity in sample sizes, the more important it is to have within factor levels variances that are similar. The F-distribution used to calculate p-values is based the assumption of equal variances. When there is non-constant variance, the ratio of between group variance to within group variance no longer follows the F-distribution and the p-value calculations will be off.
+
+The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance. (When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity).
 
 @fig-variance shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.
 
@@ -190,6 +192,7 @@ leveneTest(brush_aov) |> kable()
 For the toothbrush example, the p-value of Levene's F-test in @tbl-levene is .8605, indicating the constant variance assumption is met. It is not uncommon for this hypothesis test to disagree with the rule of thumb. It appears that one outlier in the upper right portion of @fig-variance is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene's test.
 
 I am not suggesting to remove that point from the analysis, rather to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don't agree.
+
 
 ### More than 1 structural factor
 

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.344">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Model Diagnostics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="../RCommands.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../RMarkdownHints.html">
+ <span class="dropdown-text">Choosing a response variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../RCheatSheetsAndNotes.html">
+ <span class="dropdown-text">Choosing conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../DataSources.html">
+ <span class="dropdown-text">Choosing units/experimental material</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">Basic Factorial Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Block.html">
+ <span class="dropdown-text">Block Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="../factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Kruskal.html">
+ <span class="dropdown-text">ZPower</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../WilcoxonTests.html">
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="../DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../model_diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#constant-variance-assumption" id="toc-constant-variance-assumption" class="nav-link active" data-scroll-target="#constant-variance-assumption">Constant Variance Assumption</a>
+  <ul class="collapse">
+  <li><a href="#rule-of-thumb" id="toc-rule-of-thumb" class="nav-link" data-scroll-target="#rule-of-thumb">Rule of thumb</a></li>
+  <li><a href="#residual-vs.-fitted" id="toc-residual-vs.-fitted" class="nav-link" data-scroll-target="#residual-vs.-fitted">Residual vs.&nbsp;Fitted</a></li>
+  <li><a href="#levenes-test" id="toc-levenes-test" class="nav-link" data-scroll-target="#levenes-test">Levene’s Test</a></li>
+  </ul></li>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal Distribution</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Model Diagnostics</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
+</script>
+<section id="constant-variance-assumption" class="level2">
+<h2 class="anchored" data-anchor-id="constant-variance-assumption">Constant Variance Assumption</h2>
+<p>A key assumption for ANOVA tests is that the error, or residual term, has a constant variance across all factor levels. This is sometimes call homogeneity of variance, or homoscedasticity.</p>
+<p>We explain three ways to check the assumption: rule of thumb when comparing standard deviations for each factor level, a visual assessment of the residual vs.&nbsp;fitted plot, and Levene’s test. These methods may not always agree. You should be aware of the underlying data. Understanding why this assumption is important and how it will affect results when violated will help you decide how to proceed after checking these diagnostics. It is also worth noting that the ANOVA F-test is robust in the face of mild to moderate violation of this assumption.</p>
+<p>We will use the pre-loaded dataset <code>ToothGrowth</code>. To learn more about the dataset, run <code>?ToothGrowth</code> in the console. <code>len</code> will be our response variable, <code>supp</code> is an independent factor, and <code>dose</code> is the other independent factor. We will analyze this a two-way, basic factorial design. Because <code>dose</code> is stored as a numeric variable, we will convert it to a categorical variable and rename it <code>dose_f</code> before including it in the model. <em>Don’t forget to load the</em> <code>tidyverse</code> <em>in order to use</em> <code>mutate()</code>.</p>
+<a href="javascript:showhide('dose_f')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> tg <span class="tooltiprtext">The name you want for your modified dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> ToothGrowth <span class="tooltiprtext">A preloaded dataset in R</span> </span><span class="tooltipr"> |&gt; <span class="tooltiprtext">The result on the left is piped into the first argument of the function on the right</span> </span><span class="tooltipr"> mutate( <span class="tooltiprtext">A tidyverse function to compute a new column for a dataset</span> </span><span class="tooltipr"> dose_f = <span class="tooltiprtext">The name you want to give to the new column</span> </span><span class="tooltipr"> factor( <span class="tooltiprtext">A function to convert a variable from numeric to quantitative</span> </span><span class="tooltipr"> dose <span class="tooltiprtext">A numeric variable in ToothGrowth</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> aov2th <span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> len <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> dose_f <span class="tooltiprtext">Column in the tg dataset where doese is stored as a factor</span> </span><span class="tooltipr"> * <span class="tooltiprtext">Crosses two factors. Both simple factors and the interaction factor are included in the model </span> </span><span class="tooltipr"> supp <span class="tooltiprtext">variable with 2 levels of delivery method: orange juice or asorbic acid (vc)</span> </span><span class="tooltipr"> , <span class="tooltiprtext">Seperates multiple input arguments to a function.</span> </span><span class="tooltipr"> data = tg <span class="tooltiprtext">Tell the model that the variable names come from the <code>tg</code> dataset</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br></p>
+</div>
+</a>
+<div id="dose_f" style="display:hide;">
+<div class="cell">
+
+</div>
+</div>
+<p><br></p>
+<section id="rule-of-thumb" class="level3">
+<h3 class="anchored" data-anchor-id="rule-of-thumb">Rule of thumb</h3>
+<p>A quick rule of thumb to check this assumption is to compare standard deviations across factor levels. If the largest standard deviation is no more than double the smallest standard deviation, then the standard deviations (and the variances) are close enough to be considered equal. Check the R <a href="docs/DescribeData.html">Instructions&gt;Describing Data&gt;Numerical Summaries</a> section of the textbook on how to calculate standard deviations for each factor level.</p>
+<p>In cases with more than 1 factor, you can compare the standard deviation of each factor level combination (i.e.&nbsp;the interaction factor). Sometimes though, looking at the interaction results in a very small sample size at each level or you may be concerned about a particular factor level of an experimental factor. In that case you may want to apply this rule of thumb to each factor individually. When faced with a situation where the rule of thumb is met for some factors but not for others use your best judgement. An understanding of how a violation may affect your results is critical. You can see that this approach can be tricky to implement, especially as you go beyond studies with just two factors.</p>
+</section>
+<section id="residual-vs.-fitted" class="level3">
+<h3 class="anchored" data-anchor-id="residual-vs.-fitted">Residual vs.&nbsp;Fitted</h3>
+<p>Another informal approach to checking the constant variance assumption is looking at a residual vs.&nbsp;fitted plot. Similar to the rule of thumb, in situations with more than 1 factor, you can either create a plot that shows all factor level combinations OR look at multiple plots, one for each experimental factor. In order to view this plot, you must first create the ANOVA model. Once the model is created, there are a couple of ways to get a residual vs.&nbsp;fitted plot.</p>
+<p><strong>Construct the plot manually from vectors within the aov object</strong></p>
+<p>The plot can be constructed using the vector of residuals and vector of fitted values contained in the <code>aov</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myaov<span class="sc">$</span>fittedvalues, myaov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example code:</p>
+<!-- Example Code 1 -->
+<a href="javascript:showhide('manual')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot( <span class="tooltiprtext">Base R function to create a scatterplot</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext"> Look in the <code>aov2th</code> object for the item named on the right of the <code>$</code></span> </span><span class="tooltipr"> fitted.values <span class="tooltiprtext"> This vector, stored in the <code>aov</code> object, contains the fitted, or predicted, values. </span></span><span class="tooltipr"> , <span class="tooltiprtext">Seperates multiple input arguments to a function</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext">Look in the <code>aov2th</code> object for the item names on the righ tof the <code>$</code></span> </span><span class="tooltipr"> residuals <span class="tooltiprtext">Vector in the <code>aov</code> object that contains model residuals</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('manual')"></a></p>
+<div id="manual" style="display:show;">
+<p>Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 does levels x 2 levels of supp = 6 factor level combinations) ::: {.cell} ::: {.cell-output-display} <img src="model_diagnostics_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"> ::: :::</p>
+</div>
+<p><br></p>
+<p><strong>Construct the plot with a shortcut</strong></p>
+<p>When the function <code>plot()</code> is called on an <code>aov</code> object, 4 diagnostic plots are produced. Instead of viewing all four, chose which ones to see with the <code>which=</code> argument. The first of the four plots is the residual vs.&nbsp;fitted plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myaov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example code:</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('shortcut1')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot( <span class="tooltiprtext">Base R function, when fed an <code>aov</code> object it produces 4 diagnostic plots</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext"> The <code>aov</code> object for our model </span></span><span class="tooltipr"> which = <span class="tooltiprtext">Which of the four diagnostic plots do we want</span> </span><span class="tooltipr"> 1 <span class="tooltiprtext">The first of the 4 plots is the residual vs.&nbsp;fitted plot</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('shortcut1')"></a></p>
+<p><br></p>
+<div id="shortcut1" style="display:show;">
+<p>Ignore the red line on the plot. It does not measure variance and so can be distracting. ::: {.cell} ::: {.cell-output-display} <img src="model_diagnostics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"> ::: :::</p>
+</div>
+<p><br></p>
+</section>
+<section id="levenes-test" class="level3">
+<h3 class="anchored" data-anchor-id="levenes-test">Levene’s Test</h3>
+<p>Levene’s test is a formal hypothesis test to determine if the variances are equal. In essence, this is an ANOVA F-test comparing sample variances across factor levels (as opposed to comparing sample means). A large p-value for the test indicates there is insufficient evidence to conclude one of the variances is different; and therefore the assumption of constant variance is met.</p>
+<p>This test comes in handy when there are multiple factors in a study and it is burdensome to informally evaluate all their factor level combinations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Levene</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example code:</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('levene')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> car <span class="tooltiprtext">Levene’s test comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> leveneTest( <span class="tooltiprtext">function to run Levene’s test</span> </span><span class="tooltipr"> aov2th <span class="tooltiprtext">name of the aov object to run the test on</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('levene')"></a></p>
+<p><br></p>
+<div id="levene" style="display:show;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  5  1.7086 0.1484
+      54               </code></pre>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="normal-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="normal-distribution">Normal Distribution</h2>
+<p>Another key assumption for ANOVA tests is that the error, or residual, term follows a normal distribution. We use the Q-Q plot to check this assumption. There are two ways to create the Q-Q plot.</p>
+<p>We will continue to use the <code>aov2th</code> model that was created at the beginning of the Constant Variance section.</p>
+<p><strong>Construct the Q-Q plot with a shortcut</strong></p>
+<p>When the function <code>plot()</code> is called on an <code>aov</code> object, 4 diagnostic plots are produced. Instead of viewing all four, chose which ones to see with the <code>which=</code> argument. The second of the four plots is a normal Q-Q plot.</p>
+<p>Example code:</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('qqshortcut')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot( <span class="tooltiprtext">Base R function, when fed an <code>aov</code> object it produces 4 diagnostic plots</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext"> The <code>aov</code> object for our model </span></span><span class="tooltipr"> which = <span class="tooltiprtext">Which of the four diagnostic plots do we want</span> </span><span class="tooltipr"> 2 <span class="tooltiprtext">The second of the 4 plots is the normal Q-Q plot</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('qqshortcut')"></a></p>
+<p><br></p>
+<div id="shortcut1" style="display:show;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="model_diagnostics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>The <em>advantage of this method</em> is that you can easily get the residual vs.&nbsp;fitted plot and the normal Q-Q plot with one command by providing the <code>which =</code> argument a vector containing the values 1 and 2. (The <code>:</code> is shorthand to create a vector that starts at the value of the left of the <code>:</code> and increments by 1 until reaching the value on the right side of the <code>:</code>.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myaov, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <em>disadvantage of this method</em> is that it can be difficult to determine if the points follow the line closely enough. To help with this decision, you may prefer to use the Q-Q plot from the <code>car</code> package.</p>
+<p><strong>Construct the Q-Q plot from the <code>car</code> package</strong></p>
+<p>The Q-Q plot from the <code>car</code> package provides boundary lines. When points are out of the boundaries that is evidence that the normal residual assumption is violated.</p>
+<p>You can customize the way the acceptable region for points is designated. The default is shading a region. Below is code to draw dashed-line boundary.</p>
+<p>Example code:</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('qqcar')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> car <span class="tooltiprtext">qqPlot comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> qqPlot( <span class="tooltiprtext">function to a Q-Q plot from the car package</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext">name of the aov object</span> </span><span class="tooltipr"> envelope = <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span> </span><span class="tooltipr"> list( <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span> </span><span class="tooltipr"> stlye = <span class="tooltiprtext">“filled” shading, boundary “lines”, or none</span> </span><span class="tooltipr"> “lines” <span class="tooltiprtext">designate the acceptable region with lines</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('qqcar')"></a></p>
+<p><br></p>
+<div id="levene" style="display:show;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="model_diagnostics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32 49</code></pre>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

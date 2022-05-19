@@ -1107,6 +1107,7 @@ This will return a scatterplot regardless of how your `x` variable is stored in 
 
 By reading the documentation for the dataset (visible when `?ToothGrowth` is run in the console) we can see that our "x" variable, "dose", is a numeric variable in R. Because of this the x-axis maintains the relative distance of doses on the x-axis.
 
+By reading the documentation for the dataset (visible when `?ToothGrowth` is run in the console) we can see that our "x" variable, "dose", is a numeric variable in R. Because of this the x-axis maintains the relative distance of doses on the x-axis.
 
 <!-- Example Code 1 -->
 <a href="javascript:showhide('scatterplot1')">

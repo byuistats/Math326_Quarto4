@@ -1,0 +1,449 @@
+---
+title: "Model Diagnostics"
+output: html_document
+---
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
+</script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mosaic)
+library(pander)
+library(tidyverse)
+library(plotly)
+
+```
+
+## Constant Variance Assumption
+
+A key assumption for ANOVA tests is that the error, or residual term, has a constant variance across all factor levels. This is sometimes call homogeneity of variance, or homoscedasticity. 
+
+We explain three ways to check the assumption: rule of thumb when comparing standard deviations for each factor level, a visual assessment of the residual vs. fitted plot, and Levene's test. These methods may not always agree. You should be aware of the underlying data. Understanding why this assumption is important and how it will affect results when violated will help you decide how to proceed after checking these diagnostics. It is also worth noting that the ANOVA F-test is robust in the face of mild to moderate violation of this assumption.
+
+We will use the pre-loaded dataset `ToothGrowth`. To learn more about the dataset, run `?ToothGrowth` in the console. `len` will be our response variable, `supp` is an independent factor, and `dose` is the other independent factor. We will analyze this a two-way, basic factorial design. Because `dose` is stored as a numeric variable, we will convert it to a categorical variable and rename it `dose_f` before including it in the model. *Don't forget to load the* `tidyverse` *in order to use* `mutate()`.
+
+<a href="javascript:showhide('dose_f')">
+<div class="hoverchunk">
+<span class="tooltipr">
+tg
+  <span class="tooltiprtext">The name you want for your modified dataset</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+ToothGrowth
+  <span class="tooltiprtext">A preloaded dataset in R</span>
+  </span><span class="tooltipr">
+|>
+  <span class="tooltiprtext">The result on the left is piped into the first argument of the function on the right</span>
+  </span><span class="tooltipr">
+mutate(
+  <span class="tooltiprtext">A tidyverse function to compute a new column for a dataset</span>
+  </span><span class="tooltipr">
+dose_f =
+  <span class="tooltiprtext">The name you want to give to the new column</span>
+  </span><span class="tooltipr">
+factor(
+  <span class="tooltiprtext">A function to convert a variable from numeric to quantitative</span>
+  </span><span class="tooltipr">
+dose
+  <span class="tooltiprtext">A numeric variable in ToothGrowth</span>
+  </span><span class="tooltipr">
+))
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr">
+aov2th
+  <span class="tooltiprtext">A name you come up with for your model</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+aov(
+  <span class="tooltiprtext">A function to define the model</span>
+  </span><span class="tooltipr">
+len
+  <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span>
+  </span><span class="tooltipr">
+~
+  <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e. x's).</span>
+  </span><span class="tooltipr">
+dose_f
+  <span class="tooltiprtext">Column in the tg dataset where doese is stored as a factor</span>
+  </span><span class="tooltipr">
+*
+  <span class="tooltiprtext">Crosses two factors. Both simple factors and the interaction factor are included in the model </span>
+  </span><span class="tooltipr">
+supp
+  <span class="tooltiprtext">variable with 2 levels of delivery method: orange juice or asorbic acid (vc)</span>
+  </span><span class="tooltipr">
+,
+  <span class="tooltiprtext">Seperates multiple input arguments to a function.</span>
+  </span><span class="tooltipr">
+data = tg
+  <span class="tooltiprtext">Tell the model that the variable names come from the `tg` dataset</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/>
+</div>
+</a>
+<div id="dose_f" style="display:hide;">
+
+```{r message = FALSE, echo = FALSE}
+tg <- ToothGrowth |>  mutate(dose_f = factor(dose))
+aov2th <- aov(len~dose_f*supp, data = tg)
+```
+
+</div>
+
+<br/>
+
+
+### Rule of thumb
+
+A quick rule of thumb to check this assumption is to compare standard deviations across factor levels. If the largest standard deviation is no more than double the smallest standard deviation, then the standard deviations (and the variances) are close enough to be considered equal. Check the R [Instructions>Describing Data>Numerical Summaries](docs/DescribeData.html) section of the textbook on how to calculate standard deviations for each factor level.
+
+In cases with more than 1 factor, you can compare the standard deviation of each factor level combination (i.e. the interaction factor). Sometimes though, looking at the interaction results in a very small sample size at each level or you may be concerned about a particular factor level of an experimental factor. In that case you may want to apply this rule of thumb to each factor individually. When faced with a situation where the rule of thumb is met for some factors but not for others use your best judgement. An understanding of how a violation may affect your results is critical. You can see that this approach can be tricky to implement, especially as you go beyond studies with just two factors. 
+
+### Residual vs. Fitted
+
+Another informal approach to checking the constant variance assumption is looking at a residual vs. fitted plot. Similar to the rule of thumb, in situations with more than 1 factor, you can either create a plot that shows all factor level combinations OR look at multiple plots, one for each experimental factor. In order to view this plot, you must first create the ANOVA model. Once the model is created, there are a couple of ways to get a residual vs. fitted plot. 
+
+**Construct the plot manually from vectors within the aov object**
+
+The plot can be constructed using the vector of residuals and vector of fitted values contained in the `aov` object.
+
+```{r eval = FALSE, echo = TRUE}
+myaov <- aov(Y~X*Z, data = YourDataSet)
+plot(myaov$fittedvalues, myaov$residuals)
+```
+
+Note: If you want to know all the named items in an R object, you can run `names(object)`. In this case we have an aov object called myaov. To see what it contains we can run `names(myaov)` in the console. 
+
+Example code:
+
+<!-- Example Code 1 -->
+<a href="javascript:showhide('manual')">
+<div class="hoverchunk">
+<span class="tooltipr">
+plot(
+  <span class="tooltiprtext">Base R function to create a scatterplot</span>
+  </span><span class="tooltipr">
+aov2th$
+  <span class="tooltiprtext">
+  Look in the `aov2th` object for the item named on the right of the `$`</span>
+  </span><span class="tooltipr">
+fitted.values
+  <span class="tooltiprtext">
+  This vector, stored in the `aov` object, contains the fitted, or predicted, values.
+  </span></span><span class="tooltipr">
+, 
+  <span class="tooltiprtext">Seperates multiple input arguments to a function</span>
+  </span><span class="tooltipr">
+aov2th$
+  <span class="tooltiprtext">Look in the `aov2th` object for the item names on the righ tof the `$`</span>
+  </span><span class="tooltipr">
+residuals
+  <span class="tooltiprtext">Vector in the `aov` object that contains model residuals</span>
+  </span><span class="tooltipr">
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<div id="manual" style="display:show;">
+
+Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 does levels x 2 levels of supp = 6 factor level combinations)
+```{r message = FALSE, echo = FALSE}
+plot(aov2th$fitted.values, aov2th$residuals)
+```
+
+</div>
+
+<br/>
+
+**Construct the plot with a shortcut**
+
+When the function `plot()` is called on an `aov` object, 4 diagnostic plots are produced. Instead of viewing all four, chose which ones to see with the `which=` argument. The first of the four plots is the residual vs. fitted plot.
+
+```{r eval = FALSE, echo = TRUE}
+myaov <- aov(Y~X*Z, data = YourDataSet)
+plot(myaov, which = 1)
+```
+
+Example code:
+
+<!-- Example Code 2 -->
+<a href="javascript:showhide('shortcut1')">
+<div class="hoverchunk">
+<span class="tooltipr">
+plot(
+  <span class="tooltiprtext">Base R function, when fed an `aov` object it produces 4 diagnostic plots</span>
+  </span><span class="tooltipr">
+aov2th,
+  <span class="tooltiprtext">
+  The `aov` object for our model
+  </span></span><span class="tooltipr">
+which = 
+  <span class="tooltiprtext">Which of the four diagnostic plots do we want</span>
+  </span><span class="tooltipr">
+ 1
+  <span class="tooltiprtext">The first of the 4 plots is the residual vs. fitted plot</span>
+  </span><span class="tooltipr">
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<br/>
+
+<div id="shortcut1" style="display:show;">
+
+Ignore the red line on the plot. It does not measure variance and so can be distracting.
+```{r message = FALSE, echo = FALSE}
+aov2th <- aov(len ~ dose_f*supp, data = tg)
+plot(aov2th, which = 1)
+```
+
+</div>
+
+<br/>
+
+
+### Levene's Test
+
+Levene's test is a formal hypothesis test to determine if the variances are equal. In essence, this is an ANOVA F-test comparing sample variances across factor levels (as opposed to comparing sample means). A large p-value for the test indicates there is insufficient evidence to conclude one of the variances is different; and therefore the assumption of constant variance is met.
+
+This test comes in handy when there are multiple factors in a study and it is burdensome to informally evaluate all their factor level combinations.
+
+```{r eval = FALSE, echo = TRUE}
+myaov <- aov(Y~X*Z, data = YourDataSet)
+car::leveneTest(myaov)
+```
+
+Example code:
+
+<!-- Example Code 2 -->
+<a href="javascript:showhide('levene')">
+<div class="hoverchunk">
+<span class="tooltipr">
+car
+  <span class="tooltiprtext">Levene's test comes from the car package. </span>
+  </span><span class="tooltipr">
+::
+  <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package.
+  </span></span><span class="tooltipr">
+leveneTest(
+  <span class="tooltiprtext">function to run Levene's test</span>
+  </span><span class="tooltipr">
+aov2th
+  <span class="tooltiprtext">name of the aov object to run the test on</span>
+  </span><span class="tooltipr">
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<br/>
+
+<div id="levene" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+car::leveneTest(aov2th) 
+```
+
+</div>
+
+<br/>
+
+## Normal Distribution
+
+Another key assumption for ANOVA tests is that the error, or residual, term follows a normal distribution. We use the Q-Q plot to check this assumption. There are two ways to create the Q-Q plot.
+
+We will continue to use the `aov2th` model that was created at the beginning of the Constant Variance section.
+
+**Construct the Q-Q plot with a shortcut**
+
+When the function `plot()` is called on an `aov` object, 4 diagnostic plots are produced. Instead of viewing all four, chose which ones to see with the `which=` argument. The second of the four plots is a normal Q-Q plot.
+
+Example code:
+
+<!-- Example Code 2 -->
+<a href="javascript:showhide('qqshortcut')">
+<div class="hoverchunk">
+<span class="tooltipr">
+plot(
+  <span class="tooltiprtext">Base R function, when fed an `aov` object it produces 4 diagnostic plots</span>
+  </span><span class="tooltipr">
+aov2th,
+  <span class="tooltiprtext">
+  The `aov` object for our model
+  </span></span><span class="tooltipr">
+which = 
+  <span class="tooltiprtext">Which of the four diagnostic plots do we want</span>
+  </span><span class="tooltipr">
+ 2
+  <span class="tooltiprtext">The second of the 4 plots is the normal Q-Q plot</span>
+  </span><span class="tooltipr">
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<br/>
+
+<div id="shortcut1" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+aov2th <- aov(len ~ dose_f*supp, data = tg)
+plot(aov2th, which = 2)
+```
+
+</div>
+
+<br/>
+
+The *advantage of this method* is that you can easily get the residual vs. fitted plot and the normal Q-Q plot with one command by providing the `which = ` argument a vector containing the values 1 and 2. (The `:` is shorthand to create a vector that starts at the value of the left of the `:` and increments by 1 until reaching the value on the right side of the `:`.)
+
+```{r eval = FALSE, echo = TRUE}
+myaov <- aov(Y~X*Z, data = YourDataSet)
+plot(myaov, which = 1:2)
+```
+
+The *disadvantage of this method* is that it can be difficult to determine if the points follow the line closely enough. To help with this decision, you may prefer to use the Q-Q plot from the `car` package. 
+
+**Construct the Q-Q plot from the `car` package**
+
+The Q-Q plot from the `car` package provides boundary lines. When points are out of the boundaries that is evidence that the normal residual assumption is violated.
+
+You can customize the way the acceptable region for points is designated. The default is shading a region. Below is code to draw dashed-line boundary.
+
+Example code:
+
+<!-- Example Code 2 -->
+<a href="javascript:showhide('qqcar')">
+<div class="hoverchunk">
+<span class="tooltipr">
+car
+  <span class="tooltiprtext">qqPlot comes from the car package. </span>
+  </span><span class="tooltipr">
+::
+  <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package.
+  </span></span><span class="tooltipr">
+qqPlot(
+  <span class="tooltiprtext">function to a Q-Q plot from the car package</span>
+  </span><span class="tooltipr">
+aov2th, 
+  <span class="tooltiprtext">name of the aov object</span>
+  </span><span class="tooltipr">
+envelope =
+  <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span>
+  </span><span class="tooltipr">
+list(
+  <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span>
+  </span><span class="tooltipr">
+style = 
+  <span class="tooltiprtext">"filled" shading, boundary "lines", or none</span>
+  </span><span class="tooltipr">
+"lines"
+  <span class="tooltiprtext">designate the acceptable region with lines</span>
+  </span><span class="tooltipr">
+))
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<br/>
+
+<div id="levene" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+car::qqPlot(aov2th, envelope = list(style = "lines"))
+```
+
+</div>
+
+## Independent Errors
+
+An order plot can serve as a partial check of the assumption that the residuals are independent. If there are patterns/trends in the plot that may be grounds to say the assumption is violated.
+
+The plot assumes that the dataset is sorted in the same order the data was recorded. If the data has been re-sorted or is from an observational study (i.e. the chronology of collection is unknown or irrelevant) the order plot does not make sense as a check of independence.
+
+Example code:
+
+<!-- Example Code 2 -->
+<a href="javascript:showhide('order')">
+<div class="hoverchunk">
+<span class="tooltipr">
+plot(
+  <span class="tooltiprtext">A function to plot the data</span>
+  </span><span class="tooltipr">
+aov2th
+  <span class="tooltiprtext">Name you gave your model
+  </span></span><span class="tooltipr">
+$
+  <span class="tooltiprtext">Access a named object within an object</span>
+  </span><span class="tooltipr">
+residuals 
+  <span class="tooltiprtext">residuals of the model</span>
+  </span><span class="tooltipr">
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+
+<br/>
+
+<div id="order" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+plot(aov2th$residuals)
+```
+
+</div>
+
+
