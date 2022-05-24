@@ -252,6 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#levenes-test" id="toc-levenes-test" class="nav-link" data-scroll-target="#levenes-test">Levene’s Test</a></li>
   </ul></li>
   <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal Distribution</a></li>
+  <li><a href="#independent-errors" id="toc-independent-errors" class="nav-link" data-scroll-target="#independent-errors">Independent Errors</a></li>
   </ul>
 </nav>
     </div>
@@ -327,6 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myaov<span class="sc">$</span>fittedvalues, myaov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Note: If you want to know all the named items in an R object, you can run <code>names(object)</code>. In this case we have an aov object called myaov. To see what it contains we can run <code>names(myaov)</code> in the console.</p>
 <p>Example code:</p>
 <!-- Example Code 1 -->
 <a href="javascript:showhide('manual')">
@@ -363,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This test comes in handy when there are multiple factors in a study and it is burdensome to informally evaluate all their factor level combinations.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y<span class="sc">~</span>X<span class="sc">*</span>Z, <span class="at">data =</span> YourDataSet)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Levene</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example code:</p>
 <!-- Example Code 2 -->
@@ -421,7 +423,7 @@ group  5  1.7086 0.1484
 <!-- Example Code 2 -->
 <a href="javascript:showhide('qqcar')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> car <span class="tooltiprtext">qqPlot comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> qqPlot( <span class="tooltiprtext">function to a Q-Q plot from the car package</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext">name of the aov object</span> </span><span class="tooltipr"> envelope = <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span> </span><span class="tooltipr"> list( <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span> </span><span class="tooltipr"> stlye = <span class="tooltiprtext">“filled” shading, boundary “lines”, or none</span> </span><span class="tooltipr"> “lines” <span class="tooltiprtext">designate the acceptable region with lines</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+<p><span class="tooltipr"> car <span class="tooltiprtext">qqPlot comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> qqPlot( <span class="tooltiprtext">function to a Q-Q plot from the car package</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext">name of the aov object</span> </span><span class="tooltipr"> envelope = <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span> </span><span class="tooltipr"> list( <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span> </span><span class="tooltipr"> style = <span class="tooltiprtext">“filled” shading, boundary “lines”, or none</span> </span><span class="tooltipr"> “lines” <span class="tooltiprtext">designate the acceptable region with lines</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
 </div>
 </a><p><a href="javascript:showhide('qqcar')"></a></p>
 <p><br></p>
@@ -432,6 +434,26 @@ group  5  1.7086 0.1484
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 32 49</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="independent-errors" class="level2">
+<h2 class="anchored" data-anchor-id="independent-errors">Independent Errors</h2>
+<p>An order plot can serve as a partial check of the assumption that the residuals are independent. If there are patterns/trends in the plot that may be grounds to say the assumption is violated.</p>
+<p>The plot assumes that the dataset is sorted in the same order the data was recorded. If the data has been re-sorted or is from an observational study (i.e.&nbsp;the chronology of collection is unknown or irrelevant) the order plot does not make sense as a check of independence.</p>
+<p>Example code:</p>
+<!-- Example Code 2 -->
+<a href="javascript:showhide('order')">
+<div class="hoverchunk">
+<p><span class="tooltipr"> plot( <span class="tooltiprtext">A function to plot the data</span> </span><span class="tooltipr"> aov2th <span class="tooltiprtext">Name you gave your model </span></span><span class="tooltipr"> $ <span class="tooltiprtext">Access a named object within an object</span> </span><span class="tooltipr"> residuals <span class="tooltiprtext">residuals of the model</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+</div>
+</a><p><a href="javascript:showhide('order')"></a></p>
+<p><br></p>
+<div id="order" style="display:show;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="model_diagnostics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>

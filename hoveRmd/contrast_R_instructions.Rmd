@@ -1,0 +1,194 @@
+---
+output: html_document
+---
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ 
+</script>
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(emmeans)
+library(tidyverse)
+library(pander)
+
+```
+
+**Caution**, the `contrasts()` function from the `stats` package in base R will produce the correct p-value for the test of a contrast, but without extra work will not produce the correct estimate of the contrast itself. For this reason, we illustrate estimating and testing the contrast with the `emmeans` package, which stands for "estimated marginal means".
+
+The first step is to create the model. Then use the `emmeans()` command to create a grid of factor level summary statistics, including: means, standard deviations, standard error, degrees of freedom associated with the standard error estimate, and confidence intervals around the mean. Unlike a `summarize()` or `favstats()` command, `emmeans()` has the output structured so that it can easily be used in the next step. Store the grid of means into a new object.
+
+```{r eval = FALSE, echo = TRUE}
+myaov <- aov(Y ~ X, data = df)
+mymeans <- emmeans(myaov, "X")
+
+```
+
+-   `myaov` is some name you come up with to store the results of the `aov()` model.
+-   `Y` must be a "numeric" vector of the quantitative response variable.
+-   `X` is a qualitative variable (should have class(X) equal to factor or character. If it does not, use `factor(X)` inside the `aov(Y ~ factor(X),...)` command.
+-   `df` is the name of your data set.
+-   `mymeans` is some name you come up with to store the results of the `emmeans()` command.
+
+
+Define the contrasts your are interested in testing inside the `contrast()` function, which returns the hypothesis test results. You can also feed the result into a `confint()` function if you prefer confidence intervals over p-values.
+
+```{r eval = FALSE, echo = TRUE}
+contrast(brush_means,list(name_of_contrast1 = coefficient vector,
+                       name_of_contrast2 = another coefficient vector))) 
+```
+
+`name_of_contrast` are descriptive names you should give to the contrast to help you remember what it represents. The `coefficient vector` is how you define the contrast.
+
+We will repeat the contrasts we did by hand in the sections above, but this time using R.
+
+**Example Code Using Toothbrush Experiment:**
+
+<a href="javascript:showhide('contrast_brush')">
+<div class="hoverchunk">
+<span class="tooltipr">
+df
+  <span class="tooltiprtext">The name you want for your dataset</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+read_csv("../data/toothpaste_BF2.csv")
+  <span class="tooltiprtext">A tidyverse command to read the data in from the specified path</span>
+  </span><br/><span class="tooltipr">
+plaque_aov
+  <span class="tooltiprtext">Name you want for your ANOVA model</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+aov(
+  <span class="tooltiprtext">A function to define the model</span>
+  </span><span class="tooltipr">
+Plaque
+  <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span>
+  </span><span class="tooltipr">
+~
+  <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e. x's).</span>
+  </span><span class="tooltipr">
+Brush,
+  <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span>
+  </span><span class="tooltipr">
+data = df
+  <span class="tooltiprtext">Tell the model to look in the dataset named "df" for Plaque and Brush variables</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr">
+brush_means
+  <span class="tooltiprtext">The name you want for the output of the emmeans command</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span></span>
+  <span class="tooltipr">
+emmeans(
+  <span class="tooltiprtext">
+  Function to calculate stats about marginal means
+  </span></span><span class="tooltipr">
+plaque_aov,
+  <span class="tooltiprtext">aov model created in previous step</span>
+  </span><span class="tooltipr">
+"Brush"
+  <span class="tooltiprtext">Factor for whose levels you want to calculate means</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr">
+contrast_results
+<span class="tooltiprtext">Name you want to store contrast results in</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+contrast(
+    <span class="tooltiprtext">Function to define and test contrasts</span>
+  </span><span class="tooltipr">
+brush_means,
+    <span class="tooltiprtext">Grid of stats about marginal means you named in the previous step</span></span><span class="tooltipr">
+list(
+    <span class="tooltiprtext">create a list object, which allows you to pass multiple contrast coefficient vectors</span>
+  </span><span class="tooltipr">
+man_v_osc =
+    <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span>
+  </span><span class="tooltipr">
+c(1,-1,0,0)
+    <span class="tooltiprtext">Vector of coefficients used to define the contrast</span>
+  </span><span class="tooltipr">
+,
+    <span class="tooltiprtext">Seperator to allow additional inputs to the list</span>
+  </span><br/><span class="tooltipr">
+&nbsp;&nbsp;&nbsp;man_v_others = 
+    <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span>
+  </span><span class="tooltipr">
+c(1,-(1/3),-(1/3),-(1/3))
+    <span class="tooltiprtext">Vector of coefficients used to define the contrast</span>
+  </span><span class="tooltipr">
+),
+    <span class="tooltiprtext">A list is closed with a parenthesis</span>
+  </span><span class="tooltipr">
+adjust = 
+    <span class="tooltiprtext">Specify what type of adjustment (if any) to make for multiple testing. Default is "none" if this argument is not included.</span>
+  </span><span class="tooltipr">
+"none"
+    <span class="tooltiprtext">Read help at ?summary.emmGrid for other acceptable values</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr">
+contrast_results
+    <span class="tooltiprtext">View the test results stored in this object in the previous step</span>
+  </span><br/><span class="tooltipr">
+confint(
+  <span class="tooltiprtext">Function to create confidence intervals around contrasts</span>
+  </span><span class="tooltipr">
+contrast_results
+    <span class="tooltiprtext">Name of object where you stored contrasts</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr" style="float:right;">
+Toggle output 
+  <span class="tooltiprtext">Toggle Output.</span>
+</span>
+</div>
+</a>
+<div id="contrast_brush" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+df <- read_csv("../data/toothpaste_BF2.csv")
+plaque_aov <- aov(Plaque ~ Brush, data = df)
+brush_means <- emmeans(plaque_aov, "Brush")
+contrast_results <- contrast(brush_means,list(man_v_osc = c(1,-1,0,0),
+                      man_v_others = c(1,-(1/3),-(1/3),-(1/3))), adjust="none")
+contrast_results
+```
+
+```{r message = FALSE, echo = FALSE}
+confint(contrast_results)
+```
+
+</div>
