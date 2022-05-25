@@ -21,7 +21,13 @@ website:
           href: DataSources.html
     - text: "Specific Designs"
       menu:
-         - text: "Basic Factorial Designs"
+         - text: "Basic Factorial Introduction"
+           href: BasicFactorial_quarto.qmd
+         - text: "BF[1]"
+           href: BasicFactorial_quarto.qmd
+         - text: "BF[2]"
+           href: BasicFactorial_quarto.qmd
+         - text: "BF[3+]"
            href: BasicFactorial_quarto.qmd
          - text: "Block Designs"
            href: Block.html
@@ -53,16 +59,17 @@ website:
           href: Anova_F-test.qmd
         - text: "Assumptions"
           href: assumptions.qmd
+        - text: "Contrasts"
+          href: contrast.qmd
         - text: "ZMultiple Pairwise Testing"
           href: MakingInference.html
-        - text: "ZMultiple Pairwise Testing"
-          href: MakingInference.html
-        - text: "ZPower"
-          href: Kruskal.html
-        - text: "ZRandom Factors"
-          href: LogisticRegression.html
         - text: "ZUnbalanced Datasets"
           href: WilcoxonTests.html
+        - text: "ZPower??"
+          href: Kruskal.html
+        - text: "ZRandom Factors??"
+          href: LogisticRegression.html
+
     - text: "R Instructions"
       menu:
         - text: "Descriptive Summaries"

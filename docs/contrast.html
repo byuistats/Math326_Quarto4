@@ -161,7 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
     <a class="dropdown-item" href="./BasicFactorial_quarto.html">
- <span class="dropdown-text">Basic Factorial Designs</span></a>
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Block.html">
@@ -197,24 +209,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
  <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Kruskal.html">
- <span class="dropdown-text">ZPower</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">ZRandom Factors</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
  <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
     </ul>
   </li>
@@ -246,11 +258,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#what-is-a-contrast" id="toc-what-is-a-contrast" class="nav-link active" data-scroll-target="#what-is-a-contrast">What is a Contrast?</a></li>
   <li><a href="#testing-a-contrast" id="toc-testing-a-contrast" class="nav-link" data-scroll-target="#testing-a-contrast">Testing a Contrast</a>
   <ul class="collapse">
   <li><a href="#t-test-for-pairwise-comparisons" id="toc-t-test-for-pairwise-comparisons" class="nav-link" data-scroll-target="#t-test-for-pairwise-comparisons">t-test for Pairwise Comparisons</a></li>
   <li><a href="#t-test-for-any-contrast" id="toc-t-test-for-any-contrast" class="nav-link" data-scroll-target="#t-test-for-any-contrast">t-test for Any Contrast</a></li>
+  <li><a href="#f-test-vs.-t-test" id="toc-f-test-vs.-t-test" class="nav-link" data-scroll-target="#f-test-vs.-t-test">F-test vs.&nbsp;t-test</a></li>
   <li><a href="#r-instructions" id="toc-r-instructions" class="nav-link" data-scroll-target="#r-instructions">R Instructions</a></li>
   </ul></li>
   <li><a href="#othogonal-contrast" id="toc-othogonal-contrast" class="nav-link" data-scroll-target="#othogonal-contrast">Othogonal Contrast</a></li>
@@ -284,8 +297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
-<section id="introduction" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="what-is-a-contrast" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-a-contrast">What is a Contrast?</h2>
 <p>The ANOVA F test is considered an omnibus test, meaning it tests all the factor levels of a factor at once. If the test suggests the null hypothesis should be rejected it seems to give rise to more questions than answers. Specifically, you will want to know which factor levels are significantly different from which other factor levels.</p>
 <p>Usually during the design of an experiment, the researcher has specific comparisons in mind that are of particular interest. For example, they may be interested in comparing treatment effects for two dosing levels. These pre-planned comparisons usually drive the experimental design. When it comes time for analysis, an omnibus F-test test may be skipped entirely in favor of jumping directly to the planned comparisons. Or, if the F-test finds statistical significance, the researcher may follow-up with focused post-hoc tests of specific factor levels.</p>
 <p>When one factor level mean is compared to another, it is called a <strong>pairwise comparison</strong>. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.</p>
@@ -579,7 +592,23 @@ s_\hat{\psi} = \sqrt{MSE * \sum(c^2_j / n_j)} = \sqrt{ 7.53 * \left( \frac{1^2}{
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{0.438}{1.294} = .34
 \qquad(5)\]</span></span></p>
 <p>A test statistic <span class="math inline">\(t_\text{20} = .34\)</span> is not large enough to be significant.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Actually, it does not make a lot of sense to compare the control group (manual brush) to the average of the other three brushes. For a contrast of the control mean vs.&nbsp;average of the treatments to make sense, the treatments would need to have more commonality. For example, if there were two treatments and both used oscillating toothbrushes: one oscillated in a clockwise fashion and the other oscillated in a counter-clockwise. In that case it would make sense to combine the treatment factor levels since they could be interpreted generally as “oscillating brush”. Then you could compare the average of the oscillating groups against the average of the control group (manual brush).</p>
+</div>
+</div>
+</section>
+<section id="f-test-vs.-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="f-test-vs.-t-test">F-test vs.&nbsp;t-test</h3>
+<p>We could have reached exactly the same conclusions by conducting an appropriate F test for the contrast instead of a t-test<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. It can be shown that <span class="math inline">\(F = t^2\)</span>. When t is based on the degrees of freedom for residuals, and F has <span class="math inline">\(df_\text{numerator}\)</span> = 1 and <span class="math inline">\(df_\text{denominator} = df_\text{residuals}\)</span> , the two tests given identical p-values and thus lead to the same conclusion.</p>
 </section>
 <section id="r-instructions" class="level3">
 <h3 class="anchored" data-anchor-id="r-instructions">R Instructions</h3>
@@ -664,6 +693,11 @@ Confidence level used: 0.95 </code></pre>
 
 <ol>
 <li id="fn1" role="doc-endnote"><p>t-tests of pairwise comparisons with non-constant variance would result in the independent samples t-test presented in Math221 and Math325. More complicated contrasts assuming non-constant variance is explained in <em>Design and Analysis: A Researcher’s Handbook</em> by Keppel, G. and Wickens T.D. (2004, Pearson), starting on page 156.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>The appropriate F-test consists of calculating the mean squares of the contrast and dividing by the mean squared error. In most cases, the contrast has 1 degree of freedom, so the contrast sum of squares is equal to the contrast mean squares. The formula to calculate a contrast sum of squares is</p>
+<p><span class="math display">\[
+SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}
+\]</span></p>
+<p>The contrast has just 1 degree of freedom because it compares just two sets of observations. This is true even for complex comparisons: each set of observations may come from one factor level, or from a combination of factor levels.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

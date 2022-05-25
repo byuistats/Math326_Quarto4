@@ -160,7 +160,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
     <a class="dropdown-item" href="../BasicFactorial_quarto.html">
- <span class="dropdown-text">Basic Factorial Designs</span></a>
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Block.html">
@@ -196,24 +208,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../MakingInference.html">
- <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+    <a class="dropdown-item" href="../contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../MakingInference.html">
  <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Kruskal.html">
- <span class="dropdown-text">ZPower</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../LogisticRegression.html">
- <span class="dropdown-text">ZRandom Factors</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../WilcoxonTests.html">
  <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
     </ul>
   </li>
@@ -292,22 +304,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Example Code Using Toothbrush Experiment:</strong></p>
 <a href="javascript:showhide('contrast_brush')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> df <span class="tooltiprtext">The name you want for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv(“../data/toothpaste_BF2.csv”) <span class="tooltiprtext">A tidyverse command to read the data in from the specified path</span> </span><br><span class="tooltipr"> plaque_aov <span class="tooltiprtext">Name you want for your ANOVA model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> brush_means <span class="tooltiprtext">The name you want for the output of the emmeans command</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span> <span class="tooltipr"> emmeans( <span class="tooltiprtext"> Function to calculate stats about marginal means </span></span><span class="tooltipr"> plaque_aov, <span class="tooltiprtext">aov model created in previous step</span> </span><span class="tooltipr"> “Brush” <span class="tooltiprtext">Factor for whose levels you want to calculate means</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> contrast_results <span class="tooltiprtext">Name you want to store contrast results in</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> contrast( <span class="tooltiprtext">Function to define and test contrasts</span> </span><span class="tooltipr"> brush_means, <span class="tooltiprtext">Grid of stats about marginal means you named in the previous step</span></span><span class="tooltipr"> list( <span class="tooltiprtext">create a list object, which allows you to pass multiple contrast coefficient vectors</span> </span><span class="tooltipr"> man_v_osc = <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span> </span><span class="tooltipr"> c(1,-1,0,0) <span class="tooltiprtext">Vector of coefficients used to define the contrast</span> </span><span class="tooltipr"> , <span class="tooltiprtext">Seperator to allow additional inputs to the list</span> </span><br><span class="tooltipr"> man_v_others = <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span> </span><span class="tooltipr"> c(1,-(1/3),-(1/3),-(1/3)) <span class="tooltiprtext">Vector of coefficients used to define the contrast</span> </span><span class="tooltipr"> ), <span class="tooltiprtext">A list is closed with a parenthesis</span> </span><span class="tooltipr"> adjust = <span class="tooltiprtext">Specify what type of adjustment (if any) to make for multiple testing. Default is “none” if this argument is not included.</span> </span><span class="tooltipr"> “none” <span class="tooltiprtext">Read help at ?summary.emmGrid for other acceptable values</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> contrast_results <span class="tooltiprtext">View the test results stored in this object in the previous step</span> </span><br><span class="tooltipr"> confint( <span class="tooltiprtext">Function to create confidence intervals around contrasts</span> </span><span class="tooltipr"> contrast_results <span class="tooltiprtext">Name of object where you stored contrasts</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+<p><span class="tooltipr"> df <span class="tooltiprtext">The name you want for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv(“../data/toothpaste_BF2.csv”) <span class="tooltiprtext">A tidyverse command to read the data in from the specified path</span> </span><br><span class="tooltipr"> plaque_aov <span class="tooltiprtext">Name you want for your ANOVA model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> brush_means <span class="tooltiprtext">The name you want for the output of the emmeans command</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span> <span class="tooltipr"> emmeans( <span class="tooltiprtext"> Function to calculate stats about marginal means </span></span><span class="tooltipr"> plaque_aov, <span class="tooltiprtext">aov model created in previous step</span> </span><span class="tooltipr"> “Brush” <span class="tooltiprtext">Factor for whose levels you want to calculate means</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> contrast_results <span class="tooltiprtext">Name you want to store contrast results in</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> contrast( <span class="tooltiprtext">Function to define and test contrasts</span> </span><span class="tooltipr"> brush_means, <span class="tooltiprtext">Grid of stats about marginal means you named in the previous step</span></span><span class="tooltipr"> list( <span class="tooltiprtext">create a list object, which allows you to pass multiple contrast coefficient vectors</span> </span><span class="tooltipr"> man_v_osc = <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span> </span><span class="tooltipr"> c(1,-1,0,0) <span class="tooltiprtext">Vector of coefficients used to define the contrast</span> </span><span class="tooltipr"> , <span class="tooltiprtext">Seperator to allow additional inputs to the list</span> </span><br><span class="tooltipr"> &nbsp;&nbsp;&nbsp;man_v_others = <span class="tooltiprtext">A descriptive name to help you remember what the contrast represents</span> </span><span class="tooltipr"> c(1,-(1/3),-(1/3),-(1/3)) <span class="tooltiprtext">Vector of coefficients used to define the contrast</span> </span><span class="tooltipr"> ), <span class="tooltiprtext">A list is closed with a parenthesis</span> </span><span class="tooltipr"> adjust = <span class="tooltiprtext">Specify what type of adjustment (if any) to make for multiple testing. Default is “none” if this argument is not included.</span> </span><span class="tooltipr"> “none” <span class="tooltiprtext">Read help at ?summary.emmGrid for other acceptable values</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> contrast_results <span class="tooltiprtext">View the test results stored in this object in the previous step</span> </span><br><span class="tooltipr"> confint( <span class="tooltiprtext">Function to create confidence intervals around contrasts</span> </span><span class="tooltipr"> contrast_results <span class="tooltiprtext">Name of object where you stored contrasts</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
 </div>
 </a>
 <div id="contrast_brush" style="display:show;">
-<p>Contrast hypothesis test ::: {.cell} ::: {.cell-output .cell-output-stdout}</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
 <pre><code> contrast     estimate   SE df t.ratio p.value
  man_v_osc       3.117 1.58 20   1.967  0.0632
  man_v_others    0.438 1.29 20   0.339  0.7382</code></pre>
-<p>::: :::</p>
-<p>Contrast confidence intervals ::: {.cell} ::: {.cell-output .cell-output-stdout}</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
 <pre><code> contrast     estimate   SE df lower.CL upper.CL
  man_v_osc       3.117 1.58 20   -0.188     6.42
  man_v_others    0.438 1.29 20   -2.260     3.14
 
 Confidence level used: 0.95 </code></pre>
-<p>::: :::</p>
+</div>
+</div>
 </div>
 
 

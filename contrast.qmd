@@ -23,7 +23,7 @@ library(kableExtra)
 #library(car)
 ```
 
-## Introduction
+## What is a Contrast?
 
 The ANOVA F test is considered an omnibus test, meaning it tests all the factor levels of a factor at once. If the test suggests the null hypothesis should be rejected it seems to give rise to more questions than answers. Specifically, you will want to know which factor levels are significantly different from which other factor levels.
 
@@ -169,7 +169,7 @@ A t statistic of `r round(tstat,2)` leads to a p-value of `r round(pprob,3)`. Si
 
 ### t-test for Any Contrast
 
-This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the $1's$ in @eq-tvalue  appearing directly above each sample size actually represent the squared coefficient of the contrast (see @tbl-expanded). Thus, @eq-diff2means used to compare two factor level means, is actually just a special case of a more general formula, @eq-contrast,  which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.
+This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the $1's$ in @eq-tvalue appearing directly above each sample size actually represent the squared coefficient of the contrast (see @tbl-expanded). Thus, @eq-diff2means used to compare two factor level means, is actually just a special case of a more general formula, @eq-contrast, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.
 
 $$
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_j / n_j)}}
@@ -188,36 +188,45 @@ Let's use this more general approach in @eq-contrast to test the fourth hypothes
 
 Plugging the values from @tbl-brush_analysis into @eq-contrast we can calculate the t statistic:
 
-Numerator:
-$$
+Numerator: $$
 \hat{\psi} = 1 * `r round(means_tbl[[1,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[2,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[3,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[4,2]],2)` = 0.438
 $$
 
-Denominator:
-$$
+Denominator: $$
 s_\hat{\psi} = \sqrt{MSE * \sum(c^2_j / n_j)} = \sqrt{ `r round(mse, 2)` * \left( \frac{1^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} \right) } = 1.294
 $$
 
-t statistic:
-$$
+t statistic: $$
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{0.438}{1.294} = .34
 $$ {#eq-contrast4}
 
-A test statistic $t_\text{20} = .34$ is not large enough to be significant. 
+A test statistic $t_\text{20} = .34$ is not large enough to be significant.
 
+::: callout-caution
 Actually, it does not make a lot of sense to compare the control group (manual brush) to the average of the other three brushes. For a contrast of the control mean vs. average of the treatments to make sense, the treatments would need to have more commonality. For example, if there were two treatments and both used oscillating toothbrushes: one oscillated in a clockwise fashion and the other oscillated in a counter-clockwise. In that case it would make sense to combine the treatment factor levels since they could be interpreted generally as "oscillating brush". Then you could compare the average of the oscillating groups against the average of the control group (manual brush).
+:::
+
+### F-test vs. t-test
+
+We could have reached exactly the same conclusions by conducting an appropriate F test for the contrast instead of a t-test[^2]. It can be shown that $F = t^2$. When t is based on the degrees of freedom for residuals, and F has $df_\text{numerator}$ = 1 and $df_\text{denominator} = df_\text{residuals}$ , the two tests given identical p-values and thus lead to the same conclusion.
+
+[^2]: The appropriate F-test consists of calculating the mean squares of the contrast and dividing by the mean squared error. In most cases, the contrast has 1 degree of freedom, so the contrast sum of squares is equal to the contrast mean squares. The formula to calculate a contrast sum of squares is
+
+    $$
+    SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}
+    $$
+
+    The contrast has just 1 degree of freedom because it compares just two sets of observations. This is true even for complex comparisons: each set of observations may come from one factor level, or from a combination of factor levels.
 
 ### R Instructions
 
-This section illustrates just one way to test *custom* contrasts in R. There are many packages, each with their unique syntax, for computing and testing contrasts. As you work more in the field, you may find another package better suits your needs. 
+This section illustrates just one way to test *custom* contrasts in R. There are many packages, each with their unique syntax, for computing and testing contrasts. As you work more in the field, you may find another package better suits your needs.
 
-There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read “Multiple Comparisons” to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.
+There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read "Multiple Comparisons" to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.
 
 ```{r child="hoveRmd/contrast_R_instructions.Rmd"}
 
 ```
-
-
 
 ## Othogonal Contrast
 

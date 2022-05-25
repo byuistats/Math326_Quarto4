@@ -25,40 +25,13 @@ library(pander)
 
 ------------------------------------------------------------------------
 
-The experimental designs in this section have 2 key characteristics in common:
-
--   Conditions are assigned to subjects (a.k.a. experimental units) completely at random
-
--   A consistent method of checking requirements and factor relationships (*What I'm trying to get at is that there is no nesting/blocking/random factors and so the MSE is always calculated the same. But I'm not sure if that will make sense to students this early in the semester.*)
-
-*NOT SURE HOW CRITICAL THESE DEFINITIONS WILL BE HERE, DEPENDS ON WHAT BRETT COMES UP WITH. THERE IS ALREADY SOME OVERLAP/REPEATING WITH THE FACTOR STRUCTURE SECTION. BUT REPITITION MAY NOT BE A BAD THING.*
-
-To assign something **completely at random** means that each experimental unit has a known and equal chance of being selected for a particular treatment and that no other considerations are taken into account when making treatment assignments.
-
-Factorial experiments involve two or more factors that are crossed. Full **factorial crossing** occurs when each combination of factor levels is present in the study. (A study with just one factor is not technically a factorial design, but we will lump it in with our discussion of factorial experiments here because of the completely random treatment assignment).
-
-Contrast a factorial design with the one-at-a-time approach. In a one-at-a-time approach, if I had two factors I wanted to study I would run two separate experiments to evaluate the effect of each factor on the response one-at-time. Factorial designs have a couple of major advantages over one-factor-at-a-time studies.
-
-1.  They are a more efficient use of our time and material: I can get information about both of my factors from just one observation
-2.  Perhaps most importantly, factorial designs allow the researcher to estimate interaction effects. Or in other words, we can observe how one factor's effect on the response variable changes for different levels of the other factor.
-
-In summary, "factorial" refers to how you determine which fact level combinations will be included in the study, and "completely randomized" refers to how treatments are assigned to subjects.
-
-::: callout-warning
-## Balanced vs. Unbalanced Data
-
-I feel like we need a disclaimer or caveat somewhere in the book to explain that the formulas presented here only work for balanced designs. A similar approach is used for unbalanced data, but the formulas would need to be adjusted to weight the groups according to their size. Maybe the disclaimer belongs here, maybe in the effects model or anova sections. Or maybe it has it's own "broad topic"...?
-:::
-
-------------------------------------------------------------------------
-
 # BF\[1\]
 
 A study with just one factor that is varied in the design.
 
 ## Overview
 
-In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied. Each experimental unit belongs to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
+In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied. Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
 
 ### Factor Structure
 
@@ -82,9 +55,9 @@ $y_{ij}$: the $j^{th}$ observation from factor $i$
 
 $\mu$: the grand mean of the data set. Also referred to as an overall mean or benchmark.
 
-$\alpha_i$: effect of treatment $i$
+$\alpha_i$: effect of factor level $i$
 
-$\epsilon_{ik}$: the error term, or residual term of the model. There are *j* replicates for each treatment. It represents the distance from an observation to its treatment mean (or predicted value).
+$\epsilon_{ik}$: the error term, or residual term of the model. There are *j* replicates for each treatment. It represents the distance from an observation to its factor level mean (or predicted value).
 
 The null and alternative hypotheses can be expressed as:
 
@@ -100,15 +73,20 @@ $$
 
 A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the following requirements are satisfied:
 
-1)  Individual realizations of the error term (i.e. residuals) are independent of one another. We generally consider this requirement met if each experimental unit is randomly assigned to only 1 factor level. However, the researcher should always be on the look out for violations of this assumption and other bias.
-2)  The error term of the model ($\epsilon_{ik}$) is normally distributed. This assumption is met when the residuals are normally distributed (as seen in a qq-plot).
-3)  The population variance of each group is equal. This is often called the homogeneity of variance, or constant variance assumption. This is considered met when each group of residuals in the residual vs. fitted-values plot shows a similar vertical spread.
+| Requirements                           | Method for Checking                                     | What You Hope to See                                     |
+|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+| Constant variance across factor levels | Rule of thumb comparing standard deviations             | $max(s) < 2*min(s)$                                      |
+|                                        | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
+|                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
+| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
+| Independent residuals                  | Order plot                                              | No pattern/trend                                         |
+|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
 
 ## Design
 
-In a one factor design, one factor is purposefully varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.
+In a one factor design, one factor is purposely varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.
 
-In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. It is common to keep the number of units assigned to each treatment the same to ensure balance. This can be done by listing all the subjects, then listing the treatments, as seen below:
+In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. In this example we expect a balanced design (i.e. each factor level has the same number of observations). This can be done by listing all the subjects, then listing the treatments, as seen below:
 
 |  Subject  | Treatment | Order |
 |:---------:|:---------:|:-----:|
@@ -210,11 +188,11 @@ An alternative way to find degrees of freedom is to count the number of unique p
 
 In the lifeboat example, **benchmark** has one level (shown by the one cell in @fig-bf1-structure-with-equation) and there are no outside factors for benchmark. Therefore, the degrees of freedom for benchmark is one.
 
-Remember, the degrees of freedom represents the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as I estimate the benchmark effect for just one of the observations, I know it for all the observations. In other words, only 1 value was *free* to vary. As soon as it was known all the other values for benchmark were also known. Therefore, there is just one unique piece of information in the benchmark factor. Benchmark has just 1 degree of freedom.
+Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the benchmark effect for just one of the observations, you know it for all the observations. In other words, only 1 value was *free* to vary. As soon as it was known all the other values for benchmark were also known. Therefore, there is just one unique piece of information in the benchmark factor. Benchmark has just 1 degree of freedom.
 
 For **treatment factor**, there are four levels of the factor (shown by the four vertically long cells for treatment in @fig-bf1-structure-with-equation). Benchmark is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for benchmark (1), which yields 4-1 = **3 degrees of freedom** for treatment.
 
-We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contains. Since all observations from the same treatment will have the same treatment effect applied, we really only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom is 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.
+We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contain. Since all observations from the same treatment will have the same treatment effect applied, we only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.
 
 For **residual errors**, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of @fig-bf1-structure-with-equation). Both benchmark and treatment are outside factors for the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for benchmark and treatment (3+1=4). The residual error has 24 - (3+1) = **20 degrees of freedom**.
 
@@ -222,7 +200,7 @@ The approach of counting unique pieces of information can be applied here as wel
 
 ### Factor Effects
 
-We can use our understanding of inside vs. outside factors to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
 
 ::: {#effect-rule .callout-tip}
 ## General Rule for Effect Size
@@ -310,7 +288,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ```
 
-To get the **sum of squares (SS)** for a factor, for each observation the effect for that factor needs to be squared. Then all the squared values are summed up to get the sum of squares.
+To get the **sum of squares (SS)** for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.
 
 For **benchmark**, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.
 
@@ -360,9 +338,9 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-We can now calculate the mean squared error column, or **mean square (MS)**. This mean is calculated by dividing sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation).
+We can now calculate the mean squared error column, or **mean square (MS)**, by dividing the sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total (the sum of squares) into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation). The MS is calculated in this manner for each of the effects.
 
-The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. We can then see more clearly which factor is a bigger source of variability.
+The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. This works when looking at SS, since it is the total variance due to each factor. MS is then the average variability for each effect. We can then see clearly which factor is a bigger source of variability by comparing their mean squares.
 
 The mean square calculations are:
 
@@ -403,7 +381,7 @@ $$
 
 <br>
 
-To complete the ANOVA, table, the **p-value for the treatment factor** is calculated based on the F statistic and the degrees of freedom for both Treatment Factor and Residual Error. In practice, you would not compute this by hand, but in order to complete the decomposition of variance in a manual way, we will calculate the p-value in R using the `pf()` function: `1 - pf(test statistic, df of Treatment, df of Residual error)`.
+To complete the ANOVA, table, the **p-value for the treatment factor** is calculated based on the F statistic and the degrees of freedom for both Treatment Factor and Residual Error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the `pf()` function: `1 - pf(test statistic, df of Treatment, df of Residual error)`.
 
 In this example, we get
 
@@ -427,7 +405,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ## Analysis in R
 
-When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to create these plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
+When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to calculate numerical summaries and create these plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
 
 You then create the model using the `aov()` function. To see results of the F-test you can feed your model into a `summary()` function.
 
@@ -439,9 +417,9 @@ myaov <- aov(Y ~ X, data=YourDataSet)
 summary(myaov)
 ```
 
--   `myaov` is some name you come up with to store the results of the aov() model.
--   `Y` must be a "numeric" vector of the quantitative response variable.
--   `X` is a qualitative variable (should have class(X) equal to factor or character. If it does not, use `factor(X)` inside the `aov(Y ~ factor(X),...)` command.
+-   `myaov` is the user defined name in which the results of the aov() model are stored
+-   `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
+-   `X` is the name of a qualitative variable in your dataset. It should have class(X) equal to factor or character. If it does not, use `factor(X)` inside the `aov(Y ~ factor(X),...)` command.
 -   `YourDataSet` is the name of your data set.
 
 **Example Code**

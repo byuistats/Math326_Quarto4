@@ -163,7 +163,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
     <a class="dropdown-item" href="./BasicFactorial_quarto.html">
- <span class="dropdown-text">Basic Factorial Designs</span></a>
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Block.html">
@@ -199,24 +211,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./MakingInference.html">
  <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Kruskal.html">
- <span class="dropdown-text">ZPower</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
- <span class="dropdown-text">ZRandom Factors</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
  <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
     </ul>
   </li>
@@ -306,40 +318,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  }
 </script>
 <hr>
-<p>The experimental designs in this section have 2 key characteristics in common:</p>
-<ul>
-<li><p>Conditions are assigned to subjects (a.k.a. experimental units) completely at random</p></li>
-<li><p>A consistent method of checking requirements and factor relationships (<em>What I’m trying to get at is that there is no nesting/blocking/random factors and so the MSE is always calculated the same. But I’m not sure if that will make sense to students this early in the semester.</em>)</p></li>
-</ul>
-<p><em>NOT SURE HOW CRITICAL THESE DEFINITIONS WILL BE HERE, DEPENDS ON WHAT BRETT COMES UP WITH. THERE IS ALREADY SOME OVERLAP/REPEATING WITH THE FACTOR STRUCTURE SECTION. BUT REPITITION MAY NOT BE A BAD THING.</em></p>
-<p>To assign something <strong>completely at random</strong> means that each experimental unit has a known and equal chance of being selected for a particular treatment and that no other considerations are taken into account when making treatment assignments.</p>
-<p>Factorial experiments involve two or more factors that are crossed. Full <strong>factorial crossing</strong> occurs when each combination of factor levels is present in the study. (A study with just one factor is not technically a factorial design, but we will lump it in with our discussion of factorial experiments here because of the completely random treatment assignment).</p>
-<p>Contrast a factorial design with the one-at-a-time approach. In a one-at-a-time approach, if I had two factors I wanted to study I would run two separate experiments to evaluate the effect of each factor on the response one-at-time. Factorial designs have a couple of major advantages over one-factor-at-a-time studies.</p>
-<ol type="1">
-<li>They are a more efficient use of our time and material: I can get information about both of my factors from just one observation</li>
-<li>Perhaps most importantly, factorial designs allow the researcher to estimate interaction effects. Or in other words, we can observe how one factor’s effect on the response variable changes for different levels of the other factor.</li>
-</ol>
-<p>In summary, “factorial” refers to how you determine which fact level combinations will be included in the study, and “completely randomized” refers to how treatments are assigned to subjects.</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Balanced vs.&nbsp;Unbalanced Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I feel like we need a disclaimer or caveat somewhere in the book to explain that the formulas presented here only work for balanced designs. A similar approach is used for unbalanced data, but the formulas would need to be adjusted to weight the groups according to their size. Maybe the disclaimer belongs here, maybe in the effects model or anova sections. Or maybe it has it’s own “broad topic”…?</p>
-</div>
-</div>
-<hr>
 <section id="bf1" class="level1 page-columns page-full">
 <h1>BF[1]</h1>
 <p>A study with just one factor that is varied in the design.</p>
 <section id="overview" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In a basic one-way factorial design (BF[1]), only one factor is purposefully varied. Each experimental unit belongs to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)</p>
+<p>In a basic one-way factorial design (BF[1]), only one factor is purposefully varied. Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)</p>
 <section id="factor-structure" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-structure">Factor Structure</h3>
 <p>The factor structure for the model resulting from a completely randomized, one factor design is:</p>
@@ -361,8 +345,8 @@ y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 \]</span></p>
 <p><span class="math inline">\(y_{ij}\)</span>: the <span class="math inline">\(j^{th}\)</span> observation from factor <span class="math inline">\(i\)</span></p>
 <p><span class="math inline">\(\mu\)</span>: the grand mean of the data set. Also referred to as an overall mean or benchmark.</p>
-<p><span class="math inline">\(\alpha_i\)</span>: effect of treatment <span class="math inline">\(i\)</span></p>
-<p><span class="math inline">\(\epsilon_{ik}\)</span>: the error term, or residual term of the model. There are <em>j</em> replicates for each treatment. It represents the distance from an observation to its treatment mean (or predicted value).</p>
+<p><span class="math inline">\(\alpha_i\)</span>: effect of factor level <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\epsilon_{ik}\)</span>: the error term, or residual term of the model. There are <em>j</em> replicates for each treatment. It represents the distance from an observation to its factor level mean (or predicted value).</p>
 <p>The null and alternative hypotheses can be expressed as:</p>
 <p><span class="math display">\[
 H_o: \alpha_1 = \alpha_2 = ... = 0
@@ -373,17 +357,58 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <section id="assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
 <p>A one-way ANOVA model may be used to analyze data from a BF[1] design if the following requirements are satisfied:</p>
-<ol type="1">
-<li>Individual realizations of the error term (i.e.&nbsp;residuals) are independent of one another. We generally consider this requirement met if each experimental unit is randomly assigned to only 1 factor level. However, the researcher should always be on the look out for violations of this assumption and other bias.</li>
-<li>The error term of the model (<span class="math inline">\(\epsilon_{ik}\)</span>) is normally distributed. This assumption is met when the residuals are normally distributed (as seen in a qq-plot).</li>
-<li>The population variance of each group is equal. This is often called the homogeneity of variance, or constant variance assumption. This is considered met when each group of residuals in the residual vs.&nbsp;fitted-values plot shows a similar vertical spread.</li>
-</ol>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 36%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirements</th>
+<th>Method for Checking</th>
+<th>What You Hope to See</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Constant variance across factor levels</td>
+<td>Rule of thumb comparing standard deviations</td>
+<td><span class="math inline">\(max(s) &lt; 2*min(s)\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Residual vs.&nbsp;Fitted Plot</td>
+<td>No major disparity in vertical spread of point groupings</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Levene’s Test</td>
+<td>Fail to reject <span class="math inline">\(H_0\)</span></td>
+</tr>
+<tr class="even">
+<td>Normally Distributed Residuals</td>
+<td>Normal Q-Q plot</td>
+<td>Straight line, majority of points in boundaries</td>
+</tr>
+<tr class="odd">
+<td>Independent residuals</td>
+<td>Order plot</td>
+<td>No pattern/trend</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Familiarity with/critical thinking about the experiment</td>
+<td>No potential source for bias</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="design" class="level2">
 <h2 class="anchored" data-anchor-id="design">Design</h2>
-<p>In a one factor design, one factor is purposefully varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.</p>
-<p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. It is common to keep the number of units assigned to each treatment the same to ensure balance. This can be done by listing all the subjects, then listing the treatments, as seen below:</p>
+<p>In a one factor design, one factor is purposely varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.</p>
+<p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. In this example we expect a balanced design (i.e.&nbsp;each factor level has the same number of observations). This can be done by listing all the subjects, then listing the treatments, as seen below:</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -707,15 +732,15 @@ General Rule for Degrees of Freedom
 </div>
 </div>
 <p>In the lifeboat example, <strong>benchmark</strong> has one level (shown by the one cell in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>) and there are no outside factors for benchmark. Therefore, the degrees of freedom for benchmark is one.</p>
-<p>Remember, the degrees of freedom represents the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as I estimate the benchmark effect for just one of the observations, I know it for all the observations. In other words, only 1 value was <em>free</em> to vary. As soon as it was known all the other values for benchmark were also known. Therefore, there is just one unique piece of information in the benchmark factor. Benchmark has just 1 degree of freedom.</p>
+<p>Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the benchmark effect for just one of the observations, you know it for all the observations. In other words, only 1 value was <em>free</em> to vary. As soon as it was known all the other values for benchmark were also known. Therefore, there is just one unique piece of information in the benchmark factor. Benchmark has just 1 degree of freedom.</p>
 <p>For <strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Benchmark is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for benchmark (1), which yields 4-1 = <strong>3 degrees of freedom</strong> for treatment.</p>
-<p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contains. Since all observations from the same treatment will have the same treatment effect applied, we really only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom is 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.</p>
+<p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contain. Since all observations from the same treatment will have the same treatment effect applied, we only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.</p>
 <p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both benchmark and treatment are outside factors for the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for benchmark and treatment (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
 <p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.</p>
 </section>
 <section id="factor-effects" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-effects">Factor Effects</h3>
-<p>We can use our understanding of inside vs.&nbsp;outside factors to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -847,7 +872,7 @@ General Rule for Effect Size
 
 </div>
 </div>
-<p>To get the <strong>sum of squares (SS)</strong> for a factor, for each observation the effect for that factor needs to be squared. Then all the squared values are summed up to get the sum of squares.</p>
+<p>To get the <strong>sum of squares (SS)</strong> for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.</p>
 <p>For <strong>benchmark</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.</p>
 <p><span class="math display">\[
 SS_\text{Benchmark} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
@@ -921,8 +946,8 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 
 </div>
 </div>
-<p>We can now calculate the mean squared error column, or <strong>mean square (MS)</strong>. This mean is calculated by dividing sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation).</p>
-<p>The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. We can then see more clearly which factor is a bigger source of variability.</p>
+<p>We can now calculate the mean squared error column, or <strong>mean square (MS)</strong>, by dividing the sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total (the sum of squares) into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation). The MS is calculated in this manner for each of the effects.</p>
+<p>The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. This works when looking at SS, since it is the total variance due to each factor. MS is then the average variability for each effect. We can then see clearly which factor is a bigger source of variability by comparing their mean squares.</p>
 <p>The mean square calculations are:</p>
 <p><span class="math display">\[
 MS_\text{Benchmark} = \frac{SS_\text{Benchmark}}{df_\text{Benchmark}} = \frac{1040.57}{1} = 1040.57
@@ -992,7 +1017,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 \]</span></p>
 <p><br></p>
-<p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both Treatment Factor and Residual Error. In practice, you would not compute this by hand, but in order to complete the decomposition of variance in a manual way, we will calculate the p-value in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
+<p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both Treatment Factor and Residual Error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
 <p>In this example, we get</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="fl">2.11</span>, <span class="dv">3</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1056,16 +1081,16 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
 </section>
 <section id="analysis-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-in-r">Analysis in R</h2>
-<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to calculate numerical summaries and create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
 <p>You then create the model using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>YourDataSet)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><code>myaov</code> is some name you come up with to store the results of the aov() model.</li>
-<li><code>Y</code> must be a “numeric” vector of the quantitative response variable.</li>
-<li><code>X</code> is a qualitative variable (should have class(X) equal to factor or character. If it does not, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(X),...)</code> command.</li>
+<li><code>myaov</code> is the user defined name in which the results of the aov() model are stored</li>
+<li><code>Y</code> is the name of a numeric variable in your dataset which represents the quantitative response variable.</li>
+<li><code>X</code> is the name of a qualitative variable in your dataset. It should have class(X) equal to factor or character. If it does not, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(X),...)</code> command.</li>
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p><strong>Example Code</strong></p>

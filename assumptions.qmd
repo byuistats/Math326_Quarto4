@@ -15,7 +15,6 @@ toc-depth: 4
  }
 </script>
 ```
-
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
@@ -349,7 +348,7 @@ In many cases, the data will not indicate there is bias unless you know exactly 
 |                                        | -   Residual vs. fitted plot                                                         |
 |                                        | -   Levene's Test                                                                    |
 +----------------------------------------+--------------------------------------------------------------------------------------+
-| Normally distributed                   | Q-Q plot                                                                             |
+| Normally distributed residuals         | Normal Q-Q plot                                                                      |
 +----------------------------------------+--------------------------------------------------------------------------------------+
 | Independent of each other              | -   Critical thinking                                                                |
 |                                        | -   Order plot                                                                       |
