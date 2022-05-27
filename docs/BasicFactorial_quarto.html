@@ -366,7 +366,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <p>A one-way ANOVA model may be used to analyze data from a BF[1] design if the following requirements are satisfied:</p>
 <table class="table">
 <colgroup>
-<col style="width: 25%">
+<col style="width: 26%">
 <col style="width: 36%">
 <col style="width: 37%">
 </colgroup>
@@ -723,7 +723,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </ul>
 <section id="degrees-of-freedom" class="level3">
 <h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
-<p>We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the <strong>grand mean</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.</p>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to determine the degrees of freedom (df) for the <strong>grand mean</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -764,7 +764,7 @@ General Rule for Effect Size
 <section id="calculate-means" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="calculate-means">Calculate means</h4>
 <p>To estimate all the factor effects we must first calculate the mean for the grand mean factor and the means for each level of training method.</p>
-<p>To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in <strong>?@fig-benchmark</strong>.</p>
+<p>To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in <a href="#fig-training-means">Figure&nbsp;2</a>.</p>
 <p>For the treatment factor, calculate the mean of each of the four levels. To calculate the mean for Control:</p>
 <p><span class="math display">\[
 \frac{4.5614 + 6.6593 + 5.6427 + 6.4394 + 4.8635 + 0.3268}{6} = 4.7489
@@ -843,7 +843,7 @@ General Rule for Effect Size
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Treatment </td>
+   <td style="text-align:left;"> Factor </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -872,14 +872,14 @@ General Rule for Effect Size
 </div>
 </div>
 <p>To get the <strong>sum of squares (SS)</strong> for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.</p>
-<p>For <strong>grand mean</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.</p>
+<p>For <strong>grand mean</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to grand mean.</p>
 <p><span class="math display">\[
-SS_\text{Benchmark} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
+SS_\text{Grand Mean} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
 \]</span></p>
 <p><br></p>
 <p>The <strong>treatment factor</strong> has four different effects, one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to treatment. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.</p>
 <p><span class="math display">\[
-SS_\text{Treatment} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
+SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
 \]</span> <br></p>
 <p>The effect for the <strong>residual error factor</strong> has 24 unique values. Each of those residuals are squared and then the squared values are summed together.</p>
 <p><span class="math display">\[
@@ -889,7 +889,7 @@ SS_\text{Residuals} = (-0.1875)^2 + (1.9105)^2 + (0.8939)^2 + (1.6906)^2 + ... +
 <p><span class="math display">\[
 SS_\text{Total} = (4.5614)^2 + (6.6593)^2 + (5.6427)^2 + (6.4394)^2 + ... + (5.1459)^2 = 1172.87
 \]</span></p>
-<p><strong>-OR-</strong> we can get the same result if we add together the sum of squares for the grand mean, treatment, and residual error factors.</p>
+<p><strong>-OR-</strong> we can get the same result if we add together the sum of squares for the grand mean factor, treatment factor, and residual error factor.</p>
 <p><span class="math display">\[
 SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 \]</span></p>
@@ -917,7 +917,7 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Treatment </td>
+   <td style="text-align:left;"> Factor </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 31.81 </td>
    <td style="text-align:left;">  </td>
@@ -953,7 +953,7 @@ MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
-MS_\text{Treatment} = \frac{SS_\text{Treatment}}{df_\text{Treatment}} = \frac{31.81}{3} = 10.60
+MS_\text{Factor} = \frac{SS_\text{Factor}}{df_\text{Factor}} = \frac{31.81}{3} = 10.60
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
@@ -983,7 +983,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Treatment </td>
+   <td style="text-align:left;"> Factor </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 31.81 </td>
    <td style="text-align:right;"> 10.60 </td>
@@ -1013,7 +1013,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 </div>
 <p>When getting an <strong>F test statistic</strong>, testing for the treatment factor is the primary factor of interest so only the F test statistic for treatment is calculated for the analysis. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment factor level means in the numerator and the variance of the distances for an observed value to its respective treatment factor level mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.</p>
 <p><span class="math display">\[
-F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
+F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 \]</span></p>
 <p><br></p>
 <p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both treatment factor and residual error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
@@ -1048,7 +1048,7 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Treatment </td>
+   <td style="text-align:left;"> Factor </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 31.81 </td>
    <td style="text-align:right;"> 10.60 </td>

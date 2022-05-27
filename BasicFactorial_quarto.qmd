@@ -74,7 +74,7 @@ $$
 A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the following requirements are satisfied:
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+|-------------------|--------------------------|---------------------------|
 | Constant variance across factor levels | Rule of thumb comparing standard deviations             | $max(s) < 2*min(s)$                                      |
 |                                        | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
@@ -176,7 +176,7 @@ A basic one-way factorial design has three analysis factors: the grand mean, tre
 
 ### Degrees of Freedom
 
-We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the **grand mean**, **treatment**, and **residual errors** factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to determine the degrees of freedom (df) for the **grand mean**, **treatment**, and **residual errors** factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.
 
 ::: callout-tip
 ## General Rule for Degrees of Freedom
@@ -212,7 +212,7 @@ Effect size = factor level mean - the sum of the effects of all outside factors
 
 To estimate all the factor effects we must first calculate the mean for the grand mean factor and the means for each level of training method.
 
-To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in @fig-benchmark.
+To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in @fig-training-means.
 
 For the treatment factor, calculate the mean of each of the four levels. To calculate the mean for Control:
 
@@ -271,7 +271,7 @@ Now that we have calculated degrees of freedom and effects for each factor in a 
 In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.
 
 ```{r echo = FALSE}
-Source <- c("Grand Mean", "Treatment", "Residual Error", "Total")
+Source <- c("Grand Mean", "Factor", "Residual Error", "Total")
 df <- c(1,3,20,24)
 SS <- rep("", 4)
 MS <- rep("", 4)
@@ -286,10 +286,10 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 To get the **sum of squares (SS)** for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.
 
-For **grand mean**, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.
+For **grand mean**, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to grand mean.
 
 $$
-SS_\text{Benchmark} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
+SS_\text{Grand Mean} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
 $$
 
 <br>
@@ -297,7 +297,7 @@ $$
 The **treatment factor** has four different effects, one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to treatment. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
 
 $$
-SS_\text{Treatment} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
+SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
 $$ <br>
 
 The effect for the **residual error factor** has 24 unique values. Each of those residuals are squared and then the squared values are summed together.
@@ -312,7 +312,7 @@ $$
 SS_\text{Total} = (4.5614)^2 + (6.6593)^2 + (5.6427)^2 + (6.4394)^2 + ... + (5.1459)^2 = 1172.87
 $$
 
-**-OR-** we can get the same result if we add together the sum of squares for the grand mean, treatment, and residual error factors.
+**-OR-** we can get the same result if we add together the sum of squares for the grand mean factor, treatment factor, and residual error factor.
 
 $$
 SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
@@ -322,7 +322,7 @@ $$
 
 ```{r echo = FALSE}
 #Replace the blanks with numbers in the SS column
-Source <- c("Grand Mean", "Treatment", "Residual Error", "Total")
+Source <- c("Grand Mean", "Factor", "Residual Error", "Total")
 df <- c(1,3,20,24)
 SS <- c(1040.57, 31.81, 100.49, 1172.87)
 MS <- rep("", 4)
@@ -347,7 +347,7 @@ $$
 <br>
 
 $$
-MS_\text{Treatment} = \frac{SS_\text{Treatment}}{df_\text{Treatment}} = \frac{31.81}{3} = 10.60
+MS_\text{Factor} = \frac{SS_\text{Factor}}{df_\text{Factor}} = \frac{31.81}{3} = 10.60
 $$
 
 <br>
@@ -372,7 +372,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 When getting an **F test statistic**, testing for the treatment factor is the primary factor of interest so only the F test statistic for treatment is calculated for the analysis. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment factor level means in the numerator and the variance of the distances for an observed value to its respective treatment factor level mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.
 
 $$
-F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
+F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 $$
 
 <br>

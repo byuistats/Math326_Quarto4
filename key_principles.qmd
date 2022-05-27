@@ -5,6 +5,7 @@ title: "Key Principles of Experimentation"
 When researchers are faced with a question, their response is often to collect data so they can understand answers to that question.  While this seems like a great idea, without a plan, it is likely to be inefficient and may lead to erroneous conclusions.  Experimental design is the process of creating a plan, implementing that plan, analyzing the results, and making proper conclusions.  This plan creates an efficient and effective road map that will help the researcher better understand the problem and the variables that they have questions about.  A well-designed experiment will allow the researcher to minimize the effect of variables that are not of interest and reduce unwanted variability, making it easier to better understand the effect of variables that are of interest.  
 
 This textbook will explore the necessary steps to consider as you plan and perform an experiment.  These steps include: 
+
 1.	Understand the objectives of your research.  What questions should be answered?  
 2.	Determine the measurements that will be needed to help answer the questions of interest.
 3.	Determine which variables, which we will call factors, are the sources of variation in the measurements.  Determine which of these factors you will be testing and decide which levels of those factors will be included in the study.  Determine which of these factors you will hold constant.
