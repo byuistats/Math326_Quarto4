@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.344">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Randomization: Sampling and Assignment</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Block.html">
+ <span class="dropdown-text">Block Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./WilcoxonTests.html">
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./model_diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Randomization: Sampling and Assignment</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Samples should be representative of the population as defined in the research objectives. When the sample is different from the population in a systematic way, then bias occurs. Biased samples may still contain useful information, but the population which the sample proports to represent may be different than the actual population represented. Common sources of bias include:</p>
+<ul>
+<li><p><strong>Selection bias</strong> – the sampling plan excludes part of the population during selection. Samples taken out of convenience or only from volunteers are examples of possible selection bias.</p></li>
+<li><p><strong>Measurement bias</strong> – the measurement method results in measurements that are different from the true values of the response variable. Measurement bias can be caused by uncalibrated equipment, poorly trained personnel, or any step along the experimental process that is not carefully designed or clearly defined.</p></li>
+<li><p>Non-response bias – this occurs when data are not available for all the individuals in the sample. If those individuals missing data would respond in a different way than those that did respond, then a bias is introduced.</p></li>
+</ul>
+<p>Care should be taken to minimize bias.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Larger sample sizes are not a remedy for biased samples.</p>
+</div>
+</div>
+<p>The best way to minimize bias is to choose the sample randomly from the population. When results are based on a random sample, the conclusions can be generalized to the population. Random samples are accomplished by allowing each member of the population the same probability of being selected in the sample. Randomization should occur in at least two parts of an experiment: 1) the selection of experimental units from the population and 2) the random assignment of those units to the factor levels. Another randomization to consider is the order in which the experimental runs will occur. Performing all the runs for one level and then moving to the next level can introduce a time or order related bias that could be confounded with the factor. Randomizing the order will remove this bias and possible confounding. There may be other parts of the experiment where randomization should be applied. Good advice to follow is “control what you can, and randomize the rest”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Multiple observations are needed within each factor level so that the variability can be estimated for each level. This variability makes up the unexplained variation, as mentioned earlier. <strong>Replication</strong> is when an experimental run is conducted under the same conditions (same factor levels), but with different experimental units. The number of replicates is the number of experimental units that are assigned to a specific factor level, or combination of levels from multiple factors. Replication is different than repeated measures. <strong>Repeated measures</strong> are when multiple measurements are taken within the same experimental run / experimental unit. The material in which repeated measures are taken are the observational units, as was discussed in a previous section. In our study method example, in the <a href="./experimental_units.html">Experimental Units</a> section, each student is considered a repeated measure.</p>
+<p>Statistical power will increase as more replicates are taken. The question of how many replicates are needed for a study is an important question that will not be covered in this class. There are statistical algorithms that estimate the statistical power for a specific design given the number of replicates. The R package <code>pwr</code> is a good resource for power calculations for various statistical tests, including analysis of variance.</p>
+<p>Now let’s apply each of these concepts to the example toothbrush study. A random selection of 40 possible participants should be taken from the population. Our population may be limited to those people who live near the testing location. It might also be limited to adults. Next, they are randomly assigned a toothbrush. There are 4 toothbrush types, 10 people assigned to each type. At the end of the study, the order in which their data will be collected will also be randomized. Because there are 10 participants in each group, there are 10 replicates in this study. Repeated measures will be used by collecting percent of surface area with plaque for the first molar in each of the four quadrants of the mouth for each participant.</p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>Cobb, G.W. <em>Introduction to Design and Analysis of Experiments.</em> Wiley, 2014.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

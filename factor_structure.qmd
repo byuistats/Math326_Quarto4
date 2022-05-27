@@ -71,7 +71,7 @@ Each unique way of partitioning the data set into meaningful groups of observati
 ::: callout-caution
 ## Factors in Design vs. Analysis
 
-It is important to note, that use of the word "factor" here is different from (albeit related to) the way it is used in the principles of experimental design section of the book. In that section of the book the variables that are purposefully manipulated and assigned to subjects are referred to as factors. That section of the book deals strictly with *design.* But when doing the *analysis* of the resulting data, this new definition of factor (a meaningful way to group observations) is used. Later we will formally define a mathematical model to aid in our analysis. In our model, each of these analysis factors will be represented by a separate term in the model. Thus, some of the confusion may decrease because we can refer to terms in a model and reserve the word "factor" primarily to refer to an experiment's design.
+It is important to note, that use of the word "factor" here is different from (albeit related to) the way it is used in the principles of experimental design section of the book. In that section of the book the variables that are purposefully varied and assigned to subjects are referred to as factors. That section of the book deals strictly with *design.* But when doing the *analysis* of the resulting data, this new definition of factor (a meaningful way to group observations) is used. Later we will formally define a mathematical model to aid in our analysis. In our model, each of these analysis factors will be represented by a separate term in the model. Thus, some of the confusion may decrease because we can refer to terms in a model and reserve the word "factor" primarily to refer to an experiment's design.
 :::
 
 Remember that in this example, a lower number represents less plaque; and so a lower number is interpreted as better. The oscillating brush has the lowest mean of the plaque measurement.
@@ -96,9 +96,9 @@ In this new example, two different variables are randomly assigned to subjects. 
 
 Though we only varied 2 variables in the experiment (toothbrush and toothpaste) there is a third way to group observations that will lead to insightful means. In other words, a less obvious, hidden factor exists. This third factor is a grouping of observations by the combination of toothbrush and toothpaste. This is called an interaction factor. Stated more generally, **an interaction factor can be obtained by grouping observations by factor level combinations.**
 
-So far, we have identified 3 factors for analysis: toothbrush type, toothpaste brand, and their interaction. There are two other meaningful ways to group the observations. These two factors are present in all designs and are given special names: the benchmark (a.k.a. grand average) and the residual error.
+So far, we have identified 3 factors for analysis: toothbrush type, toothpaste brand, and their interaction. There are two other meaningful ways to group the observations. These two factors are present in all designs and are given special names: the grand mean and the residual error.
 
-The **benchmark factor** is a result of grouping all observations together in one. In other words, this is the factor you get when you want to compute a grand mean (a mean of all the data points together). The benchmark factor has just one level.
+The **grand mean factor** is a result of grouping all observations together in one. The grand mean factor has just one level. The grand mean's value is, unsurprisingly, the mean of all the data points together. 
 
 At the other extreme, you may be interested in comparing individual datapoints. In this case, each observation belongs to its own group. The mean of each data point is simply itself. This grouping is referred to as the **residual error factor**. The number of levels of the residual error factor is equal to the number of observations in the dataset.
 
@@ -106,23 +106,23 @@ At the other extreme, you may be interested in comparing individual datapoints. 
 ![Factor Structure Diagram](images/toothbrush_bf2_factor_structure.JPG){#toothbrush_bf2_factor_structure}
 :::
 
-Because the benchmark and residual error factors are present in all designs, they are referred to as **universal factors**. The factors for toothbrush type, toothpaste and their interaction are called structural factors. Because the **structural factors are the result of the variables you deliberately vary in your experiment** they are helpful when comparing designs. Changing your design will change the make-up of your structural factors.
+Because the grand mean and residual error factors are present in all designs, they are referred to as **universal factors**. The factors for toothbrush type, toothpaste and their interaction are called structural factors. Because the **structural factors are the result of the variables you deliberately vary in your experiment** they are helpful when comparing designs. Changing your design will change the make-up of your structural factors.
 
 ::: callout-caution
-The way of organizing data that is taught here and used throughout the book is NOT how you will want to layout/structure your data for analysis using software or even for recording/collection data. The purpose is to facilitate understanding of how the design relates to the analysis and how the mechanics of an ANOVA model work.
+The way of organizing data that is taught here and used throughout the book is NOT how you will want to layout/structure your data for analysis using software or even for recording/collecting data. The purpose is to facilitate understanding of how the design relates to the analysis and how the mechanics of an ANOVA model work.
 :::
 
 # Describing Factor Relationships
 
-A factor structure for an experimental design can help provide an effective way to organize and plan for the type of data needed for an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in that section. Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
+A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in [that section](Anova_F-test.qmd). Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
 
 Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design).
 
 ## Inside and Outside
 
-Think about our toothbrush example, but ignore toothpaste for a moment. If toothbrush is the only treatment under scrutiny we have three factors in the analysis: the benchmark (or grand mean), toothbrush type, and the residual error.
+Think about our toothbrush example, but ignore toothpaste for a moment. If toothbrush is the only treatment under scrutiny we have three factors in the analysis: the grand mean, toothbrush type, and the residual error.
 
-Recall that in the simplest version of the toothbrush experiment there were 4 levels of the treatment (toothbrush type), with six replicates for each toothbrush. In the following factor structure diagrams benchmark is represented in red, toothbrush type is drawn in blue, and the residual factor levels are depicted in black.
+Recall that in the simplest version of the toothbrush experiment there were 4 levels of the treatment (toothbrush type), with six replicates for each toothbrush. In the following factor structure diagrams grand mean is represented in red, toothbrush type is drawn in blue, and the residual factor levels are depicted in black.
 
 ::: column-page
 ![](images/toothbrush_bf1_colored_factors.JPG){#toothbrush_bf1_colored_factors}
@@ -136,7 +136,7 @@ You may find this analogy helpful. Pretend that an outside factor is a box, and 
 
 To determine if a factor is inside another factor, imagine picking up the levels of the factor one by one and placing them inside the other factor. If they all fit without crossing the partition lines of a factor,then it is considered inside.
 
-This is illustrated with the toothbrush example. We will start by taking the levels of toothbrush and placing them inside of benchmark.
+This is illustrated with the toothbrush example. We will start by taking the levels of toothbrush and placing them inside of grand mean
 
 ![](images/inside_outside_2.JPG){#fig-treatment-to-benchmark fig-align="center"}
 
@@ -150,7 +150,7 @@ Since toothbrush is *not inside* of residual error, does this necessarily mean t
 
 ![](images/inside_outside_4.JPG){#residual-to-treatment fig-align="center"}
 
-Let's pause here to clarify a common misunderstanding, consider an experiment where we are looking at the inside vs. outside relationship of two factors: A, and B.
+Let's pause here to clarify a common misunderstanding. Consider an experiment where we are looking at the inside vs. outside relationship of two factors: A and B.
 
 -   When factor A is inside of factor B, we can also say factor B is outside of factor A.
 -   But, when factor A is not inside of factor B, this does *not necessarily mean that factor A is outside of factor B*. There are situations where two factors are neither inside nor outside of each other; they are crossed.
@@ -159,7 +159,7 @@ Let's pause here to clarify a common misunderstanding, consider an experiment wh
 
 Two factors are crossed when their partition lines cross in a way that creates new groups of observations that represent every possible combination of the factor levels. More succinctly stated, **factors are crossed when all factor level combinations are present in the study**. We saw this in the toothbrush study when brand of toothpaste was included in the experiment. Toothbrush and toothpaste are neither inside nor outside of each other; rather, they are crossed.
 
-::: {#crossed-interaction .column-page-shaded layout-ncol="2"}
+::: {#crossed-interaction .column-page layout-ncol="2"}
 ![](images/toothbrush_crossed1.JPG)
 
 ![](images/toothbrush_crossed2.JPG)
@@ -175,7 +175,7 @@ The crossing of toothpaste brand and toothbrush created an interaction factor
 
 # General Rules
 
-At the beginning of this section I mentioned that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on Effects Model and ANOVA will help explain why these rules are true; but for now, you will just take to take it on faith.
+At the beginning of this section I mentioned that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on Effects Model and ANOVA will help explain why these rules are true; but for now, you will have to take it on faith.
 
 ::: callout-tip
 ## General Rule for Effect Size

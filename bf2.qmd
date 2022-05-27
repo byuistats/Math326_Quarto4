@@ -1,0 +1,35 @@
+---
+title: "BF[2]"
+execute:
+  code-fold: true
+toc: true
+toc-depth: 4
+---
+
+```{=html}
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+```
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(kableExtra)
+library(pander)
+```
+
+------------------------------------------------------------------------
+
+## Overview
+
+Factorial experiments involve two or more factors that are crossed. Full **factorial crossing** occurs when each combination of factor levels is present in the study. (A study with just one factor is not technically a factorial design, but we will lump it in with our discussion of factorial experiments here because of the completely random treatment assignment).
+
+Contrast a factorial design with the one-at-a-time approach. In a one-at-a-time approach, if I had two factors I wanted to study I would run two separate experiments to evaluate the effect of each factor on the response one-at-time. Factorial designs have a couple of major advantages over one-factor-at-a-time studies.
+
+1.  They are a more efficient use of our time and material: I can get information about both of my factors from just one observation
+2.  Perhaps most importantly, factorial designs allow the researcher to estimate interaction effects. Or in other words, we can observe how one factor's effect on the response variable changes for different levels of the other factor.

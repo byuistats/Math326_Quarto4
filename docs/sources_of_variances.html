@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.344">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Sources of Variation - Factors and Conditions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Block.html">
+ <span class="dropdown-text">Block Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./WilcoxonTests.html">
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./model_diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#types-of-factors" id="toc-types-of-factors" class="nav-link active" data-scroll-target="#types-of-factors">Types of Factors</a>
+  <ul class="collapse">
+  <li><a href="#factors-controlled-during-the-experiment" id="toc-factors-controlled-during-the-experiment" class="nav-link" data-scroll-target="#factors-controlled-during-the-experiment">Factors Controlled During the Experiment</a></li>
+  <li><a href="#factors-held-constant-during-the-experiment" id="toc-factors-held-constant-during-the-experiment" class="nav-link" data-scroll-target="#factors-held-constant-during-the-experiment">Factors Held Constant During the Experiment</a></li>
+  <li><a href="#factors-not-controlled-but-measured-during-the-experiment" id="toc-factors-not-controlled-but-measured-during-the-experiment" class="nav-link" data-scroll-target="#factors-not-controlled-but-measured-during-the-experiment">Factors Not Controlled, But Measured During the Experiment</a></li>
+  <li><a href="#factors-not-controlled-and-not-measured" id="toc-factors-not-controlled-and-not-measured" class="nav-link" data-scroll-target="#factors-not-controlled-and-not-measured">Factors Not Controlled and Not Measured</a></li>
+  </ul></li>
+  <li><a href="#types-of-variance" id="toc-types-of-variance" class="nav-link" data-scroll-target="#types-of-variance">Types of Variance</a></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table">Summary Table</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Sources of Variation - Factors and Conditions</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="types-of-factors" class="level1">
+<h1>Types of Factors</h1>
+<p>Once the response variable is determined, it is important to identify all possible factors and conditions that could influence the data measurements. Factors are often referred to as explanatory variables because they explain the variation in the response variable. They are also called independent variables since the response variable is thought to depend on the value of the factor. For each factor you identify, determine how you want it to influence your experiment. List those factors that you will be controlling during the experiment. List those factors and conditions that you will purposely hold constant. List those factors and conditions that you cannot control and determine if the values of those factors can be measured or not. Each of these lists will now be discussed in further detail.</p>
+<section id="factors-controlled-during-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="factors-controlled-during-the-experiment">Factors Controlled During the Experiment</h2>
+<p>These factors are of high importance because the experiment is specifically designed to determine if each controlled factor is influencing the data values. When you decide to control a factor, you must then decide which groups (or values) will be tested for that factor. These groups are called levels. It is important to remember that samples need to be taken at each level, so a reasonable, but not overwhelming, number of levels should be included, somewhere from 2 to 8 levels.</p>
+<p>One level of the factor to consider is a control group. A <strong>control group</strong> is often used to establish a baseline for comparisons and can establish a cause-and-effect relationship by helping the researcher understand its effect on the response variable. A control group is often given a <strong>placebo</strong>. For example, in a study testing a medication’s efficacy subjects in the control group receive no actual medication, but are asked to take a sugar pill. The goal of the placebo is to make the experience of the control group and the group that received medication as similar as possible. The very act of taking a pill, or thinking you are receiving medicine, can affect the way your perceive a situation and can even effect the way your body physiologically responds.</p>
+<p>Placebo does not just refer to medicinal studies. In a study of whether a supervisor’s positive encouragement or negative critiques were more effective at increasing productivity of employees, a placebo group may receive neutral comments. This way, employees’ experience of having an interaction with the supervisor is the same for all 3 groups, but the placebo condition is designed specifically with the goal of not being efficacious.</p>
+<p>Another issue related to to consider, which is closely related to placebos, is determining whether the factor level assignment made to a participant should be known to the participants and/or the researchers. When assignments are not known to an individual, the experiment is known as <strong>blind</strong>. Blinding will reduce potential for bias in the results. Blinding is often used when bias could be introduced if participants know which factor level they are assigned to. If researchers study the impact of pricing on sales of a new product, the participants reaction could be different if they realized other participants were offered a much lower price. If both the participants and researchers do not know the factor level assignments, then it is called double blind.</p>
+<p>In our toothbrush study, we only discussed looking at the factor of type of toothbrush. This is the factor that we will control in our experiment. The levels would be the 4 different toothbrush types: handheld manual brush, sonic brush, oscillating brush, and ultra-sonic brush. The manual handheld brush could be considered the control group, since it is the typically common brush, and it makes sense to compare the others to it. The participants would be assigned to a randomly determined brush. It is not possible to blind the participants as to which brush they are using. When the data are collected from the participants it is possible to blind the researchers who are applying the plaque identifying dye and taking the oral pictures. This will remove any biases that could occur from the researchers knowing which brush each participant is using. An example of bias would be if the researcher knew that the participant used a manual handheld brush, so the researcher did not carefully apply the dye or take good pictures because they were not as interested in manual brush results.</p>
+</section>
+<section id="factors-held-constant-during-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="factors-held-constant-during-the-experiment">Factors Held Constant During the Experiment</h2>
+<p>After the factors that will be controlled are identified, it is important to list other factors that could influence the data measurements. From that list of factors, identify which factors should be held constant during the experiment, and determine at what value they should be held. Many of the factors you identify may be characteristics of your experimental units. The more uniform that the experimental units and experimental procedures are, the less random uncertainty will be introduced into the experiment. Reducing this unwanted variability will increase the ability of the designed experiment to find significant differences in the controlled factors. This will be discussed in further detail at the end of this section.</p>
+<p>There are many other factors in our toothbrush study that can affect the amount of plaque on a tooth. We want to hold as many of these constant as we can. Examples of the factors to be held constant and what level to use include: having all participants use the same toothpaste, instructing all participants on how to properly brush their teeth, asking participants to refrain from plaque inducing foods and drinks (give them a specific list of foods/drinks to avoid), having participants brush for the same number of weeks before the data are collected, and asking participants not to floss during the study.</p>
+</section>
+<section id="factors-not-controlled-but-measured-during-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="factors-not-controlled-but-measured-during-the-experiment">Factors Not Controlled, But Measured During the Experiment</h2>
+<p>When a factor is not controlled or held constant in an experiment, it would be ideal to be able to measure it, so the researchers can determine if it is influencing the data measurements. This may lead to the necessity of a more complex analysis technique. Later in the course we will discuss using these types of measurements, which are called <strong>covariates</strong>, and analyzing this data using the analysis of covariance method.</p>
+<p>Unfortunately, uncontrolled factors that change throughout an experiment have the potential to introduce confounding to the study. Confounding is when the effects of one factor are masked by another factor. Consider investigating whether ice cream sales, is related to the number of crimes committed in a day. It’s quite possible that higher ice cream sales will occur when higher numbers of crimes are committed. This might lead to the erroneous conclusion that higher ice cream sales result in more crime. In reality, there may be a confounding factor that is influencing both ice cream sales and crime. In this case, that factor could be temperature. As temperature increases, ice cream sales and crime increase. Temperature is confounded with the ice cream sales factor.</p>
+<p>As shown from this example, confounding can lead to your analysis showing that a controlled factor has significant influence on the response variable when, in fact, there was another factor that may be the real cause of the influence. Measuring an uncontrolled factor will at least allow you to determine if confounding was an issue, it will not, however, fix an issue of confounding. The best way to avoid confounding is to hold uncontrolled factors constant or include the possibly confounding factor as a controlled factor in a well-designed experiment.</p>
+<p>With the toothbrush study, it is quite possible that each participant starts with some amount of plaque which could confound the effect of the brush. One solution would be to clean all the teeth, as well as possible, so that the participant’s initial plaque amount is at (or very close) to zero. Thus, the experimental units would be more uniform. Even after cleaning, the teeth may not be fully clean. So, in addition, you could redefine the response variable to be the difference in initial plaque and ending plaque amount. You could also include the initial plaque amount as a covariate factor in the analysis.</p>
+</section>
+<section id="factors-not-controlled-and-not-measured" class="level2">
+<h2 class="anchored" data-anchor-id="factors-not-controlled-and-not-measured">Factors Not Controlled and Not Measured</h2>
+<p>From the list of factors that you will not be controlling or holding constant, there may be factors that cannot be measured. These factors have the potential to cause issues with your experiment. Randomization in your assignment of factor levels to participants and randomization within the experimental process are the best way to minimize the bias that may be introduced due to these factors. Randomization will be discussed in more detail in the next section.</p>
+<p>The variability caused by factors that are neither controlled nor measured is called random error. These factors may be known or completely unknown. If there is a systematic pattern with the random error, then the random errors will be <strong>biased</strong>. If the measurements are quite spread out, then the random error is large and the measurements have low reliability. <strong>Reliability</strong> is a measure of how consistently repeatable the measurements are when values of the measured/controlled factors are identical.</p>
+<p><a href="#fig-bullseye">Figure&nbsp;1</a> shows how bias and reliability work. Consider each target, where the bullseye (center of the target) is the truth. Plot 1 is ideal: the measurements (the blue points) have low bias, meaning the measurements are centered around the bullseye, and are close together, meaning the reliability is high. Plot 2 shows substantial bias (points are centered far from the bullseye), although the measurements are highly reliable. Plot 3 shows a low bias in the measurements as they centered near, but not exactly around the bullseye; but the random error is large, meaning low reliability. Plot 4 shows a high bias (measurements centered far from the bullseye) and a low reliability (large variability in the measurements).</p>
+<p>The systematic variability that causes the high bias as shown in Plots 2 and 4 distorts the results from the truth, which can cause erroneous conclusions to be made. While highly reliable measurements are desirable, measurements that result in low reliability may still result in meaningful conclusions. Though an experiment should strive for low bias and high reliability, reducing bias is usually the top priority. Randomization, as discussed in the next section, is a way to reduce possible bias.</p>
+<div id="fig-bullseye" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/bias_reliability_bullseye.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Four targets illustrating bias and reliability</figcaption><p></p>
+</figure>
+</div>
+<p>Experiments designed to achieve high reliability increase a study’s statistical power. Statistical power is the probability of finding significant differences between levels of a factor, when, in fact, those differences are real. We will now discuss conceptually how different sources of variation make up the analyses.</p>
+</section>
+</section>
+<section id="types-of-variance" class="level1">
+<h1>Types of Variance</h1>
+<p>Analysis of variance, which is the statistical technique used in this course to analyze the data from an experiment, is just that, an analysis of the variances. There are three types of variance identified in an analysis of variance:</p>
+<ol type="1">
+<li>the total variation (the sum of the next two types: explained variations and unexplained variation),</li>
+<li>the explained variation, of which each factor in the experimental design has a component,</li>
+<li>the unexplained variation, usually one component consisting of variation due to random and unknown elements of the experimental design</li>
+</ol>
+<p>The <strong>total variation</strong> is the variation that exists in the data measurements. This variance does not consider any knowledge about factors from the experimental design. It only measures the variance in the data values. The total variation is made up of two general variance components, the explained variation and the unexplained variation.</p>
+<p>The degree to which the response variable changes in connection with a change in a controlled factor’s levels is called <strong>explained variance</strong>. If the value of the response varies substantially from one factor level to the next, then that factor is said to have a large explained variance. Or in other words, variability in the response can largely be explained by variation in the factor. If the explained variation is small for a factor, then the factor has little correlation with the response.</p>
+<p>The unexplained variation considers all the variability in the response that is not explained by the controlled factors in the analysis. This variation is due to factors that are not known, not measured, and not controlled, and random chance error. When the unexplained variation is small, it makes the effect of the controlled factors easier to see. When the unexplained variation is large, it makes the effect of the controlled factors difficult to see. Therefore, it is important to identify the factors that can influence the data measurements and to either account for them as a controlled factor, or to hold them constant, so they are not contributing more variability to the unexplained variation.</p>
+</section>
+<section id="summary-table" class="level1">
+<h1>Summary Table</h1>
+<table class="table">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Types of Factors</th>
+<th>Relationship to Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Controlled</td>
+<td>Enables calculation of explained variance</td>
+</tr>
+<tr class="even">
+<td>Held constant</td>
+<td>Reduces total variance</td>
+</tr>
+<tr class="odd">
+<td>Not controlled, but measured</td>
+<td>Can reduce unexplained variance</td>
+</tr>
+<tr class="even">
+<td>Not controlled, not measured</td>
+<td>Source of unexplained variance</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

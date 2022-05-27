@@ -1,0 +1,18 @@
+---
+title: "Overview"
+---
+
+Basic Factorial designs have some key characteristics in common, notably:
+
+-   Independent variables are categorial and the response is quantitative
+
+-   Treatments are assigned to subjects (a.k.a. experimental units) completely at random
+
+-   For studies with more than one factor, additional factors levels are created by crossing factors
+
+-   Similar analysis using ANOVA
+
+
+To assign something **completely at random** means that each experimental unit has a known and equal chance of being selected for a particular treatment and that no other considerations are taken into account when making treatment assignments.
+
+The decomposition and formulas presented for each of the specific designs assumes the design is balanced, meaning each factor level combination has the same number of observations. In the case of unbalanced designs, formulas would need to be adjusted to account for the differences. Additional explanation of how to approach analysis for unbalanced data is found under [broad topics>unbalanced](). 

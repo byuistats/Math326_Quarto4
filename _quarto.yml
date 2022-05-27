@@ -12,17 +12,21 @@ website:
       menu:
         - text: "Key Principles"
 #This will include randomization, replication, local control, blocking (maybe) and crossing (maybe)
-          href: RCommands.html
-        - text: "Choosing a response variable"
-          href: RMarkdownHints.html
-        - text: "Choosing conditions"
-          href: RCheatSheetsAndNotes.html
-        - text: "Choosing units/experimental material"
-          href: DataSources.html
+          href: key_principles.qmd
+        - text: "Research Objectives"
+          href: research_objectives.qmd
+        - text: "Response Variable"
+          href: response_variable.qmd
+        - text: "Experimental Units"
+          href: experimental_units.qmd
+        - text: "Sources of Variation - Factors and Conditions"
+          href: sources_of_variances.qmd
+        - text: "Randomization"
+          href: randomization.qmd
     - text: "Specific Designs"
       menu:
          - text: "Basic Factorial Introduction"
-           href: BasicFactorial_quarto.qmd
+           href: BasicFactorial_intro.qmd
          - text: "BF[1]"
            href: BasicFactorial_quarto.qmd
          - text: "BF[2]"

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.344">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - The Response Variable</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Block.html">
+ <span class="dropdown-text">Block Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MakingInference.html">
+ <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./WilcoxonTests.html">
+ <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./model_diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Response Variable</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>To make the research objectives measurable, it is essential that data are collected that can be used to answer the questions in the research objectives. Without a good experimental design plan, it is not unusual to see researchers collect data and then find out afterwards that the collected data do not help answer the questions defined in the research objectives.</p>
+<p>The measurements that are recorded during an experiment and used to help evaluate the objectives are called the <strong>response variable</strong> (or dependent variable). Although it is possible to analyze data with multiple response variables, we will focus only on methods that require one response variable. The response variable is the measurement that measures the outcome of the research objectives and is used to help us determine how different factors influence that outcome.</p>
+<p>When defining a response variable, it is important to understand measurement scales. The four possible measurement scales are: nominal, ordinal, interval, and ratio. These four scales will now be discussed further and are listed in order of least information provided (nominal) to most information provided (ratio).</p>
+<ul>
+<li>Data that are represented by labelled categories would be considered <strong>nominal</strong>. Nominal categories have no quantitative value and have no particular order. Gender and color are examples of nominal measurements. A dichotomous (having two categories) variable is a common nominal measurement scale. Analysis of variance, the common analytical technique used throughout this textbook, is not appropriate when the response variable is nominal.</li>
+<li>An <strong>ordinal</strong> variable is similar to the nominal variable, except that the categories fall in a significant and meaningful order. A likert scale is a commonly used ordinal measurement. A simple example of likert, ordinal scale would be “bad”, “good”, and “great”. There is an obvious order, however, the distances between the categories are not quantitative. This means that the distance between “bad” and “good” can’t be quantitatively determined and it is not known if that difference is similar to or different than the distance between “good” and “great”. Analysis of variance is generally not appropriate when the response variable is ordinal, especially when the researcher is not comfortable in calculating a mean across the ordinal values.</li>
+<li><strong>Interval</strong> measurements are quantitative with a meaningful notion of distance between values, however zero does not have a true zero value. An example of an interval variable is temperature, measured in Fahrenheit. Time is also an interval variable when there is no zero-point defined. Analysis of variance is generally appropriate when the response variable is interval.</li>
+<li><strong>Ratio</strong> measurements are also quantitative with a meaningful notion of distance between values and zero does have a true zero value. Most quantitative measurements are on a ratio scale. Examples of ratio variables include distance, length, weight, and height. Analysis of variance is generally appropriate when the response variable is ratio. All response variables used in this textbook will be quantitative, either interval or ratio.</li>
+</ul>
+<p>The example toothbrush study, explained previously, wanted to determine if there were differences in plaque build-up when considering 4 different toothbrush types. Plaque build-up is a ratio scale measurement and would be the response variable for this study.</p>
+<p>An example of a nominal scale to measure plaque build-up would be recording a “yes” if plaque was present, or “no” if plaque wasn’t present. This is a simple response variable, but not very informative. An improvement on this would be to classify each amount of plaque build-up into one of five groups: “no plaque”, “very little plaque”, “moderate plaque”, “heavy plaque”, and “complete plaque”. This would be an ordinal scale, and while it has more information than the nominal scale, it still is vaguely informative and not appropriate for analysis of variance.</p>
+<p>The best measurement would be quantitative, either interval or ratio. By using red dye indicating the presence of plaque, an oral camera, and software, the percentage of the tooth area covered in plaque could be determined. This response variable would be a ratio scale and would provide much better information than the nominal or ordinal scales. When possible, it is best to have a response variable that is quantitative (interval or ratio).</p>
+<p><em>??Would this be a good place to talk about validity of a measure in terms of how directly it can address the research objective? For example, why a percent of the tooth area was used as a measure instead of area measured in squared mm (or something)? Or maybe this discussion fits above when discussing “relevance” (i.e.&nbsp;a % is relevant to all, but a specific number may not be relevant to those with smaller or larger mouths). Benefits and pitfalls of %’s I think would also be helpful to discuss. Latent variable and using proxies might also be a good discussion since we have so many psych students.?? -DP</em></p>
+<hr>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -6,7 +6,6 @@ format:
   html:
     fig-width: 10.5
     fig-height: 7.5
-    reference-location: margin
 ---
 
 ```{=html}
@@ -17,7 +16,7 @@ format:
  }
 </script>
 ```
-Consider an experiment conducted to test 4 different types of toothbrushes: manual, oscillating, sonic and ultrasonic. The response variable is percent of area on teeth that has plaque. Twenty-four individuals participate in the experiment, yielding 6 observations per treatment. Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If I simply reported that the mean of percent area with plaque was 23.09 for a manual brush, you would not know how that value compares to the other types of brushes.
+Consider an experiment conducted to test 4 different types of toothbrushes: manual, oscillating, sonic and ultrasonic. The response variable is percent of area on teeth that has plaque. Twenty-four individuals participate in the experiment, yielding 6 observations per treatment. Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If I reported that the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would not know how that value compares to the other types of brushes.
 
 A graph or table reporting the other means would be necessary to provide context. @fig-means depicts the data points and mean for each factor level.
 
@@ -98,7 +97,15 @@ text(3-.1, (y$yi[25]+ai[3])/2, expression(epsilon[3][","][5]), pos=2, cex=0.8)
 
 In an earlier, introductory statistics class you most likely learned how to test whether these means are equal using analysis of variance (ANOVA). This approach of testing means is valid and works when you only have 1 factor. However, it is limited in its ability to include more factors or more complicated designs.
 
-There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment..**(Footnote with an explanation about cell means model??)**
+There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.[^1]
+
+[^1]: The algebraic form of the cell means model is
+
+    $$
+    y_\text{ij} = \mu_i + \epsilon_\text{ij}
+    $$
+
+    Where $y_\text{ij}$ is an observation, $\mu_i$ is the mean of factor level $i$, and $\epsilon_\text{ij}$ is the residual for each observation. The ANOVA F-test hypothesis for this model is $H_0: \text{All means are equal to each other}$.
 
 # Calculating Effect Sizes {#sec-effects}
 
@@ -108,7 +115,7 @@ $$
 \text{Effect}_\text{ultra} = \bar{y}_\text{ultra} - \bar{y}_\text{grand} = 25.313 - 22.765 = 2.548
 $$ {#eq-effect_ultra}
 
-Thus, use of an ultrasonic toothbrush increases the mean percent area with plaque by 2.548 relative to the grand mean. Therefore, I know the ultrasonic toothbrush's effectiveness at removing plaque is below average.
+Thus, use of an ultrasonic toothbrush increases the mean percent area with plaque by 2.548 relative to the grand mean. Therefore, I know the ultrasonic toothbrush's effectiveness at removing plaque is worse than average.
 
 In like manner, the effect size for the other factor levels is calculated
 
@@ -154,12 +161,12 @@ text(4-.4,mu[4,2], expression(bar(y)[ultra]), cex = 1.2)
 #Oscillating effect line and text
 lines(rep(2-.1,2), c(mu[2,2], grandmean), lty=3, col = "cornflowerblue")
 text(2-.05, mean(c(mu[[2,2]], grandmean)), expression(effect[osc]==-2.79), col = "cornflowerblue",
-     pos=2)
+     pos=2, cex = 1.2)
 
 #Ultrasonic effect line and text
 lines(rep(4-.1,2), c(mu[4,2], grandmean), lty=3, col = "cornflowerblue")
 text(4-.05, mean(c(mu[[4,2]], grandmean)), expression(effect[ultra]== 2.55), col = "cornflowerblue",
-     pos=2)
+     pos=2, cex = 1.2)
 
 ```
 
@@ -169,35 +176,35 @@ The effect size of a factor level can be thought of as the difference between a 
 ## General rule to calculate effect size
 
 $$
-\text{Effect Size} = \text{Factor level mean} - \text{sum of effects of all outside factors}
+\text{Factor level effect size} = \text{Factor level mean} - \text{sum of effects of all outside factors}
 $$ {#eq-general-effects-rule}
 :::
 
-Using @eq-general-effects-rule we can also calculate the effect of the benchmark factor. Benchmark only has 1 level and it includes all the observations, so the factor level mean is the same as the grand mean, 22.765. The "sum of effects of all outside factors" is 0 since there are no factors outside of benchmark. Therefore, the effect size for benchmark is simply the grand mean. In this case, 22.765.
+Using @eq-general-effects-rule we can also calculate the effect of the grand mean factor. Grand mean only has 1 level and it includes all the observations, so the factor level mean is the same as the mean of all the observations, 22.765. The "sum of effects of all outside factors" is 0 since there are no factors outside of grand mean. Therefore, the effect size for the grand mean factor is simply the grand mean. In this case, 22.765.
 
 What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let's consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see [Factor Structure](factor_structure.qmd)).
 
 ::: column-page
-![Factor Structure Diagram for a Study with 1 Factor](images/toothbrush_bf1_colored_factors.JPG){#fig-toothbrush_bf1_colored_factors}
+![Factor Structure Diagram for Toothbrush Study with 1 Factor](images/toothbrush_bf1_colored_factors.JPG){#fig-toothbrush_bf1_colored_factors}
 :::
 
-There is only one observation in each box of the residual error factor. Therefore, the factor level mean for this observation is just the observation itself, 17.62. Next, to use the general rule we must find the effects of outside factors: toothbrush type and benchmark. The observation we are interested in belongs to the oscillating toothbrush group; we have already found the effect of the oscillating toothbrush to be -2.788. We discovered that the effect of benchmark is simply the grand mean, 22.765. Therefore, the residual error calculation is contained in @eq-obs1-effect :
+There is only one observation in each box of the residual error factor. Therefore, the factor level mean for this observation is just the observation itself, 17.62. Next, to use the general rule we must find the effects of outside factors: toothbrush type and grand mean. The observation we are interested in belongs to the oscillating toothbrush group; we have already found the effect of the oscillating toothbrush to be -2.788. We discovered that the effect of grand mean factor is 22.765. Therefore, the residual error calculation is contained in @eq-obs1-effect :
 
 $$
 17.62 - (22.765 + -2.788) = -2.357
 $$ {#eq-obs1-effect}
 
-This means that this individual's plaque percent area was 2.357 lower than the average plaque percent area of those who used an oscillating brush. (Less plaque is a good thing!) Generally, we cannot tell exactly what caused the residual error. It could be a result of differences in how vigorously people brush, variations in the manufacture of the brushes, differences in how researchers assessed plaque from one person to another and an infinite number of other things. If the experiment implemented randomization properly and was designed and executed well, these residual error effects should behave randomly. In fact, they should behave like a normally distributed random variable...more on that later.
+This means that this individual's plaque percent area was 2.357 lower than the average plaque percent area of those who used an oscillating brush. (Less plaque is a good thing!) We cannot tell exactly what caused the residual error. It could be a result of differences in how vigorously people brush, variations in the manufacture of the brushes, differences in how researchers assessed plaque from one person to another and an infinite number of other things. If the experiment implemented randomization properly and was designed and executed well, these residual error effects (i.e. the unexplained error) should behave randomly. In fact, they should behave like a normally distributed random variable...more on that in [the Assumptions section](assumptions.qmd)
 
-We will repeat the residual error[^1] calculation process for the outlying point in the "ultrasonic" level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second second is to sum the effect of outside factors benchmark and toothbrush. Benchmark's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the "ultrasonic" group. The calculation of the residual error is therefore contained in @eq-obs2-effect :
+We will repeat the residual error[^2] calculation process for the outlying point in the "ultrasonic" level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: benchmark and toothbrush. Benchmark's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the "ultrasonic" group. The calculation of the residual error is therefore contained in @eq-obs2-effect :
 
-[^1]: You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.
+[^2]: You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.
 
 $$
 32.74 - (22.765 + 2.548) = 7.427
 $$ {#eq-obs2-effect}
 
-These two residual errors are depicted in @fig-resids.
+These two residual errors are depicted in green in @fig-resids.
 
 ```{r}
 #| label: fig-resids
@@ -246,34 +253,32 @@ lines(c(4, 4+.21), rep(32.74,2), lty = 3, col = "darkgreen")
 text(4+.1, mean(c(mu[[4,2]], 32.74)), expression(y-bar(y)[ultra] == 7.43), col = "darkgreen",pos=4)
 ```
 
-Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. I really like the assembly line metaphor that George Cobb[^2] uses to explain this phenomenon.
+Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb[^3] uses to explain this phenomenon is helpful in understanding how this all fits together.
 
-[^2]: Cobb, George. 2014. *Introduction to Design and Analysis of Experiments*. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started -->
+[^3]: Cobb, George. *Introduction to Design and Analysis of Experiments*. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started -->
 
 ## Assembly Line Metaphor
 
-You can imagine that each data point in your data set is created by going down an assembly line, much like you would find in a factory that makes cars or appliances. All points start with the benchmark value. As it progresses through the assembly line the data point is altered to reflect the effect of the factor levels it belongs to.
+You can imagine that each data point in your data set is created by going down an assembly line, much like you would find in a factory that makes cars or appliances. All points start with the grand mean value. As it progresses through the assembly line the data point is altered to reflect the effect of the factor levels it belongs to.
 
-<!-- ![](imaassembly_line.jpg){width="350" fig-align="center"} -->
+<!-- ![](imaassembly_line.jpg){width="300" fig-align="center"} -->
 
 ![](images/assembly_line.jpg){fig-align="center"}
 
-In the toothbrush **and** toothpaste experiment all the points start the assembly line at the same value: the benchmark value, or the grand mean of the data set. The first station on the line receives the data point and adds to it because the instructions say "manual". The next station alters the value depending what the instructions for that data point say: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station.
+In the toothbrush **and** toothpaste experiment all the points start the assembly line at the same value: the grand mean of the data set. The first station on the line receives the data point and adds or subtracts to it based on the type of brush it is. For example, the value would be added upon if the brush type was "manual". The next station alters the value depending on what the instructions for that data point say: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station.
 
-The last station is worked by a person who makes random adjustments! Some adjustments will be big, and some will be small; some will be positive, and some will be negative. (In a typical factory this person would be fired. But we would rather have randomness than unknown systematic adjustments). Though the adjustments at this last station for residual error are random, they do follow a pattern. Namely, the errors average out to zero and they follow a normal distribution.
+The last station is worked by a person who makes random adjustments! Some adjustments will be big, and some will be small; some will be positive, and some will be negative. (In a typical factory this person would be fired. But we would rather have randomness than unknown, systematic adjustments , i.e. bias). Though the adjustments at this last station for residual error are random, they do follow a pattern. Namely, the mean of the adjustments is zero and they follow a normal distribution.
 
 # A Formal Model and Notation
 
-It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to "build" an observation. In our case though, the observation comes already built and we will need to break it back down into its component parts; almost like reverse engineering the data set to be able to explain why the data is the way that it is.
+It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to "build" an observation. In our case though, the observation comes already built and we will need to break it back down into its component parts; like reverse engineering the data set to be able to explain why the data is the way that it is.
 
-Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before we get that far it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation.
+Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before we get that far it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.
 
-In the [effects section](effects_model.qmd#sec-effects) we learned how to estimate the effect size for any factor's level in a model. We started with a very simple example where toothbrush type's effect on the percent of teeth area with plaque was studied. In this example we identified a total of 3 factors: 2 universal factors (benchmark and residual error); and 1 structural factor (toothbrush type).
-
-The fifth observation in the oscillating brush group had a value of 17.62 for percent area with plaqu. Using the general rule (@eq-general-effects-rule) we found that this observation was composed of the following effects:
+The fifth observation in the oscillating brush group had a value of 17.62. In @sec-effects we used the general rule (@eq-general-effects-rule) to calculate the following effects:
 
 $$
-\text{Effect}_\text{benchmark} = 22.765
+\text{Effect}_\text{grand mean} = 22.765
 $$
 
 $$
@@ -305,19 +310,19 @@ $$ {#eq-one-obs}
 ::: {#key-properties .callout-important}
 ## Note
 
-Notice that the sum of the effects across the treatment factor equal zero.
+Notice that the sum of the effects across the treatment factor (toothbrush) equal zero.
 
 $$
 0.33 + -2.79 + -.09 + 2.55 = 0
 $$
 
-The sum of all the residual errors within a treatment factor level also equal zero. For example, for the manual brush,
+The sum of all the residual errors *within* a treatment factor level also equal zero. For example, for the manual brush,
 
 $$
 -3.97 + 1.12 + 3.79 + -1.49 + 0.31 + 0.26 = 0
 $$
 
-Because of the way effect size is calculated, this will always be the case, regardless of the number of levels or the number of replicates. This result will continue to hold even as we add more structural factors.
+Because of the way effect size is calculated, this will [always]{.underline} be the case, regardless of the number of levels or the number of replicates. This result will continue to hold even as we add more structural factors.
 
 Also take notice of the pattern of repeating values within a factor level. These patterns can help us better understand degrees of freedom.
 :::
@@ -325,15 +330,15 @@ Also take notice of the pattern of repeating values within a factor level. These
 We can write a general form of the model as:
 
 $$
-observation = effect_\text{benchmark} + effect_\text{brush} + effect_\text{residual}
+observation = effect_\text{grand mean} + effect_\text{brush} + effect_\text{residual}
 $$
 
 Rather than writing "effect" and "observation", let's introduce symbols to represent the effects and observations. We will use a different symbol for each factor effect, and we will use y to represent an observation.
 
--   $\mu$ is the effect for benchmark, or in other words the grand mean.
--   $\alpha_i$ is generally used to refer to the effect of the factor that is varied in the experiment; in our case the factor is brush. The subscript $i$ indicates which level of the factor the effect is for: $i=1$ is manual, $i=2$ is oscillating, $i=3$ is sonic, $i=4$ is ultrasonic.
--   $\epsilon_\text{ij}$ is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case $i$) to indicate which factor level the observation belongs to. Plus, another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number with that factor level combination).
--   $y_\text{ij}$ is an observation. Since each observation has a residual, $y$ has matching subscription with epsilon ($\epsilon$) and will tell us exactly which replicate within a factor level is being referenced.
+-   $\mu$ is the effect for grand mean.
+-   $\alpha_i$ refers to the effect of the factor that is varied in the experiment; in our case the factor is toothbrush. The subscript $i$ indicates which level of the factor the effect is for: $i=1$ is manual, $i=2$ is oscillating, $i=3$ is sonic, $i=4$ is ultrasonic.
+-   $\epsilon_\text{ij}$ is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case $i$) to indicate which factor level the observation belongs to; plus another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number within a factor level combination).
+-   $y_\text{ij}$ is an observation. Since each observation has a residual, $y$'s subscripts will match epsilon's ($\epsilon$) subscript. It will tell us exactly which replicate within a factor level is being referenced.
 
 We can rewrite @eq-one-obs symbolically:
 
@@ -354,16 +359,30 @@ $$
 y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 $$ {#eq-general-form}
 
-This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs (e.g. adding toothpaste brand as a treatment) by adding a term to the model for each structural factor.
+This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs by adding a term to the model for each structural factor.[^4]
 :::
+
+[^4]: The model for the experiment that includes toothpaste brand and toothbrush type is
+
+    $$
+    y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
+    $$
+
+    Here
+
+    -   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
+
+    -   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and Generic brand).
+
+    -   $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
 
 At this point you should begin to see how the factor structure diagram can help us put together a mathematical model. Each factor in the diagram corresponds to a different term in the mathematical model.
 
-We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will simply place a hat on the parameter: $\hat{\mu}$, $\hat{\alpha}$, and $\hat{\epsilon}$. Commonly $\hat{\epsilon}$ is also expressed as $e$; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.
+We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter: $\hat{\mu}$, $\hat{\alpha}$, and $\hat{\epsilon}$. Commonly $\hat{\epsilon}$ is also expressed as $e$; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.
 
-You can also see that calculating means is a crucial part of calculating effect estimates. There is also notation to represent the mean of groups of observations. As you already know, a bar is added over $y$ to represent a mean of observed values. You can use dots in the subscripts of $\bar{y}$ to indicate which values you are averaging over.
+You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over $y$ to represent a mean of observed values. You can use dots in the subscripts of $\bar{y}$ to indicate which values you are averaging over.
 
-For example, the mean of the observations in the first level of a treatment factor would be represented as $\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example, $\bar{y}_{1\cdot}$ is our estimate of the mean percent area with plaque using a manual toothbrush.
+For example, the mean of the observations in the first level of a treatment factor would be represented as $\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example, $\bar{y}_{1\cdot}$ is our estimate of the mean percent area with plaque using a manual toothbrush, because a subscript $i$ value of 1 corresponds to manual..
 
 $$
 \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09

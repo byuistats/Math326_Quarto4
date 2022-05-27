@@ -112,7 +112,7 @@ The model assumes the mean of the residuals equals zero. The residual is the dis
 We estimate the true mean of the factor level by taking the mean of the 3 values:
 
 $$
-\text{Mean of observations} = \frac{y_1 + y_2 + y_3}{3} = \frac{\text{truth} + \text{error}_1 + \text{truth} + \text{error}_2 + \text{truth} + \text{error}_3)}{3}
+\text{Mean of observations} = \frac{y_1 + y_2 + y_3}{3} = \frac{\text{truth} + \text{error}_1 + \text{truth} + \text{error}_2 + \text{truth} + \text{error}_3}{3}
 $$
 
 Rearranging terms gets:
@@ -121,17 +121,17 @@ $$
 \text{Mean of observations} = \text{truth} + \frac{\text{error}_1 + \text{error}_2 + \text{error}_3}{3}
 $$
 
-Since we know the mean of the residual errors is zero, the second term goes to zero and the mean of observations is the best estimate of the true value. Of course, the more observations we average over the better our estimate of the truth will be.
+Since the mean of the residual errors is assumed zero, the second term goes to zero and the mean of observations is the best estimate of the true value. Of course, the more observations we average over the better our estimate of the truth will be.
 
-This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects.
+This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects. We saw this when we noticed the level effects of a factor sum to zero.
 
 ## Constant Variance
 
 We express the spread of the distribution of residuals in terms of the variance, $\sigma^2$. We assume that the variance of residuals is the same regardless of the factor level. Consider our conveyor belt example. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.
 
-In the F-statistic calculation the denominator is a pooled variance; or in other words, an average of the within factor level variances. When factor level sample sizes are unequal, then the average variance is biased toward the factor level with the largest sample size. Thus, it becomes important to show that the within variance estimate for each factor level is (relatively) equal when sample sizes are not equal. The greater disparity in sample sizes, the more important it is to have *within* factor levels variances that are similar. (Inflation of Type I error tends to be worse if the smallest group has the largest variance.) The F-distribution used to calculate p-values is based on the assumption of equal variances. When there is non-constant variance, the ratio of *between* group variance to *within* group variance no longer follows the F-distribution and the p-value calculations will be off.
+In the F-statistic calculation the denominator is a pooled variance; or in other words, an average of the within factor level variances. When factor level sample sizes are unequal, then the average variance is biased toward the factor level with the largest sample size. Thus, it becomes important to show that the variance estimate within each factor level is (relatively) equal when sample sizes are not equal. The greater disparity in sample sizes, the more important it is to have similar *within* factor levels variances. (Inflation of Type I error tends to be worse if the smallest group has the largest variance.) The F-distribution used to calculate p-values is based on the assumption of equal variances. When there is non-constant variance, the ratio of *between* group variance to *within* group variance no longer follows the F-distribution and the p-value calculations will be off.
 
-The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance. (When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity).
+The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.
 
 @fig-variance shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.
 
@@ -152,7 +152,9 @@ which = plot(brush_aov, which = 1)
 Ignore the red line in the residual plot. It can trick your eyes and draw your attention to the wrong thing. It is not meant to gauge constant variance.
 :::
 
-The points in @fig-variance are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis is fitted values. Each toothbrush has a different fitted, or predicted, value. The vertical group on the far left appears less spread out than the vertical group of points on the far right. Of course, the groupings will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated?
+The points in @fig-variance are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis is fitted values. Each toothbrush has a different fitted, or predicted, plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.
+
+Of course, the groupings will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.
 
 As a rule of thumb, you can check to see if the largest standard deviation is more than double the smallest standard deviation. @tbl-favstats shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because $2*1.74 = 3.48 < 3.90$, by this rule of thumb the constant variance assumption appears to be violated.
 
@@ -195,11 +197,11 @@ leveneTest(brush_aov) |> kable()
 
 For the toothbrush example, the p-value of Levene's F-test in @tbl-levene is .8605, indicating the constant variance assumption is met. It is not uncommon for this hypothesis test to disagree with the rule of thumb. It appears that one outlier in the upper right portion of @fig-variance is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene's test.
 
-I am not suggesting to remove that point from the analysis, rather to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don't agree.
+This is not to suggest the point be removed from the analysis; rather, to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don't agree.
 
 ### More than 1 structural factor
 
-If you have more than 1 structural factor, multiple residual plots should be examined (or examine one plot that contains all factor level combinations). Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs. off brand), toothbrush type, and their interaction.
+If you have more than 1 structural factor, multiple residual plots should be examined, or examine one plot that contains all factor level combinations. Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs. off brand), toothbrush type, and their interaction.
 
 In this case, the residual vs. fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. You should not be concerned about looking at each group individually. Rather, look for overall trends or megaphone shapes in the data. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?
 
@@ -246,7 +248,7 @@ The "Q" in Q-Q plot stands for quantile. For an explanation of quantiles and the
 ::: {#qqplot style="display:none;"}
 <div>
 
-The scatterplot is created from ordered pairs. Each ordered pair consists of a residual from the model (that's easy to find!) and the quantile from the normal distribution associated with that residual.
+The Q-Q plot is actually just a scatterplot created from ordered pairs. Each ordered pair consists of a residual from the model (that's easy to find!) and the quantile from the normal distribution associated with that residual.
 
 **But how do you find a quantile from the normal distribution?** To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From @fig-qnorm-1 I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.
 
@@ -300,7 +302,7 @@ car::qqPlot(brush_aov, envelope = list(style = "lines"))
 
 ```
 
-A point on the far right is clearly out of the dashed boundary. It is not uncommon for the last 1 or 2 points be stray from from the line. Overall, however, the points tend to follow the line and stay in bounds. I would conclude that the assumption of normally distributed residuals is met.
+A point on the far right is clearly out of the dashed boundary. It is not uncommon for 1 or 2 points at either end of the x-axis to stray far from the line. Overall, however, the points in this plot tend to follow the line and stay in bounds. I would conclude that the assumption of normally distributed residuals is met.
 
 ::: {.callout-note appearance="minimal" icon="false"}
 ## Notation
@@ -312,11 +314,11 @@ So far we have shown the residuals come from a normal distribution, with mean ze
 
 In addition to making assumptions about the distribution of residuals, we also make an assumption regarding individual observations, or realizations, from the distribution of errors. Specifically, we assume **each observation from the error distribution is independent of the rest.** In other words, the residuals are not correlated with each other in any way.
 
-This is violated when something is affecting the response that was not adequately randomized, controlled for, or included in the model. Not adequately accounting for time or space is often a culprit. For example, suppose you run an experiment where respondents were given a task to complete under 3 distinct conditions. If you did not randomize the order of the conditions or neglected to account for the fact the same respondent provided 3 observations, you would have violated this assumption.
+This is violated when something is affecting the response that was not adequately randomized, controlled for, or included in the model. Not adequately accounting for treatment order in time or space is often a culprit. For example, suppose you run an experiment where respondents were given a task to complete under 3 distinct conditions. If you did not randomize the order of the conditions or neglected to account for the fact the same respondent provided 3 observations, you would have violated this assumption.
 
-Sometimes the looking at the data can provide a clue this requirement is violated, sometimes it cannot. For example, when a model over predicts all observations in condition 1 and under predicted all observations in condition 3 it may be an indicator that you neglected to address something important (i.e. subject identification, or order of conditions) in your experiment.
+Sometimes looking at the data can provide a clue this requirement is violated, sometimes it cannot. Looking at the Residual vs. Fitted plot is a good place to start. For example, when a model over predicts all observations in condition 1 and under predicted all observations in condition 3 it may be an indicator that you neglected to address something important (i.e. subject identification, or order of conditions) in your experiment.
 
-An order plot can be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. @fig-order contains the order plot for our simple toothbrush example, assuming the rows number indicates the order in which each observation was actually made.
+An order plot can also be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. @fig-order contains the order plot for our simple toothbrush example, assuming the row number indicates the order in which each observation was actually made.
 
 ```{r}
 #| label: fig-order
@@ -333,7 +335,7 @@ It is interesting to see in this plot that the very first observation is a bit o
 You should not throw out data points based alone on the fact that they appear anomalous.
 :::
 
-In this case, no other trends are evident in @fig-order. If patterns/trends *are* evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. **Bias in your design or execution will lead to violating this assumption.**
+No other trends are evident in @fig-order. If patterns/trends *are* evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. **Bias in your design or execution will lead to violating this assumption.**
 
 In many cases, the data will not indicate there is bias unless you know exactly what to look for. These unknown sources of bias are particularly difficult to detect. Planning the study in great detail, thinking critically about your results, being familiar with the protocols of the experiment, and getting help from others to provide fresh perspectives is ultimately the best way to check this assumption and ensure bias does not affect your results.
 
@@ -384,12 +386,12 @@ To address **non-normality of residuals** you will want to know what the distrib
 
 Transforming the data is a technique that can help with the normal distribution assumption and with **heteroscedasticity** simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.
 
-Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g. proportion of quiz questions answered correctly), this transformation may prove useful:\$ Y\_\text{transformed} = 2arcsine(\sqrt(Y))\$
+Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g. proportion of quiz questions answered correctly), this transformation may prove useful: $Y_\text{transformed} = 2*arcsine(\sqrt{Y})$
 
 The [Box-Cox](https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box-cox-power-transformation/) is a more algorithmic way of choosing a transformation.
 
-It is also important to recognize that ANOVA is just one of many analysis tools available[^4]. Kruskal-Wallis is one example. These alternative test assumptions are less stringent. But if its requirements are met, ANOVA offers greater statistical power. It can also be difficult to extend some of these alternative tests to more complex designs.
+It is also important to recognize that ANOVA is just one of many analysis tools available[^4]. Kruskal-Wallis is one example of an alternative test with less stringent assumptions. But if its requirements are met, ANOVA offers greater statistical power than Kruskal-Wallis. It can also be difficult to extend some of these alternative tests to more complex designs.
 
 [^4]: For additional alternatives consult Coombs, W. A., Algina, J., & Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. *Review of Educational Research,* 66, 137-179. A generalized linear model may also be helpful.
 
-One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus tests. These more specific tests can handle non-constant variances and non-normal residuals. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.
+One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or reduced statistical power. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.

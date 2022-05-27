@@ -1,0 +1,28 @@
+---
+title: "Randomization: Sampling and Assignment"
+---
+
+Samples should be representative of the population as defined in the research objectives. When the sample is different from the population in a systematic way, then bias occurs. Biased samples may still contain useful information, but the population which the sample proports to represent may be different than the actual population represented. Common sources of bias include:
+
+-   **Selection bias** -- the sampling plan excludes part of the population during selection. Samples taken out of convenience or only from volunteers are examples of possible selection bias.
+
+-   **Measurement bias** -- the measurement method results in measurements that are different from the true values of the response variable. Measurement bias can be caused by uncalibrated equipment, poorly trained personnel, or any step along the experimental process that is not carefully designed or clearly defined.
+
+-   Non-response bias -- this occurs when data are not available for all the individuals in the sample. If those individuals missing data would respond in a different way than those that did respond, then a bias is introduced.
+
+Care should be taken to minimize bias.
+
+::: callout-warning
+Larger sample sizes are not a remedy for biased samples.
+:::
+
+The best way to minimize bias is to choose the sample randomly from the population. When results are based on a random sample, the conclusions can be generalized to the population. Random samples are accomplished by allowing each member of the population the same probability of being selected in the sample. Randomization should occur in at least two parts of an experiment: 1) the selection of experimental units from the population and 2) the random assignment of those units to the factor levels. Another randomization to consider is the order in which the experimental runs will occur. Performing all the runs for one level and then moving to the next level can introduce a time or order related bias that could be confounded with the factor. Randomizing the order will remove this bias and possible confounding. There may be other parts of the experiment where randomization should be applied. Good advice to follow is "control what you can, and randomize the rest"[^1].
+
+[^1]: Cobb, G.W. *Introduction to Design and Analysis of Experiments.* Wiley, 2014.
+
+Multiple observations are needed within each factor level so that the variability can be estimated for each level.  This variability makes up the unexplained variation, as mentioned earlier.  **Replication** is when an experimental run is conducted under the same conditions (same factor levels), but with different experimental units.  The number of replicates is the number of experimental units that are assigned to a specific factor level, or combination of levels from multiple factors.   Replication is different than repeated measures.  **Repeated measures** are when multiple measurements are taken within the same experimental run / experimental unit.  The material in which repeated measures are taken are the observational units, as was discussed in a previous section. In our study method example, in the [Experimental Units](experimental_units.qmd) section, each student is considered a repeated measure.
+
+Statistical power will increase as more replicates are taken.  The question of how many replicates are needed for a study is an important question that will not be covered in this class.  There are statistical algorithms that estimate the statistical power for a specific design given the number of replicates.  The R package `pwr` is a good resource for power calculations for various statistical tests, including analysis of variance.  
+
+Now let’s apply each of these concepts to the example toothbrush study.  A random selection of 40 possible participants should be taken from the population.  Our population may be limited to those people who live near the testing location.  It might also be limited to adults.  Next, they are randomly assigned a toothbrush. There are 4 toothbrush types, 10 people assigned to each type.  At the end of the study, the order in which their data will be collected will also be randomized.  Because there are 10 participants in each group, there are 10 replicates in this study.  Repeated measures will be used by collecting percent of surface area with plaque for the first molar in each of the four quadrants of the mouth for each participant.   
+

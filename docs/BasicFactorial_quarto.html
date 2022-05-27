@@ -141,20 +141,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./RCommands.html">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./RMarkdownHints.html">
- <span class="dropdown-text">Choosing a response variable</span></a>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./RCheatSheetsAndNotes.html">
- <span class="dropdown-text">Choosing conditions</span></a>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./DataSources.html">
- <span class="dropdown-text">Choosing units/experimental material</span></a>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
@@ -162,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
@@ -286,7 +294,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#links-to-outside-resources" id="toc-links-to-outside-resources" class="nav-link" data-scroll-target="#links-to-outside-resources">Links to outside resources</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#bf2" id="toc-bf2" class="nav-link" data-scroll-target="#bf2">BF2</a></li>
   </ul>
 </nav>
     </div>
@@ -343,8 +350,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 \]</span></p>
-<p><span class="math inline">\(y_{ij}\)</span>: the <span class="math inline">\(j^{th}\)</span> observation from factor <span class="math inline">\(i\)</span></p>
-<p><span class="math inline">\(\mu\)</span>: the grand mean of the data set. Also referred to as an overall mean or benchmark.</p>
+<p><span class="math inline">\(y_{ij}\)</span>: the <span class="math inline">\(j^{th}\)</span> observation from factor level <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(\mu\)</span>: the grand mean of the data set.</p>
 <p><span class="math inline">\(\alpha_i\)</span>: effect of factor level <span class="math inline">\(i\)</span></p>
 <p><span class="math inline">\(\epsilon_{ik}\)</span>: the error term, or residual term of the model. There are <em>j</em> replicates for each treatment. It represents the distance from an observation to its factor level mean (or predicted value).</p>
 <p>The null and alternative hypotheses can be expressed as:</p>
@@ -702,21 +709,21 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <div class="column-page">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/BF1_structure_equation.JPG" class="img-fluid figure-img"></p>
+<p><img src="images/BF1_factor_structure_with_equation.PNG" class="img-fluid figure-img"></p>
 <p></p><figcaption aria-hidden="true" class="figure-caption">Example of BF1 Factor Structure</figcaption><p></p>
 </figure>
 </div>
 </div>
-<p>A basic one-way factorial design has three analysis factors: the benchmark, treatment, and residual. The effects of these factors can be summed together to find each observed value.</p>
+<p>A basic one-way factorial design has three analysis factors: the grand mean, treatment, and residual. The effects of these factors can be summed together to find each observed value.</p>
 <ul>
 <li>The <strong>observed values</strong> on the left show that there are 24 distinct observations of performance score, represented by the 24 cells - one for each of the observed values.</li>
-<li>The <strong>benchmark</strong> represents the grand mean (or overall mean). The single large cell indicates that there is only one grand mean and it is part of every observation.</li>
-<li>The <strong>treatment factor</strong> involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean (or effect).</li>
+<li>The <strong>grand mean factor</strong> represents the grand mean. The single large cell indicates that there is only one grand mean and it is part of every observation.</li>
+<li>The <strong>treatment factor</strong> involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean and effect.</li>
 <li>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and treatment effect. Each of the cells represent a distinct value for the residual error.</li>
 </ul>
 <section id="degrees-of-freedom" class="level3">
 <h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
-<p>We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the <strong>benchmark</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 16 observations - or pieces of information. In other words, we have 16 degrees of freedom that need to be allocated to the 3 factors.</p>
+<p>We can use our understanding of inside and outside factors to determine the degrees of freedom (df) for the <strong>grand mean</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -731,16 +738,16 @@ General Rule for Degrees of Freedom
 <p>An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.</p>
 </div>
 </div>
-<p>In the lifeboat example, <strong>benchmark</strong> has one level (shown by the one cell in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>) and there are no outside factors for benchmark. Therefore, the degrees of freedom for benchmark is one.</p>
-<p>Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the benchmark effect for just one of the observations, you know it for all the observations. In other words, only 1 value was <em>free</em> to vary. As soon as it was known all the other values for benchmark were also known. Therefore, there is just one unique piece of information in the benchmark factor. Benchmark has just 1 degree of freedom.</p>
-<p>For <strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Benchmark is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for benchmark (1), which yields 4-1 = <strong>3 degrees of freedom</strong> for treatment.</p>
+<p>In the lifeboat example, <strong>grand mean</strong> has one level (shown by the one cell in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>) and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one.</p>
+<p>Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the grand mean for just one of the observations, you know it for all the observations. In other words, only 1 value was <em>free</em> to vary. As soon as it was known all the other values for the grand mean effect were also known. Therefore, there is just one unique piece of information in the grand mean factor. Grand mean has just 1 degree of freedom.</p>
+<p>For <strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Grand mean is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = <strong>3 degrees of freedom</strong> for treatment.</p>
 <p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contain. Since all observations from the same treatment will have the same treatment effect applied, we only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.</p>
-<p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both benchmark and treatment are outside factors for the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for benchmark and treatment (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
+<p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both grand mean and treatment are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and treatment (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
 <p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.</p>
 </section>
 <section id="factor-effects" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-effects">Factor Effects</h3>
-<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the benchmark, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the grand mean, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -756,35 +763,27 @@ General Rule for Effect Size
 </div>
 <section id="calculate-means" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="calculate-means">Calculate means</h4>
-<p>To estimate all the factor effects we must first calculate the mean for the benchmark factor and the means for each level of training method.</p>
-<p>For benchmark, get the mean of all 24 observations. The mean for all the observations is 6.5846. There is only one level for benchmark so this number is placed into each of the cells for the benchmark factor in <a href="#fig-benchmark">Figure&nbsp;2</a>.</p>
-<div class="column-page">
-<div id="fig-benchmark" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/BF1_mean_benchmark.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Raw data and mean for benchmark factor</figcaption><p></p>
-</figure>
-</div>
-</div>
+<p>To estimate all the factor effects we must first calculate the mean for the grand mean factor and the means for each level of training method.</p>
+<p>To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in <strong>?@fig-benchmark</strong>.</p>
 <p>For the treatment factor, calculate the mean of each of the four levels. To calculate the mean for Control:</p>
 <p><span class="math display">\[
 \frac{4.5614 + 6.6593 + 5.6427 + 6.4394 + 4.8635 + 0.3268}{6} = 4.7489
 \]</span></p>
-<p>You can similarly find the mean for monitor keyboard is 7.8492, the mean for head monitor display/joypad is 6.5789, and the mean for head monitor display/wearables is 7.1616. In <a href="#fig-training-means">Figure&nbsp;3</a> these means are placed in the respective training method column.</p>
+<p>You can similarly find the mean for monitor keyboard is 7.8492, the mean for head monitor display/joypad is 6.5789, and the mean for head monitor display/wearables is 7.1616. In <a href="#fig-training-means">Figure&nbsp;2</a> these means are placed in the respective training method column.</p>
 <div class="column-page">
 <div id="fig-training-means" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF1_means_decomp.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Raw data and means for benchmark and training factors</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Raw data and means for grand mean and training factors</figcaption><p></p>
 </figure>
 </div>
 </div>
 </section>
 <section id="calculate-effects" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="calculate-effects">Calculate effects</h4>
-<p>From here we can calculate the effects for benchmark, training method and residual errors. We will use the general formula for calculating effect size as stated above.</p>
-<p>For the benchmark, there is only one level and there are no outside factors. Therefore, the effect due to benchmark is 6.5846 (equivalent to its mean) and this affect is applied to all 24 observations.</p>
-<p>The training method factor has four levels: one for each method. To calculate the effect of a training method, take the training method mean and subtract it from the effect due to benchmark. For the “Control” method, this looks like:</p>
+<p>From here we can calculate the effects for grand mean, training method and residual errors. We will use the general formula for calculating effect size as stated above.</p>
+<p>For the grand mean, there is only one level and there are no outside factors. Therefore, the effect due to grand mean is 6.5846 (equivalent to its mean) and this affect is applied to all 24 observations.</p>
+<p>The training method factor has four levels: one for each method. To calculate the effect of a training method, take the training method mean and subtract it from the effect due to the grand mean factor. For the “Control” method, this looks like:</p>
 <p><span class="math display">\[
 4.789 - 6.5846 = -1.8358
 \]</span></p>
@@ -793,25 +792,25 @@ General Rule for Effect Size
 <div id="fig-training-effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF1_trt_effect_boat_decomp.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Training Method Effects</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Training Method Effects</figcaption><p></p>
 </figure>
 </div>
 </div>
-<p>To calculate the residual error effects we must remember that there are 24 levels of the residual error factor. Therefore, the factor level mean for a residual is simply the observed value itself. This means the residual effect can be calculated by taking an observed value and subtracting the effects for benchmark and the effect for training method that particular observation received. For instance, for the observation located in the top left of our data set the observed value is 4.5614. Subtract the sum of the effects of outside factors (benchmark and training). This observation was from the control group so we get:</p>
+<p>To calculate the residual error effects remember that there are 24 levels of the residual error factor. Therefore, the factor level mean for a residual is simply the observed value itself. This means the residual effect can be calculated by taking an observed value and subtracting the effects for grand mean and the effect for whichever training method that particular observation received. For instance, for the observation located in the top left of our data set the value is 4.5614. Subtract the sum of the effects of outside factors (grand mean and training). This observation was from the control group so we get:</p>
 <p><span class="math display">\[
 4.5614 - (6.5846 + -1.8358) = -0.1875
 \]</span></p>
-<p>The value for the top left cell in residual error effects is -0.1875. This means the observed value of 4.5614 was lower than we would have expected it to be. In other words, the performance score of 4.5614 was 0.1875 <em>less</em> than the mean of the control group. In this case, this individual’s performance was lower than his/her peers who received the same type of training.</p>
-<p>We can repeat the calculation for the first residual in the second column. Take the observed value (5.4532) and subtract the sum of the effect due to benchmark and its respective training (in this case monitor/keyboard). The residual is</p>
+<p>The value for the top left cell in residual error effects is -0.1875. This means the observed value of 4.5614 was lower than we would have expected it to be. In other words, the performance score of 4.5614 was 0.1875 <em>less</em> than the mean of the control group. This individual’s performance was lower than the mean of his/her peers who received the same type of training.</p>
+<p>We can repeat the residual calculation for the first observation in the second column. Take the observed value (5.4532) and subtract the sum of the effect due to grand mean and its respective training (in this case monitor/keyboard). The residual is</p>
 <p><span class="math display">\[
 5.4523 - (6.5846 + 1.2645) = -2.3960
 \]</span></p>
-<p>Repeat this process for all the remaining 22 residual values. The result is shown in <a href="#fig-residual-effects">Figure&nbsp;5</a>.</p>
+<p>Repeat this process for all the remaining 22 residual values. The result is shown in <a href="#fig-residual-effects">Figure&nbsp;4</a>.</p>
 <div class="column-page">
 <div id="fig-residual-effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF1_effect_boat_decomp.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Residual Effects</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Residual Effects</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -836,7 +835,7 @@ General Rule for Effect Size
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Benchmark </td>
+   <td style="text-align:left;"> Grand Mean </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -873,7 +872,7 @@ General Rule for Effect Size
 </div>
 </div>
 <p>To get the <strong>sum of squares (SS)</strong> for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.</p>
-<p>For <strong>benchmark</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.</p>
+<p>For <strong>grand mean</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to benchmark.</p>
 <p><span class="math display">\[
 SS_\text{Benchmark} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
 \]</span></p>
@@ -890,7 +889,7 @@ SS_\text{Residuals} = (-0.1875)^2 + (1.9105)^2 + (0.8939)^2 + (1.6906)^2 + ... +
 <p><span class="math display">\[
 SS_\text{Total} = (4.5614)^2 + (6.6593)^2 + (5.6427)^2 + (6.4394)^2 + ... + (5.1459)^2 = 1172.87
 \]</span></p>
-<p><strong>-OR-</strong> we can get the same result if we add together the sum of squares for the benchmark, treatment, and residual error factors.</p>
+<p><strong>-OR-</strong> we can get the same result if we add together the sum of squares for the grand mean, treatment, and residual error factors.</p>
 <p><span class="math display">\[
 SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 \]</span></p>
@@ -910,7 +909,7 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Benchmark </td>
+   <td style="text-align:left;"> Grand Mean </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1040.57 </td>
    <td style="text-align:left;">  </td>
@@ -950,7 +949,7 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 <p>The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. This works when looking at SS, since it is the total variance due to each factor. MS is then the average variability for each effect. We can then see clearly which factor is a bigger source of variability by comparing their mean squares.</p>
 <p>The mean square calculations are:</p>
 <p><span class="math display">\[
-MS_\text{Benchmark} = \frac{SS_\text{Benchmark}}{df_\text{Benchmark}} = \frac{1040.57}{1} = 1040.57
+MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{1040.57}{1} = 1040.57
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
@@ -976,7 +975,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Benchmark </td>
+   <td style="text-align:left;"> Grand Mean </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1040.57 </td>
    <td style="text-align:right;"> 1040.57 </td>
@@ -1012,12 +1011,12 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 
 </div>
 </div>
-<p>When getting an <strong>F test statistic</strong>, testing for the treatment factor is the primary factor of interest so only the F test statistic for treatment is calculated for the analysis. To get the F test statistic for treatment, take the mean square (MS) due to treatment and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment effect sizes in the numerator and the variance of the distances for an observed value to its respective treatment mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.</p>
+<p>When getting an <strong>F test statistic</strong>, testing for the treatment factor is the primary factor of interest so only the F test statistic for treatment is calculated for the analysis. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment factor level means in the numerator and the variance of the distances for an observed value to its respective treatment factor level mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.</p>
 <p><span class="math display">\[
 F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 \]</span></p>
 <p><br></p>
-<p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both Treatment Factor and Residual Error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
+<p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both treatment factor and residual error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
 <p>In this example, we get</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="fl">2.11</span>, <span class="dv">3</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1041,7 +1040,7 @@ F_\text{Treatment} = \frac{MS_\text{Treatment}}{MS_\text{Residual Error}} = \fra
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Benchmark </td>
+   <td style="text-align:left;"> Grand Mean </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1040.57 </td>
    <td style="text-align:right;"> 1040.57 </td>
@@ -1110,8 +1109,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>
-<p>We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand <em>which</em> factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="contrasts.qmd">contrasts</a>.</p>
-<p>Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the <a href="docs/model_diagnostics.html">R Instructions-&gt;Model Diagnostics</a> section of the book.</p>
+<p>We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand <em>which</em> factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="./contrast.html">contrasts</a>.</p>
+<p>Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the <a href="docs/model_diagnostics.html">Model Diagnostics</a> and <a href="./assumptions.html">Assumptions</a> sections of the book respectively.</p>
 </section>
 <section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">Resources</h2>
@@ -1124,13 +1123,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h4 class="anchored" data-anchor-id="links-to-outside-resources">Links to outside resources</h4>
 <p>Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.</p>
 <hr>
-</section>
-</section>
-</section>
-<section id="bf2" class="level1">
-<h1>BF2</h1>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

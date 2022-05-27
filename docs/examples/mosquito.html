@@ -139,20 +139,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="../RCommands.html">
+    <a class="dropdown-item" href="../key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../RMarkdownHints.html">
- <span class="dropdown-text">Choosing a response variable</span></a>
+    <a class="dropdown-item" href="../research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../RCheatSheetsAndNotes.html">
- <span class="dropdown-text">Choosing conditions</span></a>
+    <a class="dropdown-item" href="../response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../DataSources.html">
- <span class="dropdown-text">Choosing units/experimental material</span></a>
+    <a class="dropdown-item" href="../experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
@@ -160,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="../BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="../BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
@@ -319,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 y_{ij} = \mu + \alpha_i + \epsilon_{ij}
 \]</span></p>
 <p>Where <span class="math inline">\(y_{ij}\)</span> is the <span class="math inline">\(j^{th}\)</span> observation from treatment <span class="math inline">\(i\)</span></p>
-<p><span class="math inline">\(\mu\)</span> is the grand mean of the dataset. Also referred to as an overall mean or benchmark.</p>
+<p><span class="math inline">\(\mu\)</span> is the grand mean of the dataset.</p>
 <p><span class="math inline">\(\alpha_i\)</span> is the effect of the treatment as described in the background.</p>
 <p><span class="math inline">\(\epsilon_{ik}\)</span>: the error term, or residual term of the model. Since there are 30 subjects for each treatment, <span class="math inline">\(j\)</span> ranges from 1 to 30.</p>
 <p>Applying a one-way ANOVA to this study, we have the null hypothesis that the effect of human mosquito contact, represented by α, is equal for each of the factors. This is formally written as follows. <span class="math display">\[ H_0:\alpha_\text{Odomos} = \alpha_\text{Deltamethrin} = \alpha_\text{Cyfluthrin} = \alpha_\text{D+O} = \alpha_\text{C+O} = 0 \]</span> The alternative hypothesis states that at least one of the effects due to material is different than zero <span class="math display">\[ H_a: \text{at least one } \alpha \text{ is different than 0} \]</span> Using these hypotheses will allow for us to address the question whether any of the materials are better at minimizing mosquito-human contact.</p>

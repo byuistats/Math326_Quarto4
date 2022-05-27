@@ -47,7 +47,7 @@ $$
 
 Where $y_{ij}$ is the $j^{th}$ observation from treatment $i$
 
-$\mu$ is the grand mean of the dataset. Also referred to as an overall mean or benchmark.
+$\mu$ is the grand mean of the dataset.
 
 $\alpha_i$ is the effect of the treatment as described in the background.
 

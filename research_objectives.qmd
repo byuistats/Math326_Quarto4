@@ -1,0 +1,29 @@
+---
+title: "Research Objectives"
+---
+
+Research objectives focus on the outcomes that the researchers hope to accomplish during their study. This may be done by forming questions of interest and determining how those questions can be answered. An effective way to define research objectives is to follow the SMART process: specific, measurable, achievable, relevant, and time-based.
+
+**Specific:** Define your desired outcomes. These outcomes need to be concisely written. They should be written in a way to reduce confusion. Refine these outcomes as you consider the next steps along the SMART process.
+
+**Measurable:** Objectives will be better understood and accomplished when they are measurable. Designed experiments require the collection of data to determine how objectives are met. The population of the study should be considered, so that the collected data are representative of that population. The collected data need to be appropriate and able to answer the questions posed by the objectives. Some concepts, like happines, depression or engagement, are not directly measurable. Ensure that whatever is measured in the study can adequately address research objectives.
+
+**Achievable:** Realistic expectations need to be considered when determining objectives. Studies are more effective when the number of objectives is limited and well-focused. Time, resources, and budget need to be strongly considered when creating achievable objectives.
+
+**Relevant:** Be careful to make sure that your objectives are relevant to your research and overall goals. Review the literature available concerning your research to help drive your objectives towards relevant outcomes that will be appreciated by others in that research area.
+
+**Time-based:** Create a schedule for the main elements of the experiment to keep your research on track. This can be done by defining inch-stones (small tasks and deadlines) and milestones (major tasks and deadlines).
+
+Now, we'll apply the SMART process to the toothbrush study example.
+
+-   **Specific:** The research objectives for this study will be 1) determining how well each toothbrush type reduces plaque and 2) determining if there are any significant differences in plaque reduction between these toothbrush types.
+
+-   **Measure:** Plaque coverage over teeth, measured as a percent of surface area, is measurable with the use of plaque staining dye, an oral camera, and software.
+
+-   **Achievable:** There are only two objectives mentioned in the research objectives, both of which can be answered with the defined measure, keeping this study simple and focused.
+
+-   **Relevant:** Considering that the purpose of our research may be to determine which toothbrush to use, this study should be relevant to those that brush their teeth.
+
+-   **Time-based:** Three inch-stones along the schedule will help us keep on track: 1) find the subjects to be used in the study; 2) collect the data, which would include a 2-month brushing window before collecting the data; and 3) analyze the data. The milestone would be the final report.
+
+------------------------------------------------------------------------
