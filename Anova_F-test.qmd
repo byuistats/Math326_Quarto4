@@ -54,7 +54,7 @@ $H_0: \alpha_1 = 0$ and $H_0: \alpha_2 = 0$ and $H_0: \alpha_3 = 0$.
 
 We may conduct each of these tests at the 0.05 significance level. Incorrectly rejecting the null hypothesis on any one of these tests would result in the same Type 1 error as incorrectly rejecting the null hypothesis of our ANOVA test of all the effects simultaneously.
 
-So what is the probability of committing a Type 1 error in at least 1 of these 3 tests? The simplest way to find the probability of committing a Type 1 error in at least one of 3 tests is to calculate $1 – P(\text{no Type 1 errors in all three tests})$. As previously stated, the significance level (0.05) of each test represents the probability of a Type 1 error. Therefore, the probability of *not* committing a Type 1 error on each test is 0.95. If we treat the tests as independent, we can find the probability of NOT committing a Type 1 error in all of the tests by multiplying the probabilities:
+So what is the probability of committing a Type 1 error in at least 1 of these 3 tests? The simplest way to find the probability of committing at least one Type 1 error in the 3 tests is to calculate $1 – P(\text{no Type 1 errors in all three tests})$. As previously stated, the significance level (0.05) of each test represents the probability of a Type 1 error. Therefore, the probability of *not* committing a Type 1 error on each test is 0.95. If we treat the tests as independent, we can find the probability of NOT committing a Type 1 error in all of the tests by multiplying the probabilities:
 
 $$
 0.95 * 0.95 * 0.95 = 0.857
@@ -154,7 +154,7 @@ $$
 With this is mind, we can fill in the F column of the ANOVA table for Treatment Factor.
 
 | Source           | df  | SS  | MS  |                               F                               | p-value |
-|:-----------------|:---:|:---:|:---:|:-------------------------------------------------------------:|:-------:|
+|:--------|:-------:|:-------:|:-------:|:-----------------------------:|:-------:|
 | Grand Mean       |     |     |     |                                                               |         |
 | Treatment Factor |     |     |     | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     |     |     |                                                               |         |
@@ -190,7 +190,7 @@ Recall that an effect is defined as a deviation from the mean.
 Here, the numerator is the sum of squares and the denominator is the degrees of freedom.
 
 | Source           | df  | SS  |                               MS                                |                               F                               | p-value |
-|:-----------------|:---:|:---:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
+|:--------|:-------:|:-------:|:-----------------:|:----------------:|:-------:|
 | Grand Mean       |     |     |                                                                 |                                                               |         |
 | Treatment Factor |     |     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     |     |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
@@ -203,7 +203,7 @@ Let's talk about the numerator first, this will be the sum of squared deviations
 To avoid this problem, statisticians square the distances before summing them. This results in a value that summarizes the total amount of spread in the dataset. This quantity, the Sum of Squares, is important and so it has its own column in the ANOVA summary table.
 
 | Source           | df  |                  SS                   |                               MS                                |                               F                               | p-value |
-|:-----------------|:---:|:-------------------------------------:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
+|:----------|:---------:|:---------:|:--------------:|:-------------:|:---------:|
 | Grand Mean       |     |        $n*\bar{y}_\text{..}^2$        |                                                                 |                                                               |         |
 | Treatment Factor |     |    $$ \sum \hat{\alpha}_i^2*n_i$$     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     | $$ \sum \hat{\epsilon}_\text{ij}^2 $$ |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
@@ -228,7 +228,7 @@ In our dataset we have a certain number of observations. All those observations 
 For additional explanation, consider this simple example. There are three data points and you know that the mean of these 3 data points is 10. The value of the first data point could be any number, it is free to vary. The value of the second data point could also be any number, it is free to vary. The third number's value is not free to vary. It is constrained by the fact that the mean of the 3 data points must be 10. The values of the first two datapoints will determine the value of the third under the constraint of a known (or estimated) mean.
 
 |   value 1    |   value 2    |           value 3           |     | Mean of 3 Values |
-|:------------:|:------------:|:---------------------------:|:---:|:----------------:|
+|:-----------:|:-----------:|:-------------------:|:-----------:|:-----------:|
 |      a       |      b       |       $3*10 - (a+b)$        | -\> |        10        |
 | free to vary | free to vary | depends on other two values |     |                  |
 

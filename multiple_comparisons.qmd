@@ -1,0 +1,227 @@
+---
+title: "Multiple Comparison"
+format:
+  html:
+    code-fold: show
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(emmeans)
+library(tidyverse)
+library(pander)
+library(kableExtra)
+
+```
+
+# Introduction
+
+In this page, the approach to dealing with multiple contrasts is explained. Specifically, whether and how to adjust the tests of multiple contrasts to account for an inflated family wise error rate. A few techniques are described, with a focus on when to use which technique. Lastly, instructions and example code is provided for carrying out each technique in R.
+
+In most good experiments, researchers are interested in more than just one contrast. Conducting multiple tests on the levels of a factor can inflate the family wise Type I error rate, as illustrated in the "Multiple T-tests" section of the [ ANOVA](Anova_F-test.qmd) page. There is considerable disagreement among statisticians about how to approach the issue of multiple tests. The debate primarily focuses on whether to proactively take steps that will mitigate the inflated family wise error rate or not. To further complicate matters, if an adjustment is desired, there are multiple techniques to choose from. An exhaustive presentation of the arguments on either side is not attempted in this text. Though, a few of the key ideas will naturally emerge as the different approaches are discussed.
+
+::: column-margin
+The terms "contrast" and "comparison" are treated here as synonymous. Comparison is used more often to refer to testing a difference in factor level means. Read [Contrasts](contrast.qmd) for more explanation of these terms.
+:::
+
+# No Adjustment
+
+Many statisticians believe that no adjustment is necessary when testing multiple contrasts. Most statisticians would qualify this bold claim by adding that this is true only/especially if there are just a few, pre-planned contrasts to be tested. The strength of this argument grows if the set of contrasts are orthogonal since this places natural limits on the quantity of contrasts and ensures a clean partitioning of the sum of squares.
+
+The main idea behind this approach is more philosophical than mathematical. Proponents of no adjustment argue that a handful of pre-planned contrasts are interesting in isolation and should be tested that way. Thus, the statistical significance of the contrasts are not influenced by characteristics of the experimental design that have no bearing on whether the relationship exists in the real world. For example, how many factor levels exist and how many other contrasts are planned should not have an impact on your ability to find significance in a premeditated comparison.
+
+Making no adjustment to the tests increases the likelihood a researcher will find statistical significance among the contrasts. The danger is that a researcher may be tempted to abuse this fact by planning to test many contrasts. The researcher has not taken the time to distill key hypotheses s/he wants the experiment to answer. A large collection of contrasts to test probably indicates the experiment is being used to generate hypotheses rather than test them. An exploratory exercise of this nature should be treated differently and is not in harmony with the philosophy of those who subscribe to "no adjustment".
+
+# Adjustment Techniques
+
+There is a range of scenarios where multiple contrasts are used. From just a few, pre-planned contrasts to a completely exploratory analysis, to somewhere in between. There are many techniques to choose from. Here we present just 4 adjustment techniques:
+
+-   Bonferroni: for a few, pre-planned contrasts
+-   Scheffé: for contrasts resulting from data exploration, or "data snooping"
+-   Tukey: for testing all pairwise comparisons, which may be the result of pre-planned contrasts or from data exploration
+-   Fisher: for a less conservative approach in testing all pairwise comparisons
+
+## Bonferroni
+
+The Bonferroni adjustment is best for a handful of pre-planned contrasts. As the number of contrasts grows, the adjustment quickly becomes too conservative (i.e. makes it too hard to find significance). In that case, other methods may strike a better balance between Type I and Type II errors.
+
+::: column-margin
+Type I error occurs when a true hypothesis is rejected. Type II error occurs when a false hypothesis is not rejected.
+:::
+
+It can be shown that in order to not exceed a desired family wise error rate of $\alpha_\text{fw}$, for a set of $k$ contrasts, each individual contrast should be tested at a significance level of $\frac{\alpha_\text{fw}}{k}$. For example, if we desire a family wise error rate of 0.05 and plan to do 5 tests, each individual contrast must have a p-value less than $\frac{0.05}{5} = 0.01$ to be considered significant. The test itself has not changed, only the benchmark p-value for claiming significance. This adjustment is easy to understand and to calculate.
+
+## Scheffé
+
+Using experimental results to suggest which contrasts to test is often referred to as "data snooping" or exploratory analysis. For example, you may look at graphical and numerical summaries to see which means (or combinations of means) will be promising to test. The problem with this approach is that you have essentially done a quick, informal test of many differences when you looked at descriptive statistics and plots. In other words, you have already tested the means and combinations of the means in your mind. The Type I error rate of the contrasts will be different (higher) than stated because you are only formally applying the test to those that look significant already.
+
+Scheffé's method is most useful when many contrasts are tested, especially when going beyond pairwise comparisons of factor level means to test combined factor levels (i.e. complex comparisons). In data exploration, there are theoretically an infinite number of contrasts you could test. This is not a problem for Scheffé's adjustment because, unlike other adjustment techniques, Scheffé's adjustment does not depend on the number of comparisons to be made. Rather, it is determined only by the number of factor levels and the number of observations.
+
+The F statistic used to test a contrast in Scheffé's adjustment is related to the omnibus F test for the factor itself, and is given by:
+
+$$
+F_\text{Scheffé} = (k-1)*F
+$$
+
+Where $F$ is the statistic for the F test of the factor as usual. $k$ is the number of levels in that factor. $F_\text{Scheffé}$ has $df_\text{numerator} = k-1$ and $df_\text{denominator} = df_\text{residual}$. Scheffé's test output is often in terms of a t test. [Recall](contrast.qmd) that the t statistic is simply the square root of the F statistic.
+
+If you are interested in only a specific set of hypotheses (all pairwise comparisons, or all treatment levels vs. control, or all levels compared to the "best" level, etc.) there may be another adjustment technique that will provide better statistical power. Two of which are mentioned below.
+
+## Methods Designed for All Pairwise Comparisons
+
+Whether it is an exploratory analysis or a pre-planned set of contrasts, many researchers want to test all factor level means against each other. This is usually referred to as testing all pairwise comparisons. Because this situation is so common, two approaches are described below.
+
+### Tukey's HSD
+
+If a multiple comparison adjustment is desired for testing all pairwise comparisons, a standard approach is to apply Tukey's Honest Significant Difference (HSD) technique. Occasionally, in the case of few factor levels, Bonferroni's adjustment may result in more significant findings. If that is the case, use Bonferroni's correction instead.
+
+The calculation for this test is based on the distribution of $Q$. The test statistic $Q$ is sometimes called the studentized range distribution. "Range" is a reference to the numerator where the difference between a maximum and a minimum is calculated. "Studentized" because we are dividing by the estimated standard error, a technique for standardizing famously employed by Student's (a.k.a. William Gossett) t test. $Q$ is calculated as:
+
+$$
+Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
+$$ {#eq-q}
+
+-   $MSE$ is an estimate of the random error variance
+-   $n$ is the number of replicates at each factor level. For unequal sample sizes the formula changes somewhat and the result of this test may have a lower Type I error rate than claimed
+-   The observations for each level are generated by a different random variable: $k$ variables total, one for each level. Each random variable is normally distributed with mean zero and standard deviation estimated by the denominator of @eq-q. $max(T_i)$ is the maximum value of the $k$ random variables, $min(T_i)$ is the minimum.
+-   The distribution of $Q$ will depend on the number of treatments being compared, $k$, and the number of degrees of freedom for error.
+
+### Fisher's LSD
+
+Making adjustments for multiple contrasts is a conservative approach, meaning it is more difficult to claim significance compared to when no adjustment is made. Though these adjustments prevent understating the probability of Type I error, they increase the probability of Type II error for each individual contrast. In exploratory analysis where you are looking for hints of what to study further, a Type II error may be a greater concern than Type I.
+
+For example, consider a screening study intended to narrow down the number of factors studied in a future experiment. In this case, accidentally ruling out something early on that actually does have a significant impact on the response is more egregious than letting a non-significant factor through to the next experiment where it's non-significance will be discovered.
+
+Fisher's Least Significant Difference (LSD) employs no adjustment at all to the pairwise comparisons. However, before proceeding to test pairwise comparisons, the F test for the factor must be significant. Using the less powerful F test as a gatekeeper to the more powerful pairwise t tests serves as a partial protection against extreme Type I errors inflation.
+
+In summary, Fisher's LSD is a two step process. First, verify the F test for the factor is significant. Second, if it is, proceed with all pairwise comparisons without any adjustment. Fisher's LSD tends to be used in studies where many factors are present, especially screening/exploratory studies.
+
+# R Instructions
+
+For most adjustment techniques, before testing the contrasts the data needs to be read in and a model created. The adjustment techniques will be illustrated using data from the toothbrush BF\[1\] example.
+
+```{r message = FALSE}
+#| code-fold: show
+
+df <- read_csv("data/toothpaste_BF2.csv")
+plaque_aov <- aov(Plaque ~ Brush, data = df)
+```
+
+## Bonferonni
+
+There are two ways to implement the Bonferroni adjustment  illustrated below using the contrasts that were tested in the [R Instructions section of the Contrast page](contrast.qmd).
+
+::: column-margin
+See R instructions for Fisher's LSD for a shortcut to apply Bonferroni adjustment to all pairwise comparisons.
+:::
+
+#### Recalculate an Alpha Level by Hand
+
+First, the Bonferroni adjustment is shown using output provided for a test of contrasts without adjustment. The code and output from the [R Instructions section of the Contrast page](contrast.qmd) is provided again here for convenience. These two contrasts test the mean of the manual brush against the oscillating brush mean, as well as the manual brush mean against the mean of all the other brushes combined.
+
+```{r message = FALSE, warning = FALSE}
+#| code-fold: show
+
+brush_means <- emmeans(plaque_aov, "Brush")
+contrast_results <- contrast(brush_means,
+                             list(man_v_osc = c(1,-1,0,0),
+                                  man_v_others = c(1,-(1/3),-(1/3),-(1/3))), 
+                             adjust="none")
+
+#kable commands are for formatting the output
+contrast_results |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+```
+
+<br/>
+
+A new alpha level against which to compare the p-values can be calculated by hand. Since there are two tests, if the intent was to keep the family wise error rate of 0.05, the alpha level for each individual test is $\frac{0.05}{2} = 0.025$. To be considered significant, the contrast's p-value must be less than 0.025.
+
+`man_v_osc` has a p-value of 0.06; `man_v_others` has a p-value of 0.74. Since neither contrast has a p-value less than 0.025 we conclude that the contrasts are not statistically significant.
+
+#### Make the Adjustment in R
+
+Second, the Bonferroni adjustment is applied by changing the value of the `adjust =` argument in the `contrast()` function from "none" to "bon".
+
+```{r message = FALSE}
+#| code-fold: show
+
+bon_results <- contrast(brush_means,
+                        list(man_v_osc = c(1,-1,0,0),
+                             man_v_others = c(1,-(1/3),-(1/3),-(1/3))), 
+                        adjust="bon")
+
+#kable commands are for formatting the output
+bon_results |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+```
+
+<br/>
+
+In these results the p-values have simply been multiplied by 2 because there were 2 contrasts in the set being tested. Each test can be compared to our desired family wise error rate as usual. Since each test has a p-value greater than 0.05 we conclude that the contrasts are not statistically significant.
+
+Note, for `man_v_others` the p-value is capped at 1.00 since a p-value cannot exceed 1.00.
+
+## Scheffé
+
+Similar to how the Bonferroni adjustment was applied, to apply a Scheffé adjustment, change the value of the `adjust =` argument in the `contrast()` function from "none" to "scheffe".
+
+```{r message = FALSE}
+#| code-fold: show
+
+contrast(brush_means, 
+         list(man_v_osc = c(1,-1,0,0),
+              man_v_others = c(1,-(1/3),-(1/3),-(1/3))),
+         adjust="scheffe") |> 
+
+  #kable commands are for formatting the output
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+
+```
+
+<br/> Each contrast's p-value can be compared to our desired family wise error rate of 0.05. Since each test has a p-value greater than 0.05 we conclude that the contrasts are not statistically significant. Notice the p-values with Scheffé's adjustment are higher than the p-values with Bonferroni's adjustment. This will always be the case if the number of contrasts being tested is small.
+
+## Tukey
+
+In our toothbrush example, if we want to compare each factor level mean to the other we can apply Tukey's HSD adjustment using a base R function. The arguments to the function are the name of the model and the name of the factor whose means should be tested. Notice the `emmeans` grid does not have to be created and the contrast coefficients do not explicitly need to be input. The output provides an estimate of each pairwise comparison, as well as adjusted simultaneous confidence intervals and p-values.
+
+```{r message = FALSE, warning = FALSE}
+#| code-fold: show
+
+TukeyHSD(plaque_aov, "Brush") |> pander()
+```
+
+With a p-value of 0.01, only the `Ultrasonic-Oscillating` contrast is significant. This significance is driven by the large difference in means between the two levels, Ultrasonic's mean is 5.337 higher than Oscillating. All other pairwise comparisons have p-values greater than 0.05 and so are not considered significant.
+
+## Fisher {#sec-fisher}
+
+First, look at the ANOVA summary table to see if the F test for brush is significant.
+
+```{r message = FALSE, warning = FALSE}
+#| code-fold: true
+
+summary(plaque_aov)
+```
+
+<br/>
+
+The p-value for `Brush` is significant at the 0.05 level. You can then proceed with an unadjusted test of all pairwise comparisons for the `Brush` factor. The syntax for this function is a bit different. You do not have to create the model first.
+
+It requires the response vector as the first argument, the factor vector as the 2nd argument, and an adjustment for multiple comparisons (if any) as the 3rd argument.
+
+```{r message = FALSE, warning = FALSE}
+#| code-fold: show
+
+pairwise.t.test(df$Plaque, df$Brush, p.adjust.method = "none") |> 
+  pander()
+```
+
+<br/>
+The output is a triangular matrix of p-values. The p-value for `Ultrasonic vs. Oscillating` is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though `Oscillating vs. Manual` is close, with a p-value of 0.0632.
+
+::: callout-note
+The `pairwise.t.test()` can receive "bon" as an input to the `p.adjust.method =` argument, which will perform all pairwise comparisons and apply the Bonferroni adjustment. When the number of factor levels is small Bonferroni is preferred over the Tukey's HSD because it provides more statistical power.
+:::

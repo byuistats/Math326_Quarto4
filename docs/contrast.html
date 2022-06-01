@@ -221,8 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+    <a class="dropdown-item" href="./multiple_comparisons.html">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
@@ -309,8 +309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="what-is-a-contrast">What is a Contrast?</h2>
 <p>The ANOVA F test is considered an omnibus test, meaning it tests all the factor levels of a factor at once. If the test suggests the null hypothesis should be rejected it seems to give rise to more questions than answers. Specifically, you will want to know which factor levels are significantly different from which other factor levels.</p>
 <p>Usually during the design of an experiment, the researcher has specific comparisons in mind that are of particular interest. For example, they may be interested in comparing treatment effects for two dosing levels. These pre-planned comparisons usually drive the experimental design. When it comes time for analysis, an omnibus F-test test may be skipped entirely in favor of jumping directly to the planned comparisons. Or, if the F-test finds statistical significance, the researcher may follow-up with focused post-hoc tests of specific factor levels.</p>
-<p>When one factor level mean is compared to another, it is called a <strong>pairwise comparison</strong>. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.</p>
-<p>Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the “treatment” toothbrushes vs.&nbsp;the control group (manual). When an average across groups is involved, this is called a complex comparison, or linear <strong>contrast</strong>.</p>
+<p>When one factor level mean is compared to another, it is called a <strong>pairwise comparison, or simple contrasts</strong>. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.</p>
+<p>Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the “treatment” toothbrushes vs.&nbsp;the control group (manual). When an average across groups is involved, this is called a <strong>complex comparison</strong>, or linear <strong>contrast</strong>.</p>
 <p>We can represent the null hypotheses of these 4 example contrasts as:</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <thead>
 <tr class="header">
 <th>Four Null Hypotheses</th>
-<th>Hypotheses expressed as a sum of mean and coefficients</th>
+<th>Left Hand Side of Hypotheses Expressed as a Sum of Means and Coefficients</th>
 </tr>
 </thead>
 <tbody>
@@ -361,13 +361,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<p>The contents on the left of the equals sign in the right column of <a href="#tbl-expanded">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
+<p>The contents in the right column of <a href="#tbl-expanded">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
 <div id="tbl-coefficients" class="anchored">
 <table class="table">
 <caption>Table 2: Contrast Coefficients</caption>
 <colgroup>
-<col style="width: 28%">
-<col style="width: 45%">
+<col style="width: 29%">
+<col style="width: 44%">
 <col style="width: 26%">
 </colgroup>
 <thead>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<p>There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e.&nbsp;simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple contrasts.</p>
+<p>There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e.&nbsp;simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across certain factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple situations.</p>
 </section>
 <section id="testing-a-contrast" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="testing-a-contrast">Testing a Contrast</h2>
@@ -431,7 +431,7 @@ t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} 
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Note, by using the MSE from the ANOVA summary table we are also able to take advantage of the information about the size of the residual errors contained in the observations of sonic and ultrasonic brushes as well as the observations from manual and oscillating.</p>
+<p>Note, by using the MSE from the ANOVA summary table we are taking advantage of information about residual errors contained in the observations of sonic and ultrasonic brushes as well as the observations from manual and oscillating. This leads to a better estimate of the size of random error.</p>
 </div>
 </div>
 </div>
@@ -621,7 +621,7 @@ Danger
 <section id="r-instructions" class="level3">
 <h3 class="anchored" data-anchor-id="r-instructions">R Instructions</h3>
 <p>This section illustrates just one way to test <em>custom</em> contrasts in R. There are many packages, each with their unique syntax, for computing and testing contrasts. As you work more in the field, you may find another package better suits your needs.</p>
-<p>There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read “Multiple Comparisons” to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.</p>
+<p>There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here but may require other R packages. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read “Multiple Comparisons” to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.</p>
 <script type="text/javascript">
  function showhide(id) {
     var e = document.getElementById(id);

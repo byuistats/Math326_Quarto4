@@ -158,8 +158,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./MakingInference.html">
- <span class="dropdown-text">ZMultiple Pairwise Testing</span></a>
+    <a class="dropdown-item" href="./multiple_comparisons.html">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./WilcoxonTests.html">
@@ -264,7 +264,7 @@ H_0: \alpha_1 = \alpha_2 =  \alpha_3 = 0
 <p>If we attempt to approach the problem by conducting multiple t-tests, we would test the following set of null hypotheses:</p>
 <p><span class="math inline">\(H_0: \alpha_1 = 0\)</span> and <span class="math inline">\(H_0: \alpha_2 = 0\)</span> and <span class="math inline">\(H_0: \alpha_3 = 0\)</span>.</p>
 <p>We may conduct each of these tests at the 0.05 significance level. Incorrectly rejecting the null hypothesis on any one of these tests would result in the same Type 1 error as incorrectly rejecting the null hypothesis of our ANOVA test of all the effects simultaneously.</p>
-<p>So what is the probability of committing a Type 1 error in at least 1 of these 3 tests? The simplest way to find the probability of committing a Type 1 error in at least one of 3 tests is to calculate <span class="math inline">\(1 – P(\text{no Type 1 errors in all three tests})\)</span>. As previously stated, the significance level (0.05) of each test represents the probability of a Type 1 error. Therefore, the probability of <em>not</em> committing a Type 1 error on each test is 0.95. If we treat the tests as independent, we can find the probability of NOT committing a Type 1 error in all of the tests by multiplying the probabilities:</p>
+<p>So what is the probability of committing a Type 1 error in at least 1 of these 3 tests? The simplest way to find the probability of committing at least one Type 1 error in the 3 tests is to calculate <span class="math inline">\(1 – P(\text{no Type 1 errors in all three tests})\)</span>. As previously stated, the significance level (0.05) of each test represents the probability of a Type 1 error. Therefore, the probability of <em>not</em> committing a Type 1 error on each test is 0.95. If we treat the tests as independent, we can find the probability of NOT committing a Type 1 error in all of the tests by multiplying the probabilities:</p>
 <p><span class="math display">\[
 0.95 * 0.95 * 0.95 = 0.857
 \]</span></p>
@@ -391,12 +391,12 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 <table class="table">
 <caption>Table 2: Blank ANOVA summary table for an experiment with 1 treatment factor</caption>
 <colgroup>
-<col style="width: 17%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 60%">
-<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 40%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -469,12 +469,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <p>Here, the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 39%">
-<col style="width: 38%">
-<col style="width: 5%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -528,12 +528,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <p>To avoid this problem, statisticians square the distances before summing them. This results in a value that summarizes the total amount of spread in the dataset. This quantity, the Sum of Squares, is important and so it has its own column in the ANOVA summary table.</p>
 <table class="table">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 2%">
-<col style="width: 19%">
-<col style="width: 32%">
-<col style="width: 31%">
-<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 20%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -608,9 +608,9 @@ Degrees of Freedom
 <colgroup>
 <col style="width: 17%">
 <col style="width: 17%">
-<col style="width: 36%">
-<col style="width: 6%">
-<col style="width: 22%">
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">

@@ -65,8 +65,8 @@ website:
           href: assumptions.qmd
         - text: "Contrasts"
           href: contrast.qmd
-        - text: "ZMultiple Pairwise Testing"
-          href: MakingInference.html
+        - text: "Multiple Comparisons"
+          href: multiple_comparisons.qmd
         - text: "ZUnbalanced Datasets"
           href: WilcoxonTests.html
         - text: "ZPower??"

@@ -29,9 +29,9 @@ The ANOVA F test is considered an omnibus test, meaning it tests all the factor 
 
 Usually during the design of an experiment, the researcher has specific comparisons in mind that are of particular interest. For example, they may be interested in comparing treatment effects for two dosing levels. These pre-planned comparisons usually drive the experimental design. When it comes time for analysis, an omnibus F-test test may be skipped entirely in favor of jumping directly to the planned comparisons. Or, if the F-test finds statistical significance, the researcher may follow-up with focused post-hoc tests of specific factor levels.
 
-When one factor level mean is compared to another, it is called a **pairwise comparison**. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.
+When one factor level mean is compared to another, it is called a **pairwise comparison, or simple contrasts**. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.
 
-Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the "treatment" toothbrushes vs. the control group (manual). When an average across groups is involved, this is called a complex comparison, or linear **contrast**.
+Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the "treatment" toothbrushes vs. the control group (manual). When an average across groups is involved, this is called a **complex comparison**, or linear **contrast**.
 
 We can represent the null hypotheses of these 4 example contrasts as:
 
@@ -53,7 +53,7 @@ $\begin{aligned} H_0: \mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} +
 
 The above hypotheses can all be expressed as a sum, where each factor level mean is multiplied by a coefficient. When a factor level is not a part of the hypotheses, it has a coefficient of zero.
 
-| Four Null Hypotheses                                                                                               | Hypotheses expressed as a sum of mean and coefficients                                                           |
+| Four Null Hypotheses                                                                                               | Left Hand Side of Hypotheses Expressed as a Sum of Means and Coefficients                                        |
 |---------------------------|---------------------------------------------|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$                                                 | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$                                 |
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$                                             | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$                                 |
@@ -62,10 +62,10 @@ The above hypotheses can all be expressed as a sum, where each factor level mean
 
 : Expanded Hypotheses {#tbl-expanded}
 
-The contents on the left of the equals sign in the right column of @tbl-expanded are referred to as contrasts. We will use the symbol $\psi$ to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. **To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.** We will often write coefficients used in a contrast as a set, in curly braces as shown in @tbl-coefficients. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.
+The contents in the right column of @tbl-expanded are referred to as contrasts. We will use the symbol $\psi$ to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. **To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.** We will often write coefficients used in a contrast as a set, in curly braces as shown in @tbl-coefficients. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.
 
 | $H_0$                                                                                                              | Contrast ($\psi$) Tested in $H_0$                                                                                | Set of Contrast Coefficients                        |
-|---------------------|---------------------------------|-------------------|
+|---------------------|--------------------------------|-------------------|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$                                                 | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$                                 | $\{ -1, 1, 0, 0 \}$                                 |
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$                                             | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$                                 | $\{ 0, 0, 1, -1 \}$                                 |
 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$                  | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$            | $\{ 0, 1, -\frac{1}{2}, -\frac{1}{2} \}$            |
@@ -73,7 +73,7 @@ The contents on the left of the equals sign in the right column of @tbl-expanded
 
 : Contrast Coefficients {#tbl-coefficients}
 
-There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e. simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple contrasts.
+There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e. simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across certain factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple situations.
 
 ## Testing a Contrast
 
@@ -110,7 +110,7 @@ $$ {#eq-diff2means}
 The difference in the numerator is calculated directly from the contrast (multiplying the set of coefficients by their respective factor level mean). In the denominator, the pooled variance ($s^2_p$) is identical to the mean squared error from the ANOVA summary table. The degrees of freedom for this test statistic are equivalent to the residual degrees of freedom.
 
 ::: {.callout-note appearance="simple"}
-Note, by using the MSE from the ANOVA summary table we are also able to take advantage of the information about the size of the residual errors contained in the observations of sonic and ultrasonic brushes as well as the observations from manual and oscillating.
+Note, by using the MSE from the ANOVA summary table we are taking advantage of information about residual errors contained in the observations of sonic and ultrasonic brushes as well as the observations from manual and oscillating. This leads to a better estimate of the size of random error.
 :::
 
 For our study on toothbrushes we have the model:
@@ -222,7 +222,7 @@ We could have reached exactly the same conclusions by conducting an appropriate 
 
 This section illustrates just one way to test *custom* contrasts in R. There are many packages, each with their unique syntax, for computing and testing contrasts. As you work more in the field, you may find another package better suits your needs.
 
-There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read "Multiple Comparisons" to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.
+There are sets of comparisons (a.k.a. contrasts) that are commonly done in practice. The calculation of these sets can be obtained with simpler code than what is shown here but may require other R packages. In addition, when testing multiple contrasts simultaneously there are potentially other adjustments that should be made. Please read "Multiple Comparisons" to understand what other adjustments to consider as well as the R code for conducting these common sets of comparisons.
 
 ```{r child="hoveRmd/contrast_R_instructions.Rmd"}
 
