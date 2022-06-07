@@ -109,7 +109,7 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
@@ -323,7 +323,7 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 </figure>
 </div>
 <p>If the ratio of variances is large (as in <a href="#fig-xo-different">Figure&nbsp;1</a>), then we get a large F statistic and a small p-value. If the p-value is less than our chosen level of significance we conclude that at least one factor level effect is non-zero. On the other hand, as the F ratio gets smaller and approaches 1 (similar to <a href="#fig-xo-same">Figure&nbsp;2</a>) our p-value increases and we may have insufficient evidence to say that the treatment factor has an effect on the response.</p>
-<p>An F-test is only performed on structural factors. A test of the grand mean is not interesting, and a test of the residual error factor does not make sense.</p>
+<p>An F-test is only performed on structural factors. A test of the grand mean is not interesting, and a test of the residual error factor does not make sense. In fact, doing an F test of the residual error factor is not possible since the mean square error is typically the denominator in our F statistic.</p>
 <p>The question then follows, <strong>how do we estimate variation between factor levels and within factor levels?</strong></p>
 <p>Similar to the way in which we were able to break down each observation into its component parts using the <a href="./effects_model.html">effects model</a>, we now want to break down the variability in the dataset into its component parts. We will estimate how much of the total variability in the dataset comes from each of the terms (or factors) in the effects model.</p>
 
@@ -524,8 +524,9 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 </section>
 <section id="sum-of-squares-ss" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="sum-of-squares-ss">Sum of Squares (SS)</h2>
-<p>Let’s talk about the numerator first, this will be the sum of squared deviations, or <strong>Sum of Squares</strong> for short. The Sum of Squares is a measure of the total variability in a dataset. A naïve approach to calculating total variability in a dataset is to measure the distance from each value to the mean of the dataset. The problem with this approach is that those distance measures will always sum to zero.</p>
+<p>Let’s talk about the numerator first, this will be the sum of squared deviations, or <strong>Sum of Squares</strong> for short. The Sum of Squares (SS) is a measure of the total variability in a dataset. A naïve approach to calculating total variability in a dataset is to measure the distance from each value to the mean of the dataset. The problem with this approach is that those distance measures will always sum to zero.</p>
 <p>To avoid this problem, statisticians square the distances before summing them. This results in a value that summarizes the total amount of spread in the dataset. This quantity, the Sum of Squares, is important and so it has its own column in the ANOVA summary table.</p>
+<p>In the table below an equation for each factor’s SS is listed using terms from the factor effects model. We’ll walk through the meaning of each of those equations.</p>
 <table class="table">
 <colgroup>
 <col style="width: 14%">
@@ -557,7 +558,7 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <tr class="even">
 <td style="text-align: left;">Treatment Factor</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math display">\[ \sum \hat{\alpha}_i^2*n_i\]</span></td>
+<td style="text-align: center;"><span class="math display">\[ \sum (\hat{\alpha}_i^2*n_i)\]</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}\)</span></td>
 <td style="text-align: center;"></td>
@@ -573,7 +574,7 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <tr class="even">
 <td style="text-align: left;">Total</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(y_\text{ij}^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sum y_\text{ij}^2\)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -583,7 +584,17 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>A deviation from the mean can be thought of as an effect. That is why the symbols for factor effects are used in the SS column in the ANOVA summary table.</p>
-</div></div></section>
+</div></div><p>First, let’s review the factor effects model.</p>
+<p><span class="math display">\[
+y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}$
+\]</span></p>
+<ul>
+<li>Grand Mean SS: <span class="math inline">\(\bar{y}_\text{..}\)</span> is the grand mean. Its value should be squared and then multiplied by <span class="math inline">\(n\)</span>, which is the total number of observations in the study.</li>
+<li>Treatment Factor SS: Recall that <span class="math inline">\(\hat{\alpha}_i\)</span> is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, <span class="math inline">\(n_i\)</span>. Finally, the <span class="math inline">\(\sum\)</span> symbol means to add all those products together.</li>
+<li>Residual Error SS: <span class="math display">\[ \hat{\epsilon}_\text{ij} \]</span> is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.</li>
+<li>Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.</li>
+</ul>
+</section>
 <section id="degrees-of-freedom" class="level2">
 <h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>Degrees of freedom can be thought of as the number of unique pieces of information that contributed to the variance estimate, mean squares.</p>
@@ -642,7 +653,7 @@ Degrees of Freedom
 <p>How does this apply to the analysis of variance? Initially you have <span class="math inline">\(n\)</span> observations, or in other words <span class="math inline">\(n\)</span> unique pieces of information that can be used to estimate variance of the dataset. As I try to break the variance into its component pieces, I will also need to reallocate those <span class="math inline">\(n\)</span> pieces of information to each factor (grand mean, treatment factor, residual error) for use in estimating their mean squared error. To paraphrase the law of the conservation of mass, “the number of observations can neither be created nor destroyed”. The sum of degrees of freedom for all the factors must equal the number of observations in the dataset.</p>
 <p>We will reason through the degrees of freedom calculation for each of the 3 sources in the ANOVA table. Keep in mind, we are using the simplest experiment, just one treatment factor, to illustrate these concepts. In more complex designs, there will be additional factors listed in the “sources” column.</p>
 <p>As was mentioned, every time we use the data to estimate a parameter we use a degree of freedom. To find the grand mean we average over all the values in the dataset; that uses up one degree of freedom because we have estimated 1 mean.</p>
-<p>When calculating the degrees of freedom for the treatment factor you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure <a href="#tbl-df-example">Table&nbsp;3</a>. Because I have already estimated the grand mean, the last factor level is is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.</p>
+<p>When calculating the <strong>degrees of freedom for the treatment factor</strong> you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure <a href="#tbl-df-example">Table&nbsp;3</a>. Because I have already estimated the grand mean, the last factor level is is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.</p>
 <p>Explained another way, consider the fact that all the factor level effects must sum to zero. If there are <span class="math inline">\(m\)</span> factor levels, I only need to estimate effects for <span class="math inline">\(m-1\)</span> levels. The last level’s effect is a function of the other factor level effects, it does not need to be estimated and therefore does not need a degree of freedom.</p>
 <p>Finally, consider the <strong>residual error factor</strong>. The non-technical definition of the term residual means “left over”. The degrees of freedom for the residual error factor is whatever degrees of freedom are left over after calculating degrees of freedom for all other factors.</p>
 <p>In summary, to estimate the degrees of freedom for a factor, start with its number of levels and then subtract the number of means that need to be calculated in order to calculate the factor’s level effects. This is exactly what the general rule for finding degrees of freedom tells us.</p>

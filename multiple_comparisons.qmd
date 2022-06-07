@@ -18,7 +18,7 @@ library(kableExtra)
 
 In this page, the approach to dealing with multiple contrasts is explained. Specifically, whether and how to adjust the tests of multiple contrasts to account for an inflated family wise error rate. A few techniques are described, with a focus on when to use which technique. Lastly, instructions and example code is provided for carrying out each technique in R.
 
-In most good experiments, researchers are interested in more than just one contrast. Conducting multiple tests on the levels of a factor can inflate the family wise Type I error rate, as illustrated in the "Multiple T-tests" section of the [ ANOVA](Anova_F-test.qmd) page. There is considerable disagreement among statisticians about how to approach the issue of multiple tests. The debate primarily focuses on whether to proactively take steps that will mitigate the inflated family wise error rate or not. To further complicate matters, if an adjustment is desired, there are multiple techniques to choose from. An exhaustive presentation of the arguments on either side is not attempted in this text. Though, a few of the key ideas will naturally emerge as the different approaches are discussed.
+In most good experiments, researchers are interested in more than just one contrast. Conducting multiple tests on the levels of a factor can inflate the family wise Type I error rate, as illustrated in the "Multiple T-tests" section of the [ANOVA](Anova_F-test.qmd) page. There is considerable disagreement among statisticians about how to approach the issue of multiple tests. The debate primarily focuses on whether to proactively take steps that will mitigate the inflated family wise error rate or not. To further complicate matters, if an adjustment is desired, there are multiple techniques to choose from. An exhaustive presentation of the arguments on either side is not attempted in this text. Though, a few of the key ideas will naturally emerge as the different approaches are discussed.
 
 ::: column-margin
 The terms "contrast" and "comparison" are treated here as synonymous. Comparison is used more often to refer to testing a difference in factor level means. Read [Contrasts](contrast.qmd) for more explanation of these terms.
@@ -96,6 +96,15 @@ Fisher's Least Significant Difference (LSD) employs no adjustment at all to the 
 
 In summary, Fisher's LSD is a two step process. First, verify the F test for the factor is significant. Second, if it is, proceed with all pairwise comparisons without any adjustment. Fisher's LSD tends to be used in studies where many factors are present, especially screening/exploratory studies.
 
+# Summary Table
+
+| Adjustment   | When to Use                                                                                                | Implications                                                                                   |
+|-------------|-----------------------------|-------------------------------|
+| Bonferroni   | A small number of pre-planned contrasts                                                                    | Too difficult to find significance if *many* contrasts are tested.                             |
+| Scheffe      | Post-hoc contrasts/data snooping, particularly useful for complex comparisons                              | Most severe adjustment. Difficult to find significance, but keeps Type I error in check        |
+| Tukey's HSD  | When testing all pairwise comparisons and want to control family wise significance level                   | A standard adjustment for all pairwise comparisons: pre-planned or post-hoc.                   |
+| Fisher's LSD | When testing all pairwise comparisons and willing to accept higher Type I error, e.g. in a screening study | Easier to find significance than if an adjustment is applied, but higher risk of Type I error. |
+
 # R Instructions
 
 For most adjustment techniques, before testing the contrasts the data needs to be read in and a model created. The adjustment techniques will be illustrated using data from the toothbrush BF\[1\] example.
@@ -109,7 +118,7 @@ plaque_aov <- aov(Plaque ~ Brush, data = df)
 
 ## Bonferonni
 
-There are two ways to implement the Bonferroni adjustment  illustrated below using the contrasts that were tested in the [R Instructions section of the Contrast page](contrast.qmd).
+There are two ways to implement the Bonferroni adjustment illustrated below using the contrasts that were tested in the [R Instructions section of the Contrast page](contrast.qmd).
 
 ::: column-margin
 See R instructions for Fisher's LSD for a shortcut to apply Bonferroni adjustment to all pairwise comparisons.
@@ -219,8 +228,7 @@ pairwise.t.test(df$Plaque, df$Brush, p.adjust.method = "none") |>
   pander()
 ```
 
-<br/>
-The output is a triangular matrix of p-values. The p-value for `Ultrasonic vs. Oscillating` is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though `Oscillating vs. Manual` is close, with a p-value of 0.0632.
+<br/> The output is a triangular matrix of p-values. The p-value for `Ultrasonic vs. Oscillating` is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though `Oscillating vs. Manual` is close, with a p-value of 0.0632.
 
 ::: callout-note
 The `pairwise.t.test()` can receive "bon" as an input to the `p.adjust.method =` argument, which will perform all pairwise comparisons and apply the Bonferroni adjustment. When the number of factor levels is small Bonferroni is preferred over the Tukey's HSD because it provides more statistical power.

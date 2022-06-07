@@ -12,14 +12,14 @@ This book is meant to be a starting point for you to learn design and analysis o
 
 ### How to Use This Book
 
-Under **Principles of Experiments** the most foundational issues that face each experimenter are described.
+Under **Basics of Design** the most foundational issues that face each experimenter are described.
 
 The **Specific Designs** section addresses specific designs we will learn about in this course. Each design will have an image next to it representing the diagram of the structural factors. Within each of these designs there are subsections:
 
 -   Overview contains the model, factor structure and hypotheses
 -   Design discusses how the randomization is implemented and why
 -   Decomposition is a bridge between the design and analysis. It walks through creating an ANOVA table by hand for the given design to allow you to see how the factor structure affects the analysis.
--   R instructions provides interactive code illustrating how to run the model
+-   R instructions provides code illustrating how to run the model
 -   Resources contains worked examples and a space for you to store other links and info
 
 The section labeled **Broad Topics** seeks to address topics that are relevant to many experiment designs.

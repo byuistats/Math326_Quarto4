@@ -120,7 +120,7 @@ The F distribution is defined by 2 values for degrees of freedom. One degrees of
 
 If the ratio of variances is large (as in @fig-xo-different), then we get a large F statistic and a small p-value. If the p-value is less than our chosen level of significance we conclude that at least one factor level effect is non-zero. On the other hand, as the F ratio gets smaller and approaches 1 (similar to @fig-xo-same) our p-value increases and we may have insufficient evidence to say that the treatment factor has an effect on the response.
 
-An F-test is only performed on structural factors. A test of the grand mean is not interesting, and a test of the residual error factor does not make sense.
+An F-test is only performed on structural factors. A test of the grand mean is not interesting, and a test of the residual error factor does not make sense. In fact, doing an F test of the residual error factor is not possible since the mean square error is typically the denominator in our F statistic. 
 
 The question then follows, **how do we estimate variation between factor levels and within factor levels?**
 
@@ -198,20 +198,35 @@ Here, the numerator is the sum of squares and the denominator is the degrees of 
 
 ## Sum of Squares (SS)
 
-Let's talk about the numerator first, this will be the sum of squared deviations, or **Sum of Squares** for short. The Sum of Squares is a measure of the total variability in a dataset. A naïve approach to calculating total variability in a dataset is to measure the distance from each value to the mean of the dataset. The problem with this approach is that those distance measures will always sum to zero.
+Let's talk about the numerator first, this will be the sum of squared deviations, or **Sum of Squares** for short. The Sum of Squares (SS) is a measure of the total variability in a dataset. A naïve approach to calculating total variability in a dataset is to measure the distance from each value to the mean of the dataset. The problem with this approach is that those distance measures will always sum to zero.
 
 To avoid this problem, statisticians square the distances before summing them. This results in a value that summarizes the total amount of spread in the dataset. This quantity, the Sum of Squares, is important and so it has its own column in the ANOVA summary table.
+
+In the table below an equation for each factor's SS is listed using terms from the factor effects model. We'll walk through the meaning of each of those equations.
 
 | Source           | df  |                  SS                   |                               MS                                |                               F                               | p-value |
 |:----------|:---------:|:---------:|:--------------:|:-------------:|:---------:|
 | Grand Mean       |     |        $n*\bar{y}_\text{..}^2$        |                                                                 |                                                               |         |
-| Treatment Factor |     |    $$ \sum \hat{\alpha}_i^2*n_i$$     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
+| Treatment Factor |     |    $$ \sum (\hat{\alpha}_i^2*n_i)$$     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     | $$ \sum \hat{\epsilon}_\text{ij}^2 $$ |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
-| Total            |     |            $y_\text{ij}^2$            |                                                                 |                                                               |         |
+| Total            |     |            $\sum y_\text{ij}^2$            |                                                                 |                                                               |         |
 
 ::: column-margin
 A deviation from the mean can be thought of as an effect. That is why the symbols for factor effects are used in the SS column in the ANOVA summary table.
 :::
+
+First, let's review the factor effects model.
+
+$$
+y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}$
+$$
+
+- Grand Mean SS: $\bar{y}_\text{..}$ is the grand mean. Its value should be squared and then multiplied by $n$, which is the total number of observations in the study.
+- Treatment Factor SS: Recall that $\hat{\alpha}_i$ is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, $n_i$. Finally, the $\sum$ symbol means to add all those products together. 
+- Residual Error SS: $$ \hat{\epsilon}_\text{ij} $$ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.
+- Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.
+
+
 
 ## Degrees of Freedom
 
@@ -240,7 +255,7 @@ We will reason through the degrees of freedom calculation for each of the 3 sour
 
 As was mentioned, every time we use the data to estimate a parameter we use a degree of freedom. To find the grand mean we average over all the values in the dataset; that uses up one degree of freedom because we have estimated 1 mean.
 
-When calculating the degrees of freedom for the treatment factor you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure @tbl-df-example. Because I have already estimated the grand mean, the last factor level is is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.
+When calculating the **degrees of freedom for the treatment factor** you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure @tbl-df-example. Because I have already estimated the grand mean, the last factor level is is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.
 
 Explained another way, consider the fact that all the factor level effects must sum to zero. If there are $m$ factor levels, I only need to estimate effects for $m-1$ levels. The last level's effect is a function of the other factor level effects, it does not need to be estimated and therefore does not need a degree of freedom.
 

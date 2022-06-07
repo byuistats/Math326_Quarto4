@@ -1,0 +1,72 @@
+---
+title: "BF1 R Instructions"
+output: html_document
+---
+
+```{r message = FALSE, include = FALSE}
+library(tidyverse)
+```
+
+<a href="javascript:showhide('bff1')">
+<div class="hoverchunk">
+<span class="tooltipr">
+method_aov<span class="tooltiprtext">A name you come up with for your model</span>
+  </span><span class="tooltipr">
+<-
+    <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span>
+  </span><span class="tooltipr">
+aov(
+  <span class="tooltiprtext">A function to define the model</span>
+  </span><span class="tooltipr">
+procKnow
+  <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span>
+  </span><span class="tooltipr">
+~
+  <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e. x's).</span>
+  </span><span class="tooltipr">
+Treatment,
+  <span class="tooltiprtext">The independent variable containing the names for the 4 training methods</span>
+  </span><span class="tooltipr">
+data = virtual
+  <span class="tooltiprtext">Tell the model to look in the dataset named "virtual" for procKnow and Treatment variables</span>
+  </span><span class="tooltipr">
+)
+<span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><br/><span class="tooltipr">
+summary(
+  <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA summary table</span>
+  </span><span class="tooltipr">
+method_aov
+  <span class="tooltiprtext">
+  Whatever you named your ANOVA model in the previous line
+  </span></span>
+  <span class="tooltipr">
+)
+  <span class="tooltiprtext">
+  Functions always end with a closing parenthesis
+  </span></span><br/><span class="tooltipr" style="float:right;">
+Click to toggle output 
+  <span class="tooltiprtext">Click to toggle output.</span>
+</span>
+</div>
+</a>
+<div id="bff1" style="display:show;">
+
+```{r message = FALSE, echo = FALSE}
+virtual <- read_csv("../data/virtual_training_redux.csv") 
+
+#A bit of data wrangling
+virtual <- virtual |>
+   mutate(
+         Treatment = case_when(
+           grp.trt %in% 1  ~ "Control",
+           grp.trt %in% 2  ~ "Monitor/Keyboard",
+           grp.trt %in% 3  ~ "Joypad",
+           grp.trt %in% 4  ~ "Wearables"
+          )
+        )
+method_aov <- aov(procKnow ~ Treatment, data = virtual)
+summary(method_aov)
+```
+
+</div>

@@ -28,7 +28,7 @@ website:
          - text: "Basic Factorial Introduction"
            href: BasicFactorial_intro.qmd
          - text: "BF[1]"
-           href: BasicFactorial_quarto.qmd
+           href: BasicFactorial_quarto_boat.qmd
          - text: "BF[2]"
            href: BasicFactorial_quarto.qmd
          - text: "BF[3+]"

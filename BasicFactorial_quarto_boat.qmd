@@ -173,8 +173,8 @@ A basic one-way factorial design has three analysis factors: the grand mean, tre
 
 -   The **observed values** on the left show that there are 24 distinct observations of performance score, represented by the 24 cells - one for each of the observed values.
 -   The **grand mean factor** represents the grand mean. The single large cell indicates that there is only one grand mean and it is part of every observation.
--   The **treatment factor** involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean and effect.
--   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and treatment effect. Each of the cells represent a distinct value for the residual error.
+-   The **treatment factor** involves the four methods of training, represented by the four vertically long cells. Each factor level may have a distinct mean and effect.
+-   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and factor level effect. Each of the cells represent a distinct value for the residual error.
 
 ### Degrees of Freedom
 
@@ -183,7 +183,7 @@ We can use our understanding of [inside vs. outside factors](factor_structure.qm
 ::: callout-tip
 ## General Rule for Degrees of Freedom
 
-df = Total levels of a factor minus the sum of the df of all outside factors
+df$_\text{factor}$ = Total levels of a factor minus the sum of the df of all outside factors
 
 An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.
 :::
@@ -192,17 +192,17 @@ In the lifeboat example, **grand mean** has one level (shown by the one cell in 
 
 Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the grand mean for just one of the observations, you know it for all the observations. In other words, only 1 value was *free* to vary. As soon as it was known all the other values for the grand mean effect were also known. Therefore, there is just one unique piece of information in the grand mean factor. Grand mean has just 1 degree of freedom.
 
-For **treatment factor**, there are four levels of the factor (shown by the four vertically long cells for treatment in @fig-bf1-structure-with-equation). Grand mean is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = **3 degrees of freedom** for treatment.
+For **treatment factor**, there are four levels of the factor (shown by the four vertically long cells for treatment factor in @fig-bf1-structure-with-equation). Grand mean is the only factor outside of training method. Take the number of levels for training method (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = **3 degrees of freedom** for training method.
 
-We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contain. Since all observations from the same treatment will have the same treatment effect applied, we only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.
+We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the training method effects really contain. Since all observations from the same training method will have the same effect, we only need to know 4 pieces of information: the effect of each training method. But the answer is actually less than that! Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the effects for training method, we can fill in the training method effects for all the observations.
 
-For **residual errors**, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of @fig-bf1-structure-with-equation). Both grand mean and treatment are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and treatment (3+1=4). The residual error has 24 - (3+1) = **20 degrees of freedom**.
+For **residual errors**, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of @fig-bf1-structure-with-equation). Both grand mean and training method are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and training method (3+1=4). The residual error has 24 - (3+1) = **20 degrees of freedom**.
 
-The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.
+The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 levels of training method is 20 observations, or in other words, 20 degrees of freedom.
 
 ### Factor Effects
 
-We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to estimate the effect size of the grand mean, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to estimate the effect size of the grand mean, training methods, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
 
 ::: {#effect-rule .callout-tip}
 ## General Rule for Effect Size
@@ -223,6 +223,8 @@ $$
 $$
 
 You can similarly find the mean for monitor keyboard is 7.8492, the mean for head monitor display/joypad is 6.5789, and the mean for head monitor display/wearables is 7.1616. In @fig-training-means these means are placed in the respective training method column.
+
+We do not need to calculate means for residual error factor because for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.
 
 ::: column-page
 ![Raw data and means for grand mean and training factors](images/BF1_means_decomp.png){#fig-training-means}
@@ -296,7 +298,7 @@ $$
 
 <br>
 
-The **treatment factor** has four different effects, one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to treatment. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
+The **treatment factor**, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
 
 $$
 SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
@@ -371,10 +373,10 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-The treatment factor is the primary factor of interest so the **F test statistic** is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment factor level means in the numerator and the variance of the distances for an observed value to its respective treatment factor level mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.
+The treatment factor, in this case training method, is the primary factor of interest so the **F test statistic** is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment means for the numerator and the variance of the distances for an observed value to its respective treatment mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.
 
 $$
-F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
+F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 $$
 
 <br>
@@ -403,7 +405,83 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ## Analysis in R
 
-When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to calculate numerical summaries and create these plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
+We will illustrate the R code using the lifeboat launch training example with just 6 observations per training method.
+
+### Describe the Data
+
+When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed.
+
+Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
+
+#### Numerical Summaries
+
+```{r, warning=FALSE, message=FALSE, echo = FALSE}
+#| code-fold: false
+
+library(mosaic)
+library(DT)
+library(pander)
+library(car)
+library(tidyverse)
+
+```
+
+After loading required packages, we will read in the data and do some wrangling. 
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| cap: "Read in / Wrangle Data"
+
+## Reduced data to match decomposition example
+virtual <- read_csv("data/virtual_training_redux.csv") 
+
+#A bit of data wrangling
+virtual <- virtual |>
+   mutate(
+         Treatment = case_when(
+           grp.trt %in% 1  ~ "Control",
+           grp.trt %in% 2  ~ "Monitor/Keyboard",
+           grp.trt %in% 3  ~ "Joypad",
+           grp.trt %in% 4  ~ "Wearables"
+          )
+        )
+```
+
+We then calculate summary statistics for each level of training method, in @tbl-numerical. Monitor/Keyboard has the highest mean (7.16) and median (8.33). It appears to be the best training method. Our ANOVA will seek to know if differences between training methods are statistically significant.
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| label: tbl-numerical
+#| tbl-cap: "Numerical Summary"
+
+favstats(procKnow~Treatment, data = virtual) |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+```
+
+#### Graphical Summaries
+
+You should also visualize the data. Since there are only six data point, a scatter plot may be preferred over a boxplot.
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| label: fig-summary
+#| fig-cap: "Graphical Summary"
+
+ggplot(data = virtual, 
+       mapping = aes(x=Treatment, y = procKnow, group = 1)) +
+  geom_point() +
+  stat_summary(fun = mean, 
+               geom= "line") +
+  labs(x = "Training Method", y = "Process Knowledge Test Score",
+       title = "Process Knowledge Scores by Training Method",
+       subtitle = "Group Means Connected with a Line")
+
+```
+
+This plot reinforces the conclusion that Monitor/Keyboard tends to have higher scores. The outliers in the Control and Joypad method also become very apparent.
+
+### Create the Model
 
 You then create the model using the `aov()` function. To see results of the F-test you can feed your model into a `summary()` function.
 
@@ -422,19 +500,50 @@ summary(myaov)
 
 **Example Code**
 
-```{r child="hoveRmd/BF1_R_Instructions.Rmd"}
+```{r child="hoveRmd/BF1_R_Instructions_boat.Rmd"}
 
 ```
 
-We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand *which* factor level effects are significant. We may also want to do some [pairwise tests of the means](pairwise.qmd) or [contrasts](contrast.qmd).
+We then interpret the results. Training method does not appear to be a significant factor since the p-value (0.131) is higher than our significance level of 0.05. Therefore, we cannot conclude that one training method results in a better mean test score than another.
 
-Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the [Model Diagnostics](docs/diagnostics.html) and [Assumptions](assumptions.qmd) sections of the book respectively.
+### Check assumptions
+
+Now that the model is created the assumptions need to be checked. Interactive code and additional explanation for assumption checking can be found in the [Model Diagnostics](docs/diagnostics.html) and [Assumptions](assumptions.qmd) sections of the book respectively.
+
+Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.
+
+#### Constant Variance
+
+We first check to see if the levels of training method have constant variance. The points in @fig-summary have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in @tbl-numerical we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard).  Therefore, the assumption of constant variance appears to be met.
+
+#### Normally Distributed Residuals
+
+A QQ-plot of the residuals is shown in @fig-qq. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.
+
+```{r, warning=FALSE, message=FALSE, echo = FALSE}
+#| code-fold: false
+
+method_aov <- aov(procKnow ~ Treatment, data = virtual)
+```
+
+```{r}
+#| code-fold: true
+#| label: fig-qq
+#| fig-cap: "QQplot of Model Residuals"
+
+car::qqPlot(method_aov$residuals)
+```
+
+#### Independent Observations
+
+Nothing about the study suggests a lack of independence among the residuals. The data was obtained second hand. If possible, you should ask the principal researcher more about how the data was collected. For our purposes, we will assume the row number in the dataset does *not* represent the order in which the data was originally collected. Therefore, an order plot would not be helpful in detecting order bias. Thus, based on everything we know about the study, we have no reason to suspect the independent residuals assumption is violated.
+
 
 ## Resources
 
 #### Examples
 
-[Lifeboat launch training](examples/VirtualTrain.html)
+[Lifeboat launch training with a full dataset](examples/VirtualTrain.html)
 
 [Mosquito](examples/mosquito.html)
 

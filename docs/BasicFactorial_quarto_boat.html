@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
@@ -290,7 +290,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#completing-the-anova-table" id="toc-completing-the-anova-table" class="nav-link" data-scroll-target="#completing-the-anova-table">Completing the ANOVA table</a></li>
   </ul></li>
-  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a></li>
+  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a>
+  <ul class="collapse">
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data">Describe the Data</a>
+  <ul class="collapse">
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link" data-scroll-target="#numerical-summaries">Numerical Summaries</a></li>
+  <li><a href="#graphical-summaries" id="toc-graphical-summaries" class="nav-link" data-scroll-target="#graphical-summaries">Graphical Summaries</a></li>
+  </ul></li>
+  <li><a href="#create-the-model" id="toc-create-the-model" class="nav-link" data-scroll-target="#create-the-model">Create the Model</a></li>
+  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check assumptions</a>
+  <ul class="collapse">
+  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
+  <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations">Independent Observations</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
   <ul class="collapse">
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
@@ -724,8 +738,8 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <ul>
 <li>The <strong>observed values</strong> on the left show that there are 24 distinct observations of performance score, represented by the 24 cells - one for each of the observed values.</li>
 <li>The <strong>grand mean factor</strong> represents the grand mean. The single large cell indicates that there is only one grand mean and it is part of every observation.</li>
-<li>The <strong>treatment factor</strong> involves the four levels of the treatment represented by the four vertically long cells. Each treatment may have a distinct mean and effect.</li>
-<li>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and treatment effect. Each of the cells represent a distinct value for the residual error.</li>
+<li>The <strong>treatment factor</strong> involves the four methods of training, represented by the four vertically long cells. Each factor level may have a distinct mean and effect.</li>
+<li>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and factor level effect. Each of the cells represent a distinct value for the residual error.</li>
 </ul>
 <section id="degrees-of-freedom" class="level3">
 <h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
@@ -740,20 +754,20 @@ General Rule for Degrees of Freedom
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>df = Total levels of a factor minus the sum of the df of all outside factors</p>
+<p>df<span class="math inline">\(_\text{factor}\)</span> = Total levels of a factor minus the sum of the df of all outside factors</p>
 <p>An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.</p>
 </div>
 </div>
 <p>In the lifeboat example, <strong>grand mean</strong> has one level (shown by the one cell in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>) and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one.</p>
 <p>Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the grand mean for just one of the observations, you know it for all the observations. In other words, only 1 value was <em>free</em> to vary. As soon as it was known all the other values for the grand mean effect were also known. Therefore, there is just one unique piece of information in the grand mean factor. Grand mean has just 1 degree of freedom.</p>
-<p>For <strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Grand mean is the only factor outside of treatment. Take the number of levels for treatment factor (4 training methods) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = <strong>3 degrees of freedom</strong> for treatment.</p>
-<p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the treatment effects really contain. Since all observations from the same treatment will have the same treatment effect applied, we only need to know 4 pieces of information: the effect of each treatment. But the answer is actually less than that. Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the treatment effects, we can fill in the treatment effects for all the observations.</p>
-<p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both grand mean and treatment are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and treatment (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
-<p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 treatments is 20 observations, or in other words, 20 degrees of freedom.</p>
+<p>For <strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment factor in <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Grand mean is the only factor outside of training method. Take the number of levels for training method (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = <strong>3 degrees of freedom</strong> for training method.</p>
+<p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the training method effects really contain. Since all observations from the same training method will have the same effect, we only need to know 4 pieces of information: the effect of each training method. But the answer is actually less than that! Because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know 3 of the effects for training method, we can fill in the training method effects for all the observations.</p>
+<p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both grand mean and training method are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and training method (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
+<p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 levels of training method is 20 observations, or in other words, 20 degrees of freedom.</p>
 </section>
 <section id="factor-effects" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-effects">Factor Effects</h3>
-<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the grand mean, treatment, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the grand mean, training methods, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -776,6 +790,7 @@ General Rule for Effect Size
 \frac{4.5614 + 6.6593 + 5.6427 + 6.4394 + 4.8635 + 0.3268}{6} = 4.7489
 \]</span></p>
 <p>You can similarly find the mean for monitor keyboard is 7.8492, the mean for head monitor display/joypad is 6.5789, and the mean for head monitor display/wearables is 7.1616. In <a href="#fig-training-means">Figure&nbsp;2</a> these means are placed in the respective training method column.</p>
+<p>We do not need to calculate means for residual error factor because for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.</p>
 <div class="column-page">
 <div id="fig-training-means" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -883,7 +898,7 @@ General Rule for Effect Size
 SS_\text{Grand Mean} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
 \]</span></p>
 <p><br></p>
-<p>The <strong>treatment factor</strong> has four different effects, one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to treatment. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.</p>
+<p>The <strong>treatment factor</strong>, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.</p>
 <p><span class="math display">\[
 SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
 \]</span> <br></p>
@@ -1017,9 +1032,9 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 
 </div>
 </div>
-<p>The treatment factor is the primary factor of interest so the <strong>F test statistic</strong> is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment factor level means in the numerator and the variance of the distances for an observed value to its respective treatment factor level mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.</p>
+<p>The treatment factor, in this case training method, is the primary factor of interest so the <strong>F test statistic</strong> is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment means for the numerator and the variance of the distances for an observed value to its respective treatment mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.</p>
 <p><span class="math display">\[
-F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
+F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
 \]</span></p>
 <p><br></p>
 <p>To complete the ANOVA, table, the <strong>p-value for the treatment factor</strong> is calculated based on the F statistic and the degrees of freedom for both treatment factor and residual error. In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function: <code>1 - pf(test statistic, df of Treatment, df of Residual error)</code>.</p>
@@ -1086,11 +1101,149 @@ F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6
 </section>
 <section id="analysis-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-in-r">Analysis in R</h2>
-<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed. Instructions for how to calculate numerical summaries and create these plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<p>We will illustrate the R code using the lifeboat launch training example with just 6 observations per training method.</p>
+<section id="describe-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="describe-the-data">Describe the Data</h3>
+<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed.</p>
+<p>Interactive code and additional explanations of numerical summaries and plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<section id="numerical-summaries" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h4>
+<div class="cell">
+
+</div>
+<p>After loading required packages, we will read in the data and do some wrangling.</p>
+<div class="cell" data-cap="Read in / Wrangle Data">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Reduced data to match decomposition example</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>virtual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/virtual_training_redux.csv"</span>) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#A bit of data wrangling</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>virtual <span class="ot">&lt;-</span> virtual <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Treatment =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>           grp.trt <span class="sc">%in%</span> <span class="dv">1</span>  <span class="sc">~</span> <span class="st">"Control"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>           grp.trt <span class="sc">%in%</span> <span class="dv">2</span>  <span class="sc">~</span> <span class="st">"Monitor/Keyboard"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>           grp.trt <span class="sc">%in%</span> <span class="dv">3</span>  <span class="sc">~</span> <span class="st">"Joypad"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>           grp.trt <span class="sc">%in%</span> <span class="dv">4</span>  <span class="sc">~</span> <span class="st">"Wearables"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We then calculate summary statistics for each level of training method, in <a href="#tbl-numerical">Table&nbsp;1</a>. Monitor/Keyboard has the highest mean (7.16) and median (8.33). It appears to be the best training method. Our ANOVA will seek to know if differences between training methods are statistically significant.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(procKnow<span class="sc">~</span>Treatment, <span class="at">data =</span> virtual) <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-numerical" class="anchored">
+<table class="table" style="margin-left: auto; margin-right: auto;"><caption>Table 1:  Numerical Summary </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Treatment </th>
+   <th style="text-align:right;"> min </th>
+   <th style="text-align:right;"> Q1 </th>
+   <th style="text-align:right;"> median </th>
+   <th style="text-align:right;"> Q3 </th>
+   <th style="text-align:right;"> max </th>
+   <th style="text-align:right;"> mean </th>
+   <th style="text-align:right;"> sd </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> missing </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Control </td>
+   <td style="text-align:right;"> 0.33 </td>
+   <td style="text-align:right;"> 4.64 </td>
+   <td style="text-align:right;"> 5.25 </td>
+   <td style="text-align:right;"> 6.24 </td>
+   <td style="text-align:right;"> 6.66 </td>
+   <td style="text-align:right;"> 4.75 </td>
+   <td style="text-align:right;"> 2.32 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Joypad </td>
+   <td style="text-align:right;"> 1.88 </td>
+   <td style="text-align:right;"> 6.25 </td>
+   <td style="text-align:right;"> 6.61 </td>
+   <td style="text-align:right;"> 8.25 </td>
+   <td style="text-align:right;"> 9.45 </td>
+   <td style="text-align:right;"> 6.58 </td>
+   <td style="text-align:right;"> 2.65 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Monitor/Keyboard </td>
+   <td style="text-align:right;"> 5.45 </td>
+   <td style="text-align:right;"> 6.78 </td>
+   <td style="text-align:right;"> 8.33 </td>
+   <td style="text-align:right;"> 8.78 </td>
+   <td style="text-align:right;"> 9.78 </td>
+   <td style="text-align:right;"> 7.85 </td>
+   <td style="text-align:right;"> 1.65 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wearables </td>
+   <td style="text-align:right;"> 4.94 </td>
+   <td style="text-align:right;"> 5.21 </td>
+   <td style="text-align:right;"> 7.03 </td>
+   <td style="text-align:right;"> 8.91 </td>
+   <td style="text-align:right;"> 9.83 </td>
+   <td style="text-align:right;"> 7.16 </td>
+   <td style="text-align:right;"> 2.22 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="graphical-summaries" class="level4">
+<h4 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h4>
+<p>You should also visualize the data. Since there are only six data point, a scatter plot may be preferred over a boxplot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> virtual, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Treatment, <span class="at">y =</span> procKnow, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom=</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Training Method"</span>, <span class="at">y =</span> <span class="st">"Process Knowledge Test Score"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Process Knowledge Scores by Training Method"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Group Means Connected with a Line"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-summary" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="BasicFactorial_quarto_boat_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Graphical Summary</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot reinforces the conclusion that Monitor/Keyboard tends to have higher scores. The outliers in the Control and Joypad method also become very apparent.</p>
+</section>
+</section>
+<section id="create-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-model">Create the Model</h3>
 <p>You then create the model using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>YourDataSet)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>myaov</code> is the user defined name in which the results of the aov() model are stored</li>
@@ -1101,28 +1254,63 @@ F_\text{Factor} = \frac{MS_\text{Factor}}{MS_\text{Residual Error}} = \frac{10.6
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('bff1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> df <span class="tooltiprtext">A name you come up with for your dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> read_csv( <span class="tooltiprtext">a command from the tidyverse to read in csv files</span> </span><span class="tooltipr"> “data/toothpaste_BF2.csv” <span class="tooltiprtext">The path to the csv file containing the data</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> plaque_aov<span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> Plaque <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> Brush, <span class="tooltiprtext">The independent variable containing the names for the 4 types of toothbrushes.</span> </span><span class="tooltipr"> data = df <span class="tooltiprtext">Tell the model to look in the dataset named “df” for Plaque and Brush variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> summary( <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA table</span> </span><span class="tooltipr"> plaque_aov <span class="tooltiprtext"> Whatever you named your ANOVA model in the previous line </span></span> <span class="tooltipr"> ) <span class="tooltiprtext"> Functions always end with a closing parenthesis </span></span><br><span class="tooltipr" style="float:right;"> Click to view output <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> method_aov<span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> procKnow <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> Treatment, <span class="tooltiprtext">The independent variable containing the names for the 4 training methods</span> </span><span class="tooltipr"> data = virtual <span class="tooltiprtext">Tell the model to look in the dataset named “virtual” for procKnow and Treatment variables</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> summary( <span class="tooltiprtext">Give important information about an object. When called on an aov object the default is to print the ANOVA summary table</span> </span><span class="tooltipr"> method_aov <span class="tooltiprtext"> Whatever you named your ANOVA model in the previous line </span></span> <span class="tooltipr"> ) <span class="tooltiprtext"> Functions always end with a closing parenthesis </span></span><br><span class="tooltipr" style="float:right;"> Click to toggle output <span class="tooltiprtext">Click to toggle output.</span> </span></p>
 </div>
 </a>
 <div id="bff1" style="display:show;">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-Brush        3  86.31  28.769   3.822 0.0258 *
-Residuals   20 150.56   7.528                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+Treatment    3  31.81  10.604   2.111  0.131
+Residuals   20 100.49   5.024               </code></pre>
 </div>
 </div>
 </div>
-<p>We then interpret the results. Toothbrush appears to be a significant factor. Since the p-value in this case is significant we may be able to look at the graphical summaries to understand <em>which</em> factor level effects are significant. We may also want to do some <a href="pairwise.qmd">pairwise tests of the means</a> or <a href="./contrast.html">contrasts</a>.</p>
-<p>Now that the model is created the assumptions need to be checked. Code and explanation for assumption checking can be found in the <a href="docs/diagnostics.html">Model Diagnostics</a> and <a href="./assumptions.html">Assumptions</a> sections of the book respectively.</p>
+<p>We then interpret the results. Training method does not appear to be a significant factor since the p-value (0.131) is higher than our significance level of 0.05. Therefore, we cannot conclude that one training method results in a better mean test score than another.</p>
+</section>
+<section id="check-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="check-assumptions">Check assumptions</h3>
+<p>Now that the model is created the assumptions need to be checked. Interactive code and additional explanation for assumption checking can be found in the <a href="docs/diagnostics.html">Model Diagnostics</a> and <a href="./assumptions.html">Assumptions</a> sections of the book respectively.</p>
+<p>Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.</p>
+<section id="constant-variance" class="level4">
+<h4 class="anchored" data-anchor-id="constant-variance">Constant Variance</h4>
+<p>We first check to see if the levels of training method have constant variance. The points in <a href="#fig-summary">Figure&nbsp;5</a> have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in <a href="#tbl-numerical">Table&nbsp;1</a> we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.</p>
+</section>
+<section id="normally-distributed-residuals" class="level4">
+<h4 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h4>
+<p>A QQ-plot of the residuals is shown in <a href="#fig-qq">Figure&nbsp;6</a>. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(method_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13  6</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="BasicFactorial_quarto_boat_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 6: QQplot of Model Residuals</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="independent-observations" class="level4">
+<h4 class="anchored" data-anchor-id="independent-observations">Independent Observations</h4>
+<p>Nothing about the study suggests a lack of independence among the residuals. The data was obtained second hand. If possible, you should ask the principal researcher more about how the data was collected. For our purposes, we will assume the row number in the dataset does <em>not</em> represent the order in which the data was originally collected. Therefore, an order plot would not be helpful in detecting order bias. Thus, based on everything we know about the study, we have no reason to suspect the independent residuals assumption is violated.</p>
+</section>
+</section>
 </section>
 <section id="resources" class="level2">
 <h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <section id="examples" class="level4">
 <h4 class="anchored" data-anchor-id="examples">Examples</h4>
-<p><a href="examples/VirtualTrain.html">Lifeboat launch training</a></p>
+<p><a href="examples/VirtualTrain.html">Lifeboat launch training with a full dataset</a></p>
 <p><a href="examples/mosquito.html">Mosquito</a></p>
 </section>
 <section id="links-to-outside-resources" class="level4">
