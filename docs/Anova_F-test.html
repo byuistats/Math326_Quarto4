@@ -584,14 +584,15 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>A deviation from the mean can be thought of as an effect. That is why the symbols for factor effects are used in the SS column in the ANOVA summary table.</p>
-</div></div><p>First, let’s review the factor effects model.</p>
+</div></div><p>First, let’s review the factor effects model to better understand the equations in the SS column above.</p>
 <p><span class="math display">\[
-y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}$
+y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 \]</span></p>
+<p>We can walk through each equation in the SS column, one by one.</p>
 <ul>
 <li>Grand Mean SS: <span class="math inline">\(\bar{y}_\text{..}\)</span> is the grand mean. Its value should be squared and then multiplied by <span class="math inline">\(n\)</span>, which is the total number of observations in the study.</li>
 <li>Treatment Factor SS: Recall that <span class="math inline">\(\hat{\alpha}_i\)</span> is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, <span class="math inline">\(n_i\)</span>. Finally, the <span class="math inline">\(\sum\)</span> symbol means to add all those products together.</li>
-<li>Residual Error SS: <span class="math display">\[ \hat{\epsilon}_\text{ij} \]</span> is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.</li>
+<li>Residual Error SS: $ _ $ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.</li>
 <li>Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.</li>
 </ul>
 </section>

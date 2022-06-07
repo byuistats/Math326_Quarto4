@@ -215,15 +215,17 @@ In the table below an equation for each factor's SS is listed using terms from t
 A deviation from the mean can be thought of as an effect. That is why the symbols for factor effects are used in the SS column in the ANOVA summary table.
 :::
 
-First, let's review the factor effects model.
+First, let's review the factor effects model to better understand the equations in the SS column above.
 
 $$
-y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}$
+y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 $$
+
+We can walk through each equation in the SS column, one by one.
 
 - Grand Mean SS: $\bar{y}_\text{..}$ is the grand mean. Its value should be squared and then multiplied by $n$, which is the total number of observations in the study.
 - Treatment Factor SS: Recall that $\hat{\alpha}_i$ is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, $n_i$. Finally, the $\sum$ symbol means to add all those products together. 
-- Residual Error SS: $$ \hat{\epsilon}_\text{ij} $$ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.
+- Residual Error SS: $ \hat{\epsilon}_\text{ij} $ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.
 - Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.
 
 
