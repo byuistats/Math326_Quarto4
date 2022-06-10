@@ -99,7 +99,7 @@ In summary, Fisher's LSD is a two step process. First, verify the F test for the
 # Summary Table
 
 | Adjustment   | When to Use                                                                                                | Implications                                                                                   |
-|-------------|-----------------------------|-------------------------------|
+|--------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | Bonferroni   | A small number of pre-planned contrasts                                                                    | Too difficult to find significance if *many* contrasts are tested.                             |
 | Scheffe      | Post-hoc contrasts/data snooping, particularly useful for complex comparisons                              | Most severe adjustment. Difficult to find significance, but keeps Type I error in check        |
 | Tukey's HSD  | When testing all pairwise comparisons and want to control family wise significance level                   | A standard adjustment for all pairwise comparisons: pre-planned or post-hoc.                   |

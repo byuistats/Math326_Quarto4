@@ -98,7 +98,7 @@ Though we only varied 2 variables in the experiment (toothbrush and toothpaste) 
 
 So far, we have identified 3 factors for analysis: toothbrush type, toothpaste brand, and their interaction. There are two other meaningful ways to group the observations. These two factors are present in all designs and are given special names: the grand mean and the residual error.
 
-The **grand mean factor** is a result of grouping all observations together in one. The grand mean factor has just one level. The grand mean's value is, unsurprisingly, the mean of all the data points together. 
+The **grand mean factor** is a result of grouping all observations together in one. The grand mean factor has just one level. The grand mean's value is, unsurprisingly, the mean of all the data points together.
 
 At the other extreme, you may be interested in comparing individual datapoints. In this case, each observation belongs to its own group. The mean of each data point is simply itself. This grouping is referred to as the **residual error factor**. The number of levels of the residual error factor is equal to the number of observations in the dataset.
 
@@ -157,7 +157,7 @@ Let's pause here to clarify a common misunderstanding. Consider an experiment wh
 
 ## Crossed Factors
 
-Two factors are crossed when their partition lines cross in a way that creates new groups of observations that represent every possible combination of the factor levels. More succinctly stated, **factors are crossed when all factor level combinations are present in the study**. We saw this in the toothbrush study when brand of toothpaste was included in the experiment. Toothbrush and toothpaste are neither inside nor outside of each other; rather, they are crossed.
+Two factors are crossed when their partition lines cross in a way that creates new groups of observations that represent every possible combination of the factor levels. More succinctly stated, **factors are crossed when all factor level combinations are present in the study**. We see this type of relationship in the toothbrush study with two controlled factors: toothbrush type (4 levels) and toothpaste brand (2 levels). Toothbrush and toothpaste are neither inside nor outside of each other; rather, they are crossed.
 
 ::: {#crossed-interaction .column-page layout-ncol="2"}
 ![](images/toothbrush_crossed1.JPG)

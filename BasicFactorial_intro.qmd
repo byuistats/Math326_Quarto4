@@ -1,18 +1,19 @@
 ---
-title: "Overview"
+title: "Basic Factorial Designs Overview"
 ---
+
+A factorial design refers to how/which factor level combinations are chosen for inclusion in the study.
 
 Basic Factorial designs have some key characteristics in common, notably:
 
--   Independent variables are categorial and the response is quantitative
+-   For studies with more than one factor, factors levels are created by crossing factors[^1]
 
--   Treatments are assigned to subjects (a.k.a. experimental units) completely at random
+-   Treatments are assigned to subjects (a.k.a. experimental units) completely at random[^2]
 
--   For studies with more than one factor, additional factors levels are created by crossing factors
+[^1]: Factorial crossing is defined in [BF\[2\]](bf2.qmd) and in the [Factor Structure](factor_structure.qmd) page.
 
--   Similar analysis using ANOVA
-
+[^2]: Once the factor level combinations are decided upon using factorial crossing, there are multiple ways to perform the random assignment of experimental units to factor levels. In this book though, all of the BF models will be treated as using completely randomized assignment. Strategies such as blocking and repeated measures are treated as separate designs.
 
 To assign something **completely at random** means that each experimental unit has a known and equal chance of being selected for a particular treatment and that no other considerations are taken into account when making treatment assignments.
 
-The decomposition and formulas presented for each of the specific designs assumes the design is balanced, meaning each factor level combination has the same number of observations. In the case of unbalanced designs, formulas would need to be adjusted to account for the differences. Additional explanation of how to approach analysis for unbalanced data is found under [broad topics>unbalanced](). 
+The decomposition and formulas presented for each of the specific designs assumes the design is balanced, meaning each factor level combination has the same number of observations. In the case of unbalanced designs, formulas would need to be adjusted to account for the differences. Additional explanation of how to approach analysis for unbalanced data is found under [broad topics\>unbalanced]().

@@ -27,7 +27,9 @@ library(pander)
 
 # BF\[1\]
 
-A study with just one factor that is varied in the design.
+A study with just one factor that is varied in the design.[^1]
+
+[^1]: It can be argued that this design is not technically a factorial design because only one experimental factor is involved. However, we categorize it with the other basic factorial designs because the assignment of subjects to factor levels is done completely at random, just as it is for the other basic factorial designs covered in this course.
 
 ## Overview
 
@@ -426,7 +428,7 @@ library(tidyverse)
 
 ```
 
-After loading required packages, we will read in the data and do some wrangling. 
+After loading required packages, we will read in the data and do some wrangling.
 
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
@@ -514,7 +516,7 @@ Below, we find that all assumptions of our lifeboat training method model are me
 
 #### Constant Variance
 
-We first check to see if the levels of training method have constant variance. The points in @fig-summary have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in @tbl-numerical we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard).  Therefore, the assumption of constant variance appears to be met.
+We first check to see if the levels of training method have constant variance. The points in @fig-summary have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in @tbl-numerical we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.
 
 #### Normally Distributed Residuals
 
@@ -537,7 +539,6 @@ car::qqPlot(method_aov$residuals)
 #### Independent Observations
 
 Nothing about the study suggests a lack of independence among the residuals. The data was obtained second hand. If possible, you should ask the principal researcher more about how the data was collected. For our purposes, we will assume the row number in the dataset does *not* represent the order in which the data was originally collected. Therefore, an order plot would not be helpful in detecting order bias. Thus, based on everything we know about the study, we have no reason to suspect the independent residuals assumption is violated.
-
 
 ## Resources
 

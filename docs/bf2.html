@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -53,6 +116,7 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -108,11 +172,11 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -202,12 +266,44 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#factor-structure" id="toc-factor-structure" class="nav-link" data-scroll-target="#factor-structure">Factor Structure</a></li>
+  <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  </ul></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#interaction-effect" id="toc-interaction-effect" class="nav-link" data-scroll-target="#interaction-effect">Interaction Effect</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-understanding" id="toc-conceptual-understanding" class="nav-link" data-scroll-target="#conceptual-understanding">Conceptual Understanding</a></li>
+  </ul></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#factor-effects" id="toc-factor-effects" class="nav-link" data-scroll-target="#factor-effects">Factor Effects</a>
+  <ul class="collapse">
+  <li><a href="#factor-level-means" id="toc-factor-level-means" class="nav-link" data-scroll-target="#factor-level-means">Factor Level Means</a></li>
+  <li><a href="#factor-level-effects" id="toc-factor-level-effects" class="nav-link" data-scroll-target="#factor-level-effects">Factor level effects</a>
+  <ul class="collapse">
+  <li><a href="#grand-mean-effect" id="toc-grand-mean-effect" class="nav-link" data-scroll-target="#grand-mean-effect">Grand mean effect</a></li>
+  <li><a href="#toothbrush-effects" id="toc-toothbrush-effects" class="nav-link" data-scroll-target="#toothbrush-effects">Toothbrush effects</a></li>
+  <li><a href="#toothpaste-effects" id="toc-toothpaste-effects" class="nav-link" data-scroll-target="#toothpaste-effects">Toothpaste effects</a></li>
+  <li><a href="#interaction-effects" id="toc-interaction-effects" class="nav-link" data-scroll-target="#interaction-effects">Interaction effects</a></li>
+  </ul></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#completing-the-anova-table" id="toc-completing-the-anova-table" class="nav-link" data-scroll-target="#completing-the-anova-table">Completing the ANOVA Table</a></li>
+  </ul></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul class="collapse">
+  <li><a href="#notation-for-estimated-effects" id="toc-notation-for-estimated-effects" class="nav-link" data-scroll-target="#notation-for-estimated-effects">Notation for Estimated Effects</a></li>
+  <li><a href="#converting-bf2-to-bf1" id="toc-converting-bf2-to-bf1" class="nav-link" data-scroll-target="#converting-bf2-to-bf1">Converting BF[2] to BF[1]</a></li>
+  <li><a href="#unreplicated-bf2" id="toc-unreplicated-bf2" class="nav-link" data-scroll-target="#unreplicated-bf2">Unreplicated BF[2]</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -233,20 +329,590 @@ ul.task-list{list-style: none;}
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
-<hr>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Factorial experiments involve two or more factors that are crossed. Full <strong>factorial crossing</strong> occurs when each combination of factor levels is present in the study. (A study with just one factor is not technically a factorial design, but we will lump it in with our discussion of factorial experiments here because of the completely random treatment assignment).</p>
-<p>Contrast a factorial design with the one-at-a-time approach. In a one-at-a-time approach, if I had two factors I wanted to study I would run two separate experiments to evaluate the effect of each factor on the response one-at-time. Factorial designs have a couple of major advantages over one-factor-at-a-time studies.</p>
+<section id="overview" class="level1 page-columns page-full">
+<h1>Overview</h1>
+<p>When researchers want to study the effects of two factors on the same response variable a factorial design can be considered. Factorial experiments involve two or more factors that are crossed.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Full <strong>factorial crossing</strong> occurs when each combination of factor levels is present in the study.</p>
+</div>
+</div>
+<p>Compare a factorial design with the one-at-a-time approach. In a one-at-a-time approach, each factor would be investigated in a separate experiment. Each experiment would evaluate the effect of just one factor on the response.</p>
+<p>Factorial designs are a way to simultaneously study the effects of multiple factors using just one experiment. Factorial designs have a couple of major advantages over one-factor-at-a-time studies.</p>
 <ol type="1">
 <li>They are a more efficient use of our time and material: I can get information about both of my factors from just one observation</li>
-<li>Perhaps most importantly, factorial designs allow the researcher to estimate interaction effects. Or in other words, we can observe how one factor’s effect on the response variable changes for different levels of the other factor.</li>
+<li>They allow the random error to be allocated across a greater number of factors, thereby reducing unexplained variance (i.e.&nbsp;mean square error) and increasing the statistical power of the F-test.</li>
+<li>They allow the estimation of interaction effects. Or in other words, we can observe how one factor’s effect on the response changes for different levels of the other factor.</li>
 </ol>
+<p>We will expand on the simple toothpaste example to illustrate BF[2] concepts. The study is summarized here.</p>
+<p>Researchers wanted to know which of 4 types of toothbrushes was best at reducing plaque: manual (this is the traditional/usual type of brush), oscillating bristles, sonic, and ultrasonic. The response variable is was the percent of teeth surface area covered with plaque. Four teeth (first molar in each quadrant of the mouth) were measured on each person to calculate the total percent area covered. Six subjects were assigned to each type of brush.</p>
+<p>Researchers also wanted to study the effect of name brand tooth paste compared to its off brand equivalent. This is the second controlled factor in the experiment. It has two levels (name brand and off brand). Twelve subjects used name brand paste, and a different 12 subjects used the off brand. Toothpaste brand is crossed with toothbrush type to create a BF[2].</p>
+<section id="factor-structure" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
+<p>Based on the description above, the factor structure for this experiment is displayed in <a href="#fig-bf2_brush_factor_structure">Figure&nbsp;1</a>:</p>
+<div class="column-page">
+<div id="fig-bf2_brush_factor_structure" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Factor Structure Diagram</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>There are 3 replicates for each factor level combination of toothbrush and toothpaste brand. Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 factor level combinations total. These 8 factor level combinations are obtained by overlaying the 2 controlled factor partitions. When the controlled factor brush and paste partitions are overlayed, they cross each other and create new, meaningful partitions. Since there were 24 subjects and the study is balanced, we end up with <span class="math inline">\(24\div 8 = 3\)</span> replicates in each factor level combination.</p>
+</section>
+<section id="hypothesis-and-model" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-bf2_brush_factor_structure">Figure&nbsp;1</a> corresponds to a term in <a href="#eq-bf2">Equation&nbsp;1</a>:</p>
+<p><span id="eq-bf2"><span class="math display">\[
+y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
+\qquad(1)\]</span></span></p>
+<p>Where</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <span class="math inline">\(i\)</span> goes from 1 to 4 since there are 4 toothbrush types</li>
+<li><span class="math inline">\(\beta\)</span> is the effect of toothpaste, and <span class="math inline">\(j\)</span> is either 1 or 2 since there are 2 levels (Name brand and off brand).</li>
+<li>The <span class="math inline">\((\alpha\beta)_\text{ij}\)</span> is called the interaction effect.</li>
+<li><span class="math inline">\(\epsilon\)</span> is the residual error term, and <span class="math inline">\(k\)</span> is the replicate count within a factor level combination.</li>
+</ul>
+<p>There are at least three hypotheses to test with this model. A hypothesis for each main effect, and a hypothesis for the interaction effect.</p>
+<p>A hypothesis for the main effect of toothbrush type:</p>
+<p><span class="math display">\[H_0: \alpha_\text{i} = 0 \text{ for all } i\]</span></p>
+<p><span class="math display">\[H_a: \alpha_\text{i} \ne 0 \text{ for some } i\]</span></p>
+<p>A hypothesis for the main effect of toothpaste brand:</p>
+<p><span class="math display">\[H_0: \beta_\text{j} = 0 \text{ for all } j\]</span></p>
+<p><span class="math display">\[H_a: \beta_\text{j} \ne 0 \text{ for some } j\]</span></p>
+<p>A hypothesis for the interaction of toothbrush and toothpaste.</p>
+<p><span class="math display">\[
+H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
+\]</span> <span class="math display">\[
+H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
+\]</span></p>
+<p>When the interaction term is <em>not</em> significant a predicted value for an observation can be obtained by simply adding the grand mean to the main effects <span class="math inline">\(\hat{\alpha}_i\)</span> and <span class="math inline">\(\hat{\beta}_j\)</span>. This is equivalent to treating the effect of <span class="math inline">\((\alpha\beta)_\text{ij} = 0\)</span> for all values of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+<p>When the interaction effect <em>is</em> significant reject the null hypothesis and accept the alternative hypothesis: at least one factor level combination has a none zero effect.</p>
+</section>
+<section id="assumptions" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
+<p>A two-way ANOVA model may be used to analyze data from a BF[2] design if the following requirements are satisfied. Note that these requirements are identical to the requirements of a BF[1] one-way ANOVA.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The BF[] designation refers to the design of the experiment. The reference to one- or two-way ANOVA refers to the analysis technique applied to the resulting data.</p>
+</div></div><table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 36%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirements</th>
+<th>Method for Checking</th>
+<th>What You Hope to See</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Constant variance across factor levels</td>
+<td>Rule of thumb comparing standard deviations</td>
+<td><span class="math inline">\(max(s) &lt; 2*min(s)\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Residual vs.&nbsp;Fitted Plot</td>
+<td>No major disparity in vertical spread of point groupings</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Levene’s Test</td>
+<td>Fail to reject <span class="math inline">\(H_0\)</span></td>
+</tr>
+<tr class="even">
+<td>Normally Distributed Residuals</td>
+<td>Normal Q-Q plot</td>
+<td>Straight line, majority of points in boundaries</td>
+</tr>
+<tr class="odd">
+<td>Independent residuals</td>
+<td>Order plot</td>
+<td>No pattern/trend</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Familiarity with/critical thinking about the experiment</td>
+<td>No potential source for bias</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="design" class="level1">
+<h1>Design</h1>
+</section>
+<section id="interaction-effect" class="level1 page-columns page-full">
+<h1>Interaction Effect</h1>
+<p>The purpose of this section is to define an interaction, introduce interaction graphs, explain how to interpret interaction graphs to detect interactions, and provide helpful hints in working with interactions.</p>
+<p>The terms in <a href="#eq-bf2">Equation&nbsp;1</a> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
+<p>The factor created by crossing toothbrush and toothpaste is called an interaction factor, and its term in the model, <span class="math inline">\(\alpha \beta\)</span>, is called an interaction effect.</p>
+<p>Compared to a BF[1], the novel piece of a BF[2] is the <strong>interaction factor</strong>. This factor allows us to estimate the interaction effect, which is the effect of belonging to a particular factor level <em>combination</em>. Stated another way, the interaction effect is the additional change in the response (positive or negative) when the two factor levels happen together, beyond the effect of each factor level in isolation.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When an interaction is present this means that a factor level’s effect on the response depends on the value of another factor.</p>
+</div>
+</div>
+<p>We will discuss interactions at a conceptual level before dealing with numbers and the nuts and bolts of calculations. To facilitate this conceptual discussion we will step away from the toothbrush example and use an example for which you have not yet seen any data. We will return to toothbrushes and toothpaste at the end of the conceptual explanation.</p>
+<section id="conceptual-understanding" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="conceptual-understanding">Conceptual Understanding</h2>
+<p>The concept behind an interaction should feel quite familiar. It is something we deal with everyday and is very common in science. You may have experienced an interaction effect in something as simple as your daily commute:</p>
+<blockquote class="blockquote">
+<p>Consider a factor to indicate which route you take to work. Route has two levels: using the main roads and using back roads. The time to reach your destination is the response. During rush hour, the main roads are clogged with traffic and result in a longer commute time than taking the back roads. However, in non-rush hour times, the main roads result in a faster commute time. Thus, the effect of taking main roads depends on whether you are traveling during rush hour or not.</p>
+</blockquote>
+<p>The effect of route was reversed for different levels of rush hour. Not all interactions work this way. Some interactions increase/decrease the magnitude of an effect without completely changing its direction. We can tweak the situation of the commute time example to illustrate this:</p>
+<blockquote class="blockquote">
+<p>During non-rush hour periods, on average back roads result in a commute time that is 5 minutes faster than main roads. During rush hour periods however, the benefit of taking back rounds compared to main roads increases to 15 minutes. Thus, the size of the effect of back roads increased (is amplified) for rush hour compared to non-rush hour.</p>
+</blockquote>
+<p>The above descriptions cover just two possible outcomes for this commute time experiment. It may be helpful to visualize the possible outcome scenarios for this two factor (route and rush hour) study. This can effectively be done with an interaction plot. An <strong>interaction plot</strong> shows the means for each factor level combination and usually connects the means from the same factor level with a line to help the reader visually group means and detect effects.</p>
+<p><a href="#fig-no-int">Figure&nbsp;2</a> shows four possible outcomes of the traffic study where NO interaction is present. The upper left panel of the plot shows a situation where there are no main effects or interactions apparent. The mean is the same regardless of the factor level combination. The upper right panel of the plot shows a large route effect but no effect due to rush hour. This can be seen because the commute time for back roads is high but commute time for main roads is low; however, for a given route there is no difference in the mean for rush hour vs.&nbsp;not rush hour.</p>
+<p>The bottom left panel shows a non-zero effect for the rush hour factor, as seen by the sizable difference between the levels of rush hour within a route. However, the flat lines indicate that the mean commute time for route is not changing and therefore route has no effect on commute time. Lastly, the bottom right panel is a situation where both main effects appear to be present - but there is still no interaction apparent.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>R code instructions to create interaction plots are at the bottom of the R Instructions&gt;<a href="docs/DescribeData.html">Descriptive Summaries</a> page.</p>
+</div></div><div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-no-int" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-no-int-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Scenarios with NO Interaction Present</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The line segments within each graph of <a href="#fig-no-int">Figure&nbsp;2</a> are parallel (or coincide), which is a visual indicator that no interaction is present.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Factors with no interaction will have (nearly) parallel line segments in the interaction plot.</p>
+</div>
+</div>
+<p>So what does an interaction plot look like when there <em>is</em> an interaction present? The key things to notice is that the line segments in the plot are not parallel. <a href="#fig-int">Figure&nbsp;3</a> contains 3 examples of interaction plots that show the presence of an potential interaction.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-int" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-int-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Scenarios Indicative of an Interaction</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Panel A of <a href="#fig-int">Figure&nbsp;3</a> illustrates an example where the effect of Route reverses, depending on the value for Rush Hour. In Panel B, the effect of Rush Hour is much greater when using main roads than for back roads. In Panel C, main roads take longer regardless of time of day, but the effect of switching from back roads to main roads is much larger during rush hour than in non-rush hour times.</p>
+<p>There are a few key points to remember when working with interactions.</p>
+<p>Lastly, <strong>exercise caution when interpreting a main effect if an interaction is present</strong>. The definition of an interaction is that a factor level’s effect changes for different values of the other factor. Therefore, it does not make sense to interpret the hypothesis test of a controlled factor if it is part of a significant interaction. Instead, get in the habit of describing the nature of the interaction.</p>
+<p>To illustrate the danger of interpreting main effect hypothesis tests when the interaction is significant consider Panel A of <a href="#fig-int">Figure&nbsp;3</a>. If the hypothesis test for Route had a large p-value, it is tempting to say there is insufficient evidence that Route has an effect on commute time. However, the interaction plot shows quite the opposite. Route has an important effect on the response, since the level of Route drastically changes the impact of Rush Hour on commute times. Even though the mean commute time for “back” and “main” may be similar in this scenario, Route is indirectly having an effect on commute time through its interaction with Rush Hour.</p>
+<p>Conversely, imagine a scenario where Route’s main effect had a small p-value and the Route - Rush Hour interaction was also significant. If the interaction is like that depicted in Panel C of <a href="#fig-int">Figure&nbsp;3</a>, simply stating that Route is a significant factor does not tell the whole story. The effect of Route in during rush hour is large and may be significant (steep blue line), but the effect of Route in non-rush hour times may not be large enough to reach significance (the nearly flat red line).</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Which of these two sentences do you like better??
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When a significant interaction is present, do not interpret the hypothesis tests of its main effects without providing additional information.</p>
+<p>In the case of a significant interaction, do not interpret its main effect hypothesis tests without providing additional information.</p>
+</div>
+</div>
+<p>Second, <strong>don’t rely on interaction plots alone to detect the presence/absence of interactions.</strong> Though interaction plots are a a helpful tool, they do not adequately show the repsonse variability in each factor level combination. In other words, even when line segments are not parallel a hypothesis test is still needed to determine if an interaction is real or just due to random error. Furthermore, two lines may look nearly parallel but could actually represent a significant interaction.</p>
+<p>Lastly, beware of a common mistake that students make. Students commonly state an interaction means that the level of one factor affects the values of another factor. This is a lie from Satan! The key misunderstanding here is thinking that the value of one factor <em>affects the other factor</em>. In reality, it is the factor’s <em>effect on the response</em> that changes for different levels of the other factor. The <strong>two factors do not affect each other</strong>.</p>
+</section>
+</section>
+<section id="decomposition" class="level1 page-columns page-full">
+<h1>Decomposition</h1>
+<p>So far, we have been discussing the concept of interaction without doing any calculation or using specific numbers. Let’s return to our BF[2] experiment using toothbrush type and toothpaste brand as independent factors, and percent plaque coverage as the response. We will use this data to show how to calculate interaction effects, as well as main effects.</p>
+<p>We will then continue on to complete the decomposition of variance and preform an F-test.</p>
+<p>As was just mentioned, there are 2 controlled factors: toothbrush type (4 levels) and toothpaste brand (2 levels). A third factor, the interaction, is obtained by crossing the two controlled factors. In terms of the factor diagram, factors are crossed by overlaying the partition lines for the two factors to create new partitions that are also meaningful (see <a href="./factor_structure.html">Factor Structure</a> for a review). <a href="#fig-bf2-structural-factors">Figure&nbsp;4</a> shows the 3 structural factors for a BF[2].</p>
+<div id="fig-bf2-structural-factors" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/BF2-structural-factors-toothbrush.PNG" class="img-fluid figure-img" width="600"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Three structural factors</figcaption><p></p>
+</figure>
+</div>
+<p>To get a full structure diagram, as shown in <a href="#fig-bf2_full">Figure&nbsp;5</a> we must also include the universal factors for the grand mean and residuals.</p>
+<div id="fig-bf2_full" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img" width="900"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Factor structure diagram</figcaption><p></p>
+</figure>
+</div>
+<p>Each factor in the diagram corresponds to a term in <a href="#eq-bf2_2">Equation&nbsp;2</a>:</p>
+<p><span id="eq-bf2_2"><span class="math display">\[
+y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
+\qquad(2)\]</span></span></p>
+<p>Where</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <span class="math inline">\(i\)</span> goes from 1 to 4 since there are 4 toothbrush types</li>
+<li><span class="math inline">\(\beta\)</span> is the effect of toothpaste, and <span class="math inline">\(j\)</span> is either 1 or 2 since there are 2 levels (Name brand and off brand).</li>
+<li>The <span class="math inline">\((\alpha\beta)_\text{ij}\)</span> is called the interaction effect.</li>
+<li><span class="math inline">\(\epsilon\)</span> is the residual error term, and <span class="math inline">\(k\)</span> is the replicate count within a factor level combination.</li>
+</ul>
+<p>A decomposition of the data allows is how we estimate these model parameters.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Balanced vs.&nbsp;Unbalanced Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The formulas and decomposition presented here are for balanced data, where the number of replicates at each factor level combination is the same. In the case of unbalanced data with interaction effects, decisions must be made about how to allocate sums of squares. How to deal with this situation, including R code, is explained in the Unbalanced page under Broad Topics.</p>
+</div>
+</div>
+<section id="factor-effects" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
+<p>How can an interaction affect be estimated? Like all factor effects, its estimate is calculated using the general rule.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+General Rule for Calculating Factor Level Effect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Factor level effect = mean of the factor level - Sum(effects of all outside factors)</p>
+</div>
+</div>
+<p>From the general rule we can see that before we estimate the interaction effect we first need to estimate the outside factor effects (i.e.&nbsp;main effects). Factor level means need to be calculated in order to calculate estimated effects.</p>
+<p>It is also important to recall that the grand mean factor is outside of all other factors, while the residual error factor is inside of all other factors.</p>
+<section id="factor-level-means" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
+<p>Figure <a href="#fig-bf2_data_partition">Figure&nbsp;6</a> shows our data set with partition lines for structural factors in place. We will now proceed to calculate the factor level means for each factor.</p>
+<div id="fig-bf2_data_partition" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/BF2-data-partition.PNG" class="img-fluid figure-img" width="450"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 6: Full data set with partitions</figcaption><p></p>
+</figure>
+</div>
+<p>The grand mean is the mean of all the observations:</p>
+<p><span class="math display">\[
+\hat{\mu} = \bar{y}_\cdots = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76
+\]</span></p>
+<p>Now find the mean for each level of toothbrush type.</p>
+<p><span class="math display">\[
+\bar{y}_\text{manual} = \bar{y}_{1\cdot\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
+\]</span> <span class="math display">\[
+\bar{y}_\text{oscillating} = \bar{y}_{2\cdot\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
+\]</span> <span class="math display">\[
+\bar{y}_\text{sonic} = \bar{y}_{3\cdot\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
+\]</span> <span class="math display">\[
+\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
+\]</span></p>
+<p>Now find the mean for each level of toothpaste brand.</p>
+<p><span class="math display">\[
+\bar{y}_\text{name brand} = \bar{y}_{\cdot 1 \cdot} = \frac{19.12 + 18.56 + \cdots + 18.99 + 32.74}{12} = 22.93
+\]</span> <span class="math display">\[
+\bar{y}_\text{off brand} = \bar{y}_{\cdot 2 \cdot} = \frac{21.60 + 22.09 + \cdots + 21.27 + 23.42}{12} = 22.60
+\]</span></p>
+<p>There are 8 different combinations of toothbrush type and toothpaste, so the interaction factor has 8 levels total. We calculate a mean for each one, but will only show the calculation for the first 3.</p>
+<p><span class="math display">\[
+\bar{y}_\text{manual and name brand} = \bar{y}_{11\cdot} = \frac{19.12 + 24.21 + 26.88}{3} = 23.40
+\]</span> <span class="math display">\[
+\bar{y}_\text{manual and off brand} = \bar{y}_{12\cdot} = \frac{21.60 + 23.40 + 23.35}{3} = 22.78
+\]</span> <span class="math display">\[
+\bar{y}_\text{oscillating and name brand} = \bar{y}_{21\cdot} = \frac{18.56 + 20.00 + 19.87}{3} = 19.48
+\]</span></p>
+<p>The means for the residual error factor levels is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
+<p><a href="#fig-factor-means">Figure&nbsp;7</a> displays all the factor level means inside the factor structure.</p>
+<div class="column-page">
+<div id="fig-factor-means" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/BF2-toothbrush_means.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 7: Factor level means</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="factor-level-effects" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="factor-level-effects">Factor level effects</h3>
+<section id="grand-mean-effect" class="level4">
+<h4 class="anchored" data-anchor-id="grand-mean-effect">Grand mean effect</h4>
+<p>Now that we have calculated means for each level of each factor, we can move on to calculate the effects of the factor levels.</p>
+<p>For the grand mean, there is only one level and there are no outside factors. Therefore, the effect due to grand mean is 22.76 (equivalent to its mean) and this affect is applied to all 24 observations.</p>
+</section>
+<section id="toothbrush-effects" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="toothbrush-effects">Toothbrush effects</h4>
+<p>The toothbrush factor has four levels: one for each brush type. We will use the general rule for calculating <a href="#factor-level-effects">factor level effects</a>. To calculate the effect of a toothbrush, take the toothbrush mean and subtract it from the grand mean factor’s effect. For the manual brush, this looks like:</p>
+<p><span class="math display">\[
+23.09 - 22.76 = 0.33
+\]</span></p>
+<p>Using the manual brush has the effect of <em>increasing</em> a person’s plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> you can find the effect for the oscillating brush <span class="math inline">\(19.98 - 22.76 = -2.79\)</span>. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is <span class="math inline">\(22.68 - 22.76 = -0.09\)</span>. For an ultrasonic brush the effect is <span class="math inline">\(25.31 - 22.76 = 2.55\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the anlaysis or not.</p>
+</div></div></section>
+<section id="toothpaste-effects" class="level4">
+<h4 class="anchored" data-anchor-id="toothpaste-effects">Toothpaste effects</h4>
+<p>Calculating the effects for the second controlled factor in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Remember that toothbrush is not outside or inside of toothpaste, rather the two factors are crossed. To calculate the effect of using the name brand toothpaste, take the name brand mean and subtract it from the grand mean factor’s effect:</p>
+<p><span class="math display">\[
+22.93 - 22.76 = 0.16
+\]</span></p>
+<p>A similar calculation is performed for off the brand toothpaste.</p>
+<p><span class="math display">\[
+22.60 - 22.76 = -0.16
+\]</span></p>
+<p>With only two levels, it becomes obvious that <strong>the effects of a factor’s levels will always sum to zero</strong>. You may want to go back to the toothbrush level effects and verify this is true.</p>
+</section>
+<section id="interaction-effects" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="interaction-effects">Interaction effects</h4>
+<p>The general rule says that effects of outside factors must be subtracted from the factor level mean. We pause to review the relationship of the other factors to the interaction factor to determine if they are inside, outside, or crossed with each other.</p>
+<div id="fig-crossed-interaction-brush" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/BF2-interaction-inside-brush.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Interaction inside of toothbrush</figcaption><p></p>
+</figure>
+</div>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 8: <strong>?(caption)</strong></figcaption><p></p>
+</figure>
+</div>
+<div id="fig-crossed-interaction-paste" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/BF2-interaction-inside-paste.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Interaction inside of toothpaste</figcaption><p></p>
+</figure>
+</div>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 9: <strong>?(caption)</strong></figcaption><p></p>
+</figure>
+</div>
+<p>In <a href="#fig-crossed-interaction-brush">Figure&nbsp;8</a> you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in <a href="#fig-crossed-interaction-paste">Figure&nbsp;9</a>.</p>
+<p>Therefore, to calculate the interaction effect for using an ultrasonic brush with name brand toothpaste we will subtract the effects of the grand mean factor, ultrasonic brush, and name brand paste from the “ultrasonic, name brand” level mean.</p>
+<p><span class="math display">\[
+26.19 - (22.76 + 2.55 + 0.16) = .15
+\]</span></p>
+<p>Let’s take a deeper look to understand why this works. It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.</p>
+<p>An observation from the “ultrasonic brush, name brand paste” group starts with the grand mean value of 22.76. The observation belongs to the ultrasonic group, where plaque tends to be higher, specifically 2.55 higher on average (2.55 is the effect of ultrasonic). <a href="#fig-brush-effect">Figure&nbsp;10</a> show the starting point of the grand mean and the addition of the brush effect.</p>
+<div class="cell">
+
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-page">
+<div id="fig-brush-effect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-brush-effect-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 10: Grand mean + brush effect</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>At the next step, because the observation belongs to the Name Brand Toothpaste group we would tack on an additional 0.16 of plaque coverage, as shown in <a href="#fig-paste-effect">Figure&nbsp;11</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-paste-effect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-paste-effect-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 11: Grand mean + brush effect + paste effect</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What we haven’t accounted for yet is the fact that the ultrasonic brush and name brand toothpaste have appeared together. If the interaction is significant then we can expect a synergistic effect (in either direction) and will need to add/subtract more to the response. Otherwise, the interaction effects will be small (relative to the error variance).</p>
+<p>There is an old saying, “the whole is greater than the sum of its parts”. In a way, the interaction effect is the measure of how much greater. <a href="#fig-int-effect">Figure&nbsp;12</a> shows that after summing the effects of each controlled factor (i.e.&nbsp;main effects), the remaining distance to the mean of the factor level combination is the interaction effect.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-int-effect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-int-effect-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 12: Interaction effect is remaining distance to factor level mean</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We calculated this above using the general rule and found the distance to be 0.15.</p>
+<p><strong>Instead of 3 separate charts as above, should I use this chart where all 3 are combined into 1 graphic to show the progression?? I spent way too long on this already, so let me know what you would change above these charts. Might as well get them right.</strong></p>
+<div class="page-columns page-full">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##| label: fig-int-step</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Grand mean + brush effect... "</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - " + paste effect ... "</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - " + interaction"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">##| fig-subcap: </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="do">##|    - "Grand mean + brush effect..."</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="do">##|    - "... + paste effect ..."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">##|    - " ... + interaction effect"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot 1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>xaxis_limits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.25</span>, <span class="fl">4.75</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Plaque<span class="sc">~</span>brush_num, <span class="at">data=</span>bf1, <span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">pch=</span><span class="dv">1</span>, <span class="at">xaxt=</span><span class="st">'n'</span>,<span class="at">xlim =</span> xaxis_limits, <span class="at">ylab=</span> <span class="st">"% Teeth Area with Plaque"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">main=</span><span class="st">"Grand mean + brush effect..."</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Replot the points of the ultra, name group in brighter color</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">y =</span> highlight<span class="sc">$</span>Plaque, <span class="at">x =</span> highlight<span class="sc">$</span>brush_num, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"purple"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Add axis labels</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Manual"</span>, <span class="st">"Oscillating"</span>, <span class="st">"Sonic"</span>, <span class="st">"Ultrasonic"</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Add grand mean line</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xaxis_limits, <span class="fu">rep</span>(grandmean, <span class="dv">2</span>), <span class="at">lty=</span><span class="dv">1</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">4.5</span>,grandmean<span class="fl">-.5</span>, <span class="st">"Grand mean"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Puts the dashed group mean line for ultrasonic</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#text(4-.4,mu[4,2], expression(bar(y)[ultra]), cex = 1.2)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Ultrasonic effect line and text</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>], grandmean), <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">4</span> <span class="sc">-</span>.<span class="dv">05</span>), <span class="fu">rep</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#horizontal line</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span><span class="fl">-.25</span>, <span class="fu">mean</span>(<span class="fu">c</span>(mu[[<span class="dv">4</span>,<span class="dv">2</span>]], grandmean)), <span class="fu">expression</span>(<span class="fu">hat</span>(alpha)[ultra]<span class="sc">==</span> <span class="fl">2.55</span>), <span class="at">col =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos=</span><span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="do">########## Plot 2 ############</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>xaxis_limits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.25</span>, <span class="fl">4.75</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Plaque<span class="sc">~</span>brush_num, <span class="at">data=</span>bf1, <span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">pch=</span><span class="dv">1</span>, <span class="at">xaxt=</span><span class="st">'n'</span>,<span class="at">xlim =</span> xaxis_limits, <span class="at">ylab=</span> <span class="st">"% Teeth Area with Plaque"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">main=</span><span class="st">"... + paste effect..."</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"Points in 'ultrasonic, name brand' group in purple"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Replot the points of the ultra, name group in brighter color</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">y =</span> highlight<span class="sc">$</span>Plaque, <span class="at">x =</span> highlight<span class="sc">$</span>brush_num, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"purple"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#Add axis labels</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Manual"</span>, <span class="st">"Oscillating"</span>, <span class="st">"Sonic"</span>, <span class="st">"Ultrasonic"</span>))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">#Add grand mean line</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xaxis_limits, <span class="fu">rep</span>(grandmean, <span class="dv">2</span>), <span class="at">lty=</span><span class="dv">1</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">4.5</span>,grandmean<span class="fl">-.5</span>, <span class="st">"Grand mean"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">#Puts the dashed group mean line for ultrasonic</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">#text(4-.4,mu[4,2], expression(bar(y)[ultra]), cex = 1.2)</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">#Ultrasonic effect line and text</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>], grandmean), <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">4</span> <span class="sc">-</span>.<span class="dv">05</span>), <span class="fu">rep</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#horizontal line</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span><span class="fl">-.25</span>, <span class="fu">mean</span>(<span class="fu">c</span>(mu[[<span class="dv">4</span>,<span class="dv">2</span>]], grandmean)), <span class="fu">expression</span>(<span class="fu">hat</span>(alpha)[ultra]<span class="sc">==</span> <span class="fl">2.55</span>), <span class="at">col =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos=</span><span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">#Name Brand Effect line with text</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span> <span class="sc">-</span> .<span class="dv">05</span>,<span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">+</span> .<span class="dv">16</span>, mu[<span class="dv">4</span>,<span class="dv">2</span>]), <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span> <span class="sc">-</span> .<span class="dv">05</span>, <span class="dv">4</span><span class="fl">+.1</span>), <span class="fu">rep</span>((mu[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">+</span> .<span class="dv">16</span>),<span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co">#horizontal line</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span> <span class="sc">-</span> <span class="fl">0.25</span>, mu[[<span class="dv">4</span>,<span class="dv">2</span>]] <span class="sc">+</span> <span class="fl">0.16</span>, <span class="fu">expression</span>(<span class="fu">hat</span>(beta)[Name] <span class="sc">==</span> <span class="fl">0.16</span>), <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="do">########## Plot 3 ############</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>xaxis_limits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.25</span>, <span class="fl">4.75</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Plaque<span class="sc">~</span>brush_num, <span class="at">data=</span>bf1, <span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">pch=</span><span class="dv">1</span>, <span class="at">xaxt=</span><span class="st">'n'</span>,<span class="at">xlim =</span> xaxis_limits, <span class="at">ylab=</span> <span class="st">"% Teeth Area with Plaque"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">main=</span><span class="st">"...+ interaction"</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">#Replot the points of the ultra, name group in brighter color</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">y =</span> highlight<span class="sc">$</span>Plaque, <span class="at">x =</span> highlight<span class="sc">$</span>brush_num, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"purple"</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">#Add axis labels</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Manual"</span>, <span class="st">"Oscillating"</span>, <span class="st">"Sonic"</span>, <span class="st">"Ultrasonic"</span>))</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="co">#Add grand mean line</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xaxis_limits, <span class="fu">rep</span>(grandmean, <span class="dv">2</span>), <span class="at">lty=</span><span class="dv">1</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">4.5</span>,grandmean<span class="fl">-.5</span>, <span class="st">"Grand mean"</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co">#Puts the dashed group mean line for ultrasonic</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">#text(4-.4,mu[4,2], expression(bar(y)[ultra]), cex = 1.2)</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">#Ultrasonic effect line and text</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>], grandmean), <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="fl">-.2</span>,<span class="dv">4</span> <span class="sc">-</span>.<span class="dv">05</span>), <span class="fu">rep</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>],<span class="dv">2</span>), <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>) <span class="co">#horizontal line</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span><span class="fl">-.25</span>, <span class="fu">mean</span>(<span class="fu">c</span>(mu[[<span class="dv">4</span>,<span class="dv">2</span>]], grandmean)), <span class="fu">expression</span>(<span class="fu">hat</span>(alpha)[ultra]<span class="sc">==</span> <span class="fl">2.55</span>), <span class="at">col =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos=</span><span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="co">#Name Brand Effect line with text</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span> <span class="sc">-</span> .<span class="dv">05</span>,<span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">+</span> .<span class="dv">16</span>, mu[<span class="dv">4</span>,<span class="dv">2</span>]), <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span> <span class="sc">-</span> .<span class="dv">05</span>, <span class="dv">4</span><span class="fl">+.1</span>), <span class="fu">rep</span>((mu[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">+</span> .<span class="dv">16</span>),<span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>) <span class="co">#horizontal line</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span> <span class="sc">-</span> <span class="fl">0.25</span>, mu[[<span class="dv">4</span>,<span class="dv">2</span>]] <span class="sc">+</span> <span class="fl">0.16</span>, <span class="fu">expression</span>(<span class="fu">hat</span>(beta)[Name] <span class="sc">==</span> <span class="fl">0.16</span>), <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">pos=</span><span class="dv">2</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co">#Interaction Mean line</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span> <span class="sc">-</span> .<span class="dv">2</span>, <span class="dv">4</span><span class="fl">+.2</span>), <span class="fu">rep</span>(<span class="fl">26.19</span>,<span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"purple"</span>) <span class="co">#bigger horizontal line</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">rep</span>(<span class="dv">4</span> <span class="sc">+</span> .<span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(mu[<span class="dv">4</span>,<span class="dv">2</span>] <span class="sc">+</span> .<span class="dv">16</span>, <span class="fl">26.19</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"purple"</span>) <span class="co">#vertical line</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>( <span class="dv">4</span> <span class="sc">+</span> .<span class="dv">2</span>, <span class="fl">26.19</span>, <span class="fu">TeX</span>(r<span class="st">'($</span><span class="sc">\b</span><span class="st">ar{y}_{Ultra,Name}$)'</span>), <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="co">#Name Brand Effect line with text</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span> <span class="sc">-</span>.<span class="dv">25</span>, <span class="dv">27</span>, <span class="fu">TeX</span>(r<span class="st">'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'</span>), <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">pos =</span> <span class="dv">2</span>)</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="fl">-.2</span>, <span class="dv">4</span><span class="fl">+.1</span>), <span class="fu">c</span>(<span class="dv">27</span>, <span class="fl">25.83</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="bf2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="bf2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="bf2_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="degrees-of-freedom" class="level3">
+<h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
+</section>
+<section id="completing-the-anova-table" class="level3">
+<h3 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA Table</h3>
+</section>
+</section>
+<section id="appendix" class="level2">
+<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<section id="notation-for-estimated-effects" class="level3">
+<h3 class="anchored" data-anchor-id="notation-for-estimated-effects">Notation for Estimated Effects</h3>
+</section>
+<section id="converting-bf2-to-bf1" class="level3">
+<h3 class="anchored" data-anchor-id="converting-bf2-to-bf1">Converting BF[2] to BF[1]</h3>
+</section>
+<section id="unreplicated-bf2" class="level3">
+<h3 class="anchored" data-anchor-id="unreplicated-bf2">Unreplicated BF[2]</h3>
+<p>The time it takes to reach your destination using a busy road PUT A TABLE</p>
 
 
 </section>
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";

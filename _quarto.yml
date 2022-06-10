@@ -30,7 +30,7 @@ website:
          - text: "BF[1]"
            href: BasicFactorial_quarto_boat.qmd
          - text: "BF[2]"
-           href: BasicFactorial_quarto.qmd
+           href: bf2.qmd
          - text: "BF[3+]"
            href: BasicFactorial_quarto.qmd
          - text: "Block Designs"
