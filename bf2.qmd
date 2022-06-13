@@ -695,7 +695,49 @@ text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'), col = "pur
 lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 ```
 
+For each observation, @fig-factor-effects displays all the factor level effects that are summed to obtain that observation.
+
+::: column-page
+![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects}
+:::
+
 ### Degrees of Freedom
+
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to determine the degrees of freedom (df) for the **grand mean**, **treatment factors**, **interaction** and **residual errors**. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.
+
+::: callout-tip
+## General Rule for Degrees of Freedom
+
+df$_\text{factor}$ = Total levels of a factor minus the sum of the df of all outside factors
+
+An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.
+:::
+
+In the toothbrush and toothpaste example, **grand mean** has one level and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one. This will always be the case.
+
+Remember, the degrees of freedom represent the number of unique pieces of information contributing to the estimation of the effects for that factor. In this case, as soon as you estimate the grand mean for just one of the observations, you know it for all the observations. In other words, only 1 value was *free* to vary. As soon as it was known all the other values for the grand mean effect were also known. Therefore, there is just one unique piece of information in the grand mean factor. Grand mean has just 1 degree of freedom.
+
+In this case there are two controlled factors, or treatment factors: toothbrush and toothpaste. For toothbrush there are four levels of the factor. Grand mean is the only factor outside of toothbrush. Take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = **3 degrees of freedom**.
+
+::: column-margin
+The degrees of freedom for toothbrush is it the same here as it was for the BF[1].
+:::
+
+We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in  @fig-factor-effects you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.
+
+A similar approach is taken for toothpaste. Here it is even more obvious that the effects for toothpaste sum to zero. After estimating the toothbrush effect for one observation, I can fill in the toothpaste effects for all the other observations. Therefore, the degrees of freedom for toothpaste is 1.
+
+Using the general rule, I know there are 2 levels for toothpaste and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, I get $2-1 = 1$ degree of freedom for toothpaste.
+
+Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in @fig-factor-effects. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.
+
+This is in perfect harmony with an application of the general rule. The interaction factor has 8 factor levels. Factors outside of the interaction include: grand mean (1 df), toothbrush (3 df), and toothpaste (1 df). Applying the general rule with these values yeilds $8 - (1 + 3 + 1) = 3$ degrees of freedom for the interaction factor.
+
+Perhaps the easiest way to find the degrees of freedom for an interaction that is created by crossing two other factors is to multipley the degrees of freedom of the two other factors. In this case, toothbrush and toothpaste are crossed, so you would get $3*1 = 3$, which matches the answer found using other methods.
+
+Finally, the residual degrees of freedom can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns $24 - (1+3+1+3) = 16$ degrees of freedom for residuals. 
+
+The other way to approach finding the degrees of freedom for residuals is to group the residuals by the smallest structural factor partitions (in this case the interaction). Inside each of those partitions the residual sum to zero. For example, applying the interaction partition to residuals gives the values $-4.28$, $0.81$, and $3.48$. Since we now the 3 residuals sum to zero in each partition, we only need to know 2 values per partition in order to fill in the third residual effect. With 8 partitions applied to the residuals, we have $2x8 = 16$ degrees of freedom for residual error.
 
 ### Completing the ANOVA Table
 
