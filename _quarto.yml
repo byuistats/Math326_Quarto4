@@ -67,8 +67,8 @@ website:
           href: contrast.qmd
         - text: "Multiple Comparisons"
           href: multiple_comparisons.qmd
-        - text: "ZUnbalanced Datasets"
-          href: WilcoxonTests.html
+        - text: "Unbalanced Datasets"
+          href: unbalanced.qmd
         - text: "ZPower??"
           href: Kruskal.html
         - text: "ZRandom Factors??"

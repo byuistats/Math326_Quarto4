@@ -109,11 +109,11 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -162,8 +162,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
@@ -282,7 +282,10 @@ ul.task-list{list-style: none;}
 </div>
 </div>
 <p>The effect size of a factor level can be thought of as the difference between a factor-level’s mean and its partial fit. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors (usually including just outside factors). Therefore, this is just another way to state the general rule to calculate effect size.</p>
+</div></div><div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -337,13 +340,15 @@ General rule to calculate effect size
 <p><img src="images/assembly_line.jpg" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>In the toothbrush <strong>and</strong> toothpaste experiment all the points start the assembly line at the same value: the grand mean of the data set. The first station on the line receives the data point and adds or subtracts to it based on the type of brush it is. For example, the value would be added upon if the brush type was “manual”. The next station alters the value depending on what the instructions for that data point say: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station.</p>
-<p>The last station is worked by a person who makes random adjustments! Some adjustments will be big, and some will be small; some will be positive, and some will be negative. (In a typical factory this person would be fired. But we would rather have randomness than unknown, systematic adjustments , i.e.&nbsp;bias). Though the adjustments at this last station for residual error are random, they do follow a pattern. Namely, the mean of the adjustments is zero and they follow a normal distribution.</p>
+<p>In the toothbrush <strong>and</strong> toothpaste experiment all the points start the assembly line at the same value: the grand mean of the data set. The first station on the line receives the data point and adds or subtracts to it based on the type of brush it is. For example, the value would be added upon if the brush type was “manual” because the mean plaque percentage for the manual type was higher than the grand mean. The next station alters the value depending on which toothpaste was used: off-brand or name brand. After going through each station (one station for each factor) in the assembly line the data point arrives at the last station.</p>
+<p>The last station is worked by a person who makes random adjustments! Some adjustments will be big, and some will be small; some will be positive, and some will be negative. (In a typical factory this person would be fired. But we would rather have randomness than unknown, systematic adjustments , i.e.&nbsp;bias). These random adjustments are drivem by any/all factors that we did not explicity measure.</p>
+<p>For example, variability in the experimental unit’s diet, hardness of the water used when brushing, and the impact of flossing are all factors that were not taken into account. Other effects from seemingly unrelated, or random factors are also lumped in at this last station. This could include factors like outside temperature and the price of rice in China. All these factor’s effects show up in one (hopefully small) adjustment at the last station.</p>
+<p>Though the adjustments at this last station for residual error are (assumed) random, they do follow a pattern. Namely, the mean of the adjustments is zero and they follow a normal distribution.</p>
 </section>
 </section>
 <section id="a-formal-model-and-notation" class="level1 page-columns page-full">
 <h1>A Formal Model and Notation</h1>
-<p>It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to “build” an observation. In our case though, the observation comes already built and we will need to break it back down into its component parts; like reverse engineering the data set to be able to explain why the data is the way that it is.</p>
+<p>It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to “build” an observation. In our case though, the observation comes already built and we will need to break it back down into its component parts; like reverse engineering the data set to be able to explain why each data point is the way that it is.</p>
 <p>Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before we get that far it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.</p>
 <p>The fifth observation in the oscillating brush group had a value of 17.62. In <a href="#sec-effects">Section&nbsp;1</a> we used the general rule (<a href="#eq-general-effects-rule">Equation&nbsp;5</a>) to calculate the following effects:</p>
 <p><span class="math display">\[

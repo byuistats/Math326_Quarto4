@@ -225,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
@@ -783,7 +783,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>The type III ANOVA output, in <a href="#tbl-type3">Table&nbsp;8</a>, contains the sum of squares for each factor when it was listed last.</p>
+<p>The type III ANOVA output, in <a href="#tbl-type3">Table&nbsp;5</a>, contains the sum of squares for each factor when it was listed last.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The order of the variables when coding the model does not matter in a Type 3 ANOVA.</p>
@@ -855,12 +855,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Type II</h1>
 <p>One of the major complaints against a Type III approach is that it violates the principle of marginality. The marginality principle states that when a higher order effect (e.g.&nbsp;an interaction) is included in a model, the lower order effects (e.g.&nbsp;main effects) should also be includeded in the model. According to this principle it does not make sense to test a main effect after accounting for the interaction, which is exactly the situation we came across in Type III.</p>
 <p>Type II strives to maintain the principle of marginality, while at the same time taking an “as if last” approach. Stated another way, in a Type II ANOVA, each factor is tested “as if last” but ignoring all higher order terms.</p>
-<p>To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of <strong>?@tbl-three_anovas_for_type2</strong> the interaction is excluded since we need an “as if last, while exluding higher order terms” from the model. In panel (c) of table the interaction is included, but is last.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display column-screen-inset-shaded">
-<div id="tbl-type3" class="anchored">
+<p>To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of <a href="#tbl-three_anovas2">Table&nbsp;6</a> the interaction is excluded since we need an “as if last, while exluding higher order terms” from the model. In panel (c) of table the interaction is included, but is last.</p>
+<div class="cell tbl-parent column-screen-inset-shaded quarto-layout-panel">
+<div class="panel-caption table-caption">
+<p>Table 6: 3 Type I ANOVA Tables Used to Get a Type II</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-three_anovas2-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
 <table class="table table-sm table-striped">
-<caption>Table 6: Analysis of Variance Table</caption>
+<caption>(a) Initial size last, no interaction</caption>
 <colgroup>
 <col style="width: 26%">
 <col style="width: 6%">
@@ -907,11 +910,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-</div>
-<div class="cell-output-display column-screen-inset-shaded">
-<div id="tbl-type3" class="anchored">
+<div id="tbl-three_anovas2-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
 <table class="table table-sm table-striped">
-<caption>Table 7: Analysis of Variance Table</caption>
+<caption>(b) Thinning last, no interaction</caption>
 <colgroup>
 <col style="width: 26%">
 <col style="width: 6%">
@@ -958,11 +959,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-</div>
-<div class="cell-output-display column-screen-inset-shaded">
-<div id="tbl-type3" class="anchored">
+<div id="tbl-three_anovas2-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
 <table class="table table-sm table-striped">
-<caption>Table 8: Analysis of Variance Table</caption>
+<caption>(c) Interaction last</caption>
 <colgroup>
 <col style="width: 38%">
 <col style="width: 6%">
@@ -1019,12 +1018,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>The type II ANOVA output, in <a href="#tbl-type2">Table&nbsp;9</a>, contains the sum of squares for each factor in <strong>?@tbl-three_anovas_for_type2</strong> when the factor was listed last and higher order factors were not included.</p>
+<p>The type II ANOVA output, in <a href="#tbl-type2">Table&nbsp;7</a>, contains the sum of squares for each factor in <a href="#tbl-three_anovas2">Table&nbsp;6</a> when the factor was listed last and higher order factors were not included.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-type2" class="anchored">
 <table class="table table-sm table-striped">
-<caption>Table 9: Type 2 ANOVA</caption>
+<caption>Table 7: Type 2 ANOVA</caption>
 <colgroup>
 <col style="width: 26%">
 <col style="width: 12%">
@@ -1190,7 +1189,7 @@ Tip
 <li><code>myaov</code> is the name we gave our model in a previous step (not shown).</li>
 <li><code>type=</code> argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, “II”, “III”.</li>
 </ul>
-<p>For examples of code that produce Type III and Type II ANOVA tables look at <a href="#tbl-type3">Table&nbsp;8</a> and <a href="#tbl-type2">Table&nbsp;9</a> respectively. Those examples have an additional <code>pander()</code> command, and its <code>round=</code> argument. This additional code is solely for formatting and is not necessary.</p>
+<p>For examples of code that produce Type III and Type II ANOVA tables look at <a href="#tbl-type3">Table&nbsp;5</a> and <a href="#tbl-type2">Table&nbsp;7</a> respectively. Those examples have an additional <code>pander()</code> command, and its <code>round=</code> argument. This additional code is solely for formatting and is not necessary.</p>
 <section id="summary" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="summary">summary()</h2>
 <p>Many students are in the habit of using <code>summary()</code> to evaluate model hypothesis tests. When called on an <code>aov</code> object (i.e.&nbsp;an object created using the <code>aov()</code> command), <code>summary()</code>’ prints a Type I ANOVA table.</p>

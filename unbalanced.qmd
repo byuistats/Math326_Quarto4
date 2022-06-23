@@ -236,14 +236,14 @@ One of the major complaints against a Type III approach is that it violates the 
 
 Type II strives to maintain the principle of marginality, while at the same time taking an "as if last" approach. Stated another way, in a Type II ANOVA, each factor is tested "as if last" but ignoring all higher order terms.
 
-To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of @tbl-three_anovas_for_type2 the interaction is excluded since we need an "as if last, while exluding higher order terms" from the model. In panel (c) of table the interaction is included, but is last.
+To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of @tbl-three_anovas2 the interaction is excluded since we need an "as if last, while exluding higher order terms" from the model. In panel (c) of table the interaction is included, but is last.
 
 ```{r}
 #| code-fold: false
 #| echo: false
 #| column: screen-inset-shaded
-##| layout-nrow: 1
-#| label: tbl-three_anovas_for_type2
+#| layout-nrow: 1
+#| label: tbl-three_anovas2
 #| tbl-cap: "3 Type I ANOVA Tables Used to Get a Type II"
 #| tbl-subcap:
 #|   - "Initial size last, no interaction"
@@ -260,7 +260,7 @@ int_last2 <- aov(height~thinning + initial_size + thinning:initial_size , data =
 pander(anova(int_last2), round = c(0,0,0,1,2))
 ```
 
-The type II ANOVA output, in @tbl-type2, contains the sum of squares for each factor in @tbl-three_anovas_for_type2 when the factor was listed last and higher order factors were not included.
+The type II ANOVA output, in @tbl-type2, contains the sum of squares for each factor in @tbl-three_anovas2 when the factor was listed last and higher order factors were not included.
 
 ```{r}
 #| code-fold: true
