@@ -172,11 +172,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -847,9 +847,9 @@ Danger
 <p>If an outlier or two are the source of trouble, investigate the outlier to ensure it is valid, belongs in the study, and does not represent an error in some way.</p>
 <p>To address <strong>non-normality of residuals</strong> you will want to know what the distribution of residuals looks like. If a histogram of residuals reveals a multi-modal distribution, that is often an indicator that there are additional populations (i.e.&nbsp;subgroups) that your model did not take into account. Try to identify what variable is causing the multiple modes (e.g.&nbsp;gender) and include it in your model.</p>
 <p>Transforming the data is a technique that can help with the normal distribution assumption and with <strong>heteroscedasticity</strong> simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.</p>
-<p>Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g.&nbsp;proportion of quiz questions answered correctly), this transformation may prove useful: <span class="math inline">\(Y_\text{transformed} = 2*arcsine(\sqrt{Y})\)</span></p>
+<p>Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g.&nbsp;proportion of quiz questions answered correctly), this transformation may prove useful: <span class="math inline">\(Y_\text{transformed} = log(\frac{y}{1-y})\)</span>. If you have the data used to calculate the proportion, each “failure or”success” as it were, a logistic regression may be a more powerful tool than an ANOVA on the summarized percent.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>The <a href="https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box-cox-power-transformation/">Box-Cox</a> is a more algorithmic way of choosing a transformation.</p>
-<p>It is also important to recognize that ANOVA is just one of many analysis tools available<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Kruskal-Wallis is one example of an alternative test with less stringent assumptions. But if its requirements are met, ANOVA offers greater statistical power than Kruskal-Wallis. It can also be difficult to extend some of these alternative tests to more complex designs.</p>
+<p>It is also important to recognize that ANOVA is just one of many analysis tools available<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Kruskal-Wallis is one example of an alternative test with less stringent assumptions. But if its requirements are met, ANOVA offers greater statistical power than Kruskal-Wallis. It can also be difficult to extend some of these alternative tests to more complex designs.</p>
 <p>One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or reduced statistical power. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.</p>
 
 
@@ -863,7 +863,8 @@ Danger
 <li id="fn1" role="doc-endnote"><p>Much of this material is summarized nicely by Keppel, G &amp; Wickens, T (2004). <em>Design and Analysis: A Researcher’s Handbook, Fourth Edition.</em> New Jersey: Pearson/Prentice Hall.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>The name “Q-Q plot” (with 2 q’s) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p><code>qqPlot</code> also does a few other calculations differently, most notably it uses <a href="https://online.stat.psu.edu/stat462/node/247/">studentized residuals</a> instead of standardized residuals.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>For additional alternatives consult Coombs, W. A., Algina, J., &amp; Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. <em>Review of Educational Research,</em> 66, 137-179. A generalized linear model may also be helpful.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>See Warton, David I., and Francis K. C. Hui. “The arcsine is asinine: the analysis of proportions in ecology.” <em>Ecology: Ecological Society of America,</em> vol.&nbsp;92, no. 1, 2011, pp.&nbsp;3-10, https://doi.org/10.1890/10-0340.1<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>For additional alternatives consult Coombs, W. A., Algina, J., &amp; Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. <em>Review of Educational Research,</em> 66, 137-179. A generalized linear model may also be helpful.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

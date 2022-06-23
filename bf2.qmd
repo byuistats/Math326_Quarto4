@@ -14,7 +14,6 @@ toc-depth: 4
  }
 </script>
 ```
-
 ```{r}
 #| label: setup
 #| include: false
@@ -119,6 +118,67 @@ The BF\[\] designation refers to the design of the experiment. The reference to 
 
 # Design
 
+In a basic factorial design of 2 factors, two factors are purposely varied in such a way that observations are obtained for every possible factor level combination. Each factor level combination is considered a treatment.
+
+In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level combination. It can be helpful to first list out all the subjects, factor level combinations, and the order in a non-randomized table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.
+
+We plan to collect 24 observations in total. Since toothbrush has four levels, it seems reasonable to collect $24 \div 4 = 6$ observations per toothbrush. We list each toothbrush type 6 times in the toothbrush column. Toothpaste has 2 levels, so we expect $24 \div 2 = 12$ observations at each level. We list each type of toothpaste 12 times.
+
+::: column-margin
+When the number of observations to collect is not a multiple of the factor levels, you will need to make decisions about which factor level will receive more/fewer observations.
+:::
+
+Note that in this case, all the subjects will be brushing over the same two months. The order column in this case refers to the order in which the researchers will measure the patients. From a practicality perspective, it may not be feasible or meaningful to dictate the order in which experimental units are observed. If order can't be randomized but could be a potential source of bias, it should at least be tracked so that it can be investigated later on.
+
+In some cases, order (chronological, spatial, etc.) does not make sense to worry about. For example, consider a situation where 3 different tests are administered to subjects. All subjects receive the test at the same time and are asked to turn the test in at the same time. In this case, it does not make sense to think of chronological order. Furthermore, if it does not seem reasonable that their seating arrangement (spatial ordering) would affect results, order could be ignored.
+
+```{r}
+#| code-fold: true
+
+#Create a sequence from 1 to 24
+#Paste the word "Subject " in front of each id #
+Subject <- paste("Subject", seq(1:24), sep = " ")
+
+#Create a vector with each brush repeated 6 times
+brush <- rep(c("manual", "oscillate", "sonic", "ultrasonic"), each = 6)
+
+#Create a vector with each paste repeated 12 times
+paste <- rep(c("name", "off"), each = 12)
+
+#Create a vector to represent order of taking measurement
+order <- seq(1,24)
+
+#Combine the vectors of Subject ID's and controlled factor levels into one tibble/dataset
+assignment_table <- tibble(Subject, brush, paste, order)
+
+#print the table, pander() makes it look nice
+pander(assignment_table) 
+
+```
+
+Now randomize the brush column, paste column, and the order column.
+
+```{r}
+#| code-fold: true
+
+#Create a sequence from 1 to 24
+#Paste the word "Subject " in front of each id #
+Subject <- paste("Subject", seq(1:24), sep = " ")
+
+#Create a vector with each brush repeated 6 times
+brush <- rep(c("manual", "oscillate", "sonic", "ultrasonic"), each = 6)
+
+#Create a vector with each paste repeated 12 times
+paste <- rep(c("name", "off"), each = 12)
+
+#Combine the vectors of Subject ID's and controlled factor levels into one tibble/dataset
+randomized_table <- tibble(Subject, sample(brush), sample(paste), sample(order))
+
+#print the table, pander() makes it look nice
+pander(randomized_table) 
+
+```
+
 # Interaction Effect
 
 The purpose of this section is to define an interaction, introduce interaction graphs, explain how to interpret interaction graphs to detect interactions, and provide helpful hints in working with interactions.
@@ -133,7 +193,7 @@ Compared to a BF\[1\], the novel piece of a BF\[2\] is the **interaction factor*
 When an interaction is present this means that a factor level's effect on the response depends on the value of another factor.
 :::
 
-We will discuss interactions at a conceptual level before dealing with numbers and the nuts and bolts of calculations. To facilitate this conceptual discussion we will step away from the toothbrush example and use an example for which you have not yet seen any data. We will return to toothbrushes and toothpaste at the end of the conceptual explanation.
+We will discuss interactions at a conceptual level before dealing with numbers and the arithmetic of calculations. To facilitate this conceptual discussion we will step away from the toothbrush example and use an example for which you have not yet seen any data. We will return to toothbrushes and toothpaste at the end of the conceptual explanation.
 
 ## Conceptual Understanding
 
@@ -375,7 +435,9 @@ The means for the residual error factor levels is the observed value itself sinc
 
 #### Grand mean effect
 
-Now that we have calculated means for each level of each factor, we can move on to calculate the effects of the factor levels.
+Now that we have calculated means for each level of each factor, we can move on to calculate the effects of the factor levels.[^1]
+
+[^1]: There are symbolic/mathematical representations of the factor effect formulas located in the appendix.
 
 For the grand mean, there is only one level and there are no outside factors. Therefore, the effect due to grand mean is 22.76 (equivalent to its mean) and this affect is applied to all 24 observations.
 
@@ -387,9 +449,9 @@ $$
 23.09 - 22.76 = 0.33
 $$
 
-Using the manual brush has the effect of *increasing* a person's plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way[^1] you can find the effect for the oscillating brush $19.98 - 22.76 = -2.79$. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is $22.68 - 22.76 = -0.09$. For an ultrasonic brush the effect is $25.31 - 22.76 = 2.55$.
+Using the manual brush has the effect of *increasing* a person's plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way[^2] you can find the effect for the oscillating brush $19.98 - 22.76 = -2.79$. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is $22.68 - 22.76 = -0.09$. For an ultrasonic brush the effect is $25.31 - 22.76 = 2.55$.
 
-[^1]: The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.
+[^2]: The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.
 
 ::: column-margin
 It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the anlaysis or not.
@@ -431,8 +493,7 @@ $$
 26.19 - (22.76 + 2.55 + 0.16) = .15
 $$
 
-Let's take a deeper look to understand why this works.
-It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.
+Let's take a deeper look to understand why this works. It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.
 
 An observation from the "ultrasonic brush, name brand paste" group starts with the grand mean value of 22.76. The observation belongs to the ultrasonic group, where plaque tends to be higher, specifically 2.55 higher on average (2.55 is the effect of ultrasonic). @fig-brush-effect show the starting point of the grand mean and the addition of the brush effect.
 
@@ -493,9 +554,7 @@ text(4-.25, mean(c(mu[[4,2]], grandmean)), expression(hat(alpha)[ultra]== 2.55),
 
 ```
 
-
 At the next step, because the observation belongs to the Name Brand Toothpaste group we would tack on an additional 0.16 of plaque coverage, as shown in @fig-paste-effect.
-
 
 ```{r}
 #| echo: false
@@ -531,11 +590,9 @@ lines(c(4 - .05, 4+.1), rep((mu[4,2] + .16),2), lty = 2, col = "darkgreen") #hor
 text(4 - 0.25, mu[[4,2]] + 0.16, expression(hat(beta)[Name] == 0.16), col = "darkgreen", pos=2)
 ```
 
+What we haven't accounted for yet is the fact that the ultrasonic brush and name brand toothpaste have appeared *together*. If the interaction is significant then we can expect a synergistic effect (in either direction) and will need to add/subtract more to the response. Otherwise, the interaction effects will be small (relative to the error variance).
 
-What we haven't accounted for yet is the fact that the ultrasonic brush and name brand toothpaste have appeared together. If the interaction is significant then we can expect a synergistic effect (in either direction) and will need to add/subtract more to the response. Otherwise, the interaction effects will be small (relative to the error variance). 
-
-There is an old saying, "the whole is greater than the sum of its parts". In a way, the interaction effect is the measure of how much greater. @fig-int-effect shows that after summing the effects of each controlled factor (i.e. main effects), the remaining distance to the mean of the factor level combination is the interaction effect.
-
+There is an old saying, "the whole is greater than the sum of its parts". In a way, the interaction effect is the measure of how much greater. @fig-int-effect shows that after summing the main effects of each controlled factor, the remaining distance to the mean of the factor level combination is the interaction effect.
 
 ```{r}
 #| echo: false
@@ -580,7 +637,6 @@ text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'), col = "pur
 lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 
 ```
-
 
 We calculated this above using the general rule and found the distance to be 0.15.
 
@@ -701,7 +757,7 @@ For each observation, @fig-factor-effects displays all the factor level effects 
 ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects}
 :::
 
-### Degrees of Freedom
+## Degrees of Freedom
 
 We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to determine the degrees of freedom (df) for the **grand mean**, **treatment factors**, **interaction** and **residual errors**. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.
 
@@ -720,10 +776,10 @@ Remember, the degrees of freedom represent the number of unique pieces of inform
 In this case there are two controlled factors, or treatment factors: toothbrush and toothpaste. For toothbrush there are four levels of the factor. Grand mean is the only factor outside of toothbrush. Take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = **3 degrees of freedom**.
 
 ::: column-margin
-The degrees of freedom for toothbrush is it the same here as it was for the BF[1].
+The degrees of freedom for toothbrush is it the same here as it was for the BF\[1\].
 :::
 
-We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in  @fig-factor-effects you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.
+We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in @fig-factor-effects you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.
 
 A similar approach is taken for toothpaste. Here it is even more obvious that the effects for toothpaste sum to zero. After estimating the toothbrush effect for one observation, I can fill in the toothpaste effects for all the other observations. Therefore, the degrees of freedom for toothpaste is 1.
 
@@ -731,22 +787,484 @@ Using the general rule, I know there are 2 levels for toothpaste and grand mean 
 
 Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in @fig-factor-effects. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.
 
-This is in perfect harmony with an application of the general rule. The interaction factor has 8 factor levels. Factors outside of the interaction include: grand mean (1 df), toothbrush (3 df), and toothpaste (1 df). Applying the general rule with these values yeilds $8 - (1 + 3 + 1) = 3$ degrees of freedom for the interaction factor.
+This is in perfect harmony with an application of the general rule. The interaction factor has 8 factor levels. Factors outside of the interaction include: grand mean (1 df), toothbrush (3 df), and toothpaste (1 df). Applying the general rule with these values yields $8 - (1 + 3 + 1) = 3$ degrees of freedom for the interaction factor.
 
-Perhaps the easiest way to find the degrees of freedom for an interaction that is created by crossing two other factors is to multipley the degrees of freedom of the two other factors. In this case, toothbrush and toothpaste are crossed, so you would get $3*1 = 3$, which matches the answer found using other methods.
+Perhaps the easiest way to find the degrees of freedom for an interaction that is created by crossing two other factors is to multiply the degrees of freedom of the two other factors. In this case, toothbrush and toothpaste are crossed, so you would get $3*1 = 3$, which matches the answer found using other methods.
 
-Finally, the residual degrees of freedom can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns $24 - (1+3+1+3) = 16$ degrees of freedom for residuals. 
+Finally, the residual degrees of freedom can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns $24 - (1+3+1+3) = 16$ degrees of freedom for residuals.
 
-The other way to approach finding the degrees of freedom for residuals is to group the residuals by the smallest structural factor partitions (in this case the interaction). Inside each of those partitions the residual sum to zero. For example, applying the interaction partition to residuals gives the values $-4.28$, $0.81$, and $3.48$. Since we now the 3 residuals sum to zero in each partition, we only need to know 2 values per partition in order to fill in the third residual effect. With 8 partitions applied to the residuals, we have $2x8 = 16$ degrees of freedom for residual error.
+The other approach to finding the degrees of freedom for residuals is to group the residuals by the smallest structural factor partitions (in this case the interaction). Inside each of those partitions the residuals sum to zero. For example, applying the interaction partition to residuals gives the values $-4.28$, $0.81$, and $3.48$. Since we know the 3 residuals sum to zero in each partition, we only need to know 2 values per partition in order to fill in the third residual effect. With 8 partitions applied to the residuals, we have $2x8 = 16$ degrees of freedom for residual error.
 
-### Completing the ANOVA Table
+## Completing the ANOVA Table
+
+Now that we have calculated degrees of freedom and effects for each factor , we can calculate the remaining pieces of the ANOVA table: **Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value**. A completed ANOVA summary table contains the information we need for a hypothesis test of the main effects (for controlled factors) and their interaction.
+
+In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.
+
+```{r echo = FALSE}
+Source <- c("Grand Mean", "Brush", "Toothpaste", "Brush:Toothpaste", "Residual Error", "Total")
+df <- c(1,3,1, 3, 16,24)
+SS <- rep("", 6)
+MS <- rep("", 6)
+Fvalue <- rep("", 6)
+pvalue <- rep("", 6)
+
+mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
+kable(mydf, format = "html", table.attr = "style='width:65%;'")%>% 
+  kableExtra::kable_styling()
+
+```
+
+To get the **sum of squares (SS)** of a factor, each value displayed in that particular factor first needs to be squared. @fig-factor-effects shows the effects, while @fig-SQ-effects shows the squared effects.
+
+<!-- ::: {#fig-effects layout-nrow=2} -->
+
+<!-- ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects .column-page} -->
+
+<!-- ![Squared factor level effects](images/BF2-toothbrush_SQ_effects.PNG){#fig-SQ-effects .column-page} -->
+
+<!-- BF[2] Toothbrush x toothpaste example -->
+
+<!-- ::: -->
+
+![Squared factor level effects](images/BF2-toothbrush_SQ_effects.PNG){#fig-SQ-effects .column-page}
+
+Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in @eq-ss-obs. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.
+
+$$
+SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30
+$$ {#eq-ss-obs}
+
+For **grand mean**, the squared effect of 518.2 is listed 24 times, once for each observation. Summing the squared effects gets:
+
+$$
+SS_\text{Grand Mean} = 518.2* 24 = 12,437.43
+$$
+
+::: callout-note
+The rounded numbers are displayed throughout this section, but all calculations are done using the unrounded numbers.
+:::
+
+The **toothbrush factor** has four different effects: one for each level of the factor. For each effect, the squared value is multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to toothbrush.
+
+$$
+SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31
+$$ {#eq-ss-int} <br>
+
+The sum of squares is similarly calculated for toothpaste brand (@eq-ss-paste) and brush by paste interaction (@eq-ss-int).
+
+$$
+SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62
+$$ {#eq-ss-paste}
+
+$$
+SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12
+$$
+
+The effect for the **residual error factor** has 24 unique values. The squared residuals are summed together in @eq-ss-resid.
+
+$$
+SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82
+$$ {#eq-ss-resid}
+
+You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in @eq-ss-obs.
+
+Putting this information into the ANOVA table gets us the result shown in @tbl-SS.
+
+```{r echo = FALSE}
+#| label: tbl-SS
+#| tbl-cap: Sums of squares
+
+
+Source <- c("Grand Mean", "Brush", "Toothpaste", "Brush:Toothpaste", "Residual Error", "Total")
+df <- c(1,3,1, 3, 16,24)
+SS <- c(12437.43, 86.31, 0.62, 6.12, 143.82, 12674.30)
+MS <- rep("", 6)
+Fvalue <- rep("", 6)
+pvalue <- rep("", 6)
+
+mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
+kable(mydf, format = "html", table.attr = "style='width:65%;'")%>% 
+  kableExtra::kable_styling()
+
+```
+
+Recall that SS is a measure of total variability. Of the three structural factors (brush, toothpaste, and their interaction) it is clear to see that brush is contributing the most variability. Some of the difference in SS may be due to difference in number of levels for each factor. Adding levels to factor will naturally increase variability attributed to that factor. We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors' variability on a standardized scale.
+
+To calculate a mean square (MS), simply divide SS by degrees of freedom for a factor. The mean square calculations are:
+
+$$
+MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43
+$$
+
+<br>
+
+$$
+MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
+$$
+
+<br>
+
+$$
+MS_\text{Toothpaste} = \frac{SS_\text{Toothpaste}}{df_\text{Toothpaste}} = \frac{0.62}{1} = 0.62
+$$
+
+<br>
+
+$$
+MS_\text{Brush:Toothpaste} = \frac{SS_\text{Brush:Toothpaste}}{df_\text{Brush:Toothpaste}} = \frac{6.12}{3} = 2.04
+$$
+
+<br>
+
+$$
+MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Error}} = \frac{143.82}{16} = 8.99
+$$
+
+<br>
+
+```{r echo = FALSE}
+#Replace the blanks with numbers in the MS column
+MS <- c(12437.43, 28.77, 0.62, 2.04, 8.99, NA)
+
+mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
+
+options(knitr.kable.NA = '')
+kable(mydf, format = "html", table.attr = "style='width:65%;'")%>% 
+  kableExtra::kable_styling()
+```
+
+For each structural factor in the design there are a set of hypothesis we want to test using the **F statistic**.
+
+Specifically, we will want to test whether toothbrush type has an effect on plaque coverage, whether toothpaste brand has an effect on plaque coverage, and whether the interaction between brush and paste has an effect on plaque coverage.
+
+More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of @eq-bf2_2.
+
+A hypothesis for the main effect of toothbrush type:
+
+$$H_0: \alpha_\text{i} = 0 \text{ for all } i$$
+
+$$H_a: \alpha_\text{i} \ne 0 \text{ for some } i$$
+
+A hypothesis for the main effect of toothpaste brand:
+
+$$H_0: \beta_\text{j} = 0 \text{ for all } j$$
+
+$$H_a: \beta_\text{j} \ne 0 \text{ for some } j$$
+
+A hypothesis for the interaction of toothbrush and toothpaste.
+
+$$
+H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
+$$
+
+$$
+H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
+$$
+
+To test these hypotheses we need to compare the mean square (MS) for a factor to the mean square for residual error (abbreviated as MSE). The MSE is the estimate of unexplained, random error. If a factor's MS is similar in size to the MSE, the variance in that factor may just be random error; and the effect of the factor levels are zero. On the other hand, if the variability in the factor, as measured by its MS, is much larger than the random error observed in the experiment (represented by MSE), then it is reasonable to believe the factor levels have a non-trivial contribution to the variability. In other words, the factor has a significant effect on the response.
+
+The F statistic is a ratio of these two errors and is obtained by dividing the factor's mean square (MS) by the MSE. The F statistic calculations are
+
+-   $F_\text{brush} = 28.77/8.99 = 3.20$
+
+-   $F_\text{toothpaste} = 0.62/8.99 = 0.07$
+
+-   $F_\text{brush:toothpaste} = 2.04 / 8.99 = .23$
+
+This F statistic follows a well defined distribution, called the F distribution. The F distribution is defined by two values for degrees of freedom[^3]:
+
+[^3]: You can explore behavior of the F distribution for various combinations of degrees of freedom using [this applet](https://homepage.divms.uiowa.edu/~mbognar/applets/f.html)
+
+-   the numerator degrees of freedom, which is the degrees of freedom for the factor being tested
+-   the denominator degrees of freedom, which is the degrees of freedom for residual error
+
+The area under this distribution curve to the right of our F statistic is called the p-value. The p-value represents the probability of getting an F statistic at least as large as the one obtained, assuming the null hypothesis (of no effect) is true.
+
+The F statistic, numerator degrees of freedom, and denominator degrees of freedom are the 3 required inputs to calculate a p-value. P-values can be obtained manually using the applet mentioned above, the `f.dist.rt()`[^4] function in excel or the `pf()` function in R[^5]. Usually though, R will show p-values as part of the standard output of the ANOVA model/table and it is recommended you stick to those values when reporting answers.
+
+[^4]: This is the formula used in Excel to obtain the p-values for brush, toothpaste, and brush:toothpaste interaction respectively:
+
+    -   brush: `` `=f.dist.rt(3.20054, 3, 16) ``
+
+    -   toothpaste: `=f.dist.rt(0.06871, 1, 16)`
+
+    -   brush:toothpaste : `=f.dist.rt(.226924, 3, 16)`
+
+[^5]: This is the formula used in R to obtain the p-values for brush, toothpaste, and brush:toothpaste interaction respectively:
+
+    -   brush: `1-pf(3.2005, 3, 16)`
+
+    -   toothpaste: `1-pf(0.06871, 1, 16)`
+
+    -   brush:toothpaste : `1-pf(0.2269, 3, 16)`
+
+The completed ANOVA table for this BF\[2\] toothbrush and toothpaste example is shown in
+
+```{r echo = FALSE}
+#Replace the blanks with numbers in the MS column
+Fvalue <- c(NA, 3.20, 0.07, 0.23, NA, NA)
+pvalue <- c(NA, 0.051, 0.800, 0.876, NA, NA)
+mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
+
+options(knitr.kable.NA = '')
+kable(mydf, format = "html", table.attr = "style='width:65%;'")%>% 
+  kableExtra::kable_styling()
+```
+
+Because the p-value for the interaction (p-value = 0.876) is much higher than any traditional level of significance threshold we might have chosen (0.01, 0.05, or 0.1), we fail to reject the null hypothesis. There is insufficient evidence to say the interaction effect has an effect on plaque coverage. Because the interaction is NOT significant, we can proceed to interpret the main effects test results.
+
+::: callout-warning
+## Significant Interaction Effects
+
+If the interaction effect is significant, great caution should be taken when interpreting the hypothesis test results for the factors involved in the interaction; it may not be valid to interpret the hypothesis test results. Instead, if the interaction is significant, it is better to describe the nature of the interaction with graphs, numbers, and words.
+:::
+
+Toothpaste's p-value is high (p-value = 0.8), indicating no evidence that toothpaste brand has an effect on plaque coverage. The p-value for brush is marginally significant (p-value = 0.051). When (in)significance is borderline, rather than making bold statements based on a small amount of (in)significance, it is helpful to dig a little deeper. Consider things like sample size, effect size (practical significance), outliers, and how closely assumptions are met. After weighing those considerations carefully, take a stance and state your belief about the role of the factor on the response. Explain your rationale, then keep an open mind and stay curious.
+
+# Analysis in R
+
+We will illustrate the R code used for a BF\[2\] analysis while continuing to use the toothbrush and toothpaste example that has been used throughout this page.
+
+## Describe the Data
+
+When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots, scatterplots, and/or interaction plots with the means displayed.
+
+Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
+
+### Numerical Summaries
+
+```{r, warning=FALSE, message=FALSE, echo = FALSE}
+#| code-fold: false
+
+library(mosaic)
+library(DT)
+library(pander)
+library(car)
+library(tidyverse)
+
+```
+
+After loading required packages, we will read in the data and do some wrangling.
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| cap: "Read in / Wrangle Data"
+
+bf2 <- read_csv("data/toothpaste_BF2.csv") 
+
+```
+
+We then calculate summary statistics for each factor level separately.
+
+```{r}
+#| code-fold: true
+#| label: tbl-main_effects_numbers
+#| tbl-cap: "Numerical Summary for Each Factor"
+#| tbl-subcap: 
+#|   - "Brush"
+#|   - "Toothpaste"
+
+#Descriptive stats for levels of Brush
+favstats(Plaque~Brush, data = bf2) |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+
+#Descriptive stats for levels of Toothpaste
+favstats(Plaque~Toothpaste, data = bf2) |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = TRUE)
+
+```
+
+In @tbl-main_effects_numbers (a) we see that the oscillating brush has lowest mean plaque (19.98). @tbl-main_effects_numbers (b) shows the mean plaque for the two types of toothpaste is very close, 22.92 for Name Brand and 22.60 for Off Brand.
+
+You can also look at descriptive statistics for factor level combinations. This is only advisable if there is sufficient sample size at each combination and the number of combinations is manageable. @tbl-numerical shows what that looks like for our current example. Due to the many combinations, it is a bit difficult to interpret the output. Furthermore, using a 5 number summary on a sample size of 3 observations is not advisable so some of the summary statistics have been dropped.
+
+The combination of Oscillating with Name Brand has the lowest mean (19.48) and the lowest standard deviation (0.80).
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| label: tbl-numerical
+#| tbl-cap: "Numerical Summary"
+
+favstats(Plaque~Brush+Toothpaste, data = bf2) |> 
+  select(Brush.Toothpaste, mean, sd, n) |> 
+  kable(digits = 2) |> 
+  kable_styling(full_width = FALSE)
+```
+
+### Graphical Summaries
+
+Graphs are also valuable tools to help you get to know your data. Since there are only 3 observation in each factor level combination, a dotplot/scatterplot is more appropriate than a boxplot. This is shown in @fig-summary
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+#| label: fig-summary
+#| fig-cap: "Graphical Summary"
+
+#Note, I have to turn Brush into a factor because it started out as a character variable
+dotplot(Plaque~factor(Brush)|factor(Toothpaste), data = bf2, 
+        xlab = "")
+```
+
+You could also gain insight about the main effects by cutting the data by each factor separately, as shown in @fig-by_factor.
+
+```{r}
+#| column: page
+#| layout-ncol: 2
+#| label: fig-by_factor
+#| fig-cap: Data cut by one factor at a time
+#| fig-subcap:
+#|   - "Brush"
+#|   - "Toothpaste"
+#| echo: false
+
+boxplot(Plaque~Brush, data = bf2)
+
+boxplot(Plaque~Toothpaste, data = bf2)
+```
+
+Finally, an interaction plot is ideal for investigating a BF\[2\]. The plot only shows factor level means. Therefore, it does not give a good sense of the underlying distribution of data and should not be used as the only visual assessment of your data. However, it is extremely good at providing insight into possible interactions.
+
+In @fig-tooth_int the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.
+
+```{r echo=FALSE}
+#| label: fig-tooth_int
+#| fig-cap: "Interaction plot for Brush vs. Toothpaste"
+
+interaction.plot(bf2$Brush, bf2$Toothpaste, bf2$Plaque, xlab = "Brush", ylab = "% Tooth Area with Plaque", trace.label = "Toothpaste")
+```
+
+## Create the Model
+
+You then create the model using the `aov()` function. To see results of the F-test you can feed your model into a `summary()` or `anova()` function.
+
+::: column-margin
+When called on a model created with `aov()`, `summary()` and `anova()` functions give the same output with some slight differences in formatting. The `summary()` function is more general; it can take linear regression models created with `'lm()` as inputs, for example. The output provided by `summary()` will change based on the type of object it is called on. This is discussed in more detailed at the bottom of the [Unbalanced](unbalanced.qmd) page.
+:::
+
+```{r}
+#| eval: false
+#| echo: true
+
+myaov <- aov(Y ~ X1*X2, data=YourDataSet)
+summary(myaov)
+```
+
+-   `myaov` is the user defined name in which the results of the aov() model are stored
+-   `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
+-   `X1` and `X2` are names of qualitative variables in your dataset. They should have class(X) equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(X1)*...)` command.
+-   `YourDataSet` is the name of your data set.
+
+The `*` in the code above is a shortcut for writing out the whole model. It can be read as, "include each term by itself, and all possible interaction terms". The long way of writing out the model uses a colon, `:`, to define interaction terms and is shown below. When writing it this way each term must be explicitly stated.
+
+```{r}
+#| eval: false
+#| echo: true
+
+myaov <- aov(Y ~ X1+X2+X1:X2, data=YourDataSet)
+summary(myaov)
+```
+
+Below are the results for the full BF\[2\] model using the toothbrush and toothpaste example. You should notice that these results match what we got when we performed the decomposition manually to build the ANOVA summary table. Even though the interaction plot showed crossing lines, we see the interaction between Brush and Toothpaste is not significant (p-value = .8763). This means we can interpret the hypothesis tests for each of the main effects.
+
+Toothpaste is not significant (p-value = .7966) and Brush is marginally significant (p-value = .0517, which is close to the traditional alpha level of 0.05). Our exploratory analysis showed that oscillating brush resulted in the lowest amount of plaque and the ultrasonic brush resulted in the highest plaque measure.
+
+```{r}
+#| code-fold: true
+#| label: fig-anova_results
+#| fig-cap: "BF[2] ANOVA summary table"
+
+
+bf2_aov <- aov(Plaque~Brush*Toothpaste,data=bf2)
+summary(bf2_aov)
+```
+
+In order to trust these hypothesis test results we need to verify that the assumptions are met.
+
+## Check Assumptions
+
+For a more detailed explanation of the code, output, and theory behind these assumptions visit the [Assumptions](assumptions.qmd) page.
+
+### Constant Variance
+
+There needs to be constant variance across the factor levels. There are multiple ways to verify this assumption is met. First, we can check the residual plot.
+
+```{r}
+#| code-fold: true
+#| label: fig-constant_var
+#| fig-cap: "Checking constant variance"
+plot(bf2_aov, which = 1)
+```
+
+In @fig-constant_var there are 8 distinct vertical groupings of points, one for each factor level combination. Each factor level combination had 3 observations, and so also has 3 residuals. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.
+
+We will further investigate the assumption by looking at other measures of constant variance. We can use the rule of thumb that the largest standard deviation should not be more than double the smallest standard deviation. In @tbl-numerical we saw that the largest standard deviation (5.86) belonged to the ultrasonic brush with name brand paste. It's standard deviation is much more than double the smallest standard deviation, 0.80, which belongs to the oscillating brush with name brand paste. This stands as further evidence that the requirement has been violated.
+
+Students often wonder if they should be comparing the standard deviations for factor level combinations as we just did above, or if they should be comparing the standard deviations between the levels of a single factor one-at-a-time, which are shown in @tbl-main_effects_numbers. In this case, and in many cases both approaches lead you to the same conclusion. In situations where the two approaches do not agree you should use your best judgement.
+
+### Normally Distributed Residuals
+
+We check the assumption that residuals are normally distributed in @fig-qq. Most of the points are in the shaded region. Row 1 of the dataset appears in the upper right corner, far away from the boundaries. A couple of other points are very close, but just outside of the boundary. Due to the robust nature of ANOVA, the mild violation of this assumption is not a concern.
+
+```{r}
+#| code-fold: true
+#| label: fig-qq
+#| fig-cap: "Checking normality of residuals"
+car::qqPlot(bf2_aov$residuals)
+```
+
+### Independent Residuals
+
+The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in @fig-order can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
+
+```{r}
+#| code-fold: true
+#| label: fig-order
+#| fig-cap: "Checking independent residuals assumption"
+plot(bf2_aov$residuals)
+```
+
+### Assumptions Summary
+
+Of most concern was the violation of the constant variance assumption because it was the assumption that was most violated. Even so, its violation was not severe and the dataset is balanced, adding to the robustness of the ANOVA test to assumption violations. For these reasons, this situation would not normally be concerning enough to stop the analysis. However, since the F-test for toothbrush is such a close call, mild-moderate assumption violations may cause the p-value of the test to be slightly off. Even after attempting various transformations of the response variable, Plaque, the degree to which assumptions are met does not improve (in fact, in some cases it gets worse).
+
+Rather than fuss about the whether F-test assumptions are met or not, you can recognize the F-test for Brush is close enough to merit further investigation. In this case, it is recommended to proceed with contrasts/pairwise tests of toothbrush type which do not require constant variance. (You should be aware of what assumption are required for those tests and be sure to check them).
+
+```{r}
+#| code-fold: true
+#| label: fig-tukey
+#| fig-cap: "All pairwise comparisons"
+car::qqPlot(bf2_aov$residuals)
+```
+
+In @fig-tukey the results for all pairwise comparisons with Tukey's HSD adjustment for multiple comparisons are displayed. Only the Ultrasonic-Oscillating comparison is significantly different, with a p-value of .03. Therefore, we can state that the ultrasonic brush performs significantly worse than the oscillating brush at plaque reduction.
 
 ## Appendix
 
 ### Notation for Estimated Effects
 
-### Converting BF\[2\] to BF\[1\]
+Here are symbolic representations for the estimated effects in the BF\[2\] model, as shown in @eq-bf2.
 
-### Unreplicated BF\[2\]
+$$
+\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}
+$$
 
-The time it takes to reach your destination using a busy road PUT A TABLE
+$$
+\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}
+$$
+
+$$
+\begin{align}
+\hat{\alpha}\hat{\beta}_{ij} & = \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + \hat{\alpha}_i  + \hat{\beta}_j ) \\
+&= \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + (\bar{y}_{i \cdot \cdot} - \bar{y}_{\cdot \cdot \cdot})  + (\bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot}) ) \\
+& = \bar{y}_{i j \cdot} - (\bar{y}_{i \cdot \cdot} + \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot})
+\end{align}
+$$
+
+### Unreplicated or Single Observation per Cell
+
+What can be done in the case of an experiment where there is only one observation per factor level combination?
+
+Under construction.

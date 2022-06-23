@@ -1,0 +1,379 @@
+---
+title: "Analysis of Unbalanced Data"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+#library(kableExtra)
+library(pander)
+#library(latex2exp)
+```
+
+# Introduction
+
+A balanced dataset is one in which there are an equal number of replicates for each and every factor level combination. Unbalanced datasets are those that have an unequal number of replicates in at least one factor level combination. In reality, it is more common to have unbalanced data than balanced data. This is particularly true for observational studies. Therefore, it is critical to learn how to analyze unbalanced data.
+
+The formulas for unbalanced data are more complicated than when the data is balanced. This is not an issue since we will let computers do the calculations. The bigger issue deals with the fact that unbalanced datasets often result in correlated factor effects. Due to the equal number of replicates, factors in a balanced dataset are orthogonal. Factors in an unbalanced dataset are not guaranteed this desirable property.[^1]
+
+[^1]: For a brief, accessible description of how orthogonality relates to balanced designs, read here: https://www.statisticshowto.com/orthogonality/. The last sentence states "Orthogonality is present in a model if any factor's effects sum to zero across the effects of any other factors in the table." We know a factor's effects sum to zero, and when factors are crossed, the above quoted statement is also true **IF** there are an equal number of replicates at each factor level. When the number of replicates is not equal, the sum across factor levels is not guaranteed to be exactly zero; so, orthogonality is no longer guaranteed.
+
+<!-- Consider the following example. A study was done with two independent factors: Height (tall and short) and Weight (heavy and light). In a balanced dataset, there would be an equal number of heavy, tall people and light, tall people. So, in the dataset these two factors would be orthogonal/uncorrelated. Instead, consider an unbalanced dataset where there are twice as many tall people as short people. If the proportion of heavy people is equal to the propotion of light people within each height category, then the factors are still considered orthogonal. However, this rarely happens in practice unless it is a deliberate part of the design. -->
+
+<!-- A more likely scenario is that a much higher percentage of tall people are considered heavy. This would result in correlated factors. -->
+
+@fig-balanced is a graphical depiction of an unbalanced dataset for two factors A and B, each with 2 levels, coded as -1 and 1. You can see that each factor level combination appears an equal number of times[^2].
+
+[^2]: https://stats.stackexchange.com/questions/552702/multifactor-anova-what-is-the-connection-between-sample-size-and-orthogonality
+
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| label: fig-balanced
+#| fig-cap: "Balanced, orthogonal data"
+
+library(tidyverse)
+plot_design = function(df){
+  long = df %>% 
+    mutate(.index=1:n()) %>%
+    pivot_longer(-.index)
+  ggplot(long, aes(name, -.index, fill = factor(value))) +
+    geom_tile(color = 'white') +
+    scale_fill_manual(values = c('grey', 'black')) +
+    labs(x = 'Column', y = 'Row', fill = 'Value') +
+    scale_y_continuous(labels = function(x) -x) +
+    theme_minimal() + coord_fixed(ratio = .1)
+}
+
+balanced_ns = c(20, 20, 20, 20)
+df_balanced = data.frame(
+  A = rep(c(-1, -1, 1,1), times = balanced_ns),
+  B = rep(c(-1, 1, -1, 1), times = balanced_ns)
+)
+plot_design(df_balanced) + labs(title = 'Balanced design') # First figure, above
+```
+
+The correlation of these two columns of 1's and -1's is zero.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| eval: false
+cor(df_balanced$A, df_balanced$B)
+```
+
+::: column-margin
+We are measuring the correlation of the *coded* factors with each other. We have not even bothered to define the response variable in these examples, since it is irrelevant to the discussion.
+:::
+
+Now consider @fig-unbalanced, where there are fewer observations for the A=1, B=-1 combination, and more observations for A=1, B=1.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| label: fig-unbalanced
+#| fig-cap: "Unbalanced, non-orthogonal data"
+
+
+unbalanced_ns = c(20, 20, 10, 30)
+df_unbalanced = data.frame(
+  A = rep(c(-1, -1, 1, 1), times = unbalanced_ns),
+  B = rep(c(-1, 1, -1, 1), times = unbalanced_ns)
+)
+plot_design(df_unbalanced) + labs(title = 'Unbalanced design') # Second figure
+
+```
+
+The correlation between the two factors is NOT zero.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| eval: false
+cor(df_unbalanced$A, df_unbalanced$B)
+```
+
+The issue with correlated factors is that their effects on the response are also confounded. When the response varies it cannot be determined how much of the variation in the response is due to factor A and how much was due to factor B.
+
+# Type I
+
+This correlation/confounding of effects also means it is not clear exactly which factor the sums of squares should be attributed to in an ANOVA. @fig-venn (a)[^3] illustrates this shared sum of squares. The shared sum of squares is due to the correlation between the two factors and is represented by the overlap in the circles.
+
+[^3]:  Journal of Animal Ecology, Volume: 79, Issue: 2, Pages: 308-316, First published: 05 February 2010, DOI: (10.1111/j.1365-2656.2009.01634.x)
+
+![Venn diagram illustration of sums of squares partitioning for non‐orthogonal factors A and B (ignoring interaction)](https://besjournals.onlinelibrary.wiley.com/cms/asset/c210638b-49a6-4c71-a3cc-990e17231f09/jane_1634_f1.gif){#fig-venn}
+
+The order in which terms are specified in the model determine which factor the shared sum of squares is attributed to. This approach is referred to as **Sequential Sum of Squares**, or **Type I**. This is the default approach in R.
+
+@fig-venn (b) and (c) illustrate how the sum of squares are allocated according to order the factors are listed when the model is specified.
+
+This can be illustrated with a more concrete example, using data to show how sequential sums of squares works. The data are taken from a hypothetical example by Shaw & Mitchell-Olds(1993)[^4] as cited by Hector, Von Felton, & Schmid (2010)[^5]. In this study, the response is height of a plant. One factor is thinning: yes or no. Thinning is a process where neighboring plants are removed so that they do not compete with each other for light and nutrients in the soil. The other factor in the study is the initial size of the plant at the beginning of the study period. It also has two levels: small and large.
+
+[^4]: Shaw, R.G. & Mitchell-Olds, T. (1993) ANOVA for unbalanced data: an overview. Ecology, 74, 1638--1645.
+
+[^5]:  Journal of Animal Ecology, Volume: 79, Issue: 2, Pages: 308-316, First published: 05 February 2010, DOI: (10.1111/j.1365-2656.2009.01634.x)
+
+Initial size and thinning were crossed to create an unbalanced BF\[2\] design. The data are presented in @tbl-example_data
+
+```{r}
+#| code-fold: true
+#| label: tbl-example_data
+#| tbl-cap: "Plant heights based on initial size and thinning (or not)"
+
+example = tibble( initial_size = c(rep("small",5), rep("large", 6)),
+        thinning = c("not thinned", "not thinned", rep("thinned", 3), rep("not thinned", 4), "thinned", "thinned"),
+        height = c(50, 57, 57, 71, 85, 91, 94, 102, 110, 105, 120))
+pander(example)
+```
+
+@tbl-A_first, below, contains output for the ANOVA when `initial_size` is listed first in the code where the model is defined. `initial_size` is highly significant (p-value = .0004) due to the high value for Sum of Squares. `thinning` is also marginally significant (p-value = 0.0510).
+
+```{r}
+#| code-fold: true
+#| label: tbl-A_first
+#| tbl-cap: "Type I ANOVA, 'initial_size' first"
+
+A_first <- aov(height~initial_size + thinning + initial_size:thinning, data = example)
+pander(anova(A_first), round = c(0,0,0,2,3))
+```
+
+In @tbl-A_first, the $SS_\text{initial size}$ represents the sum of squares for initial size as if it was the only term in the model. $SS_\text{thinning}$ is calculated after accounting for all the sum of squares due to initial size. Similarly, the sum of squares for the interaction represents the left over sum of squares that can be attributed to the interaction factor after accounting for initial size and thinning. Thus, each factor represents the remaining sum of squares attributable to that factor after accounting for everything that appeared before it in the model, and ignoring everything that came after it in the model specification.
+
+Observe the changes in @tbl-thin_first when we reverse the order of `initial_size` and `thinning` in the model specification. `thinning` is far from significant and has a much lower sum of squares. Thus, the order in which factors are entered into the model is critical.
+
+::: column-margin
+Don't worry that $SS_{thinning}$ was actually lower when `thinning` was listed first. This sometimes occurs.
+:::
+
+```{r}
+#| code-fold: true
+#| label: tbl-thin_first
+#| tbl-cap: "Type I ANOVA, 'thinning' first"
+
+thinning_first <- aov(height~thinning + initial_size + thinning:initial_size, data = example)
+pander(anova(thinning_first), round = c(0,0,0,2,3))
+```
+
+::: column-margin
+When specifying the interaction term in R `thinning:initial_size` is equivalent to `initial_size:thinning`.
+:::
+
+There are a few interesting thing to note when comparing the output in @tbl-A_first with @tbl-thin_first.
+
+-   Even though the sum of squares for the two main effects changed, their total is the same.
+
+$$
+4291 + 590 = 35 + 4846 = 4881
+$$
+
+This illustrates a key point about **Type I SS: the sum of SS of all the factors will equal** $SS_{total}$.
+
+-   The interaction term was the last specified factor in both cases, and so its sum of squares is the same in both tables.
+-   The $SS_{residuals}$ does not change based on the order.
+
+Deciding which factor to list first is not always easy and depends on your desired hypotheses. In this case, we may wish to test the effectiveness of thinning after accounting for the effect of the initial size of the plant. If such was the case, it would make sense to list thinning second.
+
+In most basic factorial designs it is not appropriate or possible to decide which variable should be listed first. You can use an adjusted sum of squares approach instead, which include Type II and Type III. We will discuss Type III first since it is more straightforward to explain.
+
+# Type III
+
+When sequential sum of squares is not appropriate, one common method of adjustment is called **Type III, or "as if last", sum of squares.** This approach computes the sums of squares for each factor as if it was the last factor listed in the sequential sum of squares. To illustrate this, 3 ANOVA tables are shown below. In each table, a different factor is listed last. When the `interaction` is listed last, it's sums of squares is 11; when `initial_size` is listed last its sum of squares is 4,808; and when `thinning` is listed last its sum of squares is 597 (all values have been rounded to the nearest whole number).
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| column: screen-inset-shaded
+#| layout-nrow: 1
+#| label: tbl-three_anovas
+#| tbl-cap: "3 Type I ANOVA Tables Used to Get a Type III"
+#| tbl-subcap:
+#|   - "Interaction last"
+#|   - "Initial size last"
+#|   - "Thinning last"
+
+# Without creating this interaction column I cannot get a Type I SS with the interaction term in the non-last position. Though it is sequential, R automatically sorts based on higher order interaction.
+
+interaction <- factor(c(2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2))
+example <- example |> add_column(interaction)
+
+int_last <- aov(height~thinning + initial_size + interaction, data = example)
+pander(anova(int_last), round = c(0,0,0,1,2))
+
+size_last <- aov(height~thinning +  interaction + initial_size , data = example)
+pander(anova(size_last), round = c(0,0,0,1,2))
+
+thinning_last <- aov(height~interaction + initial_size + thinning , data = example)
+pander(anova(thinning_last), round = c(0,0,0,1,2))
+```
+
+The type III ANOVA output, in @tbl-type3, contains the sum of squares for each factor when it was listed last.
+
+::: column-margin
+The order of the variables when coding the model does not matter in a Type 3 ANOVA.
+:::
+
+```{r}
+#| code-fold: true
+#| echo: false
+#| label: tbl-type3
+#| tbl-cap: "Type 3 ANOVA, As If Last"
+
+#It doesn't matter which of the 3 models from above that I since order does not matter when using Type III ANOVA. I will use the model with the interaction as last.
+
+pander(car::Anova(int_last, type = 3), round = c(0,0,1,2))
+```
+
+The sum of squares contained in a Type III ANOVA table can be interpreted as the sum of squares attributable to a factor after all the other factors in the model have been accounted for. Type III does not attribute the overlapping sum of squares to any factor. This is represented by the middle intersection piece of the Venn diagram in panel (d) of @fig-venn.[^6] This is why the sum of squares for factors in Type III do NOT add up to the total sum of squares, like they did in Type I. The Type III ANOVA tests are based on marginal means unweighted by sample size.
+
+[^6]: There is also the possibility the total sum of squares is more than the sum of squares total due to "double counting" the variation. This is much more difficult to illustrate with Venn diagrams.
+
+# Type II
+
+One of the major complaints against a Type III approach is that it violates the principle of marginality. The marginality principle states that when a higher order effect (e.g. an interaction) is included in a model, the lower order effects (e.g. main effects) should also be includeded in the model. According to this principle it does not make sense to test a main effect after accounting for the interaction, which is exactly the situation we came across in Type III.
+
+Type II strives to maintain the principle of marginality, while at the same time taking an "as if last" approach. Stated another way, in a Type II ANOVA, each factor is tested "as if last" but ignoring all higher order terms.
+
+To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of @tbl-three_anovas_for_type2 the interaction is excluded since we need an "as if last, while exluding higher order terms" from the model. In panel (c) of table the interaction is included, but is last.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| column: screen-inset-shaded
+##| layout-nrow: 1
+#| label: tbl-three_anovas_for_type2
+#| tbl-cap: "3 Type I ANOVA Tables Used to Get a Type II"
+#| tbl-subcap:
+#|   - "Initial size last, no interaction"
+#|   - "Thinning last, no interaction"
+#|   - "Interaction last"
+
+thinning_last2 <- aov(height~ initial_size + thinning, data = example)
+pander(anova(thinning_last2), round = c(0,0,0,1,2))
+
+size_last2 <- aov(height~thinning + initial_size , data = example)
+pander(anova(size_last2), round = c(0,0,0,1,2))
+
+int_last2 <- aov(height~thinning + initial_size + thinning:initial_size , data = example)
+pander(anova(int_last2), round = c(0,0,0,1,2))
+```
+
+The type II ANOVA output, in @tbl-type2, contains the sum of squares for each factor in @tbl-three_anovas_for_type2 when the factor was listed last and higher order factors were not included.
+
+```{r}
+#| code-fold: true
+#| echo: false
+#| label: tbl-type2
+#| tbl-cap: "Type 2 ANOVA"
+
+pander(car::Anova(int_last, type = 2), round = c(0,0,1,2))
+```
+
+The sum of squares contained in a Type II ANOVA table can be interpreted as the sum of squares attributable to a factor after all the lower or same order factors in the model have been accounted for. The Type II ANOVA tests are based on marginal means weighted by sample size.
+
+# Type IV
+
+There are actually many other methods for calculating sum of squares. One in particular is designed for unbalanced data. Here, the term unbalanced does not simply mean unequal sample sizes across factor level combinations. Unbalanced can also mean that certain factor level combinations are completely missing from the design. This can occur when a combination of factor levels is not possible (i.e. male and pregnant), or if, for whatever reason, observations were not obtained for some factor level combination(s).
+
+When the dataset is unbalanced in this way, the analyst should consider using Type IV ANOVA.
+
+# Pros/Cons Table
+
+Below is a summary table of the pros and cons of the first 3 methods.
+
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ANOVA Type | Pros                                                                                                                                          | Cons                                                                                                                                                       |
++============+===============================================================================================================================================+============================================================================================================================================================+
+| Type I     | -   SS for all effects add up to $SS_{total}$                                                                                                 | -   In most factorial designs, deciding an order for factors is inappropriate or impossible                                                                |
+|            |                                                                                                                                               |                                                                                                                                                            |
+|            | -   Allows for prioritizing/ sequencing of factors if appropriate                                                                             |                                                                                                                                                            |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type II    | -   Maintains the principle of marginality. (i.e. won't test a main effect when an interaction involving that effect is already in the model) | -   Weights marginal means by their sample size. In other words, factor levels with larger sample sizes will have a bigger impact on the result of F test. |
+|            |                                                                                                                                               |                                                                                                                                                            |
+|            | -   Order in which factors are entered in the model does not matter                                                                           |                                                                                                                                                            |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type III   | -   Order in which factors are entered in the model does not matter                                                                           | -   Violates marginality                                                                                                                                   |
+|            |                                                                                                                                               |                                                                                                                                                            |
+|            | -   Factor effects are not weighted by sample size                                                                                            |                                                                                                                                                            |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+After decades of debate and disagreement, there is an emerging concept gaining ground amongst statisticians that there doesn't have to be a "right" and a "wrong" approach. Rather, the analyst should pick the approach that best matches the hypothesis they wish to test.
+
+This discussion has assumed the model is using fixed effects for all factors. In random effects models or mixed models the discussion changes. Those models are outside the scope of this book.
+
+# Examples
+
+This section strives to provide an example of when each type of ANOVA may be appropriate.
+
+## Type I
+
+For an example of when Type I may be useful we do not need to look any further than the plant study we have been using all along on this page. Say our research question aims to test the effectiveness of thinning *after* accounting for the plant's initial size our hypothesis matches a Type I approach. The research question specifies the order in which we want to consider the factors. Since Type I ANOVA is dependent on the order in which factors are specified in the model, we are able to incorporate the desired order from our research question into the analysis.
+
+## Type II
+
+You may want to use a Type II ANOVA if the disparity in sample sizes reflects a similar disparity in population size. Perhaps your end goal is to apply the treatment to all members of the population and you want any difference observed in the study to be present in the population. In that case, Type II may be the best choice. This will be more common in observational studies.
+
+For example, a web developer randomly assigns website visitors to one of two website designs. Design A is evenly split between males and females, but Design B receives many more males than females. In this case, the lopsided nature of the gender distribution may accurately reflect the population of website visitors being predominantly male.
+
+The test of the main effects for gender and website design will be influenced by sample sizes. Say we conclude that people tend to buy more products when presented with website A. This conclusion will be influenced more heavily by males since males represented a larger proportion of the sample. But in this case that's okay because males also represent a larger part of our target audience (website visitors).
+
+## Type III
+
+Let's continue with the website design and gender study mentioned above. Now, instead of taking the role of a business owner, we assume the role of a cognitive psychologist. We are not interested in trying to maximize profits for a target market. Rather, we are interested in knowing how individuals respond to the two different site designs. The fact that we partnered with a website with predominantly male clientele is incidental. We want to arrive at conclusions that will be useful in explaining/predicting behavior of an individual.
+
+If we use Type II ANOVA the result of the significance test will be confounded with the fact that males account for a larger portion of the sample. A Type III ANOVA will not weight by sample size and will treat the estimated means of males and females equally. Thus our results can be used to predict an individual's behavior based on their gender and website design. Our findings can now be used by other websites with a different clientele (e.g. predominantly female) to correctly predict/explain individual's actions.
+
+# Key Points
+
+A few other key points are worth remembering.
+
+First, **small amount of unbalance will result in a small amount of difference in the different methods for calculating sum of squares.** When the data is balanced, the 3 types of ANOVA will give the same results.
+
+Second, **no amount of adjustment to the sum of squares calculation can account for or correct bias in a study.** For this reason, it is important to understand what is causing the unbalance in the dataset. Was it a deliberate decision in the design due to time/cost constraints? Was it due to spoiled experimental runs/units? In the case of human research, was attrition the cause? If the cause of the unbalance is related to the factor level values there could be bias in the study.
+
+For example, consider an experiment that wanted to study people's sentiment about public speaking. One group of 10 participants was assigned to talk about their most embarrassing moment. The other group of 10 participants was assigned a neutral topic, like what they had for dinner the previous day. Four of the 10 people assigned to speak on an embarrassing moment dropped out of the study. The design started out as balanced, but the resulting dataset is unbalanced.
+
+The reason for multiple people dropping out is likely connected to the fact that those people may not feel comfortable sharing embarrassing experiences in a public setting. The remaining people in the study may be fundamentally different in how they feel about sharing embarrassing experiences. The data is not missing completely at random. Bias has been introduced!
+
+Third, **always test your highest-order interaction first**. The results for the highest order interaction will be the same regardless of what type of ANOVA you use (sequential or adjusted). If the interaction is significant, most of the time it is not appropriate to interpret the hypothesis test of the main effects anyway so you won't need to worry about which type is used.
+
+Finally, **when analyzing unbalanced data *in this class* you should use Type III ANOVA** unless directed otherwise. This ends up being a bit of a conservative approach. If a main effect is significant, even after accounting for a non-significant interaction, there is a good chance the main effect will be even more significant if the interaction were to be excluded. The Type III is also simpler in terms of explanation/interpretation. It will help share answers and work if we are all using the same approach as a class.
+
+::: callout-tip
+Use Type III ANOVA for unbalanced datasets in this class.
+:::
+
+# R Instruction
+
+Type I ANOVA is the default in the `anova()` command. In fact, it is the only type of ANOVA available in `anova()`.
+
+To get Type II or Type III ANOVA you will create a model in the usual way and then use the `Anova()` command from the `car` package. Note the use of the capital 'A', instead of lower case 'a', in the function name.
+
+```{r}
+#| eval: false
+#| echo: true
+
+car::Anova(myaov, type = 3)
+```
+
+-   `car` is the name of the package the `Anova()` command comes from
+-   `::` allows you to use functions from a package without having to load the entire package with a `library()` command. The package you want to access is specifed on the left of the `::` and the function name is specified on the right.
+-   `Anova()` is a function from the `car` package. It can be used to get type II or type III ANOVA tables for a variety of different models, including `aov()`, `lm()`, `glm()`, etc.
+-   `myaov` is the name we gave our model in a previous step (not shown).
+-   `type=` argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, "II", "III".
+
+For examples of code that produce Type III and Type II ANOVA tables look at @tbl-type3 and @tbl-type2 respectively. Those examples have an additional `pander()` command, and its `round=` argument. This additional code is solely for formatting and is not necessary.
+
+## summary()
+
+Many students are in the habit of using `summary()` to evaluate model hypothesis tests. When called on an `aov` object (i.e. an object created using the `aov()` command), `summary()`' prints a Type I ANOVA table.
+
+However, when called on an `lm()` object, `summary()` does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.
+
+::: column-margin
+`lm()` is usually preferred over `aov()` if there are 1 or more numeric independent variables in the model.
+:::
+
+To get a ANOVA table and the F-tests for a factor's overall significance you can call `car::Anova()` or `anova()` on an `lm()` object.

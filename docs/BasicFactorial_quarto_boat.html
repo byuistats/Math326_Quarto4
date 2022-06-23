@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Basic Factorial</title>
+<title>Math326 Notebook - BF[1]</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -268,9 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bf1" id="toc-bf1" class="nav-link active" data-scroll-target="#bf1">BF[1]</a>
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#factor-structure" id="toc-factor-structure" class="nav-link" data-scroll-target="#factor-structure">Factor Structure</a></li>
   <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
@@ -302,14 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
   <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
-  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations">Independent Observations</a></li>
+  <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
   <ul class="collapse">
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   <li><a href="#links-to-outside-resources" id="toc-links-to-outside-resources" class="nav-link" data-scroll-target="#links-to-outside-resources">Links to outside resources</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -319,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Basic Factorial</h1>
+<h1 class="title">BF[1]</h1>
 </div>
 
 
@@ -341,15 +338,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
-<hr>
-<section id="bf1" class="level1 page-columns page-full">
-<h1>BF[1]</h1>
-<p>A study with just one factor that is varied in the design.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="overview" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In a basic one-way factorial design (BF[1]), only one factor is purposefully varied. Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)</p>
-<section id="factor-structure" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="factor-structure">Factor Structure</h3>
+<section id="overview" class="level1 page-columns page-full">
+<h1>Overview</h1>
+<p>In a basic one-way factorial design (BF[1]), only one factor is purposefully varied.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)</p>
+<section id="factor-structure" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>The factor structure for the model resulting from a completely randomized, one factor design is:</p>
 <div class="column-page">
 <div id="fig-bf1-structure-with-equation" class="quarto-figure quarto-figure-center anchored">
@@ -361,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a> illustrates a factor with 4 levels, 6 replications at each level.</p>
 </section>
-<section id="hypothesis-and-model" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h3>
+<section id="hypothesis-and-model" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
 <p>A more detailed description of the model for an ANOVA with just one factor:</p>
 <p><span class="math display">\[
 y_{ij} = \mu + \alpha_i + \epsilon_{ij}
@@ -378,8 +371,8 @@ H_o: \alpha_1 = \alpha_2 = ... = 0
 H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 \]</span></p>
 </section>
-<section id="assumptions" class="level3">
-<h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
+<section id="assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>A one-way ANOVA model may be used to analyze data from a BF[1] design if the following requirements are satisfied:</p>
 <table class="table">
 <colgroup>
@@ -429,10 +422,10 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </table>
 </section>
 </section>
-<section id="design" class="level2">
-<h2 class="anchored" data-anchor-id="design">Design</h2>
+<section id="design" class="level1">
+<h1>Design</h1>
 <p>In a one factor design, one factor is purposely varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.</p>
-<p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. In this example we expect a balanced design (i.e.&nbsp;each factor level has the same number of observations). This can be done by listing all the subjects, then listing the treatments, as seen below:</p>
+<p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level. In this example we expect a balanced design (i.e.&nbsp;each factor level has the same number of observations) because the number of observations is a perfect multiple of the number of factor levels. To make random assignments, start by listing all the subjects, then listing the treatments, as seen below:</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -474,7 +467,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </tr>
 </tbody>
 </table>
-<p>Then you randomly shuffle the treatment column. (You should also be paying attention to the order in which subjects and treatments are being experimented on as this could be a potential source of bias. In a BF[1], you randomize the order also.) The result might look something like this.</p>
+<p>Then you randomly shuffle the treatment column. (You should also be paying attention to the order in which subjects and treatments are being experimented on as this could be a potential source of bias. In a BF[1], if it makes sense to do, you randomize the order also.) The result might look something like this.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -516,9 +509,21 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </tr>
 </tbody>
 </table>
-<p>You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a <em>blocked design</em> to prevent “unlucky” ordering and pairing.</p>
-<section id="lifeboat-training-example" class="level3">
-<h3 class="anchored" data-anchor-id="lifeboat-training-example">Lifeboat Training Example</h3>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a <strong><em>blocked design</em></strong> to prevent “unlucky” ordering and pairing.</p>
+</div>
+</div>
+<section id="lifeboat-training-example" class="level2">
+<h2 class="anchored" data-anchor-id="lifeboat-training-example">Lifeboat Training Example</h2>
 <p>Consider the following example. An experiment was done to assess different modes of virtual training in how to launch a lifeboat. Sixteen students in the maritime safety training institute were a part of the study, and each of the students were assigned one of four possible virtual training experiences. The four experiences included:</p>
 <ol type="1">
 <li>Lecture/Materials (Control)</li>
@@ -626,7 +631,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 </table>
 </div>
 </div>
-<p>Then we randomly shuffle the <code>Treatments</code> column to get the following assignments. Check out the R-code to see how this is done.</p>
+<p>Then we randomly shuffle the brush and paste column to get the following assignments. Check out the R-code to see how this is done.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -722,8 +727,8 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <p>We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.</p>
 </section>
 </section>
-<section id="decomposition" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="decomposition">Decomposition</h2>
+<section id="decomposition" class="level1 page-columns page-full">
+<h1>Decomposition</h1>
 <p>This section serves as a bridge between the design and the analysis of an experiment. It is equivalent to doing the analysis by hand. The primary goal is to see how the design decisions impact the analysis; including a deeper understanding of what the numbers in an ANOVA table mean and how they are calculated.</p>
 <p>The factor structure diagram of an experimental design is an effective way to organize and plan for the type of data needed for an experiment. Recall that in our lifeboat example there were four levels of training method with six replicates for each (the actual study used 16 observations per treatment). The diagram below gives the factor structure of the design, and the accompanying mathematical model.</p>
 <div class="column-page">
@@ -741,8 +746,8 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <li>The <strong>treatment factor</strong> involves the four methods of training, represented by the four vertically long cells. Each factor level may have a distinct mean and effect.</li>
 <li>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and factor level effect. Each of the cells represent a distinct value for the residual error.</li>
 </ul>
-<section id="degrees-of-freedom" class="level3">
-<h3 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h3>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to determine the degrees of freedom (df) for the <strong>grand mean</strong>, <strong>treatment</strong>, and <strong>residual errors</strong> factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -765,8 +770,8 @@ General Rule for Degrees of Freedom
 <p>For <strong>residual errors</strong>, there are 24 levels of the factor (as shown by the 24 cells for residual error on the far right of <a href="#fig-bf1-structure-with-equation">Figure&nbsp;1</a>). Both grand mean and training method are outside of the residual errors factor. Take the number of levels for the residual error (24) and subtract the sum of the degrees of freedom for grand mean and training method (3+1=4). The residual error has 24 - (3+1) = <strong>20 degrees of freedom</strong>.</p>
 <p>The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 levels of training method is 20 observations, or in other words, 20 degrees of freedom.</p>
 </section>
-<section id="factor-effects" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="factor-effects">Factor Effects</h3>
+<section id="factor-effects" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
 <p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the grand mean, training methods, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -781,8 +786,8 @@ General Rule for Effect Size
 <p>Effect size = factor level mean - the sum of the effects of all outside factors</p>
 </div>
 </div>
-<section id="calculate-means" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="calculate-means">Calculate means</h4>
+<section id="calculate-means" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="calculate-means">Calculate means</h3>
 <p>To estimate all the factor effects we must first calculate the mean for the grand mean factor and the means for each level of training method.</p>
 <p>To get the grand mean, average all 24 observations. The mean for all the observations is 6.5846. There is only one level for grand mean so this number is placed into each of the cells for the grand mean factor in <a href="#fig-training-means">Figure&nbsp;2</a>.</p>
 <p>For the treatment factor, calculate the mean of each of the four levels. To calculate the mean for Control:</p>
@@ -800,8 +805,8 @@ General Rule for Effect Size
 </div>
 </div>
 </section>
-<section id="calculate-effects" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="calculate-effects">Calculate effects</h4>
+<section id="calculate-effects" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="calculate-effects">Calculate effects</h3>
 <p>Now that we have calculated means for each level of each factor, we can move on to calculate the effects of the factor levels. We will use the general formula for calculating effect size.</p>
 <p>For the grand mean, there is only one level and there are no outside factors. Therefore, the effect due to grand mean is 6.5846 (equivalent to its mean) and this affect is applied to all 24 observations.</p>
 <p>The training method factor has four levels: one for each method. To calculate the effect of a training method, take the training method mean and subtract it from the effect due to the grand mean factor. For the “Control” method, this looks like:</p>
@@ -837,8 +842,8 @@ General Rule for Effect Size
 </div>
 </section>
 </section>
-<section id="completing-the-anova-table" class="level3">
-<h3 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA table</h3>
+<section id="completing-the-anova-table" class="level2">
+<h2 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA table</h2>
 <p>Now that we have calculated degrees of freedom and effects for each factor in a basic one-way factorial design, we can calculate the remaining pieces of the ANOVA table: <strong>Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value</strong>. An ANOVA table essentially steps through the variance calculation that is needed to calculate the F statistics of an ANOVA test. In other words, a completed ANOVA summary table contains the information we need for a hypothesis test of a treatment factor.</p>
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
@@ -898,7 +903,7 @@ General Rule for Effect Size
 SS_\text{Grand Mean} = (6.5845)^2 + (6.5845)^2 + ... + (6.5845)^2 = 24*(6.5845)^2 = 1040.57
 \]</span></p>
 <p><br></p>
-<p>The <strong>treatment factor</strong>, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.</p>
+<p>The <strong>treatment factor</strong>, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.</p>
 <p><span class="math display">\[
 SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
 \]</span> <br></p>
@@ -1099,15 +1104,15 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 </div>
 </section>
 </section>
-<section id="analysis-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-in-r">Analysis in R</h2>
+<section id="analysis-in-r" class="level1">
+<h1>Analysis in R</h1>
 <p>We will illustrate the R code using the lifeboat launch training example with just 6 observations per training method.</p>
-<section id="describe-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="describe-the-data">Describe the Data</h3>
+<section id="describe-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the Data</h2>
 <p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed.</p>
 <p>Interactive code and additional explanations of numerical summaries and plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
-<section id="numerical-summaries" class="level4">
-<h4 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h4>
+<section id="numerical-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h3>
 <div class="cell">
 
 </div>
@@ -1211,8 +1216,8 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 </div>
 </div>
 </section>
-<section id="graphical-summaries" class="level4">
-<h4 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h4>
+<section id="graphical-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
 <p>You should also visualize the data. Since there are only six data point, a scatter plot may be preferred over a boxplot.</p>
 <div class="cell">
 <details>
@@ -1238,8 +1243,8 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 <p>This plot reinforces the conclusion that Monitor/Keyboard tends to have higher scores. The outliers in the Control and Joypad method also become very apparent.</p>
 </section>
 </section>
-<section id="create-the-model" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-model">Create the Model</h3>
+<section id="create-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-model">Create the Model</h2>
 <p>You then create the model using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X, <span class="at">data=</span>YourDataSet)</span>
@@ -1268,16 +1273,16 @@ Residuals   20 100.49   5.024               </code></pre>
 </div>
 <p>We then interpret the results. Training method does not appear to be a significant factor since the p-value (0.131) is higher than our significance level of 0.05. Therefore, we cannot conclude that one training method results in a better mean test score than another.</p>
 </section>
-<section id="check-assumptions" class="level3">
-<h3 class="anchored" data-anchor-id="check-assumptions">Check assumptions</h3>
+<section id="check-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="check-assumptions">Check assumptions</h2>
 <p>Now that the model is created the assumptions need to be checked. Interactive code and additional explanation for assumption checking can be found in the <a href="docs/diagnostics.html">Model Diagnostics</a> and <a href="./assumptions.html">Assumptions</a> sections of the book respectively.</p>
 <p>Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.</p>
-<section id="constant-variance" class="level4">
-<h4 class="anchored" data-anchor-id="constant-variance">Constant Variance</h4>
+<section id="constant-variance" class="level3">
+<h3 class="anchored" data-anchor-id="constant-variance">Constant Variance</h3>
 <p>We first check to see if the levels of training method have constant variance. The points in <a href="#fig-summary">Figure&nbsp;5</a> have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in <a href="#tbl-numerical">Table&nbsp;1</a> we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.</p>
 </section>
-<section id="normally-distributed-residuals" class="level4">
-<h4 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h4>
+<section id="normally-distributed-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
 <p>A QQ-plot of the residuals is shown in <a href="#fig-qq">Figure&nbsp;6</a>. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.</p>
 <div class="cell">
 
@@ -1300,26 +1305,25 @@ Residuals   20 100.49   5.024               </code></pre>
 </div>
 </div>
 </section>
-<section id="independent-observations" class="level4">
-<h4 class="anchored" data-anchor-id="independent-observations">Independent Observations</h4>
+<section id="independent-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
 <p>Nothing about the study suggests a lack of independence among the residuals. The data was obtained second hand. If possible, you should ask the principal researcher more about how the data was collected. For our purposes, we will assume the row number in the dataset does <em>not</em> represent the order in which the data was originally collected. Therefore, an order plot would not be helpful in detecting order bias. Thus, based on everything we know about the study, we have no reason to suspect the independent residuals assumption is violated.</p>
 </section>
 </section>
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<section id="examples" class="level4">
-<h4 class="anchored" data-anchor-id="examples">Examples</h4>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <p><a href="examples/VirtualTrain.html">Lifeboat launch training with a full dataset</a></p>
 <p><a href="examples/mosquito.html">Mosquito</a></p>
 </section>
-<section id="links-to-outside-resources" class="level4">
-<h4 class="anchored" data-anchor-id="links-to-outside-resources">Links to outside resources</h4>
+<section id="links-to-outside-resources" class="level3">
+<h3 class="anchored" data-anchor-id="links-to-outside-resources">Links to outside resources</h3>
 <p>Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.</p>
 <hr>
 
 
-</section>
 </section>
 </section>
 

@@ -1,5 +1,5 @@
 ---
-title: "Basic Factorial"
+title: "BF[1]"
 execute:
   code-fold: true
 toc: true
@@ -23,19 +23,13 @@ library(kableExtra)
 library(pander)
 ```
 
-------------------------------------------------------------------------
-
-# BF\[1\]
-
-A study with just one factor that is varied in the design.[^1]
-
 [^1]: It can be argued that this design is not technically a factorial design because only one experimental factor is involved. However, we categorize it with the other basic factorial designs because the assignment of subjects to factor levels is done completely at random, just as it is for the other basic factorial designs covered in this course.
 
-## Overview
+# Overview
 
-In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied. Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
+In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied.[^1] Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
 
-### Factor Structure
+## Factor Structure
 
 The factor structure for the model resulting from a completely randomized, one factor design is:
 
@@ -45,7 +39,7 @@ The factor structure for the model resulting from a completely randomized, one f
 
 @fig-bf1-structure-with-equation illustrates a factor with 4 levels, 6 replications at each level.
 
-### Hypothesis and Model
+## Hypothesis and Model
 
 A more detailed description of the model for an ANOVA with just one factor:
 
@@ -71,7 +65,7 @@ $$
 H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 $$
 
-### Assumptions
+## Assumptions
 
 A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the following requirements are satisfied:
 
@@ -84,11 +78,11 @@ A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the f
 | Independent residuals                  | Order plot                                              | No pattern/trend                                         |
 |                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
 
-## Design
+# Design
 
 In a one factor design, one factor is purposely varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.
 
-In a completely randomized design, each experimental unit is randomly assigned to exactly 1 treatment. In this example we expect a balanced design (i.e. each factor level has the same number of observations). This can be done by listing all the subjects, then listing the treatments, as seen below:
+In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level. In this example we expect a balanced design (i.e. each factor level has the same number of observations) because the number of observations is a perfect multiple of the number of factor levels. To make random assignments, start by listing all the subjects, then listing the treatments, as seen below:
 
 |  Subject  | Treatment | Order |
 |:---------:|:---------:|:-----:|
@@ -99,7 +93,7 @@ In a completely randomized design, each experimental unit is randomly assigned t
 | Subject 5 |     C     |   5   |
 | Subject 6 |     C     |   6   |
 
-Then you randomly shuffle the treatment column. (You should also be paying attention to the order in which subjects and treatments are being experimented on as this could be a potential source of bias. In a BF\[1\], you randomize the order also.) The result might look something like this.
+Then you randomly shuffle the treatment column. (You should also be paying attention to the order in which subjects and treatments are being experimented on as this could be a potential source of bias. In a BF\[1\], if it makes sense to do, you randomize the order also.) The result might look something like this.
 
 |  Subject  | Treatment | Order |
 |:---------:|:---------:|:-----:|
@@ -110,9 +104,11 @@ Then you randomly shuffle the treatment column. (You should also be paying atten
 | Subject 5 |     A     |   1   |
 | Subject 6 |     B     |   2   |
 
-You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a *blocked design* to prevent "unlucky" ordering and pairing.
+::: callout-note
+You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a ***blocked design*** to prevent "unlucky" ordering and pairing.
+:::
 
-### Lifeboat Training Example
+## Lifeboat Training Example
 
 Consider the following example. An experiment was done to assess different modes of virtual training in how to launch a lifeboat. Sixteen students in the maritime safety training institute were a part of the study, and each of the students were assigned one of four possible virtual training experiences. The four experiences included:
 
@@ -145,7 +141,7 @@ pander(assignment_table)
 
 ```
 
-Then we randomly shuffle the `Treatments` column to get the following assignments. Check out the R-code to see how this is done.
+Then we randomly shuffle the brush and paste column to get the following assignments. Check out the R-code to see how this is done.
 
 ```{r}
 #| code-fold: true
@@ -161,7 +157,7 @@ tibble(Subject, sample(Treatment, 16)) %>% pander()
 
 We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.
 
-## Decomposition
+# Decomposition
 
 This section serves as a bridge between the design and the analysis of an experiment. It is equivalent to doing the analysis by hand. The primary goal is to see how the design decisions impact the analysis; including a deeper understanding of what the numbers in an ANOVA table mean and how they are calculated.
 
@@ -178,7 +174,7 @@ A basic one-way factorial design has three analysis factors: the grand mean, tre
 -   The **treatment factor** involves the four methods of training, represented by the four vertically long cells. Each factor level may have a distinct mean and effect.
 -   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean and factor level effect. Each of the cells represent a distinct value for the residual error.
 
-### Degrees of Freedom
+## Degrees of Freedom
 
 We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to determine the degrees of freedom (df) for the **grand mean**, **treatment**, and **residual errors** factors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the 3 factors.
 
@@ -202,7 +198,7 @@ For **residual errors**, there are 24 levels of the factor (as shown by the 24 c
 
 The approach of counting unique pieces of information can be applied here as well. In this case, we use the fact that the residual factor effects must sum to zero within each treatment. So within each treatment, 5 of the observations are free to vary, but the 6th will be determined by the fact that their sum must be zero. Five observations multiplied by 4 levels of training method is 20 observations, or in other words, 20 degrees of freedom.
 
-### Factor Effects
+## Factor Effects
 
 We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to estimate the effect size of the grand mean, training methods, and residual errors factors in the lifeboat training study. In other words, we can estimate the terms in the one-way ANOVA model.
 
@@ -212,7 +208,7 @@ We can use our understanding of [inside vs. outside factors](factor_structure.qm
 Effect size = factor level mean - the sum of the effects of all outside factors
 :::
 
-#### Calculate means
+### Calculate means
 
 To estimate all the factor effects we must first calculate the mean for the grand mean factor and the means for each level of training method.
 
@@ -232,7 +228,7 @@ We do not need to calculate means for residual error factor because for two reas
 ![Raw data and means for grand mean and training factors](images/BF1_means_decomp.png){#fig-training-means}
 :::
 
-#### Calculate effects
+### Calculate effects
 
 Now that we have calculated means for each level of each factor, we can move on to calculate the effects of the factor levels. We will use the general formula for calculating effect size.
 
@@ -270,7 +266,7 @@ Repeat this process for all the remaining 22 residual values. The result is show
 ![Residual Effects](images/BF1_effect_boat_decomp.png){#fig-residual-effects fig-align="center"}
 :::
 
-### Completing the ANOVA table
+## Completing the ANOVA table
 
 Now that we have calculated degrees of freedom and effects for each factor in a basic one-way factorial design, we can calculate the remaining pieces of the ANOVA table: **Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value**. An ANOVA table essentially steps through the variance calculation that is needed to calculate the F statistics of an ANOVA test. In other words, a completed ANOVA summary table contains the information we need for a hypothesis test of a treatment factor.
 
@@ -300,7 +296,7 @@ $$
 
 <br>
 
-The **treatment factor**, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
+The **treatment factor**, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
 
 $$
 SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
@@ -405,17 +401,17 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-## Analysis in R
+# Analysis in R
 
 We will illustrate the R code using the lifeboat launch training example with just 6 observations per training method.
 
-### Describe the Data
+## Describe the Data
 
 When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots or scatterplots with the means displayed.
 
 Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
 
-#### Numerical Summaries
+### Numerical Summaries
 
 ```{r, warning=FALSE, message=FALSE, echo = FALSE}
 #| code-fold: false
@@ -461,7 +457,7 @@ favstats(procKnow~Treatment, data = virtual) |>
   kable_styling(full_width = TRUE)
 ```
 
-#### Graphical Summaries
+### Graphical Summaries
 
 You should also visualize the data. Since there are only six data point, a scatter plot may be preferred over a boxplot.
 
@@ -483,7 +479,7 @@ ggplot(data = virtual,
 
 This plot reinforces the conclusion that Monitor/Keyboard tends to have higher scores. The outliers in the Control and Joypad method also become very apparent.
 
-### Create the Model
+## Create the Model
 
 You then create the model using the `aov()` function. To see results of the F-test you can feed your model into a `summary()` function.
 
@@ -508,17 +504,17 @@ summary(myaov)
 
 We then interpret the results. Training method does not appear to be a significant factor since the p-value (0.131) is higher than our significance level of 0.05. Therefore, we cannot conclude that one training method results in a better mean test score than another.
 
-### Check assumptions
+## Check assumptions
 
 Now that the model is created the assumptions need to be checked. Interactive code and additional explanation for assumption checking can be found in the [Model Diagnostics](docs/diagnostics.html) and [Assumptions](assumptions.qmd) sections of the book respectively.
 
 Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.
 
-#### Constant Variance
+### Constant Variance
 
 We first check to see if the levels of training method have constant variance. The points in @fig-summary have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in @tbl-numerical we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.
 
-#### Normally Distributed Residuals
+### Normally Distributed Residuals
 
 A QQ-plot of the residuals is shown in @fig-qq. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.
 
@@ -536,19 +532,19 @@ method_aov <- aov(procKnow ~ Treatment, data = virtual)
 car::qqPlot(method_aov$residuals)
 ```
 
-#### Independent Observations
+### Independent Residuals
 
 Nothing about the study suggests a lack of independence among the residuals. The data was obtained second hand. If possible, you should ask the principal researcher more about how the data was collected. For our purposes, we will assume the row number in the dataset does *not* represent the order in which the data was originally collected. Therefore, an order plot would not be helpful in detecting order bias. Thus, based on everything we know about the study, we have no reason to suspect the independent residuals assumption is violated.
 
-## Resources
+# Resources
 
-#### Examples
+### Examples
 
 [Lifeboat launch training with a full dataset](examples/VirtualTrain.html)
 
 [Mosquito](examples/mosquito.html)
 
-#### Links to outside resources
+### Links to outside resources
 
 Populate this section yourself with links to good examples, definitions, other sections within this textbook, or anything else you think will be interesting/helpful.
 
