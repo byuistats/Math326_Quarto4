@@ -114,7 +114,7 @@ The way of organizing data that is taught here and used throughout the book is N
 
 # Describing Factor Relationships
 
-A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in [that section](Anova_F-test.qmd). Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
+A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in the [ANOVA and the F-test](Anova_F-test.qmd) page under "Broad Topics". Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
 
 Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design).
 
@@ -130,7 +130,7 @@ Recall that in the simplest version of the toothbrush experiment there were 4 le
 
 A factor is inside of another factor if all the levels of one factor (**the inside factor**) completely fit within a second factor (**the outside factor**).
 
-You may find this analogy helpful. Pretend that an outside factor is a box, and the inside factor levels are blocks that fit perfectly within the box.
+You may find this analogy helpful. Pretend that an outside factor is a box, and the inside factor levels are blocks that fit neatly within the box.
 
 ![](images/wooden_blocks_in_box.jpg){width="203" fig-align="center"}
 
@@ -167,11 +167,19 @@ Two factors are crossed when their partition lines cross in a way that creates n
 
 <br>
 
-The crossing of toothpaste brand and toothbrush created an interaction factor
+The crossing of toothpaste brand and toothbrush created an interaction factor.
 
 ::: column-page
 ![](images/toothbrush_crossed_interaction.JPG)
 :::
+
+When two factors are crossed, the resulting (interaction) factor's levels will always be *inside* of each of the factors that was crossed to create it. This fact is illustrated here for the toothbrush factor and could similarly be shown for toothpaste brand factor.
+
+::: column-page
+![](images/interaction_levels_inside.PNG)
+:::
+
+
 
 # General Rules
 

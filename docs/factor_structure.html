@@ -113,7 +113,7 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -162,8 +162,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
@@ -647,7 +647,7 @@ Danger
 </section>
 <section id="describing-factor-relationships" class="level1 page-columns page-full">
 <h1>Describing Factor Relationships</h1>
-<p>A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in <a href="./Anova_F-test.html">that section</a>. Don’t worry if you don’t know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.</p>
+<p>A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in the <a href="./Anova_F-test.html">ANOVA and the F-test</a> page under “Broad Topics”. Don’t worry if you don’t know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.</p>
 <p>Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design).</p>
 <section id="inside-and-outside" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="inside-and-outside">Inside and Outside</h2>
@@ -657,7 +657,7 @@ Danger
 <p><img src="images/toothbrush_bf1_colored_factors.JPG" id="toothbrush_bf1_colored_factors" class="img-fluid"></p>
 </div>
 <p>A factor is inside of another factor if all the levels of one factor (<strong>the inside factor</strong>) completely fit within a second factor (<strong>the outside factor</strong>).</p>
-<p>You may find this analogy helpful. Pretend that an outside factor is a box, and the inside factor levels are blocks that fit perfectly within the box.</p>
+<p>You may find this analogy helpful. Pretend that an outside factor is a box, and the inside factor levels are blocks that fit neatly within the box.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/wooden_blocks_in_box.jpg" class="img-fluid figure-img" width="203"></p>
@@ -703,9 +703,13 @@ Danger
 </div>
 </div>
 <p><br></p>
-<p>The crossing of toothpaste brand and toothbrush created an interaction factor</p>
+<p>The crossing of toothpaste brand and toothbrush created an interaction factor.</p>
 <div class="column-page">
 <p><img src="images/toothbrush_crossed_interaction.JPG" class="img-fluid"></p>
+</div>
+<p>When two factors are crossed, the resulting (interaction) factor’s levels will always be <em>inside</em> of each of the factors that was crossed to create it. This fact is illustrated here for the toothbrush factor and could similarly be shown for toothpaste brand factor.</p>
+<div class="column-page">
+<p><img src="images/interaction_levels_inside.PNG" class="img-fluid"></p>
 </div>
 </section>
 </section>
