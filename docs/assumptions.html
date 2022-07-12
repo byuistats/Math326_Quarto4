@@ -225,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
@@ -246,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./model_diagnostics.html">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -390,28 +390,31 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 </section>
 <section id="center" class="level2">
 <h2 class="anchored" data-anchor-id="center">Center</h2>
-<p>The model assumes the mean of the residuals equals zero. The residual is the distance from an observation to its respective factor level mean, or predicted value. This assumption is the reason calculating a mean of observations makes sense as an estimate of the true mean of a factor level. Each observation is made up of two parts: a true part and some random error. If we have 3 observations all from the same factor level:</p>
+<p>The model assumes the mean of the residuals equals zero. The residual is the distance from an observation to its respective factor level mean, or predicted value. This assumption is the reason calculating a mean of observations makes sense as an estimate of the true mean of a factor level. Each observation is made up of two parts: a true part and some random error. If we have 3 observations all from the first factor level (the first subscript is always one because the observations all come from the first factor level):</p>
 <ul>
-<li><span class="math inline">\(y_1 = \text{true factor level mean} + \text{error}_1\)</span></li>
-<li><span class="math inline">\(y_2 = \text{true factor level mean} + \text{error}_2\)</span></li>
-<li><span class="math inline">\(y_3 = \text{true factor level mean} + \text{error}_3\)</span></li>
+<li><span class="math inline">\(y_{11} = \text{true factor level mean} + \text{error}_{11}\)</span></li>
+<li><span class="math inline">\(y_{12} = \text{true factor level mean} + \text{error}_{12}\)</span></li>
+<li><span class="math inline">\(y_{13} = \text{true factor level mean} + \text{error}_{13}\)</span></li>
 </ul>
 <p>We estimate the true mean of the factor level by taking the mean of the 3 values:</p>
 <p><span class="math display">\[
-\text{Mean of observations} = \frac{y_1 + y_2 + y_3}{3} = \frac{\text{truth} + \text{error}_1 + \text{truth} + \text{error}_2 + \text{truth} + \text{error}_3}{3}
+\text{Mean of observations} = \frac{y_{11} + y_{12} + y_{13}}{3} = \frac{\text{truth} + \text{error}_{11} + \text{truth} + \text{error}_{12} + \text{truth} + \text{error}_{13}}{3}
 \]</span></p>
 <p>Rearranging terms gets:</p>
 <p><span class="math display">\[
-\text{Mean of observations} = \text{truth} + \frac{\text{error}_1 + \text{error}_2 + \text{error}_3}{3}
+\text{Mean of observations} = \text{truth} + \frac{\text{error}_{11} + \text{error}_{12} + \text{error}_{13}}{3}
 \]</span></p>
 <p>Since the mean of the residual errors is assumed zero, the second term goes to zero and the mean of observations is the best estimate of the true value. Of course, the more observations we average over the better our estimate of the truth will be.</p>
-<p>This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects. We saw this when we noticed the level effects of a factor sum to zero.</p>
+<p>This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects. This is evident with the level effects for a factor summing to zero.</p>
 </section>
-<section id="constant-variance" class="level2">
+<section id="constant-variance" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="constant-variance">Constant Variance</h2>
-<p>We express the spread of the distribution of residuals in terms of the variance, <span class="math inline">\(\sigma^2\)</span>. We assume that the variance of residuals is the same regardless of the factor level. Consider our conveyor belt example. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.</p>
+<p>The spread of the distribution of residuals is expressed in terms of the variance, <span class="math inline">\(\sigma^2\)</span>. Hypothesis tests of the factors assume that the variance of residuals will be the same regardless of the factor level. Consider the conveyor belt analogy. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.</p>
 <p>In the F-statistic calculation the denominator is a pooled variance; or in other words, an average of the within factor level variances. When factor level sample sizes are unequal, then the average variance is biased toward the factor level with the largest sample size. Thus, it becomes important to show that the variance estimate within each factor level is (relatively) equal when sample sizes are not equal. The greater disparity in sample sizes, the more important it is to have similar <em>within</em> factor levels variances. (Inflation of Type I error tends to be worse if the smallest group has the largest variance.) The F-distribution used to calculate p-values is based on the assumption of equal variances. When there is non-constant variance, the ratio of <em>between</em> group variance to <em>within</em> group variance no longer follows the F-distribution and the p-value calculations will be off.</p>
-<p>The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Type I error mean rejecting a true <span class="math inline">\(H_o\)</span></p>
+</div></div><p>The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the predicted values on the x-axis. (In the case of just one structural factor, the factor levels are sometimes shown on the x-axis instead). The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.</p>
 <p><a href="#fig-variance">Figure&nbsp;2</a> shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.</p>
 <div class="cell">
 <details>
@@ -440,15 +443,32 @@ Red Line in the Residual Plot
 </div>
 <div class="callout-body-container callout-body">
 <p>Ignore the red line in the residual plot. It can trick your eyes and draw your attention to the wrong thing. It is not meant to gauge constant variance.</p>
+<p>With a little extra coding you can get a residual plot without the red line. Additional code is required to clean up the labeling.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>brush_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>fitted.values, brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-resid-no-red" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="assumptions_files/figure-html/fig-resid-no-red-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Residual vs.&nbsp;Fitted plot without a red line</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis is fitted values. Each toothbrush has a different fitted, or predicted, plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
-<p>Of course, the groupings will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.</p>
+</div>
+</div>
+</div>
+<p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
+<p>Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.</p>
 <p>As a rule of thumb, you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="tbl-favstats" class="anchored">
@@ -534,7 +554,7 @@ Red Line in the Residual Plot
 </div>
 </div>
 </div>
-<p>There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is Levene’s test. Actually, Modified Levene’s test (also called Brown-Forsythe test) is usually recommended and is the default in R’s <code>car</code> package. The hypothesis for this test is</p>
+<p>There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is the Brown-Forsythe test, also known as Modified Levene’s test or sometimes shortened to Levene’s test.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The hypothesis for this test is</p>
 <p><span class="math display">\[
 H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
 \]</span> <span class="math display">\[
@@ -557,7 +577,7 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="tbl-levene" class="anchored">
@@ -598,23 +618,23 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-variance2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="assumptions_files/figure-html/fig-variance2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Residual vs.&nbsp;Fitted plot to check constant variance assumption for the 2-factor example</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Residual vs.&nbsp;Fitted plot to check constant variance assumption for the 2-factor example</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-variance2">Figure&nbsp;3</a> shows a slight megaphone shape. As we move from left to right along the x-axis the spread of the points increases (with the exception of the points at x=24.5). We can use a Levene’s test to help us determine if heterogeneity of variance is a problem. The result is shown in <a href="#tbl-levene2">Table&nbsp;3</a>.</p>
+<p><a href="#fig-variance2">Figure&nbsp;4</a> shows a slight megaphone shape. As we move from left to right along the x-axis the spread of the points increases (with the exception of the points at x=24.5). We can use a Levene’s test to help us determine if heterogeneity of variance is a problem. The result is shown in <a href="#tbl-levene2">Table&nbsp;3</a>.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="tbl-levene2" class="anchored">
@@ -657,20 +677,20 @@ Don’t Forget to Think
 <p>There are statistical tests for normality as well, but each come with their own set of drawbacks. Due to the robust nature of the F test, a visual assessment is usually sufficient.</p>
 </div></div><p>The “Q” in Q-Q plot stands for quantile. For an explanation of quantiles and their relationship to percentiles <a href="https://www.statisticshowto.com/quantile-definition-find-easy-steps/">go here</a>. There are many variations of Q-Q plots and each software computes it slightly differently. The general concept is to plot two quantities on a scatter plot:</p>
 <ul>
-<li>Residual from the model<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>Residual from the model<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 <li>The value from the standard normal distribution (i.e.&nbsp;Z distribution) associated with the sample quantile.</li>
 </ul>
 <p><a href="javascript:showhide('qqplot')"><span style="font-size:10pt;">Click to show/hide detailed explanation of Q-Q plot construction</span></a></p>
 <div id="qqplot" style="display:none;">
 <div>
 <p>The Q-Q plot is actually just a scatterplot created from ordered pairs. Each ordered pair consists of a residual from the model (that’s easy to find!) and the quantile from the normal distribution associated with that residual.</p>
-<p><strong>But how do you find a quantile from the normal distribution?</strong> To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From <a href="#fig-qnorm-1">Figure&nbsp;4 (a)</a> I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.</p>
+<p><strong>But how do you find a quantile from the normal distribution?</strong> To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From <a href="#fig-qnorm-1">Figure&nbsp;5 (a)</a> I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.</p>
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell quarto-layout-panel">
 <figure class="figure">
@@ -692,45 +712,42 @@ Don’t Forget to Think
 </div>
 </div>
 </div>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Z-score calculations from desired percentile</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Z-score calculations from desired percentile</figcaption><p></p>
 </figure>
 </div>
 </div>
-<p>The next point on the Q-Q plot would be my second smallest residual on the y-axis and the <span class="math inline">\(2/20 = .10\)</span> quantile from the Z distribution on the x-axis. The 0.10 quantile is -1.282 as seen in <a href="#fig-qnorm-2">Figure&nbsp;4 (b)</a>.</p>
+<p>The next point on the Q-Q plot would be my second smallest residual on the y-axis and the <span class="math inline">\(2/20 = .10\)</span> quantile from the Z distribution on the x-axis. The 0.10 quantile is -1.282 as seen in <a href="#fig-qnorm-2">Figure&nbsp;5 (b)</a>.</p>
 <p>This process would be repeated for all 20 residuals.</p>
 </div>
 </div>
 <p>If the sample data is normally distributed then the resulting plot of the two quantities will roughly be a straight line. The residuals will never be exactly normal, of course. Some amount of “wiggle” should be allowed.</p>
-<p><a href="#fig-qqplot_brush1">Figure&nbsp;5</a> is a Q-Q plot for the toothbrush example.</p>
+<p><a href="#fig-qqplot_brush1">Figure&nbsp;6</a> is a Q-Q plot for the toothbrush example.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-qqplot_brush1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="assumptions_files/figure-html/fig-qqplot_brush1-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 6: Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>It can be difficult to tell if the line is straight enough. <code>qqPlot</code> from the <code>car</code> package (see <a href="#fig-QQPlot_brush2">Figure&nbsp;6</a>) adds boundary lines to help you determine if the points are out of bounds<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.</p>
+<p>It can be difficult to tell if the line is straight enough. <code>qqPlot</code> from the <code>car</code> package (see <a href="#fig-QQPlot_brush2">Figure&nbsp;7</a>) adds boundary lines to help you determine if the points are out of bounds<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>), <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 9</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-QQPlot_brush2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="assumptions_files/figure-html/fig-QQPlot_brush2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 6: Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 7: Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -747,6 +764,11 @@ Notation
 </div>
 <div class="callout-body-container callout-body">
 <p>So far we have shown the residuals come from a normal distribution, with mean zero and a standard deviation (sigma). This is expressed mathematically as <span class="math inline">\(\epsilon\)</span> ~ N( 0, <span class="math inline">\(\sigma\)</span> ).</p>
+<ul>
+<li><p>The epsilon, <span class="math inline">\(\epsilon\)</span>, refers to the residuals.</p></li>
+<li><p>The ‘N(0, <span class="math inline">\(\sigma\)</span>)’ stands for normal distribution with a mean of zero and a standard deviation of sigma.</p></li>
+<li><p>The tilde, ~, means the residuals come from that distribution.</p></li>
+</ul>
 </div>
 </div>
 </section>
@@ -755,7 +777,7 @@ Notation
 <p>In addition to making assumptions about the distribution of residuals, we also make an assumption regarding individual observations, or realizations, from the distribution of errors. Specifically, we assume <strong>each observation from the error distribution is independent of the rest.</strong> In other words, the residuals are not correlated with each other in any way.</p>
 <p>This is violated when something is affecting the response that was not adequately randomized, controlled for, or included in the model. Not adequately accounting for treatment order in time or space is often a culprit. For example, suppose you run an experiment where respondents were given a task to complete under 3 distinct conditions. If you did not randomize the order of the conditions or neglected to account for the fact the same respondent provided 3 observations, you would have violated this assumption.</p>
 <p>Sometimes looking at the data can provide a clue this requirement is violated, sometimes it cannot. Looking at the Residual vs.&nbsp;Fitted plot is a good place to start. For example, when a model over predicts all observations in condition 1 and under predicted all observations in condition 3 it may be an indicator that you neglected to address something important (i.e.&nbsp;subject identification, or order of conditions) in your experiment.</p>
-<p>An order plot can also be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. <a href="#fig-order">Figure&nbsp;7</a> contains the order plot for our simple toothbrush example, assuming the row number indicates the order in which each observation was actually made.</p>
+<p>An order plot can also be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. <a href="#fig-order">Figure&nbsp;8</a> contains the order plot for our simple toothbrush example, assuming the row number indicates the order in which each observation was actually made.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -765,7 +787,7 @@ Notation
 <div id="fig-order" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="assumptions_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 7: Order plot for 1-factor toothbrush example</figcaption><p></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 8: Order plot for 1-factor toothbrush example</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -784,7 +806,7 @@ Danger
 <p>You should not throw out data points based alone on the fact that they appear anomalous.</p>
 </div>
 </div>
-<p>No other trends are evident in <a href="#fig-order">Figure&nbsp;7</a>. If patterns/trends <em>are</em> evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. <strong>Bias in your design or execution will lead to violating this assumption.</strong></p>
+<p>No other trends are evident in <a href="#fig-order">Figure&nbsp;8</a>. If patterns/trends <em>are</em> evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. <strong>Bias in your design or execution will lead to violating this assumption.</strong></p>
 <p>In many cases, the data will not indicate there is bias unless you know exactly what to look for. These unknown sources of bias are particularly difficult to detect. Planning the study in great detail, thinking critically about your results, being familiar with the protocols of the experiment, and getting help from others to provide fresh perspectives is ultimately the best way to check this assumption and ensure bias does not affect your results.</p>
 </section>
 <section id="assumptions-summary" class="level2">
@@ -846,11 +868,11 @@ Danger
 <p>The strategy to address violated assumptions depends on how and which assumptions were violated. But beware, none of the suggested measures below can correct bias in sampling or random assignment.</p>
 <p>If an outlier or two are the source of trouble, investigate the outlier to ensure it is valid, belongs in the study, and does not represent an error in some way.</p>
 <p>To address <strong>non-normality of residuals</strong> you will want to know what the distribution of residuals looks like. If a histogram of residuals reveals a multi-modal distribution, that is often an indicator that there are additional populations (i.e.&nbsp;subgroups) that your model did not take into account. Try to identify what variable is causing the multiple modes (e.g.&nbsp;gender) and include it in your model.</p>
-<p>Transforming the data is a technique that can help with the normal distribution assumption and with <strong>heteroscedasticity</strong> simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.</p>
-<p>Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g.&nbsp;proportion of quiz questions answered correctly), this transformation may prove useful: <span class="math inline">\(Y_\text{transformed} = log(\frac{y}{1-y})\)</span>. If you have the data used to calculate the proportion, each “failure or”success” as it were, a logistic regression may be a more powerful tool than an ANOVA on the summarized percent.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Transforming the data is a technique that can help with the normal distribution assumption and with <strong>heteroscedasticity</strong> (lack of constant variance) simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.</p>
+<p>Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g.&nbsp;proportion of quiz questions answered correctly), this transformation may prove useful: <span class="math inline">\(Y_\text{transformed} = log(\frac{y}{1-y})\)</span>. If you have the data used to calculate the proportion, each “failure or”success” as it were, a logistic regression may be a more powerful tool than an ANOVA on the summarized percent.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>The <a href="https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box-cox-power-transformation/">Box-Cox</a> is a more algorithmic way of choosing a transformation.</p>
-<p>It is also important to recognize that ANOVA is just one of many analysis tools available<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Kruskal-Wallis is one example of an alternative test with less stringent assumptions. But if its requirements are met, ANOVA offers greater statistical power than Kruskal-Wallis. It can also be difficult to extend some of these alternative tests to more complex designs.</p>
-<p>One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or reduced statistical power. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.</p>
+<p>It is important to recognize that ANOVA is just one of many analysis tools available<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Kruskal-Wallis is an example of an alternative test with less stringent assumptions that can be used when there is just one structural factor present. Unfortunately, many of these alternative tests, like Kruska-Wallis, cannot be extended to more complex designs.</p>
+<p>One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or forfeiting a broader perspective/test. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.</p>
 
 
 </section>
@@ -861,10 +883,11 @@ Danger
 
 <ol>
 <li id="fn1" role="doc-endnote"><p>Much of this material is summarized nicely by Keppel, G &amp; Wickens, T (2004). <em>Design and Analysis: A Researcher’s Handbook, Fourth Edition.</em> New Jersey: Pearson/Prentice Hall.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>The name “Q-Q plot” (with 2 q’s) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p><code>qqPlot</code> also does a few other calculations differently, most notably it uses <a href="https://online.stat.psu.edu/stat462/node/247/">studentized residuals</a> instead of standardized residuals.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>See Warton, David I., and Francis K. C. Hui. “The arcsine is asinine: the analysis of proportions in ecology.” <em>Ecology: Ecological Society of America,</em> vol.&nbsp;92, no. 1, 2011, pp.&nbsp;3-10, https://doi.org/10.1890/10-0340.1<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>For additional alternatives consult Coombs, W. A., Algina, J., &amp; Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. <em>Review of Educational Research,</em> 66, 137-179. A generalized linear model may also be helpful.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Levene’s original 1960 paper proposed using the mean of factor levels in calculation of his test statistic. Brown and Forsythe (1974) investigated using the median or trimmed mean. Overtime, most statisticians have converged on using the median in the test statistic calculation if the shape of the distribution of errors is not known beforehand. This is the default in R’s <code>car</code> package for the Levene test. Going forward, references to Levene’s test actually refer to the Brown-Forsythe test (a.k.a Modified Levene’s Test).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>The name “Q-Q plot” (with 2 q’s) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><code>qqPlot</code> also does a few other calculations differently, most notably it uses <a href="https://online.stat.psu.edu/stat462/node/247/">studentized residuals</a> instead of standardized residuals.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>See Warton, David I., and Francis K. C. Hui. “The arcsine is asinine: the analysis of proportions in ecology.” <em>Ecology: Ecological Society of America,</em> vol.&nbsp;92, no. 1, 2011, pp.&nbsp;3-10, https://doi.org/10.1890/10-0340.1<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>For additional alternatives consult Coombs, W. A., Algina, J., &amp; Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. <em>Review of Educational Research,</em> 66, 137-179. A generalized linear model may also be helpful.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

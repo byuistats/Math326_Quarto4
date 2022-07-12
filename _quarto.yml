@@ -79,7 +79,7 @@ website:
         - text: "Descriptive Summaries"
           href: DescribeData.html
         - text: "Model diagnostics"
-          href: model_diagnostics.html
+          href: diagnostics.html
   right:
     - text: "Datasets"
       menu:

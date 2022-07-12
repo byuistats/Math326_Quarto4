@@ -103,35 +103,39 @@ text(3-.1, (y$yi[25]+ai[3])/2, expression(epsilon[3][","][5]), pos=2, cex=0.8)
 
 ## Center
 
-The model assumes the mean of the residuals equals zero. The residual is the distance from an observation to its respective factor level mean, or predicted value. This assumption is the reason calculating a mean of observations makes sense as an estimate of the true mean of a factor level. Each observation is made up of two parts: a true part and some random error. If we have 3 observations all from the same factor level:
+The model assumes the mean of the residuals equals zero. The residual is the distance from an observation to its respective factor level mean, or predicted value. This assumption is the reason calculating a mean of observations makes sense as an estimate of the true mean of a factor level. Each observation is made up of two parts: a true part and some random error. If we have 3 observations all from the first factor level (the first subscript is always one because the observations all come from the first factor level):
 
--   $y_1 = \text{true factor level mean} + \text{error}_1$
--   $y_2 = \text{true factor level mean} + \text{error}_2$
--   $y_3 = \text{true factor level mean} + \text{error}_3$
+-   $y_{11} = \text{true factor level mean} + \text{error}_{11}$
+-   $y_{12} = \text{true factor level mean} + \text{error}_{12}$
+-   $y_{13} = \text{true factor level mean} + \text{error}_{13}$
 
 We estimate the true mean of the factor level by taking the mean of the 3 values:
 
 $$
-\text{Mean of observations} = \frac{y_1 + y_2 + y_3}{3} = \frac{\text{truth} + \text{error}_1 + \text{truth} + \text{error}_2 + \text{truth} + \text{error}_3}{3}
+\text{Mean of observations} = \frac{y_{11} + y_{12} + y_{13}}{3} = \frac{\text{truth} + \text{error}_{11} + \text{truth} + \text{error}_{12} + \text{truth} + \text{error}_{13}}{3}
 $$
 
 Rearranging terms gets:
 
 $$
-\text{Mean of observations} = \text{truth} + \frac{\text{error}_1 + \text{error}_2 + \text{error}_3}{3}
+\text{Mean of observations} = \text{truth} + \frac{\text{error}_{11} + \text{error}_{12} + \text{error}_{13}}{3}
 $$
 
 Since the mean of the residual errors is assumed zero, the second term goes to zero and the mean of observations is the best estimate of the true value. Of course, the more observations we average over the better our estimate of the truth will be.
 
-This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects. We saw this when we noticed the level effects of a factor sum to zero.
+This requirement does not need to be checked since we are guaranteed this will occur based on how we calculate factor level effects. This is evident with the level effects for a factor summing to zero.
 
 ## Constant Variance
 
-We express the spread of the distribution of residuals in terms of the variance, $\sigma^2$. We assume that the variance of residuals is the same regardless of the factor level. Consider our conveyor belt example. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.
+The spread of the distribution of residuals is expressed in terms of the variance, $\sigma^2$. Hypothesis tests of the factors assume that the variance of residuals will be the same regardless of the factor level. Consider the conveyor belt analogy. All the observations go down the same conveyor belt. The conveyor belt does not split into multiple branches just before the last, random station. All the residuals come from the same distribution.
 
 In the F-statistic calculation the denominator is a pooled variance; or in other words, an average of the within factor level variances. When factor level sample sizes are unequal, then the average variance is biased toward the factor level with the largest sample size. Thus, it becomes important to show that the variance estimate within each factor level is (relatively) equal when sample sizes are not equal. The greater disparity in sample sizes, the more important it is to have similar *within* factor levels variances. (Inflation of Type I error tends to be worse if the smallest group has the largest variance.) The F-distribution used to calculate p-values is based on the assumption of equal variances. When there is non-constant variance, the ratio of *between* group variance to *within* group variance no longer follows the F-distribution and the p-value calculations will be off.
 
-The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the factor levels or fitted values on the x-axis. The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.
+::: column-margin
+Type I error mean rejecting a true $H_o$
+:::
+
+The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the predicted values on the x-axis. (In the case of just one structural factor, the factor levels are sometimes shown on the x-axis instead). The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.
 
 @fig-variance shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.
 
@@ -150,11 +154,24 @@ which = plot(brush_aov, which = 1)
 ## Red Line in the Residual Plot
 
 Ignore the red line in the residual plot. It can trick your eyes and draw your attention to the wrong thing. It is not meant to gauge constant variance.
+
+With a little extra coding you can get a residual plot without the red line. Additional code is required to clean up the labeling.
+
+```{r}
+#| label: fig-resid-no-red
+#| message: false
+#| fig-cap: "Residual vs. Fitted plot without a red line"
+#| code-fold: true
+
+bf2 <- read_csv("data/toothpaste_BF2.csv")
+brush_aov <- aov(Plaque~Brush, data = bf2)
+plot(brush_aov$fitted.values, brush_aov$residuals)
+```
 :::
 
-The points in @fig-variance are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis is fitted values. Each toothbrush has a different fitted, or predicted, plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.
+The points in @fig-variance are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.
 
-Of course, the groupings will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.
+Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.
 
 As a rule of thumb, you can check to see if the largest standard deviation is more than double the smallest standard deviation. @tbl-favstats shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because $2*1.74 = 3.48 < 3.90$, by this rule of thumb the constant variance assumption appears to be violated.
 
@@ -167,7 +184,9 @@ As a rule of thumb, you can check to see if the largest standard deviation is mo
 favstats(Plaque~Brush, data = bf2) |> kable(digits = 2)
 ```
 
-There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is Levene's test. Actually, Modified Levene's test (also called Brown-Forsythe test) is usually recommended and is the default in R's `car` package. The hypothesis for this test is
+There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is the Brown-Forsythe test, also known as Modified Levene's test or sometimes shortened to Levene's test.[^2] The hypothesis for this test is
+
+[^2]: Levene's original 1960 paper proposed using the mean of factor levels in calculation of his test statistic. Brown and Forsythe (1974) investigated using the median or trimmed mean. Overtime, most statisticians have converged on using the median in the test statistic calculation if the shape of the distribution of errors is not known beforehand. This is the default in R's `car` package for the Levene test. Going forward, references to Levene's test actually refer to the Brown-Forsythe test (a.k.a Modified Levene's Test).
 
 $$
 H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
@@ -238,10 +257,10 @@ There are statistical tests for normality as well, but each come with their own 
 
 The "Q" in Q-Q plot stands for quantile. For an explanation of quantiles and their relationship to percentiles [go here](https://www.statisticshowto.com/quantile-definition-find-easy-steps/). There are many variations of Q-Q plots and each software computes it slightly differently. The general concept is to plot two quantities on a scatter plot:
 
--   Residual from the model[^2]
+-   Residual from the model[^3]
 -   The value from the standard normal distribution (i.e. Z distribution) associated with the sample quantile.
 
-[^2]: The name "Q-Q plot" (with 2 q's) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.
+[^3]: The name "Q-Q plot" (with 2 q's) comes from the fact you can plot the sample quantile of the residuals instead of plotting the residual itself: sample quantiles on the y-axis and theoretical quantiles on the x-axis. The plots we will be creating in R put the residual on the y-axis. This is simpler to interpret and to calculate because it removes the need to store the sample quantile values.
 
 <a href="javascript:showhide('qqplot')">[Click to show/hide detailed explanation of Q-Q plot construction]{style="font-size:10pt;"}</a>
 
@@ -287,9 +306,9 @@ If the sample data is normally distributed then the resulting plot of the two qu
 plot(brush_aov, which = 2)
 ```
 
-It can be difficult to tell if the line is straight enough. `qqPlot` from the `car` package (see @fig-QQPlot_brush2) adds boundary lines to help you determine if the points are out of bounds[^3]. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.
+It can be difficult to tell if the line is straight enough. `qqPlot` from the `car` package (see @fig-QQPlot_brush2) adds boundary lines to help you determine if the points are out of bounds[^4]. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.
 
-[^3]: `qqPlot` also does a few other calculations differently, most notably it uses [studentized residuals](https://online.stat.psu.edu/stat462/node/247/) instead of standardized residuals.
+[^4]: `qqPlot` also does a few other calculations differently, most notably it uses [studentized residuals](https://online.stat.psu.edu/stat462/node/247/) instead of standardized residuals.
 
 ```{r}
 #| label: fig-QQPlot_brush2
@@ -298,7 +317,7 @@ It can be difficult to tell if the line is straight enough. `qqPlot` from the `c
 #| code-fold: true
 
 #The envelope argument controls whether the region between the lines is shaded or not
-car::qqPlot(brush_aov, envelope = list(style = "lines"))
+car::qqPlot(brush_aov, envelope = list(style = "lines"), id = FALSE)
 
 ```
 
@@ -308,6 +327,12 @@ A point on the far right is clearly out of the dashed boundary. It is not uncomm
 ## Notation
 
 So far we have shown the residuals come from a normal distribution, with mean zero and a standard deviation (sigma). This is expressed mathematically as $\epsilon$ \~ N( 0, $\sigma$ ).
+
+-   The epsilon, $\epsilon$, refers to the residuals.
+
+-   The 'N(0, $\sigma$)' stands for normal distribution with a mean of zero and a standard deviation of sigma.
+
+-   The tilde, \~, means the residuals come from that distribution.
 :::
 
 ## Independent observations
@@ -384,16 +409,16 @@ If an outlier or two are the source of trouble, investigate the outlier to ensur
 
 To address **non-normality of residuals** you will want to know what the distribution of residuals looks like. If a histogram of residuals reveals a multi-modal distribution, that is often an indicator that there are additional populations (i.e. subgroups) that your model did not take into account. Try to identify what variable is causing the multiple modes (e.g. gender) and include it in your model.
 
-Transforming the data is a technique that can help with the normal distribution assumption and with **heteroscedasticity** simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.
+Transforming the data is a technique that can help with the normal distribution assumption and with **heteroscedasticity** (lack of constant variance) simultaneously. The transformation is applied to the response variable and then the ANOVA analysis is run as usual with the new, transformed variable as the response. Though the analysis is performed using the transformed variable, you can interpret the results in terms of the original units of the response variable. Groups that differ on the transformed response tend to differ on the untransformed response variable as well.
 
-Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g. proportion of quiz questions answered correctly), this transformation may prove useful: $Y_\text{transformed} = log(\frac{y}{1-y})$. If you have the data used to calculate the proportion, each "failure or "success" as it were, a logistic regression may be a more powerful tool than an ANOVA on the summarized percent.[^4]
+Knowing what transformation to apply to the response variable can be a challenge. A square root, log transformation, or taking the reciprocal of the response variable are common transformations to use, especially if the response variable represents a count during a defined interval or a time until something occurs. If the response is a proportion (e.g. proportion of quiz questions answered correctly), this transformation may prove useful: $Y_\text{transformed} = log(\frac{y}{1-y})$. If you have the data used to calculate the proportion, each "failure or "success" as it were, a logistic regression may be a more powerful tool than an ANOVA on the summarized percent.[^5]
 
-[^4]: See Warton, David I., and Francis K. C. Hui. "The arcsine is asinine: the analysis of proportions in ecology." *Ecology: Ecological Society of America,* vol. 92, no. 1, 2011, pp. 3-10, https://doi.org/10.1890/10-0340.1
+[^5]: See Warton, David I., and Francis K. C. Hui. "The arcsine is asinine: the analysis of proportions in ecology." *Ecology: Ecological Society of America,* vol. 92, no. 1, 2011, pp. 3-10, https://doi.org/10.1890/10-0340.1
 
 The [Box-Cox](https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box-cox-power-transformation/) is a more algorithmic way of choosing a transformation.
 
-It is also important to recognize that ANOVA is just one of many analysis tools available[^5]. Kruskal-Wallis is one example of an alternative test with less stringent assumptions. But if its requirements are met, ANOVA offers greater statistical power than Kruskal-Wallis. It can also be difficult to extend some of these alternative tests to more complex designs.
+It is important to recognize that ANOVA is just one of many analysis tools available[^6]. Kruskal-Wallis is an example of an alternative test with less stringent assumptions that can be used when there is just one structural factor present. Unfortunately, many of these alternative tests, like Kruska-Wallis, cannot be extended to more complex designs.
 
-[^5]: For additional alternatives consult Coombs, W. A., Algina, J., & Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. *Review of Educational Research,* 66, 137-179. A generalized linear model may also be helpful.
+[^6]: For additional alternatives consult Coombs, W. A., Algina, J., & Oltman, D. O. (1996). Univariate and multivariate omnibus hypothesis tests selected to control type I error rates when population variances are not necessarily equal. *Review of Educational Research,* 66, 137-179. A generalized linear model may also be helpful.
 
-One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or reduced statistical power. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.
+One other approach is to emphasize the tests of contrasts and comparisons rather than omnibus F-tests. These more specific tests can handle non-constant variances and non-normal residuals, but at the expense of increased complexity or forfeiting a broader perspective/test. In fact, many researchers skip the omnibus ANOVA F-test and will go directly to testing the specific comparisons that motivated the experiment in the first place.
