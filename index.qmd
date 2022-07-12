@@ -35,6 +35,24 @@ This book was specifically designed for the Math326 Design and Analysis of Exper
 -   Introduce a specific design: suitability/benefits of the design, explanation of the design, factor structure and decomposition, steps for analysis (including R code)
 -   Discuss new topics/complexities/considerations associated with that design located in the Broad Topics list.
 
+Here is a specific, suggested reading schedule:
+
+1.  
+
+2.  Read the pages under the Basics of Design menu in order
+
+3.  Read the following pages in order under "Broad Topics" menu: Factor Structure through Assumptions
+
+4.  Read Basic Factorial Introduction and BF\[1\] under Specific Designs menu
+
+5.  Pages under the R Instructions menu can act as a resource. They may fit well as a review here
+
+6.  Under Broad Topics menu Read Contrasts and Multiple Comparisons
+
+7.  Read BF\[2\] under Specific Design menu
+
+8.  Read Unbalanced Datasets under Broad Topics menu
+
 ## Book Scope
 
 This is an introductory book intended to familiarize students with foundational concepts and vocabulary in the design and analysis of experiments. The designs covered in this book are the most basic and all assume a continuous response variable. Hopefully with this foundation students will be prepared to excel in experimental design and analysis courses in grad school, or be able to extend these principles to more complex designs as practitioners.
