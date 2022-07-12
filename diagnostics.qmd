@@ -5,4 +5,3 @@ title: "Model Diagnostics"
 ```{r child="hoveRmd/model_diagnostics.Rmd"}
 
 ```
-

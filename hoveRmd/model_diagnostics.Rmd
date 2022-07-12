@@ -40,7 +40,9 @@ A key assumption for ANOVA tests is that the error, or residual term, has a cons
 
 We explain three ways to check the assumption: rule of thumb when comparing standard deviations for each factor level, a visual assessment of the residual vs. fitted plot, and Levene's test. These methods may not always agree. You should be aware of the underlying data. Understanding why this assumption is important and how it will affect results when violated will help you decide how to proceed after checking these diagnostics. It is also worth noting that the ANOVA F-test is robust in the face of mild to moderate violation of this assumption.
 
-We will use the pre-loaded dataset `ToothGrowth`. To learn more about the dataset, run `?ToothGrowth` in the console. `len` will be our response variable, `supp` is an independent factor, and `dose` is the other independent factor. We will analyze this a two-way, basic factorial design. Because `dose` is stored as a numeric variable, we will convert it to a categorical variable and rename it `dose_f` before including it in the model. *Don't forget to load the* `tidyverse` *in order to use* `mutate()`.
+We will use the pre-loaded dataset `ToothGrowth`. To learn more about the dataset, run `?ToothGrowth` in the console. `len` will be our response variable, `supp` is an independent factor, and `dose` is the other independent factor. We will analyze this as a two-way, basic factorial design. Because `dose` is stored as a numeric variable, we will convert it to a categorical variable and rename it `dose_f` before including it in the model. *Don't forget to load the* `tidyverse` *in order to use* `mutate()`.
+
+The second line in the code below creates an ANOVA model, named `aov2th`.
 
 <a href="javascript:showhide('dose_f')">
 <div class="hoverchunk">
@@ -161,7 +163,7 @@ fitted.values
   <span class="tooltiprtext">Seperates multiple input arguments to a function</span>
   </span><span class="tooltipr">
 aov2th$
-  <span class="tooltiprtext">Look in the `aov2th` object for the item names on the righ tof the `$`</span>
+  <span class="tooltiprtext">Look in the `aov2th` object for the item names on the right of the `$`</span>
   </span><span class="tooltipr">
 residuals
   <span class="tooltiprtext">Vector in the `aov` object that contains model residuals</span>
@@ -177,7 +179,8 @@ Toggle output
 
 <div id="manual" style="display:show;">
 
-Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 does levels x 2 levels of supp = 6 factor level combinations)
+Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 dose levels x 2 levels of supp = 6 factor level combinations)
+
 ```{r message = FALSE, echo = FALSE}
 plot(aov2th$fitted.values, aov2th$residuals)
 ```
@@ -228,6 +231,7 @@ Toggle output
 <div id="shortcut1" style="display:show;">
 
 Ignore the red line on the plot. It does not measure variance and so can be distracting.
+
 ```{r message = FALSE, echo = FALSE}
 aov2th <- aov(len ~ dose_f*supp, data = tg)
 plot(aov2th, which = 1)
@@ -328,7 +332,7 @@ Toggle output
 
 <br/>
 
-<div id="shortcut1" style="display:show;">
+<div id="qqshortcut" style="display:show;">
 
 ```{r message = FALSE, echo = FALSE}
 aov2th <- aov(len ~ dose_f*supp, data = tg)
@@ -384,7 +388,16 @@ style =
 "lines"
   <span class="tooltiprtext">designate the acceptable region with lines</span>
   </span><span class="tooltipr">
-))
+)
+  <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
+  </span><span class="tooltipr">
+,
+  <span class="tooltiprtext">A comma separates the inputs to a function, in this case the qqPlot function</span>
+  </span><span class="tooltipr">
+id = FALSE
+  <span class="tooltiprtext">This argument tells R to display the row number of the 2 most extreme vertical values or not.</span>
+  </span><span class="tooltipr">
+)
   <span class="tooltiprtext">Functions always end with a closing parenthesis</span>
   </span><br/><span class="tooltipr" style="float:right;">
 Toggle output 
@@ -395,10 +408,10 @@ Toggle output
 
 <br/>
 
-<div id="levene" style="display:show;">
+<div id="qqcar" style="display:show;">
 
 ```{r message = FALSE, echo = FALSE}
-car::qqPlot(aov2th, envelope = list(style = "lines"))
+car::qqPlot(aov2th, envelope = list(style = "lines"), id = FALSE)
 ```
 
 </div>

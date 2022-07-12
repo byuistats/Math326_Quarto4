@@ -322,7 +322,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="constant-variance-assumption">Constant Variance Assumption</h2>
 <p>A key assumption for ANOVA tests is that the error, or residual term, has a constant variance across all factor levels. This is sometimes call homogeneity of variance, or homoscedasticity.</p>
 <p>We explain three ways to check the assumption: rule of thumb when comparing standard deviations for each factor level, a visual assessment of the residual vs.&nbsp;fitted plot, and Levene’s test. These methods may not always agree. You should be aware of the underlying data. Understanding why this assumption is important and how it will affect results when violated will help you decide how to proceed after checking these diagnostics. It is also worth noting that the ANOVA F-test is robust in the face of mild to moderate violation of this assumption.</p>
-<p>We will use the pre-loaded dataset <code>ToothGrowth</code>. To learn more about the dataset, run <code>?ToothGrowth</code> in the console. <code>len</code> will be our response variable, <code>supp</code> is an independent factor, and <code>dose</code> is the other independent factor. We will analyze this a two-way, basic factorial design. Because <code>dose</code> is stored as a numeric variable, we will convert it to a categorical variable and rename it <code>dose_f</code> before including it in the model. <em>Don’t forget to load the</em> <code>tidyverse</code> <em>in order to use</em> <code>mutate()</code>.</p>
+<p>We will use the pre-loaded dataset <code>ToothGrowth</code>. To learn more about the dataset, run <code>?ToothGrowth</code> in the console. <code>len</code> will be our response variable, <code>supp</code> is an independent factor, and <code>dose</code> is the other independent factor. We will analyze this as a two-way, basic factorial design. Because <code>dose</code> is stored as a numeric variable, we will convert it to a categorical variable and rename it <code>dose_f</code> before including it in the model. <em>Don’t forget to load the</em> <code>tidyverse</code> <em>in order to use</em> <code>mutate()</code>.</p>
+<p>The second line in the code below creates an ANOVA model, named <code>aov2th</code>.</p>
 <a href="javascript:showhide('dose_f')">
 <div class="hoverchunk">
 <p><span class="tooltipr"> tg <span class="tooltiprtext">The name you want for your modified dataset</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> ToothGrowth <span class="tooltiprtext">A preloaded dataset in R</span> </span><span class="tooltipr"> |&gt; <span class="tooltiprtext">The result on the left is piped into the first argument of the function on the right</span> </span><span class="tooltipr"> mutate( <span class="tooltiprtext">A tidyverse function to compute a new column for a dataset</span> </span><span class="tooltipr"> dose_f = <span class="tooltiprtext">The name you want to give to the new column</span> </span><span class="tooltipr"> factor( <span class="tooltiprtext">A function to convert a variable from numeric to quantitative</span> </span><span class="tooltipr"> dose <span class="tooltiprtext">A numeric variable in ToothGrowth</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr"> aov2th <span class="tooltiprtext">A name you come up with for your model</span> </span><span class="tooltipr"> &lt;- <span class="tooltiprtext">The assignment operator. The result to the right of it gets stored in an object specified on the left</span> </span><span class="tooltipr"> aov( <span class="tooltiprtext">A function to define the model</span> </span><span class="tooltipr"> len <span class="tooltiprtext">The response, or y, variable in the model. It is numeric.</span> </span><span class="tooltipr"> ~ <span class="tooltiprtext">The ~ is like an equal sign in the model. Items on the left of ~ represent y, on the right you define independent factors (i.e.&nbsp;x’s).</span> </span><span class="tooltipr"> dose_f <span class="tooltiprtext">Column in the tg dataset where doese is stored as a factor</span> </span><span class="tooltipr"> * <span class="tooltiprtext">Crosses two factors. Both simple factors and the interaction factor are included in the model </span> </span><span class="tooltipr"> supp <span class="tooltiprtext">variable with 2 levels of delivery method: orange juice or asorbic acid (vc)</span> </span><span class="tooltipr"> , <span class="tooltiprtext">Seperates multiple input arguments to a function.</span> </span><span class="tooltipr"> data = tg <span class="tooltiprtext">Tell the model that the variable names come from the <code>tg</code> dataset</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br></p>
@@ -353,11 +354,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- Example Code 1 -->
 <a href="javascript:showhide('manual')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> plot( <span class="tooltiprtext">Base R function to create a scatterplot</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext"> Look in the <code>aov2th</code> object for the item named on the right of the <code>$</code></span> </span><span class="tooltipr"> fitted.values <span class="tooltiprtext"> This vector, stored in the <code>aov</code> object, contains the fitted, or predicted, values. </span></span><span class="tooltipr"> , <span class="tooltiprtext">Seperates multiple input arguments to a function</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext">Look in the <code>aov2th</code> object for the item names on the righ tof the <code>$</code></span> </span><span class="tooltipr"> residuals <span class="tooltiprtext">Vector in the <code>aov</code> object that contains model residuals</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+<p><span class="tooltipr"> plot( <span class="tooltiprtext">Base R function to create a scatterplot</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext"> Look in the <code>aov2th</code> object for the item named on the right of the <code>$</code></span> </span><span class="tooltipr"> fitted.values <span class="tooltiprtext"> This vector, stored in the <code>aov</code> object, contains the fitted, or predicted, values. </span></span><span class="tooltipr"> , <span class="tooltiprtext">Seperates multiple input arguments to a function</span> </span><span class="tooltipr"> aov2th$ <span class="tooltiprtext">Look in the <code>aov2th</code> object for the item names on the right of the <code>$</code></span> </span><span class="tooltipr"> residuals <span class="tooltiprtext">Vector in the <code>aov</code> object that contains model residuals</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
 </div>
 </a><p><a href="javascript:showhide('manual')"></a></p>
 <div id="manual" style="display:show;">
-<p>Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 does levels x 2 levels of supp = 6 factor level combinations) ::: {.cell} ::: {.cell-output-display} <img src="diagnostics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"> ::: :::</p>
+<p>Note the resulting plot show 6 vertical groupings, one for each factor level combination. (3 dose levels x 2 levels of supp = 6 factor level combinations)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="diagnostics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </div>
 <p><br></p>
 <p><strong>Construct the plot with a shortcut</strong></p>
@@ -375,7 +381,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </a><p><a href="javascript:showhide('shortcut1')"></a></p>
 <p><br></p>
 <div id="shortcut1" style="display:show;">
-<p>Ignore the red line on the plot. It does not measure variance and so can be distracting. ::: {.cell} ::: {.cell-output-display} <img src="diagnostics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"> ::: :::</p>
+<p>Ignore the red line on the plot. It does not measure variance and so can be distracting.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="diagnostics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </div>
 <p><br></p>
 </section>
@@ -422,7 +433,7 @@ group  5  1.7086 0.1484
 </div>
 </a><p><a href="javascript:showhide('qqshortcut')"></a></p>
 <p><br></p>
-<div id="shortcut1" style="display:show;">
+<div id="qqshortcut" style="display:show;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="diagnostics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
@@ -443,17 +454,14 @@ group  5  1.7086 0.1484
 <!-- Example Code 2 -->
 <a href="javascript:showhide('qqcar')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> car <span class="tooltiprtext">qqPlot comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> qqPlot( <span class="tooltiprtext">function to a Q-Q plot from the car package</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext">name of the aov object</span> </span><span class="tooltipr"> envelope = <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span> </span><span class="tooltipr"> list( <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span> </span><span class="tooltipr"> style = <span class="tooltiprtext">“filled” shading, boundary “lines”, or none</span> </span><span class="tooltipr"> “lines” <span class="tooltiprtext">designate the acceptable region with lines</span> </span><span class="tooltipr"> )) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
+<p><span class="tooltipr"> car <span class="tooltiprtext">qqPlot comes from the car package. </span> </span><span class="tooltipr"> :: <span class="tooltiprtext">Allows you to reference functions from the package named on the left without having to load the entire package. </span></span><span class="tooltipr"> qqPlot( <span class="tooltiprtext">function to a Q-Q plot from the car package</span> </span><span class="tooltipr"> aov2th, <span class="tooltiprtext">name of the aov object</span> </span><span class="tooltipr"> envelope = <span class="tooltiprtext">Argument to control the formatting for the acceptable region for points</span> </span><span class="tooltipr"> list( <span class="tooltiprtext">There are potentially many arguments to affect the envelope, so they are provided as a list.</span> </span><span class="tooltipr"> style = <span class="tooltiprtext">“filled” shading, boundary “lines”, or none</span> </span><span class="tooltipr"> “lines” <span class="tooltiprtext">designate the acceptable region with lines</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><span class="tooltipr"> , <span class="tooltiprtext">A comma separates the inputs to a function, in this case the qqPlot function</span> </span><span class="tooltipr"> id = FALSE <span class="tooltiprtext">This argument tells R to display the row number of the 2 most extreme vertical values or not.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions always end with a closing parenthesis</span> </span><br><span class="tooltipr" style="float:right;"> Toggle output <span class="tooltiprtext">Toggle Output.</span> </span></p>
 </div>
 </a><p><a href="javascript:showhide('qqcar')"></a></p>
 <p><br></p>
-<div id="levene" style="display:show;">
+<div id="qqcar" style="display:show;">
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="diagnostics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 32 49</code></pre>
 </div>
 </div>
 </div>
