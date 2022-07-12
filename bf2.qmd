@@ -1141,7 +1141,7 @@ interaction.plot(bf2$Brush, bf2$Toothpaste, bf2$Plaque, xlab = "Brush", ylab = "
 You then create the model using the `aov()` function. To see results of the F-test you can feed your model into a `summary()` or `anova()` function.
 
 ::: column-margin
-When called on a model created with `aov()`, `summary()` and `anova()` functions give the same output with some slight differences in formatting. The `summary()` function is more general; it can take linear regression models created with `'lm()` as inputs, for example. The output provided by `summary()` will change based on the type of object it is called on. This is discussed in more detailed at the bottom of the [Unbalanced](unbalanced.qmd) page.
+`summary()` and `anova()` functions give the same output with some slight differences in formatting when called on a model created with `aov()`. The `summary()` function is more general; it can also take linear regression models created with `'lm()` as inputs. The output provided by `summary()` will change based on the type of object it is called on. This is discussed in more detail at the bottom of the [Unbalanced](unbalanced.qmd) page.
 :::
 
 ```{r}
