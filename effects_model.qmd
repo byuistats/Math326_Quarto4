@@ -26,7 +26,7 @@ If we were able to observe all items in a population we would be able to quantif
 
 By the end of this section you should know how to interpret the terms in an ANOVA model (i.e. know what they mean), and also perform the calculations necessary to estimate ANOVA model parameters.
 
-## Example Introduction
+## Toothbrush Example
 
 Consider an experiment conducted to test 4 different types of toothbrushes: manual, oscillating, sonic and ultrasonic. The response variable is percent of area on teeth that has plaque. Twenty-four individuals participate in the experiment, yielding 6 observations per treatment. We will discuss the creation of an ANOVA model using the context of this specific example. In this section and "Calculating Effect Sizes" section we will be referring to estimates of model parameters using this sample data.
 
@@ -146,7 +146,7 @@ $$
 \text{Effect}_\text{sonic} = \bar{y}_\text{sonic} - \bar{y}_\text{grand} = 22.675 - 22.765 = -0.09
 $$ {#eq-factor_sonic}
 
-@fig-effects shows a visual representation of effect size for oscillating and ultrasonic brushes:
+@fig-effects shows a visual representation of effect size for oscillating and ultrasonic brushes. The effect sizes for manual and sonic brushes could also have been drawn, but are omitted so that the chart does not become too cluttered.
 
 ```{r}
 #| label: fig-effects
@@ -188,7 +188,7 @@ text(4-.05, mean(c(mu[[4,2]], grandmean)), expression(effect[ultra]== 2.55), col
 
 The effect size of a factor level can be thought of as the difference between a factor level's mean and its partial fit[^2]. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.
 
-[^2]: Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors (usually including just outside factors). Therefore, this is just another way to state the general rule to calculate effect size.
+[^2]: Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors. Often, in ANOVA, partial fit refers to a model or prediction estimated using just outside factors. Thus, for this model @eq-general-effects-rule could be restated as Factor level effect size = Factor level mean - partial fit.
 
 ::: callout-tip
 ## General rule to calculate effect size
@@ -200,7 +200,7 @@ $$ {#eq-general-effects-rule}
 
 Using @eq-general-effects-rule we can also estimate the effect of the grand mean factor. Grand mean only has 1 level and it includes all the observations, so the factor level mean is the same as the mean of all the observations, 22.765. The "sum of effects of all outside factors" is 0 since there are no factors outside of grand mean. Therefore, the effect size for the grand mean factor is simply the grand mean. In this case, 22.765.
 
-What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let's consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see [Factor Structure](factor_structure.qmd)).
+What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let's consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see [Factor Structure](factor_structure.qmd) for a review of inside vs. outside factors).
 
 ::: column-page
 ![Factor Structure Diagram for Toothbrush Study with 1 Factor](images/toothbrush_bf1_colored_factors.JPG){#fig-toothbrush_bf1_colored_factors}
@@ -214,7 +214,7 @@ $$ {#eq-obs1-effect}
 
 This means that this individual's plaque percent area was 2.357 lower than the average plaque percent area of those who used an oscillating brush. (Less plaque is a good thing!) We cannot tell exactly what caused the residual error. It could be a result of differences in how vigorously people brush, variations in the manufacture of the brushes, differences in how researchers assessed plaque from one person to another and an infinite number of other things. If the experiment implemented randomization properly and was designed and executed well, these residual error effects (i.e. the unexplained error) should behave randomly. In fact, they should behave like a normally distributed random variable...more on that in [the Assumptions section](assumptions.qmd).
 
-We will repeat the residual error[^3] calculation process for the outlying point in the "ultrasonic" level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the "ultrasonic" group. The estimation of the residual error is therefore contained in @eq-obs2-effect :
+We will repeat the residual error[^3] calculation process for the outlying point in the ultrasonic level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the ultrasonic group. The estimation of the residual error is therefore contained in @eq-obs2-effect :
 
 [^3]: You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.
 
@@ -232,6 +232,7 @@ plot(Plaque~brush_num, data=bf1, pch=16, xaxt='n',xlim = xaxis_limits, ylab= "% 
 axis(1, at=c(1,2,3,4), labels=c("Manual", "Oscillating", "Sonic", "Ultrasonic"))
 lines(xaxis_limits, rep(grandmean, 2), lty=1, col = "firebrick")
 text(4.5,grandmean-.5, "Grand mean", col = "firebrick")
+text(4.5,grandmean-1.25, "= 22.765", col = "firebrick")
 
 #Puts the dashed group mean line for manual
 lines(c(1-.2,1+.21), rep(mu[1,2],2), lty=2)

@@ -113,7 +113,7 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
@@ -162,8 +162,8 @@ ul.task-list{list-style: none;}
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./WilcoxonTests.html">
- <span class="dropdown-text">ZUnbalanced Datasets</span></a>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Kruskal.html">
@@ -203,12 +203,13 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#anova-vs.-other-analysis-tools" id="toc-anova-vs.-other-analysis-tools" class="nav-link active" data-scroll-target="#anova-vs.-other-analysis-tools">ANOVA vs.&nbsp;Other Analysis Tools</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#other-analysis-tools" id="toc-other-analysis-tools" class="nav-link" data-scroll-target="#other-analysis-tools">Other Analysis Tools</a>
   <ul class="collapse">
   <li><a href="#multiple-t-tests" id="toc-multiple-t-tests" class="nav-link" data-scroll-target="#multiple-t-tests">Multiple t-tests</a></li>
   <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
   </ul></li>
-  <li><a href="#what-is-analysis-of-variance" id="toc-what-is-analysis-of-variance" class="nav-link" data-scroll-target="#what-is-analysis-of-variance">What is Analysis of Variance</a></li>
+  <li><a href="#analysis-of-variance" id="toc-analysis-of-variance" class="nav-link" data-scroll-target="#analysis-of-variance">Analysis of Variance</a></li>
   <li><a href="#anova-f-test-a-variance-ratio" id="toc-anova-f-test-a-variance-ratio" class="nav-link" data-scroll-target="#anova-f-test-a-variance-ratio">ANOVA F-test: A Variance Ratio</a>
   <ul class="collapse">
   <li><a href="#mean-squares-ms" id="toc-mean-squares-ms" class="nav-link" data-scroll-target="#mean-squares-ms">Mean Squares (MS)</a></li>
@@ -239,6 +240,8 @@ ul.task-list{list-style: none;}
 
 </header>
 
+<section id="introduction" class="level1 page-columns page-full">
+<h1>Introduction</h1>
 <p>With the effects model defined we will want to test whether the treatment factor(s) has a statistically significant effect on the response variable. In other words we are interested in testing the hypotheses:</p>
 <p><span class="math display">\[
 H_0: \alpha_1 = \alpha_2 = ... = 0
@@ -250,12 +253,14 @@ H_a: \alpha_i \ne 0 \text{ for at least one i}
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Testing whether the effects are all equal to each other is incomplete, you must include the zero. Since all level effects must sum to zero for a given factor, the only way all effects can be equal is if they are all zero.</p>
 </div></div><p><strong>An</strong>alysis <strong>o</strong>f <strong>va</strong>riance (ANOVA) is a statistical technique that allows us to simultaneously test all factor level effects at the same time.</p>
-<section id="anova-vs.-other-analysis-tools" class="level1">
-<h1>ANOVA vs.&nbsp;Other Analysis Tools</h1>
+<p>By the end of this section you should be able to state a hypothesis for each term in an ANOVA effects model, calculate and explain the meaning of all the pieces of an ANOVA summary table output, and use the ANOVA summary table to conduct a test of the stated hypothesis.</p>
+</section>
+<section id="other-analysis-tools" class="level1">
+<h1>Other Analysis Tools</h1>
 <section id="multiple-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-t-tests">Multiple t-tests</h2>
 <p>At this point it is reasonable to ask if we couldn’t arrive at the same conclusion by simply conducting multiple t-tests. For example, you could do a t-test for each factor level to determine if the effect is significantly different from zero. Or you might consider testing each combination of factor level effects to see if they are equal to each other.</p>
-<p>The multiple t-test approach has a couple of a drawbacks. The first drawback is that it becomes a real burden to run, present and interpret a lot of tests if there are many levels to a factor. If you only have 3 or 4 factor levels and only 1 or 2 factors, conducting many tests may be an annoyance. However, many factor levels and many factor would truly bog down your analysis.</p>
+<p>The multiple t-test approach has a couple of a drawbacks. The first drawback is that it becomes a real burden to run, present and interpret a lot of tests if there are many levels to a factor. If there are only 3 or 4 factor levels and only 1 or 2 factors in the analysis, conducting many tests may simply be an annoyance. However, if many factors and/or many factor levels are involved the magnitude of tests may bog down your analysis.</p>
 <p>The other main drawback of using multiple t-tests is more substantive and has to do with the probability of a Type I error. Suppose the treatment factor in our study has 3 levels. The null hypothesis associated with an ANOVA that tests all factor level effects simultaneously is:</p>
 <p><span class="math display">\[
 H_0: \alpha_1 = \alpha_2 =  \alpha_3 = 0
@@ -274,21 +279,21 @@ H_0: \alpha_1 = \alpha_2 =  \alpha_3 = 0
 </section>
 <section id="regression" class="level2">
 <h2 class="anchored" data-anchor-id="regression">Regression</h2>
-<p>Indeed, ANOVA and linear regression are more similar than they are different. ANOVA and linear regression tend to each have their own vocabulary because they were developed under different circumstances. ANOVA was developed to deal with agricultural experiments where the independent variables were primarily categorical. Linear regression tends to be introduced as a tool to analyze data where the independent variables are quantitative. Though the language and output associated with each technique may appear different on the surface, the “math” (i.e.&nbsp;the linear algebra) underlying the hood of the techniques is identical. It is not uncommon to have a study where there are multiple quantitative independent variables and multiple categorical independent variables. Thus, the differences between the two lie more in the problems they tend to be applied to and the vocabulary of the researcher than in any meaningful difference in results.</p>
+<p>ANOVA and linear regression are more similar than they are different. ANOVA and linear regression each have their own vocabulary because they were developed under different circumstances. ANOVA was developed to deal with agricultural experiments where the independent variables were primarily categorical. Linear regression tends to be introduced as a tool to analyze data where independent variables are quantitative. Though the language and output associated with each technique may appear different on the surface, the underlying “math” (i.e.&nbsp;the linear algebra) for both techniques is identical. It is not uncommon to have a study where there are multiple quantitative independent variables and multiple categorical independent variables. Thus, the differences between the two lie more in the problems they tend to be applied to and the vocabulary of the researcher than in any meaningful difference in results.</p>
 </section>
 </section>
-<section id="what-is-analysis-of-variance" class="level1">
-<h1>What is Analysis of Variance</h1>
+<section id="analysis-of-variance" class="level1">
+<h1>Analysis of Variance</h1>
 <p>Though ANOVA may seem intimidating at first, the underlying idea is relatively simple. If we want to determine if a factor has a significant effect on a response variable we can look at the variance, or spread, in the resulting data. Specifically, we will compare the spread between factor level means with the spread of observations within a factor level.</p>
 <p><a href="#fig-xo-different">Figure&nbsp;1</a> illustrates some made up data for a very simple, generic example where there are just two factor levels: X and O.</p>
 <div id="fig-xo-different" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/x-o_sig.JPG" class="img-fluid figure-img"></p>
+<p><img src="images/xo-different.png" class="img-fluid figure-img"></p>
 <p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Factor level means are different</figcaption><p></p>
 </figure>
 </div>
-<p>Each individual observation is represented by a black X or O above the number line. The factor level mean for each factor is in blue, plotted beneath the number line. It is apparent that the X factor level mean and the O factor level mean are statistically different. The spread between factor level means is quite large relative to the spread of observations within each factor level.</p>
-<p>Now consider the case, in <a href="#fig-xo-same">Figure&nbsp;2</a>, where the spread between factor level means is quite small relative to the spread of observations within a factor level. This suggests that the difference in factor level means could just as easily be due to random chance as due to a real difference between factor levels.</p>
+<p>Each individual observation is represented by a black X or O above the number line. The factor level mean for each factor is in blue, plotted beneath the number line. It is apparent that the X factor level mean and the O factor level mean are statistically different. The spread between factor level means is quite large <em>relative</em> to the spread of observations within each factor level.</p>
+<p>Now consider the case, in <a href="#fig-xo-same">Figure&nbsp;2</a>, where the spread between factor level means is quite small <em>relative</em> to the spread of observations within a factor level. This suggests that the difference in factor level means could just as easily be due to random chance as due to a real difference between factor levels.</p>
 <div id="fig-xo-same" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/xo-same.png" class="img-fluid figure-img"></p>
@@ -330,7 +335,7 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The effects model:</p>
 <p><span class="math inline">\(y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}\)</span></p>
-</div></div><p>The breakdown of variability and the resulting F-statistic and p-value are often displayed in an ANOVA summary table. <a href="#tbl-blank-table">Table&nbsp;2</a> is a blank version of the ANOVA summary table with just 1 structural factor/treatment. This table is essentially a container to provide perspective about how variability in the dataset is allocated across factors. On the far left, we list out the factors in our study as sources of variability. On the far right, we display the F-statistic and p-value which have already been discussed. The df, SS, and MS columns are explained below.</p>
+</div></div><p>The breakdown of variability and the resulting F-statistic and p-value are often displayed in an ANOVA summary table. <a href="#tbl-blank-table">Table&nbsp;1</a> is a blank version of the ANOVA summary table with just 1 structural factor/treatment. This table is essentially a container to provide perspective about how variability in the dataset is allocated across factors.</p>
 <div id="tbl-blank-table" class="anchored">
 <table class="table">
 <caption>Table 1: Blank ANOVA summary table for an experiment with 1 treatment factor</caption>
@@ -380,6 +385,7 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 </tbody>
 </table>
 </div>
+<p>On the far left, we list out the factors in our study as sources of variability. We are working our way backwards through the calculations in the table. We started with a discussion of F statistics and p-values. Next is an explanation of Mean Squares. In the explanation we will see that mean squares is a function of the Sum of Squares and degrees of freedom. Then we explain how each of those is calculated, respectively.</p>
 <section id="mean-squares-ms" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="mean-squares-ms">Mean Squares (MS)</h2>
 <p>You can think of Mean Squares (MS) as synonymous with variance. The F statistic is a ratio of variances:</p>
@@ -387,16 +393,16 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 F = \frac{\text{Variation between factor levels}}{\text{Variation within factor levels}} = \frac{\text{Mean squares of treatment factor means}}{\text{Mean squares of residual errors}}
 \]</span></p>
 <p>With this is mind, we can fill in the F column of the ANOVA table for Treatment Factor.</p>
-<div id="tbl-blank-table" class="anchored">
+<div id="tbl-blank-1" class="anchored">
 <table class="table">
 <caption>Table 2: Blank ANOVA summary table for an experiment with 1 treatment factor</caption>
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 40%">
-<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -444,17 +450,34 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 </tbody>
 </table>
 </div>
-<p>To find the variation between factor level means, calculate the sample variance of factor level means and multiply it by the number of replicates in each factor level. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, weighting by sample size is needed).</p>
-<p>The Mean Squares of the residual error factor (i.e.&nbsp;Mean Squared Error, MSE) represents the within factor level variation. To calculate it you can find the sample variance within each factor level and then take the mean of those variances. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, you would take a weighted average).</p>
-<div id="fig-between-within" class="quarto-figure quarto-figure-center anchored">
+<p>To find the variation <strong>between</strong> factor level means, calculate the sample variance of factor level means and multiply it by the number of replicates in each factor level. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, weighting by sample size is needed).</p>
+<p>The Mean Squares of the residual error factor (i.e.&nbsp;Mean Squared Error, MSE) represents the <strong>within</strong> factor level variation. To calculate it you can find the sample variance within each factor level and then take the mean of those variances. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, you would take a weighted average).</p>
+<p><a href="#fig-between_within-1">Figure&nbsp;4 (a)</a> and <a href="#fig-between_within-2">Figure&nbsp;4 (b)</a> below show deviations necessary to calculate the between group and within group variance (or in other words the mean squares treatment and the mean squares error). The figures are based on data from an experiment with 3 factor levels. <a href="#fig-between_within-1">Figure&nbsp;4 (a)</a> shows variation <strong>between</strong> factor level means. It shows the factor level means plotted as blue lines and the grand mean as a red line. In this chart we see the deviation from each factor level mean to the grand mean represented as a gray dashed line. As mentioned above, the mean squares for treatment could be computed as the variance of the 3 factor level means<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and multiplied by 15 (the number of replicates in each factor level).</p>
+<div class="cell column-page quarto-layout-panel">
 <figure class="figure">
-<p><img src="images/between-within.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Data from an experiment with 3 factor levels is shown in two separate panels. Left panel shows variation between factor level means. Right panel shows variation within factor levels.</figcaption><p></p>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-between_within-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Anova_F-test_files/figure-html/fig-between_within-1.png" class="img-fluid figure-img" data-ref-parent="fig-between_within" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">(a) Factor Level Means</figcaption><p></p>
 </figure>
 </div>
-<p>In <a href="#fig-between-within">Figure&nbsp;4</a> data from an experiment with 3 factor levels is shown. The panel on the left shows the factor level means plotted as points and the grand mean as a red line. In this panel we can see the between group variation. As mentioned above, the mean squares for treatment could be computed as the variance of the 3 factor level means, and multiplied by 15 (the number of replicates in each factor level).</p>
-<p>In the panel on the right, the factor level means are plotted in blue and the deviation from each point to its respective factor level mean is depicted. The mean square error could be computed by finding the sample variance within each group and then taking the mean of those 3 variance estimates.</p>
-<p>Though the above methods work, the ANOVA summary table captures interim steps for an alternative (preferred) algorithm for calculating mean squares. Since <strong>Mean Squares is synonymous with variance</strong>, now is a good time to review the sample variance formula.</p>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-between_within-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Anova_F-test_files/figure-html/fig-between_within-2.png" class="img-fluid figure-img" data-ref-parent="fig-between_within" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">(b) Deviations Within Factor Levels</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Between Group vs.&nbsp;Within Group</figcaption><p></p>
+</figure>
+</div>
+<p><a href="#fig-between_within-2">Figure&nbsp;4 (b)</a> shows variation <strong>within</strong> factor levels. Each point is plotted in a cluster according to the factor level it belongs to. The deviation from each point to its respective factor level mean is depicted with a gray dashed line. The mean square error could be computed by finding the sample variance within each group<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and then taking the mean of those 3 variance estimates.</p>
+<p>Thinking about things in this way is helpful to understand conceptually what is happening. However, the ANOVA summary table captures interim steps for calculating mean squares slightly different. Since <strong>Mean Squares is synonymous with variance</strong>, now is a good time to review the sample variance formula.</p>
 <p><span id="eq-sample-variance"><span class="math display">\[
 s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 \qquad(2)\]</span></span></p>
@@ -466,15 +489,15 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <li>numerator: a sum or total</li>
 <li>denominator: the number of pieces of information used to create the sum in the numerator</li>
 </ul>
-<p>Here, the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
+<p>Therefore, the mean square is calculated where the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
 <table class="table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 26%">
-<col style="width: 24%">
-<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -529,12 +552,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <p>In the table below an equation for each factor’s SS is listed using terms from the factor effects model. We’ll walk through the meaning of each of those equations.</p>
 <table class="table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 21%">
-<col style="width: 20%">
-<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -614,15 +637,16 @@ Degrees of Freedom
 </div>
 <p>In our dataset we have a certain number of observations. All those observations can be used to estimate the variance in the dataset. But you will notice in <a href="#eq-sample-variance">Equation&nbsp;2</a> the data has already been used to estimate the grand mean (<span class="math inline">\(\bar{y}\)</span> estimates <span class="math inline">\(\mu\)</span>). In other words, before we can estimate the variance we must use the data to estimate the mean. Estimating the mean “uses up” one degree of freedom. This is why the denominator of the sample variance formula divides by <span class="math inline">\(n-1\)</span> instead of by <span class="math inline">\(n\)</span>.</p>
 <p>For additional explanation, consider this simple example. There are three data points and you know that the mean of these 3 data points is 10. The value of the first data point could be any number, it is free to vary. The value of the second data point could also be any number, it is free to vary. The third number’s value is not free to vary. It is constrained by the fact that the mean of the 3 data points must be 10. The values of the first two datapoints will determine the value of the third under the constraint of a known (or estimated) mean.</p>
+<p>The example described above is summarized in <a href="#tbl-df-example">Table&nbsp;3</a>. The first number is represented as an <span class="math inline">\(a\)</span> and the second number if represented with a <span class="math inline">\(b\)</span>.</p>
 <div id="tbl-df-example" class="anchored">
 <table class="table">
 <caption>Table 3: Only n-1 values are free to vary when the mean of the values is known</caption>
 <colgroup>
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 28%">
-<col style="width: 17%">
-<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -651,13 +675,13 @@ Degrees of Freedom
 </tbody>
 </table>
 </div>
-<p>How does this apply to the analysis of variance? Initially you have <span class="math inline">\(n\)</span> observations, or in other words <span class="math inline">\(n\)</span> unique pieces of information that can be used to estimate variance of the dataset. As I try to break the variance into its component pieces, I will also need to reallocate those <span class="math inline">\(n\)</span> pieces of information to each factor (grand mean, treatment factor, residual error) for use in estimating their mean squared error. To paraphrase the law of the conservation of mass, “the number of observations can neither be created nor destroyed”. The sum of degrees of freedom for all the factors must equal the number of observations in the dataset.</p>
+<p>How does this apply to the analysis of variance? Initially you have <span class="math inline">\(n\)</span> observations, or in other words <span class="math inline">\(n\)</span> unique pieces of information that can be used to estimate variance of the dataset. As you try to break the dataset’s variance into its component pieces, you will need to reallocate the <span class="math inline">\(n\)</span> pieces of information to each factor (grand mean, treatment factor, residual error) for use in estimating each factor’s mean square. To paraphrase the law of the conservation of mass, “the number of observations can neither be created nor destroyed”. The sum of degrees of freedom for all the factors must equal the number of observations in the dataset.</p>
 <p>We will reason through the degrees of freedom calculation for each of the 3 sources in the ANOVA table. Keep in mind, we are using the simplest experiment, just one treatment factor, to illustrate these concepts. In more complex designs, there will be additional factors listed in the “sources” column.</p>
-<p>As was mentioned, every time we use the data to estimate a parameter we use a degree of freedom. To find the grand mean we average over all the values in the dataset; that uses up one degree of freedom because we have estimated 1 mean.</p>
-<p>When calculating the <strong>degrees of freedom for the treatment factor</strong> you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure <a href="#tbl-df-example">Table&nbsp;3</a>. Because I have already estimated the grand mean, the last factor level is is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.</p>
-<p>Explained another way, consider the fact that all the factor level effects must sum to zero. If there are <span class="math inline">\(m\)</span> factor levels, I only need to estimate effects for <span class="math inline">\(m-1\)</span> levels. The last level’s effect is a function of the other factor level effects, it does not need to be estimated and therefore does not need a degree of freedom.</p>
+<p>As was mentioned, every time we use the data to estimate a parameter we use a degree of freedom. Or in other words, every time we use the data to estimate a parameter we lose a degree of freedom for our mean square error estimate. To find the grand mean we average over all the values in the dataset; that uses up one degree of freedom because we have estimated one mean, the grand mean.</p>
+<p>When calculating the <strong>degrees of freedom for the treatment factor</strong> you might be tempted to think that the degrees of freedom is equal to the number of factor levels because you have to estimate a mean for each level. But, remember the simple example depicted in figure <a href="#tbl-df-example">Table&nbsp;3</a>. Because I have already estimated the grand mean, the last factor level is not free to vary and therefore is not estimated directly. The mean of the last factor level will have to be a number that satisfies the constraint that the mean of all the factor level means is the grand mean.</p>
+<p>Explained another way, consider the fact that all the factor level effects must sum to zero. If there are <span class="math inline">\(i\)</span> factor levels, you only need to estimate effects for <span class="math inline">\(i-1\)</span> levels. The last level’s effect is a function of the other factor level effects, it does not need to be estimated and therefore does not need a degree of freedom.</p>
 <p>Finally, consider the <strong>residual error factor</strong>. The non-technical definition of the term residual means “left over”. The degrees of freedom for the residual error factor is whatever degrees of freedom are left over after calculating degrees of freedom for all other factors.</p>
-<p>In summary, to estimate the degrees of freedom for a factor, start with its number of levels and then subtract the number of means that need to be calculated in order to calculate the factor’s level effects. This is exactly what the general rule for finding degrees of freedom tells us.</p>
+<p>In summary, to estimate the degrees of freedom for a factor, start with its number of levels and then subtract the number of means that need to be calculated in order to calculate the factor’s level effects. That may sound a bit confusing, luckily the general rule states the exact same thing in a simpler, more understandable way.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -692,6 +716,8 @@ F = \frac{\text{variance in factor level means} + \text{variance within factor l
 F = \frac{\text{variance within factor levels}}{\text{variance within factor levels}} = 1
 \]</span></p>
 <p>The values for degrees of freedom affect the shape and the spread of the F distribution. Visit <a href="https://keisan.casio.com/exec/system/1180573185">this applet</a> to learn more and interact with the family of F distributions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>The variance would be calculated by squaring the deviations, summing them up and then dividing by the degrees of freedom, which is 2 in this case.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>The variance is calculated by squaring the deviations, and then summing them together and dividing by the degrees of freedom, which in this case is 14 for each group.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
