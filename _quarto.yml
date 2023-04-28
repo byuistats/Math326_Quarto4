@@ -33,8 +33,10 @@ website:
            href: bf2.qmd
          - text: "BF[3+]"
            href: BasicFactorial_quarto.qmd
-         - text: "Block Designs"
-           href: Block.html
+         - text: "Blocking Introduction"
+           href: block_intro.qmd
+         - text: "CB[1]"
+           href: cb1.qmd
          - text: "Covariate Designs"
            href: Covariate.html
          - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
@@ -80,7 +82,7 @@ website:
           href: DescribeData.html
         - text: "Model diagnostics"
           href: diagnostics.html
-  right:
+    right:
     - text: "Datasets"
       menu:
         - text: "XYZ"

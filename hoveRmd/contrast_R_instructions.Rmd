@@ -52,7 +52,7 @@ mymeans <- emmeans(myaov, "X")
 Define the contrasts your are interested in testing inside the `contrast()` function, which returns the hypothesis test results. You can also feed the result into a `confint()` function if you prefer confidence intervals over p-values.
 
 ```{r eval = FALSE, echo = TRUE}
-contrast(brush_means,list(name_of_contrast1 = coefficient vector,
+contrast(mymeans,list(name_of_contrast1 = coefficient vector,
                        name_of_contrast2 = another coefficient vector))) 
 ```
 
@@ -179,7 +179,7 @@ Toggle output
 <div id="contrast_brush" style="display:show;">
 
 ```{r message = FALSE, echo = FALSE}
-df <- read_csv("../data/toothpaste_BF2.csv")
+df <- read_csv(here::here("data/toothpaste_BF2.csv"))
 plaque_aov <- aov(Plaque ~ Brush, data = df)
 brush_means <- emmeans(plaque_aov, "Brush")
 contrast_results <- contrast(brush_means,list(man_v_osc = c(1,-1,0,0),

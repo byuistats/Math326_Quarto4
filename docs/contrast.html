@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.344">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -80,22 +85,23 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
-<meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -127,16 +133,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">Basics of Design</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics of Design</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
     <a class="dropdown-item" href="./key_principles.html">
@@ -165,7 +175,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">Specific Designs</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Specific Designs</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
     <a class="dropdown-item" href="./BasicFactorial_intro.html">
@@ -184,8 +196,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Block.html">
- <span class="dropdown-text">Block Designs</span></a>
+    <a class="dropdown-item" href="./block_intro.html">
+ <span class="dropdown-text">Blocking Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cb1.html">
+ <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Covariate.html">
@@ -198,7 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Broad Topics</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Broad Topics</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
     <a class="dropdown-item" href="./factor_structure.html">
@@ -239,7 +257,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">R Instructions</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R Instructions</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
     <a class="dropdown-item" href="./DescribeData.html">
@@ -248,6 +268,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li>
     <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datasets</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
+        <li>
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+ <span class="dropdown-text">XYZ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="././Data/StudentHousing.html">
+ <span class="dropdown-text">yadda yadda</span></a>
   </li>  
     </ul>
   </li>
@@ -262,13 +299,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#what-is-a-contrast" id="toc-what-is-a-contrast" class="nav-link active" data-scroll-target="#what-is-a-contrast">What is a Contrast?</a></li>
   <li><a href="#testing-a-contrast" id="toc-testing-a-contrast" class="nav-link" data-scroll-target="#testing-a-contrast">Testing a Contrast</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#t-test-for-pairwise-comparisons" id="toc-t-test-for-pairwise-comparisons" class="nav-link" data-scroll-target="#t-test-for-pairwise-comparisons">t-test for Pairwise Comparisons</a></li>
   <li><a href="#t-test-for-any-contrast" id="toc-t-test-for-any-contrast" class="nav-link" data-scroll-target="#t-test-for-any-contrast">t-test for Any Contrast</a></li>
   <li><a href="#f-test-vs.-t-test" id="toc-f-test-vs.-t-test" class="nav-link" data-scroll-target="#f-test-vs.-t-test">F-test vs.&nbsp;t-test</a></li>
@@ -288,11 +325,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-
-
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -319,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/contrast_venn.JPG" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Venn Diagram</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Venn Diagram</figcaption><p></p>
 </figure>
 </div>
 </div></div>
@@ -330,10 +366,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The above hypotheses can all be expressed as a sum, where each factor level mean is multiplied by a coefficient. When a factor level is not a part of the hypotheses, it has a coefficient of zero.</p>
 <div id="tbl-expanded" class="anchored">
 <table class="table">
-<caption>Table 1: Expanded Hypotheses</caption>
+<caption>Table&nbsp;1: Expanded Hypotheses</caption>
 <colgroup>
 <col style="width: 50%">
-<col style="width: 49%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -364,11 +400,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The contents in the right column of <a href="#tbl-expanded">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
 <div id="tbl-coefficients" class="anchored">
 <table class="table">
-<caption>Table 2: Contrast Coefficients</caption>
+<caption>Table&nbsp;2: Contrast Coefficients</caption>
 <colgroup>
-<col style="width: 40%">
-<col style="width: 40%">
-<col style="width: 18%">
+<col style="width: 38%">
+<col style="width: 37%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -423,7 +459,7 @@ H_0: \mu_\text{man} - \mu_\text{osc} = 0
 <p>We use a t statistic:</p>
 <p><span id="eq-diff2means"><span class="math display">\[
 t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} + \frac{1}{n_2})}}
-\qquad(1)\]</span></span></p>
+\tag{1}\]</span></span></p>
 <p>The difference in the numerator is calculated directly from the contrast (multiplying the set of coefficients by their respective factor level mean). In the denominator, the pooled variance (<span class="math inline">\(s^2_p\)</span>) is identical to the mean squared error from the ANOVA summary table. The degrees of freedom for this test statistic are equivalent to the residual degrees of freedom.</p>
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
@@ -438,7 +474,7 @@ t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} 
 <p>For our study on toothbrushes we have the model:</p>
 <p><span id="eq-model1"><span class="math display">\[
 y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
-\qquad(2)\]</span></span></p>
+\tag{2}\]</span></span></p>
 <p>Where</p>
 <ul>
 <li><span class="math inline">\(y_\text{ij}\)</span> is an observation</li>
@@ -480,9 +516,9 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>pprob <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="at">q=</span>tstat, <span class="at">df=</span>brush_aov<span class="sc">$</span>df.resid, <span class="at">lower.tail=</span><span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell tbl-parent quarto-layout-panel">
+<div id="tbl-brush_analysis" class="cell tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
-<p>Table 3: Toothbrush Experiment Results</p>
+<p>Table&nbsp;3: Toothbrush Experiment Results</p>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="tbl-brush_analysis-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-brush_analysis" style="flex-basis: 50.0%;justify-content: center;">
@@ -571,7 +607,7 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <p>Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
 <p><span id="eq-tvalue"><span class="math display">\[
 t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
-\qquad(3)\]</span></span></p>
+\tag{3}\]</span></span></p>
 <p>A t statistic of 1.97 leads to a p-value of 0.063. Since the p-value is greater than our traditional alpha of 0.05, we fail to reject the null hypothesis of equality. In other words, there is insufficient evidence to claim that the manual brush and the oscillating brush have different mean values for percent area of teeth with plaque.</p>
 </section>
 <section id="t-test-for-any-contrast" class="level3">
@@ -579,7 +615,7 @@ t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 <p>This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the <span class="math inline">\(1's\)</span> in <a href="#eq-tvalue">Equation&nbsp;3</a> appearing directly above each sample size actually represent the squared coefficient of the contrast (see <a href="#tbl-expanded">Table&nbsp;1</a>). Thus, <a href="#eq-diff2means">Equation&nbsp;1</a> used to compare two factor level means, is actually just a special case of a more general formula, <a href="#eq-contrast">Equation&nbsp;4</a>, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.</p>
 <p><span id="eq-contrast"><span class="math display">\[
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_j / n_j)}}
-\qquad(4)\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>Where,</p>
 <ul>
 <li><span class="math inline">\(\hat{\psi}\)</span> is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.</li>
@@ -598,7 +634,7 @@ s_\hat{\psi} = \sqrt{MSE * \sum(c^2_j / n_j)} = \sqrt{ 7.53 * \left( \frac{1^2}{
 \]</span></p>
 <p>t statistic: <span id="eq-contrast4"><span class="math display">\[
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{0.438}{1.294} = .34
-\qquad(5)\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p>A test statistic <span class="math inline">\(t_\text{20} = .34\)</span> is not large enough to be significant.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -658,7 +694,7 @@ Danger
 </ul>
 <p>Define the contrasts your are interested in testing inside the <code>contrast()</code> function, which returns the hypothesis test results. You can also feed the result into a <code>confint()</code> function if you prefer confidence intervals over p-values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means,<span class="fu">list</span>(<span class="at">name_of_contrast1 =</span> coefficient vector,</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(mymeans,<span class="fu">list</span>(<span class="at">name_of_contrast1 =</span> coefficient vector,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">name_of_contrast2 =</span> another coefficient vector))<span class="er">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>name_of_contrast</code> are descriptive names you should give to the contrast to help you remember what it represents. The <code>coefficient vector</code> is how you define the contrast.</p>
@@ -697,11 +733,11 @@ Confidence level used: 0.95 </code></pre>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>t-tests of pairwise comparisons with non-constant variance would result in the independent samples t-test presented in Math221 and Math325. More complicated contrasts assuming non-constant variance is explained in <em>Design and Analysis: A Researcher’s Handbook</em> by Keppel, G. and Wickens T.D. (2004, Pearson), starting on page 156.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>The appropriate F-test consists of calculating the mean squares of the contrast and dividing by the mean squared error. In most cases, the contrast has 1 degree of freedom, so the contrast sum of squares is equal to the contrast mean squares. The formula to calculate a contrast sum of squares is</p>
+<li id="fn1"><p>t-tests of pairwise comparisons with non-constant variance would result in the independent samples t-test presented in Math221 and Math325. More complicated contrasts assuming non-constant variance is explained in <em>Design and Analysis: A Researcher’s Handbook</em> by Keppel, G. and Wickens T.D. (2004, Pearson), starting on page 156.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The appropriate F-test consists of calculating the mean squares of the contrast and dividing by the mean squared error. In most cases, the contrast has 1 degree of freedom, so the contrast sum of squares is equal to the contrast mean squares. The formula to calculate a contrast sum of squares is</p>
 <p><span class="math display">\[
 SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}
 \]</span></p>
@@ -710,6 +746,24 @@ SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -731,7 +785,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -759,31 +830,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

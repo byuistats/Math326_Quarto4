@@ -23,11 +23,11 @@ library(kableExtra)
 library(pander)
 ```
 
-[^1]: It can be argued that this design is not technically a factorial design because only one experimental factor is involved. However, we categorize it with the other basic factorial designs because the assignment of subjects to factor levels is done completely at random, just as it is for the other basic factorial designs covered in this course.
-
 # Overview
 
 In a basic one-way factorial design (BF\[1\]), only one factor is purposefully varied.[^1] Each experimental unit is assigned to exactly one factor level. (In the case of an observational study, only one independent factor is under consideration.)
+
+[^1]: It can be argued that this design is not technically a factorial design because only one experimental factor is involved. However, we categorize it with the other basic factorial designs because the assignment of subjects to factor levels is done completely at random, just as it is for the other basic factorial designs covered in this course.
 
 ## Factor Structure
 

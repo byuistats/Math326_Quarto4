@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Blocking Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics of Design</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Specific Designs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bf2.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./block_intro.html">
+ <span class="dropdown-text">Blocking Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cb1.html">
+ <span class="dropdown-text">CB[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Broad Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiple_comparisons.html">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R Instructions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datasets</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
+        <li>
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+ <span class="dropdown-text">XYZ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="././Data/StudentHousing.html">
+ <span class="dropdown-text">yadda yadda</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#blocking-as-an-alternative-to-assignment-completely-at-random" id="toc-blocking-as-an-alternative-to-assignment-completely-at-random" class="nav-link" data-scroll-target="#blocking-as-an-alternative-to-assignment-completely-at-random">Blocking as an Alternative to Assignment Completely at Random</a></li>
+  </ul></li>
+  <li><a href="#how-to-create-blocks" id="toc-how-to-create-blocks" class="nav-link" data-scroll-target="#how-to-create-blocks">How to Create Blocks</a>
+  <ul class="collapse">
+  <li><a href="#block-by-sorting" id="toc-block-by-sorting" class="nav-link" data-scroll-target="#block-by-sorting">Block by Sorting</a></li>
+  <li><a href="#block-by-subdividing-the-experimental-material-into-smaller-sections" id="toc-block-by-subdividing-the-experimental-material-into-smaller-sections" class="nav-link" data-scroll-target="#block-by-subdividing-the-experimental-material-into-smaller-sections">Block by Subdividing the Experimental Material into Smaller Sections</a></li>
+  <li><a href="#block-by-reusing-experimental-units" id="toc-block-by-reusing-experimental-units" class="nav-link" data-scroll-target="#block-by-reusing-experimental-units">Block by Reusing Experimental Units</a></li>
+  </ul></li>
+  <li><a href="#some-specific-designs-that-use-blocking" id="toc-some-specific-designs-that-use-blocking" class="nav-link" data-scroll-target="#some-specific-designs-that-use-blocking">Some Specific Designs that Use Blocking</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Blocking Introduction</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In the chapter that describes BF[1], a very simple example was used to assign 3 treatments to 6 subjects completely at random. In <a href="./BasicFactorial_quarto_boat.html#design">that example</a>, treatment C was assigned to the last experimental runs (order number 5 and 6). In some experiments, we would not expect order to matter much and this would not concern us. But in other experiments, if we thought order could affect the response, we may be confounding treatment C with the fact that it was only applied in the last two experimental runs.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Subject</th>
+<th style="text-align: center;">Treatment</th>
+<th style="text-align: center;">Order</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Subject 1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 3</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 4</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 5</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 6</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the experimental units may change (melt, or become more brittle) as it waits its turn to receive a treatment. Or, in an experiment that requires the reuse of tools (such as a cutting tool, or measurement tool) to do the experiment, the calibration or sharpness of the tool may change gradually with each run of the experiment. If people are somehow involved in the administration of the experiment, fatigue or learning may slightly change the way in which the experiment is conducted. In any of these examples, a difference in the response may be due to the order of the experimental run rather than the treatment itself.</p>
+<p>To prevent confounding due to an “unlucky” treatment randomization, we can implement a more strategic approach to random assignment. Since there are 3 treatments and 6 experimental runs, we can break the 6 experimental runs into two groups, called blocks. Each block will have 3 experimental runs: one for each treatment. Assignment of treatment to experimental run will be done completely at random within each block. In this way, it is like conducting 2 mini-experiments and each treatment is guaranteed to be represented in each phase of the data collection: once in the first 3 runs, and once in the second three runs.</p>
+<p>In this example order was identified as a source of variation in the response. We are not interested in the effect of order, but wanted to ensure it did not cause confounding with the treatment effect. This type of factor can be called a nuisance factor. Levels of a nuisance factors are often used as blocks.</p>
+<p>In addition to order in which treatments are applied, the experimental unit itself represents a nuisance source of variation we need to deal with. For example, when studying a new method of teaching, the IQ of the student (i.e.&nbsp;experimental unit) could be considered a nuisance factor. We could assign treatment to students completely at random. But what would happen if, simply by random chance, all the people with low IQ’s were assigned to the control group, and all people with high IQ’s were assigned to receive the new teaching method? The effect of the teaching method would be confounded with the effect of the students’ high IQ.</p>
+<p>Another common nuisance factor used for blocking is a characteristic of the environment in which the experiment is conducted. For example, researchers desire to study the yield of different types of seeds. The larger field may be divided into smaller subplots. Each subplot is assigned one of the different seeds under development. Each plant in the subplot is then measured. The location of the subplot in which the seeds are planted may be a nuisance factor. Nuisance factors are often general factors that are easily identified, but are actually proxies for other more complex factors that we don’t both to identify or measure. In this case, subplot is a nuisance factor that really represents a lot of other things: soil chemistry, sun exposure, water received, etc.</p>
+<section id="blocking-as-an-alternative-to-assignment-completely-at-random" class="level2">
+<h2 class="anchored" data-anchor-id="blocking-as-an-alternative-to-assignment-completely-at-random">Blocking as an Alternative to Assignment Completely at Random</h2>
+<p>Up to this point, randomization has been our primary tool for dealing with these nuisance factors: we assign subjects to treatment completely at random. However, as we have seen, making assignments completely at random may lead to “unlucky” scenarios that create confounding or bias.</p>
+<p>Furthermore, in some cases, it may not be practical or possible to completely randomize the nuisance factor.</p>
+<p>Last but not least, in a completely randomized design, variation from the uncontrolled and unmeasured nuisance factor is lumped in with the <a href="./sources_of_variances.html#types-of-variance">unexplained variation</a>, thereby increasing variance of the residual errors and making it more difficult to find statistical significance.</p>
+<p>Instead of treating the nuisance factor as something not controlled and not measured, with blocking the nuisance factor is incorporated into the design and becomes a factor that is measured during the experiment. Thus, variation in the response due to the nuisance factor is converted from unexplained variance to explained variance. In other words, the mean squared error will decrease. The F statistic for testing significance of treatment effects will increase since it represents the ratio of mean squares for treatments (which remains unchanged) to mean squares for error (which is smaller due to blocking).</p>
+</section>
+</section>
+<section id="how-to-create-blocks" class="level1">
+<h1>How to Create Blocks</h1>
+<p>To create blocks, you must put your experimental units into groups. The size of each group should be equal to the number of treatment factor levels. These groups are called blocks. For blocking to be effective to be effective at reducing error variance:</p>
+<ul>
+<li>experimental units within each block should be similar in terms of their anticipated value on the response variable ,</li>
+<li>the blocking variable should be correlated with the response,</li>
+<li>each block will be different from the other blocks (in terms of the response variable).</li>
+</ul>
+<p>Inside each block, treatments are assigned completely at random to experimental units. There are 3 ways to create blocks. An example of each of these techniques is provided below.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+3 Ways to Create Blocks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Sort experimental units according to their values on the nuisance variable</p></li>
+<li><p>Subdivide experimental material into smaller sections to be used as experimental units</p></li>
+<li><p>Reuse experimental units, so that each experimental unit is exposed to each treatment.</p></li>
+</ul>
+</div>
+</div>
+<section id="block-by-sorting" class="level2">
+<h2 class="anchored" data-anchor-id="block-by-sorting">Block by Sorting</h2>
+<p>We return to the above example regarding a study aimed at measuring the effect of a new teaching method. Above we already exposed the potential risks of assigning treatments to people completely at random because differences in starting IQ could get in the way of detecting the true effect of the new teaching method. To block by sorting we would sort the study participants according to their IQ. The treatment factor has two levels: a control group and the new teaching method. Therefore, each block will have just 2 individuals. The people with the top two IQ’s would form the first block, the next two highest IQ individuals would form the second block, and so on until the 2 people with the lowest IQ’s form the last block. Inside each of those blocks, one person will be randomly assigned to receive the control and the other person will receive the new teaching method. This study is blocked on IQ.</p>
+<p>This is also the technique that was used to address the concern about run order in the <a href="#Introduction">example at the top of the page</a>. We sorted and grouped the units based on run order.</p>
+</section>
+<section id="block-by-subdividing-the-experimental-material-into-smaller-sections" class="level2">
+<h2 class="anchored" data-anchor-id="block-by-subdividing-the-experimental-material-into-smaller-sections">Block by Subdividing the Experimental Material into Smaller Sections</h2>
+<p>A seed company is experimenting with developing seeds for a new variety of cabbage. Specifically, 3 different seeds have made it to this final stage of testing. The company has fields in multiple states in the United States. They use these fields to test out their new seeds. Though researchers try to treat each field similarly, each field is different in terms of elevation, rain fall, soil chemistry, etc. To address these differences, the researchers decided to treat each field as a block. Each field is divided into 3 subplots. Then each variety of seed is randomly assigned to a subplot in that field. In this way, the researchers have blocked on field; the effect of field is measured and accounted for.</p>
+</section>
+<section id="block-by-reusing-experimental-units" class="level2">
+<h2 class="anchored" data-anchor-id="block-by-reusing-experimental-units">Block by Reusing Experimental Units</h2>
+<p>Our toothbrush example can be tweaked to use blocking. In the basic factorial examples, each person received one treatment. If researchers were concerned that a person’s style and quality of brushing may have a substantial impact on the results of the study, this could be addressed by ensuring that each person tried each brush. The experiment could be set up such that a person uses a particular brush for a set period. Their plaque amount would be measured, their teeth cleaned, and then they would use a different brush for the same set amount of time. The process would repeat until the person had used all 4 brushes. For each person, the order of the brushes would be determined randomly. In this example, the researchers have blocked on person.</p>
+</section>
+</section>
+<section id="some-specific-designs-that-use-blocking" class="level1">
+<h1>Some Specific Designs that Use Blocking</h1>
+<p>There are infinite variations and combinations of designs to consider that use blocks. We just cover a few of the basics as mentioned below.</p>
+<p>The simplest method is a <a href="./cb1.html">complete block design, or CB[1]</a>. In this design, there is just one blocking factor and one treatment factor. It is called a complete block because all the treatments are represented in each block. Incomplete block designs, where each block does <em>not</em> have all the treatments represented, are not treated in this book.</p>
+<p>What should you do if there are two blocking variables? In the special case when the two blocking factors have the same number of levels, then a <a href="latin_square.qmd">Latin Square (LS) design</a> can be used. There are many other scenarios and set-ups that use two (or more) block variables that are not explicitly addressed in this book.</p>
+<p>Another common and very powerful design is a <a href="sp_rm.qmd">split-plot/repeated measures design</a>. A split plot/repeated measures design is like a complete block CB[1], except that there is an additional treatment factor. A level of this additional treatment factor is randomly assigned to each block. This design incorporates another concept called “nesting”.</p>
+<p><a href="ancova.qmd">Analysis of covariance (ANCOVA)</a>is another technique that <strong>will</strong> be covered in this book. It is not considered blocking, but it is also a technique for dealing with nuisance sources of variation.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

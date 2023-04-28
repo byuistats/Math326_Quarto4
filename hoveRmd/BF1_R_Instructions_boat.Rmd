@@ -53,7 +53,8 @@ Click to toggle output
 <div id="bff1" style="display:show;">
 
 ```{r message = FALSE, echo = FALSE}
-virtual <- read_csv("../data/virtual_training_redux.csv") 
+
+virtual <- read_csv(here::here("data/virtual_training_redux.csv"))
 
 #A bit of data wrangling
 virtual <- virtual |>

@@ -302,18 +302,16 @@ Panel A of @fig-int illustrates an example where the effect of Route reverses, d
 
 There are a few key points to remember when working with interactions.
 
-Lastly, **exercise caution when interpreting a main effect if an interaction is present**. The definition of an interaction is that a factor level's effect changes for different values of the other factor. Therefore, it does not make sense to interpret the hypothesis test of a controlled factor if it is part of a significant interaction. Instead, get in the habit of describing the nature of the interaction.
+First, **exercise caution when interpreting a main effect if an interaction is present**. The definition of an interaction is that a factor level's effect changes for different values of the other factor. Therefore, it does not make sense to interpret the hypothesis test of a controlled factor if it is part of a significant interaction. Instead, get in the habit of describing the nature of the interaction.
 
 To illustrate the danger of interpreting main effect hypothesis tests when the interaction is significant consider Panel A of @fig-int. If the hypothesis test for Route had a large p-value, it is tempting to say there is insufficient evidence that Route has an effect on commute time. However, the interaction plot shows quite the opposite. Route has an important effect on the response, since the level of Route drastically changes the impact of Rush Hour on commute times. Even though the mean commute time for "back" and "main" may be similar in this scenario, Route is indirectly having an effect on commute time through its interaction with Rush Hour.
 
 Conversely, imagine a scenario where Route's main effect had a small p-value and the Route - Rush Hour interaction was also significant. If the interaction is like that depicted in Panel C of @fig-int, simply stating that Route is a significant factor does not tell the whole story. The effect of Route in during rush hour is large and may be significant (steep blue line), but the effect of Route in non-rush hour times may not be large enough to reach significance (the nearly flat red line).
 
 ::: callout-caution
-## Which of these two sentences do you like better??
+## Interpreting Main Effects and Interactions
 
 When a significant interaction is present, do not interpret the hypothesis tests of its main effects without providing additional information.
-
-In the case of a significant interaction, do not interpret its main effect hypothesis tests without providing additional information.
 :::
 
 Second, **don't rely on interaction plots alone to detect the presence/absence of interactions.** Though interaction plots are a a helpful tool, they do not adequately show the repsonse variability in each factor level combination. In other words, even when line segments are not parallel a hypothesis test is still needed to determine if an interaction is real or just due to random error. Furthermore, two lines may look nearly parallel but could actually represent a significant interaction.
@@ -371,7 +369,7 @@ It is also important to recall that the grand mean factor is outside of all othe
 
 ### Factor Level Means
 
-Figure @fig-bf2_data_partition shows our data set with partition lines for structural factors in place. We will now proceed to calculate the factor level means for each factor.
+@fig-bf2_data_partition shows our data set with partition lines for structural factors in place. We will now proceed to calculate the factor level means for each factor.
 
 ![Full data set with partitions](images/BF2-data-partition.PNG){#fig-bf2_data_partition width="450"}
 
@@ -431,7 +429,7 @@ The means for the residual error factor levels is the observed value itself sinc
 ![Factor level means](images/BF2-toothbrush_means.PNG){#fig-factor-means}
 :::
 
-### Factor level effects
+### Factor Level Effects
 
 #### Grand mean effect
 
@@ -477,15 +475,15 @@ With only two levels, it becomes obvious that **the effects of a factor's levels
 
 The general rule says that effects of outside factors must be subtracted from the factor level mean. We pause to review the relationship of the other factors to the interaction factor to determine if they are inside, outside, or crossed with each other.
 
-::: {#fig-crossed-interaction-brush .column-page}
-![Interaction inside of toothbrush](images/BF2-interaction-inside-brush.PNG)
+::: {#fig-crossed-interaction .column-page layout-ncol="2"}
+![Interaction inside of brush](images/BF2-interaction-inside-brush.PNG){#fig-brush}
+
+![Interaction inside of toothpaste](images/BF2-interaction-inside-paste.PNG){#fig-paste}
+
+Interaction Effects
 :::
 
-::: {#fig-crossed-interaction-paste .column-page}
-![Interaction inside of toothpaste](images/BF2-interaction-inside-paste.PNG)
-:::
-
-In @fig-crossed-interaction-brush you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in @fig-crossed-interaction-paste.
+In @fig-brush you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in @fig-paste.
 
 Therefore, to calculate the interaction effect for using an ultrasonic brush with name brand toothpaste we will subtract the effects of the grand mean factor, ultrasonic brush, and name brand paste from the "ultrasonic, name brand" level mean.
 
@@ -526,7 +524,7 @@ grandmean <- mean(bf1$Plaque)
 #| echo: false
 #| label: fig-brush-effect
 #| fig-cap: "Grand mean + brush effect"
-#| column: page
+##| column: page
 
 xaxis_limits <- c(3.25, 4.75)
 plot(Plaque~brush_num, data=bf1, col = "gray", pch=1, xaxt='n',xlim = xaxis_limits, ylab= "% Teeth Area with Plaque", xlab="",  main="Grand mean + brush effect",
@@ -592,7 +590,7 @@ text(4 - 0.25, mu[[4,2]] + 0.16, expression(hat(beta)[Name] == 0.16), col = "dar
 
 What we haven't accounted for yet is the fact that the ultrasonic brush and name brand toothpaste have appeared *together*. If the interaction is significant then we can expect a synergistic effect (in either direction) and will need to add/subtract more to the response. Otherwise, the interaction effects will be small (relative to the error variance).
 
-There is an old saying, "the whole is greater than the sum of its parts". In a way, the interaction effect is the measure of how much greater. @fig-int-effect shows that after summing the main effects of each controlled factor, the remaining distance to the mean of the factor level combination is the interaction effect.
+There is an old saying, "the whole is greater than the sum of its parts". In a way, the interaction effect is the measure of how much greater. @fig-int-effect shows that after summing the main effects of each controlled factor, the remaining distance to the mean of the factor level combination is the interaction effect. We calculated this above using the general rule and found the distance to be 0.15.
 
 ```{r}
 #| echo: false
@@ -633,23 +631,27 @@ lines(rep(4 + .1, 2), c(mu[4,2] + .16, 26.19), lty = 3, col = "purple") #vertica
 text( 4 + .2, 26.19, TeX(r'($\bar{y}_{Ultra,Name}$)'), col = "purple", pos = 4)
 
 #Name Brand Effect line with text
-text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'), col = "purple", pos = 2)
+#text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'), col = "purple", pos = 2)
+text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = 0.15)'), col = "purple", pos = 2)
 lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 
 ```
 
-We calculated this above using the general rule and found the distance to be 0.15.
 
-**Instead of 3 separate charts as above, should I use this chart where all 3 are combined into 1 graphic to show the progression?? I spent way too long on this already, so let me know what you would change above these charts. Might as well get them right.**
+
+The previous 3 figures are placed side by side below in @fig-crossed-interaction so that the additive progression of the effects can more easily be seen.
+
+::: {#fig-crossed-interaction}
 
 ```{r}
+#| echo: false
 #| column: screen-inset-shaded
 #| layout-nrow: 1
-##| label: fig-int-step
-#| fig-cap: 
-#|   - "Grand mean + brush effect... "
-#|   - " + paste effect ... "
-#|   - " + interaction"
+##| fig-cap: "Additive Effects"
+##| fig-subcap:
+##|   - "Grand mean + brush effect... "
+##|   - " + paste effect ... "
+##|   - " + interaction"
 ##| fig-subcap: 
 ##|    - "Grand mean + brush effect..."
 ##|    - "... + paste effect ..."
@@ -747,9 +749,13 @@ lines(rep(4 + .1, 2), c(mu[4,2] + .16, 26.19), lty = 3, col = "purple") #vertica
 text( 4 + .2, 26.19, TeX(r'($\bar{y}_{Ultra,Name}$)'), col = "purple", pos = 4)
 
 #Name Brand Effect line with text
-text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = ?$)'), col = "purple", pos = 2)
-lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
+text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = 0.15)'), col = "purple", pos = 2)
+#lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 ```
+
+Additive Effects
+
+:::
 
 For each observation, @fig-factor-effects displays all the factor level effects that are summed to obtain that observation.
 
@@ -1234,16 +1240,16 @@ Rather than fuss about the whether F-test assumptions are met or not, you can re
 
 ```{r}
 #| code-fold: true
-#| label: fig-tukey
+#| label: fig-all_diffs
 #| fig-cap: "All pairwise comparisons"
-car::qqPlot(bf2_aov$residuals)
+TukeyHSD(bf2_aov, which = "Brush")
 ```
 
-In @fig-tukey the results for all pairwise comparisons with Tukey's HSD adjustment for multiple comparisons are displayed. Only the Ultrasonic-Oscillating comparison is significantly different, with a p-value of .03. Therefore, we can state that the ultrasonic brush performs significantly worse than the oscillating brush at plaque reduction.
+In the above output results for all pairwise comparisons with Tukey's HSD adjustment for multiple comparisons are displayed. Only the Ultrasonic-Oscillating comparison is significantly different, with a p-value of .03. Therefore, we can state that the ultrasonic brush performs significantly worse than the oscillating brush at plaque reduction.
 
-## Appendix
+# Appendix
 
-### Notation for Estimated Effects
+## Notation for Estimated Effects
 
 Here are symbolic representations for the estimated effects in the BF\[2\] model, as shown in @eq-bf2.
 
@@ -1263,7 +1269,7 @@ $$
 \end{align}
 $$
 
-### Unreplicated or Single Observation per Cell
+## Unreplicated or Single Observation per Cell
 
 What can be done in the case of an experiment where there is only one observation per factor level combination?
 
