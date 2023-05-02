@@ -2,6 +2,24 @@
 title: "CB[1]"
 ---
 
+```{=html}
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+```
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(kableExtra)
+library(pander)
+library(latex2exp)
+```
+
 # Overview
 
 In a complete block design (CB\[1\]), there are two controlled factors: a treatment factor and a blocking factor. The study's objective is usually to measure and/or test the treatment factor effects. The blocking factor is included to avoid confounding the treatment factor with the blocking factor and to reduce the variance of the error term.
@@ -44,6 +62,10 @@ $$ {#eq-cb1}
 
 Where
 
+-   $y_{ij}$ is the observation that belongs to level *i* of $\alpha$ and level *j* of $\beta$.
+
+-   $\mu$ the grand mean of the entire dataset.
+
 -   $\alpha$ is the effect of toothbrush, and *i* goes from 1 to 4 since there are 4 toothbrush types.
 
 -   $\beta$ is the effect of participant, and *j* goes from 1 to 6 since there are 6 participants / blocks.
@@ -52,28 +74,317 @@ Where
 
 Note that since there is only one observation per factor level combination, there is not enough degrees of freedom to estimate an interaction effect.
 
-There are two hypotheses to test with this model. A hypothesis for each structural factor.
-A hypothesis for the effect of toothbrush type:
+The hypothesis of interest for a CB\[1\] study is about the treatment factor:
+
+::: column-margin
+Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be $$ Ho: \beta_j = 0 \text{ for all } j$$
+
+$$H_a: \beta_j \ne 0 \text{ for some }j$$
+:::
 
 $$H_0: \alpha_i = 0 \text{ for all }i$$
 
 $$H_a: \alpha_i \ne 0 \text{ for some }i$$
 
-And a hypothesis for the block factor:
-
-$$H_0: \beta_j = 0 \text{ for all }j$$
-
-$$H_a: \beta_j \ne 0 \text{ for some }j$$
-
 ## Assumptions
 
-An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied. Note that these requirements are nearly identical to the requirements of a BF[1] one-way ANOVA.
+An ANOVA model may be used to analyze data from a CB\[1\] design if the following requirements are satisfied.
 
-| Requirements                           | Method for Checking                                     | What You Hope to See                                     |
+| Requirements                               | Method for Checking                                     | What You Hope to See                                     |
 |-------------------|--------------------------|---------------------------|
-| Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
-| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
-| Independent residuals                  | Order plot                                              | No pattern/trend                                         |
-|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
+| Constant variance across factor levels[^1] | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
+| Normally Distributed Residuals             | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
+| Independent residuals                      | Order plot                                              | No pattern/trend                                         |
+|                                            | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
+
+[^1]: Comparing the largest and smallest standard deviation tends to be too stringent for designs other than a BF\[1\]. In addition, there is only 1 observation for factor level combination and so no standard deviation can be computed. This is also the problem with applying Levene's test.
 
 # Design
+
+In a complete block design, each treatment is observed once in each block. Each block represents its own mini-replicate of the experiment. While treatment is purposefully varied to address the research question, blocks are a nuisance factor that we include in the design and analysis to more precisely estimate treatment effects.
+
+Treatments are assigned completely at random within each block. Consider how this is done for the toothbrush example explained above in which we are blocking on participant. We can start by listing out each block and treatment. In this example, there are 24 observations, each observation represents a time slot in the study for a particular person, 6 participants x 4 time slots = 24 observations.
+
+The design laid out in the format below is called "wider" format. It is helpful for humans to see it this way and fits in the way we have drawn our factor diagram (@fig-cb1_factor_structure)
+
+```{r}
+#| code-fold: false
+#| echo: false
+
+#Create a sequence from 1 to 6
+#Paste the word "Subject " in front of each id #
+ParticipantID <- 1:6
+
+#Create a vector with each brush repeated 6 times
+Period1 <- rep("manual", times = 6)
+Period2 <- rep("oscillating", times = 6)
+Period3 <- rep("sonic", times =6)
+Period4 <- rep("super sonic", times = 6)
+
+#Combine the vectors of Subject ID's and controlled factor levels into one tibble/dataset
+assignment_table <- tibble(ParticipantID, Period1, Period2, Period3, Period4)
+
+#print the table, pander() makes it look nice
+pander(assignment_table) 
+
+```
+
+If we proceed with the experiment like this, all the participants will get the toothbrushes in the same order. Order and toothrbrush will be confounded: we won't be able to tell if a toothbrush's effect is due to the brush itself or due to where it falls in the sequence. We will therefore randomize the order of the brushes for each participant. We end up with this result:
+
+```{r}
+#| code-fold: false
+#| echo: false
+ 
+ParticipantID <- rep(1:6, each = 4)
+Brush <- rep(c("manual", "oscillating", "sonic", "super sonic"), times = 6)
+Order <- rep(1:4, times = 6)
+
+longer <- tibble(ParticipantID, Brush)
+
+design <- longer %>% group_by(ParticipantID) %>% #randomize within each participant
+  slice_sample(n = 4) %>% #shuffle the Brushes
+  bind_cols(Order = rep(1:4, times = 6)) #put the order column back on
+
+wider <- design %>% pivot_wider(id_cols = ParticipantID, names_from = Order, values_from = Brush) %>% 
+  select(ParticipantID, "Period1" = `1`, "Period2" = `2`, "Period3" = `3`, "Period4" = `4`) 
+
+pander(wider)
+```
+
+Having an idea of how to do this randomization in R can be helpful. R (and most softwares) will need the design laid out in "longer" form first as shown below (this is the unrandomized experiment):
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+ParticipantID <- rep(1:6, each = 4)
+Brush <- rep(c("manual", "oscillating", "sonic", "super sonic"), times = 6)
+Order <- rep(1:4, times = 6)
+
+longer <- tibble(ParticipantID, Brush, Order)
+pander(longer)
+```
+
+<a href="javascript:showhide('unrandomized')">[click to show/hide data]{style="font-size:8pt;"}</a>
+
+::: {#unrandomized}
+```{r}
+#| code-fold: false
+#| echo: false
+
+ParticipantID <- rep(1:6, each = 4)
+Brush <- rep(c("manual", "oscillating", "sonic", "super sonic"), times = 6)
+Order <- rep(1:4, times = 6)
+
+longer <- tibble(ParticipantID, Brush, Order)
+pander(longer)
+```
+:::
+
+Now randomize the order of the brushes for each participant. The resulting randomization matches what was shown in wider format above, but is now in longer format.
+
+```{r}
+#| eval: false
+#| code-fold: show
+
+tibble(ParticipantID, Brush) %>% #This puts the two columns together
+  group_by(ParticipantID) %>% #randomize within each participant
+  slice_sample(n = 4) %>% #shuffle the Brushes
+  bind_cols(Order = rep(1:4, times = 6)) #put the order column back on
+```
+
+<a href="javascript:showhide('random_long')">[click to show/hide data]{style="font-size:8pt;"}</a>
+
+::: {#random_long}
+```{r}
+#| echo: false
+#| code-fold: false
+data.frame(design) %>% pander()
+```
+:::
+
+# Decomposition
+
+In the decomposition section we do the analysis of variance by hand. In other words, we decompose the variability in the response values and attribute that variability to the various factors in the experiment.
+
+To do a decomposition, we will represent the data in "wider" format. This is easier to see, even though most of the time the computer will want it in "longer" format. We will also organize the data *without* regard to the order in which it was actually collected. In other words, even though the order of brushes was randomized, the data will be organized/displayed in the factor structure, without an attempt to represent the actual order of brushes.
+
+@fig-cb1_factors_and_model gives the factor structure of the complete block design for the toothbrush study, and the accompanying mathematical model.
+
+::: column-page
+![Factor Structure and model for the CB\[1\] Toothbrush Study](images/CB1_factors_and_model.PNG){#fig-cb1_factors_and_model}
+:::
+
+Where
+
+-   The **observed values** $y_{ij}$ on the left of the equals sign show that there are 24 observations of plaque coverage, one for each unique combination of the levels of toothbrush and Block.
+
+-   The **grand mean factor** ($\mu$) is the grand mean of the entire dataset. The single large cell indicates that there is only one grand mean and it is part of every observation.
+
+-   The **treatment factor** involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by $\alpha_i$, where *i* goes from 1 to 4 since there are 4 types.
+
+-   The **block factor** has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant's effect is represented in the model by $\beta_j$, where *j* goes from 1 to 6 since there are 6 participants/blocks.
+
+-   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean, treatment effect, and block effect for a given individual. Each cell represents a distinct value for the residual error and is written as $\epsilon_{ij}$.
+
+A CB\[1\] design has four *analysis* factors: the grand mean, treatment, blocks, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.
+
+## Degrees of Freedom
+
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to determine the degrees of freedom (df) for the grand mean, treatment factor, blocks, and residual errors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.
+
+::: callout-tip
+## General Rule for Degrees of Freedom
+
+Degrees of Freedom for a factor = Total levels of a factor minus the sum of the degrees of freedom of all outside factors
+:::
+
+An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.
+
+The **grand mean** has one level and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one. This will always be the case.
+
+In this case there are two controlled factors: treatment factor (toothbrush) and blocking factor (participant). For **treatment factor**, there are four levels of the factor (shown by the four vertically long cells for treatment factor in @fig-cb1_factors_and_model). Since grand mean is the only factor outside of toothbrush, take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 = **3 degrees of freedom** for toothbrush.
+
+We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the toothbrush effects really contain. Since all observations from the same toothbrush will have the same effect, we only need to know 4 pieces of information: the effect of each toothbrush. But, because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know effect for 3 factor levels of toothbrush, we can fill in the toothbrush effects for all the observations.
+
+Though we don't plan to test for the **Block factor**, we walk through the steps here to have a complete accounting of the degrees of freedom and variance. To calculate Block degrees of freedom, a similar approach of counting "free numbers" can be used. Namely, after estimating a participant's effect on plaque, I can fill that effect in for all the observations pertaining to that participant's partition in the block factor. Therefore, there is just one unique value in each row, meaning one degree of freedom per participant. However, since the sum of effects across participant must equal zero, the degrees of freedom will be equal to one less the number of participants.
+
+Alternatively, degrees of freedom can be calculated using the general rule. There are 6 levels for participant Blocks, and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, you get 6−1=5 degree of freedom for blocks.
+
+Finally, the **residual degrees of freedom** can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns 24−(1+3+5)=15 degrees of freedom for residuals.
+
+## Factor Effects
+
+We can use our understanding of [inside vs. outside factors](factor_structure.qmd) to estimate the effect size of the grand mean, treatment factor, blocks, and residual errors. Recall the general rule for estimating effect size of a factor:
+
+::: callout-tip
+## General Rule for Effect Size
+
+Effect size = Factor level mean - sum of the effects of all outside factors
+:::
+
+We start by calculating factor level means.
+
+### Factor Level Means
+
+@fig-CB1-data-partition shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.
+
+![Partitioned CB\[1\] Toothbrush Data](images/CB1-data-partition.PNG){#fig-CB1-data-partition}
+
+The grand mean is the mean of all the observations
+
+$$
+\hat{\mu} = \bar{y}_{\cdot\cdot} = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76
+$$
+
+Now find the mean for each level of toothbrush type.
+
+$$
+\bar{y}_\text{manual} = \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
+$$
+
+$$
+\bar{y}_\text{oscillating} = \bar{y}_{2\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
+$$
+
+$$
+\bar{y}_\text{sonic} = \bar{y}_{3\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
+$$
+
+$$
+\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
+$$
+
+::: column-margin
+Note the effects for grand mean and toothbrush are the same as they are in the BF\[2\].
+:::
+
+Now find the mean for each level of block (only the first two blocks are illustrated here).
+
+$$
+\bar{y}_\text{Block1} = \bar{y}_{\cdot 1} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
+$$ {#eq-block1_mean}
+
+$$
+\bar{y}_\text{Block2} = \bar{y}_{\cdot 2} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
+$$
+
+The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.
+
+@fig-CB1_means displays the factor levels means associated with each observation.
+
+::: column-page
+![Factor Level Means](images/CB1_means.PNG){#fig-CB1_means}
+:::
+
+### Factor Level Effects
+
+Now that we have calculated means for the levels of each factor, we can calculate the effects of the factor levels[^2].
+
+[^2]: The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.
+
+There is only one level of **grand mean** and there are no outside factors. Therefore, the effect due to grand mean is 22.76 (equivalent to its mean) and this effect is applied to all 24 observations.
+
+The **toothbrush factor** has four levels: one for each brush type. We will use the general rule for calculating factor level effects. To calculate the effect of a toothbrush, take the toothbrush mean and subtract the grand mean (the only factor outside of toothbrush) from it. For the manual brush, this looks like:
+
+$$ 23.09 - 22.76 = 0.33 $$
+
+Using the manual brush has the effect of increasing a person's plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way you can find the effect for the oscillating brush: $19.98−22.76=−2.79$. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is $22.68−22.76=−0.09$. For an ultrasonic brush the effect is $25.31−22.76=2.55$.
+
+Calculating the effects for the **block factor** in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Block is not outside or inside of toothbrush, but grand mean is outside of block. To calculate the effect an of individual participant (i.e. block), take the participant's mean across all 4 treatments (see @eq-block1_mean as an example) and subtract the grand mean from it:
+
+$$ 21.91 - 22.76 = -0.85$$
+
+A similar calculation is done to find the estimated effect for participant 2 (i.e. block 2):
+
+$$ 22.24 - 22.76 = -0.52$$
+
+Similar calculations are performed for the remaining four blocks (i.e. participants).
+
+You can think of the last term in the model as residual effects, but we usually refer to them simply as residuals. Residual means "left over" or "remaining". After adding all the other effects together, the residual is the remaining effect, or deviation, needed to arrive at the observed value.
+
+More simply, the residual is the actual observed value minus the predicted value.
+
+The observed plaque coverage for Participant 1 using the manual brush is 19.12. The sum of the other factor effect represents the predicted value for this factor level combination:
+
+$$ 
+\begin{align}
+\hat{y}_{11} &= \hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_1 \\
+22.24 &= 22.76 + 0.33 + \text{-}0.85
+\end{align}
+$$
+
+The residual then, is
+
+$$
+\begin{align*}
+e_{11} &= y_{11} - \hat{y}_{11} \\
+&= 19.12 - 22.24 \\
+&= -3.12
+\end{align*}
+$$
+
+The residual can be interpreted to mean that this participant's plaque measurement was 3.12 percentage points lower than we would have predicted.
+
+A similar calculation is done to find the residual for participant 1 with the oscillating brush. Here we condense a couple of the steps:
+
+$$ 
+\begin{align}
+e_{ij} &= y_{21} - \hat{y}_{21} \\
+&= y_{21} - (\hat{\mu} + \hat{\alpha}_2 + \hat{\beta}_1) \\
+&= 18.56 - (22.76 + \text{-}2.79 + \text{-}0.85) \\
+&= 18.56 - 19.12 \\
+&= -0.56
+\end{align}
+$$ 
+
+
+After using the oscillating toothbrush, Participant 1's percent of teeth surface area with plaque is 0.56 percentage points lower than the model predicts.
+
+We perform these calculations for every observation. @fig-CB1_effects shows the effects that make up each observation[^3].
+
+[^3]: The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.
+
+::: column-page
+![Factor Level Effects](images/CB1_effects.PNG){#fig-CB1_effects}
+:::

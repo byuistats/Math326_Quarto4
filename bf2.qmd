@@ -66,6 +66,8 @@ $$ {#eq-bf2}
 
 Where
 
+-   $y_{ijk}$ is the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
+-   $\mu$ is the grand mean of all the observations.
 -   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
 -   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
 -   The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
@@ -109,8 +111,7 @@ The BF\[\] designation refers to the design of the experiment. The reference to 
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
 |-------------------|--------------------------|---------------------------|
-| Constant variance across factor levels | Rule of thumb comparing standard deviations             | $max(s) < 2*min(s)$                                      |
-|                                        | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
+| Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
 | Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
 | Independent residuals                  | Order plot                                              | No pattern/trend                                         |
@@ -340,10 +341,13 @@ $$ {#eq-bf2_2}
 
 Where
 
+-   $\mu$ is the grand mean of all observatinos
 -   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
 -   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
 -   The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
 -   $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
+
+On the left side of the equation is $y_{ijk}$, which represents the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
 
 A decomposition of the data allows is how we estimate these model parameters.
 
@@ -452,7 +456,7 @@ Using the manual brush has the effect of *increasing* a person's plaque area per
 [^2]: The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.
 
 ::: column-margin
-It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the anlaysis or not.
+It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the analysis or not.
 :::
 
 #### Toothpaste effects

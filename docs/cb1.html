@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -247,6 +310,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
   </ul></li>
   <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#factor-effects" id="toc-factor-effects" class="nav-link" data-scroll-target="#factor-effects">Factor Effects</a>
+  <ul class="collapse">
+  <li><a href="#factor-level-means" id="toc-factor-level-means" class="nav-link" data-scroll-target="#factor-level-means">Factor Level Means</a></li>
+  <li><a href="#factor-level-effects" id="toc-factor-level-effects" class="nav-link" data-scroll-target="#factor-level-effects">Factor Level Effects</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -270,6 +342,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
 <section id="overview" class="level1 page-columns page-full">
 <h1>Overview</h1>
 <p>In a complete block design (CB[1]), there are two controlled factors: a treatment factor and a blocking factor. The study’s objective is usually to measure and/or test the treatment factor effects. The blocking factor is included to avoid confounding the treatment factor with the blocking factor and to reduce the variance of the error term.</p>
@@ -308,7 +386,7 @@ Tip
 </div>
 <p>In this case, the blocks factor accounts for variation in participants, and the treatment is toothbrush type. There are 6 participants in the study (6 block factor levels). Each toothbrush type appears once in each block. There are 24 observations total, 1 observation for each combination of block and toothbrush.</p>
 </section>
-<section id="hypothesis-and-model" class="level2">
+<section id="hypothesis-and-model" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
 <p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-cb1_factor_structure">Figure&nbsp;1</a> corresponds to a term on the right hand side of <a href="#eq-cb1">Equation&nbsp;1</a>:</p>
 <p><span id="eq-cb1"><span class="math display">\[
@@ -316,21 +394,24 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 \tag{1}\]</span></span></p>
 <p>Where</p>
 <ul>
+<li><p><span class="math inline">\(y_{ij}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span> and level <em>j</em> of <span class="math inline">\(\beta\)</span>.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> the grand mean of the entire dataset.</p></li>
 <li><p><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <em>i</em> goes from 1 to 4 since there are 4 toothbrush types.</p></li>
 <li><p><span class="math inline">\(\beta\)</span> is the effect of participant, and <em>j</em> goes from 1 to 6 since there are 6 participants / blocks.</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span> is the residual error term</p></li>
 </ul>
 <p>Note that since there is only one observation per factor level combination, there is not enough degrees of freedom to estimate an interaction effect.</p>
-<p>There are two hypotheses to test with this model. A hypothesis for each structural factor. A hypothesis for the effect of toothbrush type:</p>
-<p><span class="math display">\[H_0: \alpha_i = 0 \text{ for all }i\]</span></p>
-<p><span class="math display">\[H_a: \alpha_i \ne 0 \text{ for some }i\]</span></p>
-<p>And a hypothesis for the block factor:</p>
-<p><span class="math display">\[H_0: \beta_j = 0 \text{ for all }j\]</span></p>
+<p>The hypothesis of interest for a CB[1] study is about the treatment factor:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be <span class="math display">\[ Ho: \beta_j = 0 \text{ for all } j\]</span></p>
 <p><span class="math display">\[H_a: \beta_j \ne 0 \text{ for some }j\]</span></p>
+</div></div><p><span class="math display">\[H_0: \alpha_i = 0 \text{ for all }i\]</span></p>
+<p><span class="math display">\[H_a: \alpha_i \ne 0 \text{ for some }i\]</span></p>
 </section>
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
-<p>An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied. Note that these requirements are nearly identical to the requirements of a BF[1] one-way ANOVA.</p>
+<p>An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied.</p>
 <table class="table">
 <colgroup>
 <col style="width: 26%">
@@ -346,7 +427,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </thead>
 <tbody>
 <tr class="odd">
-<td>Constant variance across factor levels</td>
+<td>Constant variance across factor levels<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
 <td>Residual vs.&nbsp;Fitted Plot</td>
 <td>No major disparity in vertical spread of point groupings</td>
 </tr>
@@ -371,11 +452,626 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </section>
 <section id="design" class="level1">
 <h1>Design</h1>
+<p>In a complete block design, each treatment is observed once in each block. Each block represents its own mini-replicate of the experiment. While treatment is purposefully varied to address the research question, blocks are a nuisance factor that we include in the design and analysis to more precisely estimate treatment effects.</p>
+<p>Treatments are assigned completely at random within each block. Consider how this is done for the toothbrush example explained above in which we are blocking on participant. We can start by listing out each block and treatment. In this example, there are 24 observations, each observation represents a time slot in the study for a particular person, 6 participants x 4 time slots = 24 observations.</p>
+<p>The design laid out in the format below is called “wider” format. It is helpful for humans to see it this way and fits in the way we have drawn our factor diagram (<a href="#fig-cb1_factor_structure">Figure&nbsp;1</a>)</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ParticipantID</th>
+<th style="text-align: center;">Period1</th>
+<th style="text-align: center;">Period2</th>
+<th style="text-align: center;">Period3</th>
+<th style="text-align: center;">Period4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If we proceed with the experiment like this, all the participants will get the toothbrushes in the same order. Order and toothrbrush will be confounded: we won’t be able to tell if a toothbrush’s effect is due to the brush itself or due to where it falls in the sequence. We will therefore randomize the order of the brushes for each participant. We end up with this result:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ParticipantID</th>
+<th style="text-align: center;">Period1</th>
+<th style="text-align: center;">Period2</th>
+<th style="text-align: center;">Period3</th>
+<th style="text-align: center;">Period4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">manual</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Having an idea of how to do this randomization in R can be helpful. R (and most softwares) will need the design laid out in “longer” form first as shown below (this is the unrandomized experiment):</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ParticipantID <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Brush <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"oscillating"</span>, <span class="st">"sonic"</span>, <span class="st">"super sonic"</span>), <span class="at">times =</span> <span class="dv">6</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Order <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>longer <span class="ot">&lt;-</span> <span class="fu">tibble</span>(ParticipantID, Brush, Order)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(longer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><a href="javascript:showhide('unrandomized')"><span style="font-size:8pt;">click to show/hide data</span></a></p>
+<div id="unrandomized">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ParticipantID</th>
+<th style="text-align: center;">Brush</th>
+<th style="text-align: center;">Order</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now randomize the order of the brushes for each participant. The resulting randomization matches what was shown in wider format above, but is now in longer format.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(ParticipantID, Brush) <span class="sc">%&gt;%</span> <span class="co">#This puts the two columns together</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ParticipantID) <span class="sc">%&gt;%</span> <span class="co">#randomize within each participant</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="co">#shuffle the Brushes</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">Order =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">6</span>)) <span class="co">#put the order column back on</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><a href="javascript:showhide('random_long')"><span style="font-size:8pt;">click to show/hide data</span></a></p>
+<div id="random_long">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ParticipantID</th>
+<th style="text-align: center;">Brush</th>
+<th style="text-align: center;">Order</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="decomposition" class="level1 page-columns page-full">
+<h1>Decomposition</h1>
+<p>In the decomposition section we do the analysis of variance by hand. In other words, we decompose the variability in the response values and attribute that variability to the various factors in the experiment.</p>
+<p>To do a decomposition, we will represent the data in “wider” format. This is easier to see, even though most of the time the computer will want it in “longer” format. We will also organize the data <em>without</em> regard to the order in which it was actually collected. In other words, even though the order of brushes was randomized, the data will be organized/displayed in the factor structure, without an attempt to represent the actual order of brushes.</p>
+<p><a href="#fig-cb1_factors_and_model">Figure&nbsp;2</a> gives the factor structure of the complete block design for the toothbrush study, and the accompanying mathematical model.</p>
+<div class="column-page">
+<div id="fig-cb1_factors_and_model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/CB1_factors_and_model.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Factor Structure and model for the CB[1] Toothbrush Study</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>Where</p>
+<ul>
+<li><p>The <strong>observed values</strong> <span class="math inline">\(y_{ij}\)</span> on the left of the equals sign show that there are 24 observations of plaque coverage, one for each unique combination of the levels of toothbrush and Block.</p></li>
+<li><p>The <strong>grand mean factor</strong> (<span class="math inline">\(\mu\)</span>) is the grand mean of the entire dataset. The single large cell indicates that there is only one grand mean and it is part of every observation.</p></li>
+<li><p>The <strong>treatment factor</strong> involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by <span class="math inline">\(\alpha_i\)</span>, where <em>i</em> goes from 1 to 4 since there are 4 types.</p></li>
+<li><p>The <strong>block factor</strong> has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant’s effect is represented in the model by <span class="math inline">\(\beta_j\)</span>, where <em>j</em> goes from 1 to 6 since there are 6 participants/blocks.</p></li>
+<li><p>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean, treatment effect, and block effect for a given individual. Each cell represents a distinct value for the residual error and is written as <span class="math inline">\(\epsilon_{ij}\)</span>.</p></li>
+</ul>
+<p>A CB[1] design has four <em>analysis</em> factors: the grand mean, treatment, blocks, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.</p>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to determine the degrees of freedom (df) for the grand mean, treatment factor, blocks, and residual errors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+General Rule for Degrees of Freedom
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Degrees of Freedom for a factor = Total levels of a factor minus the sum of the degrees of freedom of all outside factors</p>
+</div>
+</div>
+<p>An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.</p>
+<p>The&nbsp;<strong>grand mean</strong>&nbsp;has one level and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one. This will always be the case.</p>
+<p>In this case there are two controlled factors: treatment factor (toothbrush) and blocking factor (participant). For&nbsp;<strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment factor in&nbsp;<a href="#fig-cb1_factors_and_model">Figure&nbsp;2</a>). Since grand mean is the only factor outside of toothbrush, take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 =&nbsp;<strong>3 degrees of freedom</strong>&nbsp;for toothbrush.</p>
+<p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the toothbrush effects really contain. Since all observations from the same toothbrush will have the same effect, we only need to know 4 pieces of information: the effect of each toothbrush. But, because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know effect for 3 factor levels of toothbrush, we can fill in the toothbrush effects for all the observations.</p>
+<p>Though we don’t plan to test for the <strong>Block factor</strong>, we walk through the steps here to have a complete accounting of the degrees of freedom and variance. To calculate Block degrees of freedom, a similar approach of counting “free numbers” can be used. Namely, after estimating a participant’s effect on plaque, I can fill that effect in for all the observations pertaining to that participant’s partition in the block factor. Therefore, there is just one unique value in each row, meaning one degree of freedom per participant. However, since the sum of effects across participant must equal zero, the degrees of freedom will be equal to one less the number of participants.</p>
+<p>Alternatively, degrees of freedom can be calculated using the general rule. There are 6 levels for participant Blocks, and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, you get&nbsp;6−1=5&nbsp;degree of freedom for blocks.</p>
+<p>Finally, the <strong>residual degrees of freedom</strong> can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns&nbsp;24−(1+3+5)=15&nbsp;degrees of freedom for residuals.</p>
+</section>
+<section id="factor-effects" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
+<p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to estimate the effect size of the grand mean, treatment factor, blocks, and residual errors. Recall the general rule for estimating effect size of a factor:</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+General Rule for Effect Size
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Effect size = Factor level mean - sum of the effects of all outside factors</p>
+</div>
+</div>
+<p>We start by calculating factor level means.</p>
+<section id="factor-level-means" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
+<p><a href="#fig-CB1-data-partition">Figure&nbsp;3</a> shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.</p>
+<div id="fig-CB1-data-partition" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/CB1-data-partition.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Partitioned CB[1] Toothbrush Data</figcaption><p></p>
+</figure>
+</div>
+<p>The grand mean is the mean of all the observations</p>
+<p><span class="math display">\[
+\hat{\mu} = \bar{y}_{\cdot\cdot} = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76
+\]</span></p>
+<p>Now find the mean for each level of toothbrush type.</p>
+<p><span class="math display">\[
+\bar{y}_\text{manual} = \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
+\]</span></p>
+<p><span class="math display">\[
+\bar{y}_\text{oscillating} = \bar{y}_{2\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
+\]</span></p>
+<p><span class="math display">\[
+\bar{y}_\text{sonic} = \bar{y}_{3\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
+\]</span></p>
+<p><span class="math display">\[
+\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
+\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note the effects for grand mean and toothbrush are the same as they are in the BF[2].</p>
+</div></div><p>Now find the mean for each level of block (only the first two blocks are illustrated here).</p>
+<p><span id="eq-block1_mean"><span class="math display">\[
+\bar{y}_\text{Block1} = \bar{y}_{\cdot 1} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
+\tag{2}\]</span></span></p>
+<p><span class="math display">\[
+\bar{y}_\text{Block2} = \bar{y}_{\cdot 2} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
+\]</span></p>
+<p>The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
+<p><a href="#fig-CB1_means">Figure&nbsp;4</a> displays the factor levels means associated with each observation.</p>
+<div class="column-page">
+<div id="fig-CB1_means" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/CB1_means.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Factor Level Means</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="factor-level-effects" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="factor-level-effects">Factor Level Effects</h3>
+<p>Now that we have calculated means for the levels of each factor, we can calculate the effects of the factor levels<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>There is only one level of <strong>grand mean</strong> and there are no outside factors. Therefore, the effect due to grand mean is 22.76 (equivalent to its mean) and this effect is applied to all 24 observations.</p>
+<p>The <strong>toothbrush factor</strong> has four levels: one for each brush type. We will use the general rule for calculating factor level effects. To calculate the effect of a toothbrush, take the toothbrush mean and subtract the grand mean (the only factor outside of toothbrush) from it. For the manual brush, this looks like:</p>
+<p><span class="math display">\[ 23.09 - 22.76 = 0.33 \]</span></p>
+<p>Using the manual brush has the effect of increasing a person’s plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way you can find the effect for the oscillating brush: <span class="math inline">\(19.98−22.76=−2.79\)</span>. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is <span class="math inline">\(22.68−22.76=−0.09\)</span>. For an ultrasonic brush the effect is <span class="math inline">\(25.31−22.76=2.55\)</span>.</p>
+<p>Calculating the effects for the <strong>block factor</strong> in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Block is not outside or inside of toothbrush, but grand mean is outside of block. To calculate the effect an of individual participant (i.e.&nbsp;block), take the participant’s mean across all 4 treatments (see <a href="#eq-block1_mean">Equation&nbsp;2</a> as an example) and subtract the grand mean from it:</p>
+<p><span class="math display">\[ 21.91 - 22.76 = -0.85\]</span></p>
+<p>A similar calculation is done to find the estimated effect for participant 2 (i.e.&nbsp;block 2):</p>
+<p><span class="math display">\[ 22.24 - 22.76 = -0.52\]</span></p>
+<p>Similar calculations are performed for the remaining four blocks (i.e.&nbsp;participants).</p>
+<p>You can think of the last term in the model as residual effects, but we usually refer to them simply as residuals. Residual means “left over” or “remaining”. After adding all the other effects together, the residual is the remaining effect, or deviation, needed to arrive at the observed value.</p>
+<p>More simply, the residual is the actual observed value minus the predicted value.</p>
+<p>The observed plaque coverage for Participant 1 using the manual brush is 19.12. The sum of the other factor effect represents the predicted value for this factor level combination:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{y}_{11} &amp;= \hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_1 \\
+22.24 &amp;= 22.76 + 0.33 + \text{-}0.85
+\end{align}
+\]</span></p>
+<p>The residual then, is</p>
+<p><span class="math display">\[
+\begin{align*}
+e_{11} &amp;= y_{11} - \hat{y}_{11} \\
+&amp;= 19.12 - 22.24 \\
+&amp;= -3.12
+\end{align*}
+\]</span></p>
+<p>The residual can be interpreted to mean that this participant’s plaque measurement was 3.12 percentage points lower than we would have predicted.</p>
+<p>A similar calculation is done to find the residual for participant 1 with the oscillating brush. Here we condense a couple of the steps:</p>
+<p><span class="math display">\[
+\begin{align}
+e_{ij} &amp;= y_{21} - \hat{y}_{21} \\
+&amp;= y_{21} - (\hat{\mu} + \hat{\alpha}_2 + \hat{\beta}_1) \\
+&amp;= 18.56 - (22.76 + \text{-}2.79 + \text{-}0.85) \\
+&amp;= 18.56 - 19.12 \\
+&amp;= -0.56
+\end{align}
+\]</span></p>
+<p>After using the oscillating toothbrush, Participant 1’s percent of teeth surface area with plaque is 0.56 percentage points lower than the model predicts.</p>
+<p>We perform these calculations for every observation. <a href="#fig-CB1_effects">Figure&nbsp;5</a> shows the effects that make up each observation<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<div class="column-page">
+<div id="fig-CB1_effects" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/CB1_effects.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Factor Level Effects</figcaption><p></p>
+</figure>
+</div>
+</div>
 
 
 </section>
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Comparing the largest and smallest standard deviation tends to be too stringent for designs other than a BF[1]. In addition, there is only 1 observation for factor level combination and so no standard deviation can be computed. This is also the problem with applying Levene’s test.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The values used in calculations here and throughout this page are rounded for a cleaner display. However, you should use unrounded values for these calculations. Rounded values and significant digits is the reason the arithmetic in some of these calculations appears off by one one-hundredth.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

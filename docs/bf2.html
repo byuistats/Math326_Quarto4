@@ -430,6 +430,8 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 \tag{1}\]</span></span></p>
 <p>Where</p>
 <ul>
+<li><span class="math inline">\(y_{ijk}\)</span> is the <span class="math inline">\(k^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>.</li>
+<li><span class="math inline">\(\mu\)</span> is the grand mean of all the observations.</li>
 <li><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <span class="math inline">\(i\)</span> goes from 1 to 4 since there are 4 toothbrush types</li>
 <li><span class="math inline">\(\beta\)</span> is the effect of toothpaste, and <span class="math inline">\(j\)</span> is either 1 or 2 since there are 2 levels (Name brand and off brand).</li>
 <li>The <span class="math inline">\((\alpha\beta)_\text{ij}\)</span> is called the interaction effect.</li>
@@ -474,30 +476,25 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <tbody>
 <tr class="odd">
 <td>Constant variance across factor levels</td>
-<td>Rule of thumb comparing standard deviations</td>
-<td><span class="math inline">\(max(s) &lt; 2*min(s)\)</span></td>
-</tr>
-<tr class="even">
-<td></td>
 <td>Residual vs.&nbsp;Fitted Plot</td>
 <td>No major disparity in vertical spread of point groupings</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td>Levene’s Test</td>
 <td>Fail to reject <span class="math inline">\(H_0\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Normally Distributed Residuals</td>
 <td>Normal Q-Q plot</td>
 <td>Straight line, majority of points in boundaries</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Independent residuals</td>
 <td>Order plot</td>
 <td>No pattern/trend</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td>Familiarity with/critical thinking about the experiment</td>
 <td>No potential source for bias</td>
@@ -742,147 +739,147 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Subject 1</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">22</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">11</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 2</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">18</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Subject 3</td>
-<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">name</td>
 <td style="text-align: center;">24</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">Subject 4</td>
-<td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">8</td>
-</tr>
 <tr class="odd">
-<td style="text-align: center;">Subject 5</td>
-<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">Subject 3</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">name</td>
 <td style="text-align: center;">13</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Subject 6</td>
+<td style="text-align: center;">Subject 4</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 5</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 6</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">21</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 7</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">4</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 8</td>
-<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">17</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 9</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">5</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">9</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 10</td>
-<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">9</td>
+<td style="text-align: center;">12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 11</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">12</td>
+<td style="text-align: center;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 12</td>
-<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">19</td>
+<td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 13</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">23</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 14</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">7</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 15</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">17</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">18</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 16</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">16</td>
+<td style="text-align: center;">5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 17</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">10</td>
+<td style="text-align: center;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 18</td>
 <td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">14</td>
+<td style="text-align: center;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 19</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">15</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">4</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 20</td>
 <td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">23</td>
+<td style="text-align: center;">19</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 21</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">6</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 22</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">21</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 23</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillate</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">11</td>
+<td style="text-align: center;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 24</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">20</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">6</td>
 </tr>
 </tbody>
 </table>
@@ -1012,11 +1009,13 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 \tag{2}\]</span></span></p>
 <p>Where</p>
 <ul>
+<li><span class="math inline">\(\mu\)</span> is the grand mean of all observatinos</li>
 <li><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <span class="math inline">\(i\)</span> goes from 1 to 4 since there are 4 toothbrush types</li>
 <li><span class="math inline">\(\beta\)</span> is the effect of toothpaste, and <span class="math inline">\(j\)</span> is either 1 or 2 since there are 2 levels (Name brand and off brand).</li>
 <li>The <span class="math inline">\((\alpha\beta)_\text{ij}\)</span> is called the interaction effect.</li>
 <li><span class="math inline">\(\epsilon\)</span> is the residual error term, and <span class="math inline">\(k\)</span> is the replicate count within a factor level combination.</li>
 </ul>
+<p>On the left side of the equation is <span class="math inline">\(y_{ijk}\)</span>, which represents the <span class="math inline">\(k^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>.</p>
 <p>A decomposition of the data allows is how we estimate these model parameters.</p>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -1119,7 +1118,7 @@ General Rule for Calculating Factor Level Effect
 <p>Using the manual brush has the effect of <em>increasing</em> a person’s plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> you can find the effect for the oscillating brush <span class="math inline">\(19.98 - 22.76 = -2.79\)</span>. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is <span class="math inline">\(22.68 - 22.76 = -0.09\)</span>. For an ultrasonic brush the effect is <span class="math inline">\(25.31 - 22.76 = 2.55\)</span>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the anlaysis or not.</p>
+<p>It is interesting to note that the factor effects for brush type are the same, whether toothpaste brand is included in the analysis or not.</p>
 </div></div></section>
 <section id="toothpaste-effects" class="level4">
 <h4 class="anchored" data-anchor-id="toothpaste-effects">Toothpaste effects</h4>

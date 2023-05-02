@@ -286,7 +286,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ```
 
-To get the **sum of squares (SS)** for a factor, for each observation the effect for that factor first needs to be squared. Then all the squared values are summed up to get the sum of squares.
+To get the **sum of squares (SS)** for a factor, the factor's effect needs to be squared. This is done for each observation. Then all the squared values are summed up to get the sum of squares.
 
 For **grand mean**, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to grand mean.
 
@@ -296,7 +296,7 @@ $$
 
 <br>
 
-The **treatment factor**, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method. For instance, for the control group, the effect is -1.8358. The value is then squared, and then multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
+The **treatment factor**, training method, has four different effects: one for each level of the factor. For each effect, the value is squared and then multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to training method. For instance, for the control group, the effect is -1.8358. That value is squared, and then the squared values is multiplied by six due to the six observations within the control group. This is done for the other three levels as well and then the resulting values from the four levels are added.
 
 $$
 SS_\text{Factor} = 6*(-1.8358)^2 + 6*(1.2645)^2 + 6*(-0.0058)^2 + 6*(0.5770)^2 = 31.81
@@ -336,9 +336,15 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-We can now calculate the mean squared error column, or **mean square (MS)**, by dividing the sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total (the sum of squares) into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation). The MS is calculated in this manner for each of the effects.
+Recall that SS is a measure of total variability. Comparing factors on total variability isn’t exactly fair. 
 
-The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. This works when looking at SS, since it is the total variance due to each factor. MS is then the average variability for each effect. We can then see clearly which factor is a bigger source of variability by comparing their mean squares.
+Consider for a moment 2 classes that were competing in a canned food drive. One class collected 150 cans. The other class collected 3,000 cans. The second class seems to have one. But is it a fair comparison? What if the first class had 10 students and the second class had 300 students. If we are interested in determining which class was more effective at getting canned food donations, we should somehow account for the difference in class size. If we divide the total cans by the number of students, we get the mean number of cans collected per student. We see the first class collected 15 cans per student, and the second class only collected 10 cans per student. 
+
+Like the canned food drive example, differences in SS for a factor may be due in part to differences in number of levels for each factor. (For example, the residual factor has 24 factor levels, while toothbrush only has 4). We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors’ variability on a standardized scale.
+
+We calculate the mean squared error column, or **mean square (MS)**, by dividing the sum of squares by the number of unique pieces of information that make up the factor. In this way we convert a total (the sum of squares) into an average; or in other words we change a sum into a mean. The mean squared error is the same as a variance. (The Root Mean Squared Error is equivalent to a standard deviation). The MS is calculated in this manner for each of the effects.
+
+The purpose of the ANOVA table is to partition or break apart the variability in the dataset to its component pieces. This works when looking at SS, since it is the total variance due to each factor. Mean squares is then the average variability for each effect and clearly shows which factor is a bigger source of variability.
 
 The mean square calculations are:
 
@@ -371,7 +377,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-The treatment factor, in this case training method, is the primary factor of interest so the **F test statistic** is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of this as calculating the variance in treatment means for the numerator and the variance of the distances for an observed value to its respective treatment mean in the denominator. Simply put, it is the between groups variance divided by the within group variance.
+The treatment factor, in this case training method, is the primary factor of interest so the **F test statistic** is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of the F statistics as the ratio of variance between treatment means over the variance of the distances for observed values to their respective treatment mean. Simply put, it is the between groups variance divided by the within group variance.
 
 $$
 F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
