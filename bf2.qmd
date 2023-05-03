@@ -899,7 +899,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ```
 
-Recall that SS is a measure of total variability. Of the three structural factors (brush, toothpaste, and their interaction) it is clear to see that brush is contributing the most variability. Some of the difference in SS may be due to difference in number of levels for each factor. Adding levels to factor will naturally increase variability attributed to that factor. We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors' variability on a standardized scale.
+Recall that SS is a measure of total variability. Of the three structural factors (brush, toothpaste, and their interaction) it is clear to see that brush is contributing the most variability. Some of the difference in SS may be due to difference in number of levels for each factor. Adding levels to a factor allows more variability to be attributed to that factor. We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors' variability on a standardized scale.
 
 To calculate a mean square (MS), simply divide SS by degrees of freedom for a factor. The mean square calculations are:
 
