@@ -560,6 +560,35 @@ Note
 <p>You may notice in the above example that, even with randomization, treatment C occurs in the last 2 observations. If we were truly concerned about the order we could be more strategic and implement a <strong><em>blocked design</em></strong> to prevent “unlucky” ordering and pairing.</p>
 </div>
 </div>
+<p>The design above is laid out in “longer format”. In “longer format”, each row represents an observation. There is a column to indicate what treatment experimental unit received, a column to contain the value of the response variable, and (if necessary) a column to keep track of the order in which the observations are made. “Longer format” is what many softwares need, R included.</p>
+<p>“Wider format” is how the design is laid out in the factor structure diagram. Each factor level has it’s own column. Each cell contains a response value for a particular subject. The order of the experimental runs becomes difficult to track/document in this format. This data format is often used for data collection and is often easier for humans (as opposed to machines) to digest. In “wider format” the above table would look like the following:</p>
+<table class="table">
+<caption>Wider Format Example</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Treatment A</th>
+<th>Treatment B</th>
+<th>Treatment C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Response for subject 5</td>
+<td>Response for subject 6</td>
+<td>Response for subject 3</td>
+</tr>
+<tr class="even">
+<td>Response for subject 1</td>
+<td>Response for subject 2</td>
+<td>Response for subject 3</td>
+</tr>
+</tbody>
+</table>
 <section id="lifeboat-training-example" class="level2">
 <h2 class="anchored" data-anchor-id="lifeboat-training-example">Lifeboat Training Example</h2>
 <p>Consider the following example. An experiment was done to assess different modes of virtual training in how to launch a lifeboat. Sixteen students in the maritime safety training institute were a part of the study, and each of the students were assigned one of four possible virtual training experiences. The four experiences included:</p>
