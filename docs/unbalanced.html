@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Analysis of Unbalanced Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics of Design</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Specific Designs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bf2.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./block_intro.html">
+ <span class="dropdown-text">Blocking Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cb1.html">
+ <span class="dropdown-text">CB[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Covariate.html">
+ <span class="dropdown-text">Covariate Designs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Broad Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiple_comparisons.html">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R Instructions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datasets</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
+        <li>
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+ <span class="dropdown-text">XYZ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="././Data/StudentHousing.html">
+ <span class="dropdown-text">yadda yadda</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#type-i" id="toc-type-i" class="nav-link" data-scroll-target="#type-i">Type I</a></li>
+  <li><a href="#type-iii" id="toc-type-iii" class="nav-link" data-scroll-target="#type-iii">Type III</a></li>
+  <li><a href="#type-ii" id="toc-type-ii" class="nav-link" data-scroll-target="#type-ii">Type II</a></li>
+  <li><a href="#type-iv" id="toc-type-iv" class="nav-link" data-scroll-target="#type-iv">Type IV</a></li>
+  <li><a href="#proscons-table" id="toc-proscons-table" class="nav-link" data-scroll-target="#proscons-table">Pros/Cons Table</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#type-i-1" id="toc-type-i-1" class="nav-link" data-scroll-target="#type-i-1">Type I</a></li>
+  <li><a href="#type-ii-1" id="toc-type-ii-1" class="nav-link" data-scroll-target="#type-ii-1">Type II</a></li>
+  <li><a href="#type-iii-1" id="toc-type-iii-1" class="nav-link" data-scroll-target="#type-iii-1">Type III</a></li>
+  </ul></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key Points</a></li>
+  <li><a href="#r-instruction" id="toc-r-instruction" class="nav-link" data-scroll-target="#r-instruction">R Instruction</a>
+  <ul class="collapse">
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">summary()</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analysis of Unbalanced Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1 page-columns page-full">
+<h1>Introduction</h1>
+<p>A balanced dataset is one in which there are an equal number of replicates for each and every factor level combination. Unbalanced datasets are those that have an unequal number of replicates in at least one factor level combination. In reality, it is more common to have unbalanced data than balanced data. This is particularly true for observational studies. Therefore, it is critical to learn how to analyze unbalanced data.</p>
+<p>The formulas for unbalanced data are more complicated than when the data is balanced. This is not an issue since we will let computers do the calculations. The bigger issue deals with the fact that unbalanced datasets often result in correlated factor effects. Due to the equal number of replicates, factors in a balanced dataset are orthogonal. Factors in an unbalanced dataset are not guaranteed this desirable property.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<!-- Consider the following example. A study was done with two independent factors: Height (tall and short) and Weight (heavy and light). In a balanced dataset, there would be an equal number of heavy, tall people and light, tall people. So, in the dataset these two factors would be orthogonal/uncorrelated. Instead, consider an unbalanced dataset where there are twice as many tall people as short people. If the proportion of heavy people is equal to the propotion of light people within each height category, then the factors are still considered orthogonal. However, this rarely happens in practice unless it is a deliberate part of the design. -->
+<!-- A more likely scenario is that a much higher percentage of tall people are considered heavy. This would result in correlated factors. -->
+<p><a href="#fig-balanced">Figure&nbsp;1</a> is a graphical depiction of an unbalanced dataset for two factors A and B, each with 2 levels, coded as -1 and 1. You can see that each factor level combination appears an equal number of times<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-balanced" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="unbalanced_files/figure-html/fig-balanced-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Balanced, orthogonal data</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation of these two columns of 1’s and -1’s is zero.</p>
+<div class="cell">
+
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We are measuring the correlation of the <em>coded</em> factors with each other. We have not even bothered to define the response variable in these examples, since it is irrelevant to the discussion.</p>
+</div></div><p>Now consider <a href="#fig-unbalanced">Figure&nbsp;2</a>, where there are fewer observations for the A=1, B=-1 combination, and more observations for A=1, B=1.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unbalanced" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="unbalanced_files/figure-html/fig-unbalanced-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Unbalanced, non-orthogonal data</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation between the two factors is NOT zero.</p>
+<div class="cell">
+
+</div>
+<p>The issue with correlated factors is that their effects on the response are also confounded. When the response varies it cannot be determined how much of the variation in the response is due to factor A and how much was due to factor B.</p>
+</section>
+<section id="type-i" class="level1 page-columns page-full">
+<h1>Type I</h1>
+<p>This correlation/confounding of effects also means it is not clear exactly which factor the sums of squares should be attributed to in an ANOVA. <a href="#fig-venn">Figure&nbsp;3</a> (a)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> illustrates this shared sum of squares. The shared sum of squares is due to the correlation between the two factors and is represented by the overlap in the circles.</p>
+<div id="fig-venn" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://besjournals.onlinelibrary.wiley.com/cms/asset/c210638b-49a6-4c71-a3cc-990e17231f09/jane_1634_f1.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Venn diagram illustration of sums of squares partitioning for non‐orthogonal factors A and B (ignoring interaction)</figcaption><p></p>
+</figure>
+</div>
+<p>The order in which terms are specified in the model determine which factor the shared sum of squares is attributed to. This approach is referred to as <strong>Sequential Sum of Squares</strong>, or <strong>Type I</strong>. This is the default approach in R.</p>
+<p><a href="#fig-venn">Figure&nbsp;3</a> (b) and (c) illustrate how the sum of squares are allocated according to order the factors are listed when the model is specified.</p>
+<p>This can be illustrated with a more concrete example, using data to show how sequential sums of squares works. The data are taken from a hypothetical example by Shaw &amp; Mitchell-Olds(1993)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> as cited by Hector, Von Felton, &amp; Schmid (2010)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. In this study, the response is height of a plant. One factor is thinning: yes or no. Thinning is a process where neighboring plants are removed so that they do not compete with each other for light and nutrients in the soil. The other factor in the study is the initial size of the plant at the beginning of the study period. It also has two levels: small and large.</p>
+<p>Initial size and thinning were crossed to create an unbalanced BF[2] design. The data are presented in <a href="#tbl-example_data">Table&nbsp;1</a></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">=</span> <span class="fu">tibble</span>( <span class="at">initial_size =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"small"</span>,<span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">"large"</span>, <span class="dv">6</span>)),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">thinning =</span> <span class="fu">c</span>(<span class="st">"not thinned"</span>, <span class="st">"not thinned"</span>, <span class="fu">rep</span>(<span class="st">"thinned"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"not thinned"</span>, <span class="dv">4</span>), <span class="st">"thinned"</span>, <span class="st">"thinned"</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">57</span>, <span class="dv">57</span>, <span class="dv">71</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">94</span>, <span class="dv">102</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">120</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-example_data" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;1: Plant heights based on initial size and thinning (or not)</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 19%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">initial_size</th>
+<th style="text-align: center;">thinning</th>
+<th style="text-align: center;">height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">small</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">small</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">small</td>
+<td style="text-align: center;">thinned</td>
+<td style="text-align: center;">57</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">small</td>
+<td style="text-align: center;">thinned</td>
+<td style="text-align: center;">71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">small</td>
+<td style="text-align: center;">thinned</td>
+<td style="text-align: center;">85</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">102</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">not thinned</td>
+<td style="text-align: center;">110</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">thinned</td>
+<td style="text-align: center;">105</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">thinned</td>
+<td style="text-align: center;">120</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><a href="#tbl-A_first">Table&nbsp;2</a>, below, contains output for the ANOVA when <code>initial_size</code> is listed first in the code where the model is defined. <code>initial_size</code> is highly significant (p-value = .0004) due to the high value for Sum of Squares. <code>thinning</code> is also marginally significant (p-value = 0.0510).</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A_first <span class="ot">&lt;-</span> <span class="fu">aov</span>(height<span class="sc">~</span>initial_size <span class="sc">+</span> thinning <span class="sc">+</span> initial_size<span class="sc">:</span>thinning, <span class="at">data =</span> example)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">anova</span>(A_first), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-A_first" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;2: Type I ANOVA, ‘initial_size’ first</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4291</td>
+<td style="text-align: center;">4291</td>
+<td style="text-align: center;">40.17</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">590</td>
+<td style="text-align: center;">590</td>
+<td style="text-align: center;">5.52</td>
+<td style="text-align: center;">0.051</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>initial_size:thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">0.753</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>In <a href="#tbl-A_first">Table&nbsp;2</a>, the <span class="math inline">\(SS_\text{initial size}\)</span> represents the sum of squares for initial size as if it was the only term in the model. <span class="math inline">\(SS_\text{thinning}\)</span> is calculated after accounting for all the sum of squares due to initial size. Similarly, the sum of squares for the interaction represents the left over sum of squares that can be attributed to the interaction factor after accounting for initial size and thinning. Thus, each factor represents the remaining sum of squares attributable to that factor after accounting for everything that appeared before it in the model, and ignoring everything that came after it in the model specification.</p>
+<p>Observe the changes in <a href="#tbl-thin_first">Table&nbsp;3</a> when we reverse the order of <code>initial_size</code> and <code>thinning</code> in the model specification. <code>thinning</code> is far from significant and has a much lower sum of squares. Thus, the order in which factors are entered into the model is critical.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Don’t worry that <span class="math inline">\(SS_{thinning}\)</span> was actually lower when <code>thinning</code> was listed first. This sometimes occurs.</p>
+</div></div><div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thinning_first <span class="ot">&lt;-</span> <span class="fu">aov</span>(height<span class="sc">~</span>thinning <span class="sc">+</span> initial_size <span class="sc">+</span> thinning<span class="sc">:</span>initial_size, <span class="at">data =</span> example)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">anova</span>(thinning_first), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-thin_first" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;3: Type I ANOVA, ‘thinning’ first</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">0.33</td>
+<td style="text-align: center;">0.583</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">45.37</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning:initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">0.753</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>When specifying the interaction term in R <code>thinning:initial_size</code> is equivalent to <code>initial_size:thinning</code>.</p>
+</div></div><p>There are a few interesting thing to note when comparing the output in <a href="#tbl-A_first">Table&nbsp;2</a> with <a href="#tbl-thin_first">Table&nbsp;3</a>.</p>
+<ul>
+<li>Even though the sum of squares for the two main effects changed, their total is the same.</li>
+</ul>
+<p><span class="math display">\[
+4291 + 590 = 35 + 4846 = 4881
+\]</span></p>
+<p>This illustrates a key point about <strong>Type I SS: the sum of SS of all the factors will equal</strong> <span class="math inline">\(SS_{total}\)</span>.</p>
+<ul>
+<li>The interaction term was the last specified factor in both cases, and so its sum of squares is the same in both tables.</li>
+<li>The <span class="math inline">\(SS_{residuals}\)</span> does not change based on the order.</li>
+</ul>
+<p>Deciding which factor to list first is not always easy and depends on your desired hypotheses. In this case, we may wish to test the effectiveness of thinning after accounting for the effect of the initial size of the plant. If such was the case, it would make sense to list thinning second.</p>
+<p>In most basic factorial designs it is not appropriate or possible to decide which variable should be listed first. You can use an adjusted sum of squares approach instead, which include Type II and Type III. We will discuss Type III first since it is more straightforward to explain.</p>
+</section>
+<section id="type-iii" class="level1 page-columns page-full">
+<h1>Type III</h1>
+<p>When sequential sum of squares is not appropriate, one common method of adjustment is called <strong>Type III, or “as if last”, sum of squares.</strong> This approach computes the sums of squares for each factor as if it was the last factor listed in the sequential sum of squares. To illustrate this, 3 ANOVA tables are shown below. In each table, a different factor is listed last. When the <code>interaction</code> is listed last, it’s sums of squares is 11; when <code>initial_size</code> is listed last its sum of squares is 4,808; and when <code>thinning</code> is listed last its sum of squares is 597 (all values have been rounded to the nearest whole number).</p>
+<div id="tbl-three_anovas" class="cell tbl-parent column-screen-inset-shaded quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;4: 3 Type I ANOVA Tables Used to Get a Type III</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-three_anovas-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(a) Interaction last</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">45.4</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>interaction</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-three_anovas-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(b) Initial size last</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>interaction</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0.52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4808</td>
+<td style="text-align: center;">4808</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-three_anovas-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(c) Thinning last</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>interaction</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4252</td>
+<td style="text-align: center;">4252</td>
+<td style="text-align: center;">39.8</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">597</td>
+<td style="text-align: center;">597</td>
+<td style="text-align: center;">5.6</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The type III ANOVA output, in <a href="#tbl-type3">Table&nbsp;5</a>, contains the sum of squares for each factor when it was listed last.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The order of the variables when coding the model does not matter in a Type 3 ANOVA.</p>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<div id="tbl-type3" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;5: Type 3 ANOVA, As If Last</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>(Intercept)</strong></td>
+<td style="text-align: center;">39402</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">368.9</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">597</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">5.6</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">4808</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>interaction</strong></td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The sum of squares contained in a Type III ANOVA table can be interpreted as the sum of squares attributable to a factor after all the other factors in the model have been accounted for. Type III does not attribute the overlapping sum of squares to any factor. This is represented by the middle intersection piece of the Venn diagram in panel (d) of <a href="#fig-venn">Figure&nbsp;3</a>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> This is why the sum of squares for factors in Type III do NOT add up to the total sum of squares, like they did in Type I. The Type III ANOVA tests are based on marginal means unweighted by sample size.</p>
+</section>
+<section id="type-ii" class="level1 page-columns page-full">
+<h1>Type II</h1>
+<p>One of the major complaints against a Type III approach is that it violates the principle of marginality. The marginality principle states that when a higher order effect (e.g.&nbsp;an interaction) is included in a model, the lower order effects (e.g.&nbsp;main effects) should also be includeded in the model. According to this principle it does not make sense to test a main effect after accounting for the interaction, which is exactly the situation we came across in Type III.</p>
+<p>Type II strives to maintain the principle of marginality, while at the same time taking an “as if last” approach. Stated another way, in a Type II ANOVA, each factor is tested “as if last” but ignoring all higher order terms.</p>
+<p>To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of <a href="#tbl-three_anovas2">Table&nbsp;6</a> the interaction is excluded since we need an “as if last, while exluding higher order terms” from the model. In panel (c) of table the interaction is included, but is last.</p>
+<div id="tbl-three_anovas2" class="cell tbl-parent column-screen-inset-shaded quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;6: 3 Type I ANOVA Tables Used to Get a Type II</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-three_anovas2-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(a) Initial size last, no interaction</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4291</td>
+<td style="text-align: center;">4291</td>
+<td style="text-align: center;">45.2</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">590</td>
+<td style="text-align: center;">590</td>
+<td style="text-align: center;">6.2</td>
+<td style="text-align: center;">0.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">759</td>
+<td style="text-align: center;">95</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-three_anovas2-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(b) Thinning last, no interaction</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">51.1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">759</td>
+<td style="text-align: center;">95</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-three_anovas2-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-three_anovas2" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped">
+<caption>(c) Interaction last</caption>
+<colgroup>
+<col style="width: 38%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">4846</td>
+<td style="text-align: center;">45.4</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning:initial_size</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The type II ANOVA output, in <a href="#tbl-type2">Table&nbsp;7</a>, contains the sum of squares for each factor in <a href="#tbl-three_anovas2">Table&nbsp;6</a> when the factor was listed last and higher order factors were not included.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-type2" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;7: Type 2 ANOVA</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>thinning</strong></td>
+<td style="text-align: center;">597</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">5.6</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>initial_size</strong></td>
+<td style="text-align: center;">4808</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>interaction</strong></td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">748</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The sum of squares contained in a Type II ANOVA table can be interpreted as the sum of squares attributable to a factor after all the lower or same order factors in the model have been accounted for. The Type II ANOVA tests are based on marginal means weighted by sample size.</p>
+</section>
+<section id="type-iv" class="level1">
+<h1>Type IV</h1>
+<p>There are actually many other methods for calculating sum of squares. One in particular is designed for unbalanced data. Here, the term unbalanced does not simply mean unequal sample sizes across factor level combinations. Unbalanced can also mean that certain factor level combinations are completely missing from the design. This can occur when a combination of factor levels is not possible (i.e.&nbsp;male and pregnant), or if, for whatever reason, observations were not obtained for some factor level combination(s).</p>
+<p>When the dataset is unbalanced in this way, the analyst should consider using Type IV ANOVA.</p>
+</section>
+<section id="proscons-table" class="level1">
+<h1>Pros/Cons Table</h1>
+<p>Below is a summary table of the pros and cons of the first 3 methods.</p>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 45%">
+<col style="width: 49%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ANOVA Type</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type I</td>
+<td><ul>
+<li><p>SS for all effects add up to <span class="math inline">\(SS_{total}\)</span></p></li>
+<li><p>Allows for prioritizing/ sequencing of factors if appropriate</p></li>
+</ul></td>
+<td><ul>
+<li>In most factorial designs, deciding an order for factors is inappropriate or impossible</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Type II</td>
+<td><ul>
+<li><p>Maintains the principle of marginality. (i.e.&nbsp;won’t test a main effect when an interaction involving that effect is already in the model)</p></li>
+<li><p>Order in which factors are entered in the model does not matter</p></li>
+</ul></td>
+<td><ul>
+<li>Weights marginal means by their sample size. In other words, factor levels with larger sample sizes will have a bigger impact on the result of F test.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Type III</td>
+<td><ul>
+<li><p>Order in which factors are entered in the model does not matter</p></li>
+<li><p>Factor effects are not weighted by sample size</p></li>
+</ul></td>
+<td><ul>
+<li>Violates marginality</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p>After decades of debate and disagreement, there is an emerging concept gaining ground amongst statisticians that there doesn’t have to be a “right” and a “wrong” approach. Rather, the analyst should pick the approach that best matches the hypothesis they wish to test.</p>
+<p>This discussion has assumed the model is using fixed effects for all factors. In random effects models or mixed models the discussion changes. Those models are outside the scope of this book.</p>
+</section>
+<section id="examples" class="level1">
+<h1>Examples</h1>
+<p>This section strives to provide an example of when each type of ANOVA may be appropriate.</p>
+<section id="type-i-1" class="level2">
+<h2 class="anchored" data-anchor-id="type-i-1">Type I</h2>
+<p>For an example of when Type I may be useful we do not need to look any further than the plant study we have been using all along on this page. Say our research question aims to test the effectiveness of thinning <em>after</em> accounting for the plant’s initial size our hypothesis matches a Type I approach. The research question specifies the order in which we want to consider the factors. Since Type I ANOVA is dependent on the order in which factors are specified in the model, we are able to incorporate the desired order from our research question into the analysis.</p>
+</section>
+<section id="type-ii-1" class="level2">
+<h2 class="anchored" data-anchor-id="type-ii-1">Type II</h2>
+<p>You may want to use a Type II ANOVA if the disparity in sample sizes reflects a similar disparity in population size. Perhaps your end goal is to apply the treatment to all members of the population and you want any difference observed in the study to be present in the population. In that case, Type II may be the best choice. This will be more common in observational studies.</p>
+<p>For example, a web developer randomly assigns website visitors to one of two website designs. Design A is evenly split between males and females, but Design B receives many more males than females. In this case, the lopsided nature of the gender distribution may accurately reflect the population of website visitors being predominantly male.</p>
+<p>The test of the main effects for gender and website design will be influenced by sample sizes. Say we conclude that people tend to buy more products when presented with website A. This conclusion will be influenced more heavily by males since males represented a larger proportion of the sample. But in this case that’s okay because males also represent a larger part of our target audience (website visitors).</p>
+</section>
+<section id="type-iii-1" class="level2">
+<h2 class="anchored" data-anchor-id="type-iii-1">Type III</h2>
+<p>Let’s continue with the website design and gender study mentioned above. Now, instead of taking the role of a business owner, we assume the role of a cognitive psychologist. We are not interested in trying to maximize profits for a target market. Rather, we are interested in knowing how individuals respond to the two different site designs. The fact that we partnered with a website with predominantly male clientele is incidental. We want to arrive at conclusions that will be useful in explaining/predicting behavior of an individual.</p>
+<p>If we use Type II ANOVA the result of the significance test will be confounded with the fact that males account for a larger portion of the sample. A Type III ANOVA will not weight by sample size and will treat the estimated means of males and females equally. Thus our results can be used to predict an individual’s behavior based on their gender and website design. Our findings can now be used by other websites with a different clientele (e.g.&nbsp;predominantly female) to correctly predict/explain individual’s actions.</p>
+</section>
+</section>
+<section id="key-points" class="level1">
+<h1>Key Points</h1>
+<p>A few other key points are worth remembering.</p>
+<p>First, <strong>small amount of unbalance will result in a small amount of difference in the different methods for calculating sum of squares.</strong> When the data is balanced, the 3 types of ANOVA will give the same results.</p>
+<p>Second, <strong>no amount of adjustment to the sum of squares calculation can account for or correct bias in a study.</strong> For this reason, it is important to understand what is causing the unbalance in the dataset. Was it a deliberate decision in the design due to time/cost constraints? Was it due to spoiled experimental runs/units? In the case of human research, was attrition the cause? If the cause of the unbalance is related to the factor level values there could be bias in the study.</p>
+<p>For example, consider an experiment that wanted to study people’s sentiment about public speaking. One group of 10 participants was assigned to talk about their most embarrassing moment. The other group of 10 participants was assigned a neutral topic, like what they had for dinner the previous day. Four of the 10 people assigned to speak on an embarrassing moment dropped out of the study. The design started out as balanced, but the resulting dataset is unbalanced.</p>
+<p>The reason for multiple people dropping out is likely connected to the fact that those people may not feel comfortable sharing embarrassing experiences in a public setting. The remaining people in the study may be fundamentally different in how they feel about sharing embarrassing experiences. The data is not missing completely at random. Bias has been introduced!</p>
+<p>Third, <strong>always test your highest-order interaction first</strong>. The results for the highest order interaction will be the same regardless of what type of ANOVA you use (sequential or adjusted). If the interaction is significant, most of the time it is not appropriate to interpret the hypothesis test of the main effects anyway so you won’t need to worry about which type is used.</p>
+<p>Finally, <strong>when analyzing unbalanced data <em>in this class</em> you should use Type III ANOVA</strong> unless directed otherwise. This ends up being a bit of a conservative approach. If a main effect is significant, even after accounting for a non-significant interaction, there is a good chance the main effect will be even more significant if the interaction were to be excluded. The Type III is also simpler in terms of explanation/interpretation. It will help share answers and work if we are all using the same approach as a class.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use Type III ANOVA for unbalanced datasets in this class.</p>
+</div>
+</div>
+</section>
+<section id="r-instruction" class="level1 page-columns page-full">
+<h1>R Instruction</h1>
+<p>Type I ANOVA is the default in the <code>anova()</code> command. In fact, it is the only type of ANOVA available in <code>anova()</code>.</p>
+<p>To get Type II or Type III ANOVA you will create a model in the usual way and then use the <code>Anova()</code> command from the <code>car</code> package. Note the use of the capital ‘A’, instead of lower case ‘a’, in the function name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(myaov, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>car</code> is the name of the package the <code>Anova()</code> command comes from</li>
+<li><code>::</code> allows you to use functions from a package without having to load the entire package with a <code>library()</code> command. The package you want to access is specifed on the left of the <code>::</code> and the function name is specified on the right.</li>
+<li><code>Anova()</code> is a function from the <code>car</code> package. It can be used to get type II or type III ANOVA tables for a variety of different models, including <code>aov()</code>, <code>lm()</code>, <code>glm()</code>, etc.</li>
+<li><code>myaov</code> is the name we gave our model in a previous step (not shown).</li>
+<li><code>type=</code> argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, “II”, “III”.</li>
+</ul>
+<p>For examples of code that produce Type III and Type II ANOVA tables look at <a href="#tbl-type3">Table&nbsp;5</a> and <a href="#tbl-type2">Table&nbsp;7</a> respectively. Those examples have an additional <code>pander()</code> command, and its <code>round=</code> argument. This additional code is solely for formatting and is not necessary.</p>
+<section id="summary" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="summary">summary()</h2>
+<p>Many students are in the habit of using <code>summary()</code> to evaluate model hypothesis tests. When called on an <code>aov</code> object (i.e.&nbsp;an object created using the <code>aov()</code> command), <code>summary()</code>’ prints a Type I ANOVA table.</p>
+<p>However, when called on an <code>lm()</code> object, <code>summary()</code> does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><code>lm()</code> is usually preferred over <code>aov()</code> if there are 1 or more numeric independent variables in the model.</p>
+</div></div><p>To get a ANOVA table and the F-tests for a factor’s overall significance you can call <code>car::Anova()</code> or <code>anova()</code> on an <code>lm()</code> object.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>For a brief, accessible description of how orthogonality relates to balanced designs, read here: https://www.statisticshowto.com/orthogonality/. The last sentence states “Orthogonality is present in a model if any factor’s effects sum to zero across the effects of any other factors in the table.” We know a factor’s effects sum to zero, and when factors are crossed, the above quoted statement is also true <strong>IF</strong> there are an equal number of replicates at each factor level. When the number of replicates is not equal, the sum across factor levels is not guaranteed to be exactly zero; so, orthogonality is no longer guaranteed.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://stats.stackexchange.com/questions/552702/multifactor-anova-what-is-the-connection-between-sample-size-and-orthogonality<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>&nbsp;Journal of Animal Ecology, Volume: 79, Issue: 2, Pages: 308-316, First published: 05 February 2010, DOI: (10.1111/j.1365-2656.2009.01634.x)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Shaw, R.G. &amp; Mitchell-Olds, T. (1993) ANOVA for unbalanced data: an overview. Ecology, 74, 1638–1645.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>&nbsp;Journal of Animal Ecology, Volume: 79, Issue: 2, Pages: 308-316, First published: 05 February 2010, DOI: (10.1111/j.1365-2656.2009.01634.x)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>There is also the possibility the total sum of squares is more than the sum of squares total due to “double counting” the variation. This is much more difficult to illustrate with Venn diagrams.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
