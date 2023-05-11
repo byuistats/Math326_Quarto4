@@ -70,7 +70,7 @@ $$
 A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the following requirements are satisfied:
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|-------------------|--------------------------|---------------------------|
+|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
 | Constant variance across factor levels | Rule of thumb comparing standard deviations             | $max(s) < 2*min(s)$                                      |
 |                                        | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |

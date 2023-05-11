@@ -68,7 +68,7 @@ Click to view output
 <div id="bff1" style="display:show;">
 
 ```{r message = FALSE, echo = FALSE}
-df <- read_csv("../data/toothpaste_BF2.csv")
+df <- read_csv(here::here("data/toothpaste_BF2.csv"))
 plaque_aov <- aov(Plaque ~ Brush, data = df)
 summary(plaque_aov)
 ```
