@@ -110,7 +110,7 @@ The BF\[\] designation refers to the design of the experiment. The reference to 
 :::
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|-------------------|--------------------------|---------------------------|
+|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
 | Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
 | Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
@@ -641,11 +641,9 @@ lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 
 ```
 
-
-
 The previous 3 figures are placed side by side below in @fig-crossed-interaction so that the additive progression of the effects can more easily be seen.
 
-::: {#fig-crossed-interaction}
+<div>
 
 ```{r}
 #| echo: false
@@ -759,9 +757,17 @@ text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = 0.15)'), col = "p
 
 Additive Effects
 
-:::
+</div>
 
-For each observation, @fig-factor-effects displays all the factor level effects that are summed to obtain that observation.
+Lastly, the residuals (or residual effects) need to be calculated. The mean for each level of residual is simply the observation itself. Effects associated with that observation's factor levels are subtracted from the observed value. Whatever is left over is considered the residual. In other words, we have applied the general rule for calculating effect size. For the residual factor, the effect can concisely be stated as "observed value - predicted value".
+
+As an example, the residual in the top left corner of the residual factor was obtained with this calculation:
+
+$$
+19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28
+$$
+
+All other residuals were similarly obtained. Ultimately, @fig-factor-effects displays all the factor level effects that are summed to obtain each observation.
 
 ::: column-page
 ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects}
@@ -1197,9 +1203,9 @@ In order to trust these hypothesis test results we need to verify that the assum
 
 For a more detailed explanation of the code, output, and theory behind these assumptions visit the [Assumptions](assumptions.qmd) page.
 
-### Constant Variance
+### Constant Variance of Residuals
 
-There needs to be constant variance across the factor levels. There are multiple ways to verify this assumption is met. First, we can check the residual plot.
+There needs to be constant variance of residuals across the factor level combinations. First, we can check the residual plot.
 
 ```{r}
 #| code-fold: true
@@ -1208,11 +1214,17 @@ There needs to be constant variance across the factor levels. There are multiple
 plot(bf2_aov, which = 1)
 ```
 
-In @fig-constant_var there are 8 distinct vertical groupings of points, one for each factor level combination. Each factor level combination had 3 observations, and so also has 3 residuals. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.
+In @fig-constant_var there are 8 distinct vertical groupings of points, one for each factor level combination. There are 3 observations, and so 3 residuals also, for each factor level combination. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.
 
-We will further investigate the assumption by looking at other measures of constant variance. We can use the rule of thumb that the largest standard deviation should not be more than double the smallest standard deviation. In @tbl-numerical we saw that the largest standard deviation (5.86) belonged to the ultrasonic brush with name brand paste. It's standard deviation is much more than double the smallest standard deviation, 0.80, which belongs to the oscillating brush with name brand paste. This stands as further evidence that the requirement has been violated.
+[Levene's test](assumptions.html#constant-variance) can provide insight on whether the trend in the residual plot is drastic enough to constitute a violation of the constant variance assumption.
 
-Students often wonder if they should be comparing the standard deviations for factor level combinations as we just did above, or if they should be comparing the standard deviations between the levels of a single factor one-at-a-time, which are shown in @tbl-main_effects_numbers. In this case, and in many cases both approaches lead you to the same conclusion. In situations where the two approaches do not agree you should use your best judgement.
+Recall that the null hypothesis for Levene's test is that the variance of residuals is equal for each and every factor level combination. The results of the test below shows a p-value of 0.5409. We therefore fail to reject a null hypothesis of equal variances and proceed with the analysis (assuming the other assumptions are met).
+
+```{r}
+#| code-fold: true
+#| message: false
+leveneTest(bf2_aov) %>% kable(digits = 2)
+```
 
 ### Normally Distributed Residuals
 
@@ -1222,12 +1234,12 @@ We check the assumption that residuals are normally distributed in @fig-qq. Most
 #| code-fold: true
 #| label: fig-qq
 #| fig-cap: "Checking normality of residuals"
-car::qqPlot(bf2_aov$residuals)
+car::qqPlot(bf2_aov$residuals, id = FALSE)
 ```
 
 ### Independent Residuals
 
-The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in @fig-order can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
+The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in @fig-order can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
 
 ```{r}
 #| code-fold: true
@@ -1238,7 +1250,7 @@ plot(bf2_aov$residuals)
 
 ### Assumptions Summary
 
-Of most concern was the violation of the constant variance assumption because it was the assumption that was most violated. Even so, its violation was not severe and the dataset is balanced, adding to the robustness of the ANOVA test to assumption violations. For these reasons, this situation would not normally be concerning enough to stop the analysis. However, since the F-test for toothbrush is such a close call, mild-moderate assumption violations may cause the p-value of the test to be slightly off. Even after attempting various transformations of the response variable, Plaque, the degree to which assumptions are met does not improve (in fact, in some cases it gets worse).
+The assumptions appear to be met, meaning the p-values should be valid and reliable. However, since the F-test for toothbrush is such a close call, mild-moderate assumption violations may cause the p-value of the test to be slightly off. Even after attempting various transformations of the response variable, Plaque, the degree to which assumptions are met does not improve (in fact, in some cases it gets worse).
 
 Rather than fuss about the whether F-test assumptions are met or not, you can recognize the F-test for Brush is close enough to merit further investigation. In this case, it is recommended to proceed with contrasts/pairwise tests of toothbrush type which do not require constant variance. (You should be aware of what assumption are required for those tests and be sure to check them).
 

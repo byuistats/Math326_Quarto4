@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#create-the-model" id="toc-create-the-model" class="nav-link" data-scroll-target="#create-the-model">Create the Model</a></li>
   <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check Assumptions</a>
   <ul class="collapse">
-  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
+  <li><a href="#constant-variance-of-residuals" id="toc-constant-variance-of-residuals" class="nav-link" data-scroll-target="#constant-variance-of-residuals">Constant Variance of Residuals</a></li>
   <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
   <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
   <li><a href="#assumptions-summary" id="toc-assumptions-summary" class="nav-link" data-scroll-target="#assumptions-summary">Assumptions Summary</a></li>
@@ -462,7 +462,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The BF[] designation refers to the design of the experiment. The reference to one- or two-way ANOVA refers to the analysis technique applied to the resulting data.</p>
 </div></div><table class="table">
 <colgroup>
-<col style="width: 26%">
+<col style="width: 25%">
 <col style="width: 36%">
 <col style="width: 37%">
 </colgroup>
@@ -739,147 +739,147 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Subject 1</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">22</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">20</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 2</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">5</td>
+<td style="text-align: center;">18</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 3</td>
-<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">name</td>
 <td style="text-align: center;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 4</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">23</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">17</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 5</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">15</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">12</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 6</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">12</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 7</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">14</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 8</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">7</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 9</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">16</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 10</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">2</td>
+<td style="text-align: center;">15</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 11</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">10</td>
+<td style="text-align: center;">19</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 12</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">4</td>
+<td style="text-align: center;">24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 13</td>
-<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">24</td>
+<td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 14</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">18</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 15</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">9</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 16</td>
-<td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">8</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 17</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillate</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">11</td>
+<td style="text-align: center;">8</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 18</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">19</td>
+<td style="text-align: center;">23</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 19</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">17</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 20</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">21</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">11</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 21</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">21</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 22</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">20</td>
+<td style="text-align: center;">9</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 23</td>
-<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">6</td>
+<td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 24</td>
-<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">7</td>
+<td style="text-align: center;">3</td>
 </tr>
 </tbody>
 </table>
@@ -1158,7 +1158,7 @@ General Rule for Calculating Factor Level Effect
 <p></p><figcaption class="figure-caption">Figure&nbsp;8: Interaction Effects</figcaption><p></p>
 </figure>
 </div>
-<p>In <a href="#fig-brush">Figure&nbsp;12 (a)</a> you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in <a href="#fig-paste">Figure&nbsp;12 (b)</a>.</p>
+<p>In <a href="#fig-brush">Figure&nbsp;8 (a)</a> you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in <a href="#fig-paste">Figure&nbsp;8 (b)</a>.</p>
 <p>Therefore, to calculate the interaction effect for using an ultrasonic brush with name brand toothpaste we will subtract the effects of the grand mean factor, ultrasonic brush, and name brand paste from the “ultrasonic, name brand” level mean.</p>
 <p><span class="math display">\[
 26.19 - (22.76 + 2.55 + 0.16) = .15
@@ -1201,31 +1201,34 @@ General Rule for Calculating Factor Level Effect
 </div>
 </div>
 </div>
-<p>The previous 3 figures are placed side by side below in <a href="#fig-crossed-interaction">Figure&nbsp;12</a> so that the additive progression of the effects can more easily be seen.</p>
-<div id="fig-crossed-interaction" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<p>The previous 3 figures are placed side by side below in <a href="#fig-crossed-interaction">Figure&nbsp;8</a> so that the additive progression of the effects can more easily be seen.</p>
+<div class="page-columns page-full">
 <div class="cell column-screen-inset-shaded quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="bf2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="bf2_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="bf2_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;12: Additive Effects</figcaption><p></p>
-</figure>
+<p>Additive Effects</p>
 </div>
-<p>For each observation, <a href="#fig-factor-effects">Figure&nbsp;13</a> displays all the factor level effects that are summed to obtain that observation.</p>
+<p>Lastly, the residuals (or residual effects) need to be calculated. The mean for each level of residual is simply the observation itself. Effects associated with that observation’s factor levels are subtracted from the observed value. Whatever is left over is considered the residual. In other words, we have applied the general rule for calculating effect size. For the residual factor, the effect can concisely be stated as “observed value - predicted value”.</p>
+<p>As an example, the residual in the top left corner of the residual factor was obtained with this calculation:</p>
+<p><span class="math display">\[
+19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28
+\]</span></p>
+<p>All other residuals were similarly obtained. Ultimately, <a href="#fig-factor-effects">Figure&nbsp;12</a> displays all the factor level effects that are summed to obtain each observation.</p>
 <div class="column-page">
 <div id="fig-factor-effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-toothbrush_effects.PNG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;13: Factor level effects</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;12: Factor level effects</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1255,10 +1258,10 @@ General Rule for Degrees of Freedom
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The degrees of freedom for toothbrush is it the same here as it was for the BF[1].</p>
-</div></div><p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in <a href="#fig-factor-effects">Figure&nbsp;13</a> you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.</p>
+</div></div><p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in <a href="#fig-factor-effects">Figure&nbsp;12</a> you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.</p>
 <p>A similar approach is taken for toothpaste. Here it is even more obvious that the effects for toothpaste sum to zero. After estimating the toothbrush effect for one observation, I can fill in the toothpaste effects for all the other observations. Therefore, the degrees of freedom for toothpaste is 1.</p>
 <p>Using the general rule, I know there are 2 levels for toothpaste and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, I get <span class="math inline">\(2-1 = 1\)</span> degree of freedom for toothpaste.</p>
-<p>Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in <a href="#fig-factor-effects">Figure&nbsp;13</a>. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.</p>
+<p>Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in <a href="#fig-factor-effects">Figure&nbsp;12</a>. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.</p>
 <p>This is in perfect harmony with an application of the general rule. The interaction factor has 8 factor levels. Factors outside of the interaction include: grand mean (1 df), toothbrush (3 df), and toothpaste (1 df). Applying the general rule with these values yields <span class="math inline">\(8 - (1 + 3 + 1) = 3\)</span> degrees of freedom for the interaction factor.</p>
 <p>Perhaps the easiest way to find the degrees of freedom for an interaction that is created by crossing two other factors is to multiply the degrees of freedom of the two other factors. In this case, toothbrush and toothpaste are crossed, so you would get <span class="math inline">\(3*1 = 3\)</span>, which matches the answer found using other methods.</p>
 <p>Finally, the residual degrees of freedom can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns <span class="math inline">\(24 - (1+3+1+3) = 16\)</span> degrees of freedom for residuals.</p>
@@ -1336,7 +1339,7 @@ General Rule for Degrees of Freedom
 
 </div>
 </div>
-<p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects">Figure&nbsp;13</a> shows the effects, while <a href="#fig-SQ-effects">Figure&nbsp;14</a> shows the squared effects.</p>
+<p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects">Figure&nbsp;12</a> shows the effects, while <a href="#fig-SQ-effects">Figure&nbsp;13</a> shows the squared effects.</p>
 <!-- ::: {#fig-effects layout-nrow=2} -->
 <!-- ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects .column-page} -->
 <!-- ![Squared factor level effects](images/BF2-toothbrush_SQ_effects.PNG){#fig-SQ-effects .column-page} -->
@@ -1345,7 +1348,7 @@ General Rule for Degrees of Freedom
 <div id="fig-SQ-effects" class="quarto-figure quarto-figure-center column-page anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p class="page-columns page-full"><img src="images/BF2-toothbrush_SQ_effects.PNG" class="column-page img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;14: Squared factor level effects</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;13: Squared factor level effects</figcaption><p></p>
 </figure>
 </div>
 <p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss-obs">Equation&nbsp;3</a>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
@@ -1901,7 +1904,7 @@ Significant Interaction Effects
 </section>
 <section id="graphical-summaries" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
-<p>Graphs are also valuable tools to help you get to know your data. Since there are only 3 observation in each factor level combination, a dotplot/scatterplot is more appropriate than a boxplot. This is shown in <a href="#fig-summary">Figure&nbsp;15</a></p>
+<p>Graphs are also valuable tools to help you get to know your data. Since there are only 3 observation in each factor level combination, a dotplot/scatterplot is more appropriate than a boxplot. This is shown in <a href="#fig-summary">Figure&nbsp;14</a></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1913,12 +1916,12 @@ Significant Interaction Effects
 <div id="fig-summary" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;15: Graphical Summary</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;14: Graphical Summary</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>You could also gain insight about the main effects by cutting the data by each factor separately, as shown in <a href="#fig-by_factor">Figure&nbsp;16</a>.</p>
+<p>You could also gain insight about the main effects by cutting the data by each factor separately, as shown in <a href="#fig-by_factor">Figure&nbsp;15</a>.</p>
 <div id="fig-by_factor" class="cell column-page quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1939,17 +1942,17 @@ Significant Interaction Effects
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;16: Data cut by one factor at a time</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;15: Data cut by one factor at a time</figcaption><p></p>
 </figure>
 </div>
 <p>Finally, an interaction plot is ideal for investigating a BF[2]. The plot only shows factor level means. Therefore, it does not give a good sense of the underlying distribution of data and should not be used as the only visual assessment of your data. However, it is extremely good at providing insight into possible interactions.</p>
-<p>In <a href="#fig-tooth_int">Figure&nbsp;17</a> the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.</p>
+<p>In <a href="#fig-tooth_int">Figure&nbsp;16</a> the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tooth_int" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-tooth_int-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;17: Interaction plot for Brush vs.&nbsp;Toothpaste</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;16: Interaction plot for Brush vs.&nbsp;Toothpaste</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -2000,9 +2003,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="check-assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="check-assumptions">Check Assumptions</h2>
 <p>For a more detailed explanation of the code, output, and theory behind these assumptions visit the <a href="./assumptions.html">Assumptions</a> page.</p>
-<section id="constant-variance" class="level3">
-<h3 class="anchored" data-anchor-id="constant-variance">Constant Variance</h3>
-<p>There needs to be constant variance across the factor levels. There are multiple ways to verify this assumption is met. First, we can check the residual plot.</p>
+<section id="constant-variance-of-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="constant-variance-of-residuals">Constant Variance of Residuals</h3>
+<p>There needs to be constant variance of residuals across the factor level combinations. First, we can check the residual plot.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -2012,31 +2015,62 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;18: Checking constant variance</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;17: Checking constant variance</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-constant_var">Figure&nbsp;18</a> there are 8 distinct vertical groupings of points, one for each factor level combination. Each factor level combination had 3 observations, and so also has 3 residuals. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.</p>
-<p>We will further investigate the assumption by looking at other measures of constant variance. We can use the rule of thumb that the largest standard deviation should not be more than double the smallest standard deviation. In <a href="#tbl-numerical">Table&nbsp;3</a> we saw that the largest standard deviation (5.86) belonged to the ultrasonic brush with name brand paste. It’s standard deviation is much more than double the smallest standard deviation, 0.80, which belongs to the oscillating brush with name brand paste. This stands as further evidence that the requirement has been violated.</p>
-<p>Students often wonder if they should be comparing the standard deviations for factor level combinations as we just did above, or if they should be comparing the standard deviations between the levels of a single factor one-at-a-time, which are shown in <a href="#tbl-main_effects_numbers">Table&nbsp;2</a>. In this case, and in many cases both approaches lead you to the same conclusion. In situations where the two approaches do not agree you should use your best judgement.</p>
-</section>
-<section id="normally-distributed-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
-<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;19</a>. Most of the points are in the shaded region. Row 1 of the dataset appears in the upper right corner, far away from the boundaries. A couple of other points are very close, but just outside of the boundary. Due to the robust nature of ANOVA, the mild violation of this assumption is not a concern.</p>
+<p>In <a href="#fig-constant_var">Figure&nbsp;17</a> there are 8 distinct vertical groupings of points, one for each factor level combination. There are 3 observations, and so 3 residuals also, for each factor level combination. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.</p>
+<p><a href="assumptions.html#constant-variance">Levene’s test</a> can provide insight on whether the trend in the residual plot is drastic enough to constitute a violation of the constant variance assumption.</p>
+<p>Recall that the null hypothesis for Levene’s test is that the variance of residuals is equal for each and every factor level combination. The results of the test below shows a p-value of 0.5409. We therefore fail to reject a null hypothesis of equal variances and proceed with the analysis (assuming the other assumptions are met).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(bf2_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(bf2_aov) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 5</code></pre>
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> F value </th>
+   <th style="text-align:right;"> Pr(&gt;F) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> group </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 0.88 </td>
+   <td style="text-align:right;"> 0.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
+</div>
+</section>
+<section id="normally-distributed-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
+<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;18</a>. Most of the points are in the shaded region. Row 1 of the dataset appears in the upper right corner, far away from the boundaries. A couple of other points are very close, but just outside of the boundary. Due to the robust nature of ANOVA, the mild violation of this assumption is not a concern.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(bf2_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;19: Checking normality of residuals</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;18: Checking normality of residuals</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -2044,7 +2078,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="independent-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
-<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in <a href="#fig-order">Figure&nbsp;20</a> can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
+<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in <a href="#fig-order">Figure&nbsp;19</a> can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -2054,7 +2088,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-order" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;20: Checking independent residuals assumption</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;19: Checking independent residuals assumption</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -2062,7 +2096,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="assumptions-summary" class="level3">
 <h3 class="anchored" data-anchor-id="assumptions-summary">Assumptions Summary</h3>
-<p>Of most concern was the violation of the constant variance assumption because it was the assumption that was most violated. Even so, its violation was not severe and the dataset is balanced, adding to the robustness of the ANOVA test to assumption violations. For these reasons, this situation would not normally be concerning enough to stop the analysis. However, since the F-test for toothbrush is such a close call, mild-moderate assumption violations may cause the p-value of the test to be slightly off. Even after attempting various transformations of the response variable, Plaque, the degree to which assumptions are met does not improve (in fact, in some cases it gets worse).</p>
+<p>The assumptions appear to be met, meaning the p-values should be valid and reliable. However, since the F-test for toothbrush is such a close call, mild-moderate assumption violations may cause the p-value of the test to be slightly off. Even after attempting various transformations of the response variable, Plaque, the degree to which assumptions are met does not improve (in fact, in some cases it gets worse).</p>
 <p>Rather than fuss about the whether F-test assumptions are met or not, you can recognize the F-test for Brush is close enough to merit further investigation. In this case, it is recommended to proceed with contrasts/pairwise tests of toothbrush type which do not require constant variance. (You should be aware of what assumption are required for those tests and be sure to check them).</p>
 <div class="cell">
 <details>

@@ -333,8 +333,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#create-the-model" id="toc-create-the-model" class="nav-link" data-scroll-target="#create-the-model">Create the Model</a></li>
   <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check Assumptions</a>
   <ul class="collapse">
-  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
-  <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
+  <li><a href="#constant-error-variance" id="toc-constant-error-variance" class="nav-link" data-scroll-target="#constant-error-variance">Constant Error Variance</a></li>
+  <li><a href="#normally-distributed-error-term" id="toc-normally-distributed-error-term" class="nav-link" data-scroll-target="#normally-distributed-error-term">Normally Distributed Error Term</a></li>
   <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
   <li><a href="#assumptions-summary" id="toc-assumptions-summary" class="nav-link" data-scroll-target="#assumptions-summary">Assumptions Summary</a></li>
   </ul></li>
@@ -415,28 +415,28 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <p>Where</p>
 <ul>
 <li><p><span class="math inline">\(y_{ij}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span> and level <em>j</em> of <span class="math inline">\(\beta\)</span>.</p></li>
-<li><p><span class="math inline">\(\mu\)</span> the grand mean of the entire dataset.</p></li>
-<li><p><span class="math inline">\(\alpha\)</span> is the effect of toothbrush, and <em>i</em> goes from 1 to 4 since there are 4 toothbrush types.</p></li>
-<li><p><span class="math inline">\(\beta\)</span> is the effect of participant, and <em>j</em> goes from 1 to 6 since there are 6 participants / blocks.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is the grand mean of the entire dataset.</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> is the effect of participant, and <em>j</em> goes from 1 to 6 since there are 6 participants / blocks.</p></li>
+<li><p><span class="math inline">\(\beta\)</span> is the effect of toothbrush, and <em>i</em> goes from 1 to 4 since there are 4 toothbrush types.</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span> is the residual error term</p></li>
 </ul>
 <p>Note that since there is only one observation per factor level combination, there is not enough degrees of freedom to estimate an interaction effect.</p>
 <p>The hypothesis of interest for a CB[1] study is about the treatment factor:</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be <span class="math display">\[ Ho: \beta_j = 0 \text{ for all } j\]</span></p>
-<p><span class="math display">\[H_a: \beta_j \ne 0 \text{ for some }j\]</span></p>
-</div></div><p><span class="math display">\[H_0: \alpha_i = 0 \text{ for all }i\]</span></p>
+<p>Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be <span class="math display">\[ Ho: \alpha_i = 0 \text{ for all } i\]</span></p>
 <p><span class="math display">\[H_a: \alpha_i \ne 0 \text{ for some }i\]</span></p>
+</div></div><p><span class="math display">\[H_0: \beta_j = 0 \text{ for all }j\]</span></p>
+<p><span class="math display">\[H_a: \beta_i \ne 0 \text{ for some }j\]</span></p>
 </section>
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied.</p>
 <table class="table">
 <colgroup>
-<col style="width: 26%">
+<col style="width: 27%">
 <col style="width: 36%">
-<col style="width: 37%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -564,45 +564,45 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">manual</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
 </tr>
 </tbody>
 </table>
@@ -793,52 +793,52 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
@@ -848,7 +848,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
@@ -858,32 +858,32 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -893,12 +893,12 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
@@ -908,7 +908,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 </tbody>
@@ -934,11 +934,11 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <ul>
 <li><p>The <strong>observed values</strong> <span class="math inline">\(y_{ij}\)</span> on the left of the equals sign show that there are 24 observations of plaque coverage, one for each unique combination of the levels of toothbrush and Block.</p></li>
 <li><p>The <strong>grand mean factor</strong> (<span class="math inline">\(\mu\)</span>) is the grand mean of the entire dataset. The single large cell indicates that there is only one grand mean and it is part of every observation.</p></li>
-<li><p>The <strong>treatment factor</strong> involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by <span class="math inline">\(\alpha_i\)</span>, where <em>i</em> goes from 1 to 4 since there are 4 types.</p></li>
-<li><p>The <strong>block factor</strong> has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant’s effect is represented in the model by <span class="math inline">\(\beta_j\)</span>, where <em>j</em> goes from 1 to 6 since there are 6 participants/blocks.</p></li>
+<li><p>The <strong>block factor</strong> has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant’s effect is represented in the model by <span class="math inline">\(\alpha_i\)</span>, where <em>i</em> goes from 1 to 6 since there are 6 participants/blocks.</p></li>
+<li><p>The <strong>treatment factor</strong> involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by <span class="math inline">\(\beta_j\)</span>, where <em>j</em> goes from 1 to 4 since there are 4 types.</p></li>
 <li><p>The <strong>residual error</strong> represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean, treatment effect, and block effect for a given individual. Each cell represents a distinct value for the residual error and is written as <span class="math inline">\(\epsilon_{ij}\)</span>.</p></li>
 </ul>
-<p>A CB[1] design has four <em>analysis</em> factors: the grand mean, treatment, blocks, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.</p>
+<p>A CB[1] design has four <em>analysis</em> factors: the grand mean, blocks, treatment, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.</p>
 <section id="degrees-of-freedom" class="level2">
 <h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to determine the degrees of freedom (df) for the grand mean, treatment factor, blocks, and residual errors. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.</p>
@@ -995,26 +995,26 @@ General Rule for Effect Size
 \]</span></p>
 <p>Now find the mean for each level of toothbrush type.</p>
 <p><span class="math display">\[
-\bar{y}_\text{manual} = \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
+\bar{y}_\text{manual} = \bar{y}_{\cdot 1} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
 \]</span></p>
 <p><span class="math display">\[
-\bar{y}_\text{oscillating} = \bar{y}_{2\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
+\bar{y}_\text{oscillating} = \bar{y}_{\cdot 2} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
 \]</span></p>
 <p><span class="math display">\[
-\bar{y}_\text{sonic} = \bar{y}_{3\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
+\bar{y}_\text{sonic} = \bar{y}_{\cdot 3} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
 \]</span></p>
 <p><span class="math display">\[
-\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
+\bar{y}_\text{ultrasonic} = \bar{y}_{\cdot 4} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
 \]</span></p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Note the effects for grand mean and toothbrush are the same as they are in the BF[2].</p>
 </div></div><p>Now find the mean for each level of block (only the first two blocks are illustrated here).</p>
 <p><span id="eq-block1_mean"><span class="math display">\[
-\bar{y}_\text{Block1} = \bar{y}_{\cdot 1} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
+\bar{y}_\text{Block1} = \bar{y}_{1\cdot} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
 \tag{2}\]</span></span></p>
 <p><span class="math display">\[
-\bar{y}_\text{Block2} = \bar{y}_{\cdot 2} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
+\bar{y}_\text{Block2} = \bar{y}_{2\cdot} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
 \]</span></p>
 <p>The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
 <p><a href="#fig-CB1_means">Figure&nbsp;4</a> displays the factor levels means associated with each observation.</p>
@@ -1045,7 +1045,7 @@ General Rule for Effect Size
 <p><span class="math display">\[
 \begin{align}
 \hat{y}_{11} &amp;= \hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_1 \\
-22.24 &amp;= 22.76 + 0.33 + \text{-}0.85
+22.24 &amp;= 22.76 + \text{-}0.85 + 0.33
 \end{align}
 \]</span></p>
 <p>The residual then, is</p>
@@ -1060,9 +1060,9 @@ e_{11} &amp;= y_{11} - \hat{y}_{11} \\
 <p>A similar calculation is done to find the residual for participant 1 with the oscillating brush. Here we condense a couple of the steps:</p>
 <p><span class="math display">\[
 \begin{align}
-e_{ij} &amp;= y_{21} - \hat{y}_{21} \\
-&amp;= y_{21} - (\hat{\mu} + \hat{\alpha}_2 + \hat{\beta}_1) \\
-&amp;= 18.56 - (22.76 + \text{-}2.79 + \text{-}0.85) \\
+e_{ij} &amp;= y_{12} - \hat{y}_{12} \\
+&amp;= y_{12} - (\hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_2) \\
+&amp;= 18.56 - (22.76 + \text{-}0.85 + \text{-}2.79) \\
 &amp;= 18.56 - 19.12 \\
 &amp;= -0.56
 \end{align}
@@ -1107,16 +1107,16 @@ e_{ij} &amp;= y_{21} - \hat{y}_{21} \\
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> Participant </td>
+   <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Participant </td>
-   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Brush </td>
+   <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -1163,9 +1163,9 @@ SS_\text{Grand Mean}= 518.2 * 24 = 12,437.43
 <p>Similarly, we get the sum of squares for toothbrush, block, and residuals.</p>
 <p><span class="math display">\[
 \begin{align}
-SS_\text{Brush} &amp;= 6 * 0.11 + 6 * 7.77 + 6*0.01 + 6*6.5 = 86.31 \\
-\\
 SS_\text{Participant} &amp;= 4*0.73 + 4*0.27 + ... + 4*0.11 = 18.27 \\
+\\
+SS_\text{Brush} &amp;= 6 * 0.11 + 6 * 7.77 + 6*0.01 + 6*6.5 = 86.31 \\
 \\
 SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.29
 \end{align}
@@ -1196,17 +1196,17 @@ SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.2
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
+   <td style="text-align:left;"> Participant </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 18.27 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Participant </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 18.27 </td>
+   <td style="text-align:left;"> Brush </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 86.31 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
@@ -1233,17 +1233,17 @@ SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.2
 </div>
 </div>
 </div>
-<p>To calculate a mean square (MS), simply divide a factor’s sum of questions by its degrees of freedom. The mean square calculations are:</p>
+<p>To calculate a mean square (MS), simply divide a factor’s sum of squares by its degrees of freedom. The mean square calculations are:</p>
 <p><span class="math display">\[
 MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
-MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
+MS_\text{Participant} = \frac{SS_\text{Participant}}{df_\text{Participant}} = \frac{18.27}{5} = 3.654
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
-MS_\text{Participant} = \frac{SS_\text{Participant}}{df_\text{Participant}} = \frac{18.27}{5} = 3.654
+MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
 \]</span></p>
 <p><br></p>
 <p><span class="math display">\[
@@ -1275,18 +1275,18 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
-   <td style="text-align:right;"> 28.77 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Participant </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 18.27 </td>
    <td style="text-align:right;"> 3.65 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brush </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 86.31 </td>
+   <td style="text-align:right;"> 28.77 </td>
    <td style="text-align:left;">  </td>
    <td style="text-align:left;">  </td>
   </tr>
@@ -1313,13 +1313,25 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 </div>
 </div>
 <p>For the structural factors in the design there are a set of hypothesis we can test using the <strong>F statistic</strong>. Specifically, we will want to test whether toothbrush type has an effect on plaque coverage.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>We may or may not be interested in testing Block. Because Block is usually a nuisance factor, testing its effect is not a priority. On the other hand, curiosity about whether the blocks were a significant source of variation may help us plan future experiments and improve the current analysis. In fact, if Block is not significant, we may consider removing it from the model so that the Residual factor has more degrees of freedom - which may result in a lower mean squared error. A lower mean squared increases the ability to detect significance of the treatment factor.</p>
-<p>We will proceed with a test of the toothbrush type, represented as <span class="math inline">\(\alpha\)</span> in <a href="#eq-cb1">Equation&nbsp;1</a>.</p>
-<p><span class="math display">\[H_0: \alpha_i = 0 \text{ for all }i\]</span></p>
-<p><span class="math display">\[H_a: \alpha_i \ne 0 \text{ for some }i\]</span></p>
-<p>To test the hypothesis, we need to compare the mean square (MS) for toothbrush to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. The F statistical calculation is</p>
+</div>
+</div>
+<p>We will proceed with a test of the toothbrush type, represented as <span class="math inline">\(\beta\)</span> in <a href="#eq-cb1">Equation&nbsp;1</a>.</p>
+<p><span class="math display">\[H_0: \beta_j = 0 \text{ for all }j\]</span></p>
+<p><span class="math display">\[H_a: \beta_j \ne 0 \text{ for some }j\]</span></p>
+<p>To test the hypothesis, we need to compare the mean square (MS) for toothbrush to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. The F statistic calculation is</p>
 <p><span class="math display">\[
-F_\text{Brush} = \frac{MS_\text{Brush}}{df_\text{Brush}} = \frac{28.77}{8.82} = 3.26
+F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 3.26
 \]</span></p>
 <p>An F distribution is defined by two parameters: a numerator degrees of freedom and a denominator degrees of freedom. The denominator in the F statistic calculation was the mean squared error, which has a degrees of freedom of 15. The numerator degrees of freedom is the degrees of freedom for toothbrush.</p>
 <p>In practice, statistical software computes all the components of the ANOVA table, including the p-value. To complete the decomposition of variance in a manual way, the p-value is calculated in R using the <code>pf()</code> function.</p>
@@ -1352,20 +1364,20 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{df_\text{Brush}} = \frac{28.77}{8.82} = 
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
-   <td style="text-align:right;"> 28.77 </td>
-   <td style="text-align:right;"> 3.26 </td>
-   <td style="text-align:right;"> 0.051 </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> Participant </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 18.27 </td>
    <td style="text-align:right;"> 3.65 </td>
    <td style="text-align:right;">  </td>
    <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brush </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 86.31 </td>
+   <td style="text-align:right;"> 28.77 </td>
+   <td style="text-align:right;"> 3.26 </td>
+   <td style="text-align:right;"> 0.051 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Residual Error </td>
@@ -1653,7 +1665,7 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{df_\text{Brush}} = \frac{28.77}{8.82} = 
 <h2 class="anchored" data-anchor-id="create-the-model">Create the Model</h2>
 <p>Create the model using the <code>aov()</code> function. To see results of the T-test, you can feed your model into a <code>summary()</code> or <code>anova()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cb_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> treatment <span class="sc">+</span> block, <span class="at">data =</span> YourDataSet)</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cb_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> YourDataSet)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cb_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -1666,27 +1678,27 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{df_\text{Brush}} = \frac{28.77}{8.82} = 
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cb_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque <span class="sc">~</span> Brush <span class="sc">+</span> ParticipantID, <span class="at">data=</span>cb1) <span class="co">#note the + instead of *</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cb_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque <span class="sc">~</span> ParticipantID <span class="sc">+</span> Brush, <span class="at">data=</span>cb1) <span class="co">#note the + instead of *</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cb_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Df Sum Sq Mean Sq F value Pr(&gt;F)  
-Brush          3  86.31  28.769   3.262 0.0511 .
 ParticipantID  5  18.27   3.653   0.414 0.8316  
+Brush          3  86.31  28.769   3.262 0.0511 .
 Residuals     15 132.29   8.820                 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>The marginal significance of toothbrush (p-value = 0.051) was discussed at the end of the the <a href="cb1.html#completing-the-anova-table">Decomposition</a> section of this page.</p>
-<p>Though ParticipantID (the Block factor) was not the main purpose of our study, R gives us output for its hypothesis test anyway. We may be curious about it. Because the p-value for Block (p-value = 0.83) is high, we fail to reject the null hypothesis. There is insufficient evidence to say the variety in participants had an effect on plaque coverage<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>Though ParticipantID (the Block factor) was not the main purpose of our study, R gives us output for its hypothesis test anyway. We may be curious about it. Because the p-value for ParticipantID (p-value = 0.83) is high, we fail to reject the null hypothesis. There is insufficient evidence to say the variety in participants had an effect on plaque coverage<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>In order to trust these hypothesis test results we need to verify that the assumptions are met.</p>
 </section>
 <section id="check-assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="check-assumptions">Check Assumptions</h2>
 <p>For a more detailed explanation of the code, output, and theory behind these assumptions visit the <a href="./assumptions.html">Assumptions</a> page.</p>
-<section id="constant-variance" class="level3">
-<h3 class="anchored" data-anchor-id="constant-variance">Constant Variance</h3>
+<section id="constant-error-variance" class="level3">
+<h3 class="anchored" data-anchor-id="constant-error-variance">Constant Error Variance</h3>
 <p>There needs to be constant variance across the factor levels. To verify this assumption is met, check the residual plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1696,8 +1708,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>If the constant variance assumption is violated, the points in this graph will show a wedge or megaphone shape. In other words, the vertical spread of the points would noticeably increase/decrease as we moved along the x-axis. There does not appear to be a trend like that in this plot. Points 15 and 21, which are both on the right side of the plot, are farther away than the rest of the points. However, point 21 seems more like an outlier than a continuation of a trend. This assumption appears to be met</p>
 </section>
-<section id="normally-distributed-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
+<section id="normally-distributed-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-error-term">Normally Distributed Error Term</h3>
 <p>We check the assumption that residuals are normally distributed with a QQ plot. Since all the points in the plot below are in the shaded regions around the line, we conclude this assumption is met.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1708,7 +1720,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="independent-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
-<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in Figure XX (below) can be used to investigate trends in residuals by row number in the dataset, if the row numbers correspond to the sequence in which the observation was made. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
+<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot below can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

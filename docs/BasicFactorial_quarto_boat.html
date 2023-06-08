@@ -336,8 +336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#create-the-model" id="toc-create-the-model" class="nav-link" data-scroll-target="#create-the-model">Create the Model</a></li>
   <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check assumptions</a>
   <ul class="collapse">
-  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
-  <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
+  <li><a href="#constant-error-variance" id="toc-constant-error-variance" class="nav-link" data-scroll-target="#constant-error-variance">Constant Error Variance</a></li>
+  <li><a href="#normally-distributed-error-term" id="toc-normally-distributed-error-term" class="nav-link" data-scroll-target="#normally-distributed-error-term">Normally Distributed Error Term</a></li>
   <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
   </ul></li>
   </ul></li>
@@ -1352,12 +1352,12 @@ Residuals   20 100.49   5.024               </code></pre>
 <h2 class="anchored" data-anchor-id="check-assumptions">Check assumptions</h2>
 <p>Now that the model is created the assumptions need to be checked. Interactive code and additional explanation for assumption checking can be found in the <a href="docs/diagnostics.html">Model Diagnostics</a> and <a href="./assumptions.html">Assumptions</a> sections of the book respectively.</p>
 <p>Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.</p>
-<section id="constant-variance" class="level3">
-<h3 class="anchored" data-anchor-id="constant-variance">Constant Variance</h3>
+<section id="constant-error-variance" class="level3">
+<h3 class="anchored" data-anchor-id="constant-error-variance">Constant Error Variance</h3>
 <p>We first check to see if the levels of training method have constant variance. The points in <a href="#fig-summary">Figure&nbsp;5</a> have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in <a href="#tbl-numerical">Table&nbsp;1</a> we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.</p>
 </section>
-<section id="normally-distributed-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
+<section id="normally-distributed-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-error-term">Normally Distributed Error Term</h3>
 <p>A QQ-plot of the residuals is shown in <a href="#fig-qq">Figure&nbsp;6</a>. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.</p>
 <div class="cell">
 

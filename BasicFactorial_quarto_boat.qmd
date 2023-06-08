@@ -527,11 +527,11 @@ Now that the model is created the assumptions need to be checked. Interactive co
 
 Below, we find that all assumptions of our lifeboat training method model are met and we can trust the hypothesis test that was just conducted.
 
-### Constant Variance
+### Constant Error Variance
 
 We first check to see if the levels of training method have constant variance. The points in @fig-summary have similar spread, with the exception of the particularly low outlier scores in the Control and Joypad groups. Furthermore, in @tbl-numerical we see that the largest standard deviation (2.65 for Joypad) is not more than double the smallest standard deviation (1.65 for Monitor/Keyboard). Therefore, the assumption of constant variance appears to be met.
 
-### Normally Distributed Residuals
+### Normally Distributed Error Term
 
 A QQ-plot of the residuals is shown in @fig-qq. Since none of the points are outside of the boundary it is safe to conclude that residuals are normally distributed.
 

@@ -10,7 +10,6 @@ title: "CB[1]"
  }
 </script>
 ```
-
 ```{r}
 #| label: setup
 #| include: false
@@ -65,11 +64,11 @@ Where
 
 -   $y_{ij}$ is the observation that belongs to level *i* of $\alpha$ and level *j* of $\beta$.
 
--   $\mu$ the grand mean of the entire dataset.
+-   $\mu$ is the grand mean of the entire dataset.
 
--   $\alpha$ is the effect of toothbrush, and *i* goes from 1 to 4 since there are 4 toothbrush types.
+-   $\alpha$ is the effect of participant, and *j* goes from 1 to 6 since there are 6 participants / blocks.
 
--   $\beta$ is the effect of participant, and *j* goes from 1 to 6 since there are 6 participants / blocks.
+-   $\beta$ is the effect of toothbrush, and *i* goes from 1 to 4 since there are 4 toothbrush types.
 
 -   $\epsilon$ is the residual error term
 
@@ -78,21 +77,21 @@ Note that since there is only one observation per factor level combination, ther
 The hypothesis of interest for a CB\[1\] study is about the treatment factor:
 
 ::: column-margin
-Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be $$ Ho: \beta_j = 0 \text{ for all } j$$
-
-$$H_a: \beta_j \ne 0 \text{ for some }j$$
-:::
-
-$$H_0: \alpha_i = 0 \text{ for all }i$$
+Block is a nuisance factor and not of particular interest. If you desired to test the Block factor as well, the null hypohtesis would be $$ Ho: \alpha_i = 0 \text{ for all } i$$
 
 $$H_a: \alpha_i \ne 0 \text{ for some }i$$
+:::
+
+$$H_0: \beta_j = 0 \text{ for all }j$$
+
+$$H_a: \beta_i \ne 0 \text{ for some }j$$
 
 ## Assumptions
 
 An ANOVA model may be used to analyze data from a CB\[1\] design if the following requirements are satisfied.
 
 | Requirements                               | Method for Checking                                     | What You Hope to See                                     |
-|-------------------|--------------------------|---------------------------|
+|--------------------|--------------------------|--------------------------|
 | Constant variance across factor levels[^1] | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 | Normally Distributed Residuals             | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
 | Independent residuals                      | Order plot                                              | No pattern/trend                                         |
@@ -222,13 +221,13 @@ Where
 
 -   The **grand mean factor** ($\mu$) is the grand mean of the entire dataset. The single large cell indicates that there is only one grand mean and it is part of every observation.
 
--   The **treatment factor** involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by $\alpha_i$, where *i* goes from 1 to 4 since there are 4 types.
+-   The **block factor** has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant's effect is represented in the model by $\alpha_i$, where *i* goes from 1 to 6 since there are 6 participants/blocks.
 
--   The **block factor** has one partition per row. All the observations in a row come from the same participant. A participant is a block in this case and a participant's effect is represented in the model by $\beta_j$, where *j* goes from 1 to 6 since there are 6 participants/blocks.
+-   The **treatment factor** involves the four types of brushes, represented by the four vertically long cells. Each factor level may have a distinct mean and effect. The factor level effect is represented in the model by $\beta_j$, where *j* goes from 1 to 4 since there are 4 types.
 
 -   The **residual error** represents the difference between the observed value and the predicted value. The predicted value, also called the fitted value, is the sum of the grand mean, treatment effect, and block effect for a given individual. Each cell represents a distinct value for the residual error and is written as $\epsilon_{ij}$.
 
-A CB\[1\] design has four *analysis* factors: the grand mean, treatment, blocks, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.
+A CB\[1\] design has four *analysis* factors: the grand mean, blocks, treatment, and residual. The effects of these factors can be summed together to find each observed value. Notice there is no interaction factor. If we cross treatment factor and block to create an interaction, we end up with the exact same partitions as we have for the residual factor. Thus, we can use the data to estimate an interaction or to estimate residual errors, but not both. We need the residual error to conduct our hypothesis test of the treatment, and therefore this model operates under the assumption that there is no interaction between the treatment and blocking factors.
 
 ## Degrees of Freedom
 
@@ -281,19 +280,19 @@ $$
 Now find the mean for each level of toothbrush type.
 
 $$
-\bar{y}_\text{manual} = \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
+\bar{y}_\text{manual} = \bar{y}_{\cdot 1} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
 $$
 
 $$
-\bar{y}_\text{oscillating} = \bar{y}_{2\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
+\bar{y}_\text{oscillating} = \bar{y}_{\cdot 2} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
 $$
 
 $$
-\bar{y}_\text{sonic} = \bar{y}_{3\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
+\bar{y}_\text{sonic} = \bar{y}_{\cdot 3} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
 $$
 
 $$
-\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
+\bar{y}_\text{ultrasonic} = \bar{y}_{\cdot 4} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
 $$
 
 ::: column-margin
@@ -303,11 +302,11 @@ Note the effects for grand mean and toothbrush are the same as they are in the B
 Now find the mean for each level of block (only the first two blocks are illustrated here).
 
 $$
-\bar{y}_\text{Block1} = \bar{y}_{\cdot 1} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
+\bar{y}_\text{Block1} = \bar{y}_{1\cdot} = \frac{19.12 + 18.56 + 25.58 + 24.39}{4} = 21.91
 $$ {#eq-block1_mean}
 
 $$
-\bar{y}_\text{Block2} = \bar{y}_{\cdot 2} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
+\bar{y}_\text{Block2} = \bar{y}_{2\cdot} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
 $$
 
 The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.
@@ -351,7 +350,7 @@ The observed plaque coverage for Participant 1 using the manual brush is 19.12. 
 $$ 
 \begin{align}
 \hat{y}_{11} &= \hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_1 \\
-22.24 &= 22.76 + 0.33 + \text{-}0.85
+22.24 &= 22.76 + \text{-}0.85 + 0.33 
 \end{align}
 $$
 
@@ -371,9 +370,9 @@ A similar calculation is done to find the residual for participant 1 with the os
 
 $$ 
 \begin{align}
-e_{ij} &= y_{21} - \hat{y}_{21} \\
-&= y_{21} - (\hat{\mu} + \hat{\alpha}_2 + \hat{\beta}_1) \\
-&= 18.56 - (22.76 + \text{-}2.79 + \text{-}0.85) \\
+e_{ij} &= y_{12} - \hat{y}_{12} \\
+&= y_{12} - (\hat{\mu} + \hat{\alpha}_1 + \hat{\beta}_2) \\
+&= 18.56 - (22.76 + \text{-}0.85 + \text{-}2.79) \\
 &= 18.56 - 19.12 \\
 &= -0.56
 \end{align}
@@ -396,8 +395,8 @@ Now that we have calculated degrees of freedom and effects for each factor, we c
 In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.
 
 ```{r echo = FALSE}
-Source <- c("Grand Mean", "Brush", "Participant", "Residual Error", "Total")
-df <- c(1,3,5, 15, 24)
+Source <- c("Grand Mean", "Participant", "Brush", "Residual Error", "Total")
+df <- c(1,5, 3, 15, 24)
 SS <- rep("", 5)
 MS <- rep("", 5)
 Fvalue <- rep("", 5)
@@ -431,9 +430,9 @@ Similarly, we get the sum of squares for toothbrush, block, and residuals.
 
 $$
 \begin{align}
-SS_\text{Brush} &= 6 * 0.11 + 6 * 7.77 + 6*0.01 + 6*6.5 = 86.31 \\
-\\
 SS_\text{Participant} &= 4*0.73 + 4*0.27 + ... + 4*0.11 = 18.27 \\
+\\
+SS_\text{Brush} &= 6 * 0.11 + 6 * 7.77 + 6*0.01 + 6*6.5 = 86.31 \\
 \\
 SS_\text{Residual} &= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.29
 \end{align}
@@ -445,7 +444,7 @@ Putting this information into the ANOVA table gets us the result shown in @tbl-s
 #| label: tbl-ss_anova
 #| tbl-cap: Sums of Squares
 
-SS <- c(12437.43, 86.31, 18.27, 132.29, 12674.30)
+SS <- c(12437.43, 18.27, 86.31, 132.29, 12674.30)
 
 mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
 kable(mydf, format = "html", table.attr = "style='width:65%;'")%>% 
@@ -453,7 +452,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 ```
 
-To calculate a mean square (MS), simply divide a factor's sum of questions by its degrees of freedom. The mean square calculations are:
+To calculate a mean square (MS), simply divide a factor's sum of squares by its degrees of freedom. The mean square calculations are:
 
 $$
 MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43
@@ -462,13 +461,13 @@ $$
 <br>
 
 $$
-MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
+MS_\text{Participant} = \frac{SS_\text{Participant}}{df_\text{Participant}} = \frac{18.27}{5} = 3.654
 $$
 
 <br>
 
 $$
-MS_\text{Participant} = \frac{SS_\text{Participant}}{df_\text{Participant}} = \frac{18.27}{5} = 3.654
+MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
 $$
 
 <br>
@@ -483,7 +482,7 @@ $$
 #| label: tbl-ms_anova
 #| tbl-cap: Mean Squares
 
-MS <- c(12437.43, 28.77, 3.65, 8.82, NA)
+MS <- c(12437.43,  3.65, 28.77, 8.82, NA)
 
 options(knitr.kable.NA = '')
 mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
@@ -491,20 +490,22 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
   kableExtra::kable_styling()
 ```
 
-For the structural factors in the design there are a set of hypothesis we can test using the **F statistic**. Specifically, we will want to test whether toothbrush type has an effect on plaque coverage. 
+For the structural factors in the design there are a set of hypothesis we can test using the **F statistic**. Specifically, we will want to test whether toothbrush type has an effect on plaque coverage.
 
+::: callout-caution
 We may or may not be interested in testing Block. Because Block is usually a nuisance factor, testing its effect is not a priority. On the other hand, curiosity about whether the blocks were a significant source of variation may help us plan future experiments and improve the current analysis. In fact, if Block is not significant, we may consider removing it from the model so that the Residual factor has more degrees of freedom - which may result in a lower mean squared error. A lower mean squared increases the ability to detect significance of the treatment factor.
+:::
 
-We will proceed with a test of the toothbrush type, represented as $\alpha$ in @eq-cb1. 
+We will proceed with a test of the toothbrush type, represented as $\beta$ in @eq-cb1.
 
-$$H_0: \alpha_i = 0 \text{ for all }i$$
+$$H_0: \beta_j = 0 \text{ for all }j$$
 
-$$H_a: \alpha_i \ne 0 \text{ for some }i$$
+$$H_a: \beta_j \ne 0 \text{ for some }j$$
 
-To test the hypothesis, we need to compare the mean square (MS) for toothbrush to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. The F statistical calculation is
+To test the hypothesis, we need to compare the mean square (MS) for toothbrush to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. The F statistic calculation is
 
 $$
-F_\text{Brush} = \frac{MS_\text{Brush}}{df_\text{Brush}} = \frac{28.77}{8.82} = 3.26
+F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 3.26
 $$
 
 An F distribution is defined by two parameters: a numerator degrees of freedom and a denominator degrees of freedom. The denominator in the F statistic calculation was the mean squared error, which has a degrees of freedom of 15. The numerator degrees of freedom is the degrees of freedom for toothbrush.
@@ -517,14 +518,14 @@ In this example, for toothbrush we get a p-value of:
 
 `1 - pf(3.26, 3, 15) = 0.051`
 
-The completed ANOVA table for this CB[1] toothbrush study, blocked on participant is shown below:
+The completed ANOVA table for this CB\[1\] toothbrush study, blocked on participant is shown below:
 
 ```{r echo = FALSE}
 #| label: tbl-complete_anova
 #| tbl-cap: Toothbrush F Test ANOVA Table
 
-Fvalue <- c(NA, 3.26, NA, NA, NA)
-pvalue <- c(NA, 0.051, NA, NA, NA)
+Fvalue <- c(NA, NA, 3.26, NA, NA)
+pvalue <- c(NA, NA, 0.051, NA, NA)
 
 options(knitr.kable.NA = '')
 mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
@@ -538,11 +539,11 @@ In this case, the biggest difference in means exists between Oscillating and Ult
 
 # Analysis in R
 
-We will illustrate the R code unique to a CB[1] analysis while continuing to use the toothbrush and participant blocking example that has been used throughout this page.
+We will illustrate the R code unique to a CB\[1\] analysis while continuing to use the toothbrush and participant blocking example that has been used throughout this page.
 
 ## Describe the Data
 
-When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions->Descriptive Summaries](DescribeData.html) section of the book.
+When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
 
 ### Numerical Summaries
 
@@ -587,17 +588,15 @@ favstats(Plaque~ParticipantID, data = cb1) |>
 
 ```
 
-The Ultrasonic brush has the highest mean plaque amount, while Oscillating brush has the lowest. 
+The Ultrasonic brush has the highest mean plaque amount, while Oscillating brush has the lowest.
 
-With the exception of Participant 3, all the participants mean plaque values are very similar. The standard deviation for Participant 3 is also higher than all the others. 
+With the exception of Participant 3, all the participants mean plaque values are very similar. The standard deviation for Participant 3 is also higher than all the others.
 
 ### Graphical Summaries
 
 You could also gain insight about your data by investigating the response by cutting the data by each factor separately, as shown in @fig-graphical_summary. The plot reinforces what was seen in the numerical summary. The mean plaque for each person is roughly similar, Block factor does not look to be statistically significant. There could be some significant variation in plaque due to toothbrush.
 
-
 ::: {#fig-graphical_summary}
-
 ```{r}
 #| code-fold: true
 #| column: page-inset
@@ -615,8 +614,7 @@ To reveal an example of combining the 2 plots into one, <a href="javascript:show
 
 <!-- <a href="javascript:showhide('textplot')">[click this link]{style="font-size:8pt;"}</a> -->
 
-<div id="uniquename" style="display:none;">
-
+::: {#uniquename style="display:none;"}
 ::: {#textplot}
 ```{r}
 #| code-fold: true
@@ -630,8 +628,8 @@ ggplot(data = cb1, aes(x = ParticipantID, y = Plaque, color = Brush)) +
 ```
 :::
 
-Here it is easy to see that Oscillating had the lowest, or nearly the lowest, amount of plaque left for every individual. For all but one person, Ultrasonic was the worst, or nearly the worst, performing brush. Manual tended to be high. Interestingly, Sonic was all over the place. Perhaps Sonic is more sensitive to a way someone brushes or to different types of plaque build up. 
-</div>
+Here it is easy to see that Oscillating had the lowest, or nearly the lowest, amount of plaque left for every individual. For all but one person, Ultrasonic was the worst, or nearly the worst, performing brush. Manual tended to be high. Interestingly, Sonic was all over the place. Perhaps Sonic is more sensitive to a way someone brushes or to different types of plaque build up.
+:::
 
 ## Create the Model
 
@@ -641,7 +639,7 @@ Create the model using the `aov()` function. To see results of the T-test, you c
 #| eval: false
 #| echo: true
 
-cb_aov <- aov(Y ~ treatment + block, data = YourDataSet)
+cb_aov <- aov(Y ~ block + treatment, data = YourDataSet)
 summary(cb_aov)
 ```
 
@@ -650,7 +648,7 @@ summary(cb_aov)
 -   `treatment` and `block` are names of qualitative variables in your dataset. They should have `class()` equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(treatment)...)` command.
 -   `YourDataSet` is the name of your data set.
 
-The results using R code should match the results show in the Decomposition section in @tbl-complete_anova. 
+The results using R code should match the results show in the Decomposition section in @tbl-complete_anova.
 
 ```{r}
 #| code-fold: true
@@ -658,23 +656,23 @@ The results using R code should match the results show in the Decomposition sect
 #| fig-cap: "CB[1] ANOVA summary table"
 
 
-cb_aov <- aov(Plaque ~ Brush + ParticipantID, data=cb1) #note the + instead of *
+cb_aov <- aov(Plaque ~ ParticipantID + Brush, data=cb1) #note the + instead of *
 summary(cb_aov)
 ```
 
 The marginal significance of toothbrush (p-value = 0.051) was discussed at the end of the the [Decomposition](cb1.html#completing-the-anova-table) section of this page.
 
-Though ParticipantID (the Block factor) was not the main purpose of our study, R gives us output for its hypothesis test anyway. We may be curious about it. Because the p-value for Block (p-value = 0.83) is  high, we fail to reject the null hypothesis. There is insufficient evidence to say the variety in participants had an effect on plaque coverage[^4]. 
+Though ParticipantID (the Block factor) was not the main purpose of our study, R gives us output for its hypothesis test anyway. We may be curious about it. Because the p-value for ParticipantID (p-value = 0.83) is high, we fail to reject the null hypothesis. There is insufficient evidence to say the variety in participants had an effect on plaque coverage[^4].
 
-[^4]: In this case, because of its lack of significance, we could remove ParticipantID from the model. This would give more degrees of freedom to the Residuals factor, thereby reducing the MSE and enabling us to better detect significance in the treatment. In fact, treating the study as a BF[1] (i.e. ignoring blocks) returns a p-value of 0.0258 for Brush!
+[^4]: In this case, because of its lack of significance, we could remove ParticipantID from the model. This would give more degrees of freedom to the Residuals factor, thereby reducing the MSE and enabling us to better detect significance in the treatment. In fact, treating the study as a BF\[1\] (i.e. ignoring blocks) returns a p-value of 0.0258 for Brush!
 
 In order to trust these hypothesis test results we need to verify that the assumptions are met.
 
 ## Check Assumptions
 
-For a more detailed explanation of the code, output, and theory behind these assumptions visit the [Assumptions](assumptions.qmd) page. 
+For a more detailed explanation of the code, output, and theory behind these assumptions visit the [Assumptions](assumptions.qmd) page.
 
-### Constant Variance
+### Constant Error Variance
 
 There needs to be constant variance across the factor levels. To verify this assumption is met, check the residual plot.
 
@@ -684,7 +682,7 @@ plot(cb_aov, which = 1)
 
 If the constant variance assumption is violated, the points in this graph will show a wedge or megaphone shape. In other words, the vertical spread of the points would noticeably increase/decrease as we moved along the x-axis. There does not appear to be a trend like that in this plot. Points 15 and 21, which are both on the right side of the plot, are farther away than the rest of the points. However, point 21 seems more like an outlier than a continuation of a trend. This assumption appears to be met
 
-### Normally Distributed Residuals
+### Normally Distributed Error Term
 
 We check the assumption that residuals are normally distributed with a QQ plot. Since all the points in the plot below are in the shaded regions around the line, we conclude this assumption is met.
 
@@ -694,15 +692,12 @@ plot(cb_aov, which = 2)
 
 ### Independent Residuals
 
-The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in Figure XX (below) can be used to investigate trends in residuals by row number in the dataset, if the row numbers correspond to the sequence in which the observation was made. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
+The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot below can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
 
 ```{r}
 plot(cb_aov$residuals)
 ```
 
-
 ### Assumptions Summary
 
 The assumptions all appear to be met, suggesting that an ANOVA model is appropriate to use in this example.
-
-

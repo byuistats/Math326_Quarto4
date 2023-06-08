@@ -305,7 +305,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#center" id="toc-center" class="nav-link" data-scroll-target="#center">Center</a></li>
-  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a>
+  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
+  <li><a href="#rules-of-thumb-for-one-way-anova" id="toc-rules-of-thumb-for-one-way-anova" class="nav-link" data-scroll-target="#rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</a></li>
+  <li><a href="#levenes-test" id="toc-levenes-test" class="nav-link" data-scroll-target="#levenes-test">Levene’s Test</a>
   <ul>
   <li><a href="#more-than-1-structural-factor" id="toc-more-than-1-structural-factor" class="nav-link" data-scroll-target="#more-than-1-structural-factor">More than 1 structural factor</a></li>
   </ul></li>
@@ -500,7 +502,11 @@ Red Line in the Residual Plot
 </div>
 <p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
 <p>Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.</p>
-<p>As a rule of thumb, you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
+</section>
+<section id="rules-of-thumb-for-one-way-anova" class="level2">
+<h2 class="anchored" data-anchor-id="rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</h2>
+<p>As a rule of thumb, in one-way ANOVA (i.e.&nbsp;just one independent factor) you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
+<p>The rule of thumb is too stringent, and therefore not recommended, for anything but a one-way ANOVA.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -590,6 +596,9 @@ Red Line in the Residual Plot
 </div>
 </div>
 </div>
+</section>
+<section id="levenes-test" class="level2">
+<h2 class="anchored" data-anchor-id="levenes-test">Levene’s Test</h2>
 <p>There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is the Brown-Forsythe test, also known as Modified Levene’s test or sometimes shortened to Levene’s test.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The hypothesis for this test is</p>
 <p><span class="math display">\[
 H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
@@ -597,7 +606,13 @@ H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
 <p><span class="math display">\[
 H_a: \text{At least one sigma is different from the rest}
 \]</span></p>
-<p>The details of Levene’s test will not be covered here, but essentially the test runs an ANOVA F-test on the factor level variances to determine if the variances are equal. If the p-value of the test is low and the null is rejected, then you would consider the assumption violated. As the researcher, you are hoping to fail to reject the null hypothesis so that you may continue on with your analysis.</p>
+<p>The test essentially runs an ANOVA F-test on the factor level variances to determine if the variances are equal. If the p-value of the test is low and the null is rejected, then you would consider the assumption violated. As the researcher, you are hoping to fail to reject the null hypothesis so that you may continue on with your analysis.</p>
+<p>Use the following code from the <code>car</code> package to run Levene’s test in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(model_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Where <code>leveneTest</code> is the name of the function that will run the test, and <code>model_name</code> is the name you assigned the model created with the <code>aov()</code> function.</p>
+<p>Levene’s test requires a full model. All factor levels and interactions need to be present in the model. Levene’s test also requires at least 2 observations in each factor level combination since it needs to calculate a variance. For this reason, Levene’s test cannot be used on some designs, like complete block or latin squares, without <a href="https://www.jstor.org/stable/3068309">some adjustments</a>.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -614,7 +629,7 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="tbl-levene" class="anchored">
@@ -646,17 +661,17 @@ Don’t Forget to Think
 </div>
 </div>
 </div>
-<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the constant variance assumption is met. It is not uncommon for this hypothesis test to disagree with the rule of thumb. It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
+<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the constant variance assumption is met. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
 <p>This is not to suggest the point be removed from the analysis; rather, to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don’t agree.</p>
 <section id="more-than-1-structural-factor" class="level3">
 <h3 class="anchored" data-anchor-id="more-than-1-structural-factor">More than 1 structural factor</h3>
-<p>If you have more than 1 structural factor, multiple residual plots should be examined, or examine one plot that contains all factor level combinations. Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs.&nbsp;off brand), toothbrush type, and their interaction.</p>
-<p>In this case, the residual vs.&nbsp;fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. You should not be concerned about looking at each group individually. Rather, look for overall trends or megaphone shapes in the data. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?</p>
+<p>Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs.&nbsp;off brand), toothbrush type, and their interaction.</p>
+<p>In this case, the residual vs.&nbsp;fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. Look for overall trends or megaphone shapes in the residual plot as indicators that the assumption of constant error variance may be violated. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-variance2" class="quarto-figure quarto-figure-center anchored">
@@ -671,7 +686,7 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="tbl-levene2" class="anchored">
@@ -725,9 +740,9 @@ Don’t Forget to Think
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-qnorm" class="cell quarto-layout-panel">
 <figure class="figure">
@@ -762,7 +777,7 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-qqplot_brush1" class="quarto-figure quarto-figure-center anchored">
@@ -777,8 +792,8 @@ Don’t Forget to Think
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>), <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>), <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-QQPlot_brush2" class="quarto-figure quarto-figure-center anchored">
@@ -818,7 +833,7 @@ Notation
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-order" class="quarto-figure quarto-figure-center anchored">
@@ -867,9 +882,9 @@ Danger
 <tr class="even">
 <td>Constant variance across factor levels</td>
 <td><ul>
-<li>Rule of thumb comparing standard deviations</li>
 <li>Residual vs.&nbsp;fitted plot</li>
-<li>Levene’s Test</li>
+<li>Levene’s Test (for some designs / analyses)</li>
+<li>Rule of thumb comparing standard deviations (for BF[1] only)</li>
 </ul></td>
 </tr>
 <tr class="odd">
