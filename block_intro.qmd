@@ -47,7 +47,7 @@ Instead of treating the nuisance factor as something not controlled and not meas
 
 # How to Create Blocks
 
-To create blocks, you must put your experimental units into groups. The size of each group should be equal to the number of treatment factor levels. These groups are called blocks. For blocking to be effective to be effective at reducing error variance:
+To create blocks, you must put your experimental units into groups. The size of each group should be equal to the number of treatment factor levels. These groups are called blocks. For blocking to be effective at reducing error variance:
 
 -   experimental units within each block should be similar in terms of their anticipated value on the response variable ,
 -   the blocking variable should be correlated with the response,
@@ -67,17 +67,31 @@ Inside each block, treatments are assigned completely at random to experimental 
 
 ## Block by Sorting
 
-We return to the above example regarding a study aimed at measuring the effect of a new teaching method. Above we already exposed the potential risks of assigning treatments to people completely at random because differences in starting IQ could get in the way of detecting the true effect of the new teaching method. To block by sorting we would sort the study participants according to their IQ. The treatment factor has two levels: a control group and the new teaching method. Therefore, each block will have just 2 individuals. The people with the top two IQ's would form the first block, the next two highest IQ individuals would form the second block, and so on until the 2 people with the lowest IQ's form the last block. Inside each of those blocks, one person will be randomly assigned to receive the control and the other person will receive the new teaching method. This study is blocked on IQ.
+We return to the above example regarding a study aimed at measuring the effect of a new teaching method. In the section above, we already exposed the potential risks of assigning treatments to people completely at random because differences in starting IQ could get in the way of detecting the true effect of the new teaching method.
 
-This is also the technique that was used to address the concern about run order in the [example at the top of the page](#Introduction). We sorted and grouped the units based on run order.
+To block by sorting we would sort the study participants according to their IQ. The treatment factor has two levels: a control group and the new teaching method. Therefore, each block will have just 2 individuals. The people with the top two IQ's would form the first block, the next two highest IQ individuals would form the second block, and so on until the 2 people with the lowest IQ's form the last block. Inside each of those blocks, one person will be randomly assigned to receive the control and the other person will receive the new teaching method. This study is blocked on IQ.
+
+@fig-block-sort shows the process of assigning treatments to blocks created by sorting.
+
+![Process of Blocking by Sorting](images/blocks-sort.PNG){#fig-block-sort fig-align="center" width="1096"}
+
+This is also the technique that was used to address the concern about run order in the [example at the top of the page](#introduction). We sorted and grouped the units based on run order.
 
 ## Block by Subdividing the Experimental Material into Smaller Sections
 
 A seed company is experimenting with developing seeds for a new variety of cabbage. Specifically, 3 different seeds have made it to this final stage of testing. The company has fields in multiple states in the United States. They use these fields to test out their new seeds. Though researchers try to treat each field similarly, each field is different in terms of elevation, rain fall, soil chemistry, etc. To address these differences, the researchers decided to treat each field as a block. Each field is divided into 3 subplots. Then each variety of seed is randomly assigned to a subplot in that field. In this way, the researchers have blocked on field; the effect of field is measured and accounted for.
 
+@fig-block-subdivide[^1] illustrates this seed example.
+
+[^1]: Outline of the United States, by unknown author, is licensed under [CC-BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/3.0/)
+
+![Block by Subdividing](images/blocks-subdivide.PNG){#fig-block-subdivide fig-align="center" width="497"}
+
 ## Block by Reusing Experimental Units
 
-Our toothbrush example can be tweaked to use blocking. In the basic factorial examples, each person received one treatment. If researchers were concerned that a person's style and quality of brushing may have a substantial impact on the results of the study, this could be addressed by ensuring that each person tried each brush. The experiment could be set up such that a person uses a particular brush for a set period. Their plaque amount would be measured, their teeth cleaned, and then they would use a different brush for the same set amount of time. The process would repeat until the person had used all 4 brushes. For each person, the order of the brushes would be determined randomly. In this example, the researchers have blocked on person.
+Our toothbrush example can be tweaked to use blocking. In the basic factorial examples, each person received one treatment. If researchers were concerned that a person's style and quality of brushing may have a substantial impact on the results of the study, this could be addressed by ensuring that each person tried each brush. The experiment could be set up such that a person uses a particular brush for a set period. Their plaque amount would be measured, their teeth cleaned, and then they would use a different brush for the same set amount of time. The process would repeat until the person had used all 4 brushes. For each person, the order of the brushes would be determined randomly (see @fig-block-reuse). In this example, the researchers have blocked on person.
+
+![Block by Reusing Experimental Units](images/blocks-reuse.PNG){#fig-block-reuse}
 
 # Some Specific Designs that Use Blocking
 

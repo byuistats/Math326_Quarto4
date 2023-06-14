@@ -37,8 +37,8 @@ website:
            href: block_intro.qmd
          - text: "CB[1]"
            href: cb1.qmd
-         - text: "Covariate Designs"
-           href: Covariate.html
+         - text: "ANCOVA"
+           href: ancova.qmd
          - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
            href: NestedFactor.html
         # - text: "1 Factor, Completely Randomized, Basic Factorial"

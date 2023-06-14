@@ -426,7 +426,7 @@ $$
 SS_\text{Grand Mean}= 518.2 * 24 = 12,437.43
 $$
 
-Similarly, we get the sum of squares for toothbrush, block, and residuals.
+Similarly, we get the sum of squares for participant, toothbrush, and residuals.
 
 $$
 \begin{align}
@@ -492,7 +492,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 For the structural factors in the design there are a set of hypothesis we can test using the **F statistic**. Specifically, we will want to test whether toothbrush type has an effect on plaque coverage.
 
-::: callout-caution
+::: callout-note
 We may or may not be interested in testing Block. Because Block is usually a nuisance factor, testing its effect is not a priority. On the other hand, curiosity about whether the blocks were a significant source of variation may help us plan future experiments and improve the current analysis. In fact, if Block is not significant, we may consider removing it from the model so that the Residual factor has more degrees of freedom - which may result in a lower mean squared error. A lower mean squared increases the ability to detect significance of the treatment factor.
 :::
 
@@ -535,7 +535,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 
 The p-value for brush indicates the effects of brush are marginally significant. When (in)significance is borderline, rather than making bold statements based on a small amount of (in)significance, it is helpful to dig a little deeper. Consider things like sample size, effect size (practical significance), outliers, and how closely assumptions are met. After weighing those considerations carefully, take a stance and state your belief about the role of the factor on the response. Explain your rationale, then keep an open mind and stay curious.
 
-In this case, the biggest difference in means exists between Oscillating and Ultrasonic brushes. The presence of an outlier for the Ultrasonic brush gives birth to additional questions and skepticism. Given the small sample sizes and the outlier, I would recommend gathering more evidence before making major decisions.
+In this case, the biggest difference in means exists between Oscillating and Ultrasonic brushes. The presence of an outlier for the Ultrasonic brush gives birth to additional questions and skepticism. Given the small sample sizes and the outlier, collecting more evidence before making major decisions is recommended.
 
 # Analysis in R
 

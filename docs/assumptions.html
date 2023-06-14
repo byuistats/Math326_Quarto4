@@ -204,8 +204,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Covariate.html">
- <span class="dropdown-text">Covariate Designs</span></a>
+    <a class="dropdown-item" href="./ancova.html">
+ <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./NestedFactor.html">
@@ -305,11 +305,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#center" id="toc-center" class="nav-link" data-scroll-target="#center">Center</a></li>
-  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a></li>
+  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant Variance</a>
+  <ul>
   <li><a href="#rules-of-thumb-for-one-way-anova" id="toc-rules-of-thumb-for-one-way-anova" class="nav-link" data-scroll-target="#rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</a></li>
   <li><a href="#levenes-test" id="toc-levenes-test" class="nav-link" data-scroll-target="#levenes-test">Levene’s Test</a>
-  <ul>
+  <ul class="collapse">
   <li><a href="#more-than-1-structural-factor" id="toc-more-than-1-structural-factor" class="nav-link" data-scroll-target="#more-than-1-structural-factor">More than 1 structural factor</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#shape-normal-residual-distribution" id="toc-shape-normal-residual-distribution" class="nav-link" data-scroll-target="#shape-normal-residual-distribution">Shape: normal residual distribution</a></li>
   <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations">Independent observations</a></li>
@@ -502,9 +504,8 @@ Red Line in the Residual Plot
 </div>
 <p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
 <p>Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.</p>
-</section>
-<section id="rules-of-thumb-for-one-way-anova" class="level2">
-<h2 class="anchored" data-anchor-id="rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</h2>
+<section id="rules-of-thumb-for-one-way-anova" class="level3">
+<h3 class="anchored" data-anchor-id="rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</h3>
 <p>As a rule of thumb, in one-way ANOVA (i.e.&nbsp;just one independent factor) you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
 <p>The rule of thumb is too stringent, and therefore not recommended, for anything but a one-way ANOVA.</p>
 <div class="cell">
@@ -597,8 +598,8 @@ Red Line in the Residual Plot
 </div>
 </div>
 </section>
-<section id="levenes-test" class="level2">
-<h2 class="anchored" data-anchor-id="levenes-test">Levene’s Test</h2>
+<section id="levenes-test" class="level3">
+<h3 class="anchored" data-anchor-id="levenes-test">Levene’s Test</h3>
 <p>There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is the Brown-Forsythe test, also known as Modified Levene’s test or sometimes shortened to Levene’s test.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The hypothesis for this test is</p>
 <p><span class="math display">\[
 H_0: \sigma_1 = \sigma_2 = … = \sigma_i \\
@@ -661,10 +662,10 @@ Don’t Forget to Think
 </div>
 </div>
 </div>
-<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the constant variance assumption is met. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
+<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the null hypothesis of constant variance cannot be rejected. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main reason the rule of thumb approach indicated the assumption had been violated. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
 <p>This is not to suggest the point be removed from the analysis; rather, to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don’t agree.</p>
-<section id="more-than-1-structural-factor" class="level3">
-<h3 class="anchored" data-anchor-id="more-than-1-structural-factor">More than 1 structural factor</h3>
+<section id="more-than-1-structural-factor" class="level4">
+<h4 class="anchored" data-anchor-id="more-than-1-structural-factor">More than 1 structural factor</h4>
 <p>Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs.&nbsp;off brand), toothbrush type, and their interaction.</p>
 <p>In this case, the residual vs.&nbsp;fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. Look for overall trends or megaphone shapes in the residual plot as indicators that the assumption of constant error variance may be violated. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?</p>
 <div class="cell">
@@ -719,6 +720,7 @@ Don’t Forget to Think
 </div>
 </div>
 <p>With a p-value of .541 we fail to reject the null hypothesis. It appears the constant variance assumption is met.</p>
+</section>
 </section>
 </section>
 <section id="shape-normal-residual-distribution" class="level2 page-columns page-full">

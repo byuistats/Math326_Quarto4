@@ -173,7 +173,7 @@ The points in @fig-variance are in 4 vertical groupings corresponding to the fac
 
 Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.
 
-## Rules of Thumb for One-way ANOVA
+### Rules of Thumb for One-way ANOVA
 
 As a rule of thumb, in one-way ANOVA (i.e. just one independent factor) you can check to see if the largest standard deviation is more than double the smallest standard deviation. @tbl-favstats shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because $2*1.74 = 3.48 < 3.90$, by this rule of thumb the constant variance assumption appears to be violated.
 
@@ -188,7 +188,7 @@ The rule of thumb is too stringent, and therefore not recommended, for anything 
 favstats(Plaque~Brush, data = bf2) |> kable(digits = 2)
 ```
 
-## Levene's Test
+### Levene's Test
 
 There are formal hypothesis tests that can help determine if variance is equal across factor levels. One such test is the Brown-Forsythe test, also known as Modified Levene's test or sometimes shortened to Levene's test.[^2] The hypothesis for this test is
 
@@ -231,11 +231,11 @@ It is tempting to turn off your brain and simply run the test or use a rule with
 leveneTest(brush_aov) |> kable()
 ```
 
-For the toothbrush example, the p-value of Levene's F-test in @tbl-levene is .8605, indicating the constant variance assumption is met. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of @fig-variance is the main cause of the unequal variance. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene's test.
+For the toothbrush example, the p-value of Levene's F-test in @tbl-levene is .8605, indicating the null hypothesis of constant variance cannot be rejected. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of @fig-variance is the main reason the rule of thumb approach indicated the assumption had been violated. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene's test.
 
 This is not to suggest the point be removed from the analysis; rather, to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don't agree.
 
-### More than 1 structural factor
+#### More than 1 structural factor
 
 Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs. off brand), toothbrush type, and their interaction.
 
