@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Latin Square</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics of Design</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Specific Designs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bf2.html">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./block_intro.html">
+ <span class="dropdown-text">Blocking Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cb1.html">
+ <span class="dropdown-text">CB[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ancova.html">
+ <span class="dropdown-text">ANCOVA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Broad Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiple_comparisons.html">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unbalanced.html">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R Instructions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diagnostics.html">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datasets</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
+        <li>
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+ <span class="dropdown-text">XYZ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="././Data/StudentHousing.html">
+ <span class="dropdown-text">yadda yadda</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#factor-structure" id="toc-factor-structure" class="nav-link" data-scroll-target="#factor-structure">Factor Structure</a></li>
+  <li><a href="#model-and-hypotheses" id="toc-model-and-hypotheses" class="nav-link" data-scroll-target="#model-and-hypotheses">Model and Hypotheses</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  </ul></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a>
+  <ul class="collapse">
+  <li><a href="#r-randomization" id="toc-r-randomization" class="nav-link" data-scroll-target="#r-randomization">R randomization</a>
+  <ul class="collapse">
+  <li><a href="#wide-format" id="toc-wide-format" class="nav-link" data-scroll-target="#wide-format">Wide format</a></li>
+  <li><a href="#longer-format" id="toc-longer-format" class="nav-link" data-scroll-target="#longer-format">Longer format</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#factor-effects" id="toc-factor-effects" class="nav-link" data-scroll-target="#factor-effects">Factor Effects</a>
+  <ul class="collapse">
+  <li><a href="#factor-means" id="toc-factor-means" class="nav-link" data-scroll-target="#factor-means">Factor Means</a></li>
+  </ul></li>
+  <li><a href="#factor-effects-1" id="toc-factor-effects-1" class="nav-link" data-scroll-target="#factor-effects-1">Factor Effects</a></li>
+  <li><a href="#completing-the-anova-table" id="toc-completing-the-anova-table" class="nav-link" data-scroll-target="#completing-the-anova-table">Completing the ANOVA Table</a></li>
+  </ul></li>
+  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a>
+  <ul class="collapse">
+  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#constant-variance-of-residuals" id="toc-constant-variance-of-residuals" class="nav-link" data-scroll-target="#constant-variance-of-residuals">Constant Variance of Residuals</a></li>
+  <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
+  <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Latin Square</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="overview" class="level1 page-columns page-full">
+<h1>Overview</h1>
+<p>The <a href="./cb1.html">CB[1]</a> design works well when there is only one variable to block on. What can be done when there are two nuisance factors to block on? If those two blocking factors and the treatment all have the same number of levels, then a latin square design should be used.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+When to use Latin Square
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Latin Square designs are appropriate when</p>
+<ul>
+<li><p>Two blocking factors and one treatment factor</p></li>
+<li><p>All three factors have the same number of levels</p></li>
+<li><p>Treatments can be assigned to experimental units</p></li>
+</ul>
+</div>
+</div>
+<p>Previously, in the CB[1] design we used the toothbrush study and blocked on participant. If we only had 4 participants and we considered “order” a nuisance factor, we could use a Latin Square. By adding “order” as a blocking variable, we can ensure that the order of the treatments does not all become the same by random chance alone.</p>
+<p>Blocking on subjects and order of treatments is one of the most common applications of a Latin Square design in psychology. (Treatments, of course, must be something that can be assigned to experimental units). Be aware that in these types of experiments carry-over effects (such as learning and fatigue) can be problematic. Experimental protocols need to proactively address potential carry-over effects<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Latin Square designs are also common in agriculture, where they were originally developed. The field is divided into a square grid and treatments are randomly applied to each cell of the grid. The blocking variables are the row position and column position in the grid respectively.</p>
+<p><a href="#fig-ls_fields">Figure&nbsp;1</a> shows two images of Latin Square designs in agriculture, pulled from Bailey, Cameron, and Connelly’s 2008 article in American Mathematical Monthly <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. <a href="#fig-fisher">Figure&nbsp;1 (a)</a> is a picture of a 5×5 forestry experiment on a hill in Beddgelert in Wales. The experiment was “designed by Fisher, laid out in 1929, and photographed in about 1945”. <a href="#fig-six-by-six">Figure&nbsp;1 (b)</a> shows “a 6×6 experiment to compare methods of controlling aphids; conducted by Lesley Smart at Rothamsted Research, photographed in 2004.”</p>
+<div id="fig-ls_fields" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-fisher" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_5_by_5.png" class="img-fluid figure-img" data-ref-parent="fig-ls_fields"></p>
+<p></p><figcaption class="figure-caption">(a)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-six-by-six" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_field.jpg" class="img-fluid figure-img" data-ref-parent="fig-ls_fields"></p>
+<p></p><figcaption class="figure-caption">(b)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Agricultural examples of latin squares</figcaption><p></p>
+</figure>
+</div>
+<p>Regardless of whether the application is psychology, agriculture or something else, the key design feature of a Latin Square design is that <strong>each treatment appears exactly once in each row and in each column of the square.</strong></p>
+<p>There are various extensions to this basic Latin Square idea. Graeco Latin Squares can be used if you have more than 2 variables to block on (provided all factors have the same number of levels, and the number is not 6). Replicated Latin Squares is useful if the number of experimental units is a multiple of (instead of exactly equal to) the number of treatment factor levels. Replicated Latin Squares is discussed briefly <a href="https://www.stat.purdue.edu/~bacraig/notes514/topic13a.pdf">here</a> and <a href="https://online.stat.psu.edu/stat503/lesson/4/4.4">here</a>.</p>
+<section id="factor-structure" class="level2">
+<h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
+<p>In the factor diagram, one nuisance factor’s levels are associated with the row partitions of the dataset. The other nuisance factor’s levels are marked by partitioning the dataset by columns. The treatment is assigned a letter inside the factor diagram. <a href="#fig-ls_factors">Figure&nbsp;2</a> is a factor structure diagram for a Latin Square design where the controlled factors all have 4 levels. This is an unrandomized layout of the treatments: each row (and column) follows the same sequence of treatments. In the <a href="#design">Design</a> section we will learn to randomize the design.</p>
+<div id="fig-ls_factors" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_factors.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Factor Structure for Latin Square Design with 4 Treatment Levels</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="model-and-hypotheses" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="model-and-hypotheses">Model and Hypotheses</h2>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-ls_factors">Figure&nbsp;2</a> corresponds to a term on the right hand side of <a href="#eq-ls1">Equation&nbsp;1</a>:</p>
+<p><span id="eq-ls1"><span class="math display">\[
+y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
+\tag{1}\]</span></span></p>
+<p>Where</p>
+<ul>
+<li><p><span class="math inline">\(y_{ij}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span>, level <em>j</em> of <span class="math inline">\(\beta\)</span>, and level <em>k</em> of <span class="math inline">\(\gamma\)</span>.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is the grand mean of the entire dataset.</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> is the effect of the block factor partitioned by rows</p></li>
+<li><p><span class="math inline">\(\beta\)</span> is the effect of the block factor partitioned by columns</p></li>
+<li><p><span class="math inline">\(\gamma\)</span> is the effect of the treatment factor, designated by a letter value. Each treatment appears exactly once in each row and each column.</p></li>
+<li><p><span class="math inline">\(\epsilon\)</span> is the residual error term</p></li>
+</ul>
+<p>The Latin Square is an incomplete block design. In other words, each treatment does not show up in each block. In other words, not all subscript combinations of <em>i</em>, <em>j</em>, and <em>k</em> will be observed. Therefore there are insufficient observations to estimate and test interaction effects.</p>
+<p>The hypothesis for the treatment is</p>
+<p><span class="math display">\[H_0: \gamma_k = 0 \text{ for all }k\]</span></p>
+<p><span class="math display">\[H_a: \gamma_k \ne 0 \text{ for some }k\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The focus of the study is on the treatment factor. However, you can test the block factors in the same way you test the treatment factor.</p>
+</div></div></section>
+<section id="assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
+<p>An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 36%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirements</th>
+<th>Method for Checking</th>
+<th>What You Hope to See</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Constant variance across factor levels[^1]</td>
+<td>Residual vs.&nbsp;Fitted Plot</td>
+<td>No major disparity in vertical spread of point groupings</td>
+</tr>
+<tr class="even">
+<td>Normally Distributed Residuals</td>
+<td>Normal Q-Q plot</td>
+<td>Straight line, majority of points in boundaries</td>
+</tr>
+<tr class="odd">
+<td>Independent residuals</td>
+<td>Order plot</td>
+<td>No pattern/trend</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Familiarity with/critical thinking about the experiment</td>
+<td>No potential source for bias</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="design" class="level1">
+<h1>Design</h1>
+<p>In <a href="#fig-ls_factors">Figure&nbsp;2</a> an unrandomized treatment factor is displayed. Using an unrandomized assignment of treatments to cells in the square has 2 potential drawbacks:</p>
+<ul>
+<li><p>Treatments follow the same sequence. Carry-over effects are confounded with treatment effects.</p></li>
+<li><p>In some squares, this could give an advantage to certain treatments. Consider a field that was divided up into a 5 by 5 grid. If the soil in the field tends to be more fertile and productive as you move toward the upper-left corner of the field, then treatment B has an advantage over treatment C. And treatment C has a slight advantage of treatment D, and so forth.</p></li>
+</ul>
+<table class="table">
+<caption>Unrandomized Treatments Applied to a Field</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">E</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+</tr>
+</tbody>
+</table>
+<p>There are 3 steps to properly randomize a Latin Square.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+3 Steps to Randomize a Latin Square
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Randomize rows</p></li>
+<li><p>Randomize columns</p></li>
+<li><p>Randomize treatments to letters</p></li>
+</ul>
+</div>
+</div>
+<p>We will illustrate the 3 steps with a 4 x 4 grid.</p>
+<table class="table">
+<caption>Unrandomized 4 x 4 grid</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;"><strong>4</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1: Randomize Rows</strong></p>
+<p>Use a random number generator to randomly shuffle the numbers 1 through 4. Using <code>sample(1:4)</code> returned the sequence 1, 2, 4, 3<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The table rows are reordered to match that sequence.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2: Randomize Columns</strong></p>
+<p>Use a random number generator to randomly reshuffle the numbers 1 through 4. Using <code>sample(1:4)</code> returned the sequence 4, 3, 1, 2<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The table columns are reordered to match that sequence.</p>
+<p>In this case, the column headers have also been moved to show how the randomization works. However, usually the column headers do not change, it is just the treatments within the columns that get shifted. This can be seen in the traffic light experiment described in the <a href="#decomposition">Decomposition</a> section below.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">D</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3: Randomize Treatments to Letters</strong></p>
+<p>The 4 conditions can be randomly assigned to 1 of each of the four letters.</p>
+<p>It is helpful to see the randomization as shown above to gain a conceptual understanding of how the design is generated. There are various ways to carry out this randomization in R.</p>
+<section id="r-randomization" class="level2">
+<h2 class="anchored" data-anchor-id="r-randomization">R randomization</h2>
+<section id="wide-format" class="level3">
+<h3 class="anchored" data-anchor-id="wide-format">Wide format</h3>
+<p>If the design is laid out similar to the factor structure diagram it is considered to be in wider format. This code creates a table in wider format of the unrandomized design.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First create the unrandomized layout design, labeling the rows and columns as 1, 2, 3, 4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ls_design <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1</span><span class="st">`</span>  <span class="ot">=</span> <span class="st">"A"</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span><span class="st">"B"</span>, <span class="st">`</span><span class="at">3</span><span class="st">`</span><span class="ot">=</span>  <span class="st">"C"</span>, <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"D"</span>), </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ls_design</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  `1`   `2`   `3`   `4`  
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 A     B     C     D    
+2 B     C     D     A    
+3 C     D     A     B    
+4 D     A     B     C    </code></pre>
+</div>
+</div>
+<p>One simple way is to carry out the randomization is to use the <code>sample()</code> command in conjunction with the <code>[]</code> notation. The <code>sample()</code> command randomly shuffles the values it is given. The square brackets allow you to reference rows and columns of a matrix. The first argument in the square brackets refers to rows, the second argument refers to columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Then randomize rows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>row_randomized <span class="ot">&lt;-</span> ls_design[<span class="fu">sample</span>(<span class="fu">nrow</span>(ls_design)), ]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Then randomize columns</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>all_randomized <span class="ot">&lt;-</span> row_randomized[ , <span class="fu">sample</span>(<span class="fu">ncol</span>(row_randomized))]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#The above randomization steps can be combined into one command</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ls_design[ <span class="fu">sample</span>(<span class="fu">nrow</span>(ls_design)), <span class="fu">sample</span>(<span class="fu">ncol</span>(ls_design))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  `3`   `2`   `1`   `4`  
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 D     C     B     A    
+2 C     B     A     D    
+3 B     A     D     C    
+4 A     D     C     B    </code></pre>
+</div>
+</div>
+</section>
+<section id="longer-format" class="level3">
+<h3 class="anchored" data-anchor-id="longer-format">Longer format</h3>
+<p>The R language often wants data in longer format. To create the unrandomized design in longer format, use this code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">row_blocks =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">4</span>), </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">column_blocks =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">4</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">treatment =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 3
+   row_blocks column_blocks treatment
+        &lt;int&gt;         &lt;int&gt; &lt;chr&gt;    
+ 1          1             1 A        
+ 2          1             2 B        
+ 3          1             3 C        
+ 4          1             4 D        
+ 5          2             1 B        
+ 6          2             2 C        
+ 7          2             3 D        
+ 8          2             4 A        
+ 9          3             1 C        
+10          3             2 D        
+11          3             3 A        
+12          3             4 B        
+13          4             1 D        
+14          4             2 A        
+15          4             3 B        
+16          4             4 C        </code></pre>
+</div>
+</div>
+<p>To randomize the rows and columns, put the vector <code>1:4</code> within the <code>sample()</code> command when defining the row blocks and the column blocks, as shown below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#randomize rows</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>randomized_design <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">row_blocks =</span> <span class="fu">rep</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">each =</span> <span class="dv">4</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">column_blocks =</span> <span class="fu">rep</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">times =</span> <span class="dv">4</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">treatment =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>randomized_design</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After carrying out the experiment and gathering data, a vector containing the observed values can be added to the dataset using <code>cbind()</code> or <code>dplyr::bind_col()</code> from the tidyverse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Store observed data in a vector. </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># These observed values are copmletely made up</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>observed_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">11</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">4</span>,<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(randomized_design, observed_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="decomposition" class="level1 page-columns page-full">
+<h1>Decomposition</h1>
+<p>To illustrate the decomposition of a Latin Square we will introduce a new example. In this example, the goal is to evaluate 4 different algorithms for traffic light timing. Throughput, the total cars getting through the intersection during a set length of time, is measured as a response variable. Of course, each intersection is different in terms of volume and direction of traffic. We will pick 4 random intersections to apply the different algorithms to. The time of day can also heavily influence the volume and direction of traffic, so we will block on time of day as well. In order to use a Latin Square design, we will measure throughput at 4 different times of day. Each traffic light timing algorithm will be measured only once at each time of day, and only once at each intersection.</p>
+<p>The goal of an analysis of variance (ANOVA) is to decompose the variance in these observations, to determine how much variance is coming from each factor. In this experiment the randomization steps described in the <a href="#design">Design</a> section above were applied. <a href="#fig-ls_factors_traffic">Figure&nbsp;3</a> shows the factor structure for this Latin Square traffic experiment.</p>
+<div id="fig-ls_factors_traffic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_factors_traffic.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Factor Diagram for Traffic Light Timing Algorithm Experiment</figcaption><p></p>
+</figure>
+</div>
+<p>Each factor in <a href="#fig-ls_factors_traffic">Figure&nbsp;3</a> corresponds to a term on the right side <a href="#eq-ls1">Equation&nbsp;1</a> (repeated again here for convenience).</p>
+<p><span class="math display">\[
+y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
+\]</span></p>
+<p>Here we define each term of the model in context of the traffic experiment.</p>
+<ul>
+<li><p><span class="math inline">\(\mu\)</span> is the grand mean of all the 16 observations</p></li>
+<li><p><span class="math inline">\(\alpha_i\)</span> is the effect of the row factor, in this example <em>i</em> ranges from 1 to 4 to represent each of the 4 intersections</p></li>
+<li><p><span class="math inline">\(\beta_j\)</span> is the effect of the column factor, time of day. <span class="math inline">\(j \in \{\text{1=8am, 2=11am, 3=2pm, 4=5pm}\}\)</span></p></li>
+<li><p><span class="math inline">\(\gamma_k\)</span> is the effect of the treatment factor, timing algorithm. <span class="math inline">\(k \in \{A, B, C, D\}\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon_{ijk}\)</span> is the residual error term.</p></li>
+</ul>
+<p><span class="math inline">\(y_{ijk}\)</span> is an observation from the <em>i</em><sup>th</sup> intersection, during the <em>j</em><sup>th</sup> time of day, when the <em>k</em><sup>th</sup> algorithm is applied.</p>
+<p>Every combination of <em>i, j</em>, and <em>k</em> subscripts will <strong>not</strong> appear. There are not enough degrees of freedom to estimate interaction effects, which is why there is no interaction term in the model. All interactions are assumed to be zero.</p>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>As is the case with other designs learned so far, the grand mean factor is outside of all other factors. There is only one grand mean associated with the dataset, so there is just one degree of freedom associated with grand mean.</p>
+<p>The general rule for calculating degrees of freedom states that the degrees of freedom for a factor are equal to the number of levels of that factor minus the sum of degrees of freedom of all outside factors.</p>
+<p>Grand mean is the only factor outside of intersection (rows), time of day (column), and treatment (algorithm)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Therefore, for each of these factors we can take their number of levels and subtract one; the degrees of freedom for the 3 structural factors are 4-1 = 3.</p>
+<p>There is one residual for each observation, therefore the number of factor levels for residual is equal to the sample size, 16. The residual factor is inside of all other factors, so degrees of freedom for residual is 16 – (1 + 3 + 3 + 3) = 6<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+</section>
+<section id="factor-effects" class="level2">
+<h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
+<p>To calculate factor effects, we start by calculating means for each level of every factor.</p>
+<section id="factor-means" class="level3">
+<h3 class="anchored" data-anchor-id="factor-means">Factor Means</h3>
+<p>Below is a table that contains observed throughput for the combinations of intersection, time of day, and algorithm (represented as A, B, C or D).</p>
+<table class="table">
+<caption>Observed Throughput for Traffic Light Timing Algorithm Experiment</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">8am</th>
+<th style="text-align: center;">11am</th>
+<th style="text-align: center;">2pm</th>
+<th style="text-align: center;">5pm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><strong>Intersection 1</strong></td>
+<td style="text-align: center;">A (32)</td>
+<td style="text-align: center;">B (33)</td>
+<td style="text-align: center;">C (47)</td>
+<td style="text-align: center;">D (53)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Intersection 2</strong></td>
+<td style="text-align: center;">B (36)</td>
+<td style="text-align: center;">D (53)</td>
+<td style="text-align: center;">A (42)</td>
+<td style="text-align: center;">C (54)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Intersection 3</strong></td>
+<td style="text-align: center;">C (51)</td>
+<td style="text-align: center;">A (44)</td>
+<td style="text-align: center;">D (62)</td>
+<td style="text-align: center;">B (49)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Intersection 4</strong></td>
+<td style="text-align: center;">D (81)</td>
+<td style="text-align: center;">C (78)</td>
+<td style="text-align: center;">B (72)</td>
+<td style="text-align: center;">A (73)</td>
+</tr>
+</tbody>
+</table>
+<p>The grand mean and the mean of each factor level will be calculated for the 3 structural factors.</p>
+<p>The grand mean is simply the mean of all the observations and is equal to 53.8.</p>
+<p>The calculation to find the mean of an intersection (row) are as follows:</p>
+<p><span class="math display">\[
+\bar{y}_\text{intersection 1} = \bar{y}_{1\cdot\cdot} = \frac{32 + 33 + 47 +  53}{4} = 41.3
+\]</span></p>
+<!-- Similar calculations for the other rows yield $\bar{y}_\text{intersection 2} = 46.3$, $\bar{y}_\text{intersection 3} = 51.5$, $\bar{y}_\text{intersection 4} = 76.0$ -->
+<p>Similar calculations can be applied to obtain the row mean for the other rows.</p>
+<p>Now find the mean for each time of day (column). The calculation for the first column is shown below. Similar calculations can be applied to obtain the mean for each of the other columns as well.</p>
+<p><span class="math display">\[
+\bar{y}_\text{8am} = \bar{y}_{\cdot 1 \cdot} = \frac{32 + 36 + 51 + 81}{4} = 50
+\]</span></p>
+<p>To find the mean for each algorithm, we add together the 4 observations that belong to each algorithm and divide by four.</p>
+<p>$$ <span class="math display">\[\begin{align}
+\bar{y}_A = \bar{y}_{\cdot \cdot 1} &amp;= \frac{32 + 44 + 42 + 73}{4} = 47.8 \\
+
+\bar{y}_B = \bar{y}_{\cdot \cdot 2} &amp;= \frac{36 + 33 + 72 + 79}{4} = 47.5 \\
+
+\bar{y}_C = \bar{y}_{\cdot \cdot 3} &amp;= \frac{51 + 78 + 47 + 54}{4} = 57.5 \\
+
+\bar{y}_D = \bar{y}_{\cdot \cdot 4} &amp;= \frac{81 + 53 + 62 + 53}{4} = 62.3
+\end{align}\]</span> $$</p>
+<p>We do not need to calculate means for residual error factor for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.</p>
+<p>The means for each factor level are shown in <a href="#fig-ls_means">Figure&nbsp;4</a>.</p>
+<div id="fig-ls_means" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_means.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Factor Level Means</figcaption><p></p>
+</figure>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The means in the image are rounded to 1 decimal place to save on space, but calculations should take advantage of full decimal precision.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="factor-effects-1" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="factor-effects-1">Factor Effects</h2>
+<p>Now that means for each level of each factor are calculated, we can move on to calculate effects of the factor levels. We will use the general formula for calculating effect size,</p>
+<p><span class="math display">\[
+\text{factor level effect} = \text{factor level mean} - \text{sum of all outside factor effects}
+\]</span></p>
+<p>For the grand mean, there is only one level and there are no outside factors. Therefore, the effect due to grand mean is 53.8 (equivalent to its mean) and this affect is applied to all 16 observations.</p>
+<p>The intersection factor has four levels: one for each intersection. To calculate the effect of an intersection, take the intersection mean and subtract it from the effect due to the grand mean factor. For the intersection 1 this looks like:</p>
+<p><span class="math display">\[
+41.25 - 53.75 = -12.5
+\]</span></p>
+<p>This result indicates that the mean throughput at intersection 1 is 12.5 fewer cars than the grand mean. Effects for the other 3 intersections are found with a similar calcultion.</p>
+<p>To find the effect of a specific time of day, subtract the grand mean from the level's mean. For "8am", the calculation is</p>
+<p><span class="math display">\[
+50 - 53.75 = -3.75
+\]</span></p>
+<p>Effects of the other times of day are similarly calculated.</p>
+<p>To find the effect of timing algorithm A, subtract the grand mean from the mean of algorithm A:</p>
+<p><span class="math display">\[
+47.75 - 53.75 = -6
+\]</span></p>
+<p>Similarly, the effect of algorithm B is <span class="math inline">\(47.5 - 53.75 = 3.25\)</span>, algorithm C’s effect is <span class="math inline">\(57.5 - 53.75 = 3.75\)</span> and D’s effect is <span class="math inline">\(62.26 - 53.75 = 8.5\)</span>.</p>
+<p>Lastly, the residuals (or residual effects) need to be calculated. The mean for each level of residual is simply the observation itself. Effects associated with an observation’s factor levels are subtracted from the observed value. Whatever is left over is considered the residual. In other words, we have applied the general rule for calculating effect size. For the residual factor, the effect can concisely be stated as “observed value - predicted value”.</p>
+<p>As an example, the residual in the top left corner of the residual factor was obtained with this calculation:</p>
+<p><span class="math display">\[
+32 - (53.75 + -12.5 + -3.25 + -6) = 0.5
+\]</span></p>
+<p><a href="#fig-ls_effects">Figure&nbsp;5</a> uses the factor structure diagram to show the build-up of each observations as the summation of each of its factor level effects.</p>
+<div class="column-page">
+<div id="fig-ls_effects" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_effects.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Factor Effects</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="completing-the-anova-table" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA Table</h2>
+<p>Now that we have calculated degrees of freedom and effects for each factor, we can calculate the remaining pieces of the ANOVA table: <strong>Sum of Squares (SS), Mean Squares (MS), F-statistic and p-value</strong>. A completed ANOVA summary table contains the information we need for a hypothesis test of the treatment effect.</p>
+<p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. The total degrees of freedom are the total number of observations.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:left;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> Fvalue </th>
+   <th style="text-align:left;"> pvalue </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Grand Mean </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Intersection (row) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Time of day (column) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Algorithm (treatment) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual Error </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. The factor effects were displayed in <a href="#fig-ls_effects">Figure&nbsp;5</a> above. <a href="#fig-ls_sq_effects">Figure&nbsp;6</a> (below) shows <em>squared effects</em> for the factors, excluding the grand mean and the observations.</p>
+<div class="column-page">
+<div id="fig-ls_sq_effects" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/ls_squared_effects.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Squared Factor Effects</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>The total sum of squares ($ SS_{total}$) represents all the squared variability that we will need to allocate to the various factors. It is calculated by squaring each observation and then summing them together:</p>
+<p><span class="math display">\[
+SS_{total} = 32^2 + 33^2 + … + 73^2 = 49856
+\]</span></p>
+<p>To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, <span class="math inline">\(53.75^2 = 2889.0625\)</span>. That value occurs 16 times in the dataset (once for each observation), so $ SS_$ = 2889.0625 * 16 = 46225.</p>
+<p>To get the sum of squares for each factor, we simply add all the squared effects. Since for intersections, time of day, and timing algorithm, each effect is repeated exactly 4 times, we will use some multiplication to simplify the calculation:</p>
+<p>$$ <span class="math display">\[\begin{align}
+
+SS_\text{intersections} &amp;= 4*(156.3 + 56.3 + 5.1 + 495.1) = 2850.5 \\
+
+SS_\text{time of day} &amp;= 4 *(14.1 + 3.1 + 4 + 12.3) = 133.5 \\
+
+SS_\text{algorithm} &amp;= 4 * (36 + 39.1 + 14.1 + 72.3) = 645.5 \\
+
+SS_\text{residual} &amp;= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
+\end{align}\]</span> $$</p>
+<p>Putting this information into the ANOVA table gives us <a href="#tbl-SS">Table&nbsp;1</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-SS" class="anchored">
+
+<table style="width:65%; margin-left: auto; margin-right: auto;" class="table"><caption>Table&nbsp;1:  Sums of squares </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> Fvalue </th>
+   <th style="text-align:left;"> pvalue </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Grand Mean </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 46225.0 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Intersection (row) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2850.5 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Time of day (column) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 133.5 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Algorithm (treatment) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 645.5 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual Error </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 49856.0 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>You can verify that we have successfully partitioned out the SS_total, try adding the sum of squares for all the factors together. The result should be equal to the sum of squares you got by squaring the observed values and summing them.</p>
+</div></div><p>The next step is to covert the total variability (sum of squares) to an average variability per factor (mean squares). To create an average from a total, you must divide by the number of unique pieces of information that were summed to create the total, in this case the degrees of freedom. The mean squares can be thought of as the sample variance between factor level means.</p>
+<p>Obtain the mean squares for each factor by dividing its sum of squares by its degrees of freedom.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:right;"> MS </th>
+   <th style="text-align:left;"> Fvalue </th>
+   <th style="text-align:left;"> pvalue </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Grand Mean </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 46225.0 </td>
+   <td style="text-align:right;"> 46225.00 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Intersection (row) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2850.5 </td>
+   <td style="text-align:right;"> 950.17 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Time of day (column) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 133.5 </td>
+   <td style="text-align:right;"> 44.50 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Algorithm (treatment) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 645.5 </td>
+   <td style="text-align:right;"> 215.17 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual Error </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 49856.0 </td>
+   <td style="text-align:right;"> 3116.00 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The objective of the study was to evaluate differences in timing algorithms of traffic lights. The intersection and time of day factors were simply nuisance factors we blocked on to better isolate the effect of timing algorithm. For that reason, we will only show the hypothesis test of the treatment factor (algorithm) here, though a similar test could be done for the blocking factors (intersection and time of day).</p>
+<p>In <a href="#eq-ls1">Equation&nbsp;1</a>, <span class="math inline">\(\gamma\)</span> represents the effect of algorithm. Our hypotheses therefore are</p>
+<p><span class="math display">\[
+H_o: \gamma_k = 0 \text{, for all } k
+\]</span></p>
+<p><span class="math display">\[
+H_a: \gamma_k \ne 0 \text{, for some } k
+\]</span></p>
+<p>To test the hypothesis, we need to compare the mean square (MS) for algorithm to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic.</p>
+<p><span class="math display">\[
+\text{F statistic} = \frac{MS_{algorithm}}{MS_{error}} = \frac{215.1\overline{6}}{0.25} = 860.\overline{6}
+\]</span></p>
+<p>This F statistic has 3 and 6 degrees of freedom, written as <span class="math inline">\(F_{3,6} = 860.\overline{6}\)</span>. This is a huge F statistic.</p>
+<p>The associated p-value is approximately zero as calculated in Excel with the function <code>= f.dist.rt(860.6667, 3, 6)</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:right;"> MS </th>
+   <th style="text-align:right;"> Fvalue </th>
+   <th style="text-align:right;"> pvalue </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Grand Mean </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 46225.0 </td>
+   <td style="text-align:right;"> 46225.00 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Intersection (row) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2850.5 </td>
+   <td style="text-align:right;"> 950.17 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Time of day (column) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 133.5 </td>
+   <td style="text-align:right;"> 44.50 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Algorithm (treatment) </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 645.5 </td>
+   <td style="text-align:right;"> 215.17 </td>
+   <td style="text-align:right;"> 860.667 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual Error </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 49856.0 </td>
+   <td style="text-align:right;"> 3116.00 </td>
+   <td style="text-align:right;">  </td>
+   <td style="text-align:right;">  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>We can conclude from these results that at least one of the timing algorithms has a statistically significant effect on the number of cars flowing through an intersection. As calculated earlier, Algorithm D had the largest positive effect on throughput at an intersection and it seems reasonable to recommend this algorithm to those in charge of traffic lights.</p>
+</section>
+</section>
+<section id="analysis-in-r" class="level1 page-columns page-full">
+<h1>Analysis in R</h1>
+<p>This section illustrates the R code necessary to analyze data from a Latin Square design.</p>
+<p>When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Interactive code and additional explanations of numerical summaries and plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/latin_square_traffic.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(number_of_cars <span class="sc">~</span> <span class="fu">factor</span>(algorithm), <span class="at">data =</span> df,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">'p'</span>, <span class="st">'a'</span>), <span class="at">xlab =</span> <span class="st">"Light Timing Algorithm"</span>, <span class="at">ylab =</span> <span class="st">"# of Cars"</span>, <span class="at">main =</span> <span class="st">"Traffic Experiment on Intersection Throughput"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-dot_plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="latin_square_files/figure-html/fig-dot_plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Dotplot by Treatment</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In <a href="#fig-dot_plot">Figure&nbsp;7</a> one can clearly see the mean throughput for algorithms C and D are higher than A and B. This is further supported by the table of means below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(algorithm) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Mean Throughput</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">mean</span>(number_of_cars)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> algorithm </th>
+   <th style="text-align:right;"> Mean Throughput </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> A </td>
+   <td style="text-align:right;"> 47.75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 47.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> C </td>
+   <td style="text-align:right;"> 57.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> D </td>
+   <td style="text-align:right;"> 62.25 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Create the model using the <code>aov()</code> function. To see the results of the F-test and the ANOVA summary table use the <code>summary()</code> or <code>anova()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>myaov</code> is the user defined name in which the results of the aov() model are stored</li>
+<li><code>Y</code> is the name of a numeric variable in your dataset which represents the quantitative response variable.</li>
+<li><code>X1</code>, <code>X2</code>, <code>X3</code> are names of categorical variables in your dataset. They should have class(X) equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(X1)*...)</code> command.</li>
+<li><code>YourDataSet</code> is the name of your data set.</li>
+</ul>
+<p>Below are the results of the traffic light timing algorithm experiment. You should notice that these results match what we got when we performed the decomposition manually to build the ANOVA summary table.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_ls_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(number_of_cars <span class="sc">~</span> intersection <span class="sc">+</span> time_of_day <span class="sc">+</span> algorithm, <span class="at">data=</span>df)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_ls_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+intersection  3 2850.5   950.2  3800.7 3.18e-10 ***
+time_of_day   3  133.5    44.5   178.0 2.99e-06 ***
+algorithm     3  645.5   215.2   860.7 2.72e-08 ***
+Residuals     6    1.5     0.3                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Our main concern was with the effect of the timing algorithm. The p-value for algorithm (p = 2.72e-08) is extremely low. We have sufficient evidence to say that at least one of the 4 timing algorithms has a significant effect on the throughput of cars. Specifically, algorithm D performs best, followed by C. Algorithms A and B have similar throughput.</p>
+<p>The blocking variables also turned out to be significant, with p-values of 3.18e-10 and 2.99e-06. This suggests that they accounted for a large amount of variation in the response variable and that our blocking was worthwhile (at least in term of reducing our residual error). Indeed, running the ANOVA without the blocking factors included results in a high p-value for algorithm and an inability to detect differences between algorithms.</p>
+<section id="check-assumptions" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="check-assumptions">Check Assumptions</h2>
+<p>For a more detailed explanation of the code, output, and theory behind these assumptions visit the <a href="./assumptions.html">Assumptions</a> page.</p>
+<section id="constant-variance-of-residuals" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="constant-variance-of-residuals">Constant Variance of Residuals</h3>
+<p>The residuals need to demonstrate constant variance, regardless of the fitted or predicted value. We use a residual plot to check this assumption.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_ls_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="latin_square_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Checking constant variance</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Ignore the red line in this plot</p>
+</div></div><p>The x-axis of <a href="#fig-constant_var">Figure&nbsp;8</a> shows the fitted. Fitted values, also called predicted values, is the sum of the effects contributing to a datapoint. It includes all effects except for the residual effect. The residual is plotted on the y-axis.</p>
+<p>The points in the plot do not show any increase (or decreasing) in vertical spread as we move along the x-axis. Therefore, we conclude this requirement is met.</p>
+</section>
+<section id="normally-distributed-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
+<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;9</a>. All the points are in the shaded region.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(my_ls_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="latin_square_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Checking normality of residuals</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="independent-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
+<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it is possible some conditions of the experiment were run simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias.</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>The ANOVA model assumptions all appear to be met. We can trust the p-values in the ANOVA summary table. Thus we conclude algorithm has a significant effect on throughput. To gain further insight, pairwise comparisons for the algorithm levels could be run.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>A carry-over effect occurs when the effect of a treatment applied to block spreads beyond the borders of the block. For example, a fertilizer applied to a particular area is carried by wind or water to some adjacent area that is supposed to be receiving a different treatment.</p>
+<p>In the case of temporal (rather than spatial) blocks, a carry-over effect occurs when the effect of the previous treatment influences the outcome for a particular subject even after the subject has begun a new phase of the experiment under a different treatment condition.</p>
+<p>Carry over effects also include when effects of repetition (such as learning or fatigue) are mixed with effects of the treatment, and the two become confounded.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Bailey, R. &amp; Cameron, Peter &amp; Connelly, R.. (2008). Sudoku, Gerechte Designs, Resolutions, Affine Space, Spreads, Reguli, and Hamming Codes. American Mathematical Monthly. 115. 10.1080/00029890.2008.11920542.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Since this sequence is randomly generated, running the same code on your machine will give a different sequence each time you run it. You can create the sequence by first running <code>set.seed(6)</code>, and then <code>sample(1:4)</code>. If <code>sample(1:4)</code> command is run again without resetting the random seed or doing any other random sampling, the result will be the sequence which was obtained for the columns in step 2.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Since this sequence is randomly generated, running the same code on your machine will give a different sequence each time you run it. You can create the sequence by first running <code>set.seed(6)</code>, and then <code>sample(1:4)</code>. If <code>sample(1:4)</code> command is run again without resetting the random seed or doing any other random sampling, the result will be the sequence which was obtained for the columns in step 2.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Deciding whether the treatment factor is inside or outside of another factor is a little unusual since the partitions for treatment are not contiguous. However, the definition of outside or inside is still the same. Let’s look at the relationship between treatment at grand mean.</p>
+<p><img src="images/ls_treatment_outside_grand_mean.png" class="img-fluid"></p>
+<p>Treatment A fits nicely inside of the Grand Mean partition. The partitions for the other treatment levels also fit in Grand Mean; so Treatment is “inside” of Grand Mean.</p>
+<p>Treatment and the Column Factor can also be investigated. In this case, level A of Treatment does not fit nicely inside of the column factor. In fact, one level of Treatment spans all 4 levels of the column factor. Treatment is certainly not inside of the Column Factor.</p>
+<p><img src="images/ls_treatment_and_column1.png" class="img-fluid"></p>
+<p>We can also see that the Column Factor partitions do not fit inside of Treatment.</p>
+<p><img src="images/ls_treatment_and_column2.png" class="img-fluid"></p>
+<p>The factors are crossed since each level of Treatment appears in combination with each level of the Column Factor. A similar process can be carried out to determine that Treatment and the Column Factor are also crossed.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>The counting free numbers approach of determining degrees of freedom for residuals may be less clear to apply than it was in other designs due to the non-continuous partitions of the treatment factor. There are 3 structural factors: rows, columns, and treatments. (In the traffic example, that corresponds to intersections, times of day, and timing algorithm respectively). The residuals in each of these partitions must sum to zero.</p>
+<p>For the treatment, all the residuals for observations from Treatment A must sum to zero. Similarly, the observations from Treatment B will have residuals that sum to zero. And so on for each treatment. It is not obvious in the factor diagram which observation should be chosen as “locked” and which ones we can count as free to vary. But consider for a moment that in any row, each of the treatments appears. We will select a row (let’s use the top row for convenience), and say that each of those residuals is “locked”. This essentially reduces the residual factor from a 4x4 table of free values, to a 3x4 table.</p>
+<p><img src="images/ls_df_resid1.png" class="img-fluid"></p>
+<p>Now apply the fact that in order to sum to zero across rows, the last value in each row is “locked”. Similarly, the sum of the residuals in each column of the remaining 3x4 table of free values must also sum to zero. Therefore, the last (bottom) residual of each column is also “locked”.</p>
+<p><img src="images/ls_df_resid2.png" class="img-fluid"></p>
+<p>This leads to a general result for finding residual degrees of freedom for a Latin Square: (# rows – 1) x (# columns – 2).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
