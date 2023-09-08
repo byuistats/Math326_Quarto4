@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,6 +96,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -141,135 +113,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Math326 Notebook</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html">
+    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html">
+    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html">
+    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html">
+    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html">
+    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html">
+    <a class="dropdown-item" href="./randomization.html" rel="" target="">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html">
+    <a class="dropdown-item" href="./bf2.html" rel="" target="">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf3.html" rel="" target="">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html">
+    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html">
+    <a class="dropdown-item" href="./cb1.html" rel="" target="">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html">
+    <a class="dropdown-item" href="./ancova.html" rel="" target="">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./NestedFactor.html">
+    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+ <span class="dropdown-text">Latin Square</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html" rel="" target="">
  <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html">
+    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html">
+    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html">
+    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html">
+    <a class="dropdown-item" href="./contrast.html" rel="" target="">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html">
+    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html">
+    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Kruskal.html">
+    <a class="dropdown-item" href="./Kruskal.html" rel="" target="">
  <span class="dropdown-text">ZPower??</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
+    <a class="dropdown-item" href="./LogisticRegression.html" rel="" target="">
  <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html">
+    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html">
+    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -277,22 +254,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html" rel="" target="">
  <span class="dropdown-text">XYZ</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="././Data/StudentHousing.html">
+    <a class="dropdown-item" href="././Data/StudentHousing.html" rel="" target="">
  <span class="dropdown-text">yadda yadda</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -386,12 +364,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="overview" class="level1 page-columns page-full">
 <h1>Overview</h1>
 <p>When researchers want to study the effects of two factors on the same response variable a factorial design can be considered. Factorial experiments involve two or more factors that are crossed.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -407,7 +385,7 @@ Tip
 <li>They allow the estimation of interaction effects. Or in other words, we can observe how one factor’s effect on the response changes for different levels of the other factor.</li>
 </ol>
 <p>We will expand on the simple toothpaste example to illustrate BF[2] concepts. The study is summarized here.</p>
-<p>Researchers wanted to know which of 4 types of toothbrushes was best at reducing plaque: manual (this is the traditional/usual type of brush), oscillating bristles, sonic, and ultrasonic. The response variable is was the percent of teeth surface area covered with plaque. Four teeth (first molar in each quadrant of the mouth) were measured on each person to calculate the total percent area covered. Six subjects were assigned to each type of brush.</p>
+<p>Researchers wanted to know which of 4 types of toothbrushes was best at reducing plaque: manual (this is the traditional/usual type of brush), oscillating bristles, sonic, and ultrasonic. The response variable was the percent of teeth surface area covered with plaque. Four teeth (first molar in each quadrant of the mouth) were measured on each person to calculate the total percent area covered. Six subjects were assigned to each type of brush.</p>
 <p>Researchers also wanted to study the effect of name brand tooth paste compared to its off brand equivalent. This is the second controlled factor in the experiment. It has two levels (name brand and off brand). Twelve subjects used name brand paste, and a different 12 subjects used the off brand. Toothpaste brand is crossed with toothbrush type to create a BF[2].</p>
 <section id="factor-structure" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
@@ -416,11 +394,11 @@ Tip
 <div id="fig-bf2_brush_factor_structure" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Factor Structure Diagram</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Factor Structure Diagram</figcaption>
 </figure>
 </div>
 </div>
-<p>There are 3 replicates for each factor level combination of toothbrush and toothpaste brand. Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 factor level combinations total. These 8 factor level combinations are obtained by overlaying the 2 controlled factor partitions. When the controlled factor brush and paste partitions are overlayed, they cross each other and create new, meaningful partitions. Since there were 24 subjects and the study is balanced, we end up with <span class="math inline">\(24\div 8 = 3\)</span> replicates in each factor level combination.</p>
+<p>Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 factor level combinations total. This is represented by the 8 partitions in the interaction factor. These 8 factor level combinations are obtained by overlaying the 2 controlled factor partitions. When the toothbrush factor and toothpastepaste partitions are overlayed, they cross each other and create new, meaningful partitions: the interaction factor. Since there were 24 subjects and the study is balanced, we end up with <span class="math inline">\(24\div 8 = 3\)</span> replicates in each factor level combination.</p>
 </section>
 <section id="hypothesis-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
@@ -462,7 +440,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The BF[] designation refers to the design of the experiment. The reference to one- or two-way ANOVA refers to the analysis technique applied to the resulting data.</p>
 </div></div><table class="table">
 <colgroup>
-<col style="width: 25%">
+<col style="width: 26%">
 <col style="width: 36%">
 <col style="width: 37%">
 </colgroup>
@@ -536,7 +514,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 18%">
@@ -721,7 +699,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(randomized_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 22%">
@@ -740,128 +718,128 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <tr class="odd">
 <td style="text-align: center;">Subject 1</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">24</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">22</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 2</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">16</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">21</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 3</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">17</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">10</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 4</td>
-<td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">10</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">23</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 5</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">22</td>
+<td style="text-align: center;">18</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 6</td>
-<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">6</td>
+<td style="text-align: center;">20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 7</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">9</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 8</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">7</td>
+<td style="text-align: center;">11</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 9</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">11</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">8</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 10</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">20</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 11</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">9</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 12</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">12</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 13</td>
 <td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">19</td>
+<td style="text-align: center;">15</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 14</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">14</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Subject 15</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Subject 16</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">13</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Subject 17</td>
-<td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">21</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Subject 18</td>
-<td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Subject 19</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">off</td>
-<td style="text-align: center;">5</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Subject 20</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">name</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Subject 21</td>
+<td style="text-align: center;">Subject 15</td>
 <td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 16</td>
+<td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">18</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 17</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 18</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 19</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Subject 20</td>
+<td style="text-align: center;">oscillate</td>
+<td style="text-align: center;">off</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Subject 21</td>
+<td style="text-align: center;">ultrasonic</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 22</td>
@@ -873,13 +851,13 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <td style="text-align: center;">Subject 23</td>
 <td style="text-align: center;">ultrasonic</td>
 <td style="text-align: center;">off</td>
-<td style="text-align: center;">23</td>
+<td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 24</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">name</td>
-<td style="text-align: center;">15</td>
+<td style="text-align: center;">19</td>
 </tr>
 </tbody>
 </table>
@@ -892,12 +870,12 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The terms in <a href="#eq-bf2">Equation&nbsp;1</a> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
 <p>The factor created by crossing toothbrush and toothpaste is called an interaction factor, and its term in the model, <span class="math inline">\(\alpha \beta\)</span>, is called an interaction effect.</p>
 <p>Compared to a BF[1], the novel piece of a BF[2] is the <strong>interaction factor</strong>. This factor allows us to estimate the interaction effect, which is the effect of belonging to a particular factor level <em>combination</em>. Stated another way, the interaction effect is the additional change in the response (positive or negative) when the two factor levels happen together, beyond the effect of each factor level in isolation.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -923,25 +901,22 @@ Tip
 <div class="no-row-height column-margin column-container"><div class="">
 <p>R code instructions to create interaction plots are at the bottom of the R Instructions&gt;<a href="docs/DescribeData.html">Descriptive Summaries</a> page.</p>
 </div></div><div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div id="fig-no-int" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-no-int-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Scenarios with NO Interaction Present</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Scenarios with NO Interaction Present</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The line segments within each graph of <a href="#fig-no-int">Figure&nbsp;2</a> are parallel (or coincide), which is a visual indicator that no interaction is present.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -951,14 +926,11 @@ Tip
 </div>
 <p>So what does an interaction plot look like when there <em>is</em> an interaction present? The key things to notice is that the line segments in the plot are not parallel. <a href="#fig-int">Figure&nbsp;3</a> contains 3 examples of interaction plots that show the presence of an potential interaction.</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div id="fig-int" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-int-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Scenarios Indicative of an Interaction</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Scenarios Indicative of an Interaction</figcaption>
 </figure>
 </div>
 </div>
@@ -968,12 +940,12 @@ Tip
 <p>First, <strong>exercise caution when interpreting a main effect if an interaction is present</strong>. The definition of an interaction is that a factor level’s effect changes for different values of the other factor. Therefore, it does not make sense to interpret the hypothesis test of a controlled factor if it is part of a significant interaction. Instead, get in the habit of describing the nature of the interaction.</p>
 <p>To illustrate the danger of interpreting main effect hypothesis tests when the interaction is significant consider Panel A of <a href="#fig-int">Figure&nbsp;3</a>. If the hypothesis test for Route had a large p-value, it is tempting to say there is insufficient evidence that Route has an effect on commute time. However, the interaction plot shows quite the opposite. Route has an important effect on the response, since the level of Route drastically changes the impact of Rush Hour on commute times. Even though the mean commute time for “back” and “main” may be similar in this scenario, Route is indirectly having an effect on commute time through its interaction with Rush Hour.</p>
 <p>Conversely, imagine a scenario where Route’s main effect had a small p-value and the Route - Rush Hour interaction was also significant. If the interaction is like that depicted in Panel C of <a href="#fig-int">Figure&nbsp;3</a>, simply stating that Route is a significant factor does not tell the whole story. The effect of Route in during rush hour is large and may be significant (steep blue line), but the effect of Route in non-rush hour times may not be large enough to reach significance (the nearly flat red line).</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Interpreting Main Effects and Interactions
 </div>
 </div>
@@ -993,14 +965,14 @@ Interpreting Main Effects and Interactions
 <div id="fig-bf2-structural-factors" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-structural-factors-toothbrush.PNG" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Three structural factors</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Three structural factors</figcaption>
 </figure>
 </div>
 <p>To get a full structure diagram, as shown in <a href="#fig-bf2_full">Figure&nbsp;5</a> we must also include the universal factors for the grand mean and residuals.</p>
 <div id="fig-bf2_full" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img" width="900"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Factor structure diagram</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Factor structure diagram</figcaption>
 </figure>
 </div>
 <p>Each factor in the diagram corresponds to a term in <a href="#eq-bf2_2">Equation&nbsp;2</a>:</p>
@@ -1017,12 +989,12 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 </ul>
 <p>On the left side of the equation is <span class="math inline">\(y_{ijk}\)</span>, which represents the <span class="math inline">\(k^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>.</p>
 <p>A decomposition of the data allows is how we estimate these model parameters.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Balanced vs.&nbsp;Unbalanced Data
 </div>
 </div>
@@ -1033,12 +1005,12 @@ Balanced vs.&nbsp;Unbalanced Data
 <section id="factor-effects" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
 <p>How can an interaction affect be estimated? Like all factor effects, its estimate is calculated using the general rule.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 General Rule for Calculating Factor Level Effect
 </div>
 </div>
@@ -1054,7 +1026,7 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-bf2_data_partition" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-data-partition.PNG" class="img-fluid figure-img" width="450"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6: Full data set with partitions</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Full data set with partitions</figcaption>
 </figure>
 </div>
 <p>The grand mean is the mean of all the observations:</p>
@@ -1097,7 +1069,7 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-factor-means" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-toothbrush_means.PNG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;7: Factor level means</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Factor level means</figcaption>
 </figure>
 </div>
 </div>
@@ -1142,7 +1114,7 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-brush" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-interaction-inside-brush.PNG" class="img-fluid figure-img" data-ref-parent="fig-crossed-interaction"></p>
-<p></p><figcaption class="figure-caption">(a) Interaction inside of brush</figcaption><p></p>
+<figcaption class="figure-caption">(a) Interaction inside of brush</figcaption>
 </figure>
 </div>
 </div>
@@ -1150,7 +1122,7 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-paste" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-interaction-inside-paste.PNG" class="img-fluid figure-img" data-ref-parent="fig-crossed-interaction"></p>
-<p></p><figcaption class="figure-caption">(b) Interaction inside of toothpaste</figcaption><p></p>
+<figcaption class="figure-caption">(b) Interaction inside of toothpaste</figcaption>
 </figure>
 </div>
 </div>
@@ -1166,14 +1138,11 @@ General Rule for Calculating Factor Level Effect
 <p>Let’s take a deeper look to understand why this works. It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.</p>
 <p>An observation from the “ultrasonic brush, name brand paste” group starts with the grand mean value of 22.76. The observation belongs to the ultrasonic group, where plaque tends to be higher, specifically 2.55 higher on average (2.55 is the effect of ultrasonic). <a href="#fig-brush-effect">Figure&nbsp;9</a> show the starting point of the grand mean and the addition of the brush effect.</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div id="fig-brush-effect" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-brush-effect-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;9: Grand mean + brush effect</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Grand mean + brush effect</figcaption>
 </figure>
 </div>
 </div>
@@ -1184,7 +1153,7 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-paste-effect" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-paste-effect-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;10: Grand mean + brush effect + paste effect</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;10: Grand mean + brush effect + paste effect</figcaption>
 </figure>
 </div>
 </div>
@@ -1196,23 +1165,38 @@ General Rule for Calculating Factor Level Effect
 <div id="fig-int-effect" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-int-effect-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;11: Interaction effect is remaining distance to factor level mean</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;11: Interaction effect is remaining distance to factor level mean</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The previous 3 figures are placed side by side below in <a href="#fig-crossed-interaction">Figure&nbsp;8</a> so that the additive progression of the effects can more easily be seen.</p>
+<p>The previous 3 figures are placed side by side below in the figure below so that the additive progression of the effects can more easily be seen.</p>
 <div class="page-columns page-full">
 <div class="cell column-screen-inset-shaded quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div id="fig-side_by_each-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-side_by_each-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;12: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<div id="fig-side_by_each-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-side_by_each-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;13: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="bf2_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="672"></p>
+<div id="fig-side_by_each-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf2_files/figure-html/fig-side_by_each-3.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;14: <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1223,12 +1207,12 @@ General Rule for Calculating Factor Level Effect
 <p><span class="math display">\[
 19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28
 \]</span></p>
-<p>All other residuals were similarly obtained. Ultimately, <a href="#fig-factor-effects">Figure&nbsp;12</a> displays all the factor level effects that are summed to obtain each observation.</p>
+<p>All other residuals were similarly obtained. Ultimately, <a href="#fig-factor-effects">Figure&nbsp;15</a> displays all the factor level effects that are summed to obtain each observation.</p>
 <div class="column-page">
 <div id="fig-factor-effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/BF2-toothbrush_effects.PNG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;12: Factor level effects</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;15: Factor level effects</figcaption>
 </figure>
 </div>
 </div>
@@ -1238,12 +1222,12 @@ General Rule for Calculating Factor Level Effect
 <section id="degrees-of-freedom" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>We can use our understanding of <a href="./factor_structure.html">inside vs.&nbsp;outside factors</a> to determine the degrees of freedom (df) for the <strong>grand mean</strong>, <strong>treatment factors</strong>, <strong>interaction</strong> and <strong>residual errors</strong>. We start with 24 observations - or pieces of information. In other words, we have 24 degrees of freedom that need to be allocated to the factors.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 General Rule for Degrees of Freedom
 </div>
 </div>
@@ -1258,10 +1242,10 @@ General Rule for Degrees of Freedom
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The degrees of freedom for toothbrush is it the same here as it was for the BF[1].</p>
-</div></div><p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in <a href="#fig-factor-effects">Figure&nbsp;12</a> you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.</p>
+</div></div><p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information. Upon examining the factor for toothbrush in <a href="#fig-factor-effects">Figure&nbsp;15</a> you can see there are 4 unique numbers. We know the effects for toothbrush must sum to zero, so the 4th effect is not free to vary. As soon as I know the effect for 3 of the brushes, I can fill in all the effects for the toothbrush factor.</p>
 <p>A similar approach is taken for toothpaste. Here it is even more obvious that the effects for toothpaste sum to zero. After estimating the toothbrush effect for one observation, I can fill in the toothpaste effects for all the other observations. Therefore, the degrees of freedom for toothpaste is 1.</p>
 <p>Using the general rule, I know there are 2 levels for toothpaste and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, I get <span class="math inline">\(2-1 = 1\)</span> degree of freedom for toothpaste.</p>
-<p>Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in <a href="#fig-factor-effects">Figure&nbsp;12</a>. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.</p>
+<p>Now we must calculate degrees of freedom for the interaction term. Take a closer look at the interaction effects in <a href="#fig-factor-effects">Figure&nbsp;15</a>. You can see that the numbers repeat within each cell. There are 8 cells total. You can also see that the effects inside a column of values sum to zero, as do the values in a row. Therefore, I really only need to know a value in 3 of the cells of the interaction factor before I can fill in the effects for all the other cells in that factor.</p>
 <p>This is in perfect harmony with an application of the general rule. The interaction factor has 8 factor levels. Factors outside of the interaction include: grand mean (1 df), toothbrush (3 df), and toothpaste (1 df). Applying the general rule with these values yields <span class="math inline">\(8 - (1 + 3 + 1) = 3\)</span> degrees of freedom for the interaction factor.</p>
 <p>Perhaps the easiest way to find the degrees of freedom for an interaction that is created by crossing two other factors is to multiply the degrees of freedom of the two other factors. In this case, toothbrush and toothpaste are crossed, so you would get <span class="math inline">\(3*1 = 3\)</span>, which matches the answer found using other methods.</p>
 <p>Finally, the residual degrees of freedom can be found using the general rule. Since the residual error factor is inside of all other factors, this is the same as finding how many degrees of freedom are leftover after calculating degrees of freedom for all other factors. In this example, there were 24 observations total, so we subtract the degrees of freedom for the other factors from 24. This returns <span class="math inline">\(24 - (1+3+1+3) = 16\)</span> degrees of freedom for residuals.</p>
@@ -1273,73 +1257,73 @@ General Rule for Degrees of Freedom
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:left;"> SS </th>
-   <th style="text-align:left;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toothpaste </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush:Toothpaste </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toothpaste</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush:Toothpaste</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 
+
 </div>
 </div>
-<p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects">Figure&nbsp;12</a> shows the effects, while <a href="#fig-SQ-effects">Figure&nbsp;13</a> shows the squared effects.</p>
+<p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects">Figure&nbsp;15</a> shows the effects, while <a href="#fig-SQ-effects">Figure&nbsp;16</a> shows the squared effects.</p>
 <!-- ::: {#fig-effects layout-nrow=2} -->
 <!-- ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects .column-page} -->
 <!-- ![Squared factor level effects](images/BF2-toothbrush_SQ_effects.PNG){#fig-SQ-effects .column-page} -->
@@ -1348,7 +1332,7 @@ General Rule for Degrees of Freedom
 <div id="fig-SQ-effects" class="quarto-figure quarto-figure-center column-page anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p class="page-columns page-full"><img src="images/BF2-toothbrush_SQ_effects.PNG" class="column-page img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;13: Squared factor level effects</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;16: Squared factor level effects</figcaption>
 </figure>
 </div>
 <p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss-obs">Equation&nbsp;3</a>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
@@ -1359,12 +1343,12 @@ SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30
 <p><span class="math display">\[
 SS_\text{Grand Mean} = 518.2* 24 = 12,437.43
 \]</span></p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -1392,71 +1376,72 @@ SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-SS" class="anchored">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table"><caption>Table&nbsp;1:  Sums of squares </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:left;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;1: Sums of squares</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 12437.43 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toothpaste </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush:Toothpaste </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 6.12 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 143.82 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 12674.30 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12437.43</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">86.31</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toothpaste</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush:Toothpaste</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6.12</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">143.82</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">12674.30</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
+
+
 </div>
 </div>
 <p>Recall that SS is a measure of total variability. Of the three structural factors (brush, toothpaste, and their interaction) it is clear to see that brush is contributing the most variability. Some of the difference in SS may be due to difference in number of levels for each factor. Adding levels to a factor allows more variability to be attributed to that factor. We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors’ variability on a standardized scale.</p>
@@ -1483,69 +1468,69 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:right;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 12437.43 </td>
-   <td style="text-align:right;"> 12437.43 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
-   <td style="text-align:right;"> 28.77 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toothpaste </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush:Toothpaste </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 6.12 </td>
-   <td style="text-align:right;"> 2.04 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 143.82 </td>
-   <td style="text-align:right;"> 8.99 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 12674.30 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12437.43</td>
+<td style="text-align: right;">12437.43</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">86.31</td>
+<td style="text-align: right;">28.77</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toothpaste</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush:Toothpaste</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6.12</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">143.82</td>
+<td style="text-align: right;">8.99</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">12674.30</td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1582,79 +1567,79 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The completed ANOVA table for this BF[2] toothbrush and toothpaste example is shown in</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:right;"> MS </th>
-   <th style="text-align:right;"> Fvalue </th>
-   <th style="text-align:right;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 12437.43 </td>
-   <td style="text-align:right;"> 12437.43 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 86.31 </td>
-   <td style="text-align:right;"> 28.77 </td>
-   <td style="text-align:right;"> 3.20 </td>
-   <td style="text-align:right;"> 0.051 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Toothpaste </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 0.07 </td>
-   <td style="text-align:right;"> 0.800 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brush:Toothpaste </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 6.12 </td>
-   <td style="text-align:right;"> 2.04 </td>
-   <td style="text-align:right;"> 0.23 </td>
-   <td style="text-align:right;"> 0.876 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 143.82 </td>
-   <td style="text-align:right;"> 8.99 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 12674.30 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12437.43</td>
+<td style="text-align: right;">12437.43</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">86.31</td>
+<td style="text-align: right;">28.77</td>
+<td style="text-align: right;">3.20</td>
+<td style="text-align: right;">0.051</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toothpaste</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brush:Toothpaste</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6.12</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.876</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">143.82</td>
+<td style="text-align: right;">8.99</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">12674.30</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
 <p>Because the p-value for the interaction (p-value = 0.876) is much higher than any traditional level of significance threshold we might have chosen (0.01, 0.05, or 0.1), we fail to reject the null hypothesis. There is insufficient evidence to say the interaction effect has an effect on plaque coverage. Because the interaction is NOT significant, we can proceed to interpret the main effects test results.</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Significant Interaction Effects
 </div>
 </div>
@@ -1674,9 +1659,6 @@ Significant Interaction Effects
 <p>Interactive code and additional explanations of numerical summaries and plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
 <section id="numerical-summaries" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h3>
-<div class="cell">
-
-</div>
 <p>After loading required packages, we will read in the data and do some wrangling.</p>
 <div class="cell" data-cap="Read in / Wrangle Data">
 <details>
@@ -1703,121 +1685,131 @@ Significant Interaction Effects
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="tbl-main_effects_numbers-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-main_effects_numbers" style="flex-basis: 100.0%;justify-content: center;">
-
-<table class="table" style="margin-left: auto; margin-right: auto;"><caption>(a) Brush </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Brush </th>
-   <th style="text-align:right;"> min </th>
-   <th style="text-align:right;"> Q1 </th>
-   <th style="text-align:right;"> median </th>
-   <th style="text-align:right;"> Q3 </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> mean </th>
-   <th style="text-align:right;"> sd </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> missing </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>(a) Brush</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Brush</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">max</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">missing</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Manual </td>
-   <td style="text-align:right;"> 19.12 </td>
-   <td style="text-align:right;"> 22.04 </td>
-   <td style="text-align:right;"> 23.38 </td>
-   <td style="text-align:right;"> 24.01 </td>
-   <td style="text-align:right;"> 26.88 </td>
-   <td style="text-align:right;"> 23.09 </td>
-   <td style="text-align:right;"> 2.60 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oscillating </td>
-   <td style="text-align:right;"> 17.62 </td>
-   <td style="text-align:right;"> 18.89 </td>
-   <td style="text-align:right;"> 19.94 </td>
-   <td style="text-align:right;"> 21.29 </td>
-   <td style="text-align:right;"> 22.09 </td>
-   <td style="text-align:right;"> 19.98 </td>
-   <td style="text-align:right;"> 1.74 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sonic </td>
-   <td style="text-align:right;"> 18.99 </td>
-   <td style="text-align:right;"> 21.73 </td>
-   <td style="text-align:right;"> 23.20 </td>
-   <td style="text-align:right;"> 23.68 </td>
-   <td style="text-align:right;"> 25.58 </td>
-   <td style="text-align:right;"> 22.67 </td>
-   <td style="text-align:right;"> 2.27 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ultrasonic </td>
-   <td style="text-align:right;"> 21.45 </td>
-   <td style="text-align:right;"> 23.62 </td>
-   <td style="text-align:right;"> 24.30 </td>
-   <td style="text-align:right;"> 25.35 </td>
-   <td style="text-align:right;"> 32.74 </td>
-   <td style="text-align:right;"> 25.31 </td>
-   <td style="text-align:right;"> 3.90 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Manual</td>
+<td style="text-align: right;">19.12</td>
+<td style="text-align: right;">22.04</td>
+<td style="text-align: right;">23.38</td>
+<td style="text-align: right;">24.01</td>
+<td style="text-align: right;">26.88</td>
+<td style="text-align: right;">23.09</td>
+<td style="text-align: right;">2.60</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oscillating</td>
+<td style="text-align: right;">17.62</td>
+<td style="text-align: right;">18.89</td>
+<td style="text-align: right;">19.94</td>
+<td style="text-align: right;">21.29</td>
+<td style="text-align: right;">22.09</td>
+<td style="text-align: right;">19.98</td>
+<td style="text-align: right;">1.74</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonic</td>
+<td style="text-align: right;">18.99</td>
+<td style="text-align: right;">21.73</td>
+<td style="text-align: right;">23.20</td>
+<td style="text-align: right;">23.68</td>
+<td style="text-align: right;">25.58</td>
+<td style="text-align: right;">22.67</td>
+<td style="text-align: right;">2.27</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ultrasonic</td>
+<td style="text-align: right;">21.45</td>
+<td style="text-align: right;">23.62</td>
+<td style="text-align: right;">24.30</td>
+<td style="text-align: right;">25.35</td>
+<td style="text-align: right;">32.74</td>
+<td style="text-align: right;">25.31</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+
 
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="tbl-main_effects_numbers-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-main_effects_numbers" style="flex-basis: 100.0%;justify-content: center;">
-
-<table class="table" style="margin-left: auto; margin-right: auto;"><caption>(b) Toothpaste </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Toothpaste </th>
-   <th style="text-align:right;"> min </th>
-   <th style="text-align:right;"> Q1 </th>
-   <th style="text-align:right;"> median </th>
-   <th style="text-align:right;"> Q3 </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> mean </th>
-   <th style="text-align:right;"> sd </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> missing </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>(b) Toothpaste</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Toothpaste</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">max</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">missing</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> NameBrand </td>
-   <td style="text-align:right;"> 18.56 </td>
-   <td style="text-align:right;"> 19.68 </td>
-   <td style="text-align:right;"> 22.38 </td>
-   <td style="text-align:right;"> 24.69 </td>
-   <td style="text-align:right;"> 32.74 </td>
-   <td style="text-align:right;"> 22.92 </td>
-   <td style="text-align:right;"> 4.18 </td>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> OffBrand </td>
-   <td style="text-align:right;"> 17.62 </td>
-   <td style="text-align:right;"> 21.69 </td>
-   <td style="text-align:right;"> 23.22 </td>
-   <td style="text-align:right;"> 23.52 </td>
-   <td style="text-align:right;"> 25.67 </td>
-   <td style="text-align:right;"> 22.60 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">NameBrand</td>
+<td style="text-align: right;">18.56</td>
+<td style="text-align: right;">19.68</td>
+<td style="text-align: right;">22.38</td>
+<td style="text-align: right;">24.69</td>
+<td style="text-align: right;">32.74</td>
+<td style="text-align: right;">22.92</td>
+<td style="text-align: right;">4.18</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OffBrand</td>
+<td style="text-align: right;">17.62</td>
+<td style="text-align: right;">21.69</td>
+<td style="text-align: right;">23.22</td>
+<td style="text-align: right;">23.52</td>
+<td style="text-align: right;">25.67</td>
+<td style="text-align: right;">22.60</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+</tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+
 
 </div>
 </div>
@@ -1836,75 +1828,76 @@ Significant Interaction Effects
 </details>
 <div class="cell-output-display">
 <div id="tbl-numerical" class="anchored">
-
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"><caption>Table&nbsp;3:  Numerical Summary </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Brush.Toothpaste </th>
-   <th style="text-align:right;"> mean </th>
-   <th style="text-align:right;"> sd </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;3: Numerical Summary</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Brush.Toothpaste</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Manual.NameBrand </td>
-   <td style="text-align:right;"> 23.40 </td>
-   <td style="text-align:right;"> 3.94 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oscillating.NameBrand </td>
-   <td style="text-align:right;"> 19.48 </td>
-   <td style="text-align:right;"> 0.80 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sonic.NameBrand </td>
-   <td style="text-align:right;"> 22.63 </td>
-   <td style="text-align:right;"> 3.35 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ultrasonic.NameBrand </td>
-   <td style="text-align:right;"> 26.19 </td>
-   <td style="text-align:right;"> 5.86 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Manual.OffBrand </td>
-   <td style="text-align:right;"> 22.78 </td>
-   <td style="text-align:right;"> 1.03 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oscillating.OffBrand </td>
-   <td style="text-align:right;"> 20.48 </td>
-   <td style="text-align:right;"> 2.48 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sonic.OffBrand </td>
-   <td style="text-align:right;"> 22.72 </td>
-   <td style="text-align:right;"> 1.31 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ultrasonic.OffBrand </td>
-   <td style="text-align:right;"> 24.43 </td>
-   <td style="text-align:right;"> 1.14 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Manual.NameBrand</td>
+<td style="text-align: right;">23.40</td>
+<td style="text-align: right;">3.94</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oscillating.NameBrand</td>
+<td style="text-align: right;">19.48</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonic.NameBrand</td>
+<td style="text-align: right;">22.63</td>
+<td style="text-align: right;">3.35</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ultrasonic.NameBrand</td>
+<td style="text-align: right;">26.19</td>
+<td style="text-align: right;">5.86</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Manual.OffBrand</td>
+<td style="text-align: right;">22.78</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oscillating.OffBrand</td>
+<td style="text-align: right;">20.48</td>
+<td style="text-align: right;">2.48</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonic.OffBrand</td>
+<td style="text-align: right;">22.72</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ultrasonic.OffBrand</td>
+<td style="text-align: right;">24.43</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">3</td>
+</tr>
 </tbody>
 </table>
-
 </div>
+
+
 </div>
 </div>
 </section>
 <section id="graphical-summaries" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
-<p>Graphs are also valuable tools to help you get to know your data. Since there are only 3 observation in each factor level combination, a dotplot/scatterplot is more appropriate than a boxplot. This is shown in <a href="#fig-summary">Figure&nbsp;14</a></p>
+<p>Graphs are also valuable tools to help you get to know your data. Since there are only 3 observation in each factor level combination, a dotplot/scatterplot is more appropriate than a boxplot. This is shown in <a href="#fig-summary">Figure&nbsp;17</a></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1916,12 +1909,12 @@ Significant Interaction Effects
 <div id="fig-summary" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;14: Graphical Summary</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;17: Graphical Summary</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>You could also gain insight about the main effects by cutting the data by each factor separately, as shown in <a href="#fig-by_factor">Figure&nbsp;15</a>.</p>
+<p>You could also gain insight about the main effects by cutting the data by each factor separately, as shown in <a href="#fig-by_factor">Figure&nbsp;18</a>.</p>
 <div id="fig-by_factor" class="cell column-page quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1929,7 +1922,7 @@ Significant Interaction Effects
 <div id="fig-by_factor-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-by_factor-1.png" class="img-fluid figure-img" data-ref-parent="fig-by_factor" width="672"></p>
-<p></p><figcaption class="figure-caption">(a) Brush</figcaption><p></p>
+<figcaption class="figure-caption">(a) Brush</figcaption>
 </figure>
 </div>
 </div>
@@ -1937,22 +1930,22 @@ Significant Interaction Effects
 <div id="fig-by_factor-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-by_factor-2.png" class="img-fluid figure-img" data-ref-parent="fig-by_factor" width="672"></p>
-<p></p><figcaption class="figure-caption">(b) Toothpaste</figcaption><p></p>
+<figcaption class="figure-caption">(b) Toothpaste</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;15: Data cut by one factor at a time</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;18: Data cut by one factor at a time</figcaption><p></p>
 </figure>
 </div>
 <p>Finally, an interaction plot is ideal for investigating a BF[2]. The plot only shows factor level means. Therefore, it does not give a good sense of the underlying distribution of data and should not be used as the only visual assessment of your data. However, it is extremely good at providing insight into possible interactions.</p>
-<p>In <a href="#fig-tooth_int">Figure&nbsp;16</a> the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.</p>
+<p>In <a href="#fig-tooth_int">Figure&nbsp;19</a> the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tooth_int" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-tooth_int-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;16: Interaction plot for Brush vs.&nbsp;Toothpaste</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;19: Interaction plot for Brush vs.&nbsp;Toothpaste</figcaption>
 </figure>
 </div>
 </div>
@@ -2015,12 +2008,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;17: Checking constant variance</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;20: Checking constant variance</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-constant_var">Figure&nbsp;17</a> there are 8 distinct vertical groupings of points, one for each factor level combination. There are 3 observations, and so 3 residuals also, for each factor level combination. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.</p>
+<p>In <a href="#fig-constant_var">Figure&nbsp;20</a> there are 8 distinct vertical groupings of points, one for each factor level combination. There are 3 observations, and so 3 residuals also, for each factor level combination. There does seem to be a slight trend for points with larger predicted values to be more spread out. On the far left of the plot the points appear closer together, as you move to the right the points tend to be more spread out (thought not always). This phenomenon raises the concern that the assumption of constant variance across factor level combinations may be violated.</p>
 <p><a href="assumptions.html#constant-variance">Levene’s test</a> can provide insight on whether the trend in the residual plot is drastic enough to constitute a violation of the constant variance assumption.</p>
 <p>Recall that the null hypothesis for Levene’s test is that the variance of residuals is equal for each and every factor level combination. The results of the test below shows a p-value of 0.5409. We therefore fail to reject a null hypothesis of equal variances and proceed with the analysis (assuming the other assumptions are met).</p>
 <div class="cell">
@@ -2029,38 +2022,38 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(bf2_aov) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Df </th>
-   <th style="text-align:right;"> F value </th>
-   <th style="text-align:right;"> Pr(&gt;F) </th>
-  </tr>
- </thead>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;F)</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> group </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 0.88 </td>
-   <td style="text-align:right;"> 0.54 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">group</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">0.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
 </section>
 <section id="normally-distributed-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
-<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;18</a>. Most of the points are in the shaded region. Row 1 of the dataset appears in the upper right corner, far away from the boundaries. A couple of other points are very close, but just outside of the boundary. Due to the robust nature of ANOVA, the mild violation of this assumption is not a concern.</p>
+<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;21</a>. Most of the points are in the shaded region. Row 1 of the dataset appears in the upper right corner, far away from the boundaries. A couple of other points are very close, but just outside of the boundary. Due to the robust nature of ANOVA, the mild violation of this assumption is not a concern.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -2070,7 +2063,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;18: Checking normality of residuals</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;21: Checking normality of residuals</figcaption>
 </figure>
 </div>
 </div>
@@ -2078,7 +2071,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="independent-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
-<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in <a href="#fig-order">Figure&nbsp;19</a> can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
+<p>The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in <a href="#fig-order">Figure&nbsp;22</a> can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -2088,7 +2081,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-order" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="bf2_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;19: Checking independent residuals assumption</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;22: Checking independent residuals assumption</figcaption>
 </figure>
 </div>
 </div>
@@ -2201,9 +2194,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -2268,6 +2275,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

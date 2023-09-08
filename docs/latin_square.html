@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,6 +96,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -141,135 +113,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Math326 Notebook</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html">
+    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html">
+    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html">
+    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html">
+    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html">
+    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html">
+    <a class="dropdown-item" href="./randomization.html" rel="" target="">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html">
+    <a class="dropdown-item" href="./bf2.html" rel="" target="">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto.html">
+    <a class="dropdown-item" href="./bf3.html" rel="" target="">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html">
+    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html">
+    <a class="dropdown-item" href="./cb1.html" rel="" target="">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html">
+    <a class="dropdown-item" href="./ancova.html" rel="" target="">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./NestedFactor.html">
+    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+ <span class="dropdown-text">Latin Square</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html" rel="" target="">
  <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html">
+    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html">
+    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html">
+    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html">
+    <a class="dropdown-item" href="./contrast.html" rel="" target="">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html">
+    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html">
+    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Kruskal.html">
+    <a class="dropdown-item" href="./Kruskal.html" rel="" target="">
  <span class="dropdown-text">ZPower??</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./LogisticRegression.html">
+    <a class="dropdown-item" href="./LogisticRegression.html" rel="" target="">
  <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html">
+    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html">
+    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -277,22 +254,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="././Data/AnalysisRubric.html">
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html" rel="" target="">
  <span class="dropdown-text">XYZ</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="././Data/StudentHousing.html">
+    <a class="dropdown-item" href="././Data/StudentHousing.html" rel="" target="">
  <span class="dropdown-text">yadda yadda</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -366,12 +344,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="overview" class="level1 page-columns page-full">
 <h1>Overview</h1>
 <p>The <a href="./cb1.html">CB[1]</a> design works well when there is only one variable to block on. What can be done when there are two nuisance factors to block on? If those two blocking factors and the treatment all have the same number of levels, then a latin square design should be used.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 When to use Latin Square
 </div>
 </div>
@@ -395,7 +373,7 @@ When to use Latin Square
 <div id="fig-fisher" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_5_by_5.png" class="img-fluid figure-img" data-ref-parent="fig-ls_fields"></p>
-<p></p><figcaption class="figure-caption">(a)</figcaption><p></p>
+<figcaption class="figure-caption">(a)</figcaption>
 </figure>
 </div>
 </div>
@@ -403,7 +381,7 @@ When to use Latin Square
 <div id="fig-six-by-six" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_field.jpg" class="img-fluid figure-img" data-ref-parent="fig-ls_fields"></p>
-<p></p><figcaption class="figure-caption">(b)</figcaption><p></p>
+<figcaption class="figure-caption">(b)</figcaption>
 </figure>
 </div>
 </div>
@@ -419,7 +397,7 @@ When to use Latin Square
 <div id="fig-ls_factors" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_factors.PNG" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Factor Structure for Latin Square Design with 4 Treatment Levels</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Factor Structure for Latin Square Design with 4 Treatment Levels</figcaption>
 </figure>
 </div>
 </section>
@@ -535,12 +513,12 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 </tbody>
 </table>
 <p>There are 3 steps to properly randomize a Latin Square.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 3 Steps to Randomize a Latin Square
 </div>
 </div>
@@ -714,12 +692,12 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ls_design[ <span class="fu">sample</span>(<span class="fu">nrow</span>(ls_design)), <span class="fu">sample</span>(<span class="fu">ncol</span>(ls_design))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
-  `3`   `2`   `1`   `4`  
+  `2`   `1`   `3`   `4`  
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 D     C     B     A    
-2 C     B     A     D    
-3 B     A     D     C    
-4 A     D     C     B    </code></pre>
+1 C     B     D     A    
+2 A     D     B     C    
+3 D     C     A     B    
+4 B     A     C     D    </code></pre>
 </div>
 </div>
 </section>
@@ -783,7 +761,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <div id="fig-ls_factors_traffic" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_factors_traffic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Factor Diagram for Traffic Light Timing Algorithm Experiment</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Factor Diagram for Traffic Light Timing Algorithm Experiment</figcaption>
 </figure>
 </div>
 <p>Each factor in <a href="#fig-ls_factors_traffic">Figure&nbsp;3</a> corresponds to a term on the right side <a href="#eq-ls1">Equation&nbsp;1</a> (repeated again here for convenience).</p>
@@ -882,15 +860,15 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <div id="fig-ls_means" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_means.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Factor Level Means</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Factor Level Means</figcaption>
 </figure>
 </div>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Warning
 </div>
 </div>
@@ -932,7 +910,7 @@ Warning
 <div id="fig-ls_effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_effects.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Factor Effects</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Factor Effects</figcaption>
 </figure>
 </div>
 </div>
@@ -943,69 +921,69 @@ Warning
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. The total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:left;"> SS </th>
-   <th style="text-align:left;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Intersection (row) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Time of day (column) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algorithm (treatment) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intersection (row)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time of day (column)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Algorithm (treatment)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1014,7 +992,7 @@ Warning
 <div id="fig-ls_sq_effects" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ls_squared_effects.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6: Squared Factor Effects</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Squared Factor Effects</figcaption>
 </figure>
 </div>
 </div>
@@ -1038,71 +1016,72 @@ SS_\text{residual} &amp;= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-SS" class="anchored">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table"><caption>Table&nbsp;1:  Sums of squares </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:left;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;1: Sums of squares</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 46225.0 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Intersection (row) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2850.5 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Time of day (column) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 133.5 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algorithm (treatment) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 645.5 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 49856.0 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">46225.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intersection (row)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2850.5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time of day (column)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">133.5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Algorithm (treatment)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">645.5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">49856.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
-
 </div>
+
+
 </div>
 </div>
 
@@ -1112,69 +1091,69 @@ SS_\text{residual} &amp;= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
 <p>Obtain the mean squares for each factor by dividing its sum of squares by its degrees of freedom.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:right;"> MS </th>
-   <th style="text-align:left;"> Fvalue </th>
-   <th style="text-align:left;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 46225.0 </td>
-   <td style="text-align:right;"> 46225.00 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Intersection (row) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2850.5 </td>
-   <td style="text-align:right;"> 950.17 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Time of day (column) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 133.5 </td>
-   <td style="text-align:right;"> 44.50 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algorithm (treatment) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 645.5 </td>
-   <td style="text-align:right;"> 215.17 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 0.25 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 49856.0 </td>
-   <td style="text-align:right;"> 3116.00 </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">46225.0</td>
+<td style="text-align: right;">46225.00</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intersection (row)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2850.5</td>
+<td style="text-align: right;">950.17</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time of day (column)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">133.5</td>
+<td style="text-align: right;">44.50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Algorithm (treatment)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">645.5</td>
+<td style="text-align: right;">215.17</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">49856.0</td>
+<td style="text-align: right;">3116.00</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1194,69 +1173,69 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 <p>The associated p-value is approximately zero as calculated in Excel with the function <code>= f.dist.rt(860.6667, 3, 6)</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table style="width:65%; margin-left: auto; margin-right: auto;" class="table">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Source </th>
-   <th style="text-align:right;"> df </th>
-   <th style="text-align:right;"> SS </th>
-   <th style="text-align:right;"> MS </th>
-   <th style="text-align:right;"> Fvalue </th>
-   <th style="text-align:right;"> pvalue </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fvalue</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pvalue</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> Grand Mean </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 46225.0 </td>
-   <td style="text-align:right;"> 46225.00 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Intersection (row) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2850.5 </td>
-   <td style="text-align:right;"> 950.17 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Time of day (column) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 133.5 </td>
-   <td style="text-align:right;"> 44.50 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algorithm (treatment) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 645.5 </td>
-   <td style="text-align:right;"> 215.17 </td>
-   <td style="text-align:right;"> 860.667 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Residual Error </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 0.25 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Total </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 49856.0 </td>
-   <td style="text-align:right;"> 3116.00 </td>
-   <td style="text-align:right;">  </td>
-   <td style="text-align:right;">  </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">Grand Mean</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">46225.0</td>
+<td style="text-align: right;">46225.00</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intersection (row)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2850.5</td>
+<td style="text-align: right;">950.17</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time of day (column)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">133.5</td>
+<td style="text-align: right;">44.50</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Algorithm (treatment)</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">645.5</td>
+<td style="text-align: right;">215.17</td>
+<td style="text-align: right;">860.667</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Error</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">49856.0</td>
+<td style="text-align: right;">3116.00</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1276,7 +1255,7 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 <div id="fig-dot_plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="latin_square_files/figure-html/fig-dot_plot-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;7: Dotplot by Treatment</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Dotplot by Treatment</figcaption>
 </figure>
 </div>
 </div>
@@ -1287,33 +1266,33 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Mean Throughput</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">mean</span>(number_of_cars)) <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> algorithm </th>
-   <th style="text-align:right;"> Mean Throughput </th>
-  </tr>
- </thead>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">algorithm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Mean Throughput</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> A </td>
-   <td style="text-align:right;"> 47.75 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:right;"> 47.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> C </td>
-   <td style="text-align:right;"> 57.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> D </td>
-   <td style="text-align:right;"> 62.25 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">47.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">47.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">57.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">62.25</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1362,7 +1341,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="latin_square_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8: Checking constant variance</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Checking constant variance</figcaption>
 </figure>
 </div>
 </div>
@@ -1385,7 +1364,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="latin_square_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;9: Checking normality of residuals</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Checking normality of residuals</figcaption>
 </figure>
 </div>
 </div>
@@ -1457,9 +1436,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1524,6 +1517,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

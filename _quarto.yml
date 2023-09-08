@@ -32,13 +32,15 @@ website:
          - text: "BF[2]"
            href: bf2.qmd
          - text: "BF[3+]"
-           href: BasicFactorial_quarto.qmd
+           href: bf3.qmd
          - text: "Blocking Introduction"
            href: block_intro.qmd
          - text: "CB[1]"
            href: cb1.qmd
          - text: "ANCOVA"
            href: ancova.qmd
+         - text: "Latin Square"
+           href: latin_square.qmd
          - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
            href: NestedFactor.html
         # - text: "1 Factor, Completely Randomized, Basic Factorial"
@@ -49,8 +51,7 @@ website:
         #   href: NumericalSummaries.html
         # - text: "1 Factor, Complete Block"
         #   href: NumericalSummaries.html
-        # - text: "Latin Square"
-        #   href: NumericalSummaries.html
+
         # - text: "ANCOVA"
         #   href: NumericalSummaries.html
         # - text: "Split Plot/Repeated Measures"

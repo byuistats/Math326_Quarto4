@@ -179,11 +179,9 @@ When two factors are crossed, the resulting (interaction) factor's levels will a
 ![](images/interaction_levels_inside.PNG)
 :::
 
-
-
 # General Rules
 
-At the beginning of this section I mentioned that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on Effects Model and ANOVA will help explain why these rules are true; but for now, you will have to take it on faith.
+It was mentioned at the beginning of the section that understanding inside and outside factors would help us arrive at a general rule for calculating effect sizes and degrees of freedom. We have not yet defined an effect size or degree of freedom so the following general rules may not mean a lot to you now. However, you will find them quite helpful later. The section on [Effects Model](effects_model.qmd) and [ANOVA](Anova_F-test.qmd) will help explain why these rules are true; but for now, you will have to take it on faith.
 
 ::: callout-tip
 ## General Rule for Effect Size

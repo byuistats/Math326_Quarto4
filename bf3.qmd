@@ -1,0 +1,355 @@
+---
+title: "BF[3]"
+execute:
+  code-fold: true
+toc: true
+toc-depth: 4
+---
+
+```{=html}
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+```
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(kableExtra)
+library(pander)
+library(latex2exp)
+```
+
+# Overview
+
+This section will extend a factorial design with two factors to a full factorial design with three factors. The design and analysis of a fully factorial experiment with three factors is very similar to the two factor design. The one notable exception is that now there is the potential for higher order interactions. Instead of just a single two-way interaction to be considered, three-way interactions, as well as all possible two-way interactions, are included in the model
+
+To illustrate this design and analysis we will use a fictitious dataset that closely mirrors the [real experiment conducted by Robert Kaplan](https://www.scopus.com/record/display.uri?eid=2-s2.0-0017812077&origin=inward&txGid=d11bc22f7fa2dd7a30ab0c43490b98d3). The experiment's goal was to show how the [halo effect](https://en.wikipedia.org/wiki/Halo_effect) due to attractiveness effects influences an assessment. More precisely, how does an author's attractiveness, their sex, and the sex of the reader impact the reader's assessment of the author's talent as a writer.
+
+To carry out the experiment, a participant is treated as the reader. There were 48 readers total, 24 male and 24 female. The participant is asked to read an essay. Though all participants read the same essay, the sex of the author and the attractiveness of the author was varied. This was accomplished by attaching a picture of the author to the essay. There were 3 levels of attractiveness for each author sex: attractive, unattractive, and the control group (where no picture was attached). Each reader was randomly assigned to an author sex and attractiveness level such that for every combination of reader sex, author sex, and author attractiveness there were exactly 4 observations gathered, resulting in a total of 48 observations.
+
+It is cleaner and easier to show the data in a different format than has been used up to this point. In @tbl-data, each factor has a column dedicated to show what factor level the observations in that row belong to. There are 12 unique factor level combinations, and therefore 12 rows in the dataset. There are 4 observations per factor level combination, and they are displayed to the right of factor level combination designation.
+
+```{r}
+#| code-fold: true
+#| label: tbl-data
+#| tbl-cap: "Table of Means for Each Factor Level Combination"
+attractiveness <- rep(c("attractive", "unattractive", "no-pic"), 16)
+reader <- rep( rep(c("male", "female"), each = 3), 8)
+author <- rep(rep(c("male", "female"), each = 6), 4)
+round <- rep(1:4, each = 12)
+
+the_means <- c(80, 60, 70, 70, 70 , 70, 90, 50, 70, 50, 90, 70)
+
+set.seed(20)
+talent <- c(round(rnorm(12, the_means, 5),0),
+        round(rnorm(12, the_means, 5),0),
+        round(rnorm(12, the_means, 5),0),
+        round(rnorm(12, the_means, 5),0))
+
+df <- tibble(attractiveness) %>% add_column(author, reader, talent, round) %>% arrange(attractiveness, author, reader)
+df %>% pivot_wider(id_cols = c("reader", "author", "attractiveness"),
+                   names_from = round,
+                   values_from = talent) %>% 
+  arrange(reader, author, attractiveness) %>% add_column(row = 1:12) %>% relocate(row) %>% 
+  pander()
+```
+
+## Factor Structure
+
+We can still partition the observations, but with 3 factors the partitions become harder to show with just lines. Instead, the partitions will be described and a table of factor levels will be shown below.
+
+::: column-margin
+In the [appendix], partitioning is done using shading/coloring of cells. Though it is possible, the result is a bit overwhelming to the eye.
+:::
+
+In this experiment there are 3 controlled factors. Observations can be partitioned according to what group they belong to for any one of the 3 controlled factors. This allows us to create 3 structural factors, 1 for each controlled factor:
+
+-   reader's sex: 2 levels.
+-   author's sex: 2 levels, and
+-   attractiveness (of the essay author): 3 levels,
+
+The partition associated with each of these factors will allow us to calculate main effects.
+
+The data can also be partitioned according to a shared factor level combination on a pair of factors. There are 3 possible factor pairs. In other words, three two-way interactions are created by partitioning the data this way:
+
+-   reader $\times$ author: 4 levels
+-   reader $\times$ attractiveness: 6 levels
+-   author $\times$ attractiveness: 6 levels
+
+Finally, data values can be partitioned according to what combination of the 3 treatment factors the observation belongs to. This results in a 3-way interaction factor:
+
+-   reader $\times$ author $\times$ attractiveness: 12 levels
+
+The table below summarizes the 7 structural factors in the model:
+
+<!-- Use ctrl + space to make a non-breaking white space that doesn't just get collapsed. It is represented with a light gray dot in Rstudio markdown before rendering. -->
+
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| Factor                                         | \# of levels | Partitions: Row \#'s of @tbl-data belonging to each level    |
++================================================+:============:+==============================================================+
+| reader                                         | 3            | female: 1-6                                                  |
+|                                                |              |                                                              |
+|                                                |              | male:    7-12                                                |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| author                                         | 2            | female: 1-3, 7-10                                            |
+|                                                |              |                                                              |
+|                                                |              | male:    4-6, 11-12                                          |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| attractiveness                                 | 2            | attractive:    1, 4, 7, 10                                   |
+|                                                |              |                                                              |
+|                                                |              | no-pic:        2, 5, 8, 11                                   |
+|                                                |              |                                                              |
+|                                                |              | unattractive: 3, 6, 9, 12                                    |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| reader $\times$ author                         | 4            | +---------------------------+------------------------------+ |
+|                                                |              | | female reader             | male reader                  | |
+|                                                |              | +===========================+:=============================+ |
+|                                                |              | | female author: 1-3        | female author: 7-9           | |
+|                                                |              | |                           |                              | |
+|                                                |              | | male author:   4-6        | male author:   10-12         | |
+|                                                |              | +---------------------------+------------------------------+ |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| reader $\times$ attractiveness                 | 6            | +---------------------------+------------------------------+ |
+|                                                |              | | female reader             | male reader                  | |
+|                                                |              | +===========================+:=============================+ |
+|                                                |              | | attractive: 1, 4          | attractive: 7, 10            | |
+|                                                |              | |                           |                              | |
+|                                                |              | | no-pic: 2, 5              | no-pic: 8, 11                | |
+|                                                |              | |                           |                              | |
+|                                                |              | | unattractive: 3, 6        | unattractive: 9, 12          | |
+|                                                |              | +---------------------------+------------------------------+ |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| author $\times$ attractiveness                 | 6            | +-----------------------------+----------------------------+ |
+|                                                |              | | female author               | male author                | |
+|                                                |              | +=============================+:===========================+ |
+|                                                |              | | attractive: 1, 7            | attractive: 4, 10          | |
+|                                                |              | |                             |                            | |
+|                                                |              | | no-pic: 2, 8                | no-pic: 5, 11              | |
+|                                                |              | |                             |                            | |
+|                                                |              | | unattractive: 3, 9          | unattractive: 6, 12        | |
+|                                                |              | +-----------------------------+----------------------------+ |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+| reader $\times$ author $\times$ attractiveness | 12           | female, female, attractive: 1                                |
+|                                                |              |                                                              |
+|                                                |              | female, female, no-pic: 2                                    |
+|                                                |              |                                                              |
+|                                                |              | female, female, unattractive: 3                              |
+|                                                |              |                                                              |
+|                                                |              | female, male, attractive: 4                                  |
+|                                                |              |                                                              |
+|                                                |              | female, male, no-pic: 5                                      |
+|                                                |              |                                                              |
+|                                                |              | female, male, unattractive: 6                                |
+|                                                |              |                                                              |
+|                                                |              | male, female, attractive: 7                                  |
+|                                                |              |                                                              |
+|                                                |              | male, female, no-pic:      8                                 |
+|                                                |              |                                                              |
+|                                                |              | male, female, unattractive: 9                                |
+|                                                |              |                                                              |
+|                                                |              | male, male, attractive: 10                                   |
+|                                                |              |                                                              |
+|                                                |              | male, male, no-pic: 11                                       |
+|                                                |              |                                                              |
+|                                                |              | male, male, unattractive: 12                                 |
++------------------------------------------------+--------------+--------------------------------------------------------------+
+
+## Hypothesis and Model
+
+Each factor (i.e. meaningful partition of the data) corresponds to a term in @eq-bf3:
+
+$$
+y_\text{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha\beta)_\text{ij} + (\alpha\gamma)_\text{ik} + (\beta\gamma)_\text{jk} + (\alpha\beta\gamma)_\text{ijk} + \epsilon_\text{ijkl}
+$$ {#eq-bf3}
+
+Where
+
+-   $y_{ijkl}$ is the $l^{th}$ observation from the factor level combination of $\alpha_i$, $\beta_j$, and $\gamma_k$.
+-   $\mu$ is the grand mean of all the observations.
+-   $\alpha$ is the effect of reader's gender, and $i$ has 2 levels
+-   $\beta$ is the effect of author's gender, and $j$ has 2 levels
+-   $\gamma$ is the effect of author's attractiveness, and $k$ has 3 levels: attractive, neural, and unattractive
+-   The $(\alpha\beta)_\text{ij}$ is the interaction effect for reader gender with author gender on perceived talent level.
+-   The $(\alpha\gamma)_\text{ik}$ is the interaction effect for reader gender with author attractiveness on perceived talent.
+-   The $(\beta\gamma)_\text{jk}$ is the interaction effect for author gender with attractiveness on perceived talent.
+-   The $(\alpha\beta\gamma)_\text{ijk}$ is the interaction effect for reader gender, author gender, and attractiveness on perceived talent.
+-   $\epsilon$ is the residual error term, and $l$ is the replicate count within a factor level combination.
+
+Though we have seen two factor interactions and know how to deal with them, the three factor interaction is something new. Including this term in the model means that the impact of any of the three variables depends on the levels of the other two. Stated another way, the nature of the two-way interaction depends on the level of the third variable.
+
+The main effects and two-way interactions are tested just as they were in the [BF\[2\]](bf2.qmd) model. The hypothesis for the 3-way interaction is
+
+$$
+H_0: (\alpha\beta\gamma)_\text{ijk} = 0 \text{ for all } ijk
+$$
+
+$$
+H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
+$$
+
+## Assumptions
+
+A three-way ANOVA model may be used to analyze data from a BF\[3\] design if the following requirements are satisfied. Note that these requirements are identical to the requirements of a BF\[2\] two-way ANOVA.
+
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+| Requirements                           | Method for Checking                                     | What You Hope to See                                     |
++========================================+=========================================================+==========================================================+
+| Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+|                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+| Independent residuals                  | Order plot                                              | No pattern/trend                                         |
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
++----------------------------------------+---------------------------------------------------------+----------------------------------------------------------+
+
+# Design
+
+In a basic factorial design of 3 factors, three factors are purposely varied in such a way that observations are obtained for every possible factor level combination. Each factor level combination is considered a treatment.
+
+In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level combination. It can be helpful to first list out all the subjects and factor level combinations in a table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.
+
+There are \$ \text{2 reader gender levels} \times \text{2 author gender levels} \times \text{3 author attractiveness levels = 12}\$ factor level combinations. If we want to observe each factor level combination 4 times, we need $12 \times 4 = 48$ observations.
+
+<a href="javascript:showhide('unrandomized')">[click twice to show/hide data]{style="font-size:8pt;"}</a>
+
+::: {#unrandomized}
+```{r}
+#| code-fold: true
+
+#Create a sequence from 1 to 48
+#Paste the word "Subject " in front of each id #
+Subject <- paste("Subject", seq(1:48), sep = " ")
+
+#Create a vector with each reader gender repeated 24 times
+reader <- rep(c("female", "male"), each = 24)
+
+#Create a vector with each author gender repeated 24 times
+author <- rep(c("female", "male"), each = 12, times = 2)
+
+#Create a vector with each level of attractiveness repeated 16
+attractiveness <- rep(c("attractive", "neutral", "unattractive"), times = 16)
+
+#Combine the vectors of Subject ID's and controlled factor levels into one tibble/dataset
+assignment_table <- tibble(Subject, reader, author, attractiveness)
+
+#print the table, pander() makes it look nice
+pander(assignment_table) 
+
+```
+:::
+
+Now randomize which subjects get which treatment (aka - factor level combination).
+
+<a href="javascript:showhide('randomized')">[click twice to show/hide data]{style="font-size:8pt;"}</a>
+
+::: {#randomized}
+```{r}
+#| code-fold: true
+
+#randomize subject assignment to treatment
+randomized_table <- tibble(sample(Subject), reader, author, attractiveness)
+
+#print the table, pander() makes it look nice
+pander(randomized_table) 
+
+```
+:::
+
+# Interaction
+
+We can visually investigate main effects and two-way interactions in the same way that was explained on the [BF\[2\]](bf2.qmd) page. To visually inspect the possibility of a 3-way interaction, you can create two-way interaction charts faceted by the third variable.
+
+::: column-margin
+A chart to inspect a two-way interaction consists of plotting the mean of each factor level combination
+:::
+
+It technically does not matter which of the three variables in the interaction you use for faceting, if a three way interaction is there it should be visible. However, it sometimes can be easier to spot the interaction or be more intuitive to interpret the interaction when faceting on one variable instead of another.
+
+For the study on the halo effect of attractiveness example, we start by computing the mean perceived talent level of our observed data, contained in @tbl-data. The means are shown in @tbl-means2 and the interaction plots created from those means are shown in @fig-ints2.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| label: tbl-means2
+#| layout-nrow: 1
+#| tbl-cap: Means for Each Factor Level Combination
+
+mymeans <- df %>% group_by(reader, author, attractiveness) %>% summarise(talent = mean(talent)) 
+female_reader <- mymeans %>% filter(reader == "female") %>% ungroup() %>% select(-reader) 
+freader <- female_reader %>% pivot_wider(names_from = attractiveness, values_from = talent)
+pander::pander(freader, caption = "Group means for Female reader") 
+
+male_reader <- mymeans %>% filter(reader == "male") %>% ungroup() %>% select(-reader)
+mreader <- male_reader %>% pivot_wider(names_from = attractiveness, values_from = talent)
+pander::pander(mreader, caption = "Group means for Male reader")
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| label: fig-ints2
+#| layout-nrow: 1
+#| out-width: 150%
+#| out-height: 150%
+#| fig-cap: "Author Gender and Attractiveness Interaction Plots Faceted by Reader Gender"
+
+mymeans <- df %>% group_by(reader, author, attractiveness) %>% summarise(talent = mean(talent)) 
+
+my_custom_labels <- as_labeller(c(female = "reader = female", male = "reader = male"))
+
+ggplot(mymeans, aes(x = attractiveness, color = author, y = talent)) + 
+  geom_point() + 
+  geom_line(aes(group = author)) + 
+  facet_wrap(facets = vars(reader), labeller = my_custom_labels) +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+
+
+<!-- This plot works, but I want to use the one above because it seems more straigh forward -->
+```{r}
+#| eval: false
+#| include: false
+#| echo: false
+#| message: false
+#| label: fig-ints
+#| layout-nrow: 1
+##| column: page
+#| fig-cap: "Author Gender and Attractiveness Interaction Plots Faceted by Reader Gender"
+#| fig-subcap: 
+#|     - "Reader = Female"
+#|     - "Reader = Male"
+
+mymeans <- df %>% group_by(reader, author, attractiveness) %>% summarise(talent = mean(talent)) 
+ggplot(female_reader, aes(x = attractiveness, color = author, y = talent)) + 
+  geom_point() + 
+  geom_line(aes(group = author)) + 
+  theme_classic()
+
+ggplot(male_reader, aes(x = attractiveness, color = author, y = talent)) + geom_point() + geom_line(aes(group = author))
+```
+
+DESCRIBE HOW THE PLOT ON THE LEFT AND THE PLOT ON THE RIGHT ARE DIFFERENT AND HOW THAT REPRESENTS A 3-WAY INTERACTION: WHEN THE NATURE OF THE 2 WAY INTERACTION DEPENDS ON THE THIRD FACTOR.
+
+
+# Appendix
+
+Partitioning of the dataset that corresponds with the 7 structural factors in the 3 factor model.
+
+:::{.column-page}
+![Data Partition for Single Factors](images/bf3_partition_main.PNG){#fig-partition_main}
+
+![Data Partition for 2-Way Interaction Factors](images/bf3_partition_2way.PNG){#fig-partition_2way}
+
+![Data Partition for 3-Way Interaction Factor](images/bf3_partition_3way.PNG){#fig-partition_3way width="490"}
+:::

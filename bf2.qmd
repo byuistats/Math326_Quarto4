@@ -42,7 +42,7 @@ Factorial designs are a way to simultaneously study the effects of multiple fact
 
 We will expand on the simple toothpaste example to illustrate BF\[2\] concepts. The study is summarized here.
 
-Researchers wanted to know which of 4 types of toothbrushes was best at reducing plaque: manual (this is the traditional/usual type of brush), oscillating bristles, sonic, and ultrasonic. The response variable is was the percent of teeth surface area covered with plaque. Four teeth (first molar in each quadrant of the mouth) were measured on each person to calculate the total percent area covered. Six subjects were assigned to each type of brush.
+Researchers wanted to know which of 4 types of toothbrushes was best at reducing plaque: manual (this is the traditional/usual type of brush), oscillating bristles, sonic, and ultrasonic. The response variable was the percent of teeth surface area covered with plaque. Four teeth (first molar in each quadrant of the mouth) were measured on each person to calculate the total percent area covered. Six subjects were assigned to each type of brush.
 
 Researchers also wanted to study the effect of name brand tooth paste compared to its off brand equivalent. This is the second controlled factor in the experiment. It has two levels (name brand and off brand). Twelve subjects used name brand paste, and a different 12 subjects used the off brand. Toothpaste brand is crossed with toothbrush type to create a BF\[2\].
 
@@ -54,7 +54,7 @@ Based on the description above, the factor structure for this experiment is disp
 ![Factor Structure Diagram](images/toothbrush_bf2_factor_structure.JPG){#fig-bf2_brush_factor_structure}
 :::
 
-There are 3 replicates for each factor level combination of toothbrush and toothpaste brand. Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 factor level combinations total. These 8 factor level combinations are obtained by overlaying the 2 controlled factor partitions. When the controlled factor brush and paste partitions are overlayed, they cross each other and create new, meaningful partitions. Since there were 24 subjects and the study is balanced, we end up with $24\div 8 = 3$ replicates in each factor level combination.
+Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 factor level combinations total. This is represented by the 8 partitions in the interaction factor. These 8 factor level combinations are obtained by overlaying the 2 controlled factor partitions. When the toothbrush factor and toothpastepaste partitions are overlayed, they cross each other and create new, meaningful partitions: the interaction factor. Since there were 24 subjects and the study is balanced, we end up with $24\div 8 = 3$ replicates in each factor level combination.
 
 ## Hypothesis and Model
 
@@ -110,7 +110,7 @@ The BF\[\] designation refers to the design of the experiment. The reference to 
 :::
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+|-------------------|--------------------------|---------------------------|
 | Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
 | Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
@@ -641,7 +641,7 @@ lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 
 ```
 
-The previous 3 figures are placed side by side below in @fig-crossed-interaction so that the additive progression of the effects can more easily be seen.
+The previous 3 figures are placed side by side below in the figure below so that the additive progression of the effects can more easily be seen.
 
 <div>
 
@@ -649,6 +649,7 @@ The previous 3 figures are placed side by side below in @fig-crossed-interaction
 #| echo: false
 #| column: screen-inset-shaded
 #| layout-nrow: 1
+#| label: fig-side_by_each
 ##| fig-cap: "Additive Effects"
 ##| fig-subcap:
 ##|   - "Grand mean + brush effect... "
