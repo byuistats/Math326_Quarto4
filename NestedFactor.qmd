@@ -1,0 +1,27 @@
+---
+title: "Nested Factorial Designs"
+draft: true
+echo: false
+message: false
+output: 
+  html_document: 
+    theme: cerulean
+    css: styles.css
+---
+
+# Nested Factor Structure
+In this section you will learn how to identify levels of experimental units within a nested factorial design and how to appropriately analyze them. To identify and analyze a nested design appropriately, you will need to have a solid understanding of:
+
+* Experimental units
+* True replication
+* Fixed effects
+* Random effects
+* Independence of observations
+
+# Identifying and Diagraming Nested Factors
+
+### Experimental Units
+
+To begin, consider an example from agriculture where a researcher would like to compare yield for a specific variety of maize under different growing conditions:  20 inch row spacing vs 30 inch row spacing.  The farmer has 2 plots of land, side-by-side, on which he plants the maize with different row widths as shown below.
+
+![](images/Nested_20v30_basic.png){width="360"}
