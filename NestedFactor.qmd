@@ -17,6 +17,8 @@ In this section you will learn how to identify levels of experimental units with
 * Fixed effects
 * Random effects
 * Independence of observations
+* Degrees of Freedom for Error
+* Statistical Power
 
 # Identifying and Diagraming Nested Factors
 
