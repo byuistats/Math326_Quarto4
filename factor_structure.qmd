@@ -44,7 +44,7 @@ When analyzing our data we will want to compare the averages for each toothbrush
 
 ![](images/toothbrush_factor_column.JPG){width="360"}
 
-To compute the mean for the manual toothbrush I would sum together the observation for manual and divide by 6 (the number of pieces information in that factor level):
+To compute the mean for the manual toothbrush I would sum together the observation for manual and divide by 6 (the number of pieces of information in that factor level):
 
 $$
 \bar{y}_\text{manual} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
