@@ -152,7 +152,7 @@ pander(assignment_table)
 
 ```
 
-Then we randomly shuffle the brush and paste column to get the following assignments. Check out the R-code to see how this is done.
+Then we randomly shuffle the `Treatment` column to get the following assignments. Check out the R-code to see how this is done.
 
 ```{r}
 #| code-fold: true
@@ -166,7 +166,7 @@ set.seed(42)
 tibble(Subject, sample(Treatment, 16)) %>% pander()
 ```
 
-We can see here that subject 1 should get treatment 2. Subject 2 gets treatment 4, Subject 3 gets treatment 1, and so on.
+We can see here that subject 1 should get treatment 1. Subject 2 also gets treatment 1, Subject 3 gets treatment 4, and so on.
 
 # Decomposition
 
