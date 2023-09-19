@@ -1,6 +1,6 @@
 ---
 title: "Nested Factorial Designs"
-draft: true
+draft: false
 echo: false
 message: false
 output: 
