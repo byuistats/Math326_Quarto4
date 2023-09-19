@@ -10,20 +10,73 @@ output:
 ---
 
 # Nested Factor Structure
+
+Review the discussion on [nested subsample](Nested_Subsamples.qmd).  It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.  
+
 In this section you will learn how to identify levels of experimental units within a nested factorial design and how to appropriately analyze them. To identify and analyze a nested design appropriately, you will need to have a solid understanding of:
 
 * Experimental units
 * True replication
-* Fixed effects
-* Random effects
 * Independence of observations
 * Degrees of Freedom for Error
-* Statistical Power
 
 # Identifying and Diagraming Nested Factors
 
 ### Experimental Units
 
-To begin, consider an example from agriculture where a researcher would like to compare yield for a specific variety of maize under different growing conditions:  20 inch row spacing vs 30 inch row spacing.  The farmer has 2 plots of land, side-by-side, on which he plants the maize with different row widths as shown below.
+To begin, consider an example from agriculture Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides:  generic vs premium.  Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate.  Their design is a basic [single factor design](BasicFactorial_intro.qmd):  
 
-![](images/Nested_20v30_basic.png){width="360"}
+![](images/FarmerJohnsReplication.png){width="360"}
+
+Farmer John is could still take subsamples within a each experimental unit:
+
+![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
+
+Where the data would look like 
+
+| Farmer |  Subsample  | Fungicide   |   Yield |
+|:-------|------------:|:------------|--------:|
+|  John  |     1 | A           |  501.36 |
+|  John  |     2 | A           |  507.27 |
+|  John  |     3 | A           |  482.3  |
+|  John  |     4 | A           |  522.1  |
+|  ...   |   ... | ...         |  498.3  |
+|  John  |     1 | B           |  487.45 |
+|  John  |     2 | B           |  497.86 |
+|  John  |     3 | B           |  501.22 |
+|  John  |     4 | B           |  499.8  |
+|  ...   |   ... | ...         |   ...   |
+| Maggot |     1 | A           |  506.45 |
+| Maggot |     2 | A           |  536.12 |
+| Maggot |     3 | A           |  514.25 |
+| Maggot |     4 | A           |  515.97 |
+|  ...   |   ... | ...         |   ...   |
+| Maggot |     1 | B           |  524.31 |
+| Maggot |     2 | B           |  519.22 |
+| Maggot |     3 | B           |  503.7  |
+| Maggot |     4 | B           |  498.67 |
+|  ...   |   ... | ...         |   ...   |
+
+
+Because the treatments are replicated, we can analyze this model as we did in [Nested Subsamples](Nested_Subsamples.qmd):
+
+$$
+y_\text{ijk} = \mu + \alpha_i + \S_\text{j(i)} + \epsilon_\text{ijk}
+$$ {#eq-subsample}
+
+Including the subsample term in the model preserves the appropriate degrees of freedom for error.  In this example, we have  N = 4  experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.  
+
+## Adding A Nested Factor
+
+Supppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize.  We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations.  We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
+
+![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
+
+
+# Examples
+
+### Freezers as Whole Plots
+
+A lab would like to test the impact of temperature on the life of a their reagents.  They have 4 freezers in the lab with independent climate control.  If we want true replication of temperature control, we would need to pick 2 temperature levels and divide the ...
+
+### Repeated Measures
