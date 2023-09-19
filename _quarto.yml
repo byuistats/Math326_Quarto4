@@ -42,7 +42,7 @@ website:
          - text: "Latin Square"
            href: latin_square.qmd
          - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
-           href: NestedFactor.html
+           href: NestedFactor.qmd
         # - text: "1 Factor, Completely Randomized, Basic Factorial"
         #   href: GraphicalSummaries.html
         # - text: "2 Factor, Completely Randomized, Basic Factorial"
