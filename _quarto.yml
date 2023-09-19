@@ -76,6 +76,8 @@ website:
           href: Kruskal.html
         - text: "ZRandom Factors??"
           href: LogisticRegression.html
+        - text: "ZNested Subsamples"
+          href: "Nested_Samples.qmd"
 
     - text: "R Instructions"
       menu:
