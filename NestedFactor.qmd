@@ -70,8 +70,14 @@ Including the subsample term in the model preserves the appropriate degrees of f
 
 Supppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize.  We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations.  We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
 
-![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
+![](images/FarmerJohnsSplitPlot.png){width="360"}
 
+Hopefully you can spot the challenge.  Because nothing has changed for the fungicide treatment level, variety is actually a subsample within treatment.  If fact, we now have 2 levels of experimental units!
+
+![](images/FarmerJohnsSplitPlotAnnotated.png){width="360"}
+
+
+We must account for the fact that we don’t have 24 independent applications of fungicide*Variety.  
 
 # Examples
 
