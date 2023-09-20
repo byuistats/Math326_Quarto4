@@ -11,20 +11,20 @@ output:
 
 # Nested Factor Structure
 
-Review the discussion on [nested subsample](Nested_Subsamples.qmd).  It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.  
+Review the discussion on [nested subsample](Nested_Samples.qmd). It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.
 
 In this section you will learn how to identify levels of experimental units within a nested factorial design and how to appropriately analyze them. To identify and analyze a nested design appropriately, you will need to have a solid understanding of:
 
-* Experimental units
-* True replication
-* Independence of observations
-* Degrees of Freedom for Error
+-   Experimental units
+-   True replication
+-   Independence of observations
+-   Degrees of Freedom for Error
 
-# Identifying and Diagraming Nested Factors
+# Identifying and Diagramming Nested Factors
 
 ### Experimental Units
 
-To begin, consider an example from agriculture Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides:  generic vs premium.  Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate.  Their design is a basic [single factor design](BasicFactorial_intro.qmd):  
+To begin, consider an example from agriculture Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic [single factor design](BasicFactorial_intro.qmd):
 
 ![](images/FarmerJohnsReplication.png){width="360"}
 
@@ -32,57 +32,70 @@ Farmer John is could still take subsamples within a each experimental unit:
 
 ![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
 
-Where the data would look like 
+Where the data would look like:
 
-| Farmer |  Subsample  | Fungicide   |   Yield |
-|:-------|------------:|:------------|--------:|
-|  John  |     1 | A           |  501.36 |
-|  John  |     2 | A           |  507.27 |
-|  John  |     3 | A           |  482.3  |
-|  John  |     4 | A           |  522.1  |
-|  ...   |   ... | ...         |  498.3  |
-|  John  |     1 | B           |  487.45 |
-|  John  |     2 | B           |  497.86 |
-|  John  |     3 | B           |  501.22 |
-|  John  |     4 | B           |  499.8  |
-|  ...   |   ... | ...         |   ...   |
-| Maggot |     1 | A           |  506.45 |
-| Maggot |     2 | A           |  536.12 |
-| Maggot |     3 | A           |  514.25 |
-| Maggot |     4 | A           |  515.97 |
-|  ...   |   ... | ...         |   ...   |
-| Maggot |     1 | B           |  524.31 |
-| Maggot |     2 | B           |  519.22 |
-| Maggot |     3 | B           |  503.7  |
-| Maggot |     4 | B           |  498.67 |
-|  ...   |   ... | ...         |   ...   |
+| Farmer | Subsample | Fungicide |  Yield |
+|-------:|----------:|:----------|-------:|
+| John   |         1 | A         | 501.36 |
+| John   |         2 | A         | 507.27 |
+| John   |         3 | A         |  482.3 |
+| John   |         4 | A         |  522.1 |
+| ...    |       ... | ...       |  498.3 |
+| John   |         1 | B         | 487.45 |
+| John   |         2 | B         | 497.86 |
+| John   |         3 | B         | 501.22 |
+| John   |         4 | B         |  499.8 |
+| ...    |       ... | ...       |    ... |
+| Maggot |         1 | A         | 506.45 |
+| Maggot |         2 | A         | 536.12 |
+| Maggot |         3 | A         | 514.25 |
+| Maggot |         4 | A         | 515.97 |
+| ...    |       ... | ...       |    ... |
+| Maggot |         1 | B         | 524.31 |
+| Maggot |         2 | B         | 519.22 |
+| Maggot |         3 | B         |  503.7 |
+| Maggot |         4 | B         | 498.67 |
+| ...    |       ... | ...       |    ... |
 
-
-Because the treatments are replicated, we can analyze this model as we did in [Nested Subsamples](Nested_Subsamples.qmd):
+Because the treatments are replicated, we can analyze this model as we did in [Nested Subsamples](Nested_Samples.qmd):
 
 $$
-y_\text{ijk} = \mu + \alpha_i + \S_\text{j(i)} + \epsilon_\text{ijk}
+y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
 $$ {#eq-subsample}
 
-Including the subsample term in the model preserves the appropriate degrees of freedom for error.  In this example, we have  N = 4  experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.  
+Including the subsample term in the model preserves the appropriate degrees of freedom for error. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.
 
-## Adding A Nested Factor
+## Adding a Nested Factor
 
-Supppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize.  We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations.  We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
+Suppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize. We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
 
 ![](images/FarmerJohnsSplitPlot.png){width="360"}
 
-Hopefully you can spot the challenge.  Because nothing has changed for the fungicide treatment level, variety is actually a subsample within treatment.  If fact, we now have 2 levels of experimental units!
-
-![](images/FarmerJohnsSplitPlotAnnotated.png){width="360"}
+Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level.  Variety is no different from a sub-sample within treatment. We actually have 2 levels of experimental units!
 
 
-We must account for the fact that we don’t have 24 independent applications of fungicide*Variety.  
+![](images/FarmerJohnsSplitPlotAnnotated.png){width="500"}
 
-# Examples
 
-### Freezers as Whole Plots
+With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit). We must account for the fact that we don't have 24 independent applications of fungicide by Variety.
 
-A lab would like to test the impact of temperature on the life of a their reagents.  They have 4 freezers in the lab with independent climate control.  If we want true replication of temperature control, we would need to pick 2 temperature levels and divide the ...
+This is done by 
 
-### Repeated Measures
+# Split-Plot Designs
+  
+A split-plot design is characterized by at least 2 levels of experimental units.  The larger experimental unit is called the **Whole Plot**, and the lower-level experimental unit is called the **Subplot**.  
+
+You can think of **whole plots as Blocking variables** for the sub-plots and **sub-plots as subsamples** for the whole plots. By adding an additional term into the model, we can account for both levels of experimental units. Residual error will still be used as the error term for the sub-plot.
+
+Split-plot designs usually arise when there are physical limitations to completely randomizing treatments to experimental units.  In the above example, farming equipment makes it infeasible to spray random sections of the field with different fungicides. 
+
+
+# Split-Plot Analysis in R
+
+```
+aov(Y ~ DayLength + Error(Hamster) + Organ + DayLength:Organ, 
+               data=ham)
+summary(aovout2)
+```
+
+

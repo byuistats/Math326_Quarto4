@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-01-27">
 
-<title>Math326 Notebook - Describing Data</title>
+<title>Math326 Notebook - Subsampling and False Replication</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -95,6 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -281,14 +248,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul>
+  <li><a href="#beware-of-false-replication" id="toc-beware-of-false-replication" class="nav-link" data-scroll-target="#beware-of-false-replication">Beware of False Replication</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Describing Data</h1>
+<h1 class="title">Subsampling and False Replication</h1>
 </div>
 
 
@@ -296,12 +273,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 27, 2022</p>
-    </div>
-  </div>
   
     
   </div>
@@ -314,36 +285,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     var e = document.getElementById(id);
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
- 
- function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
- 
 </script>
-<p>Calculating treatment means for <strong>one factor</strong>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Y<span class="sc">~</span>X, <span class="at">data=</span>YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="beware-of-false-replication" class="level3">
+<h3 class="anchored" data-anchor-id="beware-of-false-replication">Beware of False Replication</h3>
+<p>Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the cheaper Chinese import. Fungus can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:</p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsAnecdote.PNG" class="img-fluid figure-img" width="1096"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Farmer John’s Field</figcaption>
+</figure>
 </div>
-<p>DP Example code:</p>
-<a href="javascript:showhide('mosaic_mean')">
-<div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that is useful in the teaching of statistics to beginning programmers.</span> </span><br><span class="tooltipr"> library(pander) <span class="tooltiprtext">pander is an R Package that makes R output look pretty</span> </span><br><span class="tooltipr"> favstats( <span class="tooltipRtext">a function from the mosaic package that returns a set of favorite summary statistics</span> </span><span class="tooltipr"> Temp <span class="tooltipRtext">This is our response variable. From <code>?airquality</code> you can see in the help file that Temp is the maximum daily temp in degrees F at La Gaurdia Aiport during 1973</span> </span><span class="tooltipr"> ~ <span class="tooltipRtext">“~” is the tilde symbol. It can be interpreted as “y broken down by x”; “y modeled by x”; “y explained by x”, etc. Where y is on the left of the tilde and x is on the right. </span> </span><span class="tooltipr"> Month, <span class="tooltiprtext">“Month” is a column from the airquality dataset that can be treated as qualitative.</span> </span><span class="tooltipr"> data = airquality <span class="tooltiprtext">You have to tell R what dataset the variables Temp and Month come from. ‘airquality’ is a preloaded dataset in R. </span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr" style="float:right;"> &nbsp;Click to view output&nbsp; <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p>Recall that an Experimental Unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. Replication is an independent repetition of the same conditions on different experimental units. Farmer John’s design has no replication.</p>
+<p>Now imagine Farmer John’s son is visiting home from college and recognizes the problem and comes up with a brilliant solution.</p>
+<p>College Boy Bill says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten “reps” within each field and analyze the data using standard statistical tools.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/FarmerJohnsSubsamples.PNG" class="img-fluid figure-img" width="1096"></p>
+<figcaption class="figure-caption">Farmer John’s Subsamples</figcaption>
+</figure>
 </div>
-</a><p><a href="javascript:showhide('mosaic_mean')"></a></p>
+<p>Statistical software won’t be able to tell that these data points are not independent applications of the experiment, and therefore not true replication. They are only subsamples from within a single experimental unit.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">“rep”</th>
+<th style="text-align: left;">Fungicide</th>
+<th style="text-align: right;">Yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">501.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">507.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">482.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">522.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">498.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">487.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">497.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">501.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">499.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">442.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">506.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">536.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">514.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">515.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">509.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">524.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">519.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">503.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">498.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">539.04</td>
+</tr>
+</tbody>
+</table>
+<p>That’s not to say subsamples are useless. They can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can be so tempting to believe we have 20 independent observations more statistical power than the actual design allows (which is zero). It can only provide a false sense of statistical sophistication for a simple anecdote.</p>
+<p>If we are not interested in the within-field variation, then we can average over the subsamples, and it becomes clear that we have no replication. However, we can include Sample “nested within” Treatment in our model, which allows us to account for the within-field variation and preserves the appropriate degrees of freedom for a design.</p>
+<p>The model including nested subsamples can be written:</p>
+<p><span id="eq-subsample"><span class="math display">\[
+y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
+\tag{1}\]</span></span></p>
+<p>This model only works, though, if you have treatment replications, k, otherwise you cannot estimate the error term, $ e_ $.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Failure to account for subsamples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
