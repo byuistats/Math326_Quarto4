@@ -299,139 +299,143 @@ ul.task-list li input[type="checkbox"] {
 <section id="experimental-units" class="level3">
 <h3 class="anchored" data-anchor-id="experimental-units">Experimental Units</h3>
 <p>To begin, consider an example from agriculture Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic <a href="./BasicFactorial_intro.html">single factor design</a>:</p>
-<p><img src="images/FarmerJohnsReplication.png" class="img-fluid" width="360"></p>
+<p align="center">
+<img src="images/FarmerJohnsReplication.png" class="img-fluid" width="360">
+</p>
 <p>Farmer John is could still take subsamples within a each experimental unit:</p>
-<p><img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid" width="360"></p>
+<p align="center">
+<img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid" width="360">
+</p>
 <p>Where the data would look like:</p>
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: right;">Farmer</th>
-<th style="text-align: right;">Subsample</th>
-<th style="text-align: left;">Fungicide</th>
-<th style="text-align: right;">Yield</th>
+<th style="text-align: center;">Farmer</th>
+<th style="text-align: center;">Subsample</th>
+<th style="text-align: center;">Fungicide</th>
+<th style="text-align: center;">Yield</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">501.36</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">501.36</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">507.27</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">507.27</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">482.3</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">482.3</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">522.1</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">522.1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">…</td>
-<td style="text-align: right;">…</td>
-<td style="text-align: left;">…</td>
-<td style="text-align: right;">498.3</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">498.3</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">487.45</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">487.45</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">497.86</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">497.86</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">501.22</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">501.22</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">John</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">499.8</td>
+<td style="text-align: center;">John</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">499.8</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">…</td>
-<td style="text-align: right;">…</td>
-<td style="text-align: left;">…</td>
-<td style="text-align: right;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">506.45</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">506.45</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">536.12</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">536.12</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">514.25</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">514.25</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">515.97</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">515.97</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">…</td>
-<td style="text-align: right;">…</td>
-<td style="text-align: left;">…</td>
-<td style="text-align: right;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">524.31</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">524.31</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">519.22</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">519.22</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">503.7</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">503.7</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">Maggot</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">498.67</td>
+<td style="text-align: center;">Maggot</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">498.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">…</td>
-<td style="text-align: right;">…</td>
-<td style="text-align: left;">…</td>
-<td style="text-align: right;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
 </tr>
 </tbody>
 </table>
@@ -439,29 +443,61 @@ ul.task-list li input[type="checkbox"] {
 <p><span id="eq-subsample"><span class="math display">\[
 y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
 \tag{1}\]</span></span></p>
-<p>Including the subsample term in the model preserves the appropriate degrees of freedom for error. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.</p>
+<p>Including the sub-sample term in the model preserves the appropriate degrees of freedom for error. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.</p>
 </section>
 <section id="adding-a-nested-factor" class="level2">
 <h2 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h2>
 <p>Suppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize. We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
-<p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid" width="360"></p>
+<p align="center">
+<img src="images/FarmerJohnsSplitPlot.png" class="img-fluid" width="360">
+</p>
 <p>Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. Variety is no different from a sub-sample within treatment. We actually have 2 levels of experimental units!</p>
-<p><img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid" width="500"></p>
-<p>With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit). We must account for the fact that we don’t have 24 independent applications of fungicide by Variety.</p>
-<p>This is done by</p>
+<p align="center">
+<img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid" width="650">
+</p>
+<p>With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).</p>
+<p>Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be the how the larger experimental units vary.</p>
+<p>And if we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety plot to variety plot variation within the blocks.</p>
 </section>
 </section>
 <section id="split-plot-designs" class="level1">
 <h1>Split-Plot Designs</h1>
-<p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole Plot</strong>, and the lower-level experimental unit is called the <strong>Subplot</strong>.</p>
-<p>You can think of <strong>whole plots as Blocking variables</strong> for the sub-plots and <strong>sub-plots as subsamples</strong> for the whole plots. By adding an additional term into the model, we can account for both levels of experimental units. Residual error will still be used as the error term for the sub-plot.</p>
-<p>Split-plot designs usually arise when there are physical limitations to completely randomizing treatments to experimental units. In the above example, farming equipment makes it infeasible to spray random sections of the field with different fungicides.</p>
+<p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole-plot factor</strong>, and the lower-level experimental unit is called the <strong>split-plot factor</strong>.</p>
+<p>You can think of <strong>whole plots as Blocking variables</strong> for the split-plots and <strong>split-plots as sub-samples</strong> for the whole plots. We can define a new random effect in the model that will act as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
+<p>Split-plot designs usually arise when there are physical limitations to completely randomize treatments to experimental units. In the above example, farming equipment makes it infeasible to spray random sections of the field with different fungicides.</p>
 </section>
 <section id="split-plot-analysis-in-r" class="level1">
 <h1>Split-Plot Analysis in R</h1>
-<pre><code>aov(Y ~ DayLength + Error(Hamster) + Organ + DayLength:Organ, 
-               data=ham)
-summary(aovout2)</code></pre>
+<pre><code>library(lme4)
+library(lmerTest)
+
+dat &lt;- read_csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake.csv")
+dat$Farmer &lt;- as.factor(dat$Farmer)
+dat$Variety &lt;- as.factor(dat$Variety)
+dat$Fungicide &lt;- as.factor(dat$Fungicide)
+
+
+## Using AOV
+aovout &lt;- aov(Yield ~ Fungicide + Error(Field) + Variety + Variety:Fungicide, data = dat)
+summary(aovout)
+
+
+## Using LMER
+mod1 &lt;- lmer(Yield ~ Fungicide + Variety + Fungicide*Variety + (Fungicide|Field), data = dat)
+
+# Or equivilantly:
+
+mod1 &lt;- lmer(Yield ~ Fungicide*Variety + (Fungicide|Field), data = dat)
+
+anova(mod1)
+</code></pre>
+<p>Generally, the model will look like:</p>
+<pre><code>aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)
+
+# or
+
+lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)
+</code></pre>
 
 
 </section>
