@@ -30,9 +30,7 @@ By the end of this section you should know how to interpret the terms in an ANOV
 
 Consider an experiment conducted to test 4 different types of toothbrushes: manual, oscillating, sonic and ultrasonic. The response variable is percent of area on teeth that has plaque. Twenty-four individuals participate in the experiment, yielding 6 observations per treatment. We will discuss the creation of an ANOVA model using the context of this specific example. In this section and "Calculating Effect Sizes" section we will be referring to estimates of model parameters using this sample data.
 
-Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would not know how that value compares to the other types of brushes.
-
-A graph or table reporting the other sample means would be necessary to provide context. @fig-means depicts the data points and the mean for each factor level.
+Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would want to know how that value compares to the other types of brushes. A graph or table reporting the other sample means would be necessary to provide context. @fig-means depicts the data points and the mean for each factor level.
 
 ```{r}
 #| label: setup
@@ -110,9 +108,9 @@ text(3-.21,y$yi[25], expression(y[3][","][5] == mu[3]+epsilon[3][","][5]), pos=2
 text(3-.1, (y$yi[25]+ai[3])/2, expression(epsilon[3][","][5]), pos=2, cex=0.8)
 ```
 
-In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. (The factor is the variable that defines the groups.) However, it is limited in its ability to include more factors or more complicated designs.
+In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model.[^1] However, it is limited in its ability to include more factors or more complicated designs.
 
-There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.[^1]
+There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.
 
 [^1]: The algebraic form of the cell means model is
 
@@ -198,8 +196,10 @@ $$
 $$ {#eq-general-effects-rule}
 :::
 
+### Effect of the Grand Mean Factor
 Using @eq-general-effects-rule we can also estimate the effect of the grand mean factor. Grand mean only has 1 level and it includes all the observations, so the factor level mean is the same as the mean of all the observations, 22.765. The "sum of effects of all outside factors" is 0 since there are no factors outside of grand mean. Therefore, the effect size for the grand mean factor is simply the grand mean. In this case, 22.765.
 
+### Effects of the Residual Error Factor
 What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let's consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see [Factor Structure](factor_structure.qmd) for a review of inside vs. outside factors).
 
 ::: column-page
@@ -296,7 +296,7 @@ Though the adjustments at this last station for residual error are (assumed) ran
 
 It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to "build" an observation. However, when we get the observation it comes already built. We will need to break it back down into its component parts; like reverse engineering the dataset to be able to explain why each data point is the way that it is.
 
-Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before farther, it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.
+Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before going farther, it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.
 
 The fifth observation in the oscillating brush group had a value of 17.62. In @sec-effects we used the general rule (@eq-general-effects-rule) to calculate the following effects:
 
@@ -407,10 +407,10 @@ We represent the observations with lower case English letters because they are k
 
 You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over $y$ to represent a mean of observed values. You can use dots in the subscripts of $\bar{y}$ to indicate which values you are averaging over.
 
-For example, the mean of the observations in the first level of a treatment factor would be represented as $\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example, $\bar{y}_{1\cdot}$ is our estimate of the mean percent area with plaque using a manual toothbrush, because a subscript $i$ value of 1 corresponds to manual..
+For example, the mean of the observations in the first level of a treatment factor would be represented as $\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example, $\bar{y}_{1\cdot}$ is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript $i$ value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.
 
 $$
 \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
 $$ {#eq-ybar-1dot}
 
-Similarly, $\bar{y}_{\cdot\cdot}$ represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor and the second dot indicates we should include all the replicates.
+Similarly, $\bar{y}_{\cdot\cdot}$ represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.

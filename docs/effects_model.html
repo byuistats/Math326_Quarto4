@@ -254,6 +254,8 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#sec-effects" id="toc-sec-effects" class="nav-link" data-scroll-target="#sec-effects">Calculating Effect Sizes</a>
   <ul class="collapse">
+  <li><a href="#effect-of-the-grand-mean-factor" id="toc-effect-of-the-grand-mean-factor" class="nav-link" data-scroll-target="#effect-of-the-grand-mean-factor">Effect of the Grand Mean Factor</a></li>
+  <li><a href="#effects-of-the-residual-error-factor" id="toc-effects-of-the-residual-error-factor" class="nav-link" data-scroll-target="#effects-of-the-residual-error-factor">Effects of the Residual Error Factor</a></li>
   <li><a href="#assembly-line-metaphor" id="toc-assembly-line-metaphor" class="nav-link" data-scroll-target="#assembly-line-metaphor">Assembly Line Metaphor</a></li>
   </ul></li>
   <li><a href="#a-formal-model-and-notation" id="toc-a-formal-model-and-notation" class="nav-link" data-scroll-target="#a-formal-model-and-notation">A Formal Model and Notation</a></li>
@@ -297,8 +299,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="toothbrush-example" class="level2">
 <h2 class="anchored" data-anchor-id="toothbrush-example">Toothbrush Example</h2>
 <p>Consider an experiment conducted to test 4 different types of toothbrushes: manual, oscillating, sonic and ultrasonic. The response variable is percent of area on teeth that has plaque. Twenty-four individuals participate in the experiment, yielding 6 observations per treatment. We will discuss the creation of an ANOVA model using the context of this specific example. In this section and “Calculating Effect Sizes” section we will be referring to estimates of model parameters using this sample data.</p>
-<p>Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would not know how that value compares to the other types of brushes.</p>
-<p>A graph or table reporting the other sample means would be necessary to provide context. <a href="#fig-means">Figure&nbsp;1</a> depicts the data points and the mean for each factor level.</p>
+<p>Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would want to know how that value compares to the other types of brushes. A graph or table reporting the other sample means would be necessary to provide context. <a href="#fig-means">Figure&nbsp;1</a> depicts the data points and the mean for each factor level.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-means" class="quarto-figure quarto-figure-center anchored">
@@ -309,8 +310,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. (The factor is the variable that defines the groups.) However, it is limited in its ability to include more factors or more complicated designs.</p>
-<p>There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> However, it is limited in its ability to include more factors or more complicated designs.</p>
+<p>There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.</p>
 </section>
 </section>
 <section id="sec-effects" class="level1 page-columns page-full">
@@ -357,7 +358,12 @@ General rule to calculate effect size
 \tag{5}\]</span></span></p>
 </div>
 </div>
+<section id="effect-of-the-grand-mean-factor" class="level3">
+<h3 class="anchored" data-anchor-id="effect-of-the-grand-mean-factor">Effect of the Grand Mean Factor</h3>
 <p>Using <a href="#eq-general-effects-rule">Equation&nbsp;5</a> we can also estimate the effect of the grand mean factor. Grand mean only has 1 level and it includes all the observations, so the factor level mean is the same as the mean of all the observations, 22.765. The “sum of effects of all outside factors” is 0 since there are no factors outside of grand mean. Therefore, the effect size for the grand mean factor is simply the grand mean. In this case, 22.765.</p>
+</section>
+<section id="effects-of-the-residual-error-factor" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="effects-of-the-residual-error-factor">Effects of the Residual Error Factor</h3>
 <p>What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let’s consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see <a href="./factor_structure.html">Factor Structure</a> for a review of inside vs.&nbsp;outside factors).</p>
 <div class="column-page">
 <div id="fig-toothbrush_bf1_colored_factors" class="quarto-figure quarto-figure-center anchored">
@@ -388,6 +394,7 @@ General rule to calculate effect size
 </div>
 </div>
 <p>Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> uses to explain this phenomenon is helpful in understanding how this all fits together.</p>
+</section>
 <section id="assembly-line-metaphor" class="level2">
 <h2 class="anchored" data-anchor-id="assembly-line-metaphor">Assembly Line Metaphor</h2>
 <p>You can imagine that each data point in your data set is created by going down an assembly line, much like you would find in a factory that makes cars or appliances. All points start with the grand mean value. As it progresses through the assembly line the data point is altered to reflect the effect of the factor levels it belongs to.</p>
@@ -406,7 +413,7 @@ General rule to calculate effect size
 <section id="a-formal-model-and-notation" class="level1 page-columns page-full">
 <h1>A Formal Model and Notation</h1>
 <p>It is helpful to recognize that each factor influences, or has an effect on, the response variable. You can combine all these effects to “build” an observation. However, when we get the observation it comes already built. We will need to break it back down into its component parts; like reverse engineering the dataset to be able to explain why each data point is the way that it is.</p>
-<p>Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before farther, it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.</p>
+<p>Taking it a step further, the variance in a set of observations can also be broken down into its component parts. This is called an analysis of variance (ANOVA). Before going farther, it will be helpful to create a formal, mathematical model to describe how these factor effects combine to arrive at a single observation. This will be illustrated with just a single observation first.</p>
 <p>The fifth observation in the oscillating brush group had a value of 17.62. In <a href="#sec-effects">Section&nbsp;2</a> we used the general rule (<a href="#eq-general-effects-rule">Equation&nbsp;5</a>) to calculate the following effects:</p>
 <p><span class="math display">\[
 \text{Effect}_\text{grand mean} = 22.765
@@ -504,11 +511,11 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <p>At this point you should begin to see how the factor structure diagram can help us put together a mathematical model. Each factor in the diagram corresponds to a different term in the mathematical model.</p>
 <p>We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter: <span class="math inline">\(\hat{\mu}\)</span>, <span class="math inline">\(\hat{\alpha}\)</span>, and <span class="math inline">\(\hat{\epsilon}\)</span>. Commonly <span class="math inline">\(\hat{\epsilon}\)</span> is also expressed as <span class="math inline">\(e\)</span>; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.</p>
 <p>You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over <span class="math inline">\(y\)</span> to represent a mean of observed values. You can use dots in the subscripts of <span class="math inline">\(\bar{y}\)</span> to indicate which values you are averaging over.</p>
-<p>For example, the mean of the observations in the first level of a treatment factor would be represented as <span class="math inline">\(\bar{y}_{1\cdot}\)</span>. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the “.” as meaning “include all the values of the subscript”. In our toothbrush example, <span class="math inline">\(\bar{y}_{1\cdot}\)</span> is our estimate of the mean percent area with plaque using a manual toothbrush, because a subscript <span class="math inline">\(i\)</span> value of 1 corresponds to manual..</p>
+<p>For example, the mean of the observations in the first level of a treatment factor would be represented as <span class="math inline">\(\bar{y}_{1\cdot}\)</span>. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the “.” as meaning “include all the values of the subscript”. In our toothbrush example, <span class="math inline">\(\bar{y}_{1\cdot}\)</span> is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript <span class="math inline">\(i\)</span> value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.</p>
 <p><span id="eq-ybar-1dot"><span class="math display">\[
 \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
 \tag{10}\]</span></span></p>
-<p>Similarly, <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor and the second dot indicates we should include all the replicates.</p>
+<p>Similarly, <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.</p>
 
 
 </section>

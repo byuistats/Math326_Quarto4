@@ -76,7 +76,7 @@ ANOVA and linear regression are more similar than they are different. ANOVA and 
 
 # Analysis of Variance
 
-Though ANOVA may seem intimidating at first, the underlying idea is relatively simple. If we want to determine if a factor has a significant effect on a response variable we can look at the variance, or spread, in the resulting data. Specifically, we will compare the spread between factor level means with the spread of observations within a factor level.
+Though ANOVA may seem intimidating at first, the underlying idea is relatively simple. If we want to determine if a factor has a significant effect on a response variable we can look at the variance, or spread, in the resulting data. Specifically, we will compare the spread *between* factor level means with the spread of observations *within* a factor level.
 
 @fig-xo-different illustrates some made up data for a very simple, generic example where there are just two factor levels: X and O.
 
@@ -92,7 +92,7 @@ The same logic that helped us arrive at conclusions in @fig-xo-different and @fi
 
 # ANOVA F-test: A Variance Ratio
 
-To test the hypotheses in @eq-hypotheses we will compare the variation in factor level means to the variation of observations within a factor level. This ratio of variances follows an F distribution[^1], and is therefore called an **F test statistic**.
+To test the hypotheses in @eq-hypotheses we will compare the variation *between* factor level means to the variation of observations *within* a factor level. This ratio of variances follows an F distribution[^1], and is therefore called an **F test statistic**.
 
 [^1]: F is a random variable. This means we never know exactly what the value of F will be based on random selection/assignments. However, we do know that under the null hypothesis some values of F are more likely than others. Specifically, if the null hypothesis were true then values of 1 are more likely and large values tend to be less likely. The F distribution represents a probability distribution of the variance ratios. In a given study just one random sample is taken and one variance ratio (F) is calculated. However, a different selection of experimental units (or different assignment to factor levels) would result in different estimates of variances, and consequently different F statistics. The F distribution represents all possible F statistics under the null hypothesis that a factor has no significant effect.
 
@@ -114,7 +114,7 @@ To test the hypotheses in @eq-hypotheses we will compare the variation in factor
 ## F statistic and p-value
 
 $$
-F = \frac{\text{Variation between factor levels}}{\text{Variation within factor levels}}
+F = \frac{\text{Variation between factor level means}}{\text{Variation of individual observations within factor levels}}
 $$
 :::
 
@@ -160,7 +160,7 @@ $$
 With this is mind, we can fill in the F column of the ANOVA table for Treatment Factor.
 
 | Source           | df  | SS  | MS  |                               F                               | p-value |
-|:-----------|:----------:|:----------:|:----------:|:------------:|:----------:|
+|:-----------------|:---:|:---:|:---:|:-------------------------------------------------------------:|:-------:|
 | Grand Mean       |     |     |     |                                                               |         |
 | Treatment Factor |     |     |     | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     |     |     |                                                               |         |
@@ -279,10 +279,10 @@ Recall that an effect is defined as a deviation from the mean.
 -   numerator: a sum or total
 -   denominator: the number of pieces of information used to create the sum in the numerator
 
-Therefore, the mean square is calculated where the numerator is the sum of squares and the denominator is the degrees of freedom.
+Therefore, in a mean square calculation, the numerator is the sum of squares and the denominator is the degrees of freedom.
 
 | Source           | df  | SS  |                               MS                                |                               F                               | p-value |
-|:-----------|:----------:|:----------:|:----------:|:----------:|:----------:|
+|:-----------------|:---:|:---:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
 | Grand Mean       |     |     |                                                                 |                                                               |         |
 | Treatment Factor |     |     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     |     |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
@@ -297,7 +297,7 @@ To avoid this problem, statisticians square the distances before summing them. T
 In the table below an equation for each factor's SS is listed using terms from the factor effects model. We'll walk through the meaning of each of those equations.
 
 | Source           | df  |                  SS                   |                               MS                                |                               F                               | p-value |
-|:-----------|:----------:|:----------:|:----------:|:----------:|:----------:|
+|:-----------------|:---:|:-------------------------------------:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
 | Grand Mean       |     |        $n*\bar{y}_\text{..}^2$        |                                                                 |                                                               |         |
 | Treatment Factor |     |   $$ \sum (\hat{\alpha}_i^2*n_i)$$    | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
 | Residual Error   |     | $$ \sum \hat{\epsilon}_\text{ij}^2 $$ |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
@@ -317,7 +317,7 @@ We can walk through each equation in the SS column, one by one.
 
 -   Grand Mean SS: $\bar{y}_\text{..}$ is the grand mean. Its value should be squared and then multiplied by $n$, which is the total number of observations in the study.
 -   Treatment Factor SS: Recall that $\hat{\alpha}_i$ is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, $n_i$. Finally, the $\sum$ symbol means to add all those products together.
--   Residual Error SS: \$ \hat{\epsilon}\_\text{ij} \$ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.
+-   Residual Error SS: $\hat\epsilon_\text{ij}$ is the symbol for an observed residual. Each residual must be squared and then all those squared residuals are summed together.
 -   Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.
 
 ## Degrees of Freedom
@@ -337,7 +337,7 @@ For additional explanation, consider this simple example. There are three data p
 The example described above is summarized in @tbl-df-example. The first number is represented as an $a$ and the second number if represented with a $b$.
 
 |   value 1    |   value 2    |           value 3           |     | Mean of 3 Values |
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+|:------------:|:------------:|:---------------------------:|:---:|:----------------:|
 |      a       |      b       |       $3*10 - (a+b)$        | -\> |        10        |
 | free to vary | free to vary | depends on other two values |     |                  |
 

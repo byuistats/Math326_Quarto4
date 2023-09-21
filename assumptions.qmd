@@ -338,7 +338,7 @@ car::qqPlot(brush_aov, envelope = list(style = "lines"), id = FALSE)
 
 ```
 
-A point on the far right is clearly out of the dashed boundary. It is not uncommon for 1 or 2 points at either end of the x-axis to stray far from the line. Overall, however, the points in this plot tend to follow the line and stay in bounds. I would conclude that the assumption of normally distributed residuals is met.
+A point on the far right is clearly out of the dashed boundary. It is not uncommon for 1 or 2 points at either end of the x-axis to stray far from the line. Overall, however, the points in this plot tend to follow the line and stay in bounds. We can conclude that the assumption of normally distributed residuals is met.
 
 ::: {.callout-note appearance="minimal" icon="false"}
 ## Notation

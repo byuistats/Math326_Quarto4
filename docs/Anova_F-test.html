@@ -328,7 +328,7 @@ H_0: \alpha_1 = \alpha_2 =  \alpha_3 = 0
 </section>
 <section id="analysis-of-variance" class="level1">
 <h1>Analysis of Variance</h1>
-<p>Though ANOVA may seem intimidating at first, the underlying idea is relatively simple. If we want to determine if a factor has a significant effect on a response variable we can look at the variance, or spread, in the resulting data. Specifically, we will compare the spread between factor level means with the spread of observations within a factor level.</p>
+<p>Though ANOVA may seem intimidating at first, the underlying idea is relatively simple. If we want to determine if a factor has a significant effect on a response variable we can look at the variance, or spread, in the resulting data. Specifically, we will compare the spread <em>between</em> factor level means with the spread of observations <em>within</em> a factor level.</p>
 <p><a href="#fig-xo-different">Figure&nbsp;1</a> illustrates some made up data for a very simple, generic example where there are just two factor levels: X and O.</p>
 <div id="fig-xo-different" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -348,7 +348,7 @@ H_0: \alpha_1 = \alpha_2 =  \alpha_3 = 0
 </section>
 <section id="anova-f-test-a-variance-ratio" class="level1 page-columns page-full">
 <h1>ANOVA F-test: A Variance Ratio</h1>
-<p>To test the hypotheses in <a href="#eq-hypotheses">Equation&nbsp;1</a> we will compare the variation in factor level means to the variation of observations within a factor level. This ratio of variances follows an F distribution<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is therefore called an <strong>F test statistic</strong>.</p>
+<p>To test the hypotheses in <a href="#eq-hypotheses">Equation&nbsp;1</a> we will compare the variation <em>between</em> factor level means to the variation of observations <em>within</em> a factor level. This ratio of variances follows an F distribution<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is therefore called an <strong>F test statistic</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -360,7 +360,7 @@ F statistic and p-value
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
-F = \frac{\text{Variation between factor levels}}{\text{Variation within factor levels}}
+F = \frac{\text{Variation between factor level means}}{\text{Variation of individual observations within factor levels}}
 \]</span></p>
 </div>
 </div>
@@ -441,12 +441,12 @@ F = \frac{\text{Variation between factor levels}}{\text{Variation within factor 
 <table class="table">
 <caption>Table&nbsp;2: Blank ANOVA summary table for an experiment with 1 treatment factor</caption>
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 18%">
-<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 60%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -533,15 +533,15 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <li>numerator: a sum or total</li>
 <li>denominator: the number of pieces of information used to create the sum in the numerator</li>
 </ul>
-<p>Therefore, the mean square is calculated where the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
+<p>Therefore, in a mean square calculation, the numerator is the sum of squares and the denominator is the degrees of freedom.</p>
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 39%">
+<col style="width: 38%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -596,12 +596,12 @@ s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
 <p>In the table below an equation for each factor’s SS is listed using terms from the factor effects model. We’ll walk through the meaning of each of those equations.</p>
 <table class="table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 2%">
+<col style="width: 19%">
+<col style="width: 32%">
+<col style="width: 31%">
+<col style="width: 4%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -659,7 +659,7 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <ul>
 <li>Grand Mean SS: <span class="math inline">\(\bar{y}_\text{..}\)</span> is the grand mean. Its value should be squared and then multiplied by <span class="math inline">\(n\)</span>, which is the total number of observations in the study.</li>
 <li>Treatment Factor SS: Recall that <span class="math inline">\(\hat{\alpha}_i\)</span> is the estimated effect of each factor level. After squaring each effect, multiply it by the number of observations in that level, <span class="math inline">\(n_i\)</span>. Finally, the <span class="math inline">\(\sum\)</span> symbol means to add all those products together.</li>
-<li>Residual Error SS: $ _ $ is the symbol for a residual. Each residual must be squared and then all those squared residuals are summed together.</li>
+<li>Residual Error SS: <span class="math inline">\(\hat\epsilon_\text{ij}\)</span> is the symbol for an observed residual. Each residual must be squared and then all those squared residuals are summed together.</li>
 <li>Total SS: This is the sum of all the other sums of squares. Or it can be found by squaring each observed value and then adding up all those squared observations.</li>
 </ul>
 </section>
@@ -686,11 +686,11 @@ Degrees of Freedom
 <table class="table">
 <caption>Table&nbsp;3: Only n-1 values are free to vary when the mean of the values is known</caption>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 36%">
+<col style="width: 6%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
