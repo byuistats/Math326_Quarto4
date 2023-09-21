@@ -13,7 +13,7 @@ output:
 
 Review the discussion on [nested subsample](Nested_Samples.qmd). It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.
 
-In this section you will learn how to identify levels of experimental units within a nested factorial design and how to appropriately analyze them. To identify and analyze a nested design appropriately, you will need to have a solid understanding of:
+In this section you will learn how to identify levels of experimental units within a nested factorial design and its appropriate analysis. To identify and analyze a nested design, you will need to have a solid understanding of:
 
 -   Experimental units
 -   True replication
@@ -24,13 +24,13 @@ In this section you will learn how to identify levels of experimental units with
 
 ### Experimental Units
 
-To begin, consider an example from agriculture Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic [single factor design](BasicFactorial_intro.qmd):
+To begin, consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic [single factor design](BasicFactorial_intro.qmd) with 2 replicates:
 
 <p align = "center">
 ![](images/FarmerJohnsReplication.png){width="360"}
 </p>
 
-Farmer John is could still take subsamples within a each experimental unit:
+Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:
 
 <p align = "center">
 ![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
@@ -68,17 +68,17 @@ $$
 y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
 $$ {#eq-subsample}
 
-Including the sub-sample term in the model preserves the appropriate degrees of freedom for error. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.
+Including the sub-sample term in the model preserves the appropriate degrees of freedom for error for our whole plot. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.
 
 ## Adding a Nested Factor
 
-Suppose Farmer John suspects that there might be an interaction with the fungicide and different varieties of maize. We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
+Suppose Farmer John suspects that the impact of fungicide type might impact  different varieties of maize. We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
 
 <p align = "center">
 ![](images/FarmerJohnsSplitPlot.png){width="360"}
 </p>
 
-Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. Variety is no different from a sub-sample within treatment. We actually have 2 levels of experimental units!
+Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within treatment. We actually have 2 levels of experimental units!
 
 <p align = "center">
 ![](images/FarmerJohnsSplitPlotAnnotated.png){width="650"}
@@ -86,15 +86,15 @@ Hopefully you can spot the challenge. Nothing has changed for the fungicide trea
 
 With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit). 
 
-Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be the how the larger experimental units vary.  
+Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary.  
 
-And if we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety plot to variety plot variation within the blocks.  
+If we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety-plot-to-variety-plot variation within the [blocks](block_intro.qmd).
 
 # Split-Plot Designs
 
 A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the **Whole-plot factor**, and the lower-level experimental unit is called the **split-plot factor**.
 
-You can think of **whole plots as Blocking variables** for the split-plots and **split-plots as sub-samples** for the whole plots. We can define a new random effect in the model that will act as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.
+You can think of **whole plots as Blocking variables** for the split-plots and **split-plots as sub-samples** for the whole plots. We can define a new random effect in the model that acts as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.
 
 Split-plot designs usually arise when there are physical limitations to completely randomize treatments to experimental units. In the above example, farming equipment makes it infeasible to spray random sections of the field with different fungicides.
 
@@ -138,4 +138,17 @@ lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)
 
 ```
 
+
+# Examples
+
+### Freezers as Whole Plots
+
+A lab would like to test the impact of temperature on the life of a their reagents. They have 4 freezers in the lab with independent climate control. If we want true replication of temperature control, we would need to pick 2 temperature levels and divide the ...
+
+### Greenhouse as whole plots
+
+A Common use of Split-Plots occurs in greenhouse studies where it is impossible to randomly assign temperature and humidity levels within a greenhouse section.  Consequently, each greenhouse must be treated as a whole plot with potentially different fertilizer, variety, or other treatments that can be more easily randomized within a greenhouse.  
+
+
+### Repeated Measures person as a whole plot
 
