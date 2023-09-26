@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Nested Factorial Designs</title>
+<title>Math326 Notebook - The Split Plot Design</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -252,20 +252,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#nested-factor-structure" id="toc-nested-factor-structure" class="nav-link active" data-scroll-target="#nested-factor-structure">Nested Factor Structure</a></li>
-  <li><a href="#identifying-and-diagramming-nested-factors" id="toc-identifying-and-diagramming-nested-factors" class="nav-link" data-scroll-target="#identifying-and-diagramming-nested-factors">Identifying and Diagramming Nested Factors</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#experimental-units" id="toc-experimental-units" class="nav-link" data-scroll-target="#experimental-units">Experimental Units</a></li>
+  <li><a href="#nested-factor-structure" id="toc-nested-factor-structure" class="nav-link" data-scroll-target="#nested-factor-structure">Nested Factor Structure</a></li>
+  <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a>
+  <ul class="collapse">
   <li><a href="#adding-a-nested-factor" id="toc-adding-a-nested-factor" class="nav-link" data-scroll-target="#adding-a-nested-factor">Adding a Nested Factor</a></li>
   </ul></li>
-  <li><a href="#split-plot-designs" id="toc-split-plot-designs" class="nav-link" data-scroll-target="#split-plot-designs">Split-Plot Designs</a></li>
-  <li><a href="#split-plot-analysis-in-r" id="toc-split-plot-analysis-in-r" class="nav-link" data-scroll-target="#split-plot-analysis-in-r">Split-Plot Analysis in R</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul class="collapse">
-  <li><a href="#freezers-as-whole-plots" id="toc-freezers-as-whole-plots" class="nav-link" data-scroll-target="#freezers-as-whole-plots">Freezers as Whole Plots</a></li>
-  <li><a href="#greenhouse-as-whole-plots" id="toc-greenhouse-as-whole-plots" class="nav-link" data-scroll-target="#greenhouse-as-whole-plots">Greenhouse as whole plots</a></li>
-  <li><a href="#repeated-measures-person-as-a-whole-plot" id="toc-repeated-measures-person-as-a-whole-plot" class="nav-link" data-scroll-target="#repeated-measures-person-as-a-whole-plot">Repeated Measures person as a whole plot</a></li>
   </ul></li>
+  <li><a href="#factor-structor" id="toc-factor-structor" class="nav-link" data-scroll-target="#factor-structor">Factor Structor</a></li>
+  <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  <li><a href="#split-plot-analysis-in-r" id="toc-split-plot-analysis-in-r" class="nav-link" data-scroll-target="#split-plot-analysis-in-r">Split-Plot Analysis in R</a></li>
   </ul>
 </nav>
     </div>
@@ -274,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nested Factorial Designs</h1>
+<h1 class="title">The Split Plot Design</h1>
 </div>
 
 
@@ -289,188 +287,162 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="nested-factor-structure" class="level1">
-<h1>Nested Factor Structure</h1>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments. A split-plot design consists of a <strong>whole-plot</strong> factor and a <strong>Sub-plot</strong> factor.</p>
+<p>Because of the physical limitation of randomization, whole-plot factors often have limited replications compared to the subplot factor. To analyze these designs appropriately, it is necessary to account for the fact that each level of experimental unit has different levels of replication. It requires 2 separate error terms to test each level of experimental unit.</p>
+<p>Consider 2 examples:</p>
+<ol type="1">
+<li><p>A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. Because it is impossible to randomly assign humidity levels within a section of greenhouse, greenhouse would be one level of experimental unit (whole-plot) and fertilizer treatment randomly assigned within a greenhouse would be another level of experimental unit (sub-plot).</p></li>
+<li><p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. The only limit to replication of reagent would be space within a freezer.</p></li>
+</ol>
+<p>A special case of this type of design is the <em>Repeated Measures</em> design, where individuals within an experimental design are measured at multiple time points. (See Repeated Measures(???))</p>
+<section id="nested-factor-structure" class="level2">
+<h2 class="anchored" data-anchor-id="nested-factor-structure">Nested Factor Structure</h2>
 <p>Review the discussion on <a href="./Nested_Samples.html">nested subsample</a>. It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.</p>
 <p>In this section you will learn how to identify levels of experimental units within a nested factorial design and its appropriate analysis. To identify and analyze a nested design, you will need to have a solid understanding of:</p>
 <ul>
 <li>Experimental units</li>
 <li>True replication</li>
-<li>Independence of observations</li>
 <li>Degrees of Freedom for Error</li>
 </ul>
 </section>
-<section id="identifying-and-diagramming-nested-factors" class="level1">
-<h1>Identifying and Diagramming Nested Factors</h1>
-<section id="experimental-units" class="level3">
-<h3 class="anchored" data-anchor-id="experimental-units">Experimental Units</h3>
-<p>To begin, consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic <a href="./BasicFactorial_intro.html">single factor design</a> with 2 replicates:</p>
+<section id="motivating-example" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
+<p>Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic <a href="./BasicFactorial_intro.html">single factor design</a> with 2 replicates:</p>
 <p align="center">
-<img src="images/FarmerJohnsReplication.png" class="img-fluid" width="360">
-</p>
+</p><p><img src="images/FarmerJohnsReplication.png" class="img-fluid" width="360"></p>
+<p></p>
 <p>Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:</p>
 <p align="center">
-<img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid" width="360">
-</p>
-<p>Where the data would look like:</p>
+</p><p><img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid" width="360"></p>
+<p></p>
+<!-------------
+Where the data would look like:
+
+| Farmer | Subsample | Fungicide |  Yield |
+|:------:|:---------:|:---------:|:------:|
+|   John |         1 | A         | 501.36 |
+|   John |         2 | A         | 507.27 |
+|   John |         3 | A         |  482.3 |
+|   John |         4 | A         |  522.1 |
+|    ... |       ... | ...       |  498.3 |
+|   John |         1 | B         | 487.45 |
+|   John |         2 | B         | 497.86 |
+|   John |         3 | B         | 501.22 |
+|   John |         4 | B         |  499.8 |
+|    ... |       ... | ...       |    ... |
+| Maggot |         1 | A         | 506.45 |
+| Maggot |         2 | A         | 536.12 |
+| Maggot |         3 | A         | 514.25 |
+| Maggot |         4 | A         | 515.97 |
+|    ... |       ... | ...       |    ... |
+| Maggot |         1 | B         | 524.31 |
+| Maggot |         2 | B         | 519.22 |
+| Maggot |         3 | B         |  503.7 |
+| Maggot |         4 | B         | 498.67 |
+|    ... |       ... | ...       |    ... |
+
+--------->
+<p>Because the treatments are replicated, we can analyze this model as we did in <a href="./Nested_Samples.html">Nested Subsamples</a>:</p>
+<p>We would need to include the sub-sample term in the model to preserve the appropriate degrees of freedom for error for our whole-plot. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.</p>
+<section id="adding-a-nested-factor" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h3>
+<p>Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
+<p align="center">
+</p><p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid" width="360"></p>
+<p></p>
+<p>Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within Fungicide treatment. We actually have 2 levels of experimental units!</p>
+<p align="center">
+</p><p><img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid" width="650"></p>
+<p></p>
+<p>With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).</p>
+<p>Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary. It’s the Field-to-Field variation.</p>
+<p>If we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety-plot-to-variety-plot variation within the <a href="./block_intro.html">blocks</a>.</p>
+</section>
+</section>
+</section>
+<section id="factor-structor" class="level1">
+<h1>Factor Structor</h1>
+<p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole-plot factor</strong>, and the lower-level experimental unit is called the <strong>split-plot factor</strong>.</p>
+<p>In a simple split-plot design, <strong>whole-plots act as Blocking variables</strong> for the split-plots and <strong>split-plots act as sub-samples</strong> for the whole-plots. In fact, the factor structure for a simple split-plot design is identical to a <a href="./cb1.html">complete block design</a> if blocks are treated as replicates of the whole-plot.</p>
+<p>The difference is that in the <a href="./cb1.html">complete block design</a>, the blocking term was a “nuisance parameter.” In the split plot design, it serves as the error term to test the whole-plot factor.</p>
+<p>(Insert Graph)</p>
+</section>
+<section id="hypothesis-and-model" class="level1">
+<h1>Hypothesis and Model</h1>
+<p>We can define a new random effect in the model that acts as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
+<p><span id="eq-cb1"><span class="math display">\[
+y_{iujt} = \mu + \alpha_i + \epsilon_{iu}^{W}  + \beta_j + (\alpha \beta)_{ij} + \epsilon_{jt(iu)}^{S}
+\tag{1}\]</span></span></p>
+<p>Where</p>
+<ul>
+<li><p><span class="math inline">\(y_{ijut}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span>, level <em>j</em> of <span class="math inline">\(\beta\)</span>, the <em>u</em> whole-plot experimental unit, and the <em>t</em> subplot experimental unit.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is the grand mean of the entire dataset.</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> is the whole-plot effect, and <em>i</em> goes from 1 to 2 because there are 2 levels of fungicide.</p></li>
+<li><p><span class="math inline">\(\epsilon_{iu}^{W}\)</span> is the error term for the whole-plot and represents the variation across the <em>u</em> replicates of the whole-plot.</p></li>
+<li><p><span class="math inline">\(\beta\)</span> is the effect of variety, and <em>j</em> goes from 1 to 3 because there are 3 varieties being tested.</p></li>
+<li><p><span class="math inline">\((\alpha \beta)_{ij}\)</span> represents the interaction between fungicide and variety.</p></li>
+<li><p><span class="math inline">\(\epsilon_{jt(iu)}^{S}\)</span> is the residual error term and is used to test the subplot factor and the interaction.</p></li>
+</ul>
+<p>An hypothesis for the main effect of fungicide type:</p>
+<p><span class="math display">\[H_0: \alpha_\text{i} = 0 \text{ for all } i\]</span></p>
+<p><span class="math display">\[H_a: \alpha_\text{i} \ne 0 \text{ for some } i\]</span></p>
+<p>An hypothesis for the main effect of variety:</p>
+<p><span class="math display">\[H_0: \beta_\text{j} = 0 \text{ for all } j\]</span></p>
+<p><span class="math display">\[H_a: \beta_\text{j} \ne 0 \text{ for some } j\]</span></p>
+<p>An hypothesis for the interaction of fungicide and variety.</p>
+<p><span class="math display">\[
+H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
+\]</span></p>
+<p><span class="math display">\[
+H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
+\]</span></p>
+</section>
+<section id="assumptions" class="level1">
+<h1>Assumptions</h1>
+<p>ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied:</p>
 <table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 36%">
+<col style="width: 37%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Farmer</th>
-<th style="text-align: center;">Subsample</th>
-<th style="text-align: center;">Fungicide</th>
-<th style="text-align: center;">Yield</th>
+<th>Requirements</th>
+<th>Method for Checking</th>
+<th>What You Hope to See</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">501.36</td>
+<td>Constant variance across factor levels</td>
+<td>Residual vs.&nbsp;Fitted Plot</td>
+<td>No major disparity in vertical spread of point groupings</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">507.27</td>
+<td></td>
+<td>Levene’s Test</td>
+<td>Fail to reject <span class="math inline">\(H_0\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">482.3</td>
+<td>The residuals are normally distributed</td>
+<td>Normal Q-Q plot</td>
+<td>Straight line, majority of points in boundaries</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">522.1</td>
+<td>Independent residuals</td>
+<td>Order plot</td>
+<td>No pattern/trend</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">498.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">487.45</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">497.86</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">501.22</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">John</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">499.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">506.45</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">536.12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">514.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">515.97</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">524.31</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">519.22</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">503.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Maggot</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">498.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
-<td style="text-align: center;">…</td>
+<td></td>
+<td>Familiarity with/critical thinking about the experiment</td>
+<td>No potential source for bias</td>
 </tr>
 </tbody>
 </table>
-<p>Because the treatments are replicated, we can analyze this model as we did in <a href="./Nested_Samples.html">Nested Subsamples</a>:</p>
-<p><span id="eq-subsample"><span class="math display">\[
-y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
-\tag{1}\]</span></span></p>
-<p>Including the sub-sample term in the model preserves the appropriate degrees of freedom for error for our whole plot. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.</p>
-</section>
-<section id="adding-a-nested-factor" class="level2">
-<h2 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h2>
-<p>Suppose Farmer John suspects that the impact of fungicide type might impact different varieties of maize. We could add 3 different maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
-<p align="center">
-<img src="images/FarmerJohnsSplitPlot.png" class="img-fluid" width="360">
-</p>
-<p>Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within treatment. We actually have 2 levels of experimental units!</p>
-<p align="center">
-<img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid" width="650">
-</p>
-<p>With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).</p>
-<p>Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary.</p>
-<p>If we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety-plot-to-variety-plot variation within the <a href="./block_intro.html">blocks</a>.</p>
-</section>
-</section>
-<section id="split-plot-designs" class="level1">
-<h1>Split-Plot Designs</h1>
-<p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole-plot factor</strong>, and the lower-level experimental unit is called the <strong>split-plot factor</strong>.</p>
-<p>You can think of <strong>whole plots as Blocking variables</strong> for the split-plots and <strong>split-plots as sub-samples</strong> for the whole plots. We can define a new random effect in the model that acts as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
-<p>Split-plot designs usually arise when there are physical limitations to completely randomize treatments to experimental units. In the above example, farming equipment makes it infeasible to spray random sections of the field with different fungicides.</p>
 </section>
 <section id="split-plot-analysis-in-r" class="level1">
 <h1>Split-Plot Analysis in R</h1>
@@ -495,31 +467,15 @@ mod1 &lt;- lmer(Yield ~ Fungicide + Variety + Fungicide*Variety + (Fungicide|Fie
 
 mod1 &lt;- lmer(Yield ~ Fungicide*Variety + (Fungicide|Field), data = dat)
 
-anova(mod1)
-</code></pre>
+anova(mod1)</code></pre>
 <p>Generally, the model will look like:</p>
 <pre><code>aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)
 
 # or
 
-lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)
-</code></pre>
-</section>
-<section id="examples" class="level1">
-<h1>Examples</h1>
-<section id="freezers-as-whole-plots" class="level3">
-<h3 class="anchored" data-anchor-id="freezers-as-whole-plots">Freezers as Whole Plots</h3>
-<p>A lab would like to test the impact of temperature on the life of a their reagents. They have 4 freezers in the lab with independent climate control. If we want true replication of temperature control, we would need to pick 2 temperature levels and divide the …</p>
-</section>
-<section id="greenhouse-as-whole-plots" class="level3">
-<h3 class="anchored" data-anchor-id="greenhouse-as-whole-plots">Greenhouse as whole plots</h3>
-<p>A Common use of Split-Plots occurs in greenhouse studies where it is impossible to randomly assign temperature and humidity levels within a greenhouse section. Consequently, each greenhouse must be treated as a whole plot with potentially different fertilizer, variety, or other treatments that can be more easily randomized within a greenhouse.</p>
-</section>
-<section id="repeated-measures-person-as-a-whole-plot" class="level3">
-<h3 class="anchored" data-anchor-id="repeated-measures-person-as-a-whole-plot">Repeated Measures person as a whole plot</h3>
+lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

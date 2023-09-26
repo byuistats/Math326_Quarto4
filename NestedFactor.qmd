@@ -11,20 +11,19 @@ output:
 
 # Overview
 
-This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments. A split-plot design consists of a **whole-plot** factor and a **Sub-plot** factor. 
+This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments. A split-plot design consists of a **whole-plot** factor and a **Sub-plot** factor.
 
-Because of the physical limitation of randomization, whole-plot factors often have limited replications compared to the subplot factor. To analyze these designs appropriately, it is necessary to account for the fact that each level of experimental unit has different levels of replication. It requires 2 separate error terms to test each level of experimental unit.  
+Because of the physical limitation of randomization, whole-plot factors often have limited replications compared to the subplot factor. To analyze these designs appropriately, it is necessary to account for the fact that each level of experimental unit has different levels of replication. It requires 2 separate error terms to test each level of experimental unit.
 
 Consider 2 examples:
 
-  1. A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. Because it is impossible to randomly assign humidity levels within a section of greenhouse, greenhouse would be one level of experimental unit (whole-plot) and fertilizer treatment randomly assigned within a greenhouse would be another level of experimental unit (sub-plot).  
+1.  A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. Because it is impossible to randomly assign humidity levels within a section of greenhouse, greenhouse would be one level of experimental unit (whole-plot) and fertilizer treatment randomly assigned within a greenhouse would be another level of experimental unit (sub-plot).
 
-  2. A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. The only limit to replication of reagent would be space within a freezer.  
+2.  A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. The only limit to replication of reagent would be space within a freezer.
 
 A special case of this type of design is the *Repeated Measures* design, where individuals within an experimental design are measured at multiple time points. (See Repeated Measures(???))
 
-
-### Nested Factor Structure
+## Nested Factor Structure
 
 Review the discussion on [nested subsample](Nested_Samples.qmd). It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.
 
@@ -34,22 +33,25 @@ In this section you will learn how to identify levels of experimental units with
 -   True replication
 -   Degrees of Freedom for Error
 
-# Identifying and Diagramming Nested Factors
-
-## Example 1
+## Motivating Example
 
 Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic [single factor design](BasicFactorial_intro.qmd) with 2 replicates:
 
-<p align = "center">
+<p align="center">
+
 ![](images/FarmerJohnsReplication.png){width="360"}
+
 </p>
 
 Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:
 
-<p align = "center">
+<p align="center">
+
 ![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
+
 </p>
 
+```{=html}
 <!-------------
 Where the data would look like:
 
@@ -77,7 +79,7 @@ Where the data would look like:
 |    ... |       ... | ...       |    ... |
 
 --------->
-
+```
 Because the treatments are replicated, we can analyze this model as we did in [Nested Subsamples](Nested_Samples.qmd):
 
 We would need to include the sub-sample term in the model to preserve the appropriate degrees of freedom for error for our whole-plot. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.
@@ -86,19 +88,23 @@ We would need to include the sub-sample term in the model to preserve the approp
 
 Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
 
-<p align = "center">
+<p align="center">
+
 ![](images/FarmerJohnsSplitPlot.png){width="360"}
+
 </p>
 
 Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within Fungicide treatment. We actually have 2 levels of experimental units!
 
-<p align = "center">
+<p align="center">
+
 ![](images/FarmerJohnsSplitPlotAnnotated.png){width="650"}
+
 </p>
 
-With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit). 
+With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).
 
-Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary.  It's the Field-to-Field variation.
+Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary. It's the Field-to-Field variation.
 
 If we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety-plot-to-variety-plot variation within the [blocks](block_intro.qmd).
 
@@ -106,9 +112,9 @@ If we treat Fungicide treatments as blocks, then the residual error for Variety 
 
 A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the **Whole-plot factor**, and the lower-level experimental unit is called the **split-plot factor**.
 
-In a simple split-plot design, **whole-plots act as Blocking variables** for the split-plots and **split-plots act as sub-samples** for the whole-plots. In fact, the factor structure for a simple split-plot design is identical to a [complete block design](cb1.qmd) if blocks are treated as replicates of the whole-plot.  
+In a simple split-plot design, **whole-plots act as Blocking variables** for the split-plots and **split-plots act as sub-samples** for the whole-plots. In fact, the factor structure for a simple split-plot design is identical to a [complete block design](cb1.qmd) if blocks are treated as replicates of the whole-plot.
 
-The difference is that in the [complete block design](cb1.qmd), the blocking term was a "nuisance parameter." In the split plot design, it serves as the error term to test the whole-plot factor.  
+The difference is that in the [complete block design](cb1.qmd), the blocking term was a "nuisance parameter." In the split plot design, it serves as the error term to test the whole-plot factor.
 
 (Insert Graph)
 
@@ -128,14 +134,13 @@ Where
 
 -   $\alpha$ is the whole-plot effect, and *i* goes from 1 to 2 because there are 2 levels of fungicide.
 
--   $\epsilon_{iu}^{W}$ is the error term for the whole-plot and represents the variation across the *u* replicates of the whole-plot.  
+-   $\epsilon_{iu}^{W}$ is the error term for the whole-plot and represents the variation across the *u* replicates of the whole-plot.
 
 -   $\beta$ is the effect of variety, and *j* goes from 1 to 3 because there are 3 varieties being tested.
 
--   $(\alpha \beta)_{ij}$ represents the interaction between fungicide and variety.  
+-   $(\alpha \beta)_{ij}$ represents the interaction between fungicide and variety.
 
 -   $\epsilon_{jt(iu)}^{S}$ is the residual error term and is used to test the subplot factor and the interaction.
-
 
 An hypothesis for the main effect of fungicide type:
 
@@ -161,15 +166,13 @@ $$
 
 # Assumptions
 
-ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied: 
-
-
+ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied:
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
 |-------------------|--------------------------|---------------------------|
 | Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
-| The residuals are normally distributed| Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
+| The residuals are normally distributed | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
 | Independent residuals                  | Order plot                                              | No pattern/trend                                         |
 |                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
 
@@ -198,17 +201,14 @@ mod1 <- lmer(Yield ~ Fungicide + Variety + Fungicide*Variety + (Fungicide|Field)
 mod1 <- lmer(Yield ~ Fungicide*Variety + (Fungicide|Field), data = dat)
 
 anova(mod1)
-
 ```
-
 
 Generally, the model will look like:
 
-```
+```         
 aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)
 
 # or
 
 lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)
-
 ```

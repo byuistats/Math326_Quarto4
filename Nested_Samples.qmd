@@ -7,14 +7,6 @@ toc: true
 toc-depth: 4
 ---
 
-```{=html}
-<script type="text/javascript">
- function showhide(id) {
-    var e = document.getElementById(id);
-    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
- }
-</script>
-```
 ## Introduction
 
 ### Beware of False Replication
@@ -29,30 +21,30 @@ Now imagine Farmer John's son is visiting home from college and recognizes the p
 
 ![Farmer John's sub-samples](images/FarmerJohnsSubsamples.PNG){fig-align="center" width="500"}
 
-Neither a trusting statistician nor statistical software can tell that these data points are not independent applications of the experiment, and therefore not true replication. See the example below:  
+Neither a trusting statistician nor statistical software can tell that these data points are not independent applications of the experiment, and therefore not true replication. See the example below:
 
-| "replicate" | Fungicide |  Yield |
-|:-----:|:---------:|:------:|
-|     1 | A         | 501.36 |
-|     2 | A         | 507.27 |
-|     3 | A         |  482.3 |
-|     4 | A         |  522.1 |
-|     5 | A         |  498.3 |
-|     6 | A         | 487.45 |
-|     7 | A         | 497.86 |
-|     8 | A         | 501.22 |
-|     9 | A         |  499.8 |
-|    10 | A         |  442.1 |
-|     1 | B         | 506.45 |
-|     2 | B         | 536.12 |
-|     3 | B         | 514.25 |
-|     4 | B         | 515.97 |
-|     5 | B         | 509.51 |
-|     6 | B         | 524.31 |
-|     7 | B         | 519.22 |
-|     8 | B         |  503.7 |
-|     9 | B         | 498.67 |
-|    10 | B         | 539.04 |
+| "replicate" | Fungicide | Yield  |
+|:-----------:|:---------:|:------:|
+|      1      |     A     | 501.36 |
+|      2      |     A     | 507.27 |
+|      3      |     A     | 482.3  |
+|      4      |     A     | 522.1  |
+|      5      |     A     | 498.3  |
+|      6      |     A     | 487.45 |
+|      7      |     A     | 497.86 |
+|      8      |     A     | 501.22 |
+|      9      |     A     | 499.8  |
+|     10      |     A     | 442.1  |
+|      1      |     B     | 506.45 |
+|      2      |     B     | 536.12 |
+|      3      |     B     | 514.25 |
+|      4      |     B     | 515.97 |
+|      5      |     B     | 509.51 |
+|      6      |     B     | 524.31 |
+|      7      |     B     | 519.22 |
+|      8      |     B     | 503.7  |
+|      9      |     B     | 498.67 |
+|     10      |     B     | 539.04 |
 
 Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can only provide a false sense of statistical sophistication for a simple anecdote.
 
@@ -72,8 +64,7 @@ Where
 
 -   $\alpha_i$ is the fungicide level, *i*.
 
--   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.  
-
+-   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.
 
 This model only works, though, if you have treatment replications, *k*, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
 
