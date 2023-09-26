@@ -252,9 +252,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#nested-factor-designs" id="toc-nested-factor-designs" class="nav-link" data-scroll-target="#nested-factor-designs">Nested Factor Designs</a>
   <ul class="collapse">
-  <li><a href="#nested-factor-structure" id="toc-nested-factor-structure" class="nav-link" data-scroll-target="#nested-factor-structure">Nested Factor Structure</a></li>
   <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a>
   <ul class="collapse">
   <li><a href="#adding-a-nested-factor" id="toc-adding-a-nested-factor" class="nav-link" data-scroll-target="#adding-a-nested-factor">Adding a Nested Factor</a></li>
@@ -297,8 +297,9 @@ ul.task-list li input[type="checkbox"] {
 <li><p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. The only limit to replication of reagent would be space within a freezer.</p></li>
 </ol>
 <p>A special case of this type of design is the <em>Repeated Measures</em> design, where individuals within an experimental design are measured at multiple time points. (See Repeated Measures(???))</p>
-<section id="nested-factor-structure" class="level2">
-<h2 class="anchored" data-anchor-id="nested-factor-structure">Nested Factor Structure</h2>
+</section>
+<section id="nested-factor-designs" class="level1">
+<h1>Nested Factor Designs</h1>
 <p>Review the discussion on <a href="./Nested_Samples.html">nested subsample</a>. It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.</p>
 <p>In this section you will learn how to identify levels of experimental units within a nested factorial design and its appropriate analysis. To identify and analyze a nested design, you will need to have a solid understanding of:</p>
 <ul>
@@ -306,17 +307,20 @@ ul.task-list li input[type="checkbox"] {
 <li>True replication</li>
 <li>Degrees of Freedom for Error</li>
 </ul>
-</section>
 <section id="motivating-example" class="level2">
 <h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
 <p>Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic <a href="./BasicFactorial_intro.html">single factor design</a> with 2 replicates:</p>
-<p align="center">
-</p><p><img src="images/FarmerJohnsReplication.png" class="img-fluid" width="360"></p>
-<p></p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsReplication.png" class="img-fluid figure-img" width="360"></p>
+</figure>
+</div>
 <p>Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:</p>
-<p align="center">
-</p><p><img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid" width="360"></p>
-<p></p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid figure-img" width="360"></p>
+</figure>
+</div>
 <!-------------
 Where the data would look like:
 
@@ -349,13 +353,17 @@ Where the data would look like:
 <section id="adding-a-nested-factor" class="level3">
 <h3 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h3>
 <p>Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
-<p align="center">
-</p><p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid" width="360"></p>
-<p></p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid figure-img" width="360"></p>
+</figure>
+</div>
 <p>Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within Fungicide treatment. We actually have 2 levels of experimental units!</p>
-<p align="center">
-</p><p><img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid" width="650"></p>
-<p></p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid figure-img" width="615"></p>
+</figure>
+</div>
 <p>With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).</p>
 <p>Ignoring Variety for a moment, you can see that the Residual error for Fungicide should be estimated by how the larger experimental units vary. It’s the Field-to-Field variation.</p>
 <p>If we treat Fungicide treatments as blocks, then the residual error for Variety will be the variety-plot-to-variety-plot variation within the <a href="./block_intro.html">blocks</a>.</p>

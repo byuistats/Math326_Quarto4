@@ -23,7 +23,7 @@ Consider 2 examples:
 
 A special case of this type of design is the *Repeated Measures* design, where individuals within an experimental design are measured at multiple time points. (See Repeated Measures(???))
 
-## Nested Factor Structure
+# Nested Factor Designs
 
 Review the discussion on [nested subsample](Nested_Samples.qmd). It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.
 
@@ -37,19 +37,11 @@ In this section you will learn how to identify levels of experimental units with
 
 Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic [single factor design](BasicFactorial_intro.qmd) with 2 replicates:
 
-<p align="center">
-
-![](images/FarmerJohnsReplication.png){width="360"}
-
-</p>
+![](images/FarmerJohnsReplication.png){#fig-block-sort fig-align="center" width="360"}
 
 Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:
 
-<p align="center">
-
-![](images/FarmerJohnsReplicationWithSubsamples.png){width="360"}
-
-</p>
+![](images/FarmerJohnsReplicationWithSubsamples.png){#fig-block-sort fig-align="center" width="360"}
 
 ```{=html}
 <!-------------
@@ -88,19 +80,11 @@ We would need to include the sub-sample term in the model to preserve the approp
 
 Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We're still stuck spraying half the field with Fungicide A and the other with Fungicide B.
 
-<p align="center">
-
-![](images/FarmerJohnsSplitPlot.png){width="360"}
-
-</p>
+![](images/FarmerJohnsSplitPlot.png){#fig-block-sort fig-align="center" width="360"}
 
 Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within Fungicide treatment. We actually have 2 levels of experimental units!
 
-<p align="center">
-
-![](images/FarmerJohnsSplitPlotAnnotated.png){width="650"}
-
-</p>
+![](images/FarmerJohnsSplitPlotAnnotated.png){#fig-block-sort fig-align="center" width="615"}
 
 With 2 levels of experimental units, we need 2 separate error terms each with the appropriate degrees of freedom for error (related to the number of true replications for each experimental unit).
 
