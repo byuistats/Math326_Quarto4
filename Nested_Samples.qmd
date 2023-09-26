@@ -19,21 +19,19 @@ toc-depth: 4
 
 ### Beware of False Replication
 
-Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the cheaper Chinese import. Fungus can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:
+Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the less expensive, generic import. Fungus can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:
 
 ![Farmer John's Field](images/FarmerJohnsAnecdote.PNG){#fig-block-sort fig-align="center" width="500"}
 
 Recall that an Experimental Unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. Replication is an independent repetition of the same conditions on different experimental units. Farmer John's design has no replication.
 
-Now imagine Farmer John's son is visiting home from college and recognizes the problem and comes up with a brilliant solution.
+Now imagine Farmer John's son is visiting home from college and recognizes the problem and comes up with a brilliant solution. He says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten "replicates" within each field and analyze the data using standard statistical tools.
 
-College Boy Bill says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten "reps" within each field and analyze the data using standard statistical tools.
+![Farmer John's sub-samples](images/FarmerJohnsSubsamples.PNG){fig-align="center" width="500"}
 
-![Farmer John's Subsamples](images/FarmerJohnsSubsamples.PNG){fig-align="center" width="500"}
+Neither a trusting statistician nor statistical software can tell that these data points are not independent applications of the experiment, and therefore not true replication. See the example below:  
 
-Statistical software won't be able to tell that these data points are not independent applications of the experiment, and therefore not true replication. They are only subsamples from within a single experimental unit.
-
-| "rep" | Fungicide |  Yield |
+| "replicate" | Fungicide |  Yield |
 |:-----:|:---------:|:------:|
 |     1 | A         | 501.36 |
 |     2 | A         | 507.27 |
@@ -56,18 +54,29 @@ Statistical software won't be able to tell that these data points are not indepe
 |     9 | B         | 498.67 |
 |    10 | B         | 539.04 |
 
-That's not to say sub-samples are useless. They can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can be so tempting to believe we have 20 independent observations more statistical power than the actual design allows (which is zero). It can only provide a false sense of statistical sophistication for a simple anecdote.
+Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can only provide a false sense of statistical sophistication for a simple anecdote.
 
-If we are not interested in the within-field variation, then we can average over the subsamples, and it becomes clear that we have no replication. However, we can include Sample "nested within" Treatment in our model, which allows us to account for the within-field variation and preserves the appropriate degrees of freedom for a design.
+If we are not interested in the within-field variation, then we can average over the sub-samples, and it becomes clear that we have no replication. However, we can include Sample "nested within" Treatment in our model, which allows us to estimate within-field variation and preserves the appropriate degrees of freedom for a design.
 
-The model including nested subsamples can be written:
+The model including nested sub-samples can be written:
 
 $$
 y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
 $$ {#eq-subsample}
 
-This model only works, though, if you have treatment replications, k, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
+Where
+
+-   $y_{ijk}$ is the observation that belongs to level *i* of $\alpha$, sub-sample, *j* , and the true replication, *k*.
+
+-   $\mu$ is the grand mean of the entire dataset.
+
+-   $\alpha_i$ is the fungicide level, *i*.
+
+-   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.  
+
+
+This model only works, though, if you have treatment replications, *k*, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
 
 ### Conclusion
 
-Failure to account for subsamples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.
+Failure to account for sub-samples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.
