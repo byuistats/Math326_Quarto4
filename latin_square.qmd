@@ -202,12 +202,14 @@ One simple way is to carry out the randomization is to use the `sample()` comman
 
 ```{r echo = TRUE}
 #Then randomize rows
+set.seed(42)
 row_randomized <- ls_design[sample(nrow(ls_design)), ]
 
+set.seed(42)
 #Then randomize columns
 all_randomized <- row_randomized[ , sample(ncol(row_randomized))]
 
-
+set.seed(17)
 #The above randomization steps can be combined into one command
 ls_design[ sample(nrow(ls_design)), sample(ncol(ls_design))]
 ```
@@ -229,6 +231,7 @@ To randomize the rows and columns, put the vector `1:4` within the `sample()` co
 
 ```{r echo = TRUE, eval = FALSE}
 #randomize rows
+set.seed(42)
 randomized_design <- tibble(row_blocks = rep(sample(1:4), each = 4),
                             column_blocks = rep(sample(1:4), times = 4),
                             treatment = c("A", "B", "C", "D", 
@@ -238,7 +241,7 @@ randomized_design <- tibble(row_blocks = rep(sample(1:4), each = 4),
 randomized_design
 ```
 
-After carrying out the experiment and gathering data, a vector containing the observed values can be added to the dataset using `cbind()` or `dplyr::bind_col()` from the tidyverse.
+After carrying out the experiment and gathering data, a vector containing the observed values can be added to the dataset using `mutate()`, `cbind()`,  or `dplyr::bind_col()` from the tidyverse. Only the `cbind()` option is shown in the code below.
 
 ```{r echo = TRUE, eval = FALSE}
 #Store observed data in a vector. 
@@ -299,7 +302,7 @@ Grand mean is the only factor outside of intersection (rows), time of day (colum
 
     ![](images/ls_treatment_and_column2.png)
 
-    The factors are crossed since each level of Treatment appears in combination with each level of the Column Factor. A similar process can be carried out to determine that Treatment and the Column Factor are also crossed.
+    The factors are crossed since each level of Treatment appears in combination with each level of the Column Factor. A similar process can be carried out to determine that Treatment and the Row Factor are also crossed.
 
 There is one residual for each observation, therefore the number of factor levels for residual is equal to the sample size, 16. The residual factor is inside of all other factors, so degrees of freedom for residual is 16 -- (1 + 3 + 3 + 3) = 6[^6].
 
