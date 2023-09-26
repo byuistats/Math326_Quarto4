@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -697,12 +696,12 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ls_design[ <span class="fu">sample</span>(<span class="fu">nrow</span>(ls_design)), <span class="fu">sample</span>(<span class="fu">ncol</span>(ls_design))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
-  `4`   `3`   `1`   `2`  
+  `1`   `3`   `4`   `2`  
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 D     C     A     B    
-2 B     A     C     D    
-3 C     B     D     A    
-4 A     D     B     C    </code></pre>
+1 C     A     B     D    
+2 B     D     A     C    
+3 A     C     D     B    
+4 D     B     C     A    </code></pre>
 </div>
 </div>
 </section>
@@ -895,7 +894,7 @@ Warning
 41.25 - 53.75 = -12.5
 \]</span></p>
 <p>This result indicates that the mean throughput at intersection 1 is 12.5 fewer cars than the grand mean. Effects for the other 3 intersections are found with a similar calcultion.</p>
-<p>To find the effect of a specific time of day, subtract the grand mean from the level's mean. For "8am", the calculation is</p>
+<p>To find the effect of a specific time of day, subtract the grand mean from the level’s mean. For “8am”, the calculation is</p>
 <p><span class="math display">\[
 50 - 53.75 = -3.75
 \]</span></p>
@@ -1007,7 +1006,7 @@ SS_{total} = 32^2 + 33^2 + … + 73^2 = 49856
 \]</span></p>
 <p>To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, <span class="math inline">\(53.75^2 = 2889.0625\)</span>. That value occurs 16 times in the dataset (once for each observation), so $ SS_$ = 2889.0625 * 16 = 46225.</p>
 <p>To get the sum of squares for each factor, we simply add all the squared effects. Since for intersections, time of day, and timing algorithm, each effect is repeated exactly 4 times, we will use some multiplication to simplify the calculation:</p>
-<p>$$ <span class="math display">\[\begin{align}
+<p><span class="math display">\[\begin{align}
 
 SS_\text{intersections} &amp;= 4*(156.3 + 56.3 + 5.1 + 495.1) = 2850.5 \\
 
@@ -1016,7 +1015,7 @@ SS_\text{time of day} &amp;= 4 *(14.1 + 3.1 + 4 + 12.3) = 133.5 \\
 SS_\text{algorithm} &amp;= 4 * (36 + 39.1 + 14.1 + 72.3) = 645.5 \\
 
 SS_\text{residual} &amp;= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
-\end{align}\]</span> $$</p>
+\end{align}\]</span></p>
 <p>Putting this information into the ANOVA table gives us <a href="#tbl-SS">Table&nbsp;1</a>.</p>
 <div class="cell">
 <div class="cell-output-display">

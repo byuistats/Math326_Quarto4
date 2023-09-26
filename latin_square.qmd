@@ -354,8 +354,7 @@ $$
 
 To find the mean for each algorithm, we add together the 4 observations that belong to each algorithm and divide by four.
 
-$$ 
-\begin{align}
+\$\$ \begin{align}
 \bar{y}_A = \bar{y}_{\cdot \cdot 1} &= \frac{32 + 44 + 42 + 73}{4} = 47.8 \\
 
 \bar{y}_B = \bar{y}_{\cdot \cdot 2} &= \frac{36 + 33 + 72 + 79}{4} = 47.5 \\
@@ -363,8 +362,7 @@ $$
 \bar{y}_C = \bar{y}_{\cdot \cdot 3} &= \frac{51 + 78 + 47 + 54}{4} = 57.5 \\
 
 \bar{y}_D = \bar{y}_{\cdot \cdot 4} &= \frac{81 + 53 + 62 + 53}{4} = 62.3
-\end{align}
-$$
+\end{align} \$\$
 
 We do not need to calculate means for residual error factor for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.
 
@@ -394,7 +392,7 @@ $$
 
 This result indicates that the mean throughput at intersection 1 is 12.5 fewer cars than the grand mean. Effects for the other 3 intersections are found with a similar calcultion.
 
-To find the effect of a specific time of day, subtract the grand mean from the level\'s mean. For \"8am\", the calculation is
+To find the effect of a specific time of day, subtract the grand mean from the level's mean. For "8am", the calculation is
 
 $$
 50 - 53.75 = -3.75
@@ -450,17 +448,16 @@ To get the **sum of squares (SS)** of a factor, the effects of the factor must b
 ![Squared Factor Effects](images/ls_squared_effects.png){#fig-ls_sq_effects}
 :::
 
-The total sum of squares ($ SS_{total}$) represents all the squared variability that we will need to allocate to the various factors. It is calculated by squaring each observation and then summing them together:
+The total sum of squares (\$ SS\_{total}\$) represents all the squared variability that we will need to allocate to the various factors. It is calculated by squaring each observation and then summing them together:
 
 $$
 SS_{total} = 32^2 + 33^2 + … + 73^2 = 49856
 $$
 
-To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, $53.75^2 = 2889.0625$. That value occurs 16 times in the dataset (once for each observation), so $ SS_\text{grand mean}$ = 2889.0625 * 16 = 46225.
+To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, $53.75^2 = 2889.0625$. That value occurs 16 times in the dataset (once for each observation), so \$ SS\_\text{grand mean}\$ = 2889.0625 \* 16 = 46225.
 
 To get the sum of squares for each factor, we simply add all the squared effects. Since for intersections, time of day, and timing algorithm, each effect is repeated exactly 4 times, we will use some multiplication to simplify the calculation:
 
-$$
 \begin{align}
 
 SS_\text{intersections} &= 4*(156.3 + 56.3 + 5.1 + 495.1) = 2850.5 \\
@@ -471,7 +468,6 @@ SS_\text{algorithm} &= 4 * (36 + 39.1 + 14.1 + 72.3) = 645.5 \\
 
 SS_\text{residual} &= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
 \end{align}
-$$
 
 Putting this information into the ANOVA table gives us @tbl-SS.
 
@@ -523,7 +519,7 @@ $$
 H_a: \gamma_k \ne 0 \text{, for some } k
 $$
 
-To test the hypothesis, we need to compare the mean square (MS) for algorithm to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. 
+To test the hypothesis, we need to compare the mean square (MS) for algorithm to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic.
 
 $$
 \text{F statistic} = \frac{MS_{algorithm}}{MS_{error}} = \frac{215.1\overline{6}}{0.25} = 860.\overline{6}
@@ -548,7 +544,7 @@ We can conclude from these results that at least one of the timing algorithms ha
 
 # Analysis in R
 
-This section illustrates the R code necessary to analyze data from a Latin Square design. 
+This section illustrates the R code necessary to analyze data from a Latin Square design.
 
 When working with a dataset the first thing to do is get to know your data through numerical and graphical summaries. Interactive code and additional explanations of numerical summaries and plots in R are found at [R Instructions-\>Descriptive Summaries](DescribeData.html) section of the book.
 
@@ -587,7 +583,7 @@ summary(myaov)
 -   `X1`, `X2`, `X3` are names of categorical variables in your dataset. They should have class(X) equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(X1)*...)` command.
 -   `YourDataSet` is the name of your data set.
 
-Below are the results of the traffic light timing algorithm experiment. You should notice that these results match what we got when we performed the decomposition manually to build the ANOVA summary table. 
+Below are the results of the traffic light timing algorithm experiment. You should notice that these results match what we got when we performed the decomposition manually to build the ANOVA summary table.
 
 ```{r}
 #| code-fold: true
@@ -602,7 +598,6 @@ summary(my_ls_aov)
 Our main concern was with the effect of the timing algorithm. The p-value for algorithm (p = 2.72e-08) is extremely low. We have sufficient evidence to say that at least one of the 4 timing algorithms has a significant effect on the throughput of cars. Specifically, algorithm D performs best, followed by C. Algorithms A and B have similar throughput.
 
 The blocking variables also turned out to be significant, with p-values of 3.18e-10 and 2.99e-06. This suggests that they accounted for a large amount of variation in the response variable and that our blocking was worthwhile (at least in term of reducing our residual error). Indeed, running the ANOVA without the blocking factors included results in a high p-value for algorithm and an inability to detect differences between algorithms.
-
 
 ## Check Assumptions
 
@@ -623,13 +618,13 @@ plot(my_ls_aov, which = 1)
 Ignore the red line in this plot
 :::
 
-The x-axis of @fig-constant_var shows the fitted. Fitted values, also called predicted values, is the sum of the effects contributing to a datapoint. It includes all effects except for the residual effect. The residual is plotted on the y-axis. 
+The x-axis of @fig-constant_var shows the fitted. Fitted values, also called predicted values, is the sum of the effects contributing to a datapoint. It includes all effects except for the residual effect. The residual is plotted on the y-axis.
 
 The points in the plot do not show any increase (or decreasing) in vertical spread as we move along the x-axis. Therefore, we conclude this requirement is met.
 
 ### Normally Distributed Residuals
 
-We check the assumption that residuals are normally distributed in @fig-qq. All the points are in the shaded region. 
+We check the assumption that residuals are normally distributed in @fig-qq. All the points are in the shaded region.
 
 ```{r}
 #| code-fold: true
@@ -641,7 +636,7 @@ car::qqPlot(my_ls_aov$residuals, id = FALSE)
 
 ### Independent Residuals
 
-The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it is possible some conditions of the experiment were run simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. 
+The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it is possible some conditions of the experiment were run simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias.
 
 ## Summary
 

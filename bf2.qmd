@@ -650,11 +650,11 @@ The previous 3 figures are placed side by side below in the figure below so that
 #| column: screen-inset-shaded
 #| layout-nrow: 1
 #| label: fig-side_by_each
-##| fig-cap: "Additive Effects"
-##| fig-subcap:
-##|   - "Grand mean + brush effect... "
-##|   - " + paste effect ... "
-##|   - " + interaction"
+#| fig-cap: Additive Effects
+#| fig-subcap:
+#|   - ""
+#|   - ""
+#|   - ""
 ##| fig-subcap: 
 ##|    - "Grand mean + brush effect..."
 ##|    - "... + paste effect ..."
@@ -1240,7 +1240,7 @@ car::qqPlot(bf2_aov$residuals, id = FALSE)
 
 ### Independent Residuals
 
-The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in @fig-order can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
+The dataset we are analyzing does not include information about the order in which the data was collected. In fact, it may be possible there were multiple teams of researchers collecting the data simultaneously and there is no specific order. From what we know, there is no reason to think there is a potential order bias. Nevertheless, the order plot in @fig-order can be used to investigate trends in residuals by row number in the dataset. This plot does not show any patterns or trends. The assumption of independent residuals seems to be satisfied.
 
 ```{r}
 #| code-fold: true

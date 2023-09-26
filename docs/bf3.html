@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -294,6 +293,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
   <li><a href="#interaction" id="toc-interaction" class="nav-link" data-scroll-target="#interaction">Interaction</a></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul>
+  <li><a href="#factor-effects" id="toc-factor-effects" class="nav-link" data-scroll-target="#factor-effects">Factor Effects</a></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#completing-the-anova-table" id="toc-completing-the-anova-table" class="nav-link" data-scroll-target="#completing-the-anova-table">Completing the ANOVA Table</a></li>
+  </ul></li>
+  <li><a href="#analysis-in-r" id="toc-analysis-in-r" class="nav-link" data-scroll-target="#analysis-in-r">Analysis in R</a>
+  <ul>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data">Describe the Data</a>
+  <ul class="collapse">
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link" data-scroll-target="#numerical-summaries">Numerical Summaries</a></li>
+  <li><a href="#graphical-summaries" id="toc-graphical-summaries" class="nav-link" data-scroll-target="#graphical-summaries">Graphical Summaries</a></li>
+  </ul></li>
+  <li><a href="#create-the-model" id="toc-create-the-model" class="nav-link" data-scroll-target="#create-the-model">Create the Model</a></li>
+  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">Check Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#constant-variance-of-residuals" id="toc-constant-variance-of-residuals" class="nav-link" data-scroll-target="#constant-variance-of-residuals">Constant Variance of Residuals</a></li>
+  <li><a href="#normally-distributed-residuals" id="toc-normally-distributed-residuals" class="nav-link" data-scroll-target="#normally-distributed-residuals">Normally Distributed Residuals</a></li>
+  <li><a href="#independent-residuals" id="toc-independent-residuals" class="nav-link" data-scroll-target="#independent-residuals">Independent Residuals</a></li>
+  <li><a href="#assumptions-summary" id="toc-assumptions-summary" class="nav-link" data-scroll-target="#assumptions-summary">Assumptions Summary</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
   </ul>
 </nav>
@@ -329,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This section will extend a factorial design with two factors to a full factorial design with three factors. The design and analysis of a fully factorial experiment with three factors is very similar to the two factor design. The one notable exception is that now there is the potential for higher order interactions. Instead of just a single two-way interaction to be considered, three-way interactions, as well as all possible two-way interactions, are included in the model</p>
 <p>To illustrate this design and analysis we will use a fictitious dataset that closely mirrors the <a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-0017812077&amp;origin=inward&amp;txGid=d11bc22f7fa2dd7a30ab0c43490b98d3">real experiment conducted by Robert Kaplan</a>. The experiment’s goal was to show how the <a href="https://en.wikipedia.org/wiki/Halo_effect">halo effect</a> due to attractiveness effects influences an assessment. More precisely, how does an author’s attractiveness, their sex, and the sex of the reader impact the reader’s assessment of the author’s talent as a writer.</p>
 <p>To carry out the experiment, a participant is treated as the reader. There were 48 readers total, 24 male and 24 female. The participant is asked to read an essay. Though all participants read the same essay, the sex of the author and the attractiveness of the author was varied. This was accomplished by attaching a picture of the author to the essay. There were 3 levels of attractiveness for each author sex: attractive, unattractive, and the control group (where no picture was attached). Each reader was randomly assigned to an author sex and attractiveness level such that for every combination of reader sex, author sex, and author attractiveness there were exactly 4 observations gathered, resulting in a total of 48 observations.</p>
-<p>It is cleaner and easier to show the data in a different format than has been used up to this point. In <a href="#tbl-data">Table&nbsp;1</a>, each factor has a column dedicated to show what factor level the observations in that row belong to. There are 12 unique factor level combinations, and therefore 12 rows in the dataset. There are 4 observations per factor level combination, and they are displayed to the right of factor level combination designation.</p>
+<p>It is cleaner and easier to show the data in a different format than has been used up to this point. In <a href="#tbl-data">Table&nbsp;1</a>, each factor has a column dedicated to show what factor level the observations in that row belong to. There are 12 unique factor level combinations, and therefore 12 rows in the table There are 4 observations per factor level combination, and they are displayed to the right of factor level combination designation.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -520,56 +541,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The partition associated with each of these factors will allow us to calculate main effects.</p>
 <p>The data can also be partitioned according to a shared factor level combination on a pair of factors. There are 3 possible factor pairs. In other words, three two-way interactions are created by partitioning the data this way:</p>
 <ul>
-<li>reader <span class="math inline">\(\times\)</span> author: 4 levels</li>
-<li>reader <span class="math inline">\(\times\)</span> attractiveness: 6 levels</li>
-<li>author <span class="math inline">\(\times\)</span> attractiveness: 6 levels</li>
+<li>reader’s gender <span class="math inline">\(\times\)</span> author’s gender: 4 levels</li>
+<li>reader’s gender <span class="math inline">\(\times\)</span> author’s attractiveness: 6 levels</li>
+<li>author’s gender <span class="math inline">\(\times\)</span> author’s attractiveness: 6 levels</li>
 </ul>
 <p>Finally, data values can be partitioned according to what combination of the 3 treatment factors the observation belongs to. This results in a 3-way interaction factor:</p>
 <ul>
-<li>reader <span class="math inline">\(\times\)</span> author <span class="math inline">\(\times\)</span> attractiveness: 12 levels</li>
+<li>reader’s gender <span class="math inline">\(\times\)</span> author’s gender <span class="math inline">\(\times\)</span> author’s attractiveness: 12 levels</li>
 </ul>
 <p>The table below summarizes the 7 structural factors in the model:</p>
 <!-- Use ctrl + space to make a non-breaking white space that doesn't just get collapsed. It is represented with a light gray dot in Rstudio markdown before rendering. -->
 <table class="table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 11%">
-<col style="width: 49%">
+<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 59%">
 </colgroup>
-<thead>
-<tr class="header">
-<th>Factor</th>
-<th style="text-align: center;"># of levels</th>
-<th>Partitions: Row #’s of <a href="#tbl-data">Table&nbsp;1</a> belonging to each level</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td>reader</td>
-<td style="text-align: center;">3</td>
-<td><p>female: 1-6</p>
-<p>male: &nbsp;&nbsp;&nbsp;7-12</p></td>
+<td></td>
+<td><h1 id="factor">Factor</h1>
+<p>reader</p></td>
+<td># of levels :============: 2</td>
+<td>Partitions: Row ID #’s of <a href="#tbl-data">Table&nbsp;1</a> belonging to each level ==============================================================+ female: 1-6 | | male: &nbsp;&nbsp;&nbsp;7-12 |</td>
 </tr>
 <tr class="even">
 <td>author</td>
-<td style="text-align: center;">2</td>
+<td>2</td>
 <td><p>female: 1-3, 7-10</p>
 <p>male: &nbsp;&nbsp;&nbsp;4-6, 11-12</p></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>attractiveness</td>
-<td style="text-align: center;">2</td>
+<td>3</td>
 <td><p>attractive: &nbsp;&nbsp;&nbsp;1, 4, 7, 10</p>
 <p>no-pic: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2, 5, 8, 11</p>
 <p>unattractive: 3, 6, 9, 12</p></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>reader <span class="math inline">\(\times\)</span> author</td>
-<td style="text-align: center;">4</td>
+<td>4</td>
 <td><table class="table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 43%">
+<col style="width: 29%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -586,14 +604,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>reader <span class="math inline">\(\times\)</span> attractiveness</td>
-<td style="text-align: center;">6</td>
+<td>6</td>
 <td><table class="table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 43%">
+<col style="width: 29%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -612,14 +631,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>author <span class="math inline">\(\times\)</span> attractiveness</td>
-<td style="text-align: center;">6</td>
+<td>6</td>
 <td><table class="table">
 <colgroup>
-<col style="width: 41%">
-<col style="width: 40%">
+<col style="width: 29%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -638,10 +658,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>reader <span class="math inline">\(\times\)</span> author <span class="math inline">\(\times\)</span> attractiveness</td>
-<td style="text-align: center;">12</td>
+<td>12</td>
 <td><p>female, female, attractive: 1</p>
 <p>female, female, no-pic: 2</p>
 <p>female, female, unattractive: 3</p>
@@ -654,6 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>male, male, attractive: 10</p>
 <p>male, male, no-pic: 11</p>
 <p>male, male, unattractive: 12</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -668,16 +690,16 @@ y_\text{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha\beta)_\text{ij} + 
 <ul>
 <li><span class="math inline">\(y_{ijkl}\)</span> is the <span class="math inline">\(l^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\beta_j\)</span>, and <span class="math inline">\(\gamma_k\)</span>.</li>
 <li><span class="math inline">\(\mu\)</span> is the grand mean of all the observations.</li>
-<li><span class="math inline">\(\alpha\)</span> is the effect of reader’s gender, and <span class="math inline">\(i\)</span> has 2 levels</li>
-<li><span class="math inline">\(\beta\)</span> is the effect of author’s gender, and <span class="math inline">\(j\)</span> has 2 levels</li>
-<li><span class="math inline">\(\gamma\)</span> is the effect of author’s attractiveness, and <span class="math inline">\(k\)</span> has 3 levels: attractive, neural, and unattractive</li>
+<li><span class="math inline">\(\alpha\)</span> is the effect of reader’s gender, and <span class="math inline">\(i\)</span> has 2 levels: i=1 for female, i=2 for male</li>
+<li><span class="math inline">\(\beta\)</span> is the effect of author’s gender, and <span class="math inline">\(j\)</span> has 2 levels: i=1 for female, i=2 for male</li>
+<li><span class="math inline">\(\gamma\)</span> is the effect of author’s attractiveness, and <span class="math inline">\(k\)</span> has 3 levels: k=1 for attractive, k=2 for neutral, and k=3 for unattractive</li>
 <li>The <span class="math inline">\((\alpha\beta)_\text{ij}\)</span> is the interaction effect for reader gender with author gender on perceived talent level.</li>
 <li>The <span class="math inline">\((\alpha\gamma)_\text{ik}\)</span> is the interaction effect for reader gender with author attractiveness on perceived talent.</li>
 <li>The <span class="math inline">\((\beta\gamma)_\text{jk}\)</span> is the interaction effect for author gender with attractiveness on perceived talent.</li>
 <li>The <span class="math inline">\((\alpha\beta\gamma)_\text{ijk}\)</span> is the interaction effect for reader gender, author gender, and attractiveness on perceived talent.</li>
 <li><span class="math inline">\(\epsilon\)</span> is the residual error term, and <span class="math inline">\(l\)</span> is the replicate count within a factor level combination.</li>
 </ul>
-<p>Though we have seen two factor interactions and know how to deal with them, the three factor interaction is something new. Including this term in the model means that the impact of any of the three variables depends on the levels of the other two. Stated another way, the nature of the two-way interaction depends on the level of the third variable.</p>
+<p>Though we have seen two factor interactions and know how to deal with them, the three factor interaction is something new. Including this term in the model means that the impact of any of the three variables depends on the levels of the other two. Stated another way, the nature of the two-way interaction depends on the level of a third variable.</p>
 <p>The main effects and two-way interactions are tested just as they were in the <a href="./bf2.html">BF[2]</a> model. The hypothesis for the 3-way interaction is</p>
 <p><span class="math display">\[
 H_0: (\alpha\beta\gamma)_\text{ijk} = 0 \text{ for all } ijk
@@ -736,7 +758,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <h1>Design</h1>
 <p>In a basic factorial design of 3 factors, three factors are purposely varied in such a way that observations are obtained for every possible factor level combination. Each factor level combination is considered a treatment.</p>
 <p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level combination. It can be helpful to first list out all the subjects and factor level combinations in a table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.</p>
-<p>There are $ $ factor level combinations. If we want to observe each factor level combination 4 times, we need <span class="math inline">\(12 \times 4 = 48\)</span> observations.</p>
+<p>There are 12 unique factor level combinations. If we want to observe each factor level combination 4 times, we need <span class="math inline">\(12 \times 4 = 48\)</span> observations.</p>
 <p><a href="javascript:showhide('unrandomized')"><span style="font-size:8pt;">click twice to show/hide data</span></a></p>
 <div id="unrandomized">
 <div class="cell">
@@ -1488,7 +1510,799 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </div>
 </div>
 <!-- This plot works, but I want to use the one above because it seems more straigh forward -->
-<p>DESCRIBE HOW THE PLOT ON THE LEFT AND THE PLOT ON THE RIGHT ARE DIFFERENT AND HOW THAT REPRESENTS A 3-WAY INTERACTION: WHEN THE NATURE OF THE 2 WAY INTERACTION DEPENDS ON THE THIRD FACTOR.</p>
+<p>The plot on the left shows factor levels means when the reader was female. A two-way interaction seems likely based on the way the lines cross. Specifically, female readers rate female authors as more talented when the author is unattractive - kind of a reverse halo effect. However, female readers assessment of male authors does not seem influenced by attractiveness of male authors.</p>
+<p>The nature of the interaction between author gender and attractiveness on perceived talent drastically changes when the reader is male, as shown in the plot on the right. Males rate authors of both genders as more talented if the author is more attractive. Thus, this is a good example of a 3 way interaction: the nature of the interaction between author gender and attractiveness depends on the reader’s gender.</p>
+</section>
+<section id="decomposition" class="level1">
+<h1>Decomposition</h1>
+<p>In a full factorial design with 3 controlled factors, there are a total of 7 structural factors. Diagramming their partitions can become unwieldy and messy. However, in order to use the general rules to calculate degrees of freedom and factor effects, it is still important to know which factors are inside/outside of other factors.</p>
+<p>In a completely randomized, basic factorial experiment, a higher-order interaction is always inside of the factors that make it up. For example, in the halo effect experiment, the interaction between attractiveness and author gender is inside of both attractiveness and author gender. The two-way interactions are neither inside nor outside of each other. For example, reader gender <span class="math inline">\(\times\)</span> author gender is not inside nor outside of reader gender <span class="math inline">\(\times\)</span> author attractiveness.</p>
+<p>The 3-way interaction of reader gender <span class="math inline">\(\times\)</span> author gender <span class="math inline">\(\times\)</span> author attractiveness is inside of the other 6 structural factors (3 main effect factors and 3 two-way interactions).</p>
+<section id="factor-effects" class="level2">
+<h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
+<p>The first step in performing a decomposition is to calculate the factor level means. The grand mean is 69.1458333.</p>
+<p>The mean for each factor and its corresponding levels is displayed below.</p>
+<div id="tbl-means3" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;3: Means for Each Factor Level Combination</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-means3-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(a) Mean Talent by Reader Gender</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">reader</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">68.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">69.67</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-means3-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(b) Mean Talent by Author Gender</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">author</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">69.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">68.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-means3-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(c) Mean Talent by Author Attractiveness</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">attractiveness</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">70.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">69.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">67.31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-means3-4" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(d) Mean Talent by Reader Gender x Author Gender</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">reader</th>
+<th style="text-align: center;">author</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">70.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">67.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">69.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">69.83</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-means3-5" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(e) Mean Talent by Reader Gender x Author Attractiveness</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">reader</th>
+<th style="text-align: center;">attractiveness</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">58.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">68.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">78.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">83.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">55.88</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-means3-6" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(f) Mean Talent by Author Gender x Author Attractiveness</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">author</th>
+<th style="text-align: center;">attractiveness</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">68.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">69.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">70.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">68.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">63.75</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-means3-7" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(g) Mean Talent by Reader Gender x Author Gender x Author Attractiveness</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">reader</th>
+<th style="text-align: center;">author</th>
+<th style="text-align: center;">attractiveness</th>
+<th style="text-align: center;">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">50.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">90.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">66.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">68</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">66.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">87</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">70.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">51</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">79.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">69.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">60.75</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We will now compute the factor level effects. A couple of example computations for the interaction factors are shown below. The general rule for factor level effects is implemented, it states that the size of an effect is equal to the factor level mean minus the sum of the effects of all outside factors. The computation for each effect of each factor will not be shown.</p>
+<p>The full factorial model, as defined in <a href="#eq-bf3">Equation&nbsp;1</a>, will be used to describe the calculations.</p>
+<p>First, let’s compute the effect of a <em>male reader</em> <span class="math inline">\(\times\)</span> attractive author on perceived talent.</p>
+<span class="math display">\[\begin{align}
+(\hat{\alpha\gamma})_\text{male reader, attractive author} &amp;= \bar{y}_\text{male reader, attractive author} - (\hat{\mu} + \hat{\alpha}_\text{male reader} + \hat{\gamma}_\text{attractive author}) \\
+
+\hat{(\alpha\gamma)}_{2, 1} &amp;= \bar{y}_{2 \cdot 1 \cdot} - (y_{\cdot\cdot\cdot\cdot} + \hat{\alpha_2} + \hat{\gamma_1}) \\
+
+&amp;= 83.12 - (69.15  + 0.52 + 1.73) \\
+&amp;= 11.72
+
+\end{align}\]</span>
+<p>Thus, as we saw earlier in <a href="#fig-ints2">Figure&nbsp;1</a>, the effect of being attractive is made greater when the reader is a male. Specifically, the mean talent ratings is 11.72 points higher predicted by adding the effect of male reader and the effect of attractive author to the grand mean separately.</p>
+<p>To calculate the effect of a three-way interaction, the general rule is again applied. This time though, there are more calculations since all two-way interactions are inside of the 3 way interaction. Below, the effect of <em>male reader</em> <span class="math inline">\(\times\)</span> female author <span class="math inline">\(\times\)</span> attractive author is calculated.</p>
+<span class="math display">\[\begin{align}
+\hat{(\alpha\beta\gamma)}_{2,1,1} &amp;= \bar{y}_{211\cdot} - (\hat{\mu} + \hat{\alpha_2} + \hat{\beta_1} + \hat{\gamma_1} + \hat{\alpha\beta}_{21} + \hat{\alpha\gamma}_{21} + \hat{\beta\gamma}_{11}) \\
+
+&amp;= 87 - (69.15  + 0.52 + .64 + 1.73 + -.81 + 11.72 + -2.77) \\
+&amp;= 6.82
+
+\end{align}\]</span>
+<p>Thus, their appears to be a synergistic effect on perceived talent when all three of the levels <em>male reader</em> <span class="math inline">\(\times\)</span> female author <span class="math inline">\(\times\)</span> attractive author are present together. Specifically, the mean talent rating is 6.82 points higher than the partial fit (which only includes main effects and two-way interaction effects) would have predicted.</p>
+<p>Similar calculations can be done for every factor level effect.</p>
+</section>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>Degrees of freedom can also be calculated using the general rule: degrees of freedom for a factor is equal to the levels of that factor minus the sum of degrees of freedom for all outside factors. The degrees of freedom calculations are only shown for two factors, leaving it up to the reader to calculate/verify the degrees of freedom for the other factors as presented in the ANOVA summary table in XXX.</p>
+<p>The degrees of freedom calculation for the reader by attractiveness interaction factor is shown below. There are 2 reader gender levels <span class="math inline">\(\times\)</span> 3 attractiveness levels = 6 total levels for this interaction factor.</p>
+<span class="math display">\[\begin{align}
+df_\text{reader, attractiveness} &amp;= levels_\text{reader, attractiveness} - (df_{\mu} + df_\text{reader} + df_\text{attractiveness}) \\
+
+df_{\alpha\gamma} &amp;= levels_{\alpha\gamma} - (df_\text{grand mean} + df_\alpha + df_\gamma \\
+
+&amp;= 6 - (1  + 1 + 2) \\
+&amp;= 2
+
+\end{align}\]</span>
+<p>There are 2 degrees of freedom for the <em>reader</em> <span class="math inline">\(\times\)</span> attractiveness factor.</p>
+<p>The degrees of freedom calculation for the 3 way interaction is shown below.</p>
+<span class="math display">\[\begin{align}
+df_\text{reader, author, attractiveness} &amp;= levels_\text{reader, author, attractiveness} - (df_{\mu} + df_\text{reader} + df_\text{author} + df_\text{attractiveness} + df_\text{reader, author} + df_\text{reader, attractiveness} + df_\text{author, attractiveness}) \\
+
+df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha + df_\beta + df_\gamma + df_{\alpha\beta} + df_{\alpha\gamma} + df_{\beta\gamma} \\
+
+&amp;= 12 - (1  + 1 + 1 + 2 + 1 + 2 + 2 ) \\
+&amp;= 2
+
+\end{align}\]</span>
+<p>The three way interaction also has two degrees of freedom.</p>
+</section>
+<section id="completing-the-anova-table" class="level2">
+<h2 class="anchored" data-anchor-id="completing-the-anova-table">Completing the ANOVA Table</h2>
+<p>After degrees of freedom and effects for each factor are calculated, the remaining pieces of the ANOVA table can also be calculated.</p>
+<p>To calculate sum of squares for a factor, the effects of each factor level associated with that factor are squared and then multiplied by the number of replicates in that level.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> These products are then summed across levels to get the total sum of squares for the factor.</p>
+<p>To obtain the mean squares for a factor, the factor’s sum of squares is divided by the factor’s degrees of freedom.</p>
+<p>Finally, the F-statistic is obtained by computing the ratio of a factor’s mean square to the mean squared error. The degrees of freedom associated with this F statistic are the degrees of freedom for the factor and the degrees of freedom for error. The p-value is obtained by finding the area under the F distribution to the right of the F statistic.</p>
+</section>
+</section>
+<section id="analysis-in-r" class="level1 page-columns page-full">
+<h1>Analysis in R</h1>
+<p>We will illustrate the R code used for a BF[3] analysis halo effect experiment that has been used throughout this page.</p>
+<section id="describe-the-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the Data</h2>
+<p>When working with a dataset you should get to know your data through numerical and graphical summaries. Numerical summaries typically consist of means, standard deviations, and sample sizes for each factor level. Graphical summaries most usually are boxplots, scatterplots, and/or interaction plots with the means displayed.</p>
+<p>Interactive code and additional explanations of numerical summaries and plots in R are found at <a href="DescribeData.html">R Instructions-&gt;Descriptive Summaries</a> section of the book.</p>
+<p>So far, we have already seen various numerical and graphical summaries of the data on this page. This summaries below would be a good starting point if you are taking a look at the data for the first time.</p>
+<section id="numerical-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h3>
+<p>A good place to start is calculating summary statistics like mean, standard deviation and sample size for the factor levels of each experimental factor.</p>
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: the df data frame was created in the first R chunk in the Overview section of this page</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(reader) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(talent),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">std_dev =</span> <span class="fu">sd</span>(talent),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>(<span class="at">caption =</span> <span class="st">"Numerical Summary by Reader Gender"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(author) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(talent),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">std_dev =</span> <span class="fu">sd</span>(talent),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>(<span class="at">caption =</span> <span class="st">"Numerical Summary by Author Gender"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(attractiveness) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(talent),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">std_dev =</span> <span class="fu">sd</span>(talent),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>(<span class="at">caption =</span> <span class="st">"Numerical Summary by Attractiveness Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-summaries" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;4: Numerical Summaries of Experimental Factors</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-summaries-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(a) Numerical Summary by Reader Gender</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">reader</th>
+<th style="text-align: center;">mean</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">std_dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">68.62</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">12.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">69.67</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">13.18</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-summaries-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(b) Numerical Summary by Author Gender</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">author</th>
+<th style="text-align: center;">mean</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">std_dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">female</td>
+<td style="text-align: center;">69.79</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">16.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">male</td>
+<td style="text-align: center;">68.5</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">7.684</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl-summaries-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>(c) Numerical Summary by Attractiveness Gender</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">attractiveness</th>
+<th style="text-align: center;">mean</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">std_dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">attractive</td>
+<td style="text-align: center;">70.88</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">15.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">no-pic</td>
+<td style="text-align: center;">69.25</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">5.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">unattractive</td>
+<td style="text-align: center;">67.31</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">16.04</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>Much of the above information can also be seen in an effective visual.</p>
+</section>
+<section id="graphical-summaries" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
+<p>Below are some basic boxplots talent perception, grouped by levels of each experimental factor. Jittered points of the response are overlayed on each boxplot. The effect of attractiveness is detectable, but the impact of reader gender and author gender are not obvious since they exist as part of an interaction. Interaction plots can be investigated at any time in the analysis process. However, sometimes the number of interactions to check can large, and may not be something to start with. In such cases, you may run the model first and then spend energy trying to understand only those interactions that look to be significant.</p>
+<div class="page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: the df data frame was created in the first R chunk in the Overview section of this page</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Chart 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> reader, <span class="at">y =</span> talent)) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Reader Gender"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Chart 2</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> author, <span class="at">y =</span> talent)) <span class="sc">+</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Author Gender"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Chart 3</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> attractiveness, <span class="at">y =</span> talent)) <span class="sc">+</span> </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Author Attractiveness"</span>) <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-descriptives" class="cell column-screen-inset quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-descriptives-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf3_files/figure-html/fig-descriptives-1.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
+<figcaption class="figure-caption">(a)</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-descriptives-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf3_files/figure-html/fig-descriptives-2.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
+<figcaption class="figure-caption">(b)</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-descriptives-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf3_files/figure-html/fig-descriptives-3.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
+<figcaption class="figure-caption">(c)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Graphical Summaries of Experimental Factors</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="create-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-model">Create the Model</h2>
+<p>The 3-way Basic Factorial model is created in R just as the 2-way model was: using the <code>aov()</code> function. To see results of the F-test you can feed your model into a <code>summary()</code> or <code>anova()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1 <span class="sc">*</span> X2 <span class="sc">*</span> X3, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>myaov</code> is the user defined name in which the results of the aov() model are stored</li>
+<li><code>Y</code> is the name of a numeric variable in your dataset which represents the quantitative response variable.</li>
+<li><code>X1</code>, <code>X2</code>, and <code>X3</code> are names of qualitative variables in your dataset. They represent the independent variables in the study. They should have class(X) equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(X1)*...)</code> command.</li>
+<li><code>YourDataSet</code> is the name of your data set.</li>
+</ul>
+<p>The <code>*</code> in the code above is a shortcut for writing out the whole model. It can be read as, “include each term by itself, and all possible interaction terms”. The long way of writing out the model uses a colon, <code>:</code>, to define interaction terms and is shown below. When writing it this way each term must be explicitly stated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X1<span class="sc">:</span>X2 <span class="sc">+</span> X1<span class="sc">:</span>X3 <span class="sc">+</span> X2<span class="sc">:</span>X3 <span class="sc">+</span> X1<span class="sc">:</span>X2<span class="sc">:</span>X3, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-anova_results">Figure&nbsp;3</a> shows the results for the full BF[3] model for the study of halo effect on perception of talent. The 3-way interaction is significant here (p-value - 1.081e-7). Two of the two-way interactions are significant. None of the main effects show significance.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>halo_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(talent <span class="sc">~</span> reader <span class="sc">*</span> author <span class="sc">*</span> attractiveness, <span class="at">data =</span> df)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(halo_aov) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-anova_results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="fig-anova_results-1">
+<table class="table table-sm table-striped small">
+<caption>Analysis of Variance Model</caption>
+<colgroup>
+<col style="width: 43%">
+<col style="width: 6%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Df</th>
+<th style="text-align: center;">Sum Sq</th>
+<th style="text-align: center;">Mean Sq</th>
+<th style="text-align: center;">F value</th>
+<th style="text-align: center;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>reader</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">13.02</td>
+<td style="text-align: center;">13.02</td>
+<td style="text-align: center;">0.4004</td>
+<td style="text-align: center;">0.5309</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>author</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">20.02</td>
+<td style="text-align: center;">20.02</td>
+<td style="text-align: center;">0.6156</td>
+<td style="text-align: center;">0.4378</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>attractiveness</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">101.8</td>
+<td style="text-align: center;">50.9</td>
+<td style="text-align: center;">1.565</td>
+<td style="text-align: center;">0.223</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>reader:author</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">31.69</td>
+<td style="text-align: center;">31.69</td>
+<td style="text-align: center;">0.9744</td>
+<td style="text-align: center;">0.3302</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>reader:attractiveness</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4490</td>
+<td style="text-align: center;">2245</td>
+<td style="text-align: center;">69.03</td>
+<td style="text-align: center;">4.793e-13</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>author:attractiveness</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">259.3</td>
+<td style="text-align: center;">129.6</td>
+<td style="text-align: center;">3.987</td>
+<td style="text-align: center;">0.02729</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>reader:author:attractiveness</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1683</td>
+<td style="text-align: center;">841.7</td>
+<td style="text-align: center;">25.88</td>
+<td style="text-align: center;">1.081e-07</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Residuals</strong></td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">1171</td>
+<td style="text-align: center;">32.52</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;3: BF[3] ANOVA summary table</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Keeping Lower Order Effects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When a significant interaction is discovered, all lower order interactions and main effects should remain in the model - even if they are not significant.</p>
+</div>
+</div>
+<p>When a 2-way interaction is found to be significant, then both of the simple factors (or main effects factors) should be included in the model. If a 3-way interaction is found to be significant, then the 3 main effects and all corresponding 2-way interactions should all be included in the ANOVA model - even if they are not statistically significant.</p>
+<p>Interpreting lower order interactions and main effects in the presence of a significant higher order interaction should be done with caution. One should investigate the interaction plots in order to describe how the effect of one variable may depend on the value of another. Simply comparing marginal means<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and interpreting main effects is not sufficient and may lead to incorrect conclusions.</p>
+<p>In this example, we will not interpret any of the main effects or two-way interactions alone, since the 3-way interaction is significant. In the <a href="#interaction">Interaction</a> section of this page, an interpretation of the interaction was already discussed. To recap that section, we saw in <a href="#fig-ints2">Figure&nbsp;1</a> that for <strong>male readers</strong>, attractiveness of author tended to correspond to higher perceptions of talent of the author - regardless of the author’s gender. However, for <strong>female readers</strong>, the impact of author attractiveness depended on author gender: attractive female authors were perceived as less talented than unattractive female authors, whereas attractiveness had negligible effect on perceived talent of male authors.</p>
+<p>In order to trust these hypothesis test results we need to verify that ANOVA model assumptions are met.</p>
+</section>
+<section id="check-assumptions" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="check-assumptions">Check Assumptions</h2>
+<p>For a more detailed explanation of the code, output, and theory behind these assumptions visit the <a href="./assumptions.html">Assumptions</a> page.</p>
+<section id="constant-variance-of-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="constant-variance-of-residuals">Constant Variance of Residuals</h3>
+<p>There needs to be constant variance of residuals across the factor level combinations. First, we can check the residual plot.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(halo_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf3_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Checking constant variance</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the residual plot, <a href="#fig-constant_var">Figure&nbsp;4</a>, the vertical spread of the points is roughly constant as one moves from left to right across the x-axis of the plot. It is clear that the assumption of constant variance of the residuals is met.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Rarely does a plot look better than this.</p>
+</section>
+<section id="normally-distributed-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
+<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;5</a>. All the points are in the shaded region, so we conclude this assumption is met.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(halo_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="bf3_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Checking normality of residuals</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="independent-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="independent-residuals">Independent Residuals</h3>
+<p>The dataset we are analyzing does not include information about the order in which the data was collected. Independence of observations often becomes a concern when there is re-use of equipment, researcher(s) making multiple measurements over time, or any other process that is repeated in each experimental run. Those types of situations can lead to order bias, which can make residuals time/order dependent rather than independent.</p>
+<p>Nothing in this experiment suggests a potential for order bias. If we assume that random selection of participants has taken place, and that participants have randomly been assigned to treatments as indicated, there is little reason to doubt that observations (and consequently residuals too) are independent. There is no need to provide a plot in this case.</p>
+</section>
+<section id="assumptions-summary" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="assumptions-summary">Assumptions Summary</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Rarely are assumptions so clearly and obviously met. In this case, the data was simulated in order to replicate effects and interactions similar to what the original study found. Real data does not usually behave as nicely as simulated data.</p>
+</div></div><p>The assumptions appear to be met, meaning the p-values should be valid and reliable.</p>
+</section>
+</section>
 </section>
 <section id="appendix" class="level1 page-columns page-full">
 <h1>Appendix</h1>
@@ -1497,19 +2311,19 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <div id="fig-partition_main" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/bf3_partition_main.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Data Partition for Single Factors</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;6: Data Partition for Single Factors</figcaption>
 </figure>
 </div>
 <div id="fig-partition_2way" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/bf3_partition_2way.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Data Partition for 2-Way Interaction Factors</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;7: Data Partition for 2-Way Interaction Factors</figcaption>
 </figure>
 </div>
 <div id="fig-partition_3way" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/bf3_partition_3way.PNG" class="img-fluid figure-img" width="490"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Data Partition for 3-Way Interaction Factor</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;8: Data Partition for 3-Way Interaction Factor</figcaption>
 </figure>
 </div>
 </div>
@@ -1517,7 +2331,15 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This assumes a balanced design. Formulas/calculations for unbalanced designs may need adjustments, depending on the sum of square type that is desired.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A marginal mean is a mean calculated in the “margins” (or on the endges) of a two-way table. In other words, it is a mean of a factor level without considering the other factors in the model. Stated another way, it is averaging over all the observations that belong to reader=Male, without breaking out the observations into separate groups to account for the author’s gender.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>If it was questionable, <a href="assumptions.html#constant-variance">Levene’s test</a> may help with the decision of whether the assumption was met or not. In reality though, this is about as nice of a residual plot as one could hope for.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
