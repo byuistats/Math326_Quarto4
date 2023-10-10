@@ -264,7 +264,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
   <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
-  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  </ul></li>
   <li><a href="#split-plot-analysis-in-r" id="toc-split-plot-analysis-in-r" class="nav-link" data-scroll-target="#split-plot-analysis-in-r">Split-Plot Analysis in R</a></li>
   <li><a href="#other-nested-designs" id="toc-other-nested-designs" class="nav-link" data-scroll-target="#other-nested-designs">Other Nested Designs</a>
   <ul class="collapse">
@@ -470,15 +473,237 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 </section>
 <section id="design" class="level1">
 <h1>Design</h1>
+<p>A Split-plot design is characterized by having 2 levels of experimental units. This typically occurs because of physical constraints limiting randomization of all treatment combinations equally. Sub-plots are randomized within whole-plots. The fungicide design described in the overview might look like:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Field</th>
+<th style="text-align: center;">Fungicide</th>
+<th style="text-align: center;">Variety</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Fungicide can be randomized over fields and varieties can be randomly assigned to sub-plots.</p>
 </section>
 <section id="decomposition" class="level1">
 <h1>Decomposition</h1>
-<p>Here is the factor structure with accompanying model for the Fungicide study:</p>
+<p>In this section, we will do the analysis of variance by hand by decomposing the variation into its parts. Th</p>
+<p>Below is the factor structure with accompanying model for the Fungicide study. We ignore randomization for simplicity.</p>
 <div id="fig-block-sort" class="quarto-figure quarto-figure-left anchored">
 <figure class="figure">
-<p><img src="images/Split_Plot_Factor_Image_with_Model.png" width="950" height="220" class="figure-img"></p>
+<p><img src="images/Split_Plot_Factor_Decomposition.png" width="950" height="220" class="figure-img"></p>
 </figure>
 </div>
+<p>Filled out with our example data, we get figure XX:</p>
+<p><img src="images/Split_Plot_Data_Decomposition.png" id="fig-block-sort" data-fig-align="center" width="950" height="450"> <br></p>
+<p>The grand mean is, as usual, the overall average yield across all factor levels.</p>
+<p>The Fungicide effect is the average yield for each level of spray treatment minus the grand mean.</p>
+<p>The field effect is the average yield for each field minus the grand mean.</p>
+<p>The variety effect is the average yield for each variety minus the grand mean.</p>
+<p>The interaction effect is the average yield for each fungicide-by-variety combination minus the sum of the grand mean and the individual effects for fungicide and variety.</p>
+<p>Lastly, the residual is the difference between the observed value and the sum of all the effects for each combination of treatments.</p>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>In this example, there are a total of 36 degrees of freedom to be allocated for each level of the experiment. Special care must be taken to account for the field-level degrees of freedom because they will define the denominator degrees of freedom for the F-test for fungicide.</p>
+<p>For this example, it is easiest to count up the unique pieces of information in each of the components in figure xx above.</p>
+<p>As in the case with other models, there is 1 degree of the grand mean.</p>
+<p>Because all the the other factor effects are constrained to sum to zero, we can reduce the count of unique pieces of information by one to get the degrees of freedom.</p>
+<p>For the spray effect above, if I know one value the effect for a fungicide, I also know what the others need to be to sum to zero. So I have 1 degree of freedom for Fungicide.</p>
+<p>For the Field effect, there are 2 values and their negative values which gives us 2 unique pieces of information.</p>
+<p>If I know 2 of the variety effects, the third one is also known, so I have 2 degrees of freedom.</p>
+<p>The interaction effect only has 2 degrees of freedom because each of the fungicide treatment combinations must sum to zero across varieties.</p>
+</section>
 </section>
 <section id="split-plot-analysis-in-r" class="level1">
 <h1>Split-Plot Analysis in R</h1>
