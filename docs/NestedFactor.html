@@ -252,9 +252,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#nested-factor-designs" id="toc-nested-factor-designs" class="nav-link" data-scroll-target="#nested-factor-designs">Nested Factor Designs</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
+  <li><a href="#nested-factor-designs" id="toc-nested-factor-designs" class="nav-link" data-scroll-target="#nested-factor-designs">Nested Factor Designs</a></li>
   <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a>
   <ul class="collapse">
   <li><a href="#adding-a-nested-factor" id="toc-adding-a-nested-factor" class="nav-link" data-scroll-target="#adding-a-nested-factor">Adding a Nested Factor</a></li>
@@ -263,7 +263,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#factor-structor" id="toc-factor-structor" class="nav-link" data-scroll-target="#factor-structor">Factor Structor</a></li>
   <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  </ul></li>
   <li><a href="#split-plot-analysis-in-r" id="toc-split-plot-analysis-in-r" class="nav-link" data-scroll-target="#split-plot-analysis-in-r">Split-Plot Analysis in R</a></li>
+  <li><a href="#other-nested-designs" id="toc-other-nested-designs" class="nav-link" data-scroll-target="#other-nested-designs">Other Nested Designs</a>
+  <ul class="collapse">
+  <li><a href="#repeated-measures" id="toc-repeated-measures" class="nav-link" data-scroll-target="#repeated-measures">Repeated Measures</a></li>
+  <li><a href="#generic-terminology" id="toc-generic-terminology" class="nav-link" data-scroll-target="#generic-terminology">Generic Terminology</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -289,24 +299,25 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments. A split-plot design consists of a <strong>whole-plot</strong> factor and a <strong>Sub-plot</strong> factor.</p>
+<p>This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments.</p>
+<p>We introduce the concept of nested experimental designs with a Split-Plot design common in agriculture. We conclude this chapter with a discussion about other versions of nested designs and why different terminologies arise in different contexts.</p>
+<p>A split-plot design consists of a <strong>whole-plot</strong> factor and a <strong>Sub-plot</strong> factor.</p>
 <p>Because of the physical limitation of randomization, whole-plot factors often have limited replications compared to the subplot factor. To analyze these designs appropriately, it is necessary to account for the fact that each level of experimental unit has different levels of replication. It requires 2 separate error terms to test each level of experimental unit.</p>
 <p>Consider 2 examples:</p>
 <ol type="1">
 <li><p>A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. Because it is impossible to randomly assign humidity levels within a section of greenhouse, greenhouse would be one level of experimental unit (whole-plot) and fertilizer treatment randomly assigned within a greenhouse would be another level of experimental unit (sub-plot).</p></li>
-<li><p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. The only limit to replication of reagent would be space within a freezer.</p></li>
+<li><p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. To get replications of the whole-plot, we would need to have 2 or more freezers set at the same temperature level to get true replications of the whole-plot factor. We could replicate reagent (sub-plot factor) within freezers.</p></li>
 </ol>
-<p>A special case of this type of design is the <em>Repeated Measures</em> design, where individuals within an experimental design are measured at multiple time points. (See Repeated Measures(???))</p>
-</section>
-<section id="nested-factor-designs" class="level1">
-<h1>Nested Factor Designs</h1>
-<p>Review the discussion on <a href="./Nested_Samples.html">nested subsample</a>. It will be critical to recognizing the challenge of appropriately analyzing a Nested Design.</p>
-<p>In this section you will learn how to identify levels of experimental units within a nested factorial design and its appropriate analysis. To identify and analyze a nested design, you will need to have a solid understanding of:</p>
+<section id="nested-factor-designs" class="level2">
+<h2 class="anchored" data-anchor-id="nested-factor-designs">Nested Factor Designs</h2>
+<p>Review the discussion on <a href="./Nested_Samples.html">nested subsample</a>. It will be critical to recognizing the challenge of appropriately analyzing a nested design.</p>
+<p>In this chapter you will learn how to identify levels of experimental units within a nested factorial design and its appropriate analysis. To identify and analyze a nested design, you will need to have a solid understanding of:</p>
 <ul>
 <li>Experimental units</li>
 <li>True replication</li>
 <li>Degrees of Freedom for Error</li>
 </ul>
+</section>
 <section id="motivating-example" class="level2">
 <h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
 <p>Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John learned about the importance of independent applications of the experimental levels and gets his neighbor, Farmer Maggot, to participate. Their design is a basic <a href="./BasicFactorial_intro.html">single factor design</a> with 2 replicates:</p>
@@ -352,7 +363,7 @@ Where the data would look like:
 <p>We would need to include the sub-sample term in the model to preserve the appropriate degrees of freedom for error for our whole-plot. In this example, we have N = 4 experimental units and k = 2 levels of the experiment, leaving us with N-k = 2 degrees of freedom for testing Fungicide efficacy.</p>
 <section id="adding-a-nested-factor" class="level3">
 <h3 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h3>
-<p>Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
+<p>Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety treatment combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
 <div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid figure-img" width="360"></p>
@@ -374,23 +385,31 @@ Where the data would look like:
 <h1>Factor Structor</h1>
 <p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole-plot factor</strong>, and the lower-level experimental unit is called the <strong>split-plot factor</strong>.</p>
 <p>In a simple split-plot design, <strong>whole-plots act as Blocking variables</strong> for the split-plots and <strong>split-plots act as sub-samples</strong> for the whole-plots. In fact, the factor structure for a simple split-plot design is identical to a <a href="./cb1.html">complete block design</a> if blocks are treated as replicates of the whole-plot.</p>
-<p>The difference is that in the <a href="./cb1.html">complete block design</a>, the blocking term was a “nuisance parameter.” In the split plot design, it serves as the error term to test the whole-plot factor.</p>
-<p>(Insert Graph)</p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-left anchored">
+<figure class="figure">
+<p><img src="images/Split_Plot_Factor_Image.png" width="950" height="220" class="figure-img"></p>
+</figure>
+</div>
 </section>
 <section id="hypothesis-and-model" class="level1">
 <h1>Hypothesis and Model</h1>
-<p>We can define a new random effect in the model that acts as the appropriate error term for the whole-plot factor. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
+<p>Recall model for a complete block design <a href="#eq-cb1">Equation&nbsp;2</a>:</p>
 <p><span id="eq-cb1"><span class="math display">\[
-y_{iujt} = \mu + \alpha_i + \epsilon_{iu}^{W}  + \beta_j + (\alpha \beta)_{ij} + \epsilon_{jt(iu)}^{S}
+y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 \tag{1}\]</span></span></p>
+<p>Here <span class="math inline">\(\alpha_i\)</span> is the block to block variation. In a CB[1], block is a nuisance factor and not of particular interest. However, in the split plot design, the addition of the whole-plot-level parameter serves as the error term to test the whole-plot factor.</p>
+<p>We can re-imaging the blocking factor (<span class="math inline">\(\alpha_i\)</span> in the CB[1]) as the appropriate error term for the whole-plot. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
+<p><span id="eq-cb1"><span class="math display">\[
+y_{iujt} = \mu + \gamma_i + \epsilon_{i(u)}^{W}  + \beta_j + (\gamma \beta)_{ij} + \epsilon_{jt(iu)}^{S}
+\tag{2}\]</span></span></p>
 <p>Where</p>
 <ul>
-<li><p><span class="math inline">\(y_{ijut}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span>, level <em>j</em> of <span class="math inline">\(\beta\)</span>, the <em>u</em> whole-plot experimental unit, and the <em>t</em> subplot experimental unit.</p></li>
-<li><p><span class="math inline">\(\mu\)</span> is the grand mean of the entire dataset.</p></li>
-<li><p><span class="math inline">\(\alpha\)</span> is the whole-plot effect, and <em>i</em> goes from 1 to 2 because there are 2 levels of fungicide.</p></li>
-<li><p><span class="math inline">\(\epsilon_{iu}^{W}\)</span> is the error term for the whole-plot and represents the variation across the <em>u</em> replicates of the whole-plot.</p></li>
+<li><p><span class="math inline">\(y_{ijut}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\gamma\)</span>, level <em>j</em> of <span class="math inline">\(\beta\)</span>, the <em>u</em> whole-plot experimental unit, and the <em>t</em> subplot experimental unit.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is the grand mean of all yield data.</p></li>
+<li><p><span class="math inline">\(\gamma\)</span> is the whole-plot effect, and <em>i</em> goes from 1 to 2 because there are 2 levels of fungicide.</p></li>
+<li><p><span class="math inline">\(\epsilon_{i(u)}^{W}\)</span> is the error term for the whole-plot and represents the variation across the <em>u</em> replicates of the whole-plot.</p></li>
 <li><p><span class="math inline">\(\beta\)</span> is the effect of variety, and <em>j</em> goes from 1 to 3 because there are 3 varieties being tested.</p></li>
-<li><p><span class="math inline">\((\alpha \beta)_{ij}\)</span> represents the interaction between fungicide and variety.</p></li>
+<li><p><span class="math inline">\((\gamma \beta)_{ij}\)</span> represents the interaction between fungicide and variety.</p></li>
 <li><p><span class="math inline">\(\epsilon_{jt(iu)}^{S}\)</span> is the residual error term and is used to test the subplot factor and the interaction.</p></li>
 </ul>
 <p>An hypothesis for the main effect of fungicide type:</p>
@@ -401,7 +420,7 @@ y_{iujt} = \mu + \alpha_i + \epsilon_{iu}^{W}  + \beta_j + (\alpha \beta)_{ij} +
 <p><span class="math display">\[H_a: \beta_\text{j} \ne 0 \text{ for some } j\]</span></p>
 <p>An hypothesis for the interaction of fungicide and variety.</p>
 <p><span class="math display">\[
-H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
+H_0: (\alpha\gamma)_\text{ij} = 0 \text{ for all } ij
 \]</span></p>
 <p><span class="math display">\[
 H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
@@ -452,12 +471,243 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 </tbody>
 </table>
 </section>
+<section id="design" class="level1">
+<h1>Design</h1>
+<p>A Split-plot design is characterized by having 2 levels of experimental units. This typically occurs because of physical constraints limiting randomization of all treatment combinations equally. Sub-plots are randomized within whole-plots. The fungicide design described in the overview might look like:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Field</th>
+<th style="text-align: center;">Fungicide</th>
+<th style="text-align: center;">Variety</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Fungicide can be randomized over fields and varieties can be randomly assigned to sub-plots.</p>
+</section>
+<section id="decomposition" class="level1">
+<h1>Decomposition</h1>
+<p>In this section, we will do the analysis of variance by hand by decomposing the variation into its parts. Th</p>
+<p>Below is the factor structure with accompanying model for the Fungicide study. We ignore randomization for simplicity.</p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-left anchored">
+<figure class="figure">
+<p><img src="images/Split_Plot_Factor_Decomposition.png" width="950" height="220" class="figure-img"></p>
+</figure>
+</div>
+<p>Filled out with our example data, we get figure XX:</p>
+<p><img src="images/Split_Plot_Data_Decomposition.png" id="fig-block-sort" data-fig-align="center" width="950" height="450"> <br></p>
+<p>The grand mean is, as usual, the overall average yield across all factor levels.</p>
+<p>The Fungicide effect is the average yield for each level of spray treatment minus the grand mean.</p>
+<p>The field effect is the average yield for each field minus the grand mean.</p>
+<p>The variety effect is the average yield for each variety minus the grand mean.</p>
+<p>The interaction effect is the average yield for each fungicide-by-variety combination minus the sum of the grand mean and the individual effects for fungicide and variety.</p>
+<p>Lastly, the residual is the difference between the observed value and the sum of all the effects for each combination of treatments.</p>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>In this example, there are a total of 36 degrees of freedom to be allocated for each level of the experiment. Special care must be taken to account for the field-level degrees of freedom because they will define the denominator degrees of freedom for the F-test for fungicide.</p>
+<p>For this example, it is easiest to count up the unique pieces of information in each of the components in figure xx above.</p>
+<p>As in the case with other models, there is 1 degree of the grand mean.</p>
+<p>Because all the the other factor effects are constrained to sum to zero, we can reduce the count of unique pieces of information by one to get the degrees of freedom.</p>
+<p>For the spray effect above, if I know one value the effect for a fungicide, I also know what the others need to be to sum to zero. So I have 1 degree of freedom for Fungicide.</p>
+<p>For the Field effect, there are 2 values and their negative values which gives us 2 unique pieces of information.</p>
+<p>If I know 2 of the variety effects, the third one is also known, so I have 2 degrees of freedom.</p>
+<p>The interaction effect only has 2 degrees of freedom because each of the fungicide treatment combinations must sum to zero across varieties.</p>
+</section>
+</section>
 <section id="split-plot-analysis-in-r" class="level1">
 <h1>Split-Plot Analysis in R</h1>
-<pre><code>library(lme4)
-library(lmerTest)
-
-dat &lt;- read_csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake.csv")
+<pre><code>dat &lt;- read_csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake.csv")
 dat$Farmer &lt;- as.factor(dat$Farmer)
 dat$Variety &lt;- as.factor(dat$Variety)
 dat$Fungicide &lt;- as.factor(dat$Fungicide)
@@ -466,24 +716,31 @@ dat$Fungicide &lt;- as.factor(dat$Fungicide)
 ## Using AOV
 aovout &lt;- aov(Yield ~ Fungicide + Error(Field) + Variety + Variety:Fungicide, data = dat)
 summary(aovout)
-
-
-## Using LMER
-mod1 &lt;- lmer(Yield ~ Fungicide + Variety + Fungicide*Variety + (Fungicide|Field), data = dat)
-
-# Or equivilantly:
-
-mod1 &lt;- lmer(Yield ~ Fungicide*Variety + (Fungicide|Field), data = dat)
-
-anova(mod1)</code></pre>
+</code></pre>
 <p>Generally, the model will look like:</p>
 <pre><code>aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)
 
 # or
 
 lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)</code></pre>
+</section>
+<section id="other-nested-designs" class="level1">
+<h1>Other Nested Designs</h1>
+<p>We have introduced nested designs using a Split-Plot design from agriculture because it is an intuitive way to visualize nested structures. In fact, agricultural researchers played a pivotal role in development and proliferation of these methods as is evidenced in the use of the term “split-plot” referring to plots of land.</p>
+<p>However, there are other use cases that follow the same nested structure but thinking in terms of “plots” makes little sense. Consequently, other disciplines developed their own nomenclature for nested designs. In this section we consider the Repeated Measures design and generic terminology for discussing simple nested designs.</p>
+<section id="repeated-measures" class="level2">
+<h2 class="anchored" data-anchor-id="repeated-measures">Repeated Measures</h2>
+<p>Many experiments are interested in the effect of a treatment over time. These designs often measure subjects within treatment groups at several time points after treatment. Time is a nested factor measured within-subjects. Individuals become the blocks for measuring the time effect. This type of design is called <strong>Repeated Measures</strong>.</p>
+<p>In a Repeated Measures design, we do not refer to subjects as whole-plots and repeated measurements across time as sub-plots, though they behave functionally the same in the analysis. For clarity, we refer to the larger experimental unit (subjects) as the <strong>between-subjects factor</strong> and the factor associated with time point measurements as the <strong>within-subjects factor</strong>.</p>
+<p>The factorization of the Repeated Measures design can be represented (Cobb, 2015) as:</p>
+<p><img src="images/Repeated_Measures_Factorization_Cobb.png" id="fig-block-sort" class="img-fluid" data-fig-align="left" width="950"> where CR corresponds to the between-subjects factor and CB refers to the within-blocks factor.</p>
+</section>
+<section id="generic-terminology" class="level2">
+<h2 class="anchored" data-anchor-id="generic-terminology">Generic Terminology</h2>
+<p>In some instances, larger experimental units are simply referred to as <strong>blocks</strong>. Treatments assigned to the larger and smaller experimental units are called <strong>between-blocks factor</strong> and <strong>within-blocks factor</strong> respectively. This terminology is complicated by the fact that blocks are not always used for experimental treatments.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
