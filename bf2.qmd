@@ -349,7 +349,7 @@ Where
 
 On the left side of the equation is $y_{ijk}$, which represents the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
 
-A decomposition of the data allows is how we estimate these model parameters.
+A decomposition of the data is how we estimate these model parameters.
 
 ::: callout-important
 ## Balanced vs. Unbalanced Data

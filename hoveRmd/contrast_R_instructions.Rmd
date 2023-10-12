@@ -49,7 +49,7 @@ mymeans <- emmeans(myaov, "X")
 -   `mymeans` is some name you come up with to store the results of the `emmeans()` command.
 
 
-Define the contrasts your are interested in testing inside the `contrast()` function, which returns the hypothesis test results. You can also feed the result into a `confint()` function if you prefer confidence intervals over p-values.
+Define the contrasts you are interested in testing inside the `contrast()` function, which returns the hypothesis test results. You can also feed the result into a `confint()` function if you prefer confidence intervals over p-values.
 
 ```{r eval = FALSE, echo = TRUE}
 contrast(mymeans,list(name_of_contrast1 = coefficient vector,

@@ -307,7 +307,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scheffé-1" id="toc-scheffé-1" class="nav-link" data-scroll-target="#scheffé-1">Scheffé</a></li>
   <li><a href="#tukey" id="toc-tukey" class="nav-link" data-scroll-target="#tukey">Tukey</a></li>
   <li><a href="#sec-fisher" id="toc-sec-fisher" class="nav-link" data-scroll-target="#sec-fisher">Fisher</a></li>
-  <li><a href="#bonus-estimating-and-testing-effect-sizes" id="toc-bonus-estimating-and-testing-effect-sizes" class="nav-link" data-scroll-target="#bonus-estimating-and-testing-effect-sizes">Bonus: Estimating and Testing Effect Sizes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -404,9 +403,9 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <h1>Summary Table</h1>
 <table class="table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 43%">
-<col style="width: 37%">
+<col style="width: 6%">
+<col style="width: 49%">
+<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -449,33 +448,28 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plaque_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque <span class="sc">~</span> Brush, <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>There are many different commands and packages that handle adjustments to account for multiple contrast testing. The use of the <code>contrast</code> statement from the <code>emmeans</code> package is used here to reduce the amount of new commands you need to learn. This also keeps a set of commands that are consistent with what was previously described in the <a href="./contrast.html">Contrasts</a> page.</p>
-<p>Before performing any contrasts or comparisons, save the <code>emmeans</code> to an object, which we name <code>brush_means</code>.</p>
-<div class="cell">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Be sure to load the emmeans package first</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>brush_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(plaque_aov, <span class="st">"Brush"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<section id="bonferonni" class="level2">
+<section id="bonferonni" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="bonferonni">Bonferonni</h2>
 <p>There are two ways to implement the Bonferroni adjustment illustrated below using the contrasts that were tested in the <a href="./contrast.html">R Instructions section of the Contrast page</a>.</p>
-<section id="recalculate-an-alpha-level-by-hand" class="level4">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>See R instructions for Fisher’s LSD for a shortcut to apply Bonferroni adjustment to all pairwise comparisons.</p>
+</div></div><section id="recalculate-an-alpha-level-by-hand" class="level4">
 <h4 class="anchored" data-anchor-id="recalculate-an-alpha-level-by-hand">Recalculate an Alpha Level by Hand</h4>
 <p>First, the Bonferroni adjustment is shown using output provided for a test of contrasts without adjustment. The code and output from the <a href="./contrast.html">R Instructions section of the Contrast page</a> is provided again here for convenience. These two contrasts test the mean of the manual brush against the oscillating brush mean, as well as the manual brush mean against the mean of all the other brushes combined.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>contrast_results <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))), </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">adjust=</span><span class="st">"none"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#kable commands are for formatting the output</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>contrast_results <span class="sc">|&gt;</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>brush_means <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(plaque_aov, <span class="st">"Brush"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>contrast_results <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))), </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">adjust=</span><span class="st">"none"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#kable commands are for formatting the output</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>contrast_results <span class="sc">|&gt;</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
@@ -522,15 +516,15 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bon_results <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">adjust=</span><span class="st">"bon"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#kable commands are for formatting the output</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>bon_results <span class="sc">|&gt;</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bon_results <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))), </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">adjust=</span><span class="st">"bon"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#kable commands are for formatting the output</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>bon_results <span class="sc">|&gt;</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
@@ -578,14 +572,14 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">adjust=</span><span class="st">"scheffe"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#kable commands are for formatting the output</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">list</span>(<span class="at">man_v_osc =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">man_v_others =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>),<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">adjust=</span><span class="st">"scheffe"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#kable commands are for formatting the output</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
@@ -624,65 +618,84 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 </div>
 <p><br> Each contrast’s p-value can be compared to our desired family wise error rate of 0.05. Since each test has a p-value greater than 0.05 we conclude that the contrasts are not statistically significant. Notice the p-values with Scheffé’s adjustment are higher than the p-values with Bonferroni’s adjustment. This will always be the case if the number of contrasts being tested is small.</p>
 </section>
-<section id="tukey" class="level2 page-columns page-full">
+<section id="tukey" class="level2">
 <h2 class="anchored" data-anchor-id="tukey">Tukey</h2>
-<p>In our toothbrush example, if we want to compare each factor level mean to the other we can apply Tukey’s HSD (Honest Significant Different) adjustment. To do this, instead of inputting custom contrasts to the <code>contrast()</code> command in R, we alter the <code>method</code> argument to be <code>pairwise</code>. We also need to change the <code>adjust</code> argument to <code>tukey</code>. The output provides an estimate of each pairwise comparison, as well as adjusted p-values.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>For Tukey adjustment to all pairwise comparisons, this base R shortcut can also be used. The arguments to the function are the name of the model and the name of the factor whose factor level means should be tested.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(plaque_aov, <span class="st">"Brush"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div></div><div class="cell">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, <span class="at">method =</span> <span class="st">"pairwise"</span>, <span class="at">adjust =</span> <span class="st">"tukey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast                 estimate   SE df t.ratio p.value
- Manual - Oscillating        3.117 1.58 20   1.967  0.2332
- Manual - Sonic              0.418 1.58 20   0.264  0.9933
- Manual - Ultrasonic        -2.220 1.58 20  -1.401  0.5130
- Oscillating - Sonic        -2.698 1.58 20  -1.703  0.3480
- Oscillating - Ultrasonic   -5.337 1.58 20  -3.369  0.0149
- Sonic - Ultrasonic         -2.638 1.58 20  -1.666  0.3670
-
-P value adjustment: tukey method for comparing a family of 4 estimates </code></pre>
-</div>
-</div>
-<p>With a p-value of 0.0149, only the <code>Ultrasonic-Oscillating</code> contrast is significant at the 0.05 level. This significance is driven by the large difference in means between the two levels, Ultrasonic’s mean is 5.337 higher than Oscillating. All other pairwise comparisons have p-values greater than 0.05 and so are not considered significant.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Confidence Intervals Instead of p-values
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If confidence intervals are desired instead of p-values, the output of the <code>contrast()</code> command can be saved to an object, which then becomes the input to the <code>confint()</code> command. This is true for <strong>ANY</strong> contrasts computed with <code>emmeans::contrast()</code>, not just Tukey and not just pairwise comparisons. The adjustment specified in <code>contrast()</code> is then applied to the confidence interval as well.</p>
+<p>In our toothbrush example, if we want to compare each factor level mean to the other we can apply Tukey’s HSD adjustment using a base R function. The arguments to the function are the name of the model and the name of the factor whose means should be tested. Notice the <code>emmeans</code> grid does not have to be created and the contrast coefficients do not explicitly need to be input. The output provides an estimate of each pairwise comparison, as well as adjusted simultaneous confidence intervals and p-values.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>for_ci <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means, <span class="at">method =</span> <span class="st">"pairwise"</span>, <span class="at">adjust =</span> <span class="st">"tukey"</span>) </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(for_ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(plaque_aov, <span class="st">"Brush"</span>) <span class="sc">|&gt;</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast                 estimate   SE df lower.CL upper.CL
- Manual - Oscillating        3.117 1.58 20    -1.32    7.550
- Manual - Sonic              0.418 1.58 20    -4.02    4.852
- Manual - Ultrasonic        -2.220 1.58 20    -6.65    2.214
- Oscillating - Sonic        -2.698 1.58 20    -7.13    1.735
- Oscillating - Ultrasonic   -5.337 1.58 20    -9.77   -0.903
- Sonic - Ultrasonic         -2.638 1.58 20    -7.07    1.795
-
-Confidence level used: 0.95 
-Conf-level adjustment: tukey method for comparing a family of 4 estimates </code></pre>
+<div class="cell-output-display">
+<ul>
+<li><p><strong>Brush</strong>:</p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">diff</th>
+<th style="text-align: center;">lwr</th>
+<th style="text-align: center;">upr</th>
+<th style="text-align: center;">p adj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Oscillating-Manual</strong></td>
+<td style="text-align: center;">-3.117</td>
+<td style="text-align: center;">-7.55</td>
+<td style="text-align: center;">1.317</td>
+<td style="text-align: center;">0.2332</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Sonic-Manual</strong></td>
+<td style="text-align: center;">-0.4183</td>
+<td style="text-align: center;">-4.852</td>
+<td style="text-align: center;">4.015</td>
+<td style="text-align: center;">0.9933</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Ultrasonic-Manual</strong></td>
+<td style="text-align: center;">2.22</td>
+<td style="text-align: center;">-2.214</td>
+<td style="text-align: center;">6.654</td>
+<td style="text-align: center;">0.5129</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Sonic-Oscillating</strong></td>
+<td style="text-align: center;">2.698</td>
+<td style="text-align: center;">-1.735</td>
+<td style="text-align: center;">7.132</td>
+<td style="text-align: center;">0.348</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Ultrasonic-Oscillating</strong></td>
+<td style="text-align: center;">5.337</td>
+<td style="text-align: center;">0.9029</td>
+<td style="text-align: center;">9.77</td>
+<td style="text-align: center;">0.01487</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Ultrasonic-Sonic</strong></td>
+<td style="text-align: center;">2.638</td>
+<td style="text-align: center;">-1.795</td>
+<td style="text-align: center;">7.072</td>
+<td style="text-align: center;">0.367</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<!-- end of list -->
 </div>
 </div>
-</div>
-</div>
+<p>With a p-value of 0.01, only the <code>Ultrasonic-Oscillating</code> contrast is significant. This significance is driven by the large difference in means between the two levels, Ultrasonic’s mean is 5.337 higher than Oscillating. All other pairwise comparisons have p-values greater than 0.05 and so are not considered significant.</p>
 </section>
 <section id="sec-fisher" class="level2">
 <h2 class="anchored" data-anchor-id="sec-fisher">Fisher</h2>
@@ -690,7 +703,7 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(plaque_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(plaque_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
@@ -701,60 +714,74 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p><br></p>
-<p>The p-value for <code>Brush</code> is significant at the 0.05 level. You can then proceed with an un-adjusted test of all pairwise comparisons for the <code>Brush</code> factor. The adjustment argument in the <code>contrast()</code> command in this case is <code>none</code>.</p>
+<p>The p-value for <code>Brush</code> is significant at the 0.05 level. You can then proceed with an unadjusted test of all pairwise comparisons for the <code>Brush</code> factor. The syntax for this function is a bit different. You do not have to create the model first.</p>
+<p>It requires the response vector as the first argument, the factor vector as the 2nd argument, and an adjustment for multiple comparisons (if any) as the 3rd argument.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, <span class="at">method =</span> <span class="st">"pairwise"</span>, <span class="at">adjust =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(df<span class="sc">$</span>Plaque, df<span class="sc">$</span>Brush, <span class="at">p.adjust.method =</span> <span class="st">"none"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast                 estimate   SE df t.ratio p.value
- Manual - Oscillating        3.117 1.58 20   1.967  0.0632
- Manual - Sonic              0.418 1.58 20   0.264  0.7944
- Manual - Ultrasonic        -2.220 1.58 20  -1.401  0.1764
- Oscillating - Sonic        -2.698 1.58 20  -1.703  0.1040
- Oscillating - Ultrasonic   -5.337 1.58 20  -3.369  0.0031
- Sonic - Ultrasonic         -2.638 1.58 20  -1.666  0.1114</code></pre>
+<div class="cell-output-display">
+<ul>
+<li><strong>method</strong>: t tests with pooled SD
+<ul>
+<li><p><strong>data.name</strong>: df<span class="math inline">\(Plaque and df\)</span>Brush</p></li>
+<li><p><strong>p.value</strong>:</p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">&nbsp;</th>
+<th style="text-align: center;">Manual</th>
+<th style="text-align: center;">Oscillating</th>
+<th style="text-align: center;">Sonic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Oscillating</strong></td>
+<td style="text-align: center;">0.06315</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Sonic</strong></td>
+<td style="text-align: center;">0.7944</td>
+<td style="text-align: center;">0.104</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Ultrasonic</strong></td>
+<td style="text-align: center;">0.1764</td>
+<td style="text-align: center;">0.003052</td>
+<td style="text-align: center;">0.1114</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>p.adjust.method</strong>: none</p></li>
+</ul></li>
+</ul>
+<!-- end of list -->
 </div>
 </div>
-<p><br> The p-value for <code>Oscillating - Ultrasonic</code> is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though <code>Manual - Oscillating</code> is close, with a p-value of 0.0632.</p>
-</section>
-<section id="bonus-estimating-and-testing-effect-sizes" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="bonus-estimating-and-testing-effect-sizes">Bonus: Estimating and Testing Effect Sizes</h2>
-<p>If no custom contrasts are provided to the <code>contrast()</code> command, and no argument for <code>method</code> is provided, the default output is an estimate (and test) of each factor level effect, as seen below!</p>
-<div class="cell">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(effect_sizes <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast           estimate   SE df t.ratio p.value
- Manual effect        0.3287 0.97 20   0.339  0.9273
- Oscillating effect  -2.7879 0.97 20  -2.874  0.0323
- Sonic effect        -0.0896 0.97 20  -0.092  0.9273
- Ultrasonic effect    2.5488 0.97 20   2.627  0.0323
-
-P value adjustment: fdr method for 4 tests </code></pre>
+<p><br> The output is a triangular matrix of p-values. The p-value for <code>Ultrasonic vs. Oscillating</code> is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though <code>Oscillating vs. Manual</code> is close, with a p-value of 0.0632.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Note the behavior of the defaults is a little different than what might be expected. “fdr” stands for “false detection rate”. It makes adjustments to keep the overall proportion of Type I errors fixed (e.g.&nbsp;5% of tests will be a Type I error). This is somewhat less stringent than keeping the family-wise Type I error rate fixed.</p>
-</div></div><p>You can use <code>confint()</code> to get confidence intervals for the effects (with or without adjustments) as well.</p>
-<div class="cell">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(effect_sizes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast           estimate   SE df lower.CL upper.CL
- Manual effect        0.3287 0.97 20   -2.333    2.991
- Oscillating effect  -2.7879 0.97 20   -5.450   -0.126
- Sonic effect        -0.0896 0.97 20   -2.752    2.573
- Ultrasonic effect    2.5488 0.97 20   -0.113    5.211
-
-Confidence level used: 0.95 
-Conf-level adjustment: bonferroni method for 4 estimates </code></pre>
+<div class="callout-body-container callout-body">
+<p>The <code>pairwise.t.test()</code> can receive “bon” as an input to the <code>p.adjust.method =</code> argument, which will perform all pairwise comparisons and apply the Bonferroni adjustment. When the number of factor levels is small Bonferroni is preferred over the Tukey’s HSD because it provides more statistical power.</p>
 </div>
 </div>
 

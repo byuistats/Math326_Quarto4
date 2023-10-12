@@ -99,7 +99,7 @@ In summary, Fisher's LSD is a two step process. First, verify the F test for the
 # Summary Table
 
 | Adjustment   | When to Use                                                                                                | Implications                                                                                   |
-|--------------|-------------------------------|---------------------------|
+|--------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | Bonferroni   | A small number of pre-planned contrasts                                                                    | Too difficult to find significance if *many* contrasts are tested.                             |
 | Scheffe      | Post-hoc contrasts/data snooping, particularly useful for complex comparisons                              | Most severe adjustment. Difficult to find significance, but keeps Type I error in check        |
 | Tukey's HSD  | When testing all pairwise comparisons and want to control family wise significance level                   | A standard adjustment for all pairwise comparisons: pre-planned or post-hoc.                   |
@@ -116,18 +116,13 @@ df <- read_csv("data/toothpaste_BF2.csv")
 plaque_aov <- aov(Plaque ~ Brush, data = df)
 ```
 
-There are many different commands and packages that handle adjustments to account for multiple contrast testing. The use of the `contrast` statement from the `emmeans` package is used here to reduce the amount of new commands you need to learn. This also keeps a set of commands that are consistent with what was previously described in the [Contrasts](contrast.qmd) page.
-
-Before performing any contrasts or comparisons, save the `emmeans` to an object, which we name `brush_means`.
-
-```{r}
-#Be sure to load the emmeans package first
-brush_means <- emmeans(plaque_aov, "Brush")
-```
-
 ## Bonferonni
 
 There are two ways to implement the Bonferroni adjustment illustrated below using the contrasts that were tested in the [R Instructions section of the Contrast page](contrast.qmd).
+
+::: column-margin
+See R instructions for Fisher's LSD for a shortcut to apply Bonferroni adjustment to all pairwise comparisons.
+:::
 
 #### Recalculate an Alpha Level by Hand
 
@@ -136,6 +131,7 @@ First, the Bonferroni adjustment is shown using output provided for a test of co
 ```{r message = FALSE, warning = FALSE}
 #| code-fold: show
 
+brush_means <- emmeans(plaque_aov, "Brush")
 contrast_results <- contrast(brush_means,
                              list(man_v_osc = c(1,-1,0,0),
                                   man_v_others = c(1,-(1/3),-(1/3),-(1/3))), 
@@ -199,38 +195,15 @@ contrast(brush_means,
 
 ## Tukey
 
-In our toothbrush example, if we want to compare each factor level mean to the other we can apply Tukey's HSD (Honest Significant Different) adjustment. To do this, instead of inputting custom contrasts to the `contrast()` command in R, we alter the `method` argument to be `pairwise`. We also need to change the `adjust` argument to `tukey`. The output provides an estimate of each pairwise comparison, as well as adjusted p-values.
-
-:::{.column-margin}
-
-For Tukey adjustment to all pairwise comparisons, this base R shortcut can also be used. The arguments to the function are the name of the model and the name of the factor whose factor level means should be tested. 
-
-```{r eval = FALSE}
-#| code-fold: false
-TukeyHSD(plaque_aov, "Brush")
-```
-:::
+In our toothbrush example, if we want to compare each factor level mean to the other we can apply Tukey's HSD adjustment using a base R function. The arguments to the function are the name of the model and the name of the factor whose means should be tested. Notice the `emmeans` grid does not have to be created and the contrast coefficients do not explicitly need to be input. The output provides an estimate of each pairwise comparison, as well as adjusted simultaneous confidence intervals and p-values.
 
 ```{r message = FALSE, warning = FALSE}
 #| code-fold: show
 
-contrast(brush_means, method = "pairwise", adjust = "tukey")
+TukeyHSD(plaque_aov, "Brush") |> pander()
 ```
 
-With a p-value of 0.0149, only the `Ultrasonic-Oscillating` contrast is significant at the 0.05 level. This significance is driven by the large difference in means between the two levels, Ultrasonic's mean is 5.337 higher than Oscillating. All other pairwise comparisons have p-values greater than 0.05 and so are not considered significant.
-
-
-::: callout-tip
-## Confidence Intervals Instead of p-values
-
-If confidence intervals are desired instead of p-values, the output of the `contrast()` command can be saved to an object, which then becomes the input to the `confint()` command. This is true for **ANY** contrasts computed with `emmeans::contrast()`, not just Tukey and not just pairwise comparisons. The adjustment specified in `contrast()` is then applied to the confidence interval as well.
-
-```{r}
-for_ci <- contrast(brush_means, method = "pairwise", adjust = "tukey") 
-confint(for_ci)
-```
-:::
-
+With a p-value of 0.01, only the `Ultrasonic-Oscillating` contrast is significant. This significance is driven by the large difference in means between the two levels, Ultrasonic's mean is 5.337 higher than Oscillating. All other pairwise comparisons have p-values greater than 0.05 and so are not considered significant.
 
 ## Fisher {#sec-fisher}
 
@@ -244,36 +217,19 @@ summary(plaque_aov)
 
 <br/>
 
-The p-value for `Brush` is significant at the 0.05 level. You can then proceed with an un-adjusted test of all pairwise comparisons for the `Brush` factor. The adjustment argument in the `contrast()` command in this case is `none`.
+The p-value for `Brush` is significant at the 0.05 level. You can then proceed with an unadjusted test of all pairwise comparisons for the `Brush` factor. The syntax for this function is a bit different. You do not have to create the model first.
 
+It requires the response vector as the first argument, the factor vector as the 2nd argument, and an adjustment for multiple comparisons (if any) as the 3rd argument.
 
 ```{r message = FALSE, warning = FALSE}
 #| code-fold: show
 
-contrast(brush_means, method = "pairwise", adjust = "none")
+pairwise.t.test(df$Plaque, df$Brush, p.adjust.method = "none") |> 
+  pander()
 ```
 
-<br/> The p-value for `Oscillating - Ultrasonic` is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though `Manual - Oscillating` is close, with a p-value of 0.0632.
+<br/> The output is a triangular matrix of p-values. The p-value for `Ultrasonic vs. Oscillating` is 0.0031 and is the only significant pairwise comparison at the 0.05 level; though `Oscillating vs. Manual` is close, with a p-value of 0.0632.
 
-
-
-## Bonus: Estimating and Testing Effect Sizes
-
-If no custom contrasts are provided to the `contrast()` command, and no argument for `method` is provided, the default output is an estimate (and test) of each factor level effect, as seen below! 
-
-
-```{r}
-(effect_sizes <- contrast(brush_means)) 
-```
-
-:::{.column-margin}
-Note the behavior of the defaults is a little different than what might be expected. "fdr" stands for "false detection rate". It makes adjustments to keep the overall proportion of Type I errors fixed (e.g. 5% of tests will be a Type I error). This is somewhat less stringent than keeping the family-wise Type I error rate fixed. 
+::: callout-note
+The `pairwise.t.test()` can receive "bon" as an input to the `p.adjust.method =` argument, which will perform all pairwise comparisons and apply the Bonferroni adjustment. When the number of factor levels is small Bonferroni is preferred over the Tukey's HSD because it provides more statistical power.
 :::
-
-You can use `confint()` to get confidence intervals for the effects (with or without adjustments) as well.
-
-```{r}
-confint(effect_sizes)
-```
-
-

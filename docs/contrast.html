@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -294,7 +293,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#f-test-vs.-t-test" id="toc-f-test-vs.-t-test" class="nav-link" data-scroll-target="#f-test-vs.-t-test">F-test vs.&nbsp;t-test</a></li>
   <li><a href="#r-instructions" id="toc-r-instructions" class="nav-link" data-scroll-target="#r-instructions">R Instructions</a></li>
   </ul></li>
-  <li><a href="#othogonal-contrast" id="toc-othogonal-contrast" class="nav-link" data-scroll-target="#othogonal-contrast">Othogonal Contrast</a></li>
+  <li><a href="#othogonal-contrasts" id="toc-othogonal-contrasts" class="nav-link" data-scroll-target="#othogonal-contrasts">Othogonal Contrasts</a>
+  <ul>
+  <li><a href="#assess-orthogonality" id="toc-assess-orthogonality" class="nav-link" data-scroll-target="#assess-orthogonality">Assess Orthogonality</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -352,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <caption>Table&nbsp;1: Expanded Hypotheses</caption>
 <colgroup>
 <col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 49%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -385,9 +387,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <caption>Table&nbsp;2: Contrast Coefficients</caption>
 <colgroup>
-<col style="width: 38%">
-<col style="width: 37%">
-<col style="width: 23%">
+<col style="width: 40%">
+<col style="width: 40%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -603,7 +605,7 @@ t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_j /
 <ul>
 <li><span class="math inline">\(\hat{\psi}\)</span> is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.</li>
 <li><span class="math inline">\(MSE\)</span> is the mean squares of residuals obtained from the ANOVA summary table</li>
-<li><span class="math inline">\(c_j\)</span> is the coefficient for the <span class="math inline">\(j^\text{th}\)</span> factor level and</li>
+<li><span class="math inline">\(c_j\)</span> is the squared coefficient for the <span class="math inline">\(j^\text{th}\)</span> factor level and</li>
 <li><span class="math inline">\(n_j\)</span> is the sample size of the <span class="math inline">\(j^\text{th}\)</span> factor level.</li>
 </ul>
 <p>The degrees of freedom for <span class="math inline">\(t\)</span> will be equal to the degrees of freedom for residual error in the ANOVA summary table.</p>
@@ -675,7 +677,7 @@ Caution
 <li><code>df</code> is the name of your data set.</li>
 <li><code>mymeans</code> is some name you come up with to store the results of the <code>emmeans()</code> command.</li>
 </ul>
-<p>Define the contrasts your are interested in testing inside the <code>contrast()</code> function, which returns the hypothesis test results. You can also feed the result into a <code>confint()</code> function if you prefer confidence intervals over p-values.</p>
+<p>Define the contrasts you are interested in testing inside the <code>contrast()</code> function, which returns the hypothesis test results. You can also feed the result into a <code>confint()</code> function if you prefer confidence intervals over p-values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(mymeans,<span class="fu">list</span>(<span class="at">name_of_contrast1 =</span> coefficient vector,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">name_of_contrast2 =</span> another coefficient vector))<span class="er">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -708,11 +710,169 @@ Confidence level used: 0.95 </code></pre>
 </div>
 </section>
 </section>
-<section id="othogonal-contrast" class="level2">
-<h2 class="anchored" data-anchor-id="othogonal-contrast">Othogonal Contrast</h2>
-<p>Stay tuned…Under Construction</p>
+<section id="othogonal-contrasts" class="level2">
+<h2 class="anchored" data-anchor-id="othogonal-contrasts">Othogonal Contrasts</h2>
+<p>In ANOVA, the variability in a dataset is decomposed, or allocated, to the various factors contributing to that variance. This total variability is called Sums of Squares. The Sums of Squares for a particular factor can further be decomposed, or allocated. Most of the time the variability is allocated to simple contrasts (i.e.&nbsp;a comparison of factor level means). Sometimes however, there is a desire to create a more complex contrast as we have seen above. When two contrasts do not share any information, or have any overlap in how their sums of squares are calculated, they are said to be orthogonal. Stated another way, the variability in one contrast is not correlated with the variability in another. This means that the information gained from one contrast is completely independent of the information gained in another, orthogonal contrast.</p>
+<p>You can use a set of orthogonal contrasts to split the Sums of Squares for a factor into pieces, one piece for each contrast. There is a limit to how many contrasts can be tested for a given factor. That limit is the factor’s degrees of freedom. Testing sets of non-orthogonal contrasts can effect your Type I family error rate because the information contained in the contrasts is not independent.</p>
+<section id="assess-orthogonality" class="level3">
+<h3 class="anchored" data-anchor-id="assess-orthogonality">Assess Orthogonality</h3>
+<p>Two contrasts are orthogonal if the dot product of the coefficient vectors equals zero. The term “dot product” means that corresponding elements of a vector are multiplied, and then those products are summed together.</p>
+<p>Let’s determine if the contrasts listed in <a href="#tbl-coefficients">Table&nbsp;2</a> are orthogonal to one another. On the right hand side of <a href="#tbl-coefficients">Table&nbsp;2</a> the coefficient vector of the contrast is listed. We will investigate 2 of the 6 pairs of contrasts.</p>
+<p>First, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{sonic}- \mu_{ultra}\)</span>.</p>
+<div id="tbl-first_pair" class="anchored">
+<table class="table">
+<caption>Table&nbsp;4: First Pair of Contrasts</caption>
+<colgroup>
+<col style="width: 39%">
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Contrast</th>
+<th style="text-align: center;">Set of Contrast Coefficients</th>
+<th style="text-align: center;">man. coef.</th>
+<th style="text-align: center;">osc. coef.</th>
+<th style="text-align: center;">sonic coef.</th>
+<th style="text-align: center;">ultra coef.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{ -1, 1, 0, 0 \}\)</span></td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} \end{aligned}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{ 0, 0, 1, -1 \}\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Product of Coefficients</strong></td>
+<td style="text-align: center;"><span class="math inline">\(-1 \times 1 = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1 \times 0 = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0 \times 1 = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0 \times -1 = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the last row of <a href="#tbl-first_pair">Table&nbsp;4</a>, the product of the elements of the coefficient vectors are calculated. The sum of these products <span class="math inline">\(0 + 0 + 0 + 0 = 0\)</span>. Because the sum of the products is zero, we conclude the first two contrasts listed in <a href="#tbl-coefficients">Table&nbsp;2</a> are orthogonal.</p>
+<p>Next, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}\)</span>.</p>
+<div id="tbl-second_pair" class="anchored">
+<table class="table">
+<caption>Table&nbsp;5: Comparing a Different Set of Contrasts</caption>
+<colgroup>
+<col style="width: 36%">
+<col style="width: 19%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Contrast</th>
+<th style="text-align: center;">Set of Contrast Coefficients</th>
+<th style="text-align: center;">man. coef.</th>
+<th style="text-align: center;">osc. coef.</th>
+<th style="text-align: center;">sonic coef.</th>
+<th style="text-align: center;">ultra coef.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{ -1, 1, 0, 0 \}\)</span></td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\begin{aligned}\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2} \end{aligned}\)</span></td>
+<td style="text-align: center;">{ 0, 1, <span class="math inline">\(-\frac{1}{2}\)</span>, <span class="math inline">\(-\frac{1}{2}\)</span> }</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(-\frac{1}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\frac{1}{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Product of Coefficients</strong></td>
+<td style="text-align: center;"><span class="math inline">\(-1 \times 0 = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1 \times 1 = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0 \times -\frac{1}{2} = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0 \times -\frac{1}{2} = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In <a href="#tbl-second_pair">Table&nbsp;5</a> the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is <span class="math inline">\(0 + 1 + 0 + 0 = 1\)</span>. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.</p>
+<p>It has been shown how to determine orthogonality for the contrasts contained in first two rows of <a href="#tbl-ortho">Table&nbsp;6</a> below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.</p>
+<div id="tbl-ortho" class="anchored">
+<table class="table">
+<caption>Table&nbsp;6: Orthogonality of Contrasts from <a href="#tbl-coefficients">Table&nbsp;2</a></caption>
+<colgroup>
+<col style="width: 42%">
+<col style="width: 50%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Contrast Row #’s from <a href="#tbl-coefficients">Table&nbsp;2</a></th>
+<th></th>
+<th>Orthogonality</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}\)</span></td>
+<td>orthogonal</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}\)</span></td>
+<td>not orthogonal</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}\)</span></td>
+<td>not orthogonal</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}\)</span></td>
+<td>orthogonal</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}\)</span></td>
+<td>orthogonal</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}\)</span></td>
+<td><span class="math inline">\(\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}\)</span></td>
+<td>not orthogonal</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
+</section>
 </section>
 
 
