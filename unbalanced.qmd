@@ -7,7 +7,7 @@ title: "Analysis of Unbalanced Data"
 #| include: false
 
 library(tidyverse)
-#library(kableExtra)
+library(kableExtra)
 library(pander)
 #library(latex2exp)
 ```
@@ -27,7 +27,6 @@ The formulas for unbalanced data are more complicated than when the data is bala
 @fig-balanced is a graphical depiction of an unbalanced dataset for two factors A and B, each with 2 levels, coded as -1 and 1. You can see that each factor level combination appears an equal number of times[^2].
 
 [^2]: https://stats.stackexchange.com/questions/552702/multifactor-anova-what-is-the-connection-between-sample-size-and-orthogonality
-
 
 ```{r}
 #| code-fold: false
@@ -223,7 +222,8 @@ The order of the variables when coding the model does not matter in a Type 3 ANO
 
 #It doesn't matter which of the 3 models from above that I since order does not matter when using Type III ANOVA. I will use the model with the interaction as last.
 
-pander(car::Anova(int_last, type = 3), round = c(0,0,1,2))
+pander(car::Anova(int_last, type = 3,
+                  contrasts = list(thinning = contr.sum, initial_size = contr.sum, interaction = contr.sum)), round = c(0,0,1,2))
 ```
 
 The sum of squares contained in a Type III ANOVA table can be interpreted as the sum of squares attributable to a factor after all the other factors in the model have been accounted for. Type III does not attribute the overlapping sum of squares to any factor. This is represented by the middle intersection piece of the Venn diagram in panel (d) of @fig-venn.[^6] This is why the sum of squares for factors in Type III do NOT add up to the total sum of squares, like they did in Type I. The Type III ANOVA tests are based on marginal means unweighted by sample size.
@@ -246,18 +246,14 @@ To illustrate this, 3 different Type I ANOVA tables are shown below. In each tab
 #| label: tbl-three_anovas2
 #| tbl-cap: "3 Type I ANOVA Tables Used to Get a Type II"
 #| tbl-subcap:
-#|   - "Initial size last, no interaction"
-#|   - "Thinning last, no interaction"
-#|   - "Interaction last"
+#|   - "Initial size is last main effect"
+#|   - "Thinning is last main effect"
 
-thinning_last2 <- aov(height~ initial_size + thinning, data = example)
-pander(anova(thinning_last2), round = c(0,0,0,1,2))
-
-size_last2 <- aov(height~thinning + initial_size , data = example)
-pander(anova(size_last2), round = c(0,0,0,1,2))
-
-int_last2 <- aov(height~thinning + initial_size + thinning:initial_size , data = example)
+int_last2 <- aov(height~ thinning + initial_size + thinning:initial_size , data = example)
 pander(anova(int_last2), round = c(0,0,0,1,2))
+
+thin_last2 <- aov(height~ initial_size + thinning + thinning:initial_size , data = example)
+pander(anova(thin_last2), round = c(0,0,0,1,2))
 ```
 
 The type II ANOVA output, in @tbl-type2, contains the sum of squares for each factor in @tbl-three_anovas2 when the factor was listed last and higher order factors were not included.
@@ -268,7 +264,18 @@ The type II ANOVA output, in @tbl-type2, contains the sum of squares for each fa
 #| label: tbl-type2
 #| tbl-cap: "Type 2 ANOVA"
 
-pander(car::Anova(int_last, type = 2), round = c(0,0,1,2))
+
+pander(car::Anova(aov(height~ thinning + initial_size + thinning:initial_size , data = example), type = 2), round = c(0,0,1,2))
+
+# Was going to manually put it in, but I got the above code to work fine.
+# kable::kbl(tibble( ` ` = c("thinning", "initial size", "thinning:initial_size", "residuals"),
+#         Df = c(1, 1, 1, 7),
+#         `Sum Sq` = c(590, 4846, 11, 748),
+#         `Mean Sq` = c(590, 4846, 11, 107),
+#         `F value` = c(5.5, 45.4, 0.1, NA),
+#         `Pr(>F)` = c(0.05, 0, 0.75, NA)) )
+
+
 ```
 
 The sum of squares contained in a Type II ANOVA table can be interpreted as the sum of squares attributable to a factor after all the lower or same order factors in the model have been accounted for. The Type II ANOVA tests are based on marginal means weighted by sample size.
@@ -315,9 +322,9 @@ For an example of when Type I may be useful we do not need to look any further t
 
 You may want to use a Type II ANOVA if the disparity in sample sizes reflects a similar disparity in population size. Perhaps your end goal is to apply the treatment to all members of the population and you want any difference observed in the study to be present in the population. In that case, Type II may be the best choice. This will be more common in observational studies.
 
-For example, a web developer randomly assigns website visitors to one of two website designs. Design A is evenly split between males and females, but Design B receives many more males than females. In this case, the lopsided nature of the gender distribution may accurately reflect the population of website visitors being predominantly male.
+For example, a web developer randomly assigns website visitors to one of two website designs. The population that visits this website is predominantly male. Therefore, Design A and Design B receive many more males than females. In this case, the lopsided nature of the gender distribution may accurately reflect the population of website visitors being predominantly male.
 
-The test of the main effects for gender and website design will be influenced by sample sizes. Say we conclude that people tend to buy more products when presented with website A. This conclusion will be influenced more heavily by males since males represented a larger proportion of the sample. But in this case that's okay because males also represent a larger part of our target audience (website visitors).
+The test of the main effects for gender and website design will be influenced by sample sizes. Say we conclude that people tend to buy more products when presented with website B. This conclusion will be influenced more heavily by males since males represented a larger proportion of the sample. But in this case that's okay because males also represent a larger part of our target audience (website visitors).
 
 ## Type III
 
@@ -355,14 +362,15 @@ To get Type II or Type III ANOVA you will create a model in the usual way and th
 #| eval: false
 #| echo: true
 
-car::Anova(myaov, type = 3)
+car::Anova(myaov, type = 3, contrast = list(factorA = contr.sum, factorB = contr.sum))
 ```
 
 -   `car` is the name of the package the `Anova()` command comes from
 -   `::` allows you to use functions from a package without having to load the entire package with a `library()` command. The package you want to access is specifed on the left of the `::` and the function name is specified on the right.
 -   `Anova()` is a function from the `car` package. It can be used to get type II or type III ANOVA tables for a variety of different models, including `aov()`, `lm()`, `glm()`, etc.
 -   `myaov` is the name we gave our model in a previous step (not shown).
--   `type=` argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, "II", "III".
+-   `type=` argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, "II", "III". The default, if this argument is omitted, is Type 2.
+-   `contrast` argument tells R how to parameterize the X matrix. In other words, R actually changes a factor variable into a series of columns to represent the various levels. This tells R what values should go in those columns.
 
 For examples of code that produce Type III and Type II ANOVA tables look at @tbl-type3 and @tbl-type2 respectively. Those examples have an additional `pander()` command, and its `round=` argument. This additional code is solely for formatting and is not necessary.
 
@@ -373,7 +381,7 @@ Many students are in the habit of using `summary()` to evaluate model hypothesis
 However, when called on an `lm()` object, `summary()` does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.
 
 ::: column-margin
-`lm()` is usually preferred over `aov()` if there are 1 or more numeric independent variables in the model.
+`lm()` is usually preferred over `aov()` if there are more than 1 numeric independent variables in the model.
 :::
 
-To get a ANOVA table and the F-tests for a factor's overall significance you can call `car::Anova()` or `anova()` on an `lm()` object.
+To get an ANOVA table and the F-tests for a factor's overall significance you can call `car::Anova()` or `anova()` on an `lm()` object.
