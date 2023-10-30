@@ -1,0 +1,17 @@
+intersection,time_of_day,algorithm,number_of_cars
+one,eight,A,32
+one,eleven,B,33
+one,two,C,47
+one,five,D,53
+two,eight,B,36
+two,eleven,D,53
+two,two,A,42
+two,five,C,54
+three,eight,C,51
+three,eleven,A,44
+three,two,D,62
+three,five,B,49
+four,eight,D,81
+four,eleven,C,78
+four,two,B,72
+four,five,A,73

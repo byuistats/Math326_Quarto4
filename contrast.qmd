@@ -159,7 +159,7 @@ tstat <- (mean_man - mean_osc)/sqrt(mse*(1/nsize + 1/nsize))
 pprob <- pt(q=tstat, df=brush_aov$df.resid, lower.tail=FALSE) * 2
 ```
 
-Plugging the values from @tbl-brush_analysis into @eq-diff2means we can calculate the t statistic:
+With that information we can proceed with our whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from @tbl-brush_analysis into @eq-diff2means we can calculate the t statistic:
 
 $$
 t = \frac{ `r round(mean_man,2) - round(mean_osc,2)` }{\sqrt{ `r round(mse, 2)` * (\frac{1}{ `r nsize` } + \frac{1}{ `r nsize` })}} = `r round(tstat,2)`
@@ -172,15 +172,15 @@ A t statistic of `r round(tstat,2)` leads to a p-value of `r round(pprob,3)`. Si
 This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the $1's$ in @eq-tvalue appearing directly above each sample size actually represent the squared coefficient of the contrast (see @tbl-expanded). Thus, @eq-diff2means used to compare two factor level means, is actually just a special case of a more general formula, @eq-contrast, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.
 
 $$
-t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_j / n_j)}}
+t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i / n_i)}}
 $$ {#eq-contrast}
 
 Where,
 
 -   $\hat{\psi}$ is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.
 -   $MSE$ is the mean squares of residuals obtained from the ANOVA summary table
--   $c_j$ is the squared coefficient for the $j^\text{th}$ factor level and
--   $n_j$ is the sample size of the $j^\text{th}$ factor level.
+-   $c_i$ is the contrast coefficient for the $i^\text{th}$ factor level and
+-   $n_i$ is the sample size of the $i^\text{th}$ factor level.
 
 The degrees of freedom for $t$ will be equal to the degrees of freedom for residual error in the ANOVA summary table.
 
@@ -246,9 +246,9 @@ First, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal
 |:------------------------------------------------------------------:|:----------------------------:|:-----------------:|:----------------:|:----------------:|:-----------------:|
 |   $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$   |     $\{ -1, 1, 0, 0 \}$      |        -1         |        1         |        0         |         0         |
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} \end{aligned}$ |     $\{ 0, 0, 1, -1 \}$      |         0         |        0         |        1         |        -1         |
-|                                                                    | **Product of Coefficients**  | $-1 \times 1 = 0$ | $1 \times 0 = 0$ | $0 \times 1 = 0$ | $0 \times -1 = 0$ |
+|                                                                    | **Product of Coefficients**  | $-1 \times 0 = 0$ | $1 \times 0 = 0$ | $0 \times 1 = 0$ | $0 \times -1 = 0$ |
 
-: First Pair of Contrasts {#tbl-first_pair}
+: First Pair of Contrasts Showing Orthogonal Contrasts {#tbl-first_pair}
 
 In the last row of @tbl-first_pair, the product of the elements of the coefficient vectors are calculated. The sum of these products $0 + 0 + 0 + 0 = 0$. Because the sum of the products is zero, we conclude the first two contrasts listed in @tbl-coefficients are orthogonal.
 
@@ -260,7 +260,7 @@ Next, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal 
 | $\begin{aligned}\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2} \end{aligned}$ | { 0, 1, $-\frac{1}{2}$, $-\frac{1}{2}$ } |         0         |        1         |       $-\frac{1}{2}$        |       $-\frac{1}{2}$        |
 |                                                                               |       **Product of Coefficients**        | $-1 \times 0 = 0$ | $1 \times 1 = 1$ | $0 \times -\frac{1}{2} = 0$ | $0 \times -\frac{1}{2} = 0$ |
 
-: Comparing a Different Set of Contrasts {#tbl-second_pair}
+: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts {#tbl-second_pair}
 
 In @tbl-second_pair the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is $0 + 1 + 0 + 0 = 1$. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.
 

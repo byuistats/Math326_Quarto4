@@ -589,7 +589,7 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 </div>
 </div>
 </div>
-<p>Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
+<p>With that information we can proceed with our whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
 <p><span id="eq-tvalue"><span class="math display">\[
 t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 \tag{3}\]</span></span></p>
@@ -599,14 +599,14 @@ t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 <h3 class="anchored" data-anchor-id="t-test-for-any-contrast">t-test for Any Contrast</h3>
 <p>This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the <span class="math inline">\(1's\)</span> in <a href="#eq-tvalue">Equation&nbsp;3</a> appearing directly above each sample size actually represent the squared coefficient of the contrast (see <a href="#tbl-expanded">Table&nbsp;1</a>). Thus, <a href="#eq-diff2means">Equation&nbsp;1</a> used to compare two factor level means, is actually just a special case of a more general formula, <a href="#eq-contrast">Equation&nbsp;4</a>, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.</p>
 <p><span id="eq-contrast"><span class="math display">\[
-t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_j / n_j)}}
+t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i / n_i)}}
 \tag{4}\]</span></span></p>
 <p>Where,</p>
 <ul>
 <li><span class="math inline">\(\hat{\psi}\)</span> is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.</li>
 <li><span class="math inline">\(MSE\)</span> is the mean squares of residuals obtained from the ANOVA summary table</li>
-<li><span class="math inline">\(c_j\)</span> is the squared coefficient for the <span class="math inline">\(j^\text{th}\)</span> factor level and</li>
-<li><span class="math inline">\(n_j\)</span> is the sample size of the <span class="math inline">\(j^\text{th}\)</span> factor level.</li>
+<li><span class="math inline">\(c_i\)</span> is the contrast coefficient for the <span class="math inline">\(i^\text{th}\)</span> factor level and</li>
+<li><span class="math inline">\(n_i\)</span> is the sample size of the <span class="math inline">\(i^\text{th}\)</span> factor level.</li>
 </ul>
 <p>The degrees of freedom for <span class="math inline">\(t\)</span> will be equal to the degrees of freedom for residual error in the ANOVA summary table.</p>
 <p>Let’s use this more general approach in <a href="#eq-contrast">Equation&nbsp;4</a> to test the fourth hypothesis contained in Table <a href="#tbl-expanded">Table&nbsp;1</a>. Our alternative hypothesis will be the contrast is not equal to zero. Though you can use directional (i.e.&nbsp;1-tailed) tests of a contrast, the default is to use a two-tailed alternative hypothesis of “not equal to zero”.</p>
@@ -721,7 +721,7 @@ Confidence level used: 0.95 </code></pre>
 <p>First, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{sonic}- \mu_{ultra}\)</span>.</p>
 <div id="tbl-first_pair" class="anchored">
 <table class="table">
-<caption>Table&nbsp;4: First Pair of Contrasts</caption>
+<caption>Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts</caption>
 <colgroup>
 <col style="width: 39%">
 <col style="width: 17%">
@@ -760,7 +760,7 @@ Confidence level used: 0.95 </code></pre>
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>Product of Coefficients</strong></td>
-<td style="text-align: center;"><span class="math inline">\(-1 \times 1 = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-1 \times 0 = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(1 \times 0 = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0 \times 1 = 0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0 \times -1 = 0\)</span></td>
@@ -772,7 +772,7 @@ Confidence level used: 0.95 </code></pre>
 <p>Next, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}\)</span>.</p>
 <div id="tbl-second_pair" class="anchored">
 <table class="table">
-<caption>Table&nbsp;5: Comparing a Different Set of Contrasts</caption>
+<caption>Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts</caption>
 <colgroup>
 <col style="width: 36%">
 <col style="width: 19%">
