@@ -22,7 +22,7 @@ library(tidyverse)
 
 # ANOVA vs. Regression
 
-So far, we have have only considered experiments that use categorical factors as independent variables, and a quantitative response. It is not hard to imagine scenarios where quantitative variables serve as the independent variable. This type of analysis, where the response and the independent variable(s) are both quantitative is called regression. Students can get a review of simple linear regression from the freely available [BYU-Idaho Math221 textbook](https://byuistats.github.io/BYUI_M221_Book/Lesson22.html). A deeper dive can by found in the [BYU-Idaho Math325 textbook under Multiple Regression](https://byuistats.github.io/Statistics-Notebook/LinearRegression.html).
+So far, we have only considered experiments that use categorical factors as independent variables, and a quantitative response. It is not hard to imagine scenarios where quantitative variables serve as the independent variable. This type of analysis, where the response and the independent variable(s) are both quantitative is called regression. Students can get a review of simple linear regression from the freely available [BYU-Idaho Math221 textbook](https://byuistats.github.io/BYUI_M221_Book/Lesson22.html). A deeper dive can be found in the [BYU-Idaho Math325 textbook under Multiple Regression](https://byuistats.github.io/Statistics-Notebook/LinearRegression.html).
 
 If a combination of categorical and quantitative variables are used to predict a quantitative response it could be called ANOVA or regression. Both terms are used to describe an approach or application of the generalized linear model.
 
@@ -42,7 +42,7 @@ ANOVA is used in this text for its "ease of teaching/applying the tool"[^1] (esp
 
 In ANCOVA, we explore the introduction of a quantitative explanatory variable to the ANOVA model. This quantitative variable is also called a concomitant variable, or a covariate. It is considered a nuisance variable because it is not the main focus of the study, but potentially can account for a substantial amount of variation in the response. The covariate should correlate with the response, but should NOT be influenced by the treatment.
 
-ANCOVA is a good technique when the nuisance covariate cannot be controlled or cannot be measured until the time the experiment is being conducted. ANCOVA also comes in handy when new sources of variation come to mind *after* the experiment has already bee executed, as in the following example.
+ANCOVA is a good technique when the nuisance covariate cannot be controlled or cannot be measured until the time the experiment is being conducted. ANCOVA also comes in handy when new sources of variation come to mind *after* the experiment has already been executed, as in the following example.
 
 ## Example: Benefits of ANCOVA
 
@@ -120,7 +120,29 @@ Situations where there is a significant interaction between the coviarate and th
 
 There are a couple key **advantages to using a covariate in the analysis**. Much like blocking, a covariate can reduce mean squared error; thereby increasing our ability to detect a significant treatment effect. It can also reduce bias caused by differences in treatment groups, as we saw in the coupon example above.
 
-Beware of using ANCOVA to adjust for differences in groups of observational data. Doing so may require you to extrapolate from the line to a region where there are no (or few) observations. In addition, if the covariate affects the treatment it may not be appropriate. Consider a study that investigated support for a particular law that would decrease Social Security benefits. The factor variable of interest is whether someone is retired (on a fixed income) or not. Using a covariate of age in this case may not be appropriate because a person's age tends to effect whether they are retired.
+Beware of using ANCOVA to adjust for differences in groups of observational data. Doing so may require you to extrapolate from the line to a region where there are no (or few) observations. Consider a study that investigated the effect of a fertilizer on two types of trees: palm trees and pine trees. Researchers also considered the effect that air temperature could have on the way the fertilizer worked. They randomly selected nurseries from across the state of California to participate in the study. The nurseries applied the fertilizer to a mature tree and then measured the growth after 12 months.
+
+The covariate in this case is the temperature of the surrounding area. The factor is the tree type (it is an observational factor, not an experiment). The problem lies in the fact that palm trees are all found in a warmer climate and the pine trees tend to be found in cooler climate. It is not appropriate to extrapolate the relationship of temperature and growth to predict how either tree would do in the other climate since we don't have data in those conditions.  
+
+```{r}
+#| include: false
+#| eval: false
+
+growth = 2*temp + rnorm(1, mean = 0, sd = 1)
+pine <- tibble(temp = rnorm(25, mean = 24, 2)) %>% 
+  mutate(growth = 2*temp + rnorm(1, mean = 0, sd = 5))
+palm <- tibble(temp = rnorm(25, mean = 14, 2)) %>% 
+  mutate(growth = -20 + 2*temp + rnorm(1, mean = 0, sd = 5))
+
+df <- bind_rows(pine, palm, .id = "tree")
+df %>% ggplot(aes(x = temp, y = growth, color = tree)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+```
+
+
+In addition, the covariate value should not be affected by the treatment. Nor should the covariate effect the random assignment. This is an *experimental design* assumption, not an analysis assumption. If you were doing an observational study, random assignment does not occur, and the ANCOVA analysis can be quite help in isolating the effect of each variable in the presence of the other. In an observational study you could commonly see correlation between an independent factor and a continuous covariate. 
 
 # ANCOVA vs. Blocking
 
