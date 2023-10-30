@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -363,11 +362,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The relationship between city size and sales revenue was accounted for with a regression line for each group (see <a href="#fig-ancova_benefit">Figure&nbsp;1</a> <em>(b)</em>). Researchers adjusted for the difference in city size between the two groups and found the difference in predicted revenue between “coupon” and “no coupon” groups was actually $6,400. This difference is considered significant at the <span class="math inline">\(\alpha = 0.10\)</span> level.</p>
 <div id="fig-ancova_benefit" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
-<div class="page-columns page-full">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
 <div class="cell column-screen-inset-shaded quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
@@ -384,7 +378,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="ancova_files/figure-html/fig-ancova_benefit-2.png" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672"></p>
 <figcaption class="figure-caption">(b)</figcaption>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -506,7 +499,7 @@ F_\text{treatment factor} =
 </table>
 <p>The following example illustrates how to conduct an ANOVA in R.</p>
 </section>
-<section id="analysis-in-r" class="level1 page-columns page-full">
+<section id="analysis-in-r" class="level1">
 <h1>Analysis in R</h1>
 <p><a href="https://en.wikipedia.org/wiki/The_Biggest_Loser_(American_TV_series)">Biggest Loser</a> is a reality TV show where contestants try to lose as much weight as possible in a certain number of weeks. We are interested in using a dataset containing information about Biggest Loser contestants to generalize to the broader population. The dataset contains information about all contestants during the first 17 seasons. Specifically, we are interested in whether a person’s age group has a significant effect on their weight loss. We will define the age groups as</p>
 <ul>
@@ -519,12 +512,15 @@ F_\text{treatment factor} =
 <div class="cell" data-cap="Read in Data">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/biggest_loser_ancova.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prop_initial_weight_lost, initial_weight_at_start_show, contestant_age) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymo =</span> <span class="fu">case_when</span>(contestant_age <span class="sc">&lt;</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">"Youngest"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                                contestant_age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Middle"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                                contestant_age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Oldest"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">ymo =</span> <span class="fu">factor</span>(ymo, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Youngest"</span>, <span class="st">"Middle"</span>, <span class="st">"Oldest"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can read in the data with this path directly from the web:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://byuistats.github.io/Math326_Quarto4/data/biggest_loser_ancova.csv</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>bl_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/biggest_loser_ancova.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(prop_initial_weight_lost, initial_weight_at_start_show, contestant_age) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymo =</span> <span class="fu">case_when</span>(contestant_age <span class="sc">&lt;</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">"Youngest"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                                                contestant_age <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Middle"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                                contestant_age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"Oldest"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">ymo =</span> <span class="fu">factor</span>(ymo, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Youngest"</span>, <span class="st">"Middle"</span>, <span class="st">"Oldest"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="describe-the-data" class="level2">
@@ -533,16 +529,16 @@ F_\text{treatment factor} =
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  theme(legend.position = "top") +</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_shape_manual(values = c(16, 17, 18))+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_smooth(method = "lm", se = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  theme(legend.position = "top") +</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_shape_manual(values = c(16, 17, 18))+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_smooth(method = "lm", se = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-summary" class="quarto-figure quarto-figure-center anchored">
@@ -556,8 +552,8 @@ F_\text{treatment factor} =
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(initial_weight_at_start_show<span class="sc">~</span>ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(prop_initial_weight_lost <span class="sc">~</span> ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(initial_weight_at_start_show<span class="sc">~</span>ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(prop_initial_weight_lost <span class="sc">~</span> ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-numerical_summary" class="cell tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
@@ -699,47 +695,50 @@ F_\text{treatment factor} =
 </div>
 <p>The scatterplot and table make it apparent that the Oldest group tends to loose a smaller percentage of their initial weight than their older counterparts. Furthermore, the maximum and the mean initial weight of Oldest contestants is lower than the maximum and mean initial weight of the other two age groups respectively.</p>
 </section>
-<section id="create-and-test-the-model" class="level2 page-columns page-full">
+<section id="create-and-test-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="create-and-test-the-model">Create and Test the Model</h2>
 <section id="generic-code" class="level3">
 <h3 class="anchored" data-anchor-id="generic-code">Generic Code</h3>
 <p>Create the model using the <code>aov()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment, <span class="at">data =</span> YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment, <span class="at">data =</span> YourDataSet, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>cov_mod</code> is the user defined name in which the results of the aov() model are stored</li>
+<li><code>lm</code> stands for linear model. It is like an <code>aov</code> object, but it is better suited to working with models that have continuous covariates (i.e.&nbsp;continuous independent variables) , rather than strictly factors.</li>
 <li><code>Y</code> is the name of a numeric variable in your dataset which represents the quantitative response variable.</li>
 <li><code>covariate</code> is the name of the covariate in your dataset.</li>
-<li><code>treatment</code> is the name of the controlled factor in your dataset. It should have <code>class()</code> equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(treatment)...)</code> command.</li>
+<li><code>treatment</code> is the name of the controlled factor in your dataset. It should have <code>class()</code> equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>lm(Y ~ factor(treatment)...)</code> command.</li>
+<li><code>contrast</code> is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of “dummy” variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.</li>
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p>The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is significant it can be removed; if it is not, then it should remain in the model. To include the interaction in the model the following code would be used.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment <span class="sc">+</span> covariate<span class="sc">:</span>treatment, <span class="at">data =</span> YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment <span class="sc">+</span> covariate<span class="sc">:</span>treatment, <span class="at">data =</span> YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After creating the model, results of the hypothesis tests for each term in the model can be seen using the <code>Anova()</code> command from the <code>car</code> package. Don’t forget to specify <code>type = 3</code> in the <code>Anova()</code> command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(cov_mod, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(cov_mod, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Code for checking model assumptions is found on the <a href="./diagnostics.html">diagnostics</a> page, under the “R Instructions” menu of this book.</p>
 </section>
-<section id="biggest-loser" class="level3 page-columns page-full">
+<section id="biggest-loser" class="level3">
 <h3 class="anchored" data-anchor-id="biggest-loser">Biggest Loser</h3>
 <p>We first create the model, with proportion of initial weight lost as the response, initial weight (in pounds) as the covariate, and age group as our factor of interest. We will also include the interaction between initial weight and age group in the model to see if it is significant.</p>
 <p>This model equates to fitting a separate best-fit line for each group, each line having the potential for a unique slope - as depicted in <a href="#fig-uniqe_slope">Figure&nbsp;3</a>.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-uniqe_slope" class="quarto-figure quarto-figure-center anchored">
@@ -754,11 +753,13 @@ F_\text{treatment factor} =
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bl_data2 <span class="ot">&lt;-</span> bl_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> ymo, <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="ot">=</span> initial_weight_at_start_show)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bl_mod_with_interaction <span class="ot">&lt;-</span> <span class="fu">aov</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, <span class="at">data =</span> bl_data2)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(bl_mod_with_interaction, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bl_data2 <span class="ot">&lt;-</span> bl_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> ymo, <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="ot">=</span> initial_weight_at_start_show)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bl_mod_with_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> bl_data2,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(bl_mod_with_interaction, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -782,17 +783,17 @@ F_\text{treatment factor} =
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>(Intercept)</strong></td>
-<td style="text-align: center;">5869</td>
+<td style="text-align: center;">6090</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">66.15</td>
-<td style="text-align: center;">1.511e-14</td>
+<td style="text-align: center;">68.65</td>
+<td style="text-align: center;">5.477e-15</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong><code>Initial weight</code></strong></td>
-<td style="text-align: center;">907.7</td>
+<td style="text-align: center;">455.8</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">10.23</td>
-<td style="text-align: center;">0.001544</td>
+<td style="text-align: center;">5.138</td>
+<td style="text-align: center;">0.0242</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><strong><code>Age groups</code></strong></td>
@@ -819,10 +820,7 @@ F_\text{treatment factor} =
 </table>
 </div>
 </div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>You should not use <code>summary()</code> here instead of <code>Anova()</code> (upper case A). <code>summary()</code> will return the Type 1 SS, just as <code>anova()</code> does (lower case a).</p>
-</div></div><p>With a p-value of 0.8276, there is insufficient evidence to claim the interaction is not zero. We therefore remove it from the model and proceed with the analysis.</p>
+<p>With a p-value of 0.8276, there is insufficient evidence to claim the interaction is not zero. We therefore remove it from the model and proceed with the analysis.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -838,25 +836,26 @@ Note
 </div>
 <p>The ANCOVA model (i.e.&nbsp;covariate included without an interaction term) is created.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ymo_ancova <span class="ot">&lt;-</span> <span class="fu">aov</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bl_data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ymo_ancova <span class="ot">&lt;-</span> <span class="fu">lm</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bl_data2,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">contrast =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The model is graphically depicted in <a href="#fig-ancova_model">Figure&nbsp;4</a>.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> ymo_ancova<span class="sc">$</span>coefficients</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo)) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) (b[<span class="dv">1</span>]<span class="sc">+</span>b[<span class="dv">3</span>]) <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"forestgreen"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) (b[<span class="dv">1</span>]<span class="sc">+</span>b[<span class="dv">4</span>]) <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> ymo_ancova<span class="sc">$</span>coefficients</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> ymo, <span class="at">shape =</span> ymo)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) (b[<span class="dv">1</span>]<span class="sc">+</span>b[<span class="dv">3</span>]) <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"forestgreen"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) (b[<span class="dv">1</span>]<span class="sc">+</span>b[<span class="dv">4</span>]) <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span>)  <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ancova_model" class="quarto-figure quarto-figure-center anchored">
@@ -873,7 +872,7 @@ Note
 <p>We will use a significance level of <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>The results of the ANOVA test are shown below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(ymo_ancova, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(ymo_ancova, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Anova Table (Type III tests)</caption>
@@ -896,10 +895,10 @@ Note
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>(Intercept)</strong></td>
-<td style="text-align: center;">9483</td>
+<td style="text-align: center;">9920</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">107.5</td>
-<td style="text-align: center;">1.847e-21</td>
+<td style="text-align: center;">112.5</td>
+<td style="text-align: center;">3.113e-22</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong><code>Initial weight</code></strong></td>
@@ -926,16 +925,19 @@ Note
 </table>
 </div>
 </div>
-<p>The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person’s initial weight, the age group a person belongs to has a significant effect on proportion of weight lost. From <a href="#fig-ancova_model">Figure&nbsp;4</a>, we know that the Middle group (green line) seems to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.</p>
+<div class="{column-margin}">
+<p><code>summary</code> provides a different set of output, but does not include an F test for the factor. Rather, it provides unadjusted t-tests of whether each factor level mean is equal to the mean of the reference factor level’s mean.</p>
+</div>
+<p>The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person’s initial weight, the person’s age group has a significant effect on proportion of weight lost. From <a href="#fig-ancova_model">Figure&nbsp;4</a>, we see that the Middle group (green line) and Young roup (red line) seem to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.</p>
 <p>Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that a lot of the variation associated with the response variable is explained by initial weight and is probably important to keep in the model.</p>
-<p><strong>SHOULD I INCLUDE THIS NEXT PARAGRAPH?</strong> Notice that with the first model, the interaction term was included. Including it in the model seemed to make all the other terms also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.</p>
+<p>Notice that with the first model, the interaction term was included. Including it in the model seemed to make all the other terms also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.</p>
 </section>
 </section>
 <section id="check-assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="check-assumptions">Check Assumptions</h2>
-<p>The first two assumptions (lineary relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs.&nbsp;fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met.</p>
+<p>The first two assumptions (linear relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs.&nbsp;fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ymo_ancova, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ymo_ancova, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-res_v_fit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -952,13 +954,13 @@ Note
 </section>
 <section id="constant-error-variance" class="level3">
 <h3 class="anchored" data-anchor-id="constant-error-variance">Constant Error Variance</h3>
-<p>To verify that the assumption of a constant error term is valid, the residual vs.&nbsp;fitted plot (<a href="#fig-res_v_fit">Figure&nbsp;5</a>) should not show trends or patterns. In particular, if the points in the residual vs.&nbsp;fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot.</p>
+<p>To verify that the assumption of a constant error term is valid, the residual vs.&nbsp;fitted plot should not show trends or patterns. In particular, if the points in the residual vs.&nbsp;fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot. Since <a href="#fig-res_v_fit">Figure&nbsp;5</a> does not have this problem, the constant error variance assumption is considered met.</p>
 </section>
 <section id="normally-distributed-error-term" class="level3">
 <h3 class="anchored" data-anchor-id="normally-distributed-error-term">Normally Distributed Error Term</h3>
 <p>We check the assumption that residuals are normally distributed with a QQ plot. The QQ plot below shows there may be some skew to the residuals. The points on the right side of the plot are trending away from the line and outside of the shaded bounds. The skew does not appear to be severe however, and if the other assumptions are solidly met, we may continue to use the model output as is.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(ymo_ancova<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(ymo_ancova<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ancova_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -974,7 +976,7 @@ Note
 </section>
 <section id="assumptions-summary" class="level3">
 <h3 class="anchored" data-anchor-id="assumptions-summary">Assumptions Summary</h3>
-<p>Aside from the potential violation of independent residuals, the diagnostic plots look pretty good.</p>
+<p>Aside from the potential violation of independent residuals, the diagnostic plots look good enough to trust the model results.</p>
 
 
 </section>

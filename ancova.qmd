@@ -206,13 +206,13 @@ Though the formula may seem a little different, the good news is that R will do 
 
 The assumptions for the ANCOVA model are essentially the same as for [CB\[1\]](cb1.qmd), with the addition that the response and the covariate need to have a linear relationship:
 
-| Requirements                           | Method for Checking                                     | What You Hope to See                            |
+| Requirements                                       | Method for Checking                                     | What You Hope to See                            |
 |--------------------|--------------------------|--------------------------|
-| Linear relationship between covariate and response | Residual vs. Fitted Plot | No trend or pattern |
-| Constant variance across factor levels | Residual vs. Fitted Plot                                | No wedge or megaphone shape                     |
-| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries |
-| Independent residuals                  | Order plot (only if applicable)                         | No pattern/trend                                |
-|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                    |
+| Linear relationship between covariate and response | Residual vs. Fitted Plot                                | No trend or pattern                             |
+| Constant variance across factor levels             | Residual vs. Fitted Plot                                | No wedge or megaphone shape                     |
+| Normally Distributed Residuals                     | Normal Q-Q plot                                         | Straight line, majority of points in boundaries |
+| Independent residuals                              | Order plot (only if applicable)                         | No pattern/trend                                |
+|                                                    | Familiarity with/critical thinking about the experiment | No potential source for bias                    |
 
 The following example illustrates how to conduct an ANOVA in R.
 
@@ -241,6 +241,9 @@ library(tidyverse)
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 #| cap: "Read in Data"
+
+#You can read in the data with this path directly from the web:
+# https://byuistats.github.io/Math326_Quarto4/data/biggest_loser_ancova.csv
 
 bl_data <- read_csv("data/biggest_loser_ancova.csv") %>% 
   select(prop_initial_weight_lost, initial_weight_at_start_show, contestant_age) %>% 
@@ -296,13 +299,16 @@ Create the model using the `aov()` function.
 #| eval: false
 #| echo: true
 
-cov_mod <- aov(Y ~ covariate + treatment, data = YourDataSet)
+cov_mod <- lm(Y ~ covariate + treatment, data = YourDataSet, 
+              contrast = list(treatment = contr.sum))
 ```
 
 -   `cov_mod` is the user defined name in which the results of the aov() model are stored
+-   `lm` stands for linear model. It is like an `aov` object, but it is better suited to working with models that have continuous covariates (i.e. continuous independent variables) , rather than strictly factors.
 -   `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
 -   `covariate` is the name of the covariate in your dataset.
--   `treatment` is the name of the controlled factor in your dataset. It should have `class()` equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(treatment)...)` command.
+-   `treatment` is the name of the controlled factor in your dataset. It should have `class()` equal to factor or character. If that is not the case, use `factor(X)` inside the `lm(Y ~ factor(treatment)...)` command.
+-   `contrast` is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of "dummy" variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.
 -   `YourDataSet` is the name of your data set.
 
 The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is significant it can be removed; if it is not, then it should remain in the model. To include the interaction in the model the following code would be used.
@@ -311,7 +317,7 @@ The model above assumes that the interaction between the covariate and the treat
 #| eval: false
 #| echo: true
 
-cov_mod <- aov(Y ~ covariate + treatment + covariate:treatment, data = YourDataSet)
+cov_mod <- lm(Y ~ covariate + treatment + covariate:treatment, data = YourDataSet)
 ```
 
 After creating the model, results of the hypothesis tests for each term in the model can be seen using the `Anova()` command from the `car` package. Don't forget to specify `type = 3` in the `Anova()` command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.
@@ -354,14 +360,12 @@ The slope of the lines for Middle and Oldest appear nearly identical. The slope 
 
 bl_data2 <- bl_data %>% rename(`Age groups` = ymo, `Initial weight` = initial_weight_at_start_show)
 
-bl_mod_with_interaction <- aov(prop_initial_weight_lost ~ `Initial weight` + `Age groups` + `Initial weight`:`Age groups`, data = bl_data2)
+bl_mod_with_interaction <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups` + `Initial weight`:`Age groups`, 
+                              data = bl_data2,
+                              contrast = list(`Age groups` = contr.sum))
 
 pander(Anova(bl_mod_with_interaction, type = 3))
 ```
-
-::: column-margin
-You should not use `summary()` here instead of `Anova()` (upper case A). `summary()` will return the Type 1 SS, just as `anova()` does (lower case a).
-:::
 
 With a p-value of 0.8276, there is insufficient evidence to claim the interaction is not zero. We therefore remove it from the model and proceed with the analysis.
 
@@ -369,13 +373,13 @@ With a p-value of 0.8276, there is insufficient evidence to claim the interactio
 Do not forget to verify the model requirements are met before trusting the conclusion that the interaction term is not significant. This can be done with `plot(bl_mod_with_interaction, which = 1:2)`.
 :::
 
-The ANCOVA model (i.e. covariate included without an interaction term) is created. 
+The ANCOVA model (i.e. covariate included without an interaction term) is created.
 
 ```{r}
-ymo_ancova <- aov(prop_initial_weight_lost ~ `Initial weight` + `Age groups`, 
-                  data = bl_data2)
+ymo_ancova <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups`, 
+                  data = bl_data2,
+                 contrast = list(`Age groups` = contr.sum))
 ```
-
 
 The model is graphically depicted in @fig-ancova_model.
 
@@ -412,16 +416,19 @@ The results of the ANOVA test are shown below.
 pander(Anova(ymo_ancova, type = 3))
 ```
 
-The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person's initial weight, the age group a person belongs to has a significant effect on proportion of weight lost. From @fig-ancova_model, we know that the Middle group (green line) seems to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.
+:::{column-margin}
+`summary` provides a different set of output, but does not include an F test for the factor. Rather, it provides unadjusted t-tests of whether each factor level mean is equal to the mean of the reference factor level's mean.
+:::
 
-Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that a lot of the variation associated with the response variable is explained by initial weight and is probably important to keep in the model. 
+The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person's initial weight, the person's age group has a significant effect on proportion of weight lost. From @fig-ancova_model, we see that the Middle group (green line) and Young roup (red line) seem to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.
 
-**SHOULD I INCLUDE THIS NEXT PARAGRAPH?**
+Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that a lot of the variation associated with the response variable is explained by initial weight and is probably important to keep in the model.
+
 Notice that with the first model, the interaction term was included. Including it in the model seemed to make all the other terms also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.
 
 ## Check Assumptions
 
-The first two assumptions (lineary relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs. fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met.
+The first two assumptions (linear relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs. fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met. 
 
 ```{r}
 #| label: fig-res_v_fit
@@ -431,13 +438,13 @@ plot(ymo_ancova, which = 1)
 
 ### Linear Relationship Between Response and Covariate
 
-To verify the response variable and the covariate have a linear relationship we check the residual vs. fitted plot, @fig-res_v_fit. No major patterns or trends or evident so we consider this assumption satisfied. 
+To verify the response variable and the covariate have a linear relationship we check the residual vs. fitted plot, @fig-res_v_fit. No major patterns or trends or evident so we consider this assumption satisfied.
 
 In addition, R adds the red line to the plot. The red line is very flat, an additional indicator the assumption is met. Sometimes, when sample sizes are small, the red line can be confusing. In the case of small sample sizes the red line becomes very sensitive and bounces around a lot - becoming more of a distraction than an aid.
 
 ### Constant Error Variance
 
-To verify that the assumption of a constant error term is valid, the residual vs. fitted plot (@fig-res_v_fit) should not show trends or patterns. In particular, if the points in the residual vs. fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot.
+To verify that the assumption of a constant error term is valid, the residual vs. fitted plot should not show trends or patterns. In particular, if the points in the residual vs. fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot. Since @fig-res_v_fit does not have this problem, the constant error variance assumption is considered met.
 
 ### Normally Distributed Error Term
 
@@ -455,4 +462,4 @@ As you can see, some expert judgement and understanding of context will drive yo
 
 ### Assumptions Summary
 
-Aside from the potential violation of independent residuals, the diagnostic plots look pretty good.
+Aside from the potential violation of independent residuals, the diagnostic plots look good enough to trust the model results.
