@@ -52,7 +52,7 @@ Agricultural examples of latin squares
 
 Regardless of whether the application is psychology, agriculture or something else, the key design feature of a Latin Square design is that **each treatment appears exactly once in each row and in each column of the square.**
 
-There are various extensions to this basic Latin Square idea. Graeco Latin Squares can be used if you have more than 2 variables to block on (provided all factors have the same number of levels, and the number is not 6). Replicated Latin Squares is useful if the number of experimental units is a multiple of (instead of exactly equal to) the number of treatment factor levels. Replicated Latin Squares is discussed briefly [here](https://www.stat.purdue.edu/~bacraig/notes514/topic13a.pdf) and [here](https://online.stat.psu.edu/stat503/lesson/4/4.4).
+There are various extensions to this basic Latin Square idea. Graeco Latin Squares can be used if you have more than 2 variables to block on (provided all factors have the same number of levels, and the number is not 6). Replicated Latin Squares is useful if the number of experimental units is a multiple of (instead of exactly equal to) the number of treatment factor levels. Replicated Latin Squares (including "Latin Rectangles") is discussed briefly [here](https://www.stat.purdue.edu/~yuzhu/stat514fall05/Lecnot/latinsquarefall05.pdf) and [here](https://online.stat.psu.edu/stat503/lesson/4/4.4).
 
 ## Factor Structure
 
@@ -96,14 +96,14 @@ The focus of the study is on the treatment factor. However, you can test the blo
 
 ## Assumptions
 
-An ANOVA model may be used to analyze data from a CB\[1\] design if the following requirements are satisfied.
+An ANOVA model may be used to analyze data from a LS\[1\] design if the following requirements are satisfied.
 
-| Requirements                                  | Method for Checking                                     | What You Hope to See                                     |
+| Requirements                           | Method for Checking                                     | What You Hope to See                                     |
 |-------------------|--------------------------|---------------------------|
-| Constant variance across factor levels\[\^1\] | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
-| Normally Distributed Residuals                | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
-| Independent residuals                         | Order plot                                              | No pattern/trend                                         |
-|                                               | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
+| Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
+| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
+| Independent residuals                  | Order plot                                              | No pattern/trend                                         |
+|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
 
 # Design
 
@@ -111,7 +111,7 @@ In @fig-ls_factors an unrandomized treatment factor is displayed. Using an unran
 
 -   Treatments follow the same sequence. Carry-over effects are confounded with treatment effects.
 
--   In some squares, this could give an advantage to certain treatments. Consider a field that was divided up into a 5 by 5 grid. If the soil in the field tends to be more fertile and productive as you move toward the upper-left corner of the field, then treatment B has an advantage over treatment C. And treatment C has a slight advantage of treatment D, and so forth.
+-   In some squares, this could give an advantage to certain treatments. Consider a field that was divided up into a 5 by 5 grid. If the soil in the field tends to be more fertile and productive as you move toward the upper-left corner of the field, then treatment B has an advantage over treatment C. And treatment C has a slight advantage over treatment D, and so forth.
 
 |     |     |     |     |     |
 |:---:|:---:|:---:|:---:|:---:|
@@ -241,7 +241,7 @@ randomized_design <- tibble(row_blocks = rep(sample(1:4), each = 4),
 randomized_design
 ```
 
-After carrying out the experiment and gathering data, a vector containing the observed values can be added to the dataset using `mutate()`, `cbind()`,  or `dplyr::bind_col()` from the tidyverse. Only the `cbind()` option is shown in the code below.
+After carrying out the experiment and gathering data, a vector containing the observed values can be added to the dataset using `mutate()`, `cbind()`, or `dplyr::bind_col()` from the tidyverse. Only the `cbind()` option is shown in the code below.
 
 ```{r echo = TRUE, eval = FALSE}
 #Store observed data in a vector. 
@@ -258,7 +258,7 @@ The goal of an analysis of variance (ANOVA) is to decompose the variance in thes
 
 ![Factor Diagram for Traffic Light Timing Algorithm Experiment](images/ls_factors_traffic.png){#fig-ls_factors_traffic}
 
-Each factor in @fig-ls_factors_traffic corresponds to a term on the right side @eq-ls1 (repeated again here for convenience).
+Each factor in @fig-ls_factors_traffic corresponds to a term on the right side of @eq-ls1 (repeated again here for convenience).
 
 $$
 y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
@@ -266,7 +266,7 @@ $$
 
 Here we define each term of the model in context of the traffic experiment.
 
--   $\mu$ is the grand mean of all the 16 observations
+-   $\mu$ is the grand mean of all 16 observations
 
 -   $\alpha_i$ is the effect of the row factor, in this example *i* ranges from 1 to 4 to represent each of the 4 intersections
 
@@ -308,15 +308,15 @@ There is one residual for each observation, therefore the number of factor level
 
 [^6]: The counting free numbers approach of determining degrees of freedom for residuals may be less clear to apply than it was in other designs due to the non-continuous partitions of the treatment factor. There are 3 structural factors: rows, columns, and treatments. (In the traffic example, that corresponds to intersections, times of day, and timing algorithm respectively). The residuals in each of these partitions must sum to zero.
 
-    For the treatment, all the residuals for observations from Treatment A must sum to zero. Similarly, the observations from Treatment B will have residuals that sum to zero. And so on for each treatment. It is not obvious in the factor diagram which observation should be chosen as "locked" and which ones we can count as free to vary. But consider for a moment that in any row, each of the treatments appears. We will select a row (let's use the top row for convenience), and say that each of those residuals is "locked". This essentially reduces the residual factor from a 4x4 table of free values, to a 3x4 table.
+    For the treatment, all the residuals for observations from Treatment A must sum to zero. Similarly, the observations from Treatment B will have residuals that sum to zero. And so on for each treatment. It is not obvious in the factor diagram which observation should be chosen as "locked" and which ones we can count as free to vary. But consider for a moment that in any row, each of the **treatments** appears only once. We will select a row (let's use the top row for convenience), and say that each of those residuals is "locked". This essentially reduces the residual factor from a 4x4 table of free values, to a 3x4 table.
 
     ![](images/ls_df_resid1.png)
 
-    Now apply the fact that in order to sum to zero across rows, the last value in each row is "locked". Similarly, the sum of the residuals in each column of the remaining 3x4 table of free values must also sum to zero. Therefore, the last (bottom) residual of each column is also "locked".
+    Now apply the fact that in order to sum to zero across rows, the last value in each row is "locked". Similarly, the residuals for each level of the column factor of the remaining 3x4 table of free values must also sum to zero. Therefore, the last (bottom) residual of each column is also "locked".
 
     ![](images/ls_df_resid2.png)
 
-    This leads to a general result for finding residual degrees of freedom for a Latin Square: (# rows -- 1) x (# columns -- 2).
+    This leads to a general result for finding residual degrees of freedom for a Latin Square: (# rows -- 2) x (# columns -- 1).
 
 ## Factor Effects
 
@@ -357,7 +357,8 @@ $$
 
 To find the mean for each algorithm, we add together the 4 observations that belong to each algorithm and divide by four.
 
-\$\$ \begin{align}
+```{=tex}
+\begin{align}
 \bar{y}_A = \bar{y}_{\cdot \cdot 1} &= \frac{32 + 44 + 42 + 73}{4} = 47.8 \\
 
 \bar{y}_B = \bar{y}_{\cdot \cdot 2} &= \frac{36 + 33 + 72 + 79}{4} = 47.5 \\
@@ -365,8 +366,8 @@ To find the mean for each algorithm, we add together the 4 observations that bel
 \bar{y}_C = \bar{y}_{\cdot \cdot 3} &= \frac{51 + 78 + 47 + 54}{4} = 57.5 \\
 
 \bar{y}_D = \bar{y}_{\cdot \cdot 4} &= \frac{81 + 53 + 62 + 53}{4} = 62.3
-\end{align} \$\$
-
+\end{align}
+```
 We do not need to calculate means for residual error factor for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.
 
 The means for each factor level are shown in @fig-ls_means.
@@ -451,16 +452,17 @@ To get the **sum of squares (SS)** of a factor, the effects of the factor must b
 ![Squared Factor Effects](images/ls_squared_effects.png){#fig-ls_sq_effects}
 :::
 
-The total sum of squares (\$ SS\_{total}\$) represents all the squared variability that we will need to allocate to the various factors. It is calculated by squaring each observation and then summing them together:
+The total sum of squares ($SS_{total}$) represents all the squared variability that we will need to allocate to the various factors. It is calculated by squaring each observation and then summing them together:
 
 $$
 SS_{total} = 32^2 + 33^2 + … + 73^2 = 49856
 $$
 
-To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, $53.75^2 = 2889.0625$. That value occurs 16 times in the dataset (once for each observation), so \$ SS\_\text{grand mean}\$ = 2889.0625 \* 16 = 46225.
+To get the Sum of Squares for the grand mean factor we first square the effect of grand mean, $53.75^2 = 2889.0625$. That value occurs 16 times in the dataset (once for each observation), so $SS_\text{grand mean} = 2889.0625 * 16 = 46225$.
 
 To get the sum of squares for each factor, we simply add all the squared effects. Since for intersections, time of day, and timing algorithm, each effect is repeated exactly 4 times, we will use some multiplication to simplify the calculation:
 
+```{=tex}
 \begin{align}
 
 SS_\text{intersections} &= 4*(156.3 + 56.3 + 5.1 + 495.1) = 2850.5 \\
@@ -471,7 +473,7 @@ SS_\text{algorithm} &= 4 * (36 + 39.1 + 14.1 + 72.3) = 645.5 \\
 
 SS_\text{residual} &= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
 \end{align}
-
+```
 Putting this information into the ANOVA table gives us @tbl-SS.
 
 ```{r echo = FALSE}
@@ -495,7 +497,7 @@ kable(mydf, format = "html", table.attr = "style='width:65%;'")%>%
 You can verify that we have successfully partitioned out the SS_total, try adding the sum of squares for all the factors together. The result should be equal to the sum of squares you got by squaring the observed values and summing them.
 :::
 
-The next step is to covert the total variability (sum of squares) to an average variability per factor (mean squares). To create an average from a total, you must divide by the number of unique pieces of information that were summed to create the total, in this case the degrees of freedom. The mean squares can be thought of as the sample variance between factor level means.
+The next step is to covert the total variability (sum of squares) to an average variability per factor (mean squares). To create an average from a total, you must divide by the number of informative pieces of information that were summed to create the total, in this case the degrees of freedom. The mean squares can be thought of as the sample variance between factor level means.
 
 Obtain the mean squares for each factor by dividing its sum of squares by its degrees of freedom.
 
@@ -621,7 +623,7 @@ plot(my_ls_aov, which = 1)
 Ignore the red line in this plot
 :::
 
-The x-axis of @fig-constant_var shows the fitted. Fitted values, also called predicted values, is the sum of the effects contributing to a datapoint. It includes all effects except for the residual effect. The residual is plotted on the y-axis.
+The x-axis of @fig-constant_var shows the fitted values, also called predicted values. An observation's fitted value is the sum of the effects contributing to a datapoint: it includes all effects except for the residual effect. The residual is plotted on the y-axis.
 
 The points in the plot do not show any increase (or decreasing) in vertical spread as we move along the x-axis. Therefore, we conclude this requirement is met.
 
