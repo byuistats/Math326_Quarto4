@@ -231,7 +231,7 @@ The interaction effect only has 2 degrees of freedom because each of the fungici
 The analysis of a basic Split-Plot design is fairly straightforward. We simply include the whole-plot error term directly into the AOV statement. We don't need to specify the sub-plot error, because it is just the residual error. This creates a summary output with the correct degrees of freedom for each error term and the correct F-values for each factor.
 
 ```         
-dat <- read.csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake2.csv")
+dat <- read.csv("data/Split_Plot.csv")
 dat$Farmer <- as.factor(dat$Farmer)
 dat$Variety <- as.factor(dat$Variety)
 dat$Fungicide <- as.factor(dat$Fungicide)
