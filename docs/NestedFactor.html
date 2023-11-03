@@ -260,7 +260,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#adding-a-nested-factor" id="toc-adding-a-nested-factor" class="nav-link" data-scroll-target="#adding-a-nested-factor">Adding a Nested Factor</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#factor-structor" id="toc-factor-structor" class="nav-link" data-scroll-target="#factor-structor">Factor Structor</a></li>
+  <li><a href="#factor-structor" id="toc-factor-structor" class="nav-link" data-scroll-target="#factor-structor">Factor Structor</a>
+  <ul class="collapse">
+  <li><a href="#replication" id="toc-replication" class="nav-link" data-scroll-target="#replication">Replication</a></li>
+  </ul></li>
   <li><a href="#hypothesis-and-model" id="toc-hypothesis-and-model" class="nav-link" data-scroll-target="#hypothesis-and-model">Hypothesis and Model</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
   <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a></li>
@@ -301,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Overview</h1>
 <p>This section will describe how to set up and analyze factorial designs with 2 levels of experimental units. This situation occurs when one level of the experiment cannot be easily randomized because of physical constraints. These types of studies are common in agriculture, psychology and laboratory experiments.</p>
 <p>We introduce the concept of nested experimental designs with a Split-Plot design common in agriculture. We conclude this chapter with a discussion about other versions of nested designs and why different terminologies arise in different contexts.</p>
-<p>A split-plot design consists of a <strong>whole-plot</strong> factor and a <strong>Sub-plot</strong> factor.</p>
+<p>A split-plot design consists of a <strong>Whole-plot</strong> factor and a <strong>Sub-plot</strong> factor.</p>
 <p>Because of the physical limitation of randomization, whole-plot factors often have limited replications compared to the subplot factor. To analyze these designs appropriately, it is necessary to account for the fact that each level of experimental unit has different levels of replication. It requires 2 separate error terms to test each level of experimental unit.</p>
 <p>Consider 2 examples:</p>
 <ol type="1">
@@ -327,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Farmer John could still be interested in the within-field variation and takes sub-samples within a each experimental unit and measures yield at each sample point:</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/FarmerJohnsReplicationWithSubsamples.png" class="img-fluid figure-img" width="360"></p>
 </figure>
@@ -364,13 +367,13 @@ Where the data would look like:
 <section id="adding-a-nested-factor" class="level3">
 <h3 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h3>
 <p>Suppose Farmer John suspects that the impact of fungicide type is different for varieties of maize. We could add 3 maize varieties to the experiment, but because of mechanical constraints we cannot completely randomize Fungicide by Variety treatment combinations. We’re still stuck spraying half the field with Fungicide A and the other with Fungicide B.</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/FarmerJohnsSplitPlot.png" class="img-fluid figure-img" width="360"></p>
 </figure>
 </div>
 <p>Hopefully you can spot the challenge. Nothing has changed for the fungicide treatment level. If the variety plots are harvested separately, variety is just a sub-sample within Fungicide treatment. We actually have 2 levels of experimental units!</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid figure-img" width="615"></p>
 </figure>
@@ -385,23 +388,27 @@ Where the data would look like:
 <h1>Factor Structor</h1>
 <p>A split-plot design is characterized by at least 2 levels of experimental units. The larger experimental unit is called the <strong>Whole-plot factor</strong>, and the lower-level experimental unit is called the <strong>split-plot factor</strong>.</p>
 <p>In a simple split-plot design, <strong>whole-plots act as Blocking variables</strong> for the split-plots and <strong>split-plots act as sub-samples</strong> for the whole-plots. In fact, the factor structure for a simple split-plot design is identical to a <a href="./cb1.html">complete block design</a> if blocks are treated as replicates of the whole-plot.</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-left anchored">
+<div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/Split_Plot_Factor_Image.png" width="950" height="220" class="figure-img"></p>
 </figure>
 </div>
+<section id="replication" class="level2">
+<h2 class="anchored" data-anchor-id="replication">Replication</h2>
+<p>It is possible to replicate sub-plot factors within whole-plots. In the example data described and analyzed below, variety will be replicated 3 times within a field/spray treatment. This poses no problem in the analysis, and in fact gives us more precision in our estimates.</p>
+</section>
 </section>
 <section id="hypothesis-and-model" class="level1">
 <h1>Hypothesis and Model</h1>
-<p>Recall model for a complete block design <a href="#eq-cb1">Equation&nbsp;2</a>:</p>
+<p>Recall model for a complete block design <a href="#eq-cb1">Equation&nbsp;1</a>:</p>
 <p><span id="eq-cb1"><span class="math display">\[
 y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 \tag{1}\]</span></span></p>
 <p>Here <span class="math inline">\(\alpha_i\)</span> is the block to block variation. In a CB[1], block is a nuisance factor and not of particular interest. However, in the split plot design, the addition of the whole-plot-level parameter serves as the error term to test the whole-plot factor.</p>
 <p>We can re-imaging the blocking factor (<span class="math inline">\(\alpha_i\)</span> in the CB[1]) as the appropriate error term for the whole-plot. In the above Example, Fungicides are applied to Fields, so the field-to-field variation is the correct error term to use to test Fungicide. The Residual error will still be used as the error term for the sub-plot factor.</p>
-<p><span id="eq-cb1"><span class="math display">\[
+<p><span class="math display">\[
 y_{iujt} = \mu + \gamma_i + \epsilon_{i(u)}^{W}  + \beta_j + (\gamma \beta)_{ij} + \epsilon_{jt(iu)}^{S}
-\tag{2}\]</span></span></p>
+\]</span></p>
 <p>Where</p>
 <ul>
 <li><p><span class="math inline">\(y_{ijut}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\gamma\)</span>, level <em>j</em> of <span class="math inline">\(\beta\)</span>, the <em>u</em> whole-plot experimental unit, and the <em>t</em> subplot experimental unit.</p></li>
@@ -678,36 +685,33 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 </section>
 <section id="decomposition" class="level1">
 <h1>Decomposition</h1>
-<p>In this section, we will do the analysis of variance by hand by decomposing the variation into its parts. Th</p>
-<p>Below is the factor structure with accompanying model for the Fungicide study. We ignore randomization for simplicity.</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-left anchored">
+<p>In this section, we will do the analysis of variance by hand by decomposing the variation into its parts. We first review the factor structure with accompanying model elements for the Fungicide study described above. We ignore randomization for simplicity.</p>
+<div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/Split_Plot_Factor_Decomposition.png" width="950" height="220" class="figure-img"></p>
 </figure>
 </div>
-<p>Filled out with our example data, we get figure XX:</p>
-<p><img src="images/Split_Plot_Data_Decomposition.png" id="fig-block-sort" data-fig-align="center" width="950" height="450"> <br></p>
-<p>The grand mean is, as usual, the overall average yield across all factor levels.</p>
-<p>The Fungicide effect is the average yield for each level of spray treatment minus the grand mean.</p>
-<p>The field effect is the average yield for each field minus the grand mean.</p>
-<p>The variety effect is the average yield for each variety minus the grand mean.</p>
-<p>The interaction effect is the average yield for each fungicide-by-variety combination minus the sum of the grand mean and the individual effects for fungicide and variety.</p>
+<p>To carry out the calculations by hand, we must first calculate the factor means. Below we see the means for each level of factor. Recall that each variety is replicated 3 times within each field.</p>
+<p><img src="images/Split_Plot_Factor_Means.png" data-fig-align="left" width="950" height="250"> The dotted line in the spray mean is to indicate that there are actually 2 fields for each fungicide application. You can see the means in each combination.</p>
+<p>Next, we subtract the grand mean from the factor means to get the effects for each factor combination. For example, the effect for Fungicide A is the mean for Fungicide A minus the grand mean: <span class="math inline">\(205.5 - 214.86 = -9.37\)</span>. And the field effect for field 1 is the field average minus the grand mean: <span class="math inline">\(199.9 - 214.86 = -5.60\)</span>.</p>
+<p>Interactions are a little more complicated. For each set of Variety*Fungicide we subtract from the variety by spray average the sum of the grand mean, the fungicide effect and the variety effect. For example, if we want to calculate the interaction effect for Fungicide A (effect: -9.37) and Variety 1 (effect: -.03) we would get: <span class="math inline">\(208.03 - (214.86-9.37-.03 = 2.56)\)</span>.</p>
+<p>Filled out with our example data, we get the figure below:</p>
+<p><img src="images/Split_Plot_Data_Decomposition.png" data-fig-align="center" width="950" height="450"> <br></p>
 <p>Lastly, the residual is the difference between the observed value and the sum of all the effects for each combination of treatments.</p>
 <section id="degrees-of-freedom" class="level2">
 <h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>In this example, there are a total of 36 degrees of freedom to be allocated for each level of the experiment. Special care must be taken to account for the field-level degrees of freedom because they will define the denominator degrees of freedom for the F-test for fungicide.</p>
-<p>For this example, it is easiest to count up the unique pieces of information in each of the components in figure xx above.</p>
 <p>As in the case with other models, there is 1 degree of the grand mean.</p>
-<p>Because all the the other factor effects are constrained to sum to zero, we can reduce the count of unique pieces of information by one to get the degrees of freedom.</p>
-<p>For the spray effect above, if I know one value the effect for a fungicide, I also know what the others need to be to sum to zero. So I have 1 degree of freedom for Fungicide.</p>
-<p>For the Field effect, there are 2 values and their negative values which gives us 2 unique pieces of information.</p>
-<p>If I know 2 of the variety effects, the third one is also known, so I have 2 degrees of freedom.</p>
+<p>For this example, it is easiest to count up the unique pieces of information in each of the components in the factor decomposition above. The Fungicide effect, for example, shows that if I know what one of the effect are (either 9.37 or -9.37), I can determine all the rest of the cells. This means I have 1 degree of freedom.</p>
+<p>Similarly for field effect, I would need to know at least <span class="math inline">\(\pm 5.6\)</span> and <span class="math inline">\(\pm 6.53\)</span> to determine the rest of the cells so I have 2 degrees of freedom.</p>
+<p>For the Variety effect, I would only need to know 2 of the variety effects to determine the value of the third. The sum of the effects for variety 1 (-.03) and variety 3 (1.05) is 1.02 which means that if they were to sum to 0, then the the effect for variety 2 must be -1.02. Hence 2 degrees of freedom for Variety.</p>
 <p>The interaction effect only has 2 degrees of freedom because each of the fungicide treatment combinations must sum to zero across varieties.</p>
 </section>
 </section>
 <section id="split-plot-analysis-in-r" class="level1">
 <h1>Split-Plot Analysis in R</h1>
-<pre><code>dat &lt;- read_csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake.csv")
+<p>The analysis of a basic Split-Plot design is fairly straightforward. We simply include the whole-plot error term directly into the AOV statement. We don’t need to specify the sub-plot error, because it is just the residual error. This creates a summary output with the correct degrees of freedom for each error term and the correct F-values for each factor.</p>
+<pre><code>dat &lt;- read.csv("C:\\Users\\paulccannon\\OneDrive - BYU-Idaho\\M326\\Split_Plot_Fake2.csv")
 dat$Farmer &lt;- as.factor(dat$Farmer)
 dat$Variety &lt;- as.factor(dat$Variety)
 dat$Fungicide &lt;- as.factor(dat$Fungicide)
@@ -715,14 +719,9 @@ dat$Fungicide &lt;- as.factor(dat$Fungicide)
 
 ## Using AOV
 aovout &lt;- aov(Yield ~ Fungicide + Error(Field) + Variety + Variety:Fungicide, data = dat)
-summary(aovout)
-</code></pre>
-<p>Generally, the model will look like:</p>
-<pre><code>aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)
-
-# or
-
-lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)</code></pre>
+summary(aovout)</code></pre>
+<p>Generically, the model will look like:</p>
+<pre><code>aov(Y ~ Whole.Plot + Error(WP.Experimental_Unit) + Split.Plot + Whole.Plot:Split.Plot, data = data)</code></pre>
 </section>
 <section id="other-nested-designs" class="level1">
 <h1>Other Nested Designs</h1>
@@ -733,7 +732,7 @@ lmer(Y ~ Whole.Plot:Split.Plot + (Whole.Plot|WP.Experimental_Unit), data = data)
 <p>Many experiments are interested in the effect of a treatment over time. These designs often measure subjects within treatment groups at several time points after treatment. Time is a nested factor measured within-subjects. Individuals become the blocks for measuring the time effect. This type of design is called <strong>Repeated Measures</strong>.</p>
 <p>In a Repeated Measures design, we do not refer to subjects as whole-plots and repeated measurements across time as sub-plots, though they behave functionally the same in the analysis. For clarity, we refer to the larger experimental unit (subjects) as the <strong>between-subjects factor</strong> and the factor associated with time point measurements as the <strong>within-subjects factor</strong>.</p>
 <p>The factorization of the Repeated Measures design can be represented (Cobb, 2015) as:</p>
-<p><img src="images/Repeated_Measures_Factorization_Cobb.png" id="fig-block-sort" class="img-fluid" data-fig-align="left" width="950"> where CR corresponds to the between-subjects factor and CB refers to the within-blocks factor.</p>
+<p><img src="images/Repeated_Measures_Factorization_Cobb.png" class="img-fluid" data-fig-align="left" width="950"> where CR corresponds to the between-subjects factor and CB refers to the within-blocks factor.</p>
 </section>
 <section id="generic-terminology" class="level2">
 <h2 class="anchored" data-anchor-id="generic-terminology">Generic Terminology</h2>
