@@ -11,7 +11,7 @@ toc-depth: 4
 
 ### Beware of False Replication
 
-Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the less expensive, generic import. Fungus can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:
+Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the less expensive, generic import. Fungi can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:
 
 ![Farmer John's Field](images/FarmerJohnsAnecdote.PNG){#fig-block-sort fig-align="center" width="500"}
 
@@ -48,7 +48,12 @@ Neither a trusting statistician nor statistical software can tell that these dat
 
 Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can only provide a false sense of statistical sophistication for a simple anecdote.
 
-If we are not interested in the within-field variation, then we can average over the sub-samples, and it becomes clear that we have no replication. However, we can include Sample "nested within" Treatment in our model, which allows us to estimate within-field variation and preserves the appropriate degrees of freedom for a design.
+If we are not interested in the within-field variation, the easiest thing to do is average over the sub-samples and analyze the experiment in a typical manner.  In the above example it becomes clear that we have no replication and cannot get an F-statistic. 
+
+<!-------------
+
+
+We can also include Sample "nested within" Treatment in our model, which allows us to estimate within-field variation and preserves the appropriate degrees of freedom for a design.
 
 The model including nested sub-samples can be written:
 
@@ -66,8 +71,11 @@ Where
 
 -   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.
 
+
+
 This model only works, though, if you have treatment replications, *k*, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
 
 ### Conclusion
+--------->
 
 Failure to account for sub-samples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.
