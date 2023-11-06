@@ -362,7 +362,7 @@ To get Type II or Type III ANOVA you will create a model in the usual way and th
 #| eval: false
 #| echo: true
 
-car::Anova(myaov, type = 3, contrast = list(factorA = contr.sum, factorB = contr.sum))
+car::Anova(myaov, type = 3, contrasts = list(factorA = contr.sum, factorB = contr.sum))
 ```
 
 -   `car` is the name of the package the `Anova()` command comes from
@@ -370,7 +370,7 @@ car::Anova(myaov, type = 3, contrast = list(factorA = contr.sum, factorB = contr
 -   `Anova()` is a function from the `car` package. It can be used to get type II or type III ANOVA tables for a variety of different models, including `aov()`, `lm()`, `glm()`, etc.
 -   `myaov` is the name we gave our model in a previous step (not shown).
 -   `type=` argument specifies whether Type II or Type III is desired. It accepts Arabic numerals, or roman numerals in quotes: 2, 3, "II", "III". The default, if this argument is omitted, is Type 2.
--   `contrast` argument tells R how to parameterize the X matrix. In other words, R actually changes a factor variable into a series of columns to represent the various levels. This tells R what values should go in those columns.
+-   `contrasts` argument tells R how to parameterize the X matrix. In other words, R actually changes a factor variable into a series of columns to represent the various levels. This tells R what values should go in those columns.
 
 For examples of code that produce Type III and Type II ANOVA tables look at @tbl-type3 and @tbl-type2 respectively. Those examples have an additional `pander()` command, and its `round=` argument. This additional code is solely for formatting and is not necessary.
 
