@@ -800,6 +800,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The order of the variables when coding the model does not matter in a Type 3 ANOVA.</p>
 </div></div><div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#It doesn't matter which of the 3 models from above that I use since order does not matter when using Type III ANOVA. I will use the model with the interaction as last.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(car<span class="sc">::</span><span class="fu">Anova</span>(int_last, <span class="at">type =</span> <span class="dv">3</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">thinning =</span> contr.sum, <span class="at">initial_size =</span> contr.sum, <span class="at">interaction =</span> contr.sum)), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="tbl-type3" class="anchored">
 <table class="table table-sm table-striped small">
@@ -1151,7 +1158,7 @@ Tip
 <p>Type I ANOVA is the default in the <code>anova()</code> command. In fact, it is the only type of ANOVA available in <code>anova()</code>.</p>
 <p>To get Type II or Type III ANOVA you will create a model in the usual way and then use the <code>Anova()</code> command from the <code>car</code> package. Note the use of the capital ‘A’, instead of lower case ‘a’, in the function name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(myaov, <span class="at">type =</span> <span class="dv">3</span>, <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">factorA =</span> contr.sum, <span class="at">factorB =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(myaov, <span class="at">type =</span> <span class="dv">3</span>, <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">factorA =</span> contr.sum, <span class="at">factorB =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>car</code> is the name of the package the <code>Anova()</code> command comes from</li>
@@ -1162,10 +1169,27 @@ Tip
 <li><code>contrasts</code> argument tells R how to parameterize the X matrix. In other words, R actually changes a factor variable into a series of columns to represent the various levels. This tells R what values should go in those columns.</li>
 </ul>
 <p>For examples of code that produce Type III and Type II ANOVA tables look at <a href="#tbl-type3">Table&nbsp;5</a> and <a href="#tbl-type2">Table&nbsp;7</a> respectively. Those examples have an additional <code>pander()</code> command, and its <code>round=</code> argument. This additional code is solely for formatting and is not necessary.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pro Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rather than adding a <code>contrasts</code> argument to each of your calls of <code>Anova()</code>, you can set the contrasts in the options once. Then all subsequent models will use those types of contrasts. Run this code:</p>
+<p><code>options(contrasts = c("contr.sum", "contr.poly"))</code></p>
+<p>or</p>
+<p><code>options(contrasts = c("contr.sum", "contr.sum"))</code></p>
+<p>Notice there are two values needed in the contrasts input vector. The first specifies how to handle unordered categorical variables, the second specifies how to handle ordered categorical variables. The default contrasts in R (in case you need to revert back) is <code>options(contrasts = c("contr.treatment", "contr.poly"))</code>.</p>
+</div>
+</div>
 <section id="summary" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="summary">summary()</h2>
 <p>Many students are in the habit of using <code>summary()</code> to evaluate model hypothesis tests. When called on an <code>aov</code> object (i.e.&nbsp;an object created using the <code>aov()</code> command), <code>summary()</code>’ prints a Type I ANOVA table.</p>
-<p>However, when called on an <code>lm()</code> object, <code>summary()</code> does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.</p>
+<p>However, when called on an <code>lm()</code> object, <code>summary()</code> does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept. The reference level is whatever level comes first alphabetically, unless defined otherwise.). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><code>lm()</code> is usually preferred over <code>aov()</code> if there are more than 1 numeric independent variables in the model.</p>

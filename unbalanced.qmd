@@ -216,11 +216,10 @@ The order of the variables when coding the model does not matter in a Type 3 ANO
 
 ```{r}
 #| code-fold: true
-#| echo: false
 #| label: tbl-type3
 #| tbl-cap: "Type 3 ANOVA, As If Last"
 
-#It doesn't matter which of the 3 models from above that I since order does not matter when using Type III ANOVA. I will use the model with the interaction as last.
+#It doesn't matter which of the 3 models from above that I use since order does not matter when using Type III ANOVA. I will use the model with the interaction as last.
 
 pander(car::Anova(int_last, type = 3,
                   contrasts = list(thinning = contr.sum, initial_size = contr.sum, interaction = contr.sum)), round = c(0,0,1,2))
@@ -260,21 +259,12 @@ The type II ANOVA output, in @tbl-type2, contains the sum of squares for each fa
 
 ```{r}
 #| code-fold: true
-#| echo: false
 #| label: tbl-type2
+#| echo: false
 #| tbl-cap: "Type 2 ANOVA"
 
 
 pander(car::Anova(aov(height~ thinning + initial_size + thinning:initial_size , data = example), type = 2), round = c(0,0,1,2))
-
-# Was going to manually put it in, but I got the above code to work fine.
-# kable::kbl(tibble( ` ` = c("thinning", "initial size", "thinning:initial_size", "residuals"),
-#         Df = c(1, 1, 1, 7),
-#         `Sum Sq` = c(590, 4846, 11, 748),
-#         `Mean Sq` = c(590, 4846, 11, 107),
-#         `F value` = c(5.5, 45.4, 0.1, NA),
-#         `Pr(>F)` = c(0.05, 0, 0.75, NA)) )
-
 
 ```
 
@@ -374,11 +364,25 @@ car::Anova(myaov, type = 3, contrasts = list(factorA = contr.sum, factorB = cont
 
 For examples of code that produce Type III and Type II ANOVA tables look at @tbl-type3 and @tbl-type2 respectively. Those examples have an additional `pander()` command, and its `round=` argument. This additional code is solely for formatting and is not necessary.
 
+::: callout-tip
+## Pro Tip
+
+Rather than adding a `contrasts` argument to each of your calls of `Anova()`, you can set the contrasts in the options once. Then all subsequent models will use those types of contrasts. Run this code:
+
+`options(contrasts = c("contr.sum", "contr.poly"))`
+
+or
+
+`options(contrasts = c("contr.sum", "contr.sum"))`
+
+Notice there are two values needed in the contrasts input vector. The first specifies how to handle unordered categorical variables, the second specifies how to handle ordered categorical variables. The default contrasts in R (in case you need to revert back) is `options(contrasts = c("contr.treatment", "contr.poly"))`.
+:::
+
 ## summary()
 
 Many students are in the habit of using `summary()` to evaluate model hypothesis tests. When called on an `aov` object (i.e. an object created using the `aov()` command), `summary()`' prints a Type I ANOVA table.
 
-However, when called on an `lm()` object, `summary()` does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.
+However, when called on an `lm()` object, `summary()` does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept. The reference level is whatever level comes first alphabetically, unless defined otherwise.). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.
 
 ::: column-margin
 `lm()` is usually preferred over `aov()` if there are more than 1 numeric independent variables in the model.
