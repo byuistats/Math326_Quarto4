@@ -684,7 +684,7 @@ If the constant variance assumption is violated, the points in this graph will s
 
 ### Normally Distributed Error Term
 
-We check the assumption that residuals are normally distributed with a QQ plot. Since all the points in the plot below are in the shaded regions around the line, we conclude this assumption is met.
+We check the assumption that residuals are normally distributed with a QQ plot. Since all the points in the plot closely follow the line, we conclude this assumption is met.
 
 ```{r}
 plot(cb_aov, which = 2)
