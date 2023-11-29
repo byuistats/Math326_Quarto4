@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Math326 Notebook - Introduction to Nested Designs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Math326 Notebook</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Basics of Design</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
+        <li>
+    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+ <span class="dropdown-text">Key Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+ <span class="dropdown-text">Research Objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+ <span class="dropdown-text">Response Variable</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+ <span class="dropdown-text">Experimental Units</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+ <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+ <span class="dropdown-text">Randomization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Specific Designs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+ <span class="dropdown-text">Basic Factorial Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+ <span class="dropdown-text">BF[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+ <span class="dropdown-text">BF[2]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+ <span class="dropdown-text">BF[3+]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+ <span class="dropdown-text">Blocking Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+ <span class="dropdown-text">CB[1]</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+ <span class="dropdown-text">ANCOVA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+ <span class="dropdown-text">Latin Square</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./NestedFactor.html" rel="" target="">
+ <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Broad Topics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
+        <li>
+    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+ <span class="dropdown-text">Factor Structure</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+ <span class="dropdown-text">Effects Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+ <span class="dropdown-text">ANOVA and the F-test</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+ <span class="dropdown-text">Assumptions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+ <span class="dropdown-text">Contrasts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+ <span class="dropdown-text">Multiple Comparisons</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+ <span class="dropdown-text">Unbalanced Datasets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Kruskal.html" rel="" target="">
+ <span class="dropdown-text">ZPower??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LogisticRegression.html" rel="" target="">
+ <span class="dropdown-text">ZRandom Factors??</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Nested_Samples.html" rel="" target="">
+ <span class="dropdown-text">ZNested Subsamples</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">R Instructions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
+        <li>
+    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+ <span class="dropdown-text">Descriptive Summaries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+ <span class="dropdown-text">Model diagnostics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Datasets</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
+        <li>
+    <a class="dropdown-item" href="././Data/AnalysisRubric.html" rel="" target="">
+ <span class="dropdown-text">XYZ</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="././Data/StudentHousing.html" rel="" target="">
+ <span class="dropdown-text">yadda yadda</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#building-on-the-complete-block-design" id="toc-building-on-the-complete-block-design" class="nav-link active" data-scroll-target="#building-on-the-complete-block-design">Building on the Complete Block Design</a></li>
+  <li><a href="#recognizing-when-to-use-a-nested-factor" id="toc-recognizing-when-to-use-a-nested-factor" class="nav-link" data-scroll-target="#recognizing-when-to-use-a-nested-factor">Recognizing When To Use a Nested Factor</a></li>
+  <li><a href="#common-pitfall-lack-of-replication" id="toc-common-pitfall-lack-of-replication" class="nav-link" data-scroll-target="#common-pitfall-lack-of-replication">Common pitfall: Lack of Replication</a></li>
+  <li><a href="#other-terminology" id="toc-other-terminology" class="nav-link" data-scroll-target="#other-terminology">Other Terminology</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Nested Designs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+</script>
+<section id="building-on-the-complete-block-design" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="building-on-the-complete-block-design">Building on the Complete Block Design</h2>
+<p>The Split Plot, or Repeated Measures design is very similar to the Complete Block design, CB[1], with an extra wrinkle. Namely, an additional factor, referred to as the <strong>between-block factor</strong>, is added to the design. In the <a href="./cb1.html">Complete Block</a> design, blocks all come from the same population. In this new design, blocks can be assigned to different treatments (or for an observational factor, each block belongs to a different group). Thus, each level of the block factor is nested inside of the between-block factor; as a result, we often call these types of designs “nested designs”.</p>
+<p>An example can make this more clear. Let’s start with a Complete Block experiment we are already familiar with…(wait for it)…the toothbrush example! Recall that a Complete Block design was described in detail on the <a href="./cb1.html">Complete Block</a> page. In summary, in that complete block design each person used each of the toothbrushes for a period of time. The order in which the brushes were used was randomized within each individual person.</p>
+<p>But what if each block is different in some way? How can I account for variation in the response due to different <strong>types</strong> of blocks. For example, maybe some of the blocks (people) are adults and some are children. I may be interested in understanding how each brush performs in the two populations. I could even investigate the interaction of brush with age. For example, if one of the brushes performs better with children than with adults, I may want to market the brush as a children’s brush. In this case, “adult” and “child” are levels of the age factor, which is called a between-block factor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/kid-adult-toothbrush.jpeg" class="img-fluid figure-img" width="312"></p>
+<figcaption class="figure-caption">Nov.&nbsp;2023, https://childrensdentaldallas.com/what-happens-to-kids-who-dont-brush-their-teeth/</figcaption>
+</figure>
+</div>
+<p>Between-block factors are not always observational factors, they can be experimental factors too (i.e.&nbsp;factors whose levels can be assigned). For example, in the toothbrush study, instead of comparing adults to children you may just be studying adults. You could randomly assign one set of people to floss and one group to not floss. Or, each person (block) may be assigned to eat a specific diet: protein vs.&nbsp;vegan vs.&nbsp;no restriction.</p>
+<p>Each block belongs to one level of the between-block factor. Thus, we say the block is <a href="./factor_structure.html"><strong>nested</strong></a> within the between-block factor. The factor whose levels are randomized within each block is referred to as the <strong>within-block factor</strong>. There are 2 levels of experimental units:</p>
+<ul>
+<li>blocks serve as an experimental unit for the between block factor</li>
+<li>sub-divisions of the block or time slots serve as the experimental unit for the within block factor.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The models used to analyze nested designs are also called hierarchical models.</p>
+<p>The block is usually a random factor. Models that have a mix of fixed and random factors are called mixed models.</p>
+</div></div></section>
+<section id="recognizing-when-to-use-a-nested-factor" class="level2">
+<h2 class="anchored" data-anchor-id="recognizing-when-to-use-a-nested-factor">Recognizing When To Use a Nested Factor</h2>
+<p>Nested factor designs commonly occur when one level of the experiment cannot be easily randomized because of physical constraints. Between-block factors often have limited replications compared to the within-block factor. Nested factor designs are common in agriculture, psychology and laboratory experiments as illustrated in the following 3 examples.</p>
+<section id="agriculture" class="level4">
+<h4 class="anchored" data-anchor-id="agriculture">Agriculture</h4>
+<p>A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. It is impossible to randomly assign humidity levels within a section of greenhouse. Therefore, each <em>greenhouse is treated as a block</em>. Greenhouse is the experimental unit for humidity because humidity level is randomly assigned to each green house. <em>Humidity is the between-block factor.</em></p>
+<p>Because levels of fertilizer are randomly assigned to different sections within each greenhouse, <em>fertilizer is the within-block factor</em>. Each Section within a greenhouse is an experimental unit for fertilizer.</p>
+</section>
+<section id="psychology" class="level4">
+<h4 class="anchored" data-anchor-id="psychology">Psychology</h4>
+<p>Researchers wanted to investigate the impact of sleep deprivation on cognitive performance. Recruiting participants who are willing to undergo sleep deprivation can be challenging due to potential physical and mental strain involved.</p>
+<p>Each participant was randomly assigned to one of these 3 sleep deprivation levels: one full night, one half night, and no deprivation. Then, the next day their cognitive performance was assessed in the morning, the evening, and again a full 24 hours after deprivation, and 48 hour after the sleep deprivation.</p>
+<p><em>Participants are the blocks</em> in this case. Because a level of sleep deprivation is assigned to each participant, <em>sleep deprivation is the between block factor</em>. All levels of time after deprivation appear in each and every block, so it is the <em>within-block factor</em>.</p>
+</section>
+<section id="laboratory" class="level4">
+<h4 class="anchored" data-anchor-id="laboratory">Laboratory</h4>
+<p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. The manager needs 2 or more freezers set at the same temperature level to get true replications of the between-block factor. The manager can replicate reagent (within-block factor) within freezers.</p>
+</section>
+</section>
+<section id="common-pitfall-lack-of-replication" class="level2">
+<h2 class="anchored" data-anchor-id="common-pitfall-lack-of-replication">Common pitfall: Lack of Replication</h2>
+<p>As was mentioned earlier, in nested designs there are two levels of experimental units. Replication is needed for each level. A common pitfall is to overlook the need for replication of the between-block factor levels. The following story illustrates the problem.</p>
+<p>Farmer John would like to test the effectiveness of a name-brand fungicide spray (A) compared with the less expensive, generic brand (B). Fungi can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:</p>
+<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/FarmerJohnsAnecdote.PNG" class="img-fluid figure-img" width="424"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Farmer John’s Field</figcaption>
+</figure>
+</div>
+<p>Farmer John’s design has no replication! Replication is an independent repetition of the same conditions on <em>different</em> experimental units. Recall that an experimental unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. There is only one experimental unit receiving fungicide A and one experimental unit receiving fungicide B…no replication.</p>
+<p>Now imagine Farmer John’s son is visiting home from college and recognizes the problem and comes up with a brilliant solution. He says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten “replicates” within each field and analyze the data using standard statistical tools.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/FarmerJohnsSubsamples.PNG" class="img-fluid figure-img" width="424"></p>
+<figcaption class="figure-caption">Farmer John’s sub-samples</figcaption>
+</figure>
+</div>
+<p>By simply looking at the resulting dataset below, the statistical software cannot tell that these data points are not independent applications of the fungicide. (A trusting or a naive statistician would also be fooled unless they asked follow-up questions about the design of the experiment). In reality though, the fungicide was only applied to one experimental unit. Though multiple measurements were taken, there is still no replication.</p>
+<p><a href="javascript:showhide('unreplicated')"><span style="font-size:8pt;">click twice to show/hide data</span></a></p>
+<div id="unreplicated">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">replicate</th>
+<th style="text-align: center;">fungicide</th>
+<th style="text-align: center;">yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">501</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">507</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">482</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">522</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">498</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">487</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">497</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">501</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">500</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">442</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">506</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">536</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">514</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">516</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">510</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">524</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">519</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">504</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">499</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">539</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of fungicide application. Treating sub-samples as a replication of fungicide is like counterfeiting degrees of freedom. It is important to be able to identify false replication. False replication gives a false sense of statistical sophistication for a simple anecdote. We should be careful to compare treatments with the appropriate degrees of freedom for error.</p>
+<p>If we are not interested in the within-field variation, the easiest thing to do is average over the sub-samples and analyze the experiment in a typical manner. In the above example it becomes clear that we have no replication and cannot get an F-statistic.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It may be helpful to review <a href="./factor_structure.html#nested-factors">Nested Factors</a> (on the Factor structure page) and the page on <a href="./experimental_units.html">Experimental Units</a>.</p>
+<p>A review of <a href="./block_intro.html">blocking</a> may also be useful.</p>
+</div>
+</div>
+</section>
+<section id="other-terminology" class="level2">
+<h2 class="anchored" data-anchor-id="other-terminology">Other Terminology</h2>
+<p>We conclude this chapter with a discussion about different terminologies used to describe these designs. This text uses the generic terms “between-block factor”, “block”, and “within-block factor” to describe the factors in a nested design. However, depending on the field (pun intended!) in which you are working, different names are used to describe these factors and designs.</p>
+<section id="split-plot" class="level4">
+<h4 class="anchored" data-anchor-id="split-plot">Split Plot</h4>
+<p>Agricultural contexts prefer to use the terms “<strong>whole-plot factor</strong>”, “<strong>whole-plot</strong>”, and “<strong>sub-plot factor</strong>” respectively. This provides greater meaning since in agriculture these designs were developed to deal with planting different plots, or fields. The larger experimental unit is a whole field, and the smaller experimental unit is a sub-division of a field. Nested designs are more commonly referred to as Split Plot designs because a plot of land is being split-up, or sub-divided, in order to treat it as a block.</p>
+</section>
+<section id="repeated-measures" class="level4">
+<h4 class="anchored" data-anchor-id="repeated-measures">Repeated Measures</h4>
+<p>A separate set of terms will likely be used if the researcher is interested in the effect of a treatment over time. Blocks are not created by sub-dividing, but through repeated measurements of the experimental unit over different time periods. Hence the name, Repeated Measures.</p>
+<p>In this context, blocks are usually subjects (people) and are the larger experimental unit. The factor applied to subjects is called the “<strong>between-subjects factor</strong>”. The time period, or time slot, is the smaller experimental unit. The factor varied over time is the <strong>within-subjects factor</strong>.</p>
+<p>In a repeated measures design we do not refer to subjects as whole-plots and repeated measurements across time as sub-plots, though they behave functionally the same in the analysis. Th table summarizes the terms.</p>
+<table class="table">
+<caption>Terminology Summary Table</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 27%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Generic</th>
+<th style="text-align: center;">Sub-dividing Experimental Units to Get Blocks</th>
+<th style="text-align: center;">Re-using Experimental Units to Get Blocks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design Name</strong></td>
+<td style="text-align: center;">Nested Designs</td>
+<td style="text-align: center;">Split Plot</td>
+<td style="text-align: center;">Repeated Measures</td>
+</tr>
+<tr class="even">
+<td><strong>Larger Experimental Unit</strong></td>
+<td style="text-align: center;">Block</td>
+<td style="text-align: center;">Whole Plot</td>
+<td style="text-align: center;">Subject</td>
+</tr>
+<tr class="odd">
+<td><strong>Factor Applied to Blocks</strong></td>
+<td style="text-align: center;">Between-Block Factor</td>
+<td style="text-align: center;">Whole Plot Factor</td>
+<td style="text-align: center;">Between Subject Factor</td>
+</tr>
+<tr class="even">
+<td><strong>Smaller Experimental Unit</strong></td>
+<td style="text-align: center;">Unit, or observation</td>
+<td style="text-align: center;">Sub-plot</td>
+<td style="text-align: center;">Point in time, Time slot</td>
+</tr>
+<tr class="odd">
+<td><strong>Factor Applied to Unit</strong></td>
+<td style="text-align: center;">Within block Factor</td>
+<td style="text-align: center;">Sub-plot Factor</td>
+<td style="text-align: center;">Within Subject Factor</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
