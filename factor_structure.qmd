@@ -116,7 +116,7 @@ The way of organizing data that is taught here and used throughout the book is N
 
 A factor structure for an experimental design can help provide an effective way to plan for and organize the data in an experiment. Having a factor structure can help us determine the degrees of freedom and the effects of each factor. Factor effects and degrees of freedom are key components in an analysis of variance and are explained in more detail in the [ANOVA and the F-test](Anova_F-test.qmd) page under "Broad Topics". Don't worry if you don't know exactly what they mean yet. For now it is enough to know that identifying how factors are related to one another and using factor diagrams will allow us to come up with simple, general rules for calculating these quantities later on.
 
-Each factor can either be inside of, outside of, or crossed with another factor. (A factor can also be nested within another factor, but we will save that explanation for the Split Plot/Repeated Measure design).
+Each factor can either be inside of, outside of, or crossed with another factor. A factor can also be nested within another factor. We won't see nested factors until the Split Plot / Repeated Measures Designs.
 
 ## Inside and Outside
 
@@ -178,6 +178,13 @@ When two factors are crossed, the resulting (interaction) factor's levels will a
 ::: column-page
 ![](images/interaction_levels_inside.PNG)
 :::
+
+## Nested Factors
+
+```{r child="Nested_Samples.qmd"}
+
+```
+
 
 # General Rules
 

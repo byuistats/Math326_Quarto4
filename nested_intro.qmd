@@ -34,7 +34,7 @@ The Split Plot, or Repeated Measures design is very similar to the Complete Bloc
 
 An example can make this more clear. Let's start with a Complete Block experiment we are already familiar with...(wait for it)...the toothbrush example! Recall that a Complete Block design was described in detail on the [Complete Block](cb1.qmd) page. In summary, in that complete block design each person used each of the toothbrushes for a period of time. The order in which the brushes were used was randomized within each individual person.
 
-But what if each block is different in some way? How can I account for variation in the response due to different **types** of blocks. For example, maybe some of the blocks (people) are adults and some are children. I may be interested in understanding how each brush performs in the two populations. I could even investigate the interaction of brush with age. For example, if one of the brushes performs better with children than with adults, I may want to market the brush as a children's brush. In this case, "adult" and "child" are levels of the age factor, which is called a between-block factor.
+But what if each block is different in some way? How can variation in the response due to different **types** of blocks be accounted for. For example, maybe some of the blocks (people) are adults and some are children. I may be interested in understanding how each brush performs in the two populations. I could even investigate the interaction of brush with age. For example, if one of the brushes performs better with children than with adults, I may want to market the brush as a children's brush. In this case, "adult" and "child" are levels of the age factor, which is called a between-block factor.
 
 ![Nov. 2023, https://childrensdentaldallas.com/what-happens-to-kids-who-dont-brush-their-teeth/](images/kid-adult-toothbrush.jpeg){fig-align="center" width="312"}
 
@@ -54,6 +54,10 @@ The block is usually a random factor. Models that have a mix of fixed and random
 ## Recognizing When To Use a Nested Factor
 
 Nested factor designs commonly occur when one level of the experiment cannot be easily randomized because of physical constraints. Between-block factors often have limited replications compared to the within-block factor. Nested factor designs are common in agriculture, psychology and laboratory experiments as illustrated in the following 3 examples.
+
+::: column-margin
+If both experimental factors of interest are easy to randomize and assign, then using a split-plot/repeated measures design unnecessarily complicates things. It may make sense to use a simpler design, such as using a 2x2 factorial design inside of blocks or a 2-way basic factorial assigned completely at random.
+:::
 
 #### Agriculture
 
@@ -129,7 +133,7 @@ In this context, blocks are usually subjects (people) and are the larger experim
 In a repeated measures design we do not refer to subjects as whole-plots and repeated measurements across time as sub-plots, though they behave functionally the same in the analysis. Th table summarizes the terms.
 
 |                               |       Generic        | Sub-dividing Experimental Units to Get Blocks | Re-using Experimental Units to Get Blocks |
-|-----------------|:---------------:|:------------------:|:----------------:|
+|-------------------------------|:--------------------:|:---------------------------------------------:|:-----------------------------------------:|
 | **Design Name**               |    Nested Designs    |                  Split Plot                   |             Repeated Measures             |
 | **Larger Experimental Unit**  |        Block         |                  Whole Plot                   |                  Subject                  |
 | **Factor Applied to Blocks**  | Between-Block Factor |               Whole Plot Factor               |          Between Subject Factor           |

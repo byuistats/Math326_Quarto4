@@ -41,21 +41,11 @@ website:
            href: ancova.qmd
          - text: "Latin Square"
            href: latin_square.qmd
-         - text: "Nested Factor (aka Split Plot/Repeated Measure) Designs"
-           href: NestedFactor.qmd
-        # - text: "1 Factor, Completely Randomized, Basic Factorial"
-        #   href: GraphicalSummaries.html
-        # - text: "2 Factor, Completely Randomized, Basic Factorial"
-        #   href: NumericalSummaries.html
-        # - text: "3 Factor, Completely Randomized, Basic Factorial"
-        #   href: NumericalSummaries.html
-        # - text: "1 Factor, Complete Block"
-        #   href: NumericalSummaries.html
+         - text: "Nested Factor Designs Intro"
+           href: nested_intro.qmd
+         - text: "SP/RM[1,1]"
+           href: split_plot.qmd
 
-        # - text: "ANCOVA"
-        #   href: NumericalSummaries.html
-        # - text: "Split Plot/Repeated Measures"
-        #   href: NumericalSummaries.html
     - text: "Broad Topics"
       menu:
         - text: "Factor Structure"
@@ -72,12 +62,8 @@ website:
           href: multiple_comparisons.qmd
         - text: "Unbalanced Datasets"
           href: unbalanced.qmd
-        - text: "ZPower??"
-          href: Kruskal.html
-        - text: "ZRandom Factors??"
-          href: LogisticRegression.html
-        - text: "ZNested Subsamples"
-          href: "Nested_Samples.qmd"
+        - text: "Random Factors and EMS"
+          href: random_v_fixed.qmd
 
     - text: "R Instructions"
       menu:
@@ -88,10 +74,10 @@ website:
     right:
     - text: "Datasets"
       menu:
-        - text: "XYZ"
-          href: ./Data/AnalysisRubric.html
-        - text: "yadda yadda"
-          href: ./Data/StudentHousing.html
+        - text: "Download Zip Data"
+          href: data/data_for_class.zip
+        - text: "Data Page"
+          href: data_for_class.qmd
 
 
 format:

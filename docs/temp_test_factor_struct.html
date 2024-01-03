@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Introduction to Nested Designs</title>
+<title>Math326 Notebook - test for factor structure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,8 +55,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -150,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./NestedFactor.qmd" rel="" target="">
+    <a class="dropdown-item" href="./NestedFactor.html" rel="" target="">
  <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
   </li>  
     </ul>
@@ -197,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">ZRandom Factors??</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Nested_Samples.qmd" rel="" target="">
+    <a class="dropdown-item" href="./Nested_Samples.html" rel="" target="">
  <span class="dropdown-text">ZNested Subsamples</span></a>
   </li>  
     </ul>
@@ -250,19 +249,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#building-on-the-complete-block-design" id="toc-building-on-the-complete-block-design" class="nav-link active" data-scroll-target="#building-on-the-complete-block-design">Building on the Complete Block Design</a></li>
-  <li><a href="#recognizing-when-to-use-a-nested-factor" id="toc-recognizing-when-to-use-a-nested-factor" class="nav-link" data-scroll-target="#recognizing-when-to-use-a-nested-factor">Recognizing When To Use a Nested Factor</a></li>
-  <li><a href="#common-pitfall-lack-of-replication" id="toc-common-pitfall-lack-of-replication" class="nav-link" data-scroll-target="#common-pitfall-lack-of-replication">Common pitfall: Lack of Replication</a></li>
-  <li><a href="#other-terminology" id="toc-other-terminology" class="nav-link" data-scroll-target="#other-terminology">Other Terminology</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#beware-of-false-replication" id="toc-beware-of-false-replication" class="nav-link" data-scroll-target="#beware-of-false-replication">Beware of False Replication</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Nested Designs</h1>
+<h1 class="title">test for factor structure</h1>
 </div>
 
 
@@ -277,276 +276,167 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<script type="text/javascript">
- function showhide(id) {
-    var e = document.getElementById(id);
-    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
- }
-</script>
-<section id="building-on-the-complete-block-design" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="building-on-the-complete-block-design">Building on the Complete Block Design</h2>
-<p>The Split Plot, or Repeated Measures design is very similar to the Complete Block design, CB[1], with an extra wrinkle. Namely, an additional factor, referred to as the <strong>between-block factor</strong>, is added to the design. In the <a href="./cb1.html">Complete Block</a> design, blocks all come from the same population. In this new design, blocks can be assigned to different treatments (or for an observational factor, each block belongs to a different group). Thus, each level of the block factor is nested inside of the between-block factor; as a result, we often call these types of designs “nested designs”.</p>
-<p>An example can make this more clear. Let’s start with a Complete Block experiment we are already familiar with…(wait for it)…the toothbrush example! Recall that a Complete Block design was described in detail on the <a href="./cb1.html">Complete Block</a> page. In summary, in that complete block design each person used each of the toothbrushes for a period of time. The order in which the brushes were used was randomized within each individual person.</p>
-<p>But what if each block is different in some way? How can variation in the response due to different <strong>types</strong> of blocks be accounted for. For example, maybe some of the blocks (people) are adults and some are children. I may be interested in understanding how each brush performs in the two populations. I could even investigate the interaction of brush with age. For example, if one of the brushes performs better with children than with adults, I may want to market the brush as a children’s brush. In this case, “adult” and “child” are levels of the age factor, which is called a between-block factor.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/kid-adult-toothbrush.jpeg" class="img-fluid figure-img" width="312"></p>
-<figcaption class="figure-caption">Nov.&nbsp;2023, https://childrensdentaldallas.com/what-happens-to-kids-who-dont-brush-their-teeth/</figcaption>
-</figure>
-</div>
-<p>Between-block factors are not always observational factors, they can be experimental factors too (i.e.&nbsp;factors whose levels can be assigned). For example, in the toothbrush study, instead of comparing adults to children you may just be studying adults. You could randomly assign one set of people to floss and one group to not floss. Or, each person (block) may be assigned to eat a specific diet: protein vs.&nbsp;vegan vs.&nbsp;no restriction.</p>
-<p>Each block belongs to one level of the between-block factor. Thus, we say the block is <a href="./factor_structure.html"><strong>nested</strong></a> within the between-block factor. The factor whose levels are randomized within each block is referred to as the <strong>within-block factor</strong>. There are 2 levels of experimental units:</p>
-<ul>
-<li>blocks serve as an experimental unit for the between block factor</li>
-<li>sub-divisions of the block or time slots serve as the experimental unit for the within block factor.</li>
-</ul>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The models used to analyze nested designs are also called hierarchical models.</p>
-<p>The block is usually a random factor. Models that have a mix of fixed and random factors are called mixed models.</p>
-</div></div></section>
-<section id="recognizing-when-to-use-a-nested-factor" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="recognizing-when-to-use-a-nested-factor">Recognizing When To Use a Nested Factor</h2>
-<p>Nested factor designs commonly occur when one level of the experiment cannot be easily randomized because of physical constraints. Between-block factors often have limited replications compared to the within-block factor. Nested factor designs are common in agriculture, psychology and laboratory experiments as illustrated in the following 3 examples.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>If both experimental factors of interest are easy to randomize and assign, then using a split-plot/repeated measures design unnecessarily complicates things. It may make sense to use a simpler design, such as using a 2x2 factorial design inside of blocks or a 2-way basic factorial assigned completely at random.</p>
-</div></div><section id="agriculture" class="level4">
-<h4 class="anchored" data-anchor-id="agriculture">Agriculture</h4>
-<p>A researcher wants to test the impact of humidity, fungicide and their interaction on tomato yield in greenhouses. It is impossible to randomly assign humidity levels within a section of greenhouse. Therefore, each <em>greenhouse is treated as a block</em>. Greenhouse is the experimental unit for humidity because humidity level is randomly assigned to each green house. <em>Humidity is the between-block factor.</em></p>
-<p>Because levels of fertilizer are randomly assigned to different sections within each greenhouse, <em>fertilizer is the within-block factor</em>. Each Section within a greenhouse is an experimental unit for fertilizer.</p>
-</section>
-<section id="psychology" class="level4">
-<h4 class="anchored" data-anchor-id="psychology">Psychology</h4>
-<p>Researchers wanted to investigate the impact of sleep deprivation on cognitive performance. Recruiting participants who are willing to undergo sleep deprivation can be challenging due to potential physical and mental strain involved.</p>
-<p>Each participant was randomly assigned to one of these 3 sleep deprivation levels: one full night, one half night, and no deprivation. Then, the next day their cognitive performance was assessed in the morning, the evening, and again a full 24 hours after deprivation, and 48 hour after the sleep deprivation.</p>
-<p><em>Participants are the blocks</em> in this case. Because a level of sleep deprivation is assigned to each participant, <em>sleep deprivation is the between block factor</em>. All levels of time after deprivation appear in each and every block, so it is the <em>within-block factor</em>.</p>
-</section>
-<section id="laboratory" class="level4">
-<h4 class="anchored" data-anchor-id="laboratory">Laboratory</h4>
-<p>A lab manager would like to test the impact of freezer temperature on the life cycle of certain reagents. It is impossible to randomly assign temperature within a given freezer. The manager needs 2 or more freezers set at the same temperature level to get true replications of the between-block factor. The manager can replicate reagent (within-block factor) within freezers.</p>
-</section>
-</section>
-<section id="common-pitfall-lack-of-replication" class="level2">
-<h2 class="anchored" data-anchor-id="common-pitfall-lack-of-replication">Common pitfall: Lack of Replication</h2>
-<p>As was mentioned earlier, in nested designs there are two levels of experimental units. Replication is needed for each level. A common pitfall is to overlook the need for replication of the between-block factor levels. The following story illustrates the problem.</p>
-<p>Farmer John would like to test the effectiveness of a name-brand fungicide spray (A) compared with the less expensive, generic brand (B). Fungi can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="beware-of-false-replication" class="level3">
+<h3 class="anchored" data-anchor-id="beware-of-false-replication">Beware of False Replication</h3>
+<p>Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the less expensive, generic import. Fungi can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:</p>
 <div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/FarmerJohnsAnecdote.PNG" class="img-fluid figure-img" width="424"></p>
+<p><img src="images/FarmerJohnsAnecdote.PNG" class="img-fluid figure-img" width="500"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Farmer John’s Field</figcaption>
 </figure>
 </div>
-<p>Farmer John’s design has no replication! Replication is an independent repetition of the same conditions on <em>different</em> experimental units. Recall that an experimental unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. There is only one experimental unit receiving fungicide A and one experimental unit receiving fungicide B…no replication.</p>
+<p>Recall that an Experimental Unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. Replication is an independent repetition of the same conditions on different experimental units. Farmer John’s design has no replication.</p>
 <p>Now imagine Farmer John’s son is visiting home from college and recognizes the problem and comes up with a brilliant solution. He says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten “replicates” within each field and analyze the data using standard statistical tools.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/FarmerJohnsSubsamples.PNG" class="img-fluid figure-img" width="424"></p>
+<p><img src="images/FarmerJohnsSubsamples.PNG" class="img-fluid figure-img" width="500"></p>
 <figcaption class="figure-caption">Farmer John’s sub-samples</figcaption>
 </figure>
 </div>
-<p>By simply looking at the resulting dataset below, the statistical software cannot tell that these data points are not independent applications of the fungicide. (A trusting or a naive statistician would also be fooled unless they asked follow-up questions about the design of the experiment). In reality though, the fungicide was only applied to one experimental unit. Though multiple measurements were taken, there is still no replication.</p>
-<p><a href="javascript:showhide('unreplicated')"><span style="font-size:8pt;">click twice to show/hide data</span></a></p>
-<div id="unreplicated">
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 11%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">replicate</th>
-<th style="text-align: center;">fungicide</th>
-<th style="text-align: center;">yield</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">501</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">507</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">482</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">522</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">498</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">487</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">497</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">501</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">500</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">442</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">506</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">536</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">514</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">516</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">510</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">524</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">519</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">504</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">499</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">539</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of fungicide application. Treating sub-samples as a replication of fungicide is like counterfeiting degrees of freedom. It is important to be able to identify false replication. False replication gives a false sense of statistical sophistication for a simple anecdote. We should be careful to compare treatments with the appropriate degrees of freedom for error.</p>
-<p>If we are not interested in the within-field variation, the easiest thing to do is average over the sub-samples and analyze the experiment in a typical manner. In the above example it becomes clear that we have no replication and cannot get an F-statistic.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It may be helpful to review <a href="./factor_structure.html#nested-factors">Nested Factors</a> (on the Factor structure page) and the page on <a href="./experimental_units.html">Experimental Units</a>.</p>
-<p>A review of <a href="./block_intro.html">blocking</a> may also be useful.</p>
-</div>
-</div>
-</section>
-<section id="other-terminology" class="level2">
-<h2 class="anchored" data-anchor-id="other-terminology">Other Terminology</h2>
-<p>We conclude this chapter with a discussion about different terminologies used to describe these designs. This text uses the generic terms “between-block factor”, “block”, and “within-block factor” to describe the factors in a nested design. However, depending on the field (pun intended!) in which you are working, different names are used to describe these factors and designs.</p>
-<section id="split-plot" class="level4">
-<h4 class="anchored" data-anchor-id="split-plot">Split Plot</h4>
-<p>Agricultural contexts prefer to use the terms “<strong>whole-plot factor</strong>”, “<strong>whole-plot</strong>”, and “<strong>sub-plot factor</strong>” respectively. This provides greater meaning since in agriculture these designs were developed to deal with planting different plots, or fields. The larger experimental unit is a whole field, and the smaller experimental unit is a sub-division of a field. Nested designs are more commonly referred to as Split Plot designs because a plot of land is being split-up, or sub-divided, in order to treat it as a block.</p>
-</section>
-<section id="repeated-measures" class="level4">
-<h4 class="anchored" data-anchor-id="repeated-measures">Repeated Measures</h4>
-<p>A separate set of terms will likely be used if the researcher is interested in the effect of a treatment over time. Blocks are not created by sub-dividing, but through repeated measurements of the experimental unit over different time periods. Hence the name, Repeated Measures.</p>
-<p>In this context, blocks are usually subjects (people) and are the larger experimental unit. The factor applied to subjects is called the “<strong>between-subjects factor</strong>”. The time period, or time slot, is the smaller experimental unit. The factor varied over time is the <strong>within-subjects factor</strong>.</p>
-<p>In a repeated measures design we do not refer to subjects as whole-plots and repeated measurements across time as sub-plots, though they behave functionally the same in the analysis. Th table summarizes the terms.</p>
+<p>Neither a trusting statistician nor statistical software can tell that these data points are not independent applications of the experiment, and therefore not true replication. See the example below:</p>
 <table class="table">
-<caption>Terminology Summary Table</caption>
-<colgroup>
-<col style="width: 21%">
-<col style="width: 15%">
-<col style="width: 32%">
-<col style="width: 30%">
-</colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th style="text-align: center;">Generic</th>
-<th style="text-align: center;">Sub-dividing Experimental Units to Get Blocks</th>
-<th style="text-align: center;">Re-using Experimental Units to Get Blocks</th>
+<th style="text-align: center;">“replicate”</th>
+<th style="text-align: center;">Fungicide</th>
+<th style="text-align: center;">Yield</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Design Name</strong></td>
-<td style="text-align: center;">Nested Designs</td>
-<td style="text-align: center;">Split Plot</td>
-<td style="text-align: center;">Repeated Measures</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">501.36</td>
 </tr>
 <tr class="even">
-<td><strong>Larger Experimental Unit</strong></td>
-<td style="text-align: center;">Block</td>
-<td style="text-align: center;">Whole Plot</td>
-<td style="text-align: center;">Subject</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">507.27</td>
 </tr>
 <tr class="odd">
-<td><strong>Factor Applied to Blocks</strong></td>
-<td style="text-align: center;">Between-Block Factor</td>
-<td style="text-align: center;">Whole Plot Factor</td>
-<td style="text-align: center;">Between Subject Factor</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">482.3</td>
 </tr>
 <tr class="even">
-<td><strong>Smaller Experimental Unit</strong></td>
-<td style="text-align: center;">Unit, or observation</td>
-<td style="text-align: center;">Sub-plot</td>
-<td style="text-align: center;">Point in time, Time slot</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">522.1</td>
 </tr>
 <tr class="odd">
-<td><strong>Factor Applied to Unit</strong></td>
-<td style="text-align: center;">Within block Factor</td>
-<td style="text-align: center;">Sub-plot Factor</td>
-<td style="text-align: center;">Within Subject Factor</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">498.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">487.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">497.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">501.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">499.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">442.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">506.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">536.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">514.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">515.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">509.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">524.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">519.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">503.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">498.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">539.04</td>
 </tr>
 </tbody>
 </table>
+<p>Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can only provide a false sense of statistical sophistication for a simple anecdote.</p>
+<p>If we are not interested in the within-field variation, the easiest thing to do is average over the sub-samples and analyze the experiment in a typical manner. In the above example it becomes clear that we have no replication and cannot get an F-statistic.</p>
+<!-------------
+
+
+We can also include Sample "nested within" Treatment in our model, which allows us to estimate within-field variation and preserves the appropriate degrees of freedom for a design.
+
+The model including nested sub-samples can be written:
+
+$$
+y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
+$$ {#eq-subsample}
+
+Where
+
+-   $y_{ijk}$ is the observation that belongs to level *i* of $\alpha$, sub-sample, *j* , and the true replication, *k*.
+
+-   $\mu$ is the grand mean of the entire dataset.
+
+-   $\alpha_i$ is the fungicide level, *i*.
+
+-   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.
+
+
+
+This model only works, though, if you have treatment replications, *k*, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
+
+### Conclusion
+--------->
+<p>Failure to account for sub-samples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.</p>
 
 
 </section>
