@@ -4,4 +4,4 @@ title: "Data Files"
 
 [click here to download a zipped folder of data for class](data/data_for_class.zip)
 
-then store the folder somewhere in a project for this class.
+then extract the files into a folder somewhere in the project directory you create for this class.
