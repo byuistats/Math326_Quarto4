@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,7 +55,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -151,8 +152,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./NestedFactor.html" rel="" target="">
- <span class="dropdown-text">Nested Factor (aka Split Plot/Repeated Measure) Designs</span></a>
+    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+ <span class="dropdown-text">Nested Factor Designs Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+ <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
@@ -190,16 +195,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Kruskal.html" rel="" target="">
- <span class="dropdown-text">ZPower??</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./LogisticRegression.html" rel="" target="">
- <span class="dropdown-text">ZRandom Factors??</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Nested_Samples.html" rel="" target="">
- <span class="dropdown-text">ZNested Subsamples</span></a>
+    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+ <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
@@ -226,12 +223,12 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="././Data/AnalysisRubric.html" rel="" target="">
- <span class="dropdown-text">XYZ</span></a>
+    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+ <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="././Data/StudentHousing.html" rel="" target="">
- <span class="dropdown-text">yadda yadda</span></a>
+    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+ <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
@@ -762,176 +759,24 @@ Caution
 </section>
 <section id="nested-factors" class="level2">
 <h2 class="anchored" data-anchor-id="nested-factors">Nested Factors</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Beware of false replication!</p>
-</div>
-</div>
-<p>Consider Farmer John who would like to test a name-brand fungicide spray treatment compared with the less expensive, generic import. Fungi can have a severely negative impact on crop yield. Farmer John could plant his field as usual and spray half with fungicide A and half with fungicide B which would look like:</p>
-<div id="fig-block-sort" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/FarmerJohnsAnecdote.PNG" class="img-fluid figure-img" width="500"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Farmer John’s Field</figcaption>
-</figure>
-</div>
-<p>Recall that an Experimental Unit is the object to which a treatment is independently applied. In this case, each plot of land receives the entire application. Replication is an independent repetition of the same conditions on different experimental units. Farmer John’s design has no replication.</p>
-<p>Now imagine Farmer John’s son is visiting home from college and recognizes the problem and comes up with a brilliant solution. He says they can get all the replication they need by sampling from different places within the field and observing the yields at each sampling point. They could get ten “replicates” within each field and analyze the data using standard statistical tools.</p>
+<p>Two factors are nested when each level of one factors appears in only one level of the other factor. Consider these two factors in an experiment: student and classroom. If each student appears in only one of the classrooms then it could be said that student is nested in classroom.</p>
+<p>Similarly, in sports we often have two factors: player and team. The player is nested in the team. There may be multiple levels of nesting, as team could also be considered nested in a division or league.</p>
+<p>The diagram below shows data partitions for an experiment with 12 observations. The experiment was on crash test safety ratings of vehicles. Six different vehicles were chosen to be used in the study. A crash test safety score was obtained from a front collision and side collision.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/FarmerJohnsSubsamples.PNG" class="img-fluid figure-img" width="500"></p>
-<figcaption class="figure-caption">Farmer John’s sub-samples</figcaption>
+<p><img src="images/vehicle_impact.PNG" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Data Partition for 2 Factors: Impact Location and Vehicle</figcaption>
 </figure>
 </div>
-<p>Neither a trusting statistician nor statistical software can tell that these data points are not independent applications of the experiment, and therefore not true replication. See the example below:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">“replicate”</th>
-<th style="text-align: center;">Fungicide</th>
-<th style="text-align: center;">Yield</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">501.36</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">507.27</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">482.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">522.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">498.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">487.45</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">497.86</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">501.22</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">499.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">A</td>
-<td style="text-align: center;">442.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">506.45</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">536.12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">514.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">515.97</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">509.51</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">524.31</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">519.22</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">503.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">498.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">B</td>
-<td style="text-align: center;">539.04</td>
-</tr>
-</tbody>
-</table>
-<p>Sub-samples can provide useful information about how yields vary within a plot, but they are not replications of the experiment. It can only provide a false sense of statistical sophistication for a simple anecdote.</p>
-<p>If we are not interested in the within-field variation, the easiest thing to do is average over the sub-samples and analyze the experiment in a typical manner. In the above example it becomes clear that we have no replication and cannot get an F-statistic.</p>
-<!-------------
-
-
-We can also include Sample "nested within" Treatment in our model, which allows us to estimate within-field variation and preserves the appropriate degrees of freedom for a design.
-
-The model including nested sub-samples can be written:
-
-$$
-y_\text{ijk} = \mu + \alpha_i + S_\text{j(i)} + \epsilon_\text{ijk}
-$$ {#eq-subsample}
-
-Where
-
--   $y_{ijk}$ is the observation that belongs to level *i* of $\alpha$, sub-sample, *j* , and the true replication, *k*.
-
--   $\mu$ is the grand mean of the entire dataset.
-
--   $\alpha_i$ is the fungicide level, *i*.
-
--   $S_\text{j(i)}$ is the sub-sample *j* nested within level *i* of fungicide and is considered a nuisance parameter.
-
-
-
-This model only works, though, if you have treatment replications, *k*, otherwise you cannot estimate the error term, $\epsilon_\text{ijk}$.
-
-### Conclusion
---------->
-<p>Failure to account for sub-samples is like counterfeiting degrees of freedom. It is important to be able to identify false replication and be able to compare treatments with the appropriate degrees of freedom for error.</p>
+<p>However, there was another factor that the researchers wanted to take into account: vehicle type. Vehicle type has two levels: mini-van and sedan. Each vehicle in the experiment belongs to one and only one vehicle type. The full data partition is shown <a href="#fig-nest">Figure&nbsp;1</a>, with this third factor partition highlighted in red.</p>
+<div id="fig-nest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/vehicle_impact_type.PNG" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Vehicle is Nested in Type</figcaption>
+</figure>
+</div>
+<p>Crossed factors have a “symmetric” relationship, meaning saying Factor A is crossed with Factor B is equivalent to saying Factor B is crossed with Factor B. This is <strong>not</strong> true for nested factors. While it is correct to say Vehicle is nested within Type, it is not correct to say that Type is nested within Vehicle.</p>
+<p>Often, the factor that is nested within another factor is an experimental unit. This creates two levels of experimental units. This is discussed at length in the <a href="./nested_intro.html">Introduction to Nested Designs</a> and <a href="./split_plot.html">SP/RM[1,1]</a> chapters. Split Plot/Repeated Measure designs are the only designs in this book that deal with nested factors.</p>
 </section>
 </section>
 <section id="general-rules" class="level1">

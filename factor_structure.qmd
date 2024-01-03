@@ -181,10 +181,21 @@ When two factors are crossed, the resulting (interaction) factor's levels will a
 
 ## Nested Factors
 
-```{r child="Nested_Samples.qmd"}
+Two factors are nested when each level of one factors appears in only one level of the other factor. Consider these two factors in an experiment: student and classroom. If each student appears in only one of the classrooms then it could be said that student is nested in classroom.
 
-```
+Similarly, in sports we often have two factors: player and team. The player is nested in the team. There may be multiple levels of nesting, as team could also be considered nested in a division or league.
 
+The diagram below shows data partitions for an experiment with 12 observations. The experiment was on crash test safety ratings of vehicles. Six different vehicles were chosen to be used in the study. A crash test safety score was obtained from a front collision and side collision.
+
+![Data Partition for 2 Factors: Impact Location and Vehicle](images/vehicle_impact.PNG)
+
+However, there was another factor that the researchers wanted to take into account: vehicle type. Vehicle type has two levels: mini-van and sedan. Each vehicle in the experiment belongs to one and only one vehicle type. The full data partition is shown @fig-nest, with this third factor partition highlighted in red.
+
+![Vehicle is Nested in Type](images/vehicle_impact_type.PNG){#fig-nest}
+
+Crossed factors have a "symmetric" relationship, meaning saying Factor A is crossed with Factor B is equivalent to saying Factor B is crossed with Factor B. This is **not** true for nested factors. While it is correct to say Vehicle is nested within Type, it is not correct to say that Type is nested within Vehicle.
+
+Often, the factor that is nested within another factor is an experimental unit. This creates two levels of experimental units. This is discussed at length in the [Introduction to Nested Designs](nested_intro.qmd) and [SP/RM\[1,1\]](split_plot.qmd) chapters. Split Plot/Repeated Measure designs are the only designs in this book that deal with nested factors.
 
 # General Rules
 

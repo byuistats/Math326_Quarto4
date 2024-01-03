@@ -158,7 +158,7 @@ $$
 ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied:
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|-------------------|--------------------------|---------------------------|
+|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
 | Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 | The residuals are normally distributed | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
 | Independent residuals                  | Order plot                                              | No pattern/trend                                         |
@@ -503,7 +503,7 @@ $$
 
 Similarly, we get the sum of squares for the remaining factors.
 
-
+```{=tex}
 \begin{align}
 SS_\text{Fungicide} &= 12 * 5.\overline{4} = 65.\overline{3}\\
 \\
@@ -516,8 +516,7 @@ SS_\text{Fung. x Variety Interaction} &= 4 * ( 1.36\overline{1} + 4.3402\overlin
 SS_\text{Residuals} &= 2 * (2.\overline{7} + 25 + .69\overline{4} + 9 + .69\overline{4} + 4) = 84.\overline{3}
 
 \end{align}
-
-
+```
 Putting this information into the ANOVA table gets us the result shown in @tbl-ss_anova.
 
 ```{r echo = FALSE}
