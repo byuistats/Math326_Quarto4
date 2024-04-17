@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <caption>Table&nbsp;1: Expanded Hypotheses</caption>
 <colgroup>
 <col style="width: 50%">
-<col style="width: 49%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -384,9 +384,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <caption>Table&nbsp;2: Contrast Coefficients</caption>
 <colgroup>
-<col style="width: 40%">
-<col style="width: 40%">
-<col style="width: 18%">
+<col style="width: 38%">
+<col style="width: 37%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -442,7 +442,7 @@ H_0: \mu_\text{man} - \mu_\text{osc} = 0
 <p><span id="eq-diff2means"><span class="math display">\[
 t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} + \frac{1}{n_2})}}
 \tag{1}\]</span></span></p>
-<p>The difference in the numerator is calculated directly from the contrast (multiplying the set of coefficients by their respective factor level mean). In the denominator, the pooled variance (<span class="math inline">\(s^2_p\)</span>) is identical to the mean squared error from the ANOVA summary table. The degrees of freedom for this test statistic are equivalent to the residual degrees of freedom.</p>
+<p>The difference in the numerator is calculated directly from the contrast (multiplying the set of coefficients by their respective factor level mean). In the denominator, the pooled variance (<span class="math inline">\(s^2_p\)</span>) is identical to the mean squared error from the ANOVA summary table. The degrees of freedom for this t-test statistic are equal to the residual degrees of freedom.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -586,11 +586,11 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 </div>
 </div>
 </div>
-<p>With that information we can proceed with our whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
+<p>With that information we can proceed with our test of whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
 <p><span id="eq-tvalue"><span class="math display">\[
 t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 \tag{3}\]</span></span></p>
-<p>A t statistic of 1.97 leads to a p-value of 0.063. Since the p-value is greater than our traditional alpha of 0.05, we fail to reject the null hypothesis of equality. In other words, there is insufficient evidence to claim that the manual brush and the oscillating brush have different mean values for percent area of teeth with plaque.</p>
+<p>A t statistic of 1.97 with 20 degrees of freedom, leads to a p-value of 0.063(using a two-tailed alternative hypothesis of “not equal”). Since the p-value is greater than our traditional alpha of 0.05, we fail to reject the null hypothesis of equality. In other words, there is insufficient evidence to claim that the manual brush and the oscillating brush have different mean values for percent area of teeth with plaque.</p>
 </section>
 <section id="t-test-for-any-contrast" class="level3">
 <h3 class="anchored" data-anchor-id="t-test-for-any-contrast">t-test for Any Contrast</h3>
@@ -720,12 +720,12 @@ Confidence level used: 0.95 </code></pre>
 <table class="table">
 <caption>Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts</caption>
 <colgroup>
-<col style="width: 39%">
-<col style="width: 17%">
-<col style="width: 11%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 11%">
+<col style="width: 26%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -771,12 +771,12 @@ Confidence level used: 0.95 </code></pre>
 <table class="table">
 <caption>Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts</caption>
 <colgroup>
-<col style="width: 36%">
-<col style="width: 19%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 13%">
-<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -822,9 +822,9 @@ Confidence level used: 0.95 </code></pre>
 <table class="table">
 <caption>Table&nbsp;6: Orthogonality of Contrasts from <a href="#tbl-coefficients">Table&nbsp;2</a></caption>
 <colgroup>
-<col style="width: 42%">
-<col style="width: 50%">
-<col style="width: 7%">
+<col style="width: 36%">
+<col style="width: 43%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
