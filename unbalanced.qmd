@@ -231,11 +231,11 @@ The sum of squares contained in a Type III ANOVA table can be interpreted as the
 
 # Type II
 
-One of the major complaints against a Type III approach is that it violates the principle of marginality. The marginality principle states that when a higher order effect (e.g. an interaction) is included in a model, the lower order effects (e.g. main effects) should also be includeded in the model. According to this principle it does not make sense to test a main effect after accounting for the interaction, which is exactly the situation we came across in Type III.
+One of the major complaints against a Type III approach is that it violates the principle of marginality. The marginality principle states when a higher order effect (e.g. an interaction) is included in a model, the lower order effects (e.g. main effects) should also be included in the model. According to this principle it does not make sense to test a main effect "as if last" *after* accounting for the interaction, which is exactly the situation we came across in Type III (see @tbl-type3, panel b and c).
 
 Type II strives to maintain the principle of marginality, while at the same time taking an "as if last" approach. Stated another way, in a Type II ANOVA, each factor is tested "as if last" but ignoring all higher order terms.
 
-To illustrate this, 3 different Type I ANOVA tables are shown below. In each table, a different factor is listed last. In the panels (a) and (b) of @tbl-three_anovas2 the interaction is excluded since we need an "as if last, while exluding higher order terms" from the model. In panel (c) of table the interaction is included, but is last.
+To illustrate this, 2 different Type I ANOVA tables are shown in @tbl-three_anovas2. (Note: These are actually the same tables presented in explanation of Type I). In each table, the order of the main effects is swapped, while the higher order interaction always appears afterward.
 
 ```{r}
 #| code-fold: false
@@ -255,7 +255,7 @@ thin_last2 <- aov(height~ initial_size + thinning + thinning:initial_size , data
 pander(anova(thin_last2), round = c(0,0,0,1,2))
 ```
 
-The type II ANOVA output, in @tbl-type2, contains the sum of squares for each factor in @tbl-three_anovas2 when the factor was listed last and higher order factors were not included.
+The type II ANOVA output, in @tbl-type2, contains the sum of squares from @tbl-three_anovas2. Specifically, the Sum of Squares in @tbl-type2 for thinning is 590 because that is the Sum of Squares in @tbl-three_anovas2 panel b, when "thinning" was the last main effect listed. Similarly, the Sum of Squares in @tbl-type2 for initial_size is 4846 because that is the Sum of Squares from @tbl-three_anovas2 panel a, when "initial_size" was the last main effect listed.
 
 ```{r}
 #| code-fold: true
