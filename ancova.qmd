@@ -122,7 +122,7 @@ There are a couple key **advantages to using a covariate in the analysis**. Much
 
 Beware of using ANCOVA to adjust for differences in groups of observational data. Doing so may require you to extrapolate from the line to a region where there are no (or few) observations. Consider a study that investigated the effect of a fertilizer on two types of trees: palm trees and pine trees. Researchers also considered the effect that air temperature could have on the way the fertilizer worked. They randomly selected nurseries from across the state of California to participate in the study. The nurseries applied the fertilizer to a mature tree and then measured the growth after 12 months.
 
-The covariate in this case is the temperature of the surrounding area. The factor is the tree type (it is an observational factor, not an experiment). The problem lies in the fact that palm trees are all found in a warmer climate and the pine trees tend to be found in cooler climate. It is not appropriate to extrapolate the relationship of temperature and growth to predict how either tree would do in the other climate since we don't have data in those conditions.  
+The covariate in this case is the temperature of the surrounding area. The factor is the tree type (it is an observational factor, not an experiment). The problem lies in the fact that palm trees are all found in a warmer climate and the pine trees tend to be found in cooler climate. It is not appropriate to extrapolate the relationship of temperature and growth to predict how either tree would do in the other climate since we don't have data in those conditions.
 
 ```{r}
 #| include: false
@@ -141,8 +141,7 @@ df %>% ggplot(aes(x = temp, y = growth, color = tree)) +
 
 ```
 
-
-In addition, the covariate value should not be affected by the treatment. Nor should the covariate effect the random assignment. This is an *experimental design* assumption, not an analysis assumption. If you were doing an observational study, random assignment does not occur, and the ANCOVA analysis can be quite help in isolating the effect of each variable in the presence of the other. In an observational study you could commonly see correlation between an independent factor and a continuous covariate. 
+In addition, the covariate value should not be affected by the treatment. Nor should the covariate effect the random assignment. This is an *experimental design* assumption, not an analysis assumption. If you were doing an observational study, random assignment does not occur, and the ANCOVA analysis can be quite help in isolating the effect of each variable in the presence of the other. In an observational study you could commonly see correlation between an independent factor and a continuous covariate.
 
 # ANCOVA vs. Blocking
 
@@ -315,13 +314,14 @@ The scatterplot and table make it apparent that the Oldest group tends to loose 
 
 ### Generic Code
 
-Create the model using the `aov()` function.
+Create the model using the `lm()` function.
 
 ```{r}
 #| eval: false
 #| echo: true
 
-cov_mod <- lm(Y ~ covariate + treatment, data = YourDataSet, 
+cov_mod <- lm(Y ~ covariate + treatment, 
+              data = YourDataSet, 
               contrast = list(treatment = contr.sum))
 ```
 
@@ -339,7 +339,9 @@ The model above assumes that the interaction between the covariate and the treat
 #| eval: false
 #| echo: true
 
-cov_mod <- lm(Y ~ covariate + treatment + covariate:treatment, data = YourDataSet)
+cov_mod <- lm(Y ~ covariate + treatment + covariate:treatment, 
+              data = YourDataSet,
+              contrast = list(treatment = contr.sum))
 ```
 
 After creating the model, results of the hypothesis tests for each term in the model can be seen using the `Anova()` command from the `car` package. Don't forget to specify `type = 3` in the `Anova()` command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.
@@ -438,7 +440,7 @@ The results of the ANOVA test are shown below.
 pander(Anova(ymo_ancova, type = 3))
 ```
 
-:::{column-margin}
+::: {column-margin}
 `summary` provides a different set of output, but does not include an F test for the factor. Rather, it provides unadjusted t-tests of whether each factor level mean is equal to the mean of the reference factor level's mean.
 :::
 
@@ -450,7 +452,7 @@ Notice that with the first model, the interaction term was included. Including i
 
 ## Check Assumptions
 
-The first two assumptions (linear relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs. fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met. 
+The first two assumptions (linear relationship of response and covariate, and constant variance of the error term) can be checked with a residual vs. fitted plot. If the plot appears to be a random scatter with no patterns or trends, then both assumptions are considered met.
 
 ```{r}
 #| label: fig-res_v_fit

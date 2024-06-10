@@ -339,7 +339,6 @@ Knowing which type to use is difficult, but can be summarized with a [simple dec
 
     a)  If Yes, use Type III
     b)  If No, use Type II
-    
 
 # Examples
 
@@ -415,7 +414,7 @@ To get Type II or Type III ANOVA you will create a model in the usual way and an
 #| eval: false
 #| echo: true
 myaov <- aov(y ~ factorA * factorB, 
-             contrasts = list(factorA = contr.sum, factorB = contr.sum))
+             contrasts = list(factorA = contr.sum, factorB = contr.sum), data = df)
 car::Anova(myaov, type = 3)
 ```
 
@@ -445,9 +444,5 @@ Notice there are two values needed in the contrasts input vector. The first spec
 Many students are in the habit of using `summary()` to evaluate model hypothesis tests. When called on an `aov` object (i.e. an object created using the `aov()` command), `summary()`' prints a Type I ANOVA table.
 
 However, when called on an `lm()` object, `summary()` does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept. The reference level is whatever level comes first alphabetically, unless defined otherwise.). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.
-
-::: column-margin
-`lm()` is usually preferred over `aov()` if there are more than 1 numeric independent variables in the model.
-:::
 
 To get an ANOVA table and the F-tests for a factor's overall significance you can call `car::Anova()` or `anova()` on an `lm()` object.

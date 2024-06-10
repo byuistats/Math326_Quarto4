@@ -1334,13 +1334,13 @@ Tip
 </div>
 </div>
 </section>
-<section id="r-instruction" class="level1 page-columns page-full">
+<section id="r-instruction" class="level1">
 <h1>R Instruction</h1>
 <p>Type I ANOVA is the default in the <code>anova()</code> command. In fact, it is the only type of ANOVA available in <code>anova()</code>.</p>
 <p>To get Type II or Type III ANOVA you will create a model in the usual way and and redefine the way the model is parameterized using a <code>contrasts</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> argument. Then use the <code>Anova()</code> command from the <code>car</code> package. Note the use of the capital ‘A’, instead of lower case ‘a’, in the function name.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> factorA <span class="sc">*</span> factorB, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">factorA =</span> contr.sum, <span class="at">factorB =</span> contr.sum))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">factorA =</span> contr.sum, <span class="at">factorB =</span> contr.sum), <span class="at">data =</span> df)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(myaov, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -1368,14 +1368,11 @@ Alternative Code
 <p>Notice there are two values needed in the contrasts input vector. The first specifies how to handle unordered categorical variables, the second specifies how to handle ordered categorical variables. The default contrasts in R (in case you need to revert back) is <code>options(contrasts = c("contr.treatment", "contr.poly"))</code>.</p>
 </div>
 </div>
-<section id="summary" class="level2 page-columns page-full">
+<section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">summary()</h2>
 <p>Many students are in the habit of using <code>summary()</code> to evaluate model hypothesis tests. When called on an <code>aov</code> object (i.e.&nbsp;an object created using the <code>aov()</code> command), <code>summary()</code>’ prints a Type I ANOVA table.</p>
 <p>However, when called on an <code>lm()</code> object, <code>summary()</code> does not print an ANOVA table at all. The default output is to print variable coefficients, standard deviations, and t-test results (t statistic and p-value). If the object has an independent, categorical factor variable a t-test will be conducted for the factor levels. (Actually, all but 1 factor level will be tested. The missing factor level is considered the reference level and is included in the intercept. The reference level is whatever level comes first alphabetically, unless defined otherwise.). If there are only two factor levels, the p-value from the t-test of that factor will be equal to the p-values from a Type III ANOVA applied to the same model.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><code>lm()</code> is usually preferred over <code>aov()</code> if there are more than 1 numeric independent variables in the model.</p>
-</div></div><p>To get an ANOVA table and the F-tests for a factor’s overall significance you can call <code>car::Anova()</code> or <code>anova()</code> on an <code>lm()</code> object.</p>
+<p>To get an ANOVA table and the F-tests for a factor’s overall significance you can call <code>car::Anova()</code> or <code>anova()</code> on an <code>lm()</code> object.</p>
 
 
 </section>

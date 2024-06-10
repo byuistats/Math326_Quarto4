@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -97,6 +104,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -104,9 +138,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
     </a>
@@ -118,133 +152,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+    <a class="dropdown-item" href="./research_objectives.html">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+    <a class="dropdown-item" href="./response_variable.html">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+    <a class="dropdown-item" href="./experimental_units.html">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+    <a class="dropdown-item" href="./sources_of_variances.html">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+    <a class="dropdown-item" href="./randomization.html">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+    <a class="dropdown-item" href="./bf3.html">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./block_intro.html">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+    <a class="dropdown-item" href="./cb1.html">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+    <a class="dropdown-item" href="./ancova.html">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+    <a class="dropdown-item" href="./latin_square.html">
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./nested_intro.html">
  <span class="dropdown-text">Nested Factor Designs Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+    <a class="dropdown-item" href="./split_plot.html">
  <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+    <a class="dropdown-item" href="./Anova_F-test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+    <a class="dropdown-item" href="./assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+    <a class="dropdown-item" href="./contrast.html">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+    <a class="dropdown-item" href="./multiple_comparisons.html">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+    <a class="dropdown-item" href="./unbalanced.html">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+    <a class="dropdown-item" href="./random_v_fixed.html">
  <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+    <a class="dropdown-item" href="./DescribeData.html">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -252,24 +286,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+    <a class="dropdown-item" href="./data/data_for_class.zip">
  <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+    <a class="dropdown-item" href="./data_for_class.html">
  <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -329,7 +363,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <script type="text/javascript">
  function showhide(id) {
@@ -354,32 +390,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="example-benefits-of-ancova" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="example-benefits-of-ancova">Example: Benefits of ANCOVA</h2>
 <p>A company wanted to study how distributing a coupon could effect sales. The company randomly selected 4 stores and distributed coupons for those stores. For another 4 stores the company would not distribute coupons, but would still track sales.</p>
-<p>Initial analysis of the results, contained in <a href="#fig-ancova_benefit">Figure&nbsp;1</a> <em>(a)</em>, surprised the company. The difference in mean sales between the coupon group and the non-coupon group was small (only $2,500) relative to the variability within each group. A hypothesis test of the difference revealed no statistically significant results.</p>
-<p>The company’s BYU-Idaho intern realized that the research team had not accounted for the fact that some stores were in smaller cities than others. He noticed that the “no coupon” stores tended to be located in larger cities, with potential for more sales. The “coupon” group of stores tended to be located in smaller cities. This can be seen in <a href="#fig-ancova_benefit">Figure&nbsp;1</a> <em>(b)</em>, notice the “no coupon” group tends to be located farther to the right on the x-axis.</p>
-<p>The relationship between city size and sales revenue was accounted for with a regression line for each group (see <a href="#fig-ancova_benefit">Figure&nbsp;1</a> <em>(b)</em>). Researchers adjusted for the difference in city size between the two groups and found the difference in predicted revenue between “coupon” and “no coupon” groups was actually $6,400. This difference is considered significant at the <span class="math inline">\(\alpha = 0.10\)</span> level.</p>
-<div id="fig-ancova_benefit" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<div class="cell column-screen-inset-shaded quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ancova_benefit-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-ancova_benefit-1.png" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672"></p>
-<figcaption class="figure-caption">(a)</figcaption>
+<p>Initial analysis of the results, contained in <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(a)</em>, surprised the company. The difference in mean sales between the coupon group and the non-coupon group was small (only $2,500) relative to the variability within each group. A hypothesis test of the difference revealed no statistically significant results.</p>
+<p>The company’s BYU-Idaho intern realized that the research team had not accounted for the fact that some stores were in smaller cities than others. He noticed that the “no coupon” stores tended to be located in larger cities, with potential for more sales. The “coupon” group of stores tended to be located in smaller cities. This can be seen in <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(b)</em>, notice the “no coupon” group tends to be located farther to the right on the x-axis.</p>
+<p>The relationship between city size and sales revenue was accounted for with a regression line for each group (see <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(b)</em>). Researchers adjusted for the difference in city size between the two groups and found the difference in predicted revenue between “coupon” and “no coupon” groups was actually $6,400. This difference is considered significant at the <span class="math inline">\(\alpha = 0.10\)</span> level.</p>
+<div id="fig-ancova_benefit" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-ancova_benefit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div>
+
+</div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-nrow="1" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ancova_benefit-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ancova_benefit-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-ancova_benefit-1.png" id="fig-ancova_benefit-1" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ancova_benefit-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ancova_benefit-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-ancova_benefit-2.png" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672"></p>
-<figcaption class="figure-caption">(b)</figcaption>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ancova_benefit-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ancova_benefit-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-ancova_benefit-2.png" id="fig-ancova_benefit-2" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ancova_benefit-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;1: Benefit of a Covariate</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ancova_benefit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Benefit of a Covariate
+</figcaption>
 </figure>
 </div>
 <p>Notice the straight, parallel lines in panel <em>(b)</em> of the above plot. This is a visual indicator that there is no interaction between the covariate and the independent treatment factor. In other words, the effect of the treatment does not change depending on the value of the covariate (city size).</p>
@@ -432,12 +483,12 @@ y_{ij} = \mu + \alpha*x_i + \beta_j + \epsilon_{ij}
 <p>The hypothesis of interest for a simple ANCOVA model is about the treatment factor:</p>
 <p><span class="math display">\[H_0: \beta_j = 0 \text{ for all }j\]</span></p>
 <p><span class="math display">\[H_a: \beta_j \ne 0 \text{ for some }j\]</span></p>
-<p>To be sure the ANCOVA model is appropriate, the researcher should test for an interaction between the treatment factor and covariate. If the interaction is significant, the researcher should proceed to a regression analysis with the interaction term included. If the interaction term is NOT significant, the simpler ANCOVA model (<a href="#eq-ancova1">Equation&nbsp;1</a>) can be adopted.</p>
+<p>To be sure the ANCOVA model is appropriate, the researcher should test for an interaction between the treatment factor and covariate. If the interaction is significant, the researcher should proceed to a regression analysis with the interaction term included. If the interaction term is NOT significant, the simpler ANCOVA model (<a href="#eq-ancova1" class="quarto-xref">Equation&nbsp;1</a>) can be adopted.</p>
 <p>“Unfortunately, the hypothesis test we have used previously for balanced designs does not work in this case. The covariate values are not balanced in relation to the rest of the design.”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Practically speaking this means we cannot use the Type I Sums of Squares (SS) and must use a different type instead, likely a <strong>Type III SS</strong>.</p>
 <p>To read an explanation on how an F Test for treatment is calculated <a href="javascript:showhide('F_details')"><strong>click here</strong></a></p>
 <!-- <a href="javascript:showhide('textplot')">[click this link]{style="font-size:8pt;"}</a> -->
 <div id="F_details" style="display:none;">
-<p>The F test for the treatment factor in the Type III SS represents a ratio of squared errors. The denominator contains the mean squared error (MSE) for the <strong>“full” model</strong>: the model described by <a href="#eq-ancova1">Equation&nbsp;1</a>.</p>
+<p>The F test for the treatment factor in the Type III SS represents a ratio of squared errors. The denominator contains the mean squared error (MSE) for the <strong>“full” model</strong>: the model described by <a href="#eq-ancova1" class="quarto-xref">Equation&nbsp;1</a>.</p>
 <p>In contrast to the full model, the <strong>reduced model</strong> is the model obtained by ignoring treatment effects. In other words, it is a simple linear regression between the response and the covariate. This is the model we would get if the null hypothesis for the treatment factor were true.</p>
 <p>To get the F statistic for treatment you must first calculate the difference in Sum of Squared Error between the full and reduced models. In other words, how much did the Sum of Squared Error change by adding the treatment factor to the model. The difference in Sum of Squared Error is then divided by the difference in degrees of freedom for error between the full and reduced model.</p>
 <p>The numerator degrees of freedom for this F test statistic is calculated as the number of levels in the treatment factor minus one. The denominator degrees of freedom is equal to the degrees of freedom for error under the full model.</p>
@@ -509,7 +560,7 @@ F_\text{treatment factor} =
 <p>It is believed that people with a higher starting weight will find it easier to loose a larger proportion of their weight. Therefore, a person’s starting weight (measured in pounds) will be used as a covariate.</p>
 <p>First we load required packages, read in the data, and store the age group information in a variable called <code>ymo</code>.</p>
 <div class="cell" data-cap="Read in Data">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can read in the data with this path directly from the web:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://byuistats.github.io/Math326_Quarto4/data/biggest_loser_ancova.csv</span></span>
@@ -526,7 +577,7 @@ F_\text{treatment factor} =
 <h2 class="anchored" data-anchor-id="describe-the-data">Describe the Data</h2>
 <p>A scatterplot of the proportion of initial weight lost and initial weight is presented below, with each point colored according to their age group. A numeric summary of the data by age group is also presented.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
@@ -540,28 +591,38 @@ F_\text{treatment factor} =
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_smooth(method = "lm", se = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-summary" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Graphical Summary</figcaption>
+<div id="fig-summary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Graphical Summary
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div>
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(initial_weight_at_start_show<span class="sc">~</span>ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(prop_initial_weight_lost <span class="sc">~</span> ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-numerical_summary" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;1: Numerical Summary by Age Group</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-numerical_summary-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-numerical_summary" style="flex-basis: 100.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(a) Initial Weight (lbs)</caption>
+<div id="tbl-numerical_summary" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-numerical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Numerical Summary by Age Group
+</figcaption>
+<div aria-describedby="tbl-numerical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="tbl-numerical_summary-1" class="do-not-create-environment quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-numerical_summary-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Initial Weight (lbs)
+</figcaption>
+<div aria-describedby="tbl-numerical_summary-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-numerical_summary-1" class="do-not-create-environment table table-sm table-striped small">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 8%">
@@ -623,11 +684,17 @@ F_\text{treatment factor} =
 </tbody>
 </table>
 </div>
+</figure>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-numerical_summary-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-numerical_summary" style="flex-basis: 100.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(b) Percent of Initial Weight Lost</caption>
+</div>
+<div class="cell-output-display">
+<div id="tbl-numerical_summary-2" class="do-not-create-environment quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-numerical_summary-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Percent of Initial Weight Lost
+</figcaption>
+<div aria-describedby="tbl-numerical_summary-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-numerical_summary-2" class="do-not-create-environment table table-sm table-striped small">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 10%">
@@ -689,7 +756,11 @@ F_\text{treatment factor} =
 </tbody>
 </table>
 </div>
+</figure>
 </div>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>The scatterplot and table make it apparent that the Oldest group tends to loose a smaller percentage of their initial weight than their older counterparts. Furthermore, the maximum and the mean initial weight of Oldest contestants is lower than the maximum and mean initial weight of the other two age groups respectively.</p>
@@ -698,10 +769,11 @@ F_\text{treatment factor} =
 <h2 class="anchored" data-anchor-id="create-and-test-the-model">Create and Test the Model</h2>
 <section id="generic-code" class="level3">
 <h3 class="anchored" data-anchor-id="generic-code">Generic Code</h3>
-<p>Create the model using the <code>aov()</code> function.</p>
+<p>Create the model using the <code>lm()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment, <span class="at">data =</span> YourDataSet, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> YourDataSet, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>cov_mod</code> is the user defined name in which the results of the aov() model are stored</li>
@@ -714,7 +786,9 @@ F_\text{treatment factor} =
 </ul>
 <p>The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is significant it can be removed; if it is not, then it should remain in the model. To include the interaction in the model the following code would be used.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment <span class="sc">+</span> covariate<span class="sc">:</span>treatment, <span class="at">data =</span> YourDataSet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment <span class="sc">+</span> covariate<span class="sc">:</span>treatment, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> YourDataSet,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After creating the model, results of the hypothesis tests for each term in the model can be seen using the <code>Anova()</code> command from the <code>car</code> package. Don’t forget to specify <code>type = 3</code> in the <code>Anova()</code> command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.</p>
 <div class="cell">
@@ -726,9 +800,9 @@ F_\text{treatment factor} =
 <section id="biggest-loser" class="level3">
 <h3 class="anchored" data-anchor-id="biggest-loser">Biggest Loser</h3>
 <p>We first create the model, with proportion of initial weight lost as the response, initial weight (in pounds) as the covariate, and age group as our factor of interest. We will also include the interaction between initial weight and age group in the model to see if it is significant.</p>
-<p>This model equates to fitting a separate best-fit line for each group, each line having the potential for a unique slope - as depicted in <a href="#fig-uniqe_slope">Figure&nbsp;3</a>.</p>
+<p>This model equates to fitting a separate best-fit line for each group, each line having the potential for a unique slope - as depicted in <a href="#fig-uniqe_slope" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bl_data <span class="sc">%&gt;%</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> initial_weight_at_start_show, <span class="at">y =</span> prop_initial_weight_lost,</span>
@@ -740,17 +814,21 @@ F_\text{treatment factor} =
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-uniqe_slope" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-uniqe_slope-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Interaction Term Included Allows for Unique Slopes</figcaption>
+<div id="fig-uniqe_slope" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uniqe_slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-uniqe_slope-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uniqe_slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Interaction Term Included Allows for Unique Slopes
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The slope of the lines for Middle and Oldest appear nearly identical. The slope for Youngest appears different, but we will create the model and run the hypothesis test on the interaction term to be sure.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bl_data2 <span class="ot">&lt;-</span> bl_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> ymo, <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="ot">=</span> initial_weight_at_start_show)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -839,9 +917,9 @@ Note
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bl_data2,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">contrast =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The model is graphically depicted in <a href="#fig-ancova_model">Figure&nbsp;4</a>.</p>
+<p>The model is graphically depicted in <a href="#fig-ancova_model" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> ymo_ancova<span class="sc">$</span>coefficients</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -857,10 +935,14 @@ Note
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Total Weight Lost (as a % of Initial Weight)"</span>, <span class="at">x =</span> <span class="st">"Initial Weight (lbs)"</span>, <span class="at">title =</span> <span class="st">"Biggest Loser Contestants"</span>, <span class="at">color =</span> <span class="st">"Age Group"</span>, <span class="at">shape =</span> <span class="st">"Age Group"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-ancova_model" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-ancova_model-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: ANCOVA, Equal Slopes Model</figcaption>
+<div id="fig-ancova_model" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ancova_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-ancova_model-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ancova_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: ANCOVA, Equal Slopes Model
+</figcaption>
 </figure>
 </div>
 </div>
@@ -927,7 +1009,7 @@ Note
 <div class="{column-margin}">
 <p><code>summary</code> provides a different set of output, but does not include an F test for the factor. Rather, it provides unadjusted t-tests of whether each factor level mean is equal to the mean of the reference factor level’s mean.</p>
 </div>
-<p>The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person’s initial weight, the person’s age group has a significant effect on proportion of weight lost. From <a href="#fig-ancova_model">Figure&nbsp;4</a>, we see that the Middle group (green line) and Young roup (red line) seem to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.</p>
+<p>The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person’s initial weight, the person’s age group has a significant effect on proportion of weight lost. From <a href="#fig-ancova_model" class="quarto-xref">Figure&nbsp;4</a>, we see that the Middle group (green line) and Young roup (red line) seem to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.</p>
 <p>Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that a lot of the variation associated with the response variable is explained by initial weight and is probably important to keep in the model.</p>
 <p>Notice that with the first model, the interaction term was included. Including it in the model seemed to make all the other terms also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.</p>
 </section>
@@ -938,22 +1020,26 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ymo_ancova, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-res_v_fit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ancova_files/figure-html/fig-res_v_fit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: <strong>?(caption)</strong></figcaption>
+<div id="fig-res_v_fit" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-res_v_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ancova_files/figure-html/fig-res_v_fit-1.png" id="fig-res_v_fit" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-res_v_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <section id="linear-relationship-between-response-and-covariate" class="level3">
 <h3 class="anchored" data-anchor-id="linear-relationship-between-response-and-covariate">Linear Relationship Between Response and Covariate</h3>
-<p>To verify the response variable and the covariate have a linear relationship we check the residual vs.&nbsp;fitted plot, <a href="#fig-res_v_fit">Figure&nbsp;5</a>. No major patterns or trends or evident so we consider this assumption satisfied.</p>
+<p>To verify the response variable and the covariate have a linear relationship we check the residual vs.&nbsp;fitted plot, <a href="#fig-res_v_fit" class="quarto-xref">Figure&nbsp;5</a>. No major patterns or trends or evident so we consider this assumption satisfied.</p>
 <p>In addition, R adds the red line to the plot. The red line is very flat, an additional indicator the assumption is met. Sometimes, when sample sizes are small, the red line can be confusing. In the case of small sample sizes the red line becomes very sensitive and bounces around a lot - becoming more of a distraction than an aid.</p>
 </section>
 <section id="constant-error-variance" class="level3">
 <h3 class="anchored" data-anchor-id="constant-error-variance">Constant Error Variance</h3>
-<p>To verify that the assumption of a constant error term is valid, the residual vs.&nbsp;fitted plot should not show trends or patterns. In particular, if the points in the residual vs.&nbsp;fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot. Since <a href="#fig-res_v_fit">Figure&nbsp;5</a> does not have this problem, the constant error variance assumption is considered met.</p>
+<p>To verify that the assumption of a constant error term is valid, the residual vs.&nbsp;fitted plot should not show trends or patterns. In particular, if the points in the residual vs.&nbsp;fitted plot created a megaphone, wedge, or triangle shape we would conclude this assumption is violated. In other words, instead of having constant variance, the vertical spread of the points on the plot increase (or decrease) as you move from the left to the right side of the plot. Since <a href="#fig-res_v_fit" class="quarto-xref">Figure&nbsp;5</a> does not have this problem, the constant error variance assumption is considered met.</p>
 </section>
 <section id="normally-distributed-error-term" class="level3">
 <h3 class="anchored" data-anchor-id="normally-distributed-error-term">Normally Distributed Error Term</h3>
@@ -961,7 +1047,11 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(ymo_ancova<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ancova_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ancova_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 106  16</code></pre>
@@ -1069,10 +1159,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1082,8 +1189,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1095,7 +1211,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1139,6 +1378,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1164,6 +1404,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1224,6 +1490,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
