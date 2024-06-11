@@ -53,9 +53,13 @@ To create blocks, you must put your experimental units into groups. The size of 
 -   the blocking variable should be correlated with the response,
 -   each block will be different from the other blocks (in terms of the response variable).
 
-Inside each block, treatments are assigned completely at random to experimental units. There are 3 ways to create blocks. An example of each of these techniques is provided below.
+::: callout-tip
+Inside each block, treatments are assigned completely at random to experimental units.
+:::
 
-::: callout-important
+There are 3 ways to create blocks. An example of each of these techniques is provided below.
+
+::: callout-note
 ## 3 Ways to Create Blocks
 
 -   Sort experimental units according to their values on the nuisance variable
