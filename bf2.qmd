@@ -129,9 +129,9 @@ We plan to collect 24 observations in total. Since toothbrush has four levels, i
 When the number of observations to collect is not a multiple of the factor levels, you will need to make decisions about which factor level will receive more/fewer observations.
 :::
 
-Note that in this case, all the subjects will be brushing over the same two months. The order column in this case refers to the order in which the researchers will measure the patients. From a practicality perspective, it may not be feasible or meaningful to dictate the order in which experimental units are observed. If order can't be randomized but could be a potential source of bias, it should at least be tracked so that it can be investigated later on.
+Note that in this case, all the subjects will be brushing over the same two months. The order column in this case refers to the order in which the researchers will measure the patients. In some experiments it may not be feasible or meaningful to dictate the order in which experimental units are observed. If order can't be randomized but could be a potential source of bias, it should at least be tracked so that it can be investigated later on.
 
-In some cases, order (chronological, spatial, etc.) does not make sense to worry about. For example, consider a situation where 3 different tests are administered to subjects. All subjects receive the test at the same time and are asked to turn the test in at the same time. In this case, it does not make sense to think of chronological order. Furthermore, if it does not seem reasonable that their seating arrangement (spatial ordering) would affect results, order could be ignored.
+In some cases, order (chronological, spatial, etc.) does not make sense to worry about. For example, consider a situation where 3 different tests are administered to subjects. All subjects receive the test at the same time and are asked to turn the test in at the same time. In this case, it does not make sense to think of chronological order. In this testing example, if it does not seem reasonable that their seating arrangement (spatial ordering) would affect results, spatial order could be ignored.
 
 ```{r}
 #| code-fold: true
@@ -157,26 +157,21 @@ pander(assignment_table)
 
 ```
 
-Now randomize the brush column, paste column, and the order column.
+Now randomize the treatments assignment to subject with the `sample` function. You can also randomize the order column.
 
 ```{r}
 #| code-fold: true
 
-#Create a sequence from 1 to 24
-#Paste the word "Subject " in front of each id #
-Subject <- paste("Subject", seq(1:24), sep = " ")
+set.seed(17) #This is so that others can replicate your work and start with the same random seed.
 
-#Create a vector with each brush repeated 6 times
-brush <- rep(c("manual", "oscillate", "sonic", "ultrasonic"), each = 6)
-
-#Create a vector with each paste repeated 12 times
-paste <- rep(c("name", "off"), each = 12)
-
-#Combine the vectors of Subject ID's and controlled factor levels into one tibble/dataset
-randomized_table <- tibble(Subject, sample(brush), sample(paste), sample(order))
+#Randomize the treatment assignment to subject
+randomized_table <- assignment_table %>% 
+  mutate(Subject = sample(Subject)) %>% 
+  mutate(order = sample(order)) #you can also randomize the order of experimental runs if needed
 
 #print the table, pander() makes it look nice
 pander(randomized_table) 
+
 
 ```
 
