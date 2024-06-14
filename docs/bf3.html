@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -97,6 +104,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -104,9 +138,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
     </a>
@@ -118,133 +152,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+    <a class="dropdown-item" href="./research_objectives.html">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+    <a class="dropdown-item" href="./response_variable.html">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+    <a class="dropdown-item" href="./experimental_units.html">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+    <a class="dropdown-item" href="./sources_of_variances.html">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+    <a class="dropdown-item" href="./randomization.html">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+    <a class="dropdown-item" href="./bf3.html">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./block_intro.html">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+    <a class="dropdown-item" href="./cb1.html">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+    <a class="dropdown-item" href="./ancova.html">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+    <a class="dropdown-item" href="./latin_square.html">
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./nested_intro.html">
  <span class="dropdown-text">Nested Factor Designs Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+    <a class="dropdown-item" href="./split_plot.html">
  <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+    <a class="dropdown-item" href="./Anova_F-test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+    <a class="dropdown-item" href="./assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+    <a class="dropdown-item" href="./contrast.html">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+    <a class="dropdown-item" href="./multiple_comparisons.html">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+    <a class="dropdown-item" href="./unbalanced.html">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+    <a class="dropdown-item" href="./random_v_fixed.html">
  <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+    <a class="dropdown-item" href="./DescribeData.html">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -252,24 +286,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+    <a class="dropdown-item" href="./data/data_for_class.zip">
  <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+    <a class="dropdown-item" href="./data_for_class.html">
  <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -334,7 +368,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <script type="text/javascript">
  function showhide(id) {
@@ -347,9 +383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This section will extend a factorial design with two factors to a full factorial design with three factors. The design and analysis of a fully factorial experiment with three factors is very similar to the two factor design. The one notable exception is that now there is the potential for higher order interactions. Instead of just a single two-way interaction to be considered, three-way interactions, as well as all possible two-way interactions, are included in the model</p>
 <p>To illustrate this design and analysis we will use a fictitious dataset that closely mirrors the <a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-0017812077&amp;origin=inward&amp;txGid=d11bc22f7fa2dd7a30ab0c43490b98d3">real experiment conducted by Robert Kaplan</a>. The experiment’s goal was to show how the <a href="https://en.wikipedia.org/wiki/Halo_effect">halo effect</a> due to attractiveness effects influences an assessment. More precisely, how does an author’s attractiveness, their sex, and the sex of the reader impact the reader’s assessment of the author’s talent as a writer.</p>
 <p>To carry out the experiment, a participant is treated as the reader. There were 48 readers total, 24 male and 24 female. The participant is asked to read an essay. Though all participants read the same essay, the sex of the author and the attractiveness of the author was varied. This was accomplished by attaching a picture of the author to the essay. There were 3 levels of attractiveness for each author sex: attractive, unattractive, and the control group (where no picture was attached). Each reader was randomly assigned to an author sex and attractiveness level such that for every combination of reader sex, author sex, and author attractiveness there were exactly 4 observations gathered, resulting in a total of 48 observations.</p>
-<p>It is cleaner and easier to show the data in a different format than has been used up to this point. In <a href="#tbl-data">Table&nbsp;1</a>, each factor has a column dedicated to show what factor level the observations in that row belong to. There are 12 unique factor level combinations, and therefore 12 rows in the table There are 4 observations per factor level combination, and they are displayed to the right of factor level combination designation.</p>
+<p>It is cleaner and easier to show the data in a different format than has been used up to this point. In <a href="#tbl-data" class="quarto-xref">Table&nbsp;1</a>, each factor has a column dedicated to show what factor level the observations in that row belong to. There are 12 unique factor level combinations, and therefore 12 rows in the table There are 4 observations per factor level combination, and they are displayed to the right of factor level combination designation.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>attractiveness <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"attractive"</span>, <span class="st">"unattractive"</span>, <span class="st">"no-pic"</span>), <span class="dv">16</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reader <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>), <span class="at">each =</span> <span class="dv">3</span>), <span class="dv">8</span>)</span>
@@ -371,10 +407,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(reader, author, attractiveness) <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(row) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div id="tbl-data" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Table of Means for Each Factor Level Combination
+</figcaption>
+<div aria-describedby="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-data" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Table of Means for Each Factor Level Combination</caption>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 12%">
@@ -522,6 +562,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <section id="factor-structure" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
@@ -558,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><strong>Factor</strong></td>
 <td><strong>Number of Levels</strong></td>
-<td><strong>Partitions: Row ID #’s of <a href="#tbl-data">Table&nbsp;1</a> belonging to each level</strong></td>
+<td><strong>Partitions: Row ID #’s of <a href="#tbl-data" class="quarto-xref">Table&nbsp;1</a> belonging to each level</strong></td>
 </tr>
 <tr class="even">
 <td>reader</td>
@@ -676,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="hypothesis-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
-<p>Each factor (i.e.&nbsp;meaningful partition of the data) corresponds to a term in <a href="#eq-bf3">Equation&nbsp;1</a>:</p>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) corresponds to a term in <a href="#eq-bf3" class="quarto-xref">Equation&nbsp;1</a>:</p>
 <p><span id="eq-bf3"><span class="math display">\[
 y_\text{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha\beta)_\text{ij} + (\alpha\gamma)_\text{ik} + (\beta\gamma)_\text{jk} + (\alpha\beta\gamma)_\text{ijk} + \epsilon_\text{ijkl}
 \tag{1}\]</span></span></p>
@@ -756,7 +798,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <p><a href="javascript:showhide('unrandomized')"><span style="font-size:8pt;">click twice to show/hide data</span></a></p>
 <div id="unrandomized">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a sequence from 1 to 48</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Paste the word "Subject " in front of each id #</span></span>
@@ -1091,7 +1133,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <p><a href="javascript:showhide('randomized')"><span style="font-size:8pt;">click twice to show/hide data</span></a></p>
 <div id="randomized">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#randomize subject assignment to treatment</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>randomized_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="fu">sample</span>(Subject), reader, author, attractiveness)</span>
@@ -1417,15 +1459,18 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <div class="no-row-height column-margin column-container"><div class="">
 <p>A chart to inspect a two-way interaction consists of plotting the mean of each factor level combination</p>
 </div></div><p>It technically does not matter which of the three variables in the interaction you use for faceting, if a three way interaction is there it should be visible. However, it sometimes can be easier to spot the interaction or be more intuitive to interpret the interaction when faceting on one variable instead of another.</p>
-<p>For the study on the halo effect of attractiveness example, we start by computing the mean perceived talent level of our observed data, contained in <a href="#tbl-data">Table&nbsp;1</a>. The means are shown in <a href="#tbl-means2">Table&nbsp;2</a> and the interaction plots created from those means are shown in <a href="#fig-ints2">Figure&nbsp;1</a>.</p>
-<div id="tbl-means2" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;2: Means for Each Factor Level Combination</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-means2-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means2" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(a) Group means for Female reader</caption>
+<p>For the study on the halo effect of attractiveness example, we start by computing the mean perceived talent level of our observed data, contained in <a href="#tbl-data" class="quarto-xref">Table&nbsp;1</a>. The means are shown in <a href="#tbl-means2" class="quarto-xref">Table&nbsp;2</a> and the interaction plots created from those means are shown in <a href="#fig-ints2" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div class="cell" data-layout-nrow="1">
+<div id="tbl-means2" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-means2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Means for Each Factor Level Combination
+</figcaption>
+<div aria-describedby="tbl-means2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<caption>Group means for Female reader</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 18%">
@@ -1456,9 +1501,9 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </tbody>
 </table>
 </div>
-<div id="tbl-means2-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means2" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(b) Group means for Male reader</caption>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<caption>Group means for Male reader</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 18%">
@@ -1491,13 +1536,23 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </div>
 </div>
 </div>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="fig-ints2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-ints2-1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Author Gender and Attractiveness Interaction Plots Faceted by Reader Gender</figcaption>
+</figure>
+</div>
+</div>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout-nrow="1">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-ints2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ints2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bf3_files/figure-html/fig-ints2-1.png" style="width:150.0%;height:150.0%" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ints2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Author Gender and Attractiveness Interaction Plots Faceted by Reader Gender
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1516,14 +1571,16 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <h2 class="anchored" data-anchor-id="factor-effects">Factor Effects</h2>
 <p>The first step in performing a decomposition is to calculate the factor level means. The grand mean is 69.1458333.</p>
 <p>The mean for each factor and its corresponding levels is displayed below.</p>
-<div id="tbl-means3" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;3: Means for Each Factor Level Combination</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-means3-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(a) Mean Talent by Reader Gender</caption>
+<div id="tbl-means3" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-means3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Means for Each Factor Level Combination
+</figcaption>
+<div aria-describedby="tbl-means3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Reader Gender</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -1546,9 +1603,9 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </tbody>
 </table>
 </div>
-<div id="tbl-means3-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(b) Mean Talent by Author Gender</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -1571,9 +1628,9 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </tbody>
 </table>
 </div>
-<div id="tbl-means3-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(c) Mean Talent by Author Attractiveness</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Author Attractiveness</caption>
 <colgroup>
 <col style="width: 23%">
 <col style="width: 11%">
@@ -1601,10 +1658,10 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </table>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-means3-4" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(d) Mean Talent by Reader Gender x Author Gender</caption>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Reader Gender x Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -1641,9 +1698,9 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </tbody>
 </table>
 </div>
-<div id="tbl-means3-5" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(e) Mean Talent by Reader Gender x Author Attractiveness</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Reader Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 23%">
@@ -1690,9 +1747,9 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </tbody>
 </table>
 </div>
-<div id="tbl-means3-6" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(f) Mean Talent by Author Gender x Author Attractiveness</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Author Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 23%">
@@ -1740,10 +1797,10 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </table>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-means3-7" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-means3" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(g) Mean Talent by Reader Gender x Author Gender x Author Attractiveness</caption>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Mean Talent by Reader Gender x Author Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -1836,8 +1893,10 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 </div>
 </div>
 </div>
+</figure>
+</div>
 <p>We will now compute the factor level effects. A couple of example computations for the interaction factors are shown below. The general rule for factor level effects is implemented, it states that the size of an effect is equal to the factor level mean minus the sum of the effects of all outside factors. The computation for each effect of each factor will not be shown.</p>
-<p>The full factorial model, as defined in <a href="#eq-bf3">Equation&nbsp;1</a>, will be used to describe the calculations.</p>
+<p>The full factorial model, as defined in <a href="#eq-bf3" class="quarto-xref">Equation&nbsp;1</a>, will be used to describe the calculations.</p>
 <p>First, let’s compute the effect of a <em>male reader</em> <span class="math inline">\(\times\)</span> attractive author on perceived talent.</p>
 <span class="math display">\[\begin{align}
 (\hat{\alpha\gamma})_\text{male reader, attractive author} &amp;= \bar{y}_\text{male reader, attractive author} - (\hat{\mu} + \hat{\alpha}_\text{male reader} + \hat{\gamma}_\text{attractive author}) \\
@@ -1848,7 +1907,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 &amp;= 11.72
 
 \end{align}\]</span>
-<p>Thus, as we saw earlier in <a href="#fig-ints2">Figure&nbsp;1</a>, the effect of being attractive is made greater when the reader is a male. Specifically, the mean talent ratings is 11.72 points higher predicted by adding the effect of male reader and the effect of attractive author to the grand mean separately.</p>
+<p>Thus, as we saw earlier in <a href="#fig-ints2" class="quarto-xref">Figure&nbsp;1</a>, the effect of being attractive is made greater when the reader is a male. Specifically, the mean talent ratings is 11.72 points higher predicted by adding the effect of male reader and the effect of attractive author to the grand mean separately.</p>
 <p>To calculate the effect of a three-way interaction, the general rule is again applied. This time though, there are more calculations since all two-way interactions are inside of the 3 way interaction. Below, the effect of <em>male reader</em> <span class="math inline">\(\times\)</span> female author <span class="math inline">\(\times\)</span> attractive author is calculated.</p>
 <span class="math display">\[\begin{align}
 \hat{(\alpha\beta\gamma)}_{2,1,1} &amp;= \bar{y}_{211\cdot} - (\hat{\mu} + \hat{\alpha_2} + \hat{\beta_1} + \hat{\gamma_1} + \hat{\alpha\beta}_{21} + \hat{\alpha\gamma}_{21} + \hat{\beta\gamma}_{11}) \\
@@ -1905,8 +1964,7 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 <section id="numerical-summaries" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h3>
 <p>A good place to start is calculating summary statistics like mean, standard deviation and sample size for the factor levels of each experimental factor.</p>
-<div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: the df data frame was created in the first R chunk in the Overview section of this page</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(reader) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(talent),</span>
@@ -1925,14 +1983,16 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>(<span class="at">caption =</span> <span class="st">"Numerical Summary by Attractiveness Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-summaries" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;4: Numerical Summaries of Experimental Factors</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-summaries-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(a) Numerical Summary by Reader Gender</caption>
+<div id="tbl-summaries" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Numerical Summaries of Experimental Factors
+</figcaption>
+<div aria-describedby="tbl-summaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Numerical Summary by Reader Gender</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 11%">
@@ -1963,9 +2023,9 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 </tbody>
 </table>
 </div>
-<div id="tbl-summaries-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(b) Numerical Summary by Author Gender</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Numerical Summary by Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
 <col style="width: 11%">
@@ -1996,9 +2056,9 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 </tbody>
 </table>
 </div>
-<div id="tbl-summaries-3" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-summaries" style="flex-basis: 33.3%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(c) Numerical Summary by Attractiveness Gender</caption>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<table class="do-not-create-environment cell table">
+<caption>Numerical Summary by Attractiveness Gender</caption>
 <colgroup>
 <col style="width: 23%">
 <col style="width: 11%">
@@ -2037,14 +2097,14 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 </div>
 </div>
 </div>
+</figure>
 </div>
 <p>Much of the above information can also be seen in an effective visual.</p>
 </section>
 <section id="graphical-summaries" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
 <p>Below are some basic boxplots talent perception, grouped by levels of each experimental factor. Jittered points of the response are overlayed on each boxplot. The effect of attractiveness is detectable, but the impact of reader gender and author gender are not obvious since they exist as part of an interaction. Interaction plots can be investigated at any time in the analysis process. However, sometimes the number of interactions to check can be large, and may not be something to start with. In such cases, you may run the model first and then spend energy trying to understand only those interactions that look to be significant.</p>
-<div class="page-columns page-full">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: the df data frame was created in the first R chunk in the Overview section of this page</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2072,37 +2132,52 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-descriptives" class="cell column-screen-inset quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
-<div id="fig-descriptives-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-descriptives-1.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
-<figcaption class="figure-caption">(a)</figcaption>
+<div id="fig-descriptives" class="quarto-layout-panel page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-descriptives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div class="quarto-layout-row page-full">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-descriptives-1" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
+<div aria-describedby="fig-descriptives-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="bf3_files/figure-html/fig-descriptives-1.png" id="fig-descriptives-1" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-descriptives-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
-<div id="fig-descriptives-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-descriptives-2.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
-<figcaption class="figure-caption">(b)</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-descriptives-2" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
+<div aria-describedby="fig-descriptives-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="bf3_files/figure-html/fig-descriptives-2.png" id="fig-descriptives-2" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-descriptives-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
-<div id="fig-descriptives-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-descriptives-3.png" class="img-fluid figure-img" data-ref-parent="fig-descriptives" width="672"></p>
-<figcaption class="figure-caption">(c)</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-descriptives-3" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
+<div aria-describedby="fig-descriptives-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="bf3_files/figure-html/fig-descriptives-3.png" id="fig-descriptives-3" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-descriptives-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Graphical Summaries of Experimental Factors</figcaption><p></p>
-</figure>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-descriptives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Graphical Summaries of Experimental Factors
+</figcaption>
+</figure>
 </div>
 </section>
 </section>
@@ -2124,16 +2199,16 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X1<span class="sc">:</span>X2 <span class="sc">+</span> X1<span class="sc">:</span>X3 <span class="sc">+</span> X2<span class="sc">:</span>X3 <span class="sc">+</span> X1<span class="sc">:</span>X2<span class="sc">:</span>X3, <span class="at">data=</span>YourDataSet)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="#fig-anova_results">Figure&nbsp;3</a> shows the results for the full BF[3] model for the study of halo effect on perception of talent. The 3-way interaction is significant here (p-value - 1.081e-7). Two of the two-way interactions are significant. None of the main effects show significance.</p>
+<p><a href="#fig-anova_results" class="quarto-xref">Figure&nbsp;3</a> shows the results for the full BF[3] model for the study of halo effect on perception of talent. The 3-way interaction is significant here (p-value - 1.081e-7). Two of the two-way interactions are significant. None of the main effects show significance.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>halo_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(talent <span class="sc">~</span> reader <span class="sc">*</span> author <span class="sc">*</span> attractiveness, <span class="at">data =</span> df)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(halo_aov) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-anova_results" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div id="fig-anova_results-1">
+<div id="fig-anova_results" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anova_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table table-sm table-striped small">
 <caption>Analysis of Variance Model</caption>
 <colgroup>
@@ -2222,7 +2297,9 @@ df_{\alpha\beta\gamma} &amp;= levels_{\alpha\beta\gamma} - (df_\mu + df_\alpha +
 </tbody>
 </table>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;3: BF[3] ANOVA summary table</figcaption>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: BF[3] ANOVA summary table
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2241,7 +2318,7 @@ Keeping Lower Order Effects
 </div>
 <p>When a 2-way interaction is found to be significant, then both of the simple factors (or main effects factors) should be included in the model. If a 3-way interaction is found to be significant, then the 3 main effects and all corresponding 2-way interactions should all be included in the ANOVA model - even if they are not statistically significant.</p>
 <p>Interpreting lower order interactions and main effects in the presence of a significant higher order interaction should be done with caution. One should investigate the interaction plots in order to describe how the effect of one variable may depend on the value of another. Simply comparing marginal means<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and interpreting main effects is not sufficient and may lead to incorrect conclusions.</p>
-<p>In this example, we will not interpret any of the main effects or two-way interactions alone, since the 3-way interaction is significant. In the <a href="#interaction">Interaction</a> section of this page, an interpretation of the interaction was already discussed. To recap that section, we saw in <a href="#fig-ints2">Figure&nbsp;1</a> that for <strong>male readers</strong>, attractiveness of author tended to correspond to higher perceptions of talent of the author - regardless of the author’s gender. However, for <strong>female readers</strong>, the impact of author attractiveness depended on author gender: attractive female authors were perceived as less talented than unattractive female authors, whereas attractiveness had negligible effect on perceived talent of male authors.</p>
+<p>In this example, we will not interpret any of the main effects or two-way interactions alone, since the 3-way interaction is significant. In the <a href="#interaction">Interaction</a> section of this page, an interpretation of the interaction was already discussed. To recap that section, we saw in <a href="#fig-ints2" class="quarto-xref">Figure&nbsp;1</a> that for <strong>male readers</strong>, attractiveness of author tended to correspond to higher perceptions of talent of the author - regardless of the author’s gender. However, for <strong>female readers</strong>, the impact of author attractiveness depended on author gender: attractive female authors were perceived as less talented than unattractive female authors, whereas attractiveness had negligible effect on perceived talent of male authors.</p>
 <p>In order to trust these hypothesis test results we need to verify that ANOVA model assumptions are met.</p>
 </section>
 <section id="check-assumptions" class="level2 page-columns page-full">
@@ -2251,34 +2328,42 @@ Keeping Lower Order Effects
 <h3 class="anchored" data-anchor-id="constant-variance-of-residuals">Constant Variance of Residuals</h3>
 <p>There needs to be constant variance of residuals across the factor level combinations. First, we can check the residual plot.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(halo_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-constant_var" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Checking constant variance</figcaption>
+<div id="fig-constant_var" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-constant_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bf3_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-constant_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Checking constant variance
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In the residual plot, <a href="#fig-constant_var">Figure&nbsp;4</a>, the vertical spread of the points is roughly constant as one moves from left to right across the x-axis of the plot. It is clear that the assumption of constant variance of the residuals is met.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Rarely does a plot look better than this.</p>
+<p>In the residual plot, <a href="#fig-constant_var" class="quarto-xref">Figure&nbsp;4</a>, the vertical spread of the points is roughly constant as one moves from left to right across the x-axis of the plot. It is clear that the assumption of constant variance of the residuals is met.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Rarely does a plot look better than this.</p>
 </section>
 <section id="normally-distributed-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
-<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq">Figure&nbsp;5</a>. All the points are in the shaded region, so we conclude this assumption is met.</p>
+<p>We check the assumption that residuals are normally distributed in <a href="#fig-qq" class="quarto-xref">Figure&nbsp;5</a>. All the points are in the shaded region, so we conclude this assumption is met.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(halo_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="bf3_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Checking normality of residuals</figcaption>
+<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bf3_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Checking normality of residuals
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2302,22 +2387,34 @@ Keeping Lower Order Effects
 <h1>Appendix</h1>
 <p>Partitioning of the dataset that corresponds with the 7 structural factors in the 3 factor model.</p>
 <div class="column-page">
-<div id="fig-partition_main" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/bf3_partition_main.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Data Partition for Single Factors</figcaption>
+<div id="fig-partition_main" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-partition_main-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bf3_partition_main.PNG" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-partition_main-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Data Partition for Single Factors
+</figcaption>
 </figure>
 </div>
-<div id="fig-partition_2way" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/bf3_partition_2way.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Data Partition for 2-Way Interaction Factors</figcaption>
+<div id="fig-partition_2way" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-partition_2way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bf3_partition_2way.PNG" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-partition_2way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Data Partition for 2-Way Interaction Factors
+</figcaption>
 </figure>
 </div>
-<div id="fig-partition_3way" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/bf3_partition_3way.PNG" class="img-fluid figure-img" width="490"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: Data Partition for 3-Way Interaction Factor</figcaption>
+<div id="fig-partition_3way" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-partition_3way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bf3_partition_3way.PNG" class="img-fluid figure-img" width="490">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-partition_3way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Data Partition for 3-Way Interaction Factor
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2413,10 +2510,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2426,8 +2540,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2439,7 +2562,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2483,6 +2729,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2508,6 +2755,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2568,6 +2841,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

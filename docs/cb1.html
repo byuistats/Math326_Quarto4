@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,17 +94,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -107,9 +142,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
     </a>
@@ -121,133 +156,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+    <a class="dropdown-item" href="./research_objectives.html">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+    <a class="dropdown-item" href="./response_variable.html">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+    <a class="dropdown-item" href="./experimental_units.html">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+    <a class="dropdown-item" href="./sources_of_variances.html">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+    <a class="dropdown-item" href="./randomization.html">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+    <a class="dropdown-item" href="./bf3.html">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./block_intro.html">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+    <a class="dropdown-item" href="./cb1.html">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+    <a class="dropdown-item" href="./ancova.html">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+    <a class="dropdown-item" href="./latin_square.html">
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./nested_intro.html">
  <span class="dropdown-text">Nested Factor Designs Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+    <a class="dropdown-item" href="./split_plot.html">
  <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+    <a class="dropdown-item" href="./Anova_F-test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+    <a class="dropdown-item" href="./assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+    <a class="dropdown-item" href="./contrast.html">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+    <a class="dropdown-item" href="./multiple_comparisons.html">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+    <a class="dropdown-item" href="./unbalanced.html">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+    <a class="dropdown-item" href="./random_v_fixed.html">
  <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+    <a class="dropdown-item" href="./DescribeData.html">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -255,24 +290,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+    <a class="dropdown-item" href="./data/data_for_class.zip">
  <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+    <a class="dropdown-item" href="./data_for_class.html">
  <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -339,7 +374,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <script type="text/javascript">
  function showhide(id) {
@@ -375,11 +412,15 @@ Tip
 <section id="factor-structure" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>The factor structure for a CB[1] design still has the two universal factors of the grand mean and residual error. There are also two structural factors: blocks and treatments.</p>
-<div class="column-page">
-<div id="fig-cb1_factor_structure" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB1_factor_structure.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Factor Structure for CB[1]</figcaption>
+<div class="page-columns page-full">
+<div id="fig-cb1_factor_structure" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-cb1_factor_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="images/CB1_factor_structure.PNG" class="img-fluid figure-img column-page">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cb1_factor_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Factor Structure for CB[1]
+</figcaption>
 </figure>
 </div>
 </div>
@@ -387,7 +428,7 @@ Tip
 </section>
 <section id="hypothesis-and-model" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
-<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-cb1_factor_structure">Figure&nbsp;1</a> corresponds to a term on the right hand side of <a href="#eq-cb1">Equation&nbsp;1</a>:</p>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-cb1_factor_structure" class="quarto-xref">Figure&nbsp;1</a> corresponds to a term on the right hand side of <a href="#eq-cb1" class="quarto-xref">Equation&nbsp;1</a>:</p>
 <p><span id="eq-cb1"><span class="math display">\[
 y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 \tag{1}\]</span></span></p>
@@ -453,7 +494,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <h1>Design</h1>
 <p>In a complete block design, each treatment is observed once in each block. Each block represents its own mini-replicate of the experiment. While treatment is purposefully varied to address the research question, blocks are a nuisance factor that we include in the design and analysis to more precisely estimate treatment effects.</p>
 <p>Treatments are assigned completely at random within each block. Consider how this is done for the toothbrush example explained above in which we are blocking on participant. We can start by listing out each block and treatment. In this example, there are 24 observations, each observation represents a time slot in the study for a particular person, 6 participants x 4 time slots = 24 observations.</p>
-<p>The design laid out in the format below is called “wider” format. It is helpful for humans to see it this way and fits in the way we have drawn our factor diagram (<a href="#fig-cb1_factor_structure">Figure&nbsp;1</a>)</p>
+<p>The design laid out in the format below is called “wider” format. It is helpful for humans to see it this way and fits in the way we have drawn our factor diagram (<a href="#fig-cb1_factor_structure" class="quarto-xref">Figure&nbsp;1</a>)</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -544,43 +585,43 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tr class="odd">
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">manual</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">manual</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">sonic</td>
 </tr>
 </tbody>
@@ -589,7 +630,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </div>
 <p>Having an idea of how to do this randomization in R can be helpful. R (and most softwares) will need the design laid out in “longer” form first as shown below (this is the unrandomized experiment):</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ParticipantID <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Brush <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"oscillating"</span>, <span class="st">"sonic"</span>, <span class="st">"super sonic"</span>), <span class="at">times =</span> <span class="dv">6</span>)</span>
@@ -744,7 +785,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </div>
 <p>Now randomize the order of the brushes for each participant. The resulting randomization matches what was shown in wider format above, but is now in longer format.</p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(ParticipantID, Brush) <span class="sc">%&gt;%</span> <span class="co">#This puts the two columns together</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ParticipantID) <span class="sc">%&gt;%</span> <span class="co">#randomize within each participant</span></span>
@@ -777,7 +818,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
@@ -787,67 +828,67 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
@@ -857,12 +898,12 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -872,17 +913,17 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -900,12 +941,16 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <h1>Decomposition</h1>
 <p>In the decomposition section we do the analysis of variance by hand. In other words, we decompose the variability in the response values and attribute that variability to the various factors in the experiment.</p>
 <p>To do a decomposition, we will represent the data in “wider” format. This is easier to see, even though most of the time the computer will want it in “longer” format. We will also organize the data <em>without</em> regard to the order in which it was actually collected. In other words, even though the order of brushes was randomized, the data will be organized/displayed in the factor structure, without an attempt to represent the actual order of brushes.</p>
-<p><a href="#fig-cb1_factors_and_model">Figure&nbsp;2</a> gives the factor structure of the complete block design for the toothbrush study, and the accompanying mathematical model.</p>
-<div class="column-page">
-<div id="fig-cb1_factors_and_model" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB1_factors_and_model.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Factor Structure and model for the CB[1] Toothbrush Study</figcaption>
+<p><a href="#fig-cb1_factors_and_model" class="quarto-xref">Figure&nbsp;2</a> gives the factor structure of the complete block design for the toothbrush study, and the accompanying mathematical model.</p>
+<div class="page-columns page-full">
+<div id="fig-cb1_factors_and_model" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-cb1_factors_and_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="images/CB1_factors_and_model.PNG" class="img-fluid figure-img column-page">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cb1_factors_and_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Factor Structure and model for the CB[1] Toothbrush Study
+</figcaption>
 </figure>
 </div>
 </div>
@@ -936,7 +981,7 @@ General Rule for Degrees of Freedom
 </div>
 <p>An alternative way to find degrees of freedom is to count the number of unique pieces of information in a factor.</p>
 <p>The&nbsp;<strong>grand mean</strong>&nbsp;has one level and there are no factors outside of grand mean. Therefore, its degrees of freedom equals one. This will always be the case.</p>
-<p>In this case there are two controlled factors: treatment factor (toothbrush) and blocking factor (participant). For&nbsp;<strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment factor in&nbsp;<a href="#fig-cb1_factors_and_model">Figure&nbsp;2</a>). Since grand mean is the only factor outside of toothbrush, take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 =&nbsp;<strong>3 degrees of freedom</strong>&nbsp;for toothbrush.</p>
+<p>In this case there are two controlled factors: treatment factor (toothbrush) and blocking factor (participant). For&nbsp;<strong>treatment factor</strong>, there are four levels of the factor (shown by the four vertically long cells for treatment factor in&nbsp;<a href="#fig-cb1_factors_and_model" class="quarto-xref">Figure&nbsp;2</a>). Since grand mean is the only factor outside of toothbrush, take the number of levels for toothbrush (4) and subtract the degrees of freedom for grand mean (1), which yields 4-1 =&nbsp;<strong>3 degrees of freedom</strong>&nbsp;for toothbrush.</p>
 <p>We could just as easily have used the other approach to finding the degrees of freedom: counting the unique pieces of information the toothbrush effects really contain. Since all observations from the same toothbrush will have the same effect, we only need to know 4 pieces of information: the effect of each toothbrush. But, because we know that the effects must all sum to zero, only 3 of the effects are free to vary and the 4th one is constrained to be whatever value will satisfy this mathematical condition. Thus, the degrees of freedom are 3. As soon as we know effect for 3 factor levels of toothbrush, we can fill in the toothbrush effects for all the observations.</p>
 <p>Though we don’t plan to test for the <strong>Block factor</strong>, we walk through the steps here to have a complete accounting of the degrees of freedom and variance. To calculate Block degrees of freedom, a similar approach of counting “free numbers” can be used. Namely, after estimating a participant’s effect on plaque, I can fill that effect in for all the observations pertaining to that participant’s partition in the block factor. Therefore, there is just one unique value in each row, meaning one degree of freedom per participant. However, since the sum of effects across participant must equal zero, the degrees of freedom will be equal to one less the number of participants.</p>
 <p>Alternatively, degrees of freedom can be calculated using the general rule. There are 6 levels for participant Blocks, and grand mean is the only outside factor. Since grand mean has 1 degree of freedom, you get&nbsp;6−1=5&nbsp;degree of freedom for blocks.</p>
@@ -961,11 +1006,15 @@ General Rule for Effect Size
 <p>We start by calculating factor level means.</p>
 <section id="factor-level-means" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
-<p><a href="#fig-CB1-data-partition">Figure&nbsp;3</a> shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.</p>
-<div id="fig-CB1-data-partition" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB1-data-partition.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Partitioned CB[1] Toothbrush Data</figcaption>
+<p><a href="#fig-CB1-data-partition" class="quarto-xref">Figure&nbsp;3</a> shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.</p>
+<div id="fig-CB1-data-partition" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CB1-data-partition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/CB1-data-partition.PNG" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CB1-data-partition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Partitioned CB[1] Toothbrush Data
+</figcaption>
 </figure>
 </div>
 <p>The grand mean is the mean of all the observations</p>
@@ -996,12 +1045,16 @@ General Rule for Effect Size
 \bar{y}_\text{Block2} = \bar{y}_{2\cdot} = \frac{24.21 + 20.00 + 23.31 + 21.45}{4} = 22.24
 \]</span></p>
 <p>The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
-<p><a href="#fig-CB1_means">Figure&nbsp;4</a> displays the factor levels means associated with each observation.</p>
-<div class="column-page">
-<div id="fig-CB1_means" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB1_means.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Factor Level Means</figcaption>
+<p><a href="#fig-CB1_means" class="quarto-xref">Figure&nbsp;4</a> displays the factor levels means associated with each observation.</p>
+<div class="page-columns page-full">
+<div id="fig-CB1_means" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-CB1_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="images/CB1_means.PNG" class="img-fluid figure-img column-page">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CB1_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Factor Level Means
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1013,7 +1066,7 @@ General Rule for Effect Size
 <p>The <strong>toothbrush factor</strong> has four levels: one for each brush type. We will use the general rule for calculating factor level effects. To calculate the effect of a toothbrush, take the toothbrush mean and subtract the grand mean (the only factor outside of toothbrush) from it. For the manual brush, this looks like:</p>
 <p><span class="math display">\[ 23.09 - 22.76 = 0.33 \]</span></p>
 <p>Using the manual brush has the effect of increasing a person’s plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way you can find the effect for the oscillating brush: <span class="math inline">\(19.98−22.76=−2.79\)</span>. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is <span class="math inline">\(22.68−22.76=−0.09\)</span>. For an ultrasonic brush the effect is <span class="math inline">\(25.31−22.76=2.55\)</span>.</p>
-<p>Calculating the effects for the <strong>block factor</strong> in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Block is not outside or inside of toothbrush, but grand mean is outside of block. To calculate the effect an of individual participant (i.e.&nbsp;block), take the participant’s mean across all 4 treatments (see <a href="#eq-block1_mean">Equation&nbsp;2</a> as an example) and subtract the grand mean from it:</p>
+<p>Calculating the effects for the <strong>block factor</strong> in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Block is not outside or inside of toothbrush, but grand mean is outside of block. To calculate the effect an of individual participant (i.e.&nbsp;block), take the participant’s mean across all 4 treatments (see <a href="#eq-block1_mean" class="quarto-xref">Equation&nbsp;2</a> as an example) and subtract the grand mean from it:</p>
 <p><span class="math display">\[ 21.91 - 22.76 = -0.85\]</span></p>
 <p>A similar calculation is done to find the estimated effect for participant 2 (i.e.&nbsp;block 2):</p>
 <p><span class="math display">\[ 22.24 - 22.76 = -0.52\]</span></p>
@@ -1047,12 +1100,16 @@ e_{ij} &amp;= y_{12} - \hat{y}_{12} \\
 \end{align}
 \]</span></p>
 <p>After using the oscillating toothbrush, Participant 1’s percent of teeth surface area with plaque is 0.56 percentage points lower than the model predicts.</p>
-<p>We perform these calculations for every observation. <a href="#fig-CB1_effects">Figure&nbsp;5</a> shows the effects that make up each observation<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
-<div class="column-page">
-<div id="fig-CB1_effects" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB1_effects.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Factor Level Effects</figcaption>
+<p>We perform these calculations for every observation. <a href="#fig-CB1_effects" class="quarto-xref">Figure&nbsp;5</a> shows the effects that make up each observation<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<div class="page-columns page-full">
+<div id="fig-CB1_effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-CB1_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="images/CB1_effects.PNG" class="img-fluid figure-img column-page">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CB1_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Factor Level Effects
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1064,6 +1121,7 @@ e_{ij} &amp;= y_{12} - \hat{y}_{12} \\
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
@@ -1122,16 +1180,21 @@ e_{ij} &amp;= y_{12} - \hat{y}_{12} \\
 
 </div>
 </div>
-<p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. <a href="#fig-CB1_effects">Figure&nbsp;5</a> shows the effects, while <a href="#fig-CB_SS">Figure&nbsp;6</a> shows the squared effects.</p>
-<div class="column-page">
-<div id="fig-CB_SS" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/CB_SS.PNG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Squared Effects</figcaption>
+</div>
+<p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. <a href="#fig-CB1_effects" class="quarto-xref">Figure&nbsp;5</a> shows the effects, while <a href="#fig-CB_SS" class="quarto-xref">Figure&nbsp;6</a> shows the squared effects.</p>
+<div class="page-columns page-full">
+<div id="fig-CB_SS" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-CB_SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="images/CB_SS.PNG" class="img-fluid figure-img column-page">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CB_SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Squared Effects
+</figcaption>
 </figure>
 </div>
 </div>
-<p>The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss_total">Equation&nbsp;3</a> . This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
+<p>The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss_total" class="quarto-xref">Equation&nbsp;3</a> . This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
 <p><span id="eq-ss_total"><span class="math display">\[
 SS_\text{total}= 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2 = 12,674.30
 \tag{3}\]</span></span></p>
@@ -1149,12 +1212,17 @@ SS_\text{Brush} &amp;= 6 * 0.11 + 6 * 7.77 + 6*0.01 + 6*6.5 = 86.31 \\
 SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.29
 \end{align}
 \]</span></p>
-<p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-ss_anova">Table&nbsp;1</a>.</p>
+<p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-ss_anova" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
+<div id="tbl-ss_anova" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Sums of Squares
+</figcaption>
+<div aria-describedby="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ss_anova" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;1: Sums of Squares</caption>
+<div>
+<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1208,9 +1276,12 @@ SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.2
 </tr>
 </tbody>
 </table>
+
+
 </div>
-
-
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>To calculate a mean square (MS), simply divide a factor’s sum of squares by its degrees of freedom. The mean square calculations are:</p>
@@ -1231,10 +1302,15 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 \]</span></p>
 <p><br></p>
 <div class="cell">
+<div id="tbl-ms_anova" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Mean Squares
+</figcaption>
+<div aria-describedby="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-ms_anova" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;2: Mean Squares</caption>
+<div>
+<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1288,9 +1364,12 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 </tr>
 </tbody>
 </table>
+
+
 </div>
-
-
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>For the structural factors in the design there are a set of hypothesis we can test using the <strong>F statistic</strong>. Specifically, we will want to test whether toothbrush type has an effect on plaque coverage.</p>
@@ -1307,7 +1386,7 @@ Note
 <p>We may or may not be interested in testing Block. Because Block is usually a nuisance factor, testing its effect is not a priority. On the other hand, curiosity about whether the blocks were a significant source of variation may help us plan future experiments and improve the current analysis. In fact, if Block is not significant, we may consider removing it from the model so that the Residual factor has more degrees of freedom - which may result in a lower mean squared error. A lower mean squared increases the ability to detect significance of the treatment factor.</p>
 </div>
 </div>
-<p>We will proceed with a test of the toothbrush type, represented as <span class="math inline">\(\beta\)</span> in <a href="#eq-cb1">Equation&nbsp;1</a>.</p>
+<p>We will proceed with a test of the toothbrush type, represented as <span class="math inline">\(\beta\)</span> in <a href="#eq-cb1" class="quarto-xref">Equation&nbsp;1</a>.</p>
 <p><span class="math display">\[H_0: \beta_j = 0 \text{ for all }j\]</span></p>
 <p><span class="math display">\[H_a: \beta_j \ne 0 \text{ for some }j\]</span></p>
 <p>To test the hypothesis, we need to compare the mean square (MS) for toothbrush to the mean square for residual error (abbreviated as MSE). This ratio of variances is called an F statistic. The F statistic calculation is</p>
@@ -1321,10 +1400,15 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <p><code>1 - pf(3.26, 3, 15) = 0.051</code></p>
 <p>The completed ANOVA table for this CB[1] toothbrush study, blocked on participant is shown below:</p>
 <div class="cell">
+<div id="tbl-complete_anova" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-complete_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Toothbrush F Test ANOVA Table
+</figcaption>
+<div aria-describedby="tbl-complete_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-complete_anova" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;3: Toothbrush F Test ANOVA Table</caption>
+<div>
+<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1378,9 +1462,12 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 </tr>
 </tbody>
 </table>
+
+
 </div>
-
-
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>The p-value for brush indicates the effects of brush are marginally significant. When (in)significance is borderline, rather than making bold statements based on a small amount of (in)significance, it is helpful to dig a little deeper. Consider things like sample size, effect size (practical significance), outliers, and how closely assumptions are met. After weighing those considerations carefully, take a stance and state your belief about the role of the factor on the response. Explain your rationale, then keep an open mind and stay curious.</p>
@@ -1397,14 +1484,14 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <h3 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h3>
 <p>After loading required packages, we will read in the data and calculate summary statistics for each factor level separately.</p>
 <div class="cell" data-cap="Read in Data">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cb1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_CB1.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ParticipantID =</span> <span class="fu">as.factor</span>(PersonID))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div>
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Descriptive stats for levels of Brush</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> cb1) <span class="sc">|&gt;</span> </span>
@@ -1415,14 +1502,21 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-main_effects_numbers" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;4: Numerical Summary for Each Factor</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-main_effects_numbers-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-main_effects_numbers" style="flex-basis: 100.0%;justify-content: center;">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>(a) Brush</caption>
+<div id="tbl-main_effects_numbers" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Numerical Summary for Each Factor
+</figcaption>
+<div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Brush
+</figcaption>
+<div aria-describedby="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush</th>
@@ -1489,17 +1583,21 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 </tbody>
 </table>
 </div>
+</figure>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 
 
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-main_effects_numbers-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-main_effects_numbers" style="flex-basis: 100.0%;justify-content: center;">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>(b) Block: Participant</caption>
+<div class="cell-output-display">
+<div>
+<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Block: Participant
+</figcaption>
+<div aria-describedby="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">ParticipantID</th>
@@ -1590,13 +1688,14 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 </tbody>
 </table>
 </div>
+</figure>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 
 
 </div>
 </div>
+</div>
+</figure>
 </div>
 </div>
 <p>The Ultrasonic brush has the highest mean plaque amount, while Oscillating brush has the lowest.</p>
@@ -1604,27 +1703,32 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 </section>
 <section id="graphical-summaries" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="graphical-summaries">Graphical Summaries</h3>
-<p>You could also gain insight about your data by investigating the response by cutting the data by each factor separately, as shown in <a href="#fig-graphical_summary">Figure&nbsp;7</a>. The plot reinforces what was seen in the numerical summary. The mean plaque for each person is roughly similar, Block factor does not look to be statistically significant. There could be some significant variation in plaque due to toothbrush.</p>
-<div id="fig-graphical_summary" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<div class="page-columns page-full">
-<details>
+<p>You could also gain insight about your data by investigating the response by cutting the data by each factor separately, as shown in <a href="#fig-graphical_summary" class="quarto-xref">Figure&nbsp;7</a>. The plot reinforces what was seen in the numerical summary. The mean plaque for each person is roughly similar, Block factor does not look to be statistically significant. There could be some significant variation in plaque due to toothbrush.</p>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(Plaque <span class="sc">~</span>Brush, <span class="at">data =</span> cb1, <span class="at">main =</span> <span class="st">"% of Teeth Surface Area Covered by Plaque"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(Plaque <span class="sc">~</span>ParticipantID, <span class="at">data =</span> cb1, <span class="at">main =</span> <span class="st">"% of Teeth Surface Area Covered by Plaque"</span>, <span class="at">xlab =</span> <span class="st">"Participant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell column-page-inset quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-graphical_summary" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-graphical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div>
+
+</div>
+<div class="cell column-page-inset quarto-layout-panel" data-layout-nrow="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="cb1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="cb1_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;7: Graphical Summaries for Controlled Factors</figcaption>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graphical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Graphical Summaries for Controlled Factors
+</figcaption>
 </figure>
 </div>
 <p>To reveal an example of combining the 2 plots into one, <a href="javascript:showhide('uniquename')"><strong>click here</strong></a></p>
@@ -1632,7 +1736,7 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <div id="uniquename" style="display:none;">
 <div id="textplot">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cb1, <span class="fu">aes</span>(<span class="at">x =</span> ParticipantID, <span class="at">y =</span> Plaque, <span class="at">color =</span> Brush)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Brush)) <span class="sc">+</span></span>
@@ -1642,7 +1746,11 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Participant"</span>, <span class="at">y =</span> <span class="st">"Plaque Coverage (%)"</span>, <span class="at">title =</span> <span class="st">"% of Teeth Surface Area Covered by Plaque"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="cb1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="cb1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1663,9 +1771,9 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <li><code>treatment</code> and <code>block</code> are names of qualitative variables in your dataset. They should have <code>class()</code> equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>aov(Y ~ factor(treatment)...)</code> command.</li>
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
-<p>The results using R code should match the results show in the Decomposition section in <a href="#tbl-complete_anova">Table&nbsp;3</a>.</p>
+<p>The results using R code should match the results show in the Decomposition section in <a href="#tbl-complete_anova" class="quarto-xref">Table&nbsp;3</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cb_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque <span class="sc">~</span> ParticipantID <span class="sc">+</span> Brush, <span class="at">data=</span>cb1) <span class="co">#note the + instead of *</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cb_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1692,7 +1800,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="cb1_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="cb1_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If the constant variance assumption is violated, the points in this graph will show a wedge or megaphone shape. In other words, the vertical spread of the points would noticeably increase/decrease as we moved along the x-axis. There does not appear to be a trend like that in this plot. Points 15 and 21, which are both on the right side of the plot, are farther away than the rest of the points. However, point 21 seems more like an outlier than a continuation of a trend. This assumption appears to be met</p>
@@ -1703,7 +1815,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="cb1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="cb1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1713,7 +1829,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cb_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="cb1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="cb1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1815,10 +1935,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1828,8 +1965,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1841,7 +1987,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1885,6 +2154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1910,6 +2180,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1970,6 +2266,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

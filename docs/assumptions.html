@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -97,6 +104,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -104,9 +138,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
     </a>
@@ -118,133 +152,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+    <a class="dropdown-item" href="./research_objectives.html">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+    <a class="dropdown-item" href="./response_variable.html">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+    <a class="dropdown-item" href="./experimental_units.html">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+    <a class="dropdown-item" href="./sources_of_variances.html">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+    <a class="dropdown-item" href="./randomization.html">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+    <a class="dropdown-item" href="./bf3.html">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./block_intro.html">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+    <a class="dropdown-item" href="./cb1.html">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+    <a class="dropdown-item" href="./ancova.html">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+    <a class="dropdown-item" href="./latin_square.html">
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./nested_intro.html">
  <span class="dropdown-text">Nested Factor Designs Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+    <a class="dropdown-item" href="./split_plot.html">
  <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+    <a class="dropdown-item" href="./Anova_F-test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+    <a class="dropdown-item" href="./assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+    <a class="dropdown-item" href="./contrast.html">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+    <a class="dropdown-item" href="./multiple_comparisons.html">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+    <a class="dropdown-item" href="./unbalanced.html">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+    <a class="dropdown-item" href="./random_v_fixed.html">
  <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+    <a class="dropdown-item" href="./DescribeData.html">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -252,24 +286,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+    <a class="dropdown-item" href="./data/data_for_class.zip">
  <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+    <a class="dropdown-item" href="./data_for_class.html">
  <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -321,7 +355,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <script type="text/javascript">
  function showhide(id) {
@@ -346,9 +382,9 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <li><span class="math inline">\(\alpha_i\)</span> represents the effect of factor level <span class="math inline">\(i\)</span></li>
 <li><span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual error for the <span class="math inline">\(j^\text{th}\)</span> observation in factor level <span class="math inline">\(i\)</span></li>
 </ul>
-<p><span class="math inline">\(\epsilon_\text{ij}\)</span> is a random variable and most of the assumptions are focused on defining the distribution of this random variable. Namely, we assume that each residual comes from the same normal distribution, with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span>. <a href="#fig-effects">Figure&nbsp;1</a> illustrates the same residual distribution visually applied to three distinct factor levels. The assumptions and how to check them are explained in more detail below.</p>
+<p><span class="math inline">\(\epsilon_\text{ij}\)</span> is a random variable and most of the assumptions are focused on defining the distribution of this random variable. Namely, we assume that each residual comes from the same normal distribution, with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span>. <a href="#fig-effects" class="quarto-xref">Figure&nbsp;1</a> illustrates the same residual distribution visually applied to three distinct factor levels. The assumptions and how to check them are explained in more detail below.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">15</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">rnorm</span>(<span class="dv">30</span>,<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">18</span>),<span class="at">each=</span><span class="dv">10</span>),<span class="dv">2</span>), <span class="at">g =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">each=</span><span class="dv">10</span>)) </span>
@@ -398,10 +434,14 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span><span class="fl">-.1</span>, (y<span class="sc">$</span>yi[<span class="dv">25</span>]<span class="sc">+</span>ai[<span class="dv">3</span>])<span class="sc">/</span><span class="dv">2</span>, <span class="fu">expression</span>(epsilon[<span class="dv">3</span>][<span class="st">","</span>][<span class="dv">5</span>]), <span class="at">pos=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-effects" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-effects-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Same distribution can be used to describe the residuals from each factor level</figcaption>
+<div id="fig-effects" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-effects-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Same distribution can be used to describe the residuals from each factor level
+</figcaption>
 </figure>
 </div>
 </div>
@@ -434,19 +474,23 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Type I error mean rejecting a true <span class="math inline">\(H_o\)</span></p>
 </div></div><p>The simplest, quickest, and most common way to check this assumption is a visual assessment of a residual plot. A residual plot shows the residuals on the y-axis and the predicted values on the x-axis. (In the case of just one structural factor, the factor levels are sometimes shown on the x-axis instead). The assumption is satisfied when the vertical spread of the data points within each factor level is roughly the same. This is called homogeneity of variance or homoscedasticity. When the spread is not the same it is called heterogeneity of variance, or heteroscedasticity.</p>
-<p><a href="#fig-variance">Figure&nbsp;2</a> shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.</p>
+<p><a href="#fig-variance" class="quarto-xref">Figure&nbsp;2</a> shows the residual plot in our toothbrush example where the effectiveness of 4 different types of toothbrush were studied.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>brush_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-variance" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-variance-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Residual vs.&nbsp;Fitted plot to check constant variance assumption</figcaption>
+<div id="fig-variance" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-variance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-variance-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Residual vs.&nbsp;Fitted plot to check constant variance assumption
+</figcaption>
 </figure>
 </div>
 </div>
@@ -464,38 +508,46 @@ Red Line in the Residual Plot
 <p>Ignore the red line in the residual plot. It can trick your eyes and draw your attention to the wrong thing. It is not meant to gauge constant variance.</p>
 <p>With a little extra coding you can get a residual plot without the red line. Additional code is required to clean up the labeling.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>brush_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>fitted.values, brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-resid-no-red" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-resid-no-red-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Residual vs.&nbsp;Fitted plot without a red line</figcaption>
+<div id="fig-resid-no-red" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resid-no-red-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-resid-no-red-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resid-no-red-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Residual vs.&nbsp;Fitted plot without a red line
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p>The points in <a href="#fig-variance">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
+<p>The points in <a href="#fig-variance" class="quarto-xref">Figure&nbsp;2</a> are in 4 vertical groupings corresponding to the factor levels of toothbrush. This is to be expected because the x-axis shows predicted, a.k.a. fitted, values. Each toothbrush has a different predicted plaque value. The group of points on the far left appears less vertically spread out than the group of points on the far right.</p>
 <p>Of course, the factor levels will never all have exactly equal variance. How different does the spread in this plot need to be to conclude that the assumption is met or is violated? It is subjective and experience will help you spot trouble in the plot. You can also employ additional methods to help detect non-constant variance.</p>
 <section id="rules-of-thumb-for-one-way-anova" class="level3">
 <h3 class="anchored" data-anchor-id="rules-of-thumb-for-one-way-anova">Rules of Thumb for One-way ANOVA</h3>
-<p>As a rule of thumb, in one-way ANOVA (i.e.&nbsp;just one independent factor) you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
+<p>As a rule of thumb, in one-way ANOVA (i.e.&nbsp;just one independent factor) you can check to see if the largest standard deviation is more than double the smallest standard deviation. <a href="#tbl-favstats" class="quarto-xref">Table&nbsp;1</a> shows summary statistics for the toothbrush example. The smallest standard deviation of 1.7 belongs to the oscillating brush. The largest standard deviation of 3.9 belongs to the ultrasonic brush. Because <span class="math inline">\(2*1.74 = 3.48 &lt; 3.90\)</span>, by this rule of thumb the constant variance assumption appears to be violated.</p>
 <p>The rule of thumb is too stringent, and therefore not recommended, for anything but a one-way ANOVA.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div id="tbl-favstats" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-favstats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Summary statistics for each toothbrush
+</figcaption>
+<div aria-describedby="tbl-favstats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-favstats" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Summary statistics for each toothbrush</caption>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 9%">
@@ -575,6 +627,8 @@ Red Line in the Residual Plot
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 </section>
 <section id="levenes-test" class="level3">
@@ -607,14 +661,18 @@ Don’t Forget to Think
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div id="tbl-levene" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Levene’s test output for the toothbrush example
+</figcaption>
+<div aria-describedby="tbl-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-levene" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Levene’s test output for the toothbrush example</caption>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -640,38 +698,48 @@ Don’t Forget to Think
 </table>
 </div>
 </div>
+</figure>
 </div>
-<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene">Table&nbsp;2</a> is .8605, indicating the null hypothesis of constant variance cannot be rejected. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of <a href="#fig-variance">Figure&nbsp;2</a> is the main reason the rule of thumb approach indicated the assumption had been violated. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
+</div>
+<p>For the toothbrush example, the p-value of Levene’s F-test in <a href="#tbl-levene" class="quarto-xref">Table&nbsp;2</a> is .8605, indicating the null hypothesis of constant variance cannot be rejected. (It is not uncommon for this hypothesis test to disagree with the rule of thumb.) It appears that one outlier in the upper right portion of <a href="#fig-variance" class="quarto-xref">Figure&nbsp;2</a> is the main reason the rule of thumb approach indicated the assumption had been violated. If that point is ignored, the groups do look more alike and the rule of thumb agrees with the Levene’s test.</p>
 <p>This is not to suggest the point be removed from the analysis; rather, to recognize the impact an outlier can have on the assumptions. This is especially true when the methods of checking the assumption don’t agree.</p>
 <section id="more-than-1-structural-factor" class="level4">
 <h4 class="anchored" data-anchor-id="more-than-1-structural-factor">More than 1 structural factor</h4>
 <p>Consider the slightly more complicated example where researchers investigated toothpaste brand (name brand vs.&nbsp;off brand), toothbrush type, and their interaction.</p>
 <p>In this case, the residual vs.&nbsp;fitted plot has 8 different vertical groupings - one for each factor level combination of brush and paste. Look for overall trends or megaphone shapes in the residual plot as indicators that the assumption of constant error variance may be violated. For example, does the spread of the residuals increase as the fitted value increases? Or, does the spread of the residuals decrease as the fitted value decreases?</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>brush_aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste, <span class="at">data =</span> bf2)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>which <span class="ot">=</span> <span class="fu">plot</span>(brush_aov2, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-variance2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-variance2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Residual vs.&nbsp;Fitted plot to check constant variance assumption for the 2-factor example</figcaption>
+<div id="fig-variance2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-variance2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-variance2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variance2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Residual vs.&nbsp;Fitted plot to check constant variance assumption for the 2-factor example
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-variance2">Figure&nbsp;4</a> shows a slight megaphone shape. As we move from left to right along the x-axis the spread of the points increases (with the exception of the points at x=24.5). We can use a Levene’s test to help us determine if heterogeneity of variance is a problem. The result is shown in <a href="#tbl-levene2">Table&nbsp;3</a>.</p>
+<p><a href="#fig-variance2" class="quarto-xref">Figure&nbsp;4</a> shows a slight megaphone shape. As we move from left to right along the x-axis the spread of the points increases (with the exception of the points at x=24.5). We can use a Levene’s test to help us determine if heterogeneity of variance is a problem. The result is shown in <a href="#tbl-levene2" class="quarto-xref">Table&nbsp;3</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(brush_aov2) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div id="tbl-levene2" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-levene2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Levene’s test output for the 2-factor example
+</figcaption>
+<div aria-describedby="tbl-levene2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-levene2" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Levene’s test output for the 2-factor example</caption>
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -697,6 +765,8 @@ Don’t Forget to Think
 </table>
 </div>
 </div>
+</figure>
+</div>
 </div>
 <p>With a p-value of .541 we fail to reject the null hypothesis. It appears the constant variance assumption is met.</p>
 </section>
@@ -717,70 +787,88 @@ Don’t Forget to Think
 <div id="qqplot" style="display:none;">
 <div>
 <p>The Q-Q plot is actually just a scatterplot created from ordered pairs. Each ordered pair consists of a residual from the model (that’s easy to find!) and the quantile from the normal distribution associated with that residual.</p>
-<p><strong>But how do you find a quantile from the normal distribution?</strong> To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From <a href="#fig-qnorm-1">Figure&nbsp;5 (a)</a> I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.</p>
-<div>
-<details>
+<p><strong>But how do you find a quantile from the normal distribution?</strong> To get this, each residual is converted into a sample quantile, then the theoretical Z score from the normal distribution associated with that quantile is calculated. For example, if I had 20 residuals I would calculate the 1/20 quantile (a.k.a. fifth percentile) from the z-distribution. From <a href="#fig-qnorm-1" class="quarto-xref">Figure&nbsp;5 (a)</a> I can see the 5th percentile of the Z distribution is -1.645. My first ordered pair on the scatterplot would be the smallest residual and the value -1.645.</p>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">05</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xqnorm</span>(.<span class="dv">10</span>, <span class="at">return =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-qnorm" class="cell quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-qnorm-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-qnorm-1.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672"></p>
-<figcaption class="figure-caption">(a) 5th percentile</figcaption>
+<div id="fig-qnorm" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-qnorm" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-qnorm-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-qnorm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-qnorm-1.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-qnorm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) 5th percentile
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-qnorm-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-qnorm-2.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672"></p>
-<figcaption class="figure-caption">(b) 10th percentile</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-qnorm" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-qnorm-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-qnorm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-qnorm-2.png" class="img-fluid figure-img" data-ref-parent="fig-qnorm" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-qnorm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) 10th percentile
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Z-score calculations from desired percentile</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Z-score calculations from desired percentile
+</figcaption>
 </figure>
 </div>
-</div>
-<p>The next point on the Q-Q plot would be my second smallest residual on the y-axis and the <span class="math inline">\(2/20 = .10\)</span> quantile from the Z distribution on the x-axis. The 0.10 quantile is -1.282 as seen in <a href="#fig-qnorm-2">Figure&nbsp;5 (b)</a>.</p>
+<p>The next point on the Q-Q plot would be my second smallest residual on the y-axis and the <span class="math inline">\(2/20 = .10\)</span> quantile from the Z distribution on the x-axis. The 0.10 quantile is -1.282 as seen in <a href="#fig-qnorm-2" class="quarto-xref">Figure&nbsp;5 (b)</a>.</p>
 <p>This process would be repeated for all 20 residuals.</p>
 </div>
 </div>
 <p>If the sample data is normally distributed then the resulting plot of the two quantities will roughly be a straight line. The residuals will never be exactly normal, of course. Some amount of “wiggle” should be allowed.</p>
-<p><a href="#fig-qqplot_brush1">Figure&nbsp;6</a> is a Q-Q plot for the toothbrush example.</p>
+<p><a href="#fig-qqplot_brush1" class="quarto-xref">Figure&nbsp;6</a> is a Q-Q plot for the toothbrush example.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-qqplot_brush1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-qqplot_brush1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption>
+<div id="fig-qqplot_brush1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qqplot_brush1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-qqplot_brush1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qqplot_brush1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Q-Q plot of residuals for tootbrush 1-factor ANOVA example
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>It can be difficult to tell if the line is straight enough. <code>qqPlot</code> from the <code>car</code> package (see <a href="#fig-QQPlot_brush2">Figure&nbsp;7</a>) adds boundary lines to help you determine if the points are out of bounds<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.</p>
+<p>It can be difficult to tell if the line is straight enough. <code>qqPlot</code> from the <code>car</code> package (see <a href="#fig-QQPlot_brush2" class="quarto-xref">Figure&nbsp;7</a>) adds boundary lines to help you determine if the points are out of bounds<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. If sections of the plot are out of bounds the assumption of normally distributed residuals can be considered violated.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The envelope argument controls whether the region between the lines is shaded or not</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(brush_aov, <span class="at">envelope =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">"lines"</span>), <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-QQPlot_brush2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-QQPlot_brush2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example</figcaption>
+<div id="fig-QQPlot_brush2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-QQPlot_brush2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-QQPlot_brush2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-QQPlot_brush2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Boundaries added to Q-Q plot of residuals for tootbrush 1-factor ANOVA example
+</figcaption>
 </figure>
 </div>
 </div>
@@ -810,17 +898,21 @@ Notation
 <p>In addition to making assumptions about the distribution of residuals, we also make an assumption regarding individual observations, or realizations, from the distribution of errors. Specifically, we assume <strong>each observation from the error distribution is independent of the rest.</strong> In other words, the residuals are not correlated with each other in any way.</p>
 <p>This is violated when something is affecting the response that was not adequately randomized, controlled for, or included in the model. Not adequately accounting for treatment order in time or space is often a culprit. For example, suppose you run an experiment where respondents were given a task to complete under 3 distinct conditions. If you did not randomize the order of the conditions or neglected to account for the fact the same respondent provided 3 observations, you would have violated this assumption.</p>
 <p>Sometimes looking at the data can provide a clue this requirement is violated, sometimes it cannot. Looking at the Residual vs.&nbsp;Fitted plot is a good place to start. For example, when a model over predicts all observations in condition 1 and under predicted all observations in condition 3 it may be an indicator that you neglected to address something important (i.e.&nbsp;subject identification, or order of conditions) in your experiment.</p>
-<p>An order plot can also be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. <a href="#fig-order">Figure&nbsp;8</a> contains the order plot for our simple toothbrush example, assuming the row number indicates the order in which each observation was actually made.</p>
+<p>An order plot can also be useful in detecting a violation of this assumption. The order plot shows each residual on the y-axis and the chronological order in which the observation was made/collected along the x-axis. <a href="#fig-order" class="quarto-xref">Figure&nbsp;8</a> contains the order plot for our simple toothbrush example, assuming the row number indicates the order in which each observation was actually made.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(brush_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-order" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="assumptions_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: Order plot for 1-factor toothbrush example</figcaption>
+<div id="fig-order" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assumptions_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Order plot for 1-factor toothbrush example
+</figcaption>
 </figure>
 </div>
 </div>
@@ -839,7 +931,7 @@ Caution
 <p>You should not throw out data points based alone on the fact that they appear anomalous.</p>
 </div>
 </div>
-<p>No other trends are evident in <a href="#fig-order">Figure&nbsp;8</a>. If patterns/trends <em>are</em> evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. <strong>Bias in your design or execution will lead to violating this assumption.</strong></p>
+<p>No other trends are evident in <a href="#fig-order" class="quarto-xref">Figure&nbsp;8</a>. If patterns/trends <em>are</em> evident, you may have violated the assumption of independent observations. Perhaps a tool lost calibration over time, or subjects/researchers experienced fatigue. Whatever the cause, you will want to investigate, fix the issue, and potentially redo the experiment. It really comes down to your ability/inability to defend the validity of your study in the minds of your audience. <strong>Bias in your design or execution will lead to violating this assumption.</strong></p>
 <p>In many cases, the data will not indicate there is bias unless you know exactly what to look for. These unknown sources of bias are particularly difficult to detect. Planning the study in great detail, thinking critically about your results, being familiar with the protocols of the experiment, and getting help from others to provide fresh perspectives is ultimately the best way to check this assumption and ensure bias does not affect your results.</p>
 </section>
 <section id="assumptions-summary" class="level2">
@@ -1002,10 +1094,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1015,8 +1124,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1028,7 +1146,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1072,6 +1313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1097,6 +1339,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1157,6 +1425,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

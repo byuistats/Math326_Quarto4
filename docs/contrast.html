@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -97,6 +104,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -104,9 +138,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Math326 Notebook</span>
     </a>
@@ -118,133 +152,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
         <li>
-    <a class="dropdown-item" href="./key_principles.html" rel="" target="">
+    <a class="dropdown-item" href="./key_principles.html">
  <span class="dropdown-text">Key Principles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./research_objectives.html" rel="" target="">
+    <a class="dropdown-item" href="./research_objectives.html">
  <span class="dropdown-text">Research Objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./response_variable.html" rel="" target="">
+    <a class="dropdown-item" href="./response_variable.html">
  <span class="dropdown-text">Response Variable</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./experimental_units.html" rel="" target="">
+    <a class="dropdown-item" href="./experimental_units.html">
  <span class="dropdown-text">Experimental Units</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sources_of_variances.html" rel="" target="">
+    <a class="dropdown-item" href="./sources_of_variances.html">
  <span class="dropdown-text">Sources of Variation - Factors and Conditions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./randomization.html" rel="" target="">
+    <a class="dropdown-item" href="./randomization.html">
  <span class="dropdown-text">Randomization</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_intro.html">
  <span class="dropdown-text">Basic Factorial Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html" rel="" target="">
+    <a class="dropdown-item" href="./BasicFactorial_quarto_boat.html">
  <span class="dropdown-text">BF[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf2.html" rel="" target="">
+    <a class="dropdown-item" href="./bf2.html">
  <span class="dropdown-text">BF[2]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bf3.html" rel="" target="">
+    <a class="dropdown-item" href="./bf3.html">
  <span class="dropdown-text">BF[3+]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./block_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./block_intro.html">
  <span class="dropdown-text">Blocking Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cb1.html" rel="" target="">
+    <a class="dropdown-item" href="./cb1.html">
  <span class="dropdown-text">CB[1]</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ancova.html" rel="" target="">
+    <a class="dropdown-item" href="./ancova.html">
  <span class="dropdown-text">ANCOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./latin_square.html" rel="" target="">
+    <a class="dropdown-item" href="./latin_square.html">
  <span class="dropdown-text">Latin Square</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nested_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./nested_intro.html">
  <span class="dropdown-text">Nested Factor Designs Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./split_plot.html" rel="" target="">
+    <a class="dropdown-item" href="./split_plot.html">
  <span class="dropdown-text">SP/RM[1,1]</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
         <li>
-    <a class="dropdown-item" href="./factor_structure.html" rel="" target="">
+    <a class="dropdown-item" href="./factor_structure.html">
  <span class="dropdown-text">Factor Structure</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./effects_model.html" rel="" target="">
+    <a class="dropdown-item" href="./effects_model.html">
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html" rel="" target="">
+    <a class="dropdown-item" href="./Anova_F-test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./assumptions.html" rel="" target="">
+    <a class="dropdown-item" href="./assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contrast.html" rel="" target="">
+    <a class="dropdown-item" href="./contrast.html">
  <span class="dropdown-text">Contrasts</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./multiple_comparisons.html" rel="" target="">
+    <a class="dropdown-item" href="./multiple_comparisons.html">
  <span class="dropdown-text">Multiple Comparisons</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./unbalanced.html" rel="" target="">
+    <a class="dropdown-item" href="./unbalanced.html">
  <span class="dropdown-text">Unbalanced Datasets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./random_v_fixed.html" rel="" target="">
+    <a class="dropdown-item" href="./random_v_fixed.html">
  <span class="dropdown-text">Random Factors and EMS</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
         <li>
-    <a class="dropdown-item" href="./DescribeData.html" rel="" target="">
+    <a class="dropdown-item" href="./DescribeData.html">
  <span class="dropdown-text">Descriptive Summaries</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./diagnostics.html" rel="" target="">
+    <a class="dropdown-item" href="./diagnostics.html">
  <span class="dropdown-text">Model diagnostics</span></a>
   </li>  
     </ul>
@@ -252,24 +286,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
         <li>
-    <a class="dropdown-item" href="./data/data_for_class.zip" rel="" target="">
+    <a class="dropdown-item" href="./data/data_for_class.zip">
  <span class="dropdown-text">Download Zip Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./data_for_class.html" rel="" target="">
+    <a class="dropdown-item" href="./data_for_class.html">
  <span class="dropdown-text">Data Page</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -315,7 +349,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <script type="text/javascript">
  function showhide(id) {
@@ -337,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/contrast_venn.JPG" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Venn Diagram</figcaption>
+<figcaption>Venn Diagram</figcaption>
 </figure>
 </div>
 </div></div>
@@ -346,9 +382,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(\begin{aligned} H_0: \mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}\)</span></p>
 <p><span class="math inline">\(\begin{aligned} H_0: \mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}\)</span></p>
 <p>The above hypotheses can all be expressed as a sum, where each factor level mean is multiplied by a coefficient. When a factor level is not a part of the hypotheses, it has a coefficient of zero.</p>
-<div id="tbl-expanded" class="anchored">
+<div id="tbl-expanded" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expanded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Expanded Hypotheses
+</figcaption>
+<div aria-describedby="tbl-expanded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;1: Expanded Hypotheses</caption>
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -379,10 +419,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<p>The contents in the right column of <a href="#tbl-expanded">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
-<div id="tbl-coefficients" class="anchored">
+</figure>
+</div>
+<p>The contents in the right column of <a href="#tbl-expanded" class="quarto-xref">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
+<div id="tbl-coefficients" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefficients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Contrast Coefficients
+</figcaption>
+<div aria-describedby="tbl-coefficients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;2: Contrast Coefficients</caption>
 <colgroup>
 <col style="width: 38%">
 <col style="width: 37%">
@@ -418,6 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
 </div>
 <p>There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e.&nbsp;simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across certain factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple situations.</p>
 </section>
@@ -465,47 +513,53 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <li><span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual error for the <span class="math inline">\(j^\text{th}\)</span> observation in factor level <span class="math inline">\(i\)</span></li>
 </ul>
 <p>Below is the table of factor level means and the ANOVA summary table.</p>
-<div>
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-brush_analysis</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Toothbrush Experiment Results"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-subcap:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| - "Factor Level Means"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| - "ANOVA Summary Table"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| layout-ncol: 2</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-brush_analysis</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Toothbrush Experiment Results"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-subcap:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| - "Factor Level Means"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| - "ANOVA Summary Table"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">#| layout-ncol: 2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>) </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">bf2 &lt;- read_csv("data/toothpaste_BF2.csv") </span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>means_tbl <span class="ot">&lt;-</span> bf2 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Brush) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Plaque),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">`</span><span class="at">sample size</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>())</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>means_tbl <span class="sc">|&gt;</span> pander<span class="sc">::</span><span class="fu">pander</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">means_tbl &lt;- bf2 |&gt; group_by(Brush) |&gt; summarise(mean = mean(Plaque),</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">                                    `sample size` = n())</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">means_tbl |&gt; pander::pander()</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>brush_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(brush_aov) <span class="sc">|&gt;</span> pander<span class="sc">::</span><span class="fu">pander</span>()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">brush_aov &lt;- aov(Plaque~Brush, data = bf2)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">summary(brush_aov) |&gt; pander::pander()</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#These lines store values in variables so that I can write them in</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#the latex equation below programmatically rather than hardcoding them</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>mean_man <span class="ot">&lt;-</span> means_tbl[[<span class="dv">1</span>,<span class="dv">2</span>]]</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>mean_osc <span class="ot">&lt;-</span> means_tbl[[<span class="dv">2</span>,<span class="dv">2</span>]]</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>nsize <span class="ot">&lt;-</span> means_tbl[[<span class="dv">1</span>,<span class="dv">3</span>]]</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">summary</span>(brush_aov)[[<span class="dv">1</span>]][<span class="dv">2</span>,<span class="dv">3</span>] <span class="co">#This gets the number from the summary table</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>tstat <span class="ot">&lt;-</span> (mean_man <span class="sc">-</span> mean_osc)<span class="sc">/</span><span class="fu">sqrt</span>(mse<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>nsize <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>nsize))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>pprob <span class="ot">&lt;-</span> <span class="fu">pt</span>(<span class="at">q=</span>tstat, <span class="at">df=</span>brush_aov<span class="sc">$</span>df.resid, <span class="at">lower.tail=</span><span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">#These lines store values in variables so that I can write them in</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">#the latex equation below programmatically rather than hardcoding them</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">mean_man &lt;- means_tbl[[1,2]]</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">mean_osc &lt;- means_tbl[[2,2]]</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">nsize &lt;- means_tbl[[1,3]]</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">mse &lt;- summary(brush_aov)[[1]][2,3] #This gets the number from the summary table</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">tstat &lt;- (mean_man - mean_osc)/sqrt(mse*(1/nsize + 1/nsize))</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">pprob &lt;- pt(q=tstat, df=brush_aov$df.resid, lower.tail=FALSE) * 2</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-brush_analysis" class="cell tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;3: Toothbrush Experiment Results</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-brush_analysis-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-brush_analysis" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(a) Factor Level Means</caption>
+<div id="tbl-brush_analysis" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-brush_analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Toothbrush Experiment Results
+</figcaption>
+<div aria-describedby="tbl-brush_analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-brush_analysis" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-brush_analysis-1" class="do-not-create-environment quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-brush_analysis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Factor Level Means
+</figcaption>
+<div aria-describedby="tbl-brush_analysis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-brush_analysis-1" class="do-not-create-environment table">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 11%">
@@ -542,9 +596,15 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 </tbody>
 </table>
 </div>
-<div id="tbl-brush_analysis-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-brush_analysis" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table table-sm table-striped small">
-<caption>(b) ANOVA Summary Table</caption>
+</figure>
+</div>
+<div id="tbl-brush_analysis-2" class="do-not-create-environment quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-brush_analysis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) ANOVA Summary Table
+</figcaption>
+<div aria-describedby="tbl-brush_analysis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-brush_analysis-2" class="do-not-create-environment table">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 6%">
@@ -583,10 +643,14 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 </tbody>
 </table>
 </div>
+</figure>
 </div>
 </div>
 </div>
-<p>With that information we can proceed with our test of whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-diff2means">Equation&nbsp;1</a> we can calculate the t statistic:</p>
+</div>
+</figure>
+</div>
+<p>With that information we can proceed with our test of whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from <a href="#tbl-brush_analysis" class="quarto-xref">Table&nbsp;3</a> into <a href="#eq-diff2means" class="quarto-xref">Equation&nbsp;1</a> we can calculate the t statistic:</p>
 <p><span id="eq-tvalue"><span class="math display">\[
 t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 \tag{3}\]</span></span></p>
@@ -594,7 +658,7 @@ t = \frac{ 3.11 }{\sqrt{ 7.53 * (\frac{1}{ 6 } + \frac{1}{ 6 })}} = 1.97
 </section>
 <section id="t-test-for-any-contrast" class="level3">
 <h3 class="anchored" data-anchor-id="t-test-for-any-contrast">t-test for Any Contrast</h3>
-<p>This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the <span class="math inline">\(1's\)</span> in <a href="#eq-tvalue">Equation&nbsp;3</a> appearing directly above each sample size actually represent the squared coefficient of the contrast (see <a href="#tbl-expanded">Table&nbsp;1</a>). Thus, <a href="#eq-diff2means">Equation&nbsp;1</a> used to compare two factor level means, is actually just a special case of a more general formula, <a href="#eq-contrast">Equation&nbsp;4</a>, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.</p>
+<p>This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the <span class="math inline">\(1's\)</span> in <a href="#eq-tvalue" class="quarto-xref">Equation&nbsp;3</a> appearing directly above each sample size actually represent the squared coefficient of the contrast (see <a href="#tbl-expanded" class="quarto-xref">Table&nbsp;1</a>). Thus, <a href="#eq-diff2means" class="quarto-xref">Equation&nbsp;1</a> used to compare two factor level means, is actually just a special case of a more general formula, <a href="#eq-contrast" class="quarto-xref">Equation&nbsp;4</a>, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.</p>
 <p><span id="eq-contrast"><span class="math display">\[
 t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i / n_i)}}
 \tag{4}\]</span></span></p>
@@ -606,8 +670,8 @@ t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i /
 <li><span class="math inline">\(n_i\)</span> is the sample size of the <span class="math inline">\(i^\text{th}\)</span> factor level.</li>
 </ul>
 <p>The degrees of freedom for <span class="math inline">\(t\)</span> will be equal to the degrees of freedom for residual error in the ANOVA summary table.</p>
-<p>Let’s use this more general approach in <a href="#eq-contrast">Equation&nbsp;4</a> to test the fourth hypothesis contained in Table <a href="#tbl-expanded">Table&nbsp;1</a>. Our alternative hypothesis will be the contrast is not equal to zero. Though you can use directional (i.e.&nbsp;1-tailed) tests of a contrast, the default is to use a two-tailed alternative hypothesis of “not equal to zero”.</p>
-<p>Plugging the values from <a href="#tbl-brush_analysis">Table&nbsp;3</a> into <a href="#eq-contrast">Equation&nbsp;4</a> we can calculate the t statistic:</p>
+<p>Let’s use this more general approach in <a href="#eq-contrast" class="quarto-xref">Equation&nbsp;4</a> to test the fourth hypothesis contained in Table <a href="#tbl-expanded" class="quarto-xref">Table&nbsp;1</a>. Our alternative hypothesis will be the contrast is not equal to zero. Though you can use directional (i.e.&nbsp;1-tailed) tests of a contrast, the default is to use a two-tailed alternative hypothesis of “not equal to zero”.</p>
+<p>Plugging the values from <a href="#tbl-brush_analysis" class="quarto-xref">Table&nbsp;3</a> into <a href="#eq-contrast" class="quarto-xref">Equation&nbsp;4</a> we can calculate the t statistic:</p>
 <p>Numerator: <span class="math display">\[
 \hat{\psi} = 1 * 23.09 + -\frac{1}{3} * 19.98 + -\frac{1}{3} * 22.67 + -\frac{1}{3} * 25.31 = 0.438
 \]</span></p>
@@ -714,11 +778,15 @@ Confidence level used: 0.95 </code></pre>
 <section id="assess-orthogonality" class="level3">
 <h3 class="anchored" data-anchor-id="assess-orthogonality">Assess Orthogonality</h3>
 <p>Two contrasts are orthogonal if the dot product of the coefficient vectors equals zero. The term “dot product” means that corresponding elements of a vector are multiplied, and then those products are summed together.</p>
-<p>Let’s determine if the contrasts listed in <a href="#tbl-coefficients">Table&nbsp;2</a> are orthogonal to one another. On the right hand side of <a href="#tbl-coefficients">Table&nbsp;2</a> the coefficient vector of the contrast is listed. We will investigate 2 of the 6 pairs of contrasts.</p>
+<p>Let’s determine if the contrasts listed in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> are orthogonal to one another. On the right hand side of <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> the coefficient vector of the contrast is listed. We will investigate 2 of the 6 pairs of contrasts.</p>
 <p>First, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{sonic}- \mu_{ultra}\)</span>.</p>
-<div id="tbl-first_pair" class="anchored">
+<div id="tbl-first_pair" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-first_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts
+</figcaption>
+<div aria-describedby="tbl-first_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts</caption>
 <colgroup>
 <col style="width: 26%">
 <col style="width: 14%">
@@ -765,11 +833,17 @@ Confidence level used: 0.95 </code></pre>
 </tbody>
 </table>
 </div>
-<p>In the last row of <a href="#tbl-first_pair">Table&nbsp;4</a>, the product of the elements of the coefficient vectors are calculated. The sum of these products <span class="math inline">\(0 + 0 + 0 + 0 = 0\)</span>. Because the sum of the products is zero, we conclude the first two contrasts listed in <a href="#tbl-coefficients">Table&nbsp;2</a> are orthogonal.</p>
+</figure>
+</div>
+<p>In the last row of <a href="#tbl-first_pair" class="quarto-xref">Table&nbsp;4</a>, the product of the elements of the coefficient vectors are calculated. The sum of these products <span class="math inline">\(0 + 0 + 0 + 0 = 0\)</span>. Because the sum of the products is zero, we conclude the first two contrasts listed in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> are orthogonal.</p>
 <p>Next, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}\)</span>.</p>
-<div id="tbl-second_pair" class="anchored">
+<div id="tbl-second_pair" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-second_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts
+</figcaption>
+<div aria-describedby="tbl-second_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts</caption>
 <colgroup>
 <col style="width: 25%">
 <col style="width: 14%">
@@ -816,11 +890,17 @@ Confidence level used: 0.95 </code></pre>
 </tbody>
 </table>
 </div>
-<p>In <a href="#tbl-second_pair">Table&nbsp;5</a> the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is <span class="math inline">\(0 + 1 + 0 + 0 = 1\)</span>. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.</p>
-<p>It has been shown how to determine orthogonality for the contrasts contained in first two rows of <a href="#tbl-ortho">Table&nbsp;6</a> below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.</p>
-<div id="tbl-ortho" class="anchored">
+</figure>
+</div>
+<p>In <a href="#tbl-second_pair" class="quarto-xref">Table&nbsp;5</a> the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is <span class="math inline">\(0 + 1 + 0 + 0 = 1\)</span>. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.</p>
+<p>It has been shown how to determine orthogonality for the contrasts contained in first two rows of <a href="#tbl-ortho" class="quarto-xref">Table&nbsp;6</a> below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.</p>
+<div id="tbl-ortho" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ortho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Orthogonality of Contrasts from <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a>
+</figcaption>
+<div aria-describedby="tbl-ortho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;6: Orthogonality of Contrasts from <a href="#tbl-coefficients">Table&nbsp;2</a></caption>
 <colgroup>
 <col style="width: 36%">
 <col style="width: 43%">
@@ -828,7 +908,7 @@ Confidence level used: 0.95 </code></pre>
 </colgroup>
 <thead>
 <tr class="header">
-<th>Contrast Row #’s from <a href="#tbl-coefficients">Table&nbsp;2</a></th>
+<th>Contrast Row #’s from <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a></th>
 <th></th>
 <th>Orthogonality</th>
 </tr>
@@ -866,6 +946,8 @@ Confidence level used: 0.95 </code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
 </div>
 
 
@@ -963,10 +1045,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -976,8 +1075,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -989,7 +1097,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1033,6 +1264,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1058,6 +1290,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1118,6 +1376,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
