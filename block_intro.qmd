@@ -37,7 +37,7 @@ Another common nuisance factor used for blocking is a characteristic of the envi
 
 ## Blocking as an Alternative to Assignment Completely at Random
 
-Up to this point, randomization has been our primary tool for dealing with these nuisance factors: we assign subjects to treatment completely at random. However, as we have seen, making assignments completely at random may lead to "unlucky" scenarios that create confounding or bias.
+Up to this point, randomization has been our primary tool for dealing with these nuisance factors. In the factorial designs we have assigned treatments to experimental units completely at random: each experimental received exactly one treatment. However, as we have seen, making assignments completely at random may lead to "unlucky" scenarios that create confounding or bias.
 
 Furthermore, in some cases, it may not be practical or possible to completely randomize the nuisance factor.
 

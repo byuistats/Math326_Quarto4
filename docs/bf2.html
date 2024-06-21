@@ -526,8 +526,27 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <section id="design" class="level1 page-columns page-full">
 <h1>Design</h1>
 <p>In a basic factorial design of 2 factors, two factors are purposely varied in such a way that observations are obtained for every possible factor level combination. Each factor level combination is considered a treatment.</p>
-<p>In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level combination. It can be helpful to first list out all the subjects, factor level combinations, and the order in a non-randomized table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.</p>
-<p>We plan to collect 24 observations in total. Since toothbrush has four levels, it seems reasonable to collect <span class="math inline">\(24 \div 4 = 6\)</span> observations per toothbrush. We list each toothbrush type 6 times in the toothbrush column. Toothpaste has 2 levels, so we expect <span class="math inline">\(24 \div 2 = 12\)</span> observations at each level. We list each type of toothpaste 12 times.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a completely randomized factorial design, each experimental unit is randomly assigned to exactly 1 factor level combination (aka treatment).</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In contrast to a completely randomized factorial design, a <a href="https://byuistats.github.io/Math326_Quarto4/block_intro.html">block design</a> allows for experimental units to experience more than 1 treatment condition.</p>
+</div></div><p>It can be helpful to first list out all the subjects, factor level combinations, and the order in a non-randomized table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Subjects are the experimental units in this example. The terms are used interchangeably for these factorial designs.</p>
+</div></div><p>We plan to collect 24 observations in total. Since toothbrush has four levels, it seems reasonable to collect <span class="math inline">\(24 \div 4 = 6\)</span> observations per toothbrush. We list each toothbrush type 6 times in the toothbrush column. Toothpaste has 2 levels, so we expect <span class="math inline">\(24 \div 2 = 12\)</span> observations at each level. We list each type of toothpaste 12 times.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>When the number of observations to collect is not a multiple of the factor levels, you will need to make decisions about which factor level will receive more/fewer observations.</p>
@@ -1814,7 +1833,7 @@ Table&nbsp;2: Numerical Summary for Each Factor
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div>
-<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Brush
@@ -1895,7 +1914,7 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </div>
 <div class="cell-output-display">
 <div>
-<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Toothpaste

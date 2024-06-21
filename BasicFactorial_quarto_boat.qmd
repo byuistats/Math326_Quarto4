@@ -70,7 +70,7 @@ $$
 A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the following requirements are satisfied:
 
 | Requirements                           | Method for Checking                                     | What You Hope to See                                     |
-|----------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+|-------------------|--------------------------|---------------------------|
 | Constant variance across factor levels | Rule of thumb comparing standard deviations             | $max(s) < 2*min(s)$                                      |
 |                                        | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
 |                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
@@ -82,7 +82,15 @@ A one-way ANOVA model may be used to analyze data from a BF\[1\] design if the f
 
 In a one factor design, one factor is purposely varied and all other factors are controlled in order to isolate the effect of just the factor under study. Each level of the factor is considered a treatment.
 
-In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level. In this example we expect a balanced design (i.e. each factor level has the same number of observations) because the number of observations is a perfect multiple of the number of factor levels. To make random assignments, start by listing all the subjects, then listing the treatments, as seen below:
+::: callout-important
+In a completely randomized factorial design, each experimental unit is randomly assigned to exactly 1 factor level.
+:::
+
+::: column-margin
+In contrast to a completely randomized factorial design, a [block design](https://byuistats.github.io/Math326_Quarto4/block_intro.html) allows for experimental units to experience more than 1 treatment condition.
+:::
+
+In this example we expect a balanced design (i.e. each factor level has the same number of observations) because the number of observations is a perfect multiple of the number of factor levels. To make random assignments, start by listing all the subjects, then listing the treatments, as seen below:
 
 |  Subject  | Treatment | Order |
 |:---------:|:---------:|:-----:|

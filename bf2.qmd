@@ -121,7 +121,19 @@ The BF\[\] designation refers to the design of the experiment. The reference to 
 
 In a basic factorial design of 2 factors, two factors are purposely varied in such a way that observations are obtained for every possible factor level combination. Each factor level combination is considered a treatment.
 
-In a completely randomized design, each experimental unit is randomly assigned to exactly 1 factor level combination. It can be helpful to first list out all the subjects, factor level combinations, and the order in a non-randomized table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.
+::: callout-important
+In a completely randomized factorial design, each experimental unit is randomly assigned to exactly 1 factor level combination (aka treatment).
+:::
+
+::: column-margin
+In contrast to a completely randomized factorial design, a [block design](https://byuistats.github.io/Math326_Quarto4/block_intro.html) allows for experimental units to experience more than 1 treatment condition.
+:::
+
+It can be helpful to first list out all the subjects, factor level combinations, and the order in a non-randomized table. This can be done by listing all the subjects, then listing the values of each factor in a separate column.
+
+::: column-margin
+Subjects are the experimental units in this example. The terms are used interchangeably for these factorial designs.
+:::
 
 We plan to collect 24 observations in total. Since toothbrush has four levels, it seems reasonable to collect $24 \div 4 = 6$ observations per toothbrush. We list each toothbrush type 6 times in the toothbrush column. Toothpaste has 2 levels, so we expect $24 \div 2 = 12$ observations at each level. We list each type of toothpaste 12 times.
 
