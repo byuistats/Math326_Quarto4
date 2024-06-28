@@ -504,7 +504,7 @@ Obtain the mean squares for each factor by dividing its sum of squares by its de
 ```{r echo = FALSE}
 #Replace the blanks with numbers in the MS column
 MS <- SS/df
-
+MS[6] <- NA
 mydf <- data.frame(Source, df, SS, MS, Fvalue, pvalue)
 
 options(knitr.kable.NA = '')

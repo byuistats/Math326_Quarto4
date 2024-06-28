@@ -366,6 +366,7 @@ This model equates to fitting a separate best-fit line for each group, each line
 #| code-fold: true
 #| label: fig-uniqe_slope
 #| fig-cap: "Interaction Term Included Allows for Unique Slopes"
+#| echo: false
 
 bl_data %>% 
   ggplot(aes(x = initial_weight_at_start_show, y = prop_initial_weight_lost,
@@ -389,6 +390,8 @@ bl_mod_with_interaction <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age
                               contrast = list(`Age groups` = contr.sum))
 
 pander(Anova(bl_mod_with_interaction, type = 3))
+
+
 ```
 
 With a p-value of 0.8276, there is insufficient evidence to claim the interaction is not zero. We therefore remove it from the model and proceed with the analysis.
@@ -403,6 +406,8 @@ The ANCOVA model (i.e. covariate included without an interaction term) is create
 ymo_ancova <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups`, 
                   data = bl_data2,
                  contrast = list(`Age groups` = contr.sum))
+
+
 ```
 
 The model is graphically depicted in @fig-ancova_model.
@@ -411,8 +416,12 @@ The model is graphically depicted in @fig-ancova_model.
 #| code-fold: true
 #| label: fig-ancova_model
 #| fig-cap: "ANCOVA, Equal Slopes Model"
+#| echo: false
 
-b <- ymo_ancova$coefficients
+##I get rid of the contrasts in order to draw the model because it is much simpler to do that way with the stat_function() commands below.  But the F test for the model needs the contr.sum contrast due to the unbalanced nature. 
+ymo_ancova_no_contrast <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups`, data = bl_data2)
+b <- ymo_ancova_no_contrast$coefficients
+
 
 bl_data %>% 
   ggplot(aes(x = initial_weight_at_start_show, y = prop_initial_weight_lost,
@@ -446,9 +455,9 @@ pander(Anova(ymo_ancova, type = 3))
 
 The p-value for age groups is .04193, which is lower than our significance level. This means that, after accounting for the impact of a person's initial weight, the person's age group has a significant effect on proportion of weight lost. From @fig-ancova_model, we see that the Middle group (green line) and Young roup (red line) seem to loose a higher percentage of weight, while the Oldest (blue line) tends to loose less.
 
-Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that a lot of the variation associated with the response variable is explained by initial weight and is probably important to keep in the model.
+Incidentally, the low p-value (p = .00051) associated with Initial weight is an indicator that there is a significant relationships between the response variable and Initial weight. Therefore, initial weight is probably important to keep in the model.
 
-Notice that with the first model, the interaction term was included. Including it in the model seemed to make all the other terms also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.
+Notice that with the first model, the interaction term was included but was non-significant. When it was included, the other terms were also non-significant. The interaction term seemed to be hiding the significance of the other variables. Removing it allowed us to uncover the true relationships between the variables. It is important to include the right terms in your model rather than blindly leaving everything in. The process of model building is a complicated topic and a whole course could be dedicated to it. The purpose of this discussion is simply to point out that selecting the right terms of the model is important.
 
 ## Check Assumptions
 
