@@ -292,6 +292,7 @@ window.Quarto = {
   <li><a href="#how-random-factors-impact-the-f-test" id="toc-how-random-factors-impact-the-f-test" class="nav-link" data-scroll-target="#how-random-factors-impact-the-f-test">How Random Factors Impact the F-Test</a>
   <ul class="collapse">
   <li><a href="#revisit-the-f-test" id="toc-revisit-the-f-test" class="nav-link" data-scroll-target="#revisit-the-f-test">Revisit the F-Test</a></li>
+  <li><a href="#ems-expected-mean-square" id="toc-ems-expected-mean-square" class="nav-link" data-scroll-target="#ems-expected-mean-square">EMS: Expected Mean Square</a></li>
   <li><a href="#example-1-bf2-where-both-factors-are-fixed" id="toc-example-1-bf2-where-both-factors-are-fixed" class="nav-link" data-scroll-target="#example-1-bf2-where-both-factors-are-fixed">Example 1: BF[2] Where Both Factors Are Fixed</a></li>
   <li><a href="#example-2-bf2-where-both-factors-are-random" id="toc-example-2-bf2-where-both-factors-are-random" class="nav-link" data-scroll-target="#example-2-bf2-where-both-factors-are-random">Example 2: BF[2] Where Both Factors Are Random</a></li>
   <li><a href="#example-3-split-plotrepeated-measures" id="toc-example-3-split-plotrepeated-measures" class="nav-link" data-scroll-target="#example-3-split-plotrepeated-measures">Example 3: Split Plot/Repeated Measures</a></li>
@@ -480,7 +481,10 @@ F =
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>See <a href="https://byuistats.github.io/BYUI_M221_Book/Lesson06.html#introduction-to-sampling-distributions">Math221 chapter 6</a> for a review of sampling distributions.</p>
-</div></div><p>The term Expected Mean Square (EMS) is used to refer to the mean of a sampling distribution of the variance. Rather than calculate a value for the EMS, our goal is simply to identify factors of a design that contribute to a factor’s EMS. This will help our understanding of the appropriate F statistic calculation.</p>
+</div></div></section>
+<section id="ems-expected-mean-square" class="level3">
+<h3 class="anchored" data-anchor-id="ems-expected-mean-square">EMS: Expected Mean Square</h3>
+<p>The term Expected Mean Square (EMS) is used to refer to the mean of a sampling distribution of the variance. In other words, it refers to the true variance in factor level means. Rather than calculate a value for the EMS, our goal is simply to identify factors of a design that contribute to a factor’s EMS. Therefore, in this text we will refer to this list of factors that contribute to the EMS as the EMS, even though technically there is a difference.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -492,6 +496,20 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p>The pieces of a model that contribute to a factor’s expected mean square (EMS) are the treatment factor itself and all <strong>random, inside</strong> factors.</p>
+</div>
+</div>
+<p>This definition of an EMS will make it easier to discuss the topic, and to describe how the EMS is used to find the appropriate F statistic calculation. There is no change to the numerator of the F statistic, it is still the MS for the factor being tested. But the denominator of the F statistic may change. There is a two step approach to finding the appropriate F statistic denominator.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Step 1. Find the EMS for each factor Step 2. The denominator of the F statistic is the MS for the factor whose EMS meets this criteria: the EMS is composed of the same terms as the EMS of the factor being tested, the one exception being the tested factor is excluded</p>
 </div>
 </div>
 <p>This means there will be cases when the denominator of an F statistic is not simply the Mean Squared Error. Let’s walk through construction of the F statistic in 3 different examples:</p>
@@ -509,7 +527,7 @@ Important
 <colgroup>
 <col style="width: 23%">
 <col style="width: 23%">
-<col style="width: 29%">
+<col style="width: 28%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -673,7 +691,7 @@ Important
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In summary, knowing what is considered a random factor vs.&nbsp;fixed factor is important because it can effect calculation of the F test and other parts of the model In practice, deciding whether a factor should be treated as fixed or random can be a difficult decision to make. Use of random factors and fixed factors in the same study introduces a whole new class of models called “mixed models”. Identifying contributors to a factor’s EMS is critical to creating the right F statistic in a mixed model. Generally, the strategy is to structure the F statistic such that the only difference in the numerator and denominator of the F statistic calculation is the variance of the test you are attempting to test.</p>
+<p>In summary, knowing what is considered a random factor vs.&nbsp;fixed factor is important because it can effect calculation of the F test and other parts of the model In practice, deciding whether a factor should be treated as fixed or random can be a difficult decision to make. Use of random factors and fixed factors in the same study introduces a whole new class of models called “mixed models”. Identifying contributors to a factor’s EMS is critical to creating the right F statistic in a mixed model. Generally, the strategy is to structure the F statistic such that the only difference in the numerator and denominator of the F statistic calculation is the variance of the factor you are attempting to test.</p>
 
 
 </section>
