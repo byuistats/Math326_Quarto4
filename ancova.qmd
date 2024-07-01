@@ -333,7 +333,7 @@ cov_mod <- lm(Y ~ covariate + treatment,
 -   `contrast` is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of "dummy" variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.
 -   `YourDataSet` is the name of your data set.
 
-The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is significant it can be removed; if it is not, then it should remain in the model. To include the interaction in the model the following code would be used.
+The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is NOT significant it can be removed; if it is significant, then it should remain in the model. To include the interaction in the model the following code would be used. Remember that if an interaction is significant, interpreting the main effects should only be done with great care.
 
 ```{r}
 #| eval: false
