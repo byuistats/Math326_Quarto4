@@ -125,7 +125,7 @@ ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
         axis.title.y = element_blank())
 ```
 
-In @fig-random4, where machine operator is treated as a random factor, it can be seen that there is more variability in the overall distribution responses than can be observed from looking at just 4 operators.
+In @fig-random4, where machine operator is treated as a random factor, it can be seen that there is more variability in the overall distribution of responses than can be observed from looking at just 4 operators.
 
 In essence, there are 2 levels of sampling:
 
@@ -139,8 +139,8 @@ This increased variability can be seen when comparing the mathematical expressio
 If machine operator is treated as a fixed factor, the fixed effects model can be written as
 
 $$ 
-Y\_{ij} = \mu + \alpha\*i +\* \epsilon{ij} \text{,    where}
-\epsilon\_{ij} \sim N(0, \sigma\^2)
+Y_{ij} = \mu + \alpha_i + \epsilon_{ij} \text{,  where  }
+\epsilon\_{ij} \sim N(0, \sigma^2)
 $$ {#eq-fixed1}
 
 This notation means that the errors follow a normal distribution with mean equal to zero and a variance of sigma-squared. The errors are independent of each other. A more abbreviated form of @eq-fixed1 could be rewritten as
@@ -245,7 +245,8 @@ See [Math221 chapter 6](https://byuistats.github.io/BYUI_M221_Book/Lesson06.html
 :::
 
 ### EMS: Expected Mean Square
-The term Expected Mean Square (EMS) is used to refer to the mean of a sampling distribution of the variance. In other words, it refers to the true variance in factor level means. Rather than calculate a value for the EMS, our goal is simply to identify factors of a design that contribute to a factor’s EMS. Therefore, in this text we will refer to this list of factors that contribute to the EMS as the EMS, even though technically there is a difference. 
+
+The term Expected Mean Square (EMS) is used to refer to the mean of a sampling distribution of the variance. In other words, it refers to the true variance in factor level means. Rather than calculate a value for the EMS, our goal is simply to identify factors of a design that contribute to a factor’s EMS. Therefore, in this text we will refer to this list of factors that contribute to the EMS as the EMS, even though technically there is a difference.
 
 ::: callout-important
 The pieces of a model that contribute to a factor’s expected mean square (EMS) are the treatment factor itself and all **random, inside** factors.
@@ -255,6 +256,7 @@ This definition of an EMS will make it easier to discuss the topic, and to descr
 
 ::: callout-important
 Step 1. Find the EMS for each factor
+
 Step 2. The denominator of the F statistic is the MS for the factor whose EMS meets this criteria: the EMS is composed of the same terms as the EMS of the factor being tested, the one exception being the tested factor is excluded
 :::
 
@@ -269,7 +271,7 @@ This means there will be cases when the denominator of an F statistic is not sim
 This generic example gives a rationale for the analysis presented on the BF\[2\] page. The table below is another way to verify that F statistics calculated on the [BF\[2\] page](bf2.qmd) are correct. The first column lists each of the factors in the design. The second column shows the EMS, or in other words, what factors are contributing to the observed variability in that factor. The third column displays the F-test calculation and the last column explicitly identifies the denominator in the F-test calculation.
 
 |                           |  EMS   |    F statistic     | Denominator of F statistic |
-|-----------------|:---------------:|:------------------:|:---------------:|
+|------------------|:----------------:|:------------------:|:----------------:|
 | Grand Mean (G)            | G + E  | $\frac{G + E}{E}$  |     Mean Square Error      |
 | Factor A                  | A + E  | $\frac{A + E}{E}$  |     Mean Square Error      |
 | Factor B                  | B + E  | $\frac{B + E}{E}$  |     Mean Square Error      |

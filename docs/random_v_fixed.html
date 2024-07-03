@@ -390,7 +390,7 @@ Figure&nbsp;2: Operator as a Random Factor
 </div>
 </div>
 </div>
-<p>In <a href="#fig-random4" class="quarto-xref">Figure&nbsp;2</a>, where machine operator is treated as a random factor, it can be seen that there is more variability in the overall distribution responses than can be observed from looking at just 4 operators.</p>
+<p>In <a href="#fig-random4" class="quarto-xref">Figure&nbsp;2</a>, where machine operator is treated as a random factor, it can be seen that there is more variability in the overall distribution of responses than can be observed from looking at just 4 operators.</p>
 <p>In essence, there are 2 levels of sampling:</p>
 <ol type="1">
 <li>sample of operators</li>
@@ -400,8 +400,8 @@ Figure&nbsp;2: Operator as a Random Factor
 <p>This increased variability can be seen when comparing the mathematical expression of the models. First, let’s revisit what the one-way anova model with a fixed factor looks like algebraically.</p>
 <p>If machine operator is treated as a fixed factor, the fixed effects model can be written as</p>
 <p><span id="eq-fixed1"><span class="math display">\[
-Y\_{ij} = \mu + \alpha\*i +\* \epsilon{ij} \text{,    where}
-\epsilon\_{ij} \sim N(0, \sigma\^2)
+Y_{ij} = \mu + \alpha_i + \epsilon_{ij} \text{,  where  }
+\epsilon\_{ij} \sim N(0, \sigma^2)
 \tag{1}\]</span></span></p>
 <p>This notation means that the errors follow a normal distribution with mean equal to zero and a variance of sigma-squared. The errors are independent of each other. A more abbreviated form of <a href="#eq-fixed1" class="quarto-xref">Equation&nbsp;1</a> could be rewritten as</p>
 <p><span id="eq-fixed_abbrev"><span class="math display">\[
@@ -509,7 +509,8 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Step 1. Find the EMS for each factor Step 2. The denominator of the F statistic is the MS for the factor whose EMS meets this criteria: the EMS is composed of the same terms as the EMS of the factor being tested, the one exception being the tested factor is excluded</p>
+<p>Step 1. Find the EMS for each factor</p>
+<p>Step 2. The denominator of the F statistic is the MS for the factor whose EMS meets this criteria: the EMS is composed of the same terms as the EMS of the factor being tested, the one exception being the tested factor is excluded</p>
 </div>
 </div>
 <p>This means there will be cases when the denominator of an F statistic is not simply the Mean Squared Error. Let’s walk through construction of the F statistic in 3 different examples:</p>
@@ -525,10 +526,10 @@ Important
 <table class="table">
 <caption>F-test Calculation for BF[2] with Two Fixed Factors</caption>
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 28%">
-<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 27%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
