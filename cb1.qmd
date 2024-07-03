@@ -66,9 +66,9 @@ Where
 
 -   $\mu$ is the grand mean of the entire dataset.
 
--   $\alpha$ is the effect of participant, and *j* goes from 1 to 6 since there are 6 participants / blocks.
+-   $\alpha$ is the effect of participant, and *i* goes from 1 to 6 since there are 6 participants / blocks.
 
--   $\beta$ is the effect of toothbrush, and *i* goes from 1 to 4 since there are 4 toothbrush types.
+-   $\beta$ is the effect of toothbrush, and *j* goes from 1 to 4 since there are 4 toothbrush types.
 
 -   $\epsilon$ is the residual error term
 

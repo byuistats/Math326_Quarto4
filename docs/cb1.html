@@ -436,8 +436,8 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <ul>
 <li><p><span class="math inline">\(y_{ij}\)</span> is the observation that belongs to level <em>i</em> of <span class="math inline">\(\alpha\)</span> and level <em>j</em> of <span class="math inline">\(\beta\)</span>.</p></li>
 <li><p><span class="math inline">\(\mu\)</span> is the grand mean of the entire dataset.</p></li>
-<li><p><span class="math inline">\(\alpha\)</span> is the effect of participant, and <em>j</em> goes from 1 to 6 since there are 6 participants / blocks.</p></li>
-<li><p><span class="math inline">\(\beta\)</span> is the effect of toothbrush, and <em>i</em> goes from 1 to 4 since there are 4 toothbrush types.</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> is the effect of participant, and <em>i</em> goes from 1 to 6 since there are 6 participants / blocks.</p></li>
+<li><p><span class="math inline">\(\beta\)</span> is the effect of toothbrush, and <em>j</em> goes from 1 to 4 since there are 4 toothbrush types.</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span> is the residual error term</p></li>
 </ul>
 <p>Note that since there is only one observation per factor level combination, there is not enough degrees of freedom to estimate an interaction effect.</p>
@@ -584,45 +584,45 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">oscillating</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
 </tr>
 </tbody>
 </table>
@@ -813,97 +813,97 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
 <td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -913,7 +913,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
@@ -928,7 +928,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">4</td>
 </tr>
 </tbody>
