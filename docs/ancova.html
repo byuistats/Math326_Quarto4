@@ -399,7 +399,7 @@ window.Quarto = {
 <div>
 
 </div>
-<div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-nrow="1" data-layout-ncol="2">
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-ncol="2" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-ancova_benefit-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
@@ -773,7 +773,7 @@ Table&nbsp;1: Numerical Summary by Age Group
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> YourDataSet, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>cov_mod</code> is the user defined name in which the results of the aov() model are stored</li>
@@ -781,14 +781,14 @@ Table&nbsp;1: Numerical Summary by Age Group
 <li><code>Y</code> is the name of a numeric variable in your dataset which represents the quantitative response variable.</li>
 <li><code>covariate</code> is the name of the covariate in your dataset.</li>
 <li><code>treatment</code> is the name of the controlled factor in your dataset. It should have <code>class()</code> equal to factor or character. If that is not the case, use <code>factor(X)</code> inside the <code>lm(Y ~ factor(treatment)...)</code> command.</li>
-<li><code>contrast</code> is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of “dummy” variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.</li>
+<li><code>contrasts</code> is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of “dummy” variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.</li>
 <li><code>YourDataSet</code> is the name of your data set.</li>
 </ul>
 <p>The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is NOT significant it can be removed; if it is significant, then it should remain in the model. To include the interaction in the model the following code would be used. Remember that if an interaction is significant, interpreting the main effects should only be done with great care.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cov_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> covariate <span class="sc">+</span> treatment <span class="sc">+</span> covariate<span class="sc">:</span>treatment, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> YourDataSet,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">treatment =</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After creating the model, results of the hypothesis tests for each term in the model can be seen using the <code>Anova()</code> command from the <code>car</code> package. Don’t forget to specify <code>type = 3</code> in the <code>Anova()</code> command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.</p>
 <div class="cell">
@@ -823,7 +823,7 @@ Figure&nbsp;3: Interaction Term Included Allows for Unique Slopes
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bl_mod_with_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> bl_data2,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">contrast =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(bl_mod_with_interaction, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -904,7 +904,7 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ymo_ancova <span class="ot">&lt;-</span> <span class="fu">lm</span>(prop_initial_weight_lost <span class="sc">~</span> <span class="st">`</span><span class="at">Initial weight</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Age groups</span><span class="st">`</span>, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> bl_data2,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">contrast =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="st">`</span><span class="at">Age groups</span><span class="st">`</span> <span class="ot">=</span> contr.sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The model is graphically depicted in <a href="#fig-ancova_model" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">

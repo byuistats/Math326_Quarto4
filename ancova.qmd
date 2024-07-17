@@ -322,7 +322,7 @@ Create the model using the `lm()` function.
 
 cov_mod <- lm(Y ~ covariate + treatment, 
               data = YourDataSet, 
-              contrast = list(treatment = contr.sum))
+              contrasts = list(treatment = contr.sum))
 ```
 
 -   `cov_mod` is the user defined name in which the results of the aov() model are stored
@@ -330,7 +330,7 @@ cov_mod <- lm(Y ~ covariate + treatment,
 -   `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
 -   `covariate` is the name of the covariate in your dataset.
 -   `treatment` is the name of the controlled factor in your dataset. It should have `class()` equal to factor or character. If that is not the case, use `factor(X)` inside the `lm(Y ~ factor(treatment)...)` command.
--   `contrast` is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of "dummy" variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.
+-   `contrasts` is an argument that allows you to specify how factor variables should be set-up in R. When dealing with factor variables, R actually changes each factor variable into a group of "dummy" variables to represent the individual factor levels. The default contrast in R does not work well with the Type 3 sums of squares, which is what we need when working with continuous covariates. Therefore, we specify a different contrast. The term contrast is referring to the columns in the X matrix that are used to represent the dummy variables.
 -   `YourDataSet` is the name of your data set.
 
 The model above assumes that the interaction between the covariate and the treatment factor is zero. Rather than assuming that is the case, it is advisable to include the interaction term in the model and test the significance of the interaction. If the interaction is NOT significant it can be removed; if it is significant, then it should remain in the model. To include the interaction in the model the following code would be used. Remember that if an interaction is significant, interpreting the main effects should only be done with great care.
@@ -341,7 +341,7 @@ The model above assumes that the interaction between the covariate and the treat
 
 cov_mod <- lm(Y ~ covariate + treatment + covariate:treatment, 
               data = YourDataSet,
-              contrast = list(treatment = contr.sum))
+              contrasts = list(treatment = contr.sum))
 ```
 
 After creating the model, results of the hypothesis tests for each term in the model can be seen using the `Anova()` command from the `car` package. Don't forget to specify `type = 3` in the `Anova()` command, since a Type 1 Sum of Squares is not appropriate when a covariate is in the model.
@@ -387,7 +387,7 @@ bl_data2 <- bl_data %>% rename(`Age groups` = ymo, `Initial weight` = initial_we
 
 bl_mod_with_interaction <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups` + `Initial weight`:`Age groups`, 
                               data = bl_data2,
-                              contrast = list(`Age groups` = contr.sum))
+                              contrasts = list(`Age groups` = contr.sum))
 
 pander(Anova(bl_mod_with_interaction, type = 3))
 
@@ -405,7 +405,7 @@ The ANCOVA model (i.e. covariate included without an interaction term) is create
 ```{r}
 ymo_ancova <- lm(prop_initial_weight_lost ~ `Initial weight` + `Age groups`, 
                   data = bl_data2,
-                 contrast = list(`Age groups` = contr.sum))
+                 contrasts = list(`Age groups` = contr.sum))
 
 
 ```
