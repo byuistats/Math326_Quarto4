@@ -13,9 +13,16 @@ The measurements that are recorded during an experiment and used to help evaluat
 When defining a response variable, it is important to understand measurement scales. The four possible measurement scales are: nominal, ordinal, interval, and ratio. These four scales will now be discussed further and are listed in order of least information provided (nominal) to most information provided (ratio).
 
 -   Data that are represented by labelled categories would be considered **nominal**. Nominal categories have no quantitative value and have no particular order. Gender and color are examples of nominal measurements. A dichotomous (having two categories) variable is a common nominal measurement scale. Analysis of variance, the common analytical technique used throughout this textbook, is not appropriate when the response variable is nominal.
+
 -   An **ordinal** variable is similar to the nominal variable, except that the categories fall in a significant and meaningful order. A likert scale is a commonly used ordinal measurement. A simple example of likert, ordinal scale would be "bad", "good", and "great". There is an obvious order, however, the distances between the categories are not quantitative. This means that the distance between "bad" and "good" can't be quantitatively determined and it is not known if that difference is similar to or different than the distance between "good" and "great". Analysis of variance is generally not appropriate when the response variable is ordinal, especially when the researcher is not comfortable in calculating a mean across the ordinal values.
+
 -   **Interval** measurements are quantitative with a meaningful notion of distance between values, however zero does not have a true zero value. An example of an interval variable is temperature, measured in Fahrenheit. Time is also an interval variable when there is no zero-point defined. Analysis of variance is generally appropriate when the response variable is interval.
--   **Ratio** measurements are also quantitative with a meaningful notion of distance between values and zero does have a true zero value. Most quantitative measurements are on a ratio scale. Examples of ratio variables include distance, length, weight, and height. Analysis of variance is generally appropriate when the response variable is ratio. All response variables used in this textbook will be quantitative, either interval or ratio.
+
+-   **Ratio** measurements are also quantitative with a meaningful notion of distance between values and zero does have a true zero value. Most quantitative measurements are on a ratio scale. Examples of ratio variables include distance, length, weight, and height.
+
+::: callout-note
+All response variables used in this textbook will be quantitative, either interval or ratio. This is because we will learn Analysis of Variance (ANOVA) throughout the semester, and ANOVA requires a quantiative response variable.
+:::
 
 The example toothbrush study, explained previously, wanted to determine if there were differences in plaque build-up when considering 4 different toothbrush types. Plaque build-up is a ratio scale measurement and would be the response variable for this study.
 

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - The Response Variable</title>
+<title>The Response Variable – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,13 +83,13 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -206,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -223,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -239,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -291,11 +291,24 @@ ul.task-list li input[type="checkbox"] {
 <h1>Measurement Scales</h1>
 <p>When defining a response variable, it is important to understand measurement scales. The four possible measurement scales are: nominal, ordinal, interval, and ratio. These four scales will now be discussed further and are listed in order of least information provided (nominal) to most information provided (ratio).</p>
 <ul>
-<li>Data that are represented by labelled categories would be considered <strong>nominal</strong>. Nominal categories have no quantitative value and have no particular order. Gender and color are examples of nominal measurements. A dichotomous (having two categories) variable is a common nominal measurement scale. Analysis of variance, the common analytical technique used throughout this textbook, is not appropriate when the response variable is nominal.</li>
-<li>An <strong>ordinal</strong> variable is similar to the nominal variable, except that the categories fall in a significant and meaningful order. A likert scale is a commonly used ordinal measurement. A simple example of likert, ordinal scale would be “bad”, “good”, and “great”. There is an obvious order, however, the distances between the categories are not quantitative. This means that the distance between “bad” and “good” can’t be quantitatively determined and it is not known if that difference is similar to or different than the distance between “good” and “great”. Analysis of variance is generally not appropriate when the response variable is ordinal, especially when the researcher is not comfortable in calculating a mean across the ordinal values.</li>
-<li><strong>Interval</strong> measurements are quantitative with a meaningful notion of distance between values, however zero does not have a true zero value. An example of an interval variable is temperature, measured in Fahrenheit. Time is also an interval variable when there is no zero-point defined. Analysis of variance is generally appropriate when the response variable is interval.</li>
-<li><strong>Ratio</strong> measurements are also quantitative with a meaningful notion of distance between values and zero does have a true zero value. Most quantitative measurements are on a ratio scale. Examples of ratio variables include distance, length, weight, and height. Analysis of variance is generally appropriate when the response variable is ratio. All response variables used in this textbook will be quantitative, either interval or ratio.</li>
+<li><p>Data that are represented by labelled categories would be considered <strong>nominal</strong>. Nominal categories have no quantitative value and have no particular order. Gender and color are examples of nominal measurements. A dichotomous (having two categories) variable is a common nominal measurement scale. Analysis of variance, the common analytical technique used throughout this textbook, is not appropriate when the response variable is nominal.</p></li>
+<li><p>An <strong>ordinal</strong> variable is similar to the nominal variable, except that the categories fall in a significant and meaningful order. A likert scale is a commonly used ordinal measurement. A simple example of likert, ordinal scale would be “bad”, “good”, and “great”. There is an obvious order, however, the distances between the categories are not quantitative. This means that the distance between “bad” and “good” can’t be quantitatively determined and it is not known if that difference is similar to or different than the distance between “good” and “great”. Analysis of variance is generally not appropriate when the response variable is ordinal, especially when the researcher is not comfortable in calculating a mean across the ordinal values.</p></li>
+<li><p><strong>Interval</strong> measurements are quantitative with a meaningful notion of distance between values, however zero does not have a true zero value. An example of an interval variable is temperature, measured in Fahrenheit. Time is also an interval variable when there is no zero-point defined. Analysis of variance is generally appropriate when the response variable is interval.</p></li>
+<li><p><strong>Ratio</strong> measurements are also quantitative with a meaningful notion of distance between values and zero does have a true zero value. Most quantitative measurements are on a ratio scale. Examples of ratio variables include distance, length, weight, and height.</p></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All response variables used in this textbook will be quantitative, either interval or ratio. This is because we will learn Analysis of Variance (ANOVA) throughout the semester, and ANOVA requires a quantiative response variable.</p>
+</div>
+</div>
 <p>The example toothbrush study, explained previously, wanted to determine if there were differences in plaque build-up when considering 4 different toothbrush types. Plaque build-up is a ratio scale measurement and would be the response variable for this study.</p>
 <p>An example of a nominal scale to measure plaque build-up would be recording a “yes” if plaque was present, or “no” if plaque wasn’t present. This is a simple response variable, but not very informative. An improvement on this would be to classify each amount of plaque build-up into one of five groups: “no plaque”, “very little plaque”, “moderate plaque”, “heavy plaque”, and “complete plaque”. This would be an ordinal scale, and while it has more information than the nominal scale, it still is vaguely informative and not appropriate for analysis of variance.</p>
 <p>The best measurement would be quantitative, either interval or ratio. By using red dye indicating the presence of plaque, an oral camera, and software, the percentage of the tooth area covered in plaque could be determined. This response variable would be a ratio scale and would provide much better information than the nominal or ordinal scales. When possible, it is best to have a response variable that is quantitative (interval or ratio).</p>
@@ -362,18 +375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -405,7 +407,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -413,7 +437,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
