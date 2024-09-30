@@ -118,7 +118,9 @@ F = \frac{\text{Variation between factor level means}}{\text{Variation of indivi
 $$
 :::
 
-The F distribution is defined by 2 values for degrees of freedom. One degrees of freedom value for the variance estimate in the numerator, and another for the variance estimate in the denominator. The p-value for the ANOVA F-test is calculated as the area under the F distribution curve to the right of the F statistic, as shown in @fig-pvalue .
+The F distribution is defined by 2 values for degrees of freedom. One degrees of freedom value for the variance estimate in the numerator, and another for the variance estimate in the denominator. The p-value for the ANOVA F-test is calculated as the area under the F distribution curve to the right of the F statistic, as shown in @fig-pvalue [^4].
+
+[^4]: From the F distribution applet (https://homepage.divms.uiowa.edu/~mbognar/applets/f.html) copyright 2021 by Matt Bogner, Department of Statistics and Actuarial Science, University of Iowa
 
 ![Example P-value calculation based on a F-statistic of 2.23 and an F distribution with 3 and 16 degrees of freedom](images/p-value_example.jpg){#fig-pvalue}
 
@@ -159,12 +161,12 @@ $$
 
 With this is mind, we can fill in the F column of the ANOVA table for Treatment Factor.
 
-| Source           | df  | SS  | MS  |                               F                               | p-value |
-|:-----------------|:---:|:---:|:---:|:-------------------------------------------------------------:|:-------:|
-| Grand Mean       |     |     |     |                                                               |         |
-| Treatment Factor |     |     |     | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
-| Residual Error   |     |     |     |                                                               |         |
-| Total            |     |     |     |                                                               |         |
+| Source | df | SS | MS | F | p-value |
+|:--------|:-------:|:-------:|:-------:|:-----------------------------:|:-------:|
+| Grand Mean |  |  |  |  |  |
+| Treatment Factor |  |  |  | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |  |
+| Residual Error |  |  |  |  |  |
+| Total |  |  |  |  |  |
 
 : Blank ANOVA summary table for an experiment with 1 treatment factor {#tbl-blank-1}
 
@@ -281,12 +283,12 @@ Recall that an effect is defined as a deviation from the mean.
 
 Therefore, in a mean square calculation, the numerator is the sum of squares and the denominator is the degrees of freedom.
 
-| Source           | df  | SS  |                               MS                                |                               F                               | p-value |
-|:-----------------|:---:|:---:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
-| Grand Mean       |     |     |                                                                 |                                                               |         |
-| Treatment Factor |     |     | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
-| Residual Error   |     |     |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
-| Total            |     |     |                                                                 |                                                               |         |
+| Source | df | SS | MS | F | p-value |
+|:--------|:-------:|:-------:|:-----------------:|:----------------:|:-------:|
+| Grand Mean |  |  |  |  |  |
+| Treatment Factor |  |  | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |  |
+| Residual Error |  |  | $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$ |  |  |
+| Total |  |  |  |  |  |
 
 ## Sum of Squares (SS)
 
@@ -296,12 +298,12 @@ To avoid this problem, statisticians square the distances before summing them. T
 
 In the table below an equation for each factor's SS is listed using terms from the factor effects model. We'll walk through the meaning of each of those equations.
 
-| Source           | df  |                  SS                   |                               MS                                |                               F                               | p-value |
-|:-----------------|:---:|:-------------------------------------:|:---------------------------------------------------------------:|:-------------------------------------------------------------:|:-------:|
-| Grand Mean       |     |        $n*\bar{y}_\text{..}^2$        |                                                                 |                                                               |         |
-| Treatment Factor |     |   $$ \sum (\hat{\alpha}_i^2*n_i)$$    | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |         |
-| Residual Error   |     | $$ \sum \hat{\epsilon}_\text{ij}^2 $$ |   $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$   |                                                               |         |
-| Total            |     |         $\sum y_\text{ij}^2$          |                                                                 |                                                               |         |
+| Source | df | SS | MS | F | p-value |
+|:----------|:---------:|:---------:|:--------------:|:-------------:|:---------:|
+| Grand Mean |  | $n*\bar{y}_\text{..}^2$ |  |  |  |
+| Treatment Factor |  | $$ \sum (\hat{\alpha}_i^2*n_i)$$ | $\frac{SS_\text{Treatment Factor}}{df_\text{Treatment Factor}}$ | $\frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}}$ |  |
+| Residual Error |  | $$ \sum \hat{\epsilon}_\text{ij}^2 $$ | $\frac{SS_\text{Residual Error}}{df_\text{Residual Error}}$ |  |  |
+| Total |  | $\sum y_\text{ij}^2$ |  |  |  |
 
 ::: column-margin
 A deviation from the mean can be thought of as an effect. That is why the symbols for factor effects are used in the SS column in the ANOVA summary table.
@@ -337,7 +339,7 @@ For additional explanation, consider this simple example. There are three data p
 The example described above is summarized in @tbl-df-example. The first number is represented as an $a$ and the second number if represented with a $b$.
 
 |   value 1    |   value 2    |           value 3           |     | Mean of 3 Values |
-|:------------:|:------------:|:---------------------------:|:---:|:----------------:|
+|:-----------:|:-----------:|:-------------------:|:-----------:|:-----------:|
 |      a       |      b       |       $3*10 - (a+b)$        | -\> |        10        |
 | free to vary | free to vary | depends on other two values |     |                  |
 

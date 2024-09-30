@@ -2,14 +2,13 @@
 title: "ANCOVA"
 ---
 
-```{=html}
 <script type="text/javascript">
  function showhide(id) {
     var e = document.getElementById(id);
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
-```
+
 ```{r}
 #| label: setup
 #| include: false
@@ -227,13 +226,13 @@ Though the formula may seem a little different, the good news is that R will do 
 
 The assumptions for the ANCOVA model are essentially the same as for [CB\[1\]](cb1.qmd), with the addition that the response and the covariate need to have a linear relationship:
 
-| Requirements                                       | Method for Checking                                     | What You Hope to See                            |
-|--------------------|--------------------------|--------------------------|
-| Linear relationship between covariate and response | Residual vs. Fitted Plot                                | No trend or pattern                             |
-| Constant variance across factor levels             | Residual vs. Fitted Plot                                | No wedge or megaphone shape                     |
-| Normally Distributed Residuals                     | Normal Q-Q plot                                         | Straight line, majority of points in boundaries |
-| Independent residuals                              | Order plot (only if applicable)                         | No pattern/trend                                |
-|                                                    | Familiarity with/critical thinking about the experiment | No potential source for bias                    |
+| Requirements | Method for Checking | What You Hope to See |
+|----|----|----|
+| Linear relationship between covariate and response | Residual vs. Fitted Plot | No trend or pattern |
+| Constant variance across factor levels | Residual vs. Fitted Plot | No wedge or megaphone shape |
+| Normally Distributed Residuals | Normal Q-Q plot | Straight line, majority of points in boundaries |
+| Independent residuals | Order plot (only if applicable) | No pattern/trend |
+|  | Familiarity with/critical thinking about the experiment | No potential source for bias |
 
 The following example illustrates how to conduct an ANOVA in R.
 
