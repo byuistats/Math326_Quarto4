@@ -213,6 +213,10 @@ window.Quarto = {
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../Anova_F-test.html">
+ <span class="dropdown-text">ANOVA and the F-test (alternate link)</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../assumptions.html">
  <span class="dropdown-text">Assumptions</span></a>
   </li>  
@@ -409,7 +413,7 @@ F = \frac{\text{Variation between factor level means}}{\text{Variation of indivi
 \]</span></p>
 </div>
 </div>
-<p>The F distribution is defined by 2 values for degrees of freedom. One degrees of freedom value for the variance estimate in the numerator, and another for the variance estimate in the denominator. The p-value for the ANOVA F-test is calculated as the area under the F distribution curve to the right of the F statistic, as shown in <a href="#fig-pvalue" class="quarto-xref">Figure&nbsp;3</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The F distribution is defined by 2 values for degrees of freedom. One degrees of freedom value for the variance estimate in the numerator, and another for the variance estimate in the denominator. The p-value for the ANOVA F-test is calculated as the area under the F distribution curve to the right of the F statistic, as shown in <a href="#fig-pvalue" class="quarto-xref">Figure&nbsp;3</a> .</p>
 <div id="fig-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -557,7 +561,7 @@ Table&nbsp;2: Blank ANOVA summary table for an experiment with 1 treatment facto
 </div>
 <p>To find the variation <strong>between</strong> factor level means, calculate the sample variance of factor level means and multiply it by the number of replicates in each factor level. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, weighting by sample size is needed).</p>
 <p>The Mean Squares of the residual error factor (i.e.&nbsp;Mean Squared Error, MSE) represents the <strong>within</strong> factor level variation. To calculate it you can find the sample variance within each factor level and then take the mean of those variances. (In the case of unbalanced data where you do not have the same number of replicates in each factor level, you would take a weighted average).</p>
-<p><a href="#fig-between_within-1" class="quarto-xref">Figure&nbsp;4 (a)</a> and <a href="#fig-between_within-2" class="quarto-xref">Figure&nbsp;4 (b)</a> below show deviations necessary to calculate the between group and within group variance (or in other words the mean squares treatment and the mean squares error). The figures are based on data from an experiment with 3 factor levels. <a href="#fig-between_within-1" class="quarto-xref">Figure&nbsp;4 (a)</a> shows variation <strong>between</strong> factor level means. It shows the factor level means plotted as blue lines and the grand mean as a red line. In this chart we see the deviation from each factor level mean to the grand mean represented as a gray dashed line. As mentioned above, the mean squares for treatment could be computed as the variance of the 3 factor level means<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, and multiplied by 15 (the number of replicates in each factor level).</p>
+<p><a href="#fig-between_within-1" class="quarto-xref">Figure&nbsp;4 (a)</a> and <a href="#fig-between_within-2" class="quarto-xref">Figure&nbsp;4 (b)</a> below show deviations necessary to calculate the between group and within group variance (or in other words the mean squares treatment and the mean squares error). The figures are based on data from an experiment with 3 factor levels. <a href="#fig-between_within-1" class="quarto-xref">Figure&nbsp;4 (a)</a> shows variation <strong>between</strong> factor level means. It shows the factor level means plotted as blue lines and the grand mean as a red line. In this chart we see the deviation from each factor level mean to the grand mean represented as a gray dashed line. As mentioned above, the mean squares for treatment could be computed as the variance of the 3 factor level means<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and multiplied by 15 (the number of replicates in each factor level).</p>
 <div id="fig-between_within" class="quarto-layout-panel page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-between_within-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
@@ -566,7 +570,7 @@ Table&nbsp;2: Blank ANOVA summary table for an experiment with 1 treatment facto
 <div id="fig-between_within-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-between_within-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<img src="ANOVA_F-test_files/figure-html/fig-between_within-1.png" class="img-fluid figure-img column-page" data-ref-parent="fig-between_within" width="672">
+<img src="Anova_F-test_files/figure-html/fig-between_within-1.png" class="img-fluid figure-img column-page" data-ref-parent="fig-between_within" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-between_within-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Deviations to Get MS Treatment Factor
@@ -578,7 +582,7 @@ Table&nbsp;2: Blank ANOVA summary table for an experiment with 1 treatment facto
 <div id="fig-between_within-2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-between_within-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
-<img src="ANOVA_F-test_files/figure-html/fig-between_within-2.png" class="img-fluid figure-img column-page" data-ref-parent="fig-between_within" width="672">
+<img src="Anova_F-test_files/figure-html/fig-between_within-2.png" class="img-fluid figure-img column-page" data-ref-parent="fig-between_within" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-between_within-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Deviations to Get MS Error
@@ -593,7 +597,7 @@ Figure&nbsp;4: Between Group vs.&nbsp;Within Group
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-between_within-2" class="quarto-xref">Figure&nbsp;4 (b)</a> shows variation <strong>within</strong> factor levels. Each point is plotted in a cluster according to the factor level it belongs to. The deviation from each point to its respective factor level mean is depicted with a gray dashed line. The mean square error could be computed by finding the sample variance within each group<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and then taking the mean of those 3 variance estimates.</p>
+<p><a href="#fig-between_within-2" class="quarto-xref">Figure&nbsp;4 (b)</a> shows variation <strong>within</strong> factor levels. Each point is plotted in a cluster according to the factor level it belongs to. The deviation from each point to its respective factor level mean is depicted with a gray dashed line. The mean square error could be computed by finding the sample variance within each group<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and then taking the mean of those 3 variance estimates.</p>
 <p>Thinking about things in this way is helpful to understand conceptually what is happening. However, the ANOVA summary table captures interim steps for calculating mean squares slightly different. Since <strong>Mean Squares is synonymous with variance</strong>, now is a good time to review the sample variance formula.</p>
 <p><span id="eq-sample-variance"><span class="math display">\[
 s^2 = \frac{\sum{(y_i - \bar{y})}^2}{n-1}
@@ -839,9 +843,8 @@ F = \frac{\text{variance in factor level means} + \text{variance within factor l
 F = \frac{\text{variance within factor levels}}{\text{variance within factor levels}} = 1
 \]</span></p>
 <p>The values for degrees of freedom affect the shape and the spread of the F distribution. Visit <a href="https://keisan.casio.com/exec/system/1180573185">this applet</a> to learn more and interact with the family of F distributions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>From the F distribution applet (https://homepage.divms.uiowa.edu/~mbognar/applets/f.html) copyright 2021 by Matt Bogner, Department of Statistics and Actuarial Science, University of Iowa<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>The variance would be calculated by squaring the deviations, summing them up and then dividing by the degrees of freedom, which is 2 in this case.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>The variance is calculated by squaring the deviations, and then summing them together and dividing by the degrees of freedom, which in this case is 14 for each group.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The variance would be calculated by squaring the deviations, summing them up and then dividing by the degrees of freedom, which is 2 in this case.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The variance is calculated by squaring the deviations, and then summing them together and dividing by the degrees of freedom, which in this case is 14 for each group.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
