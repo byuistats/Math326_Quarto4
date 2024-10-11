@@ -54,7 +54,7 @@ website:
           file: effects_model.qmd
           #It is weird, but when I knit the .qmd file, it capitalizes ANOVA in the file name of quarto, but not in the .html, even though I don't ask it to
         - text: "ANOVA and the F-test"
-          href: docs/ANOVA_F-test.qmd
+          href: docs/ANOVA_F-test.html
         - text: "Assumptions"
           href: assumptions.qmd
         - text: "Contrasts"
