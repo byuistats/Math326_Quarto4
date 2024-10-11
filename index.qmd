@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## A Customizable Textbook
 
-This book is meant to be a starting point for you to learn design and analysis of experiments. You should feel free to edit the Rmarkdown files so that the book becomes your own.
+This book is meant to be a starting point for you to learn design and analysis of experiments. If you get the files used to create this website, you can edit the Quarto files so that the book becomes your own.
 
 ### How to Use This Book
 
