@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - The SP/RM[1, 1] Design</title>
+<title>The SP/RM[1, 1] Design – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -391,7 +391,7 @@ window.Quarto = {
 <section id="motivating-example" class="level2">
 <h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
 <p>Consider an example from agriculture. Farmer John would like to compare yield for a specific variety of maize treated with 2 different fungicides: generic vs premium. Farmer John has 4 plots of land available for planting. He can assign a fungicide to each plot completely at random, see <a href="#fig-fung" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="fig-fung" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-fung" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/FarmerJohnBF1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="360">
@@ -407,7 +407,7 @@ Figure&nbsp;1: Layout of Farmer John’s 4 Plots
 <h3 class="anchored" data-anchor-id="adding-a-nested-factor">Adding a Nested Factor</h3>
 <p>Farmer John suspects that the impact of fungicide type is different for different varieties of maize. He wants to add 3 maize varieties to the experiment, but because of mechanical constraints he cannot completely randomize combinations of fungicide with maize variety. While maize variety can be applied to smaller areas within a plot, he can only apply the fungicide to an entire plot.</p>
 <p>Nothing has changed for the fungicide treatment level. But it can be seen in <a href="#fig-fung-variety" class="quarto-xref">Figure&nbsp;2</a> we have a new level of experimental unit: sub-plots! Variety is assigned to sub-plots randomly within each plot. Variety is unreplicated inside of a single plot, but looking across plots we see variety replicated 4 times.</p>
-<div id="fig-fung-variety" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-fung-variety" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fung-variety-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/FarmerJohnsSplitPlotAnnotated.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="615">
@@ -436,7 +436,7 @@ Figure&nbsp;2: Layout of Fungicide Assigned to Plots with Maize Variety Assigned
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p><a href="#fig-sprm_factor_structure" class="quarto-xref">Figure&nbsp;3</a> shows the factor structure for Farmer John’s experiment. The partition lines for the <em>plot</em> factor are dashed to emphasize that the plots are nested in fungicide. You may also notice that the plot arrangement in <a href="#fig-sprm_factor_structure" class="quarto-xref">Figure&nbsp;3</a> is not quite like the arrangement in <a href="#fig-fung-variety" class="quarto-xref">Figure&nbsp;2</a>. Remember, the factor structure diagram represents how the <strong>data</strong> is arranged and partitioned and does not necessarily represent how the plots are positioned in the physical, real world.</p>
 <div class="page-columns page-full">
-<div id="fig-sprm_factor_structure" class="quarto-figure quarto-figure-left quarto-float anchored page-columns page-full" data-fig-align="left">
+<div id="fig-sprm_factor_structure" class="quarto-float quarto-figure quarto-figure-left anchored page-columns page-full" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-sprm_factor_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/Split_Plot_Factor_Image.png" class="quarto-figure quarto-figure-left figure-img column-page" width="950" height="152">
@@ -449,7 +449,7 @@ Figure&nbsp;3: Factor Structure for Farmer John’s Experiment
 </div>
 <p><a href="#fig-sprm_structure_generic" class="quarto-xref">Figure&nbsp;4</a> shows a generic factor structure for a split plot / repeated measures design, without the context of the Farmer John example.</p>
 <div class="page-columns page-full">
-<div id="fig-sprm_structure_generic" class="quarto-figure quarto-figure-left quarto-float anchored page-columns page-full" data-fig-align="left">
+<div id="fig-sprm_structure_generic" class="quarto-float quarto-figure quarto-figure-left anchored page-columns page-full" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-sprm_structure_generic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/sprm_factor_structure_generic.PNG" class="quarto-figure quarto-figure-left figure-img column-page" width="950" height="152">
@@ -516,11 +516,11 @@ H_a: (\alpha\gamma)_\text{ik} \ne 0 \text{ for some } ik
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 36%">
-<col style="width: 37%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -576,14 +576,14 @@ H_a: (\alpha\gamma)_\text{ik} \ne 0 \text{ for some } ik
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#print the table, pander() makes it look nice</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-unrandomized" class="cell quarto-float anchored">
+<div id="tbl-unrandomized" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unrandomized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Unrandomized SP/RM[1,1] in Wider Format
 </figcaption>
 <div aria-describedby="tbl-unrandomized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 16%">
@@ -651,14 +651,14 @@ Table&nbsp;1: Unrandomized SP/RM[1,1] in Wider Format
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variety =</span> <span class="fu">sample</span>(variety))</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-long_randomized" class="cell quarto-float anchored">
+<div id="tbl-long_randomized" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-long_randomized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Randomized SP/RM[1,1] in Longer Format
 </figcaption>
 <div aria-describedby="tbl-long_randomized-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 16%">
@@ -783,7 +783,7 @@ General Rule for Effect Size
 <h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
 <p><a href="#fig-sprm-data-partition" class="quarto-xref">Figure&nbsp;5</a> shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.</p>
 <div class="page-columns page-full">
-<div id="fig-sprm-data-partition" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-sprm-data-partition" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-sprm-data-partition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/sprm-data-partition.PNG" class="img-fluid figure-img column-page">
@@ -825,7 +825,7 @@ Figure&nbsp;5: Partitioned Split Plot Fungicide Example
 <p><span class="math display">\[   \bar{y}_\text{Fung. B, variety 3} = \bar{y}_{2 \cdot 3} = \frac{215 + 201}{2}  = 208 \]</span></p>
 <p>The mean for each level of residual is simply the value of the observation itself, so that is not repeated here. The means are put in the factor level diagram in <a href="#fig-means" class="quarto-xref">Figure&nbsp;6</a>.</p>
 <div class="page-columns page-full">
-<div id="fig-means" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-means" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/sprm_means.PNG" class="img-fluid figure-img column-page">
@@ -890,7 +890,7 @@ Figure&nbsp;6: Factor Level Means
 <p><span class="math display">\[e_{212} = 220 - 217.08\overline{3} = 2.91\overline{6}\]</span></p>
 <p><a href="#fig-factor_effects" class="quarto-xref">Figure&nbsp;7</a> shows the decomposition for all the values in the dataset, with the observed value of <span class="math inline">\(y_{212} = 220\)</span> and its corresponding factor level effects in bold.</p>
 <div class="page-columns page-full">
-<div id="fig-factor_effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-factor_effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-factor_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/sprm_factor_effects.PNG" class="img-fluid figure-img column-page">
@@ -935,8 +935,7 @@ General Rule for Degrees of Freedom
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1010,10 +1009,9 @@ General Rule for Degrees of Freedom
 
 </div>
 </div>
-</div>
 <p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. <a href="#fig-factor_effects" class="quarto-xref">Figure&nbsp;7</a> shows the effects, while <a href="#fig-sprm_SS" class="quarto-xref">Figure&nbsp;8</a> shows the squared effects for all but the grand mean.</p>
 <div class="page-columns page-full">
-<div id="fig-sprm_SS" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-sprm_SS" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-sprm_SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/sprm_SS.PNG" class="img-fluid figure-img column-page">
@@ -1033,7 +1031,7 @@ SS_\text{total}= 200^2 + 214^2 + ... + 201^2 = 525060
 SS_\text{Grand Mean}= 209^2 * 12 = 524,172
 \]</span></p>
 <p>Similarly, we get the sum of squares for the remaining factors.</p>
-<span class="math display">\[\begin{align}
+<p><span class="math display">\[\begin{align}
 SS_\text{Fungicide} &amp;= 12 * 5.\overline{4} = 65.\overline{3}\\
 \\
 SS_\text{Plot} &amp;= 6 * (75.\overline{1} + 25) = 600.\overline{6}\\
@@ -1044,18 +1042,17 @@ SS_\text{Fung. x Variety Interaction} &amp;= 4 * ( 1.36\overline{1} + 4.3402\ove
 \\
 SS_\text{Residuals} &amp;= 2 * (2.\overline{7} + 25 + .69\overline{4} + 9 + .69\overline{4} + 4) = 84.\overline{3}
 
-\end{align}\]</span>
+\end{align}\]</span></p>
 <p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-ss_anova" class="quarto-xref">Table&nbsp;3</a>.</p>
 <div class="cell">
-<div id="tbl-ss_anova" class="cell quarto-float anchored">
+<div id="tbl-ss_anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Sums of Squares
 </figcaption>
 <div aria-describedby="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1129,7 +1126,6 @@ Table&nbsp;3: Sums of Squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1139,15 +1135,14 @@ MS_\text{factor} = \frac{SS_\text{factor}}{df_\text{factor}}
 \]</span></p>
 <p><br></p>
 <div class="cell">
-<div id="tbl-ms_anova" class="cell quarto-float anchored">
+<div id="tbl-ms_anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Mean Squares
 </figcaption>
 <div aria-describedby="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1221,7 +1216,6 @@ Table&nbsp;4: Mean Squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1290,8 +1284,7 @@ Interpret the Test for Interaction First
 <p>The ANOVA table is now completed:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Mean Squares</caption>
 <thead>
 <tr class="header">
@@ -1366,7 +1359,6 @@ Interpret the Test for Interaction First
 
 </div>
 </div>
-</div>
 </section>
 </section>
 <section id="analysis-in-r" class="level1 page-columns page-full">
@@ -1406,15 +1398,14 @@ Interpret the Test for Interaction First
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-main_effects_numbers" class="cell quarto-float anchored">
+<div id="tbl-main_effects_numbers" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,“Within-block Factor: Variety”,“Between-block x Within-block Interaction: Factor x Variety”]
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">fungicide</th>
@@ -1459,10 +1450,8 @@ Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,�
 
 
 </div>
-</div>
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">plot</th>
@@ -1531,10 +1520,8 @@ Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,�
 
 
 </div>
-</div>
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">variety</th>
@@ -1591,10 +1578,8 @@ Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,�
 
 
 </div>
-</div>
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">fungicide.variety</th>
@@ -1688,7 +1673,6 @@ Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,�
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1712,7 +1696,7 @@ Table&nbsp;5: [“Between-block Factor: Fungicide”,“Block Factor: Plot”,�
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Maize Yield"</span>, <span class="at">y =</span> <span class="st">"Bushels / acre"</span>) <span class="sc">+</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-graphical_summary" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-graphical_summary" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-graphical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div>
@@ -1916,7 +1900,7 @@ F_{1,2} = 0.2175
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 16%">
@@ -2051,18 +2035,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2094,7 +2067,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2102,7 +2097,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

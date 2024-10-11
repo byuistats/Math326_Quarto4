@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - ANCOVA</title>
+<title>ANCOVA – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -146,13 +146,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -183,7 +183,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -230,7 +230,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -269,7 +269,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -286,7 +286,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -302,7 +302,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -393,7 +393,7 @@ window.Quarto = {
 <p>Initial analysis of the results, contained in <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(a)</em>, surprised the company. The difference in mean sales between the coupon group and the non-coupon group was small (only $2,500) relative to the variability within each group. A hypothesis test of the difference revealed no statistically significant results.</p>
 <p>The company’s BYU-Idaho intern realized that the research team had not accounted for the fact that some stores were in smaller cities than others. He noticed that the “no coupon” stores tended to be located in larger cities, with potential for more sales. The “coupon” group of stores tended to be located in smaller cities. This can be seen in <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(b)</em>, notice the “no coupon” group tends to be located farther to the right on the x-axis.</p>
 <p>The relationship between city size and sales revenue was accounted for with a regression line for each group (see <a href="#fig-ancova_benefit" class="quarto-xref">Figure&nbsp;1</a> <em>(b)</em>). Researchers adjusted for the difference in city size between the two groups and found the difference in predicted revenue between “coupon” and “no coupon” groups was actually $6,400. This difference is considered significant at the <span class="math inline">\(\alpha = 0.10\)</span> level.</p>
-<div id="fig-ancova_benefit" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-ancova_benefit" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-ancova_benefit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div>
@@ -402,7 +402,7 @@ window.Quarto = {
 <div class="cell column-screen-inset-shaded quarto-layout-panel" data-layout-ncol="2" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-ancova_benefit-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-ancova_benefit-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-ancova_benefit-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-ancova_benefit-1.png" id="fig-ancova_benefit-1" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672">
@@ -414,7 +414,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-ancova_benefit-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-ancova_benefit-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-ancova_benefit-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-ancova_benefit-2.png" id="fig-ancova_benefit-2" class="img-fluid figure-img" data-ref-parent="fig-ancova_benefit" width="672">
@@ -506,11 +506,11 @@ F_\text{treatment factor} =
 <section id="assumptions" class="level1">
 <h1>Assumptions</h1>
 <p>The assumptions for the ANCOVA model are essentially the same as for <a href="./cb1.html">CB[1]</a>, with the addition that the response and the covariate need to have a linear relationship:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 36%">
-<col style="width: 36%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -591,7 +591,7 @@ F_\text{treatment factor} =
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_smooth(method = "lm", se = FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-summary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672">
@@ -609,20 +609,20 @@ Figure&nbsp;2: Graphical Summary
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(initial_weight_at_start_show<span class="sc">~</span>ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(prop_initial_weight_lost <span class="sc">~</span> ymo, <span class="at">data =</span> bl_data) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>missing) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-numerical_summary" class="cell quarto-float anchored">
+<div id="tbl-numerical_summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-numerical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Numerical Summary by Age Group
 </figcaption>
 <div aria-describedby="tbl-numerical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-numerical_summary-1" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-numerical_summary-1" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-numerical_summary-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Initial Weight (lbs)
 </figcaption>
 <div aria-describedby="tbl-numerical_summary-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-numerical_summary-1" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-numerical_summary-1" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 8%">
@@ -688,13 +688,13 @@ Table&nbsp;1: Numerical Summary by Age Group
 </div>
 </div>
 <div class="cell-output-display">
-<div id="tbl-numerical_summary-2" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-numerical_summary-2" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-numerical_summary-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Percent of Initial Weight Lost
 </figcaption>
 <div aria-describedby="tbl-numerical_summary-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-numerical_summary-2" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-numerical_summary-2" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 10%">
@@ -803,7 +803,7 @@ Table&nbsp;1: Numerical Summary by Age Group
 <p>This model equates to fitting a separate best-fit line for each group, each line having the potential for a unique slope - as depicted in <a href="#fig-uniqe_slope" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-uniqe_slope" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-uniqe_slope" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-uniqe_slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-uniqe_slope-1.png" class="img-fluid figure-img" width="672">
@@ -828,7 +828,7 @@ Figure&nbsp;3: Interaction Term Included Allows for Unique Slopes
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(bl_mod_with_interaction, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Anova Table (Type III tests)</caption>
 <colgroup>
 <col style="width: 36%">
@@ -909,7 +909,7 @@ Note
 <p>The model is graphically depicted in <a href="#fig-ancova_model" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ancova_model" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ancova_model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ancova_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-ancova_model-1.png" class="img-fluid figure-img" width="672">
@@ -929,7 +929,7 @@ Figure&nbsp;4: ANCOVA, Equal Slopes Model
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">Anova</span>(ymo_ancova, <span class="at">type =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Anova Table (Type III tests)</caption>
 <colgroup>
 <col style="width: 31%">
@@ -994,7 +994,7 @@ Figure&nbsp;4: ANCOVA, Equal Slopes Model
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ymo_ancova, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-res_v_fit" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-res_v_fit" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-res_v_fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="ancova_files/figure-html/fig-res_v_fit-1.png" id="fig-res_v_fit" class="img-fluid figure-img" width="672">
@@ -1089,18 +1089,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1132,7 +1121,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1140,7 +1151,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

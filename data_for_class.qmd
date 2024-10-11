@@ -5,3 +5,7 @@ title: "Data Files"
 [click here to download a zipped folder of data for class](data/data_for_class.zip)
 
 then extract the files into a folder somewhere in the project directory you create for this class.
+
+The `toothpaste_BF2.csv` file which is used often throughout the book to demonstrate code, can be downloaded here. (Note, the path used in the book's code to read in the file will be different than the path you will need to read in the file. Your path will depend on where you store the data file on your computer).
+
+[Download toothpaste_bf2.csv](data/toothpaste_BF2.csv)
