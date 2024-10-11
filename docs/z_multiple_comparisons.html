@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Multiple Comparison</title>
+<title>Multiple Comparison – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -247,7 +247,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -368,7 +368,7 @@ window.Quarto = {
 <section id="introduction" class="level1 page-columns page-full">
 <h1>Introduction</h1>
 <p>In this page, the approach to dealing with multiple contrasts is explained. Specifically, whether and how to adjust the tests of multiple contrasts to account for an inflated family wise error rate. A few techniques are described, with a focus on when to use which technique. Lastly, instructions and example code is provided for carrying out each technique in R.</p>
-<p>In most good experiments, researchers are interested in more than just one contrast. Conducting multiple tests on the levels of a factor can inflate the family wise Type I error rate, as illustrated in the “Multiple T-tests” section of the <a href="./Anova_F-test.html">ANOVA</a> page. There is considerable disagreement among statisticians about how to approach the issue of multiple tests. The debate primarily focuses on whether to proactively take steps that will mitigate the inflated family wise error rate or not. To further complicate matters, if an adjustment is desired, there are multiple techniques to choose from. An exhaustive presentation of the arguments on either side is not attempted in this text. Though, a few of the key ideas will naturally emerge as the different approaches are discussed.</p>
+<p>In most good experiments, researchers are interested in more than just one contrast. Conducting multiple tests on the levels of a factor can inflate the family wise Type I error rate, as illustrated in the “Multiple T-tests” section of the <a href="Anova_F-test.qmd">ANOVA</a> page. There is considerable disagreement among statisticians about how to approach the issue of multiple tests. The debate primarily focuses on whether to proactively take steps that will mitigate the inflated family wise error rate or not. To further complicate matters, if an adjustment is desired, there are multiple techniques to choose from. An exhaustive presentation of the arguments on either side is not attempted in this text. Though, a few of the key ideas will naturally emerge as the different approaches are discussed.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The terms “contrast” and “comparison” are treated here as synonymous. Comparison is used more often to refer to testing a difference in factor level means. Read <a href="./contrast.html">Contrasts</a> for more explanation of these terms.</p>
@@ -435,7 +435,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 </section>
 <section id="summary-table" class="level1">
 <h1>Summary Table</h1>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 49%">
@@ -506,8 +506,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">contrast</th>
@@ -541,7 +540,6 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 
 </div>
 </div>
-</div>
 <p><br></p>
 <p>A new alpha level against which to compare the p-values can be calculated by hand. Since there are two tests, if the intent was to keep the family wise error rate of 0.05, the alpha level for each individual test is <span class="math inline">\(\frac{0.05}{2} = 0.025\)</span>. To be considered significant, the contrast’s p-value must be less than 0.025.</p>
 <p><code>man_v_osc</code> has a p-value of 0.06; <code>man_v_others</code> has a p-value of 0.74. Since neither contrast has a p-value less than 0.025 we conclude that the contrasts are not statistically significant.</p>
@@ -563,8 +561,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">contrast</th>
@@ -598,7 +595,6 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 
 </div>
 </div>
-</div>
 <p><br></p>
 <p>In these results the p-values have simply been multiplied by 2 because there were 2 contrasts in the set being tested. Each test can be compared to our desired family wise error rate as usual. Since each test has a p-value greater than 0.05 we conclude that the contrasts are not statistically significant.</p>
 <p>Note, for <code>man_v_others</code> the p-value is capped at 1.00 since a p-value cannot exceed 1.00.</p>
@@ -620,8 +616,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">contrast</th>
@@ -655,7 +650,6 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 
 </div>
 </div>
-</div>
 <p><br> Each contrast’s p-value can be compared to our desired family wise error rate of 0.05. Since each test has a p-value greater than 0.05 we conclude that the contrasts are not statistically significant. Notice the p-values with Scheffé’s adjustment are higher than the p-values with Bonferroni’s adjustment. This will always be the case if the number of contrasts being tested is small.</p>
 </section>
 <section id="tukey" class="level2">
@@ -669,7 +663,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <div class="cell-output-display">
 <ul>
 <li><p><strong>Brush</strong>:</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 40%">
 <col style="width: 13%">
@@ -767,7 +761,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p><strong>method</strong>: t tests with pooled SD</p></li>
 <li><p><strong>data.name</strong>: df<span class="math inline">\(Plaque and df\)</span>Brush</p></li>
 <li><p><strong>p.value</strong>:</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 13%">
@@ -863,18 +857,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -906,7 +889,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -914,7 +919,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

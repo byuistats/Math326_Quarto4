@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - CB[1]</title>
+<title>CB[1] – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -247,7 +247,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -413,7 +413,7 @@ Tip
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>The factor structure for a CB[1] design still has the two universal factors of the grand mean and residual error. There are also two structural factors: blocks and treatments.</p>
 <div class="page-columns page-full">
-<div id="fig-cb1_factor_structure" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-cb1_factor_structure" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-cb1_factor_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/CB1_factor_structure.PNG" class="img-fluid figure-img column-page">
@@ -452,7 +452,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>An ANOVA model may be used to analyze data from a CB[1] design if the following requirements are satisfied.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
 <col style="width: 36%">
@@ -497,7 +497,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <p>The design laid out in the format below is called “wider” format. It is helpful for humans to see it this way and fits in the way we have drawn our factor diagram (<a href="#fig-cb1_factor_structure" class="quarto-xref">Figure&nbsp;1</a>)</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 13%">
@@ -564,7 +564,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <p>If we proceed with the experiment like this, all the participants will get the toothbrushes in the same order. Order and toothrbrush will be confounded: we won’t be able to tell if a toothbrush’s effect is due to the brush itself or due to where it falls in the sequence. We will therefore randomize the order of the brushes for each participant. We end up with this result:</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 19%">
@@ -584,45 +584,45 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">manual</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">sonic</td>
 <td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">oscillating</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">oscillating</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">manual</td>
 <td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">manual</td>
 <td style="text-align: center;">super sonic</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 </tr>
 </tbody>
 </table>
@@ -644,7 +644,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <div id="unrandomized">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 19%">
@@ -797,7 +797,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <div id="random_long">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 19%">
@@ -813,7 +813,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">super sonic</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
@@ -823,32 +823,32 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">manual</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">sonic</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">2</td>
 <td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">manual</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">super sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
@@ -858,12 +858,12 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -873,17 +873,17 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -893,17 +893,17 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">manual</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">manual</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
@@ -913,7 +913,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">sonic</td>
+<td style="text-align: center;">oscillating</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="even">
@@ -928,7 +928,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">oscillating</td>
+<td style="text-align: center;">sonic</td>
 <td style="text-align: center;">4</td>
 </tr>
 </tbody>
@@ -943,7 +943,7 @@ y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}
 <p>To do a decomposition, we will represent the data in “wider” format. This is easier to see, even though most of the time the computer will want it in “longer” format. We will also organize the data <em>without</em> regard to the order in which it was actually collected. In other words, even though the order of brushes was randomized, the data will be organized/displayed in the factor structure, without an attempt to represent the actual order of brushes.</p>
 <p><a href="#fig-cb1_factors_and_model" class="quarto-xref">Figure&nbsp;2</a> gives the factor structure of the complete block design for the toothbrush study, and the accompanying mathematical model.</p>
 <div class="page-columns page-full">
-<div id="fig-cb1_factors_and_model" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-cb1_factors_and_model" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-cb1_factors_and_model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/CB1_factors_and_model.PNG" class="img-fluid figure-img column-page">
@@ -1007,7 +1007,7 @@ General Rule for Effect Size
 <section id="factor-level-means" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
 <p><a href="#fig-CB1-data-partition" class="quarto-xref">Figure&nbsp;3</a> shows our data set with partition lines for structural factors in place. We will proceed to calculate the factor level means for each factor.</p>
-<div id="fig-CB1-data-partition" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-CB1-data-partition" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-CB1-data-partition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/CB1-data-partition.PNG" class="img-fluid figure-img">
@@ -1047,7 +1047,7 @@ Figure&nbsp;3: Partitioned CB[1] Toothbrush Data
 <p>The mean for each residual error factor level is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
 <p><a href="#fig-CB1_means" class="quarto-xref">Figure&nbsp;4</a> displays the factor levels means associated with each observation.</p>
 <div class="page-columns page-full">
-<div id="fig-CB1_means" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-CB1_means" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-CB1_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/CB1_means.PNG" class="img-fluid figure-img column-page">
@@ -1102,7 +1102,7 @@ e_{ij} &amp;= y_{12} - \hat{y}_{12} \\
 <p>After using the oscillating toothbrush, Participant 1’s percent of teeth surface area with plaque is 0.56 percentage points lower than the model predicts.</p>
 <p>We perform these calculations for every observation. <a href="#fig-CB1_effects" class="quarto-xref">Figure&nbsp;5</a> shows the effects that make up each observation<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <div class="page-columns page-full">
-<div id="fig-CB1_effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-CB1_effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-CB1_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/CB1_effects.PNG" class="img-fluid figure-img column-page">
@@ -1121,8 +1121,7 @@ Figure&nbsp;5: Factor Level Effects
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1180,10 +1179,9 @@ Figure&nbsp;5: Factor Level Effects
 
 </div>
 </div>
-</div>
 <p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. <a href="#fig-CB1_effects" class="quarto-xref">Figure&nbsp;5</a> shows the effects, while <a href="#fig-CB_SS" class="quarto-xref">Figure&nbsp;6</a> shows the squared effects.</p>
 <div class="page-columns page-full">
-<div id="fig-CB_SS" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-CB_SS" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-CB_SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/CB_SS.PNG" class="img-fluid figure-img column-page">
@@ -1214,15 +1212,14 @@ SS_\text{Residual} &amp;= 9.74 + 0.32 + 14.12 + 0.01 + 2.69 + ... + 2.46 = 132.2
 \]</span></p>
 <p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-ss_anova" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
-<div id="tbl-ss_anova" class="cell quarto-float anchored">
+<div id="tbl-ss_anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Sums of Squares
 </figcaption>
 <div aria-describedby="tbl-ss_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1280,7 +1277,6 @@ Table&nbsp;1: Sums of Squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1302,15 +1298,14 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 \]</span></p>
 <p><br></p>
 <div class="cell">
-<div id="tbl-ms_anova" class="cell quarto-float anchored">
+<div id="tbl-ms_anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Mean Squares
 </figcaption>
 <div aria-describedby="tbl-ms_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1368,7 +1363,6 @@ Table&nbsp;2: Mean Squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1400,15 +1394,14 @@ F_\text{Brush} = \frac{MS_\text{Brush}}{MS_\text{Error}} = \frac{28.77}{8.82} = 
 <p><code>1 - pf(3.26, 3, 15) = 0.051</code></p>
 <p>The completed ANOVA table for this CB[1] toothbrush study, blocked on participant is shown below:</p>
 <div class="cell">
-<div id="tbl-complete_anova" class="cell quarto-float anchored">
+<div id="tbl-complete_anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-complete_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Toothbrush F Test ANOVA Table
 </figcaption>
 <div aria-describedby="tbl-complete_anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1466,7 +1459,6 @@ Table&nbsp;3: Toothbrush F Test ANOVA Table
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1502,21 +1494,20 @@ Table&nbsp;3: Toothbrush F Test ANOVA Table
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-main_effects_numbers" class="cell quarto-float anchored">
+<div id="tbl-main_effects_numbers" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Numerical Summary for Each Factor
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Brush
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush</th>
@@ -1588,16 +1579,14 @@ Table&nbsp;4: Numerical Summary for Each Factor
 
 
 </div>
-</div>
 <div class="cell-output-display">
-<div>
-<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Block: Participant
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">ParticipantID</th>
@@ -1694,7 +1683,6 @@ Table&nbsp;4: Numerical Summary for Each Factor
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1709,7 +1697,7 @@ Table&nbsp;4: Numerical Summary for Each Factor
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(Plaque <span class="sc">~</span>Brush, <span class="at">data =</span> cb1, <span class="at">main =</span> <span class="st">"% of Teeth Surface Area Covered by Plaque"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(Plaque <span class="sc">~</span>ParticipantID, <span class="at">data =</span> cb1, <span class="at">main =</span> <span class="st">"% of Teeth Surface Area Covered by Plaque"</span>, <span class="at">xlab =</span> <span class="st">"Participant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-graphical_summary" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-graphical_summary" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-graphical_summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div>
@@ -1891,18 +1879,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1934,7 +1911,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1942,7 +1941,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

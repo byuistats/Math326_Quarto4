@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Analysis of Unbalanced Data</title>
+<title>Analysis of Unbalanced Data – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -146,13 +146,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -183,7 +183,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -230,7 +230,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -243,7 +243,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -269,7 +269,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -286,7 +286,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -302,7 +302,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -371,7 +371,7 @@ window.Quarto = {
 <p><a href="#fig-balanced" class="quarto-xref">Figure&nbsp;1</a> is a graphical depiction of an unbalanced dataset for two factors, each with 2 levels: High and Low. You can see that each factor level combination appears an equal number of times<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-balanced" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-balanced" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-balanced-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="unbalanced_files/figure-html/fig-balanced-1.png" class="img-fluid figure-img" width="672">
@@ -390,7 +390,7 @@ Figure&nbsp;1: Balanced, orthogonal data
 </div></div><p>Now consider <a href="#fig-unbalanced" class="quarto-xref">Figure&nbsp;2</a>, where there are fewer observations for the combination (Low, Low), and more observations for (Low, High) combination.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-unbalanced" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-unbalanced" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unbalanced-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="unbalanced_files/figure-html/fig-unbalanced-1.png" class="img-fluid figure-img" width="672">
@@ -408,7 +408,7 @@ Figure&nbsp;2: Unbalanced, non-orthogonal data
 <section id="section" class="level1">
 <h1></h1>
 <p>This correlation/confounding of effects also means it is not clear exactly which factor the sums of squares should be attributed to in an ANOVA. <a href="#fig-venn" class="quarto-xref">Figure&nbsp;3</a> (a)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> illustrates this shared sum of squares. The shared sum of squares is due to the correlation between the two factors and is represented by the overlap in the circles.</p>
-<div id="fig-venn" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-venn" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://besjournals.onlinelibrary.wiley.com/cms/asset/c210638b-49a6-4c71-a3cc-990e17231f09/jane_1634_f1.gif" class="img-fluid figure-img">
@@ -446,14 +446,14 @@ Warning
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">57</span>, <span class="dv">57</span>, <span class="dv">71</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">94</span>, <span class="dv">102</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">120</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-example_data" class="cell quarto-float anchored">
+<div id="tbl-example_data" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-example_data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Plant heights based on initial size and thinning (or not)
 </figcaption>
 <div aria-describedby="tbl-example_data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 19%">
@@ -536,14 +536,14 @@ Table&nbsp;1: Plant heights based on initial size and thinning (or not)
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A_first <span class="ot">&lt;-</span> <span class="fu">aov</span>(height<span class="sc">~</span>initial_size <span class="sc">+</span> thinning <span class="sc">+</span> initial_size<span class="sc">:</span>thinning, <span class="at">data =</span> example)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">anova</span>(A_first), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-A_first" class="cell quarto-float anchored">
+<div id="tbl-A_first" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-A_first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Type I ANOVA, ‘initial_size’ first
 </figcaption>
 <div aria-describedby="tbl-A_first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Analysis of Variance Table</caption>
 <colgroup>
 <col style="width: 38%">
@@ -614,14 +614,14 @@ Table&nbsp;2: Type I ANOVA, ‘initial_size’ first
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>thinning_first <span class="ot">&lt;-</span> <span class="fu">aov</span>(height<span class="sc">~</span>thinning <span class="sc">+</span> initial_size <span class="sc">+</span> thinning<span class="sc">:</span>initial_size, <span class="at">data =</span> example)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">anova</span>(thinning_first), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-thin_first" class="cell quarto-float anchored">
+<div id="tbl-thin_first" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-thin_first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Type I ANOVA, ‘thinning’ first
 </figcaption>
 <div aria-describedby="tbl-thin_first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Analysis of Variance Table</caption>
 <colgroup>
 <col style="width: 38%">
@@ -711,13 +711,13 @@ Table&nbsp;4: 3 Type I ANOVA Tables Used to Get a Type III
 <div aria-describedby="tbl-three_anovas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="quarto-layout-row page-full">
 <div class="cell-output-display column-screen-inset-shaded quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
-<div id="tbl-three_anovas-1" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-three_anovas-1" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-three_anovas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Interaction last
 </figcaption>
 <div aria-describedby="tbl-three_anovas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-three_anovas-1" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-three_anovas-1" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 6%">
@@ -776,13 +776,13 @@ Table&nbsp;4: 3 Type I ANOVA Tables Used to Get a Type III
 </div>
 </div>
 <div class="cell-output-display column-screen-inset-shaded quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
-<div id="tbl-three_anovas-2" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-three_anovas-2" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-three_anovas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Initial size last
 </figcaption>
 <div aria-describedby="tbl-three_anovas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-three_anovas-2" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-three_anovas-2" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 6%">
@@ -841,13 +841,13 @@ Table&nbsp;4: 3 Type I ANOVA Tables Used to Get a Type III
 </div>
 </div>
 <div class="cell-output-display column-screen-inset-shaded quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-three_anovas" style="flex-basis: 33.3%;justify-content: center;">
-<div id="tbl-three_anovas-3" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-three_anovas-3" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-three_anovas-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Thinning last
 </figcaption>
 <div aria-describedby="tbl-three_anovas-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-three_anovas-3" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-three_anovas-3" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 6%">
@@ -922,14 +922,14 @@ Table&nbsp;4: 3 Type I ANOVA Tables Used to Get a Type III
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(car<span class="sc">::</span><span class="fu">Anova</span>(int_last, <span class="at">type =</span> <span class="dv">3</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">thinning =</span> contr.sum, <span class="at">initial_size =</span> contr.sum, <span class="at">interaction =</span> contr.sum)), <span class="at">round =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-type3" class="cell quarto-float anchored">
+<div id="tbl-type3" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-type3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;5: Type 3 ANOVA, As If Last
 </figcaption>
 <div aria-describedby="tbl-type3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Anova Table (Type III tests)</caption>
 <colgroup>
 <col style="width: 26%">
@@ -1009,13 +1009,13 @@ Table&nbsp;6: 3 Type I ANOVA Tables Used to Get a Type II
 <div aria-describedby="tbl-three_anovas2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="quarto-layout-row page-full">
 <div class="cell-output-display column-screen-inset-shaded quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-three_anovas2" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-three_anovas2-1" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-three_anovas2-1" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-three_anovas2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Initial size is last main effect
 </figcaption>
 <div aria-describedby="tbl-three_anovas2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-three_anovas2-1" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-three_anovas2-1" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 38%">
 <col style="width: 6%">
@@ -1074,13 +1074,13 @@ Table&nbsp;6: 3 Type I ANOVA Tables Used to Get a Type II
 </div>
 </div>
 <div class="cell-output-display column-screen-inset-shaded quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-three_anovas2" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-three_anovas2-2" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-three_anovas2-2" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-three_anovas2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Thinning is last main effect
 </figcaption>
 <div aria-describedby="tbl-three_anovas2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-three_anovas2-2" class="do-not-create-environment table table-sm table-striped small">
+<table id="tbl-three_anovas2-2" class="do-not-create-environment caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 38%">
 <col style="width: 6%">
@@ -1145,14 +1145,14 @@ Table&nbsp;6: 3 Type I ANOVA Tables Used to Get a Type II
 </div>
 <p>The type II ANOVA output, in <a href="#tbl-type2" class="quarto-xref">Table&nbsp;7</a>, contains the sum of squares from <a href="#tbl-three_anovas2" class="quarto-xref">Table&nbsp;6</a>. Specifically, the Sum of Squares in <a href="#tbl-type2" class="quarto-xref">Table&nbsp;7</a> for thinning is 590 because that is the Sum of Squares in <a href="#tbl-three_anovas2" class="quarto-xref">Table&nbsp;6</a> panel b, when “thinning” was the last main effect listed. Similarly, the Sum of Squares in <a href="#tbl-type2" class="quarto-xref">Table&nbsp;7</a> for initial_size is 4846 because that is the Sum of Squares from <a href="#tbl-three_anovas2" class="quarto-xref">Table&nbsp;6</a> panel a, when “initial_size” was the last main effect listed.</p>
 <div class="cell">
-<div id="tbl-type2" class="cell quarto-float anchored">
+<div id="tbl-type2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-type2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;7: Type 2 ANOVA
 </figcaption>
 <div aria-describedby="tbl-type2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Anova Table (Type II tests)</caption>
 <colgroup>
 <col style="width: 38%">
@@ -1225,7 +1225,7 @@ Table&nbsp;7: Type 2 ANOVA
 <section id="proscons-table" class="level1">
 <h1>Pros/Cons Table</h1>
 <p>Below is a summary table of the pros and cons of the first 3 methods.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 4%">
 <col style="width: 45%">
@@ -1439,18 +1439,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1482,7 +1471,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1490,7 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

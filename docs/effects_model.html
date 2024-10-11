@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Effects Model</title>
+<title>Effects Model – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -112,13 +112,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -149,7 +149,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -196,7 +196,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -209,7 +209,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -235,7 +235,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -252,7 +252,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -268,7 +268,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -339,7 +339,7 @@ window.Quarto = {
 <p>Up to this point we have primarily been interested in calculating means in order to compare toothbrushes. If the mean percent of teeth surface area with plaque was 23.09 for a manual brush, you would want to know how that value compares to the other types of brushes. A graph or table reporting the other sample means would be necessary to provide context. <a href="#fig-means" class="quarto-xref">Figure&nbsp;1</a> depicts the data points and the mean for each factor level.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-means" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-means" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="effects_model_files/figure-html/fig-means-1.png" class="img-fluid figure-img" width="1008">
@@ -375,7 +375,7 @@ Figure&nbsp;1: Brush means and grand mean
 <p><a href="#fig-effects" class="quarto-xref">Figure&nbsp;2</a> shows a visual representation of effect size for oscillating and ultrasonic brushes. The effect sizes for manual and sonic brushes could also have been drawn, but are omitted so that the chart does not become too cluttered.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-effects" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-effects" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="effects_model_files/figure-html/fig-effects-1.png" class="img-fluid figure-img" width="1008">
@@ -411,7 +411,7 @@ General rule to calculate effect size
 <h3 class="anchored" data-anchor-id="effects-of-the-residual-error-factor">Effects of the Residual Error Factor</h3>
 <p>What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let’s consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see <a href="./factor_structure.html">Factor Structure</a> for a review of inside vs.&nbsp;outside factors).</p>
 <div class="page-columns page-full">
-<div id="fig-toothbrush_bf1_colored_factors" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-toothbrush_bf1_colored_factors" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-toothbrush_bf1_colored_factors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/toothbrush_bf1_colored_factors.JPG" class="img-fluid figure-img column-page">
@@ -434,7 +434,7 @@ Figure&nbsp;3: Factor Structure Diagram for Toothbrush Study with 1 Factor
 <p>These two residual errors are depicted in green in <a href="#fig-resids" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-resids" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-resids" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-resids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="effects_model_files/figure-html/fig-resids-1.png" class="img-fluid figure-img" width="1008">
@@ -483,7 +483,7 @@ Figure&nbsp;4: Residual error effects (rounded to two decimal places) in green, 
 \tag{8}\]</span></span></p>
 <p><a href="#fig-one-obs-build" class="quarto-xref">Figure&nbsp;5</a> puts this in context of our factor structure diagram.</p>
 <div class="page-columns page-full">
-<div id="fig-one-obs-build" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-fig-align="center">
+<div id="fig-one-obs-build" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-one-obs-build-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/toothbrush_one_obs_build.JPG" class="img-fluid quarto-figure quarto-figure-center figure-img column-page">
@@ -496,7 +496,7 @@ Figure&nbsp;5: An observation can be broken into the sum of its factor effects
 </div>
 <p><a href="#fig-all-obs-build" class="quarto-xref">Figure&nbsp;6</a> shows this same calculation for all the observations. (Effect sizes are rounded to two decimal places).</p>
 <div class="page-columns page-full">
-<div id="fig-all-obs-build" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-fig-align="center">
+<div id="fig-all-obs-build" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-all-obs-build-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/toothbrush_all_obs_build.JPG" class="img-fluid quarto-figure quarto-figure-center figure-img column-page">
@@ -546,7 +546,7 @@ y_\text{12} = \mu + \alpha_1 + \epsilon_\text{12}
 \]</span></p>
 <p><a href="#fig-notation-factor-structure" class="quarto-xref">Figure&nbsp;7</a> shows how this new notation can be used to reference any and all parts of our factor structure.</p>
 <div class="page-columns page-full">
-<div id="fig-notation-factor-structure" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-fig-align="center">
+<div id="fig-notation-factor-structure" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-notation-factor-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/toothbrush_notation_factor_structure.JPG" class="img-fluid quarto-figure quarto-figure-center figure-img column-page">
@@ -646,18 +646,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -689,7 +678,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -697,7 +708,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

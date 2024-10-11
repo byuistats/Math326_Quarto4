@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Latin Square</title>
+<title>Latin Square – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -247,7 +247,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -409,7 +409,7 @@ When to use Latin Square
 <div aria-describedby="fig-ls_fields-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ls_fields" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-fisher" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-fisher" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-fisher-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ls_5_by_5.png" id="fig-fisher" class="img-fluid figure-img" data-ref-parent="fig-ls_fields">
@@ -421,7 +421,7 @@ When to use Latin Square
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-ls_fields" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-six-by-six" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-six-by-six" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-six-by-six-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ls_field.jpg" id="fig-six-by-six" class="img-fluid figure-img" data-ref-parent="fig-ls_fields">
@@ -444,7 +444,7 @@ Figure&nbsp;1: Agricultural examples of latin squares
 <section id="factor-structure" class="level2">
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>In the factor diagram, one nuisance factor’s levels are associated with the row partitions of the dataset. The other nuisance factor’s levels are marked by partitioning the dataset by columns. The treatment is assigned a letter inside the factor diagram. <a href="#fig-ls_factors" class="quarto-xref">Figure&nbsp;2</a> is a factor structure diagram for a Latin Square design where the controlled factors all have 4 levels. This is an unrandomized layout of the treatments: each row (and column) follows the same sequence of treatments. In the <a href="#design">Design</a> section we will learn to randomize the design.</p>
-<div id="fig-ls_factors" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-ls_factors" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ls_factors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ls_factors.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -481,7 +481,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>An ANOVA model may be used to analyze data from a LS[1] design if the following requirements are satisfied.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 36%">
@@ -526,7 +526,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <li><p>Treatments follow the same sequence. Carry-over effects are confounded with treatment effects.</p></li>
 <li><p>In some squares, this could give an advantage to certain treatments. Consider a field that was divided up into a 5 by 5 grid. If the soil in the field tends to be more fertile and productive as you move toward the upper-left corner of the field, then treatment B has an advantage over treatment C. And treatment C has a slight advantage over treatment D, and so forth.</p></li>
 </ul>
-<table class="table">
+<table class="caption-top table">
 <caption>Unrandomized Treatments Applied to a Field</caption>
 <tbody>
 <tr class="odd">
@@ -585,7 +585,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 </div>
 </div>
 <p>We will illustrate the 3 steps with a 4 x 4 grid.</p>
-<table class="table">
+<table class="caption-top table">
 <caption>Unrandomized 4 x 4 grid</caption>
 <tbody>
 <tr class="odd">
@@ -627,7 +627,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 </table>
 <p><strong>Step 1: Randomize Rows</strong></p>
 <p>Use a random number generator to randomly shuffle the numbers 1 through 4. Using <code>sample(1:4)</code> returned the sequence 1, 2, 4, 3<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The table rows are reordered to match that sequence.</p>
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"></td>
@@ -669,7 +669,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <p><strong>Step 2: Randomize Columns</strong></p>
 <p>Use a random number generator to randomly reshuffle the numbers 1 through 4. Using <code>sample(1:4)</code> returned the sequence 4, 3, 1, 2<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The table columns are reordered to match that sequence.</p>
 <p>In this case, the column headers have also been moved to show how the randomization works. However, usually the column headers do not change, it is just the treatments within the columns that get shifted. This can be seen in the traffic light experiment described in the <a href="#decomposition">Decomposition</a> section below.</p>
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"></td>
@@ -815,7 +815,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <h1>Decomposition</h1>
 <p>To illustrate the decomposition of a Latin Square we will introduce a new example. In this example, the goal is to evaluate 4 different algorithms for traffic light timing. Throughput, the total cars getting through the intersection during a set length of time, is measured as a response variable. Of course, each intersection is different in terms of volume and direction of traffic. We will pick 4 random intersections to apply the different algorithms to. The time of day can also heavily influence the volume and direction of traffic, so we will block on time of day as well. In order to use a Latin Square design, we will measure throughput at 4 different times of day. Each traffic light timing algorithm will be measured only once at each time of day, and only once at each intersection.</p>
 <p>The goal of an analysis of variance (ANOVA) is to decompose the variance in these observations, to determine how much variance is coming from each factor. In this experiment the randomization steps described in the <a href="#design">Design</a> section above were applied. <a href="#fig-ls_factors_traffic" class="quarto-xref">Figure&nbsp;3</a> shows the factor structure for this Latin Square traffic experiment.</p>
-<div id="fig-ls_factors_traffic" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ls_factors_traffic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ls_factors_traffic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ls_factors_traffic.png" class="img-fluid figure-img">
@@ -852,7 +852,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 <section id="factor-means" class="level3">
 <h3 class="anchored" data-anchor-id="factor-means">Factor Means</h3>
 <p>Below is a table that contains observed throughput for the combinations of intersection, time of day, and algorithm (represented as A, B, C or D).</p>
-<table class="table">
+<table class="caption-top table">
 <caption>Observed Throughput for Traffic Light Timing Algorithm Experiment</caption>
 <thead>
 <tr class="header">
@@ -918,7 +918,7 @@ y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}
 \end{align}\]</span>
 <p>We do not need to calculate means for residual error factor for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.</p>
 <p>The means for each factor level are shown in <a href="#fig-ls_means" class="quarto-xref">Figure&nbsp;4</a>.</p>
-<div id="fig-ls_means" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ls_means" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ls_means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ls_means.png" class="img-fluid figure-img">
@@ -972,7 +972,7 @@ Warning
 \]</span></p>
 <p><a href="#fig-ls_effects" class="quarto-xref">Figure&nbsp;5</a> uses the factor structure diagram to show the build-up of each observations as the summation of each of its factor level effects.</p>
 <div class="page-columns page-full">
-<div id="fig-ls_effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-ls_effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-ls_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/ls_effects.png" class="img-fluid figure-img column-page">
@@ -990,8 +990,7 @@ Figure&nbsp;5: Factor Effects
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. The total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1057,10 +1056,9 @@ Figure&nbsp;5: Factor Effects
 
 </div>
 </div>
-</div>
 <p>To get the <strong>sum of squares (SS)</strong> of a factor, the effects of the factor must be squared, and then summed. The factor effects were displayed in <a href="#fig-ls_effects" class="quarto-xref">Figure&nbsp;5</a> above. <a href="#fig-ls_sq_effects" class="quarto-xref">Figure&nbsp;6</a> (below) shows <em>squared effects</em> for the factors, excluding the grand mean and the observations.</p>
 <div class="page-columns page-full">
-<div id="fig-ls_sq_effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-ls_sq_effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-ls_sq_effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/ls_squared_effects.png" class="img-fluid figure-img column-page">
@@ -1089,15 +1087,14 @@ SS_\text{residual} &amp;= 4 * (0.25 + 0.06 + 0 + 0.06) = 1.5
 \end{align}\]</span>
 <p>Putting this information into the ANOVA table gives us <a href="#tbl-SS" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
-<div id="tbl-SS" class="cell quarto-float anchored">
+<div id="tbl-SS" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Sums of squares
 </figcaption>
 <div aria-describedby="tbl-SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1163,7 +1160,6 @@ Table&nbsp;1: Sums of squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1174,8 +1170,7 @@ Table&nbsp;1: Sums of squares
 <p>Obtain the mean squares for each factor by dividing its sum of squares by its degrees of freedom.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1241,7 +1236,6 @@ Table&nbsp;1: Sums of squares
 
 </div>
 </div>
-</div>
 <p>The objective of the study was to evaluate differences in timing algorithms of traffic lights. The intersection and time of day factors were simply nuisance factors we blocked on to better isolate the effect of timing algorithm. For that reason, we will only show the hypothesis test of the treatment factor (algorithm) here, though a similar test could be done for the blocking factors (intersection and time of day).</p>
 <p>In <a href="#eq-ls1" class="quarto-xref">Equation&nbsp;1</a>, <span class="math inline">\(\gamma\)</span> represents the effect of algorithm. Our hypotheses therefore are</p>
 <p><span class="math display">\[
@@ -1258,8 +1252,7 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 <p>The associated p-value is approximately zero as calculated in Excel with the function <code>= f.dist.rt(860.6667, 3, 6)</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1325,7 +1318,6 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 
 </div>
 </div>
-</div>
 <p>We can conclude from these results that at least one of the timing algorithms has a statistically significant effect on the number of cars flowing through an intersection. As calculated earlier, Algorithm D had the largest positive effect on throughput at an intersection and it seems reasonable to recommend this algorithm to those in charge of traffic lights.</p>
 </section>
 </section>
@@ -1339,7 +1331,7 @@ H_a: \gamma_k \ne 0 \text{, for some } k
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(number_of_cars <span class="sc">~</span> <span class="fu">factor</span>(algorithm), <span class="at">data =</span> df,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">'p'</span>, <span class="st">'a'</span>), <span class="at">xlab =</span> <span class="st">"Light Timing Algorithm"</span>, <span class="at">ylab =</span> <span class="st">"# of Cars"</span>, <span class="at">main =</span> <span class="st">"Traffic Experiment on Intersection Throughput"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dot_plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dot_plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dot_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="latin_square_files/figure-html/fig-dot_plot-1.png" class="img-fluid figure-img" width="672">
@@ -1357,8 +1349,7 @@ Figure&nbsp;7: Dotplot by Treatment
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Mean Throughput</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">mean</span>(number_of_cars)) <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">algorithm</th>
@@ -1386,7 +1377,6 @@ Figure&nbsp;7: Dotplot by Treatment
 </table>
 
 
-</div>
 </div>
 </div>
 <p>Create the model using the <code>aov()</code> function. To see the results of the F-test and the ANOVA summary table use the <code>summary()</code> or <code>anova()</code> function.</p>
@@ -1431,7 +1421,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(my_ls_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-constant_var" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-constant_var" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-constant_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="latin_square_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672">
@@ -1458,7 +1448,7 @@ Figure&nbsp;8: Checking constant variance
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(my_ls_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="latin_square_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672">
@@ -1545,18 +1535,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1588,7 +1567,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1596,7 +1597,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

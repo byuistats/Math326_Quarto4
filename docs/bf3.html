@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - BF[3]</title>
+<title>BF[3] – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -146,13 +146,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -183,7 +183,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -230,7 +230,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -243,7 +243,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -269,7 +269,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -286,7 +286,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -302,7 +302,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -407,14 +407,14 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(reader, author, attractiveness) <span class="sc">%&gt;%</span> <span class="fu">add_column</span>(<span class="at">row =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(row) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-data" class="cell quarto-float anchored">
+<div id="tbl-data" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Table of Means for Each Factor Level Combination
 </figcaption>
 <div aria-describedby="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 12%">
@@ -590,7 +590,7 @@ Table&nbsp;1: Table of Means for Each Factor Level Combination
 </ul>
 <p>The table below summarizes the 7 structural factors in the model:</p>
 <!-- Use ctrl + space to make a non-breaking white space that doesn't just get collapsed. It is represented with a light gray dot in Rstudio markdown before rendering. -->
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
 <col style="width: 16%">
@@ -624,7 +624,7 @@ Table&nbsp;1: Table of Means for Each Factor Level Combination
 <tr class="odd">
 <td>reader <span class="math inline">\(\times\)</span> author</td>
 <td>4</td>
-<td><table class="table">
+<td><table class="caption-top table">
 <colgroup>
 <col style="width: 29%">
 <col style="width: 31%">
@@ -648,7 +648,7 @@ Table&nbsp;1: Table of Means for Each Factor Level Combination
 <tr class="even">
 <td>reader <span class="math inline">\(\times\)</span> attractiveness</td>
 <td>6</td>
-<td><table class="table">
+<td><table class="caption-top table">
 <colgroup>
 <col style="width: 29%">
 <col style="width: 30%">
@@ -674,7 +674,7 @@ Table&nbsp;1: Table of Means for Each Factor Level Combination
 <tr class="odd">
 <td>author <span class="math inline">\(\times\)</span> attractiveness</td>
 <td>6</td>
-<td><table class="table">
+<td><table class="caption-top table">
 <colgroup>
 <col style="width: 29%">
 <col style="width: 30%">
@@ -747,7 +747,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>A three-way ANOVA model may be used to analyze data from a BF[3] design if the following requirements are satisfied. Note that these requirements are identical to the requirements of a BF[2] two-way ANOVA.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 36%">
@@ -820,7 +820,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 12%">
@@ -1142,7 +1142,7 @@ H_a: (\alpha\beta\gamma)_\text{ijk} \ne 0 \text{ for some } ijk
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(randomized_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 12%">
@@ -1469,7 +1469,7 @@ Table&nbsp;2: Means for Each Factor Level Combination
 <div aria-describedby="tbl-means2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Group means for Female reader</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1502,7 +1502,7 @@ Table&nbsp;2: Means for Each Factor Level Combination
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <caption>Group means for Male reader</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1545,7 +1545,7 @@ Table&nbsp;2: Means for Each Factor Level Combination
 <div class="cell quarto-layout-panel" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-ints2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ints2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ints2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf3_files/figure-html/fig-ints2-1.png" style="width:150.0%;height:150.0%" class="figure-img">
@@ -1579,7 +1579,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 <div aria-describedby="tbl-means3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Reader Gender</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1604,7 +1604,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1629,7 +1629,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Author Attractiveness</caption>
 <colgroup>
 <col style="width: 23%">
@@ -1660,7 +1660,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Reader Gender x Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1699,7 +1699,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Reader Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1748,7 +1748,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Author Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1799,7 +1799,7 @@ Table&nbsp;3: Means for Each Factor Level Combination
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Mean Talent by Reader Gender x Author Gender x Author Attractiveness</caption>
 <colgroup>
 <col style="width: 12%">
@@ -1991,7 +1991,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 <div aria-describedby="tbl-summaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Numerical Summary by Reader Gender</caption>
 <colgroup>
 <col style="width: 12%">
@@ -2024,7 +2024,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Numerical Summary by Author Gender</caption>
 <colgroup>
 <col style="width: 12%">
@@ -2057,7 +2057,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 </table>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<table class="do-not-create-environment cell table">
+<table class="do-not-create-environment cell caption-top table">
 <caption>Numerical Summary by Attractiveness Gender</caption>
 <colgroup>
 <col style="width: 23%">
@@ -2137,7 +2137,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 <div aria-describedby="fig-descriptives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="quarto-layout-row page-full">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-descriptives-1" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-descriptives-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-descriptives-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf3_files/figure-html/fig-descriptives-1.png" id="fig-descriptives-1" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
@@ -2149,7 +2149,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-descriptives-2" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-descriptives-2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-descriptives-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf3_files/figure-html/fig-descriptives-2.png" id="fig-descriptives-2" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
@@ -2161,7 +2161,7 @@ Table&nbsp;4: Numerical Summaries of Experimental Factors
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-descriptives" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-descriptives-3" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-descriptives-3" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-descriptives-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf3_files/figure-html/fig-descriptives-3.png" id="fig-descriptives-3" class="img-fluid figure-img column-screen-inset" data-ref-parent="fig-descriptives" width="672">
@@ -2206,10 +2206,10 @@ Figure&nbsp;2: Graphical Summaries of Experimental Factors
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>halo_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(talent <span class="sc">~</span> reader <span class="sc">*</span> author <span class="sc">*</span> attractiveness, <span class="at">data =</span> df)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(halo_aov) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-anova_results" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-anova_results" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-anova_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <caption>Analysis of Variance Model</caption>
 <colgroup>
 <col style="width: 43%">
@@ -2333,7 +2333,7 @@ Keeping Lower Order Effects
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(halo_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-constant_var" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-constant_var" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-constant_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf3_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672">
@@ -2356,7 +2356,7 @@ Figure&nbsp;4: Checking constant variance
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(halo_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf3_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672">
@@ -2387,7 +2387,7 @@ Figure&nbsp;5: Checking normality of residuals
 <h1>Appendix</h1>
 <p>Partitioning of the dataset that corresponds with the 7 structural factors in the 3 factor model.</p>
 <div class="column-page">
-<div id="fig-partition_main" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-partition_main" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-partition_main-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/bf3_partition_main.PNG" class="img-fluid figure-img">
@@ -2397,7 +2397,7 @@ Figure&nbsp;6: Data Partition for Single Factors
 </figcaption>
 </figure>
 </div>
-<div id="fig-partition_2way" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-partition_2way" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-partition_2way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/bf3_partition_2way.PNG" class="img-fluid figure-img">
@@ -2407,7 +2407,7 @@ Figure&nbsp;7: Data Partition for 2-Way Interaction Factors
 </figcaption>
 </figure>
 </div>
-<div id="fig-partition_3way" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-partition_3way" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-partition_3way-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/bf3_partition_3way.PNG" class="img-fluid figure-img" width="490">
@@ -2466,18 +2466,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2509,7 +2498,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2517,7 +2528,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

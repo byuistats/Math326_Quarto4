@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - BF[1]</title>
+<title>BF[1] – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -247,7 +247,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -398,7 +398,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>The factor structure for the model resulting from a completely randomized, one factor design is:</p>
 <div class="page-columns page-full">
-<div id="fig-bf1-structure-with-equation" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-bf1-structure-with-equation" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-bf1-structure-with-equation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF1_factor_structure_with_equation.PNG" class="img-fluid figure-img column-page">
@@ -432,7 +432,7 @@ H_a: \alpha_i \neq 0 \quad \text{for at least one }\ \alpha_i
 <section id="assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
 <p>A one-way ANOVA model may be used to analyze data from a BF[1] design if the following requirements are satisfied:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 36%">
@@ -500,7 +500,7 @@ Important
 <div class="no-row-height column-margin column-container"><div class="">
 <p>In contrast to a completely randomized factorial design, a <a href="https://byuistats.github.io/Math326_Quarto4/block_intro.html">block design</a> allows for experimental units to experience more than 1 treatment condition.</p>
 </div></div><p>In this example we expect a balanced design (i.e.&nbsp;each factor level has the same number of observations) because the number of observations is a perfect multiple of the number of factor levels. To make random assignments, start by listing all the subjects, then listing the treatments, as seen below:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Subject</th>
@@ -542,7 +542,7 @@ Important
 </tbody>
 </table>
 <p>Then you randomly shuffle the treatment column. (You should also be paying attention to the order in which subjects and treatments are being experimented on as this could be a potential source of bias. In a BF[1], if it makes sense to do, you randomize the order also.) The result might look something like this.</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Subject</th>
@@ -598,7 +598,7 @@ Note
 </div>
 <p>The design above is laid out in “longer format”. In “longer format”, each row represents an observation. There is a column to indicate what treatment experimental unit received, a column to contain the value of the response variable, and (if necessary) a column to keep track of the order in which the observations are made. “Longer format” is what many softwares need, R included.</p>
 <p>“Wider format” is how the design is laid out in the factor structure diagram. Each factor level has it’s own column. Each cell contains a response value for a particular subject. The order of the experimental runs becomes difficult to track/document in this format. This data format is often used for data collection and is often easier for humans (as opposed to machines) to digest. In “wider format” the above table would look like the following:</p>
-<table class="table">
+<table class="caption-top table">
 <caption>Wider Format Example</caption>
 <colgroup>
 <col style="width: 33%">
@@ -654,7 +654,7 @@ Note
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 18%">
@@ -747,7 +747,7 @@ Note
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Subject, <span class="fu">sample</span>(Treatment, <span class="dv">16</span>)) <span class="sc">%&gt;%</span> <span class="fu">pander</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 33%">
@@ -900,7 +900,7 @@ General Rule for Effect Size
 <p>You can similarly find the mean for monitor keyboard is 7.8492, the mean for head monitor display/joypad is 6.5789, and the mean for head monitor display/wearables is 7.1616. In <a href="#fig-training-means" class="quarto-xref">Figure&nbsp;2</a> these means are placed in the respective training method column.</p>
 <p>We do not need to calculate means for residual error factor because for two reasons. First, there is only one observation per level of residual error, so the mean is the observation itself. Second, nothing is inside of residual error. It is the last step in the process and its mean is not needed to calculate factor effects.</p>
 <div class="page-columns page-full">
-<div id="fig-training-means" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-training-means" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-training-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF1_means_decomp.png" class="img-fluid figure-img column-page">
@@ -922,7 +922,7 @@ Figure&nbsp;2: Raw data and means for grand mean and training factors
 \]</span></p>
 <p>Being in the control group has the effect of <em>reducing</em> the student’s performance by 1.8358 on average compared to the grand mean. In a similar way you can find the effect for Monitor/Keyboard <span class="math inline">\(7.8492 - 6.5846 = 1.2645\)</span>. This means the student performance scores increased by 1.2645 on average in this training method compared to the grand mean. For Head Monitor Display/Joypad, the effect is <span class="math inline">\(6.5789 - 6.5846 = -0.0058\)</span>. For Head Monitor Display/Wearables the effect is <span class="math inline">\(7.1616 - 6.5846 = 0.5770\)</span> (see below).</p>
 <div class="page-columns page-full">
-<div id="fig-training-effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-fig-align="center">
+<div id="fig-training-effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-training-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF1_trt_effect_boat_decomp.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page">
@@ -944,7 +944,7 @@ Figure&nbsp;3: Training Method Effects
 \]</span></p>
 <p>Repeat this process for all the remaining 22 residual values. The result is shown in <a href="#fig-residual-effects" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="page-columns page-full">
-<div id="fig-residual-effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" data-fig-align="center">
+<div id="fig-residual-effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-residual-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF1_effect_boat_decomp.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page">
@@ -963,8 +963,7 @@ Figure&nbsp;4: Residual Effects
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1014,7 +1013,6 @@ Figure&nbsp;4: Residual Effects
 
 </div>
 </div>
-</div>
 <p>To get the <strong>sum of squares (SS)</strong> for a factor, the factor’s effect needs to be squared. This is done for each observation. Then all the squared values are summed up to get the sum of squares.</p>
 <p>For <strong>grand mean</strong>, the effect of 6.5845 is listed 24 times, once for each observation. The value of 6.5845 will be squared. This squaring will be done 24 times and the squared values will then be added together to get the sum of squares due to grand mean.</p>
 <p><span class="math display">\[
@@ -1040,8 +1038,7 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 <p><br> <br></p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1091,7 +1088,6 @@ SS_\text{Total} = 1040.57 + 31.81 + 100.49 = 1172.87
 
 </div>
 </div>
-</div>
 <p>Recall that SS is a measure of total variability. Comparing factors on total variability isn’t exactly fair.</p>
 <p>Consider for a moment 2 classes that were competing in a canned food drive. One class collected 150 cans. The other class collected 3,000 cans. The second class seems to have one. But is it a fair comparison? What if the first class had 10 students and the second class had 300 students. If we are interested in determining which class was more effective at getting canned food donations, we should somehow account for the difference in class size. If we divide the total cans by the number of students, we get the mean number of cans collected per student. We see the first class collected 15 cans per student, and the second class only collected 10 cans per student.</p>
 <p>Like the canned food drive example, differences in SS for a factor may be due in part to differences in number of levels for each factor. (For example, the residual factor has 24 factor levels, while toothbrush only has 4). We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors’ variability on a standardized scale.</p>
@@ -1112,8 +1108,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1163,7 +1158,6 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 
 </div>
 </div>
-</div>
 <p>The treatment factor, in this case training method, is the primary factor of interest so the <strong>F test statistic</strong> is only calculated for that factor. To get the F test statistic for the treatment factor take the mean square (MS) due to treatment factor and divide by the mean square (MS) due to the residual error. Since the mean square error is equivalent to a variance, you can think of the F statistics as the ratio of variance between treatment means over the variance of the distances for observed values to their respective treatment mean. Simply put, it is the between groups variance divided by the within group variance.</p>
 <p><span class="math display">\[
 F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = \frac{10.6}{5.02} = 2.11
@@ -1180,8 +1174,7 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 <p>This p-value, 0.1310, is greater than a typical level of significance (0.05), so we would fail to reject the null hypothesis that all the effects due to the treatment factor are equal to zero. Meaning, we have insufficient evidence to say that any of the training methods had an impact on procedural knowledge test scores regarding launching a life boat.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1231,7 +1224,6 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 
 </div>
 </div>
-</div>
 </section>
 </section>
 <section id="analysis-in-r" class="level1">
@@ -1270,15 +1262,14 @@ F_\text{Factor} = \frac{MS_\text{Treatment Factor}}{MS_\text{Residual Error}} = 
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-numerical" class="cell quarto-float anchored">
+<div id="tbl-numerical" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-numerical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Numerical Summary
 </figcaption>
 <div aria-describedby="tbl-numerical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Treatment</th>
@@ -1348,7 +1339,6 @@ Table&nbsp;1: Numerical Summary
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1369,7 +1359,7 @@ Table&nbsp;1: Numerical Summary
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Group Means Connected with a Line"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-summary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="BasicFactorial_quarto_boat_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672">
@@ -1434,7 +1424,7 @@ Residuals   20 100.49   5.024               </code></pre>
 <pre><code>[1] 13  6</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="BasicFactorial_quarto_boat_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672">
@@ -1511,18 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1554,7 +1533,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1562,7 +1563,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

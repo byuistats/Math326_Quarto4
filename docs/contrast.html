@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - Contrasts</title>
+<title>Contrasts – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -146,13 +146,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -183,7 +183,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -230,7 +230,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -243,7 +243,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -269,7 +269,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -286,7 +286,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -302,7 +302,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -382,13 +382,13 @@ window.Quarto = {
 <p><span class="math inline">\(\begin{aligned} H_0: \mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}\)</span></p>
 <p><span class="math inline">\(\begin{aligned} H_0: \mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}\)</span></p>
 <p>The above hypotheses can all be expressed as a sum, where each factor level mean is multiplied by a coefficient. When a factor level is not a part of the hypotheses, it has a coefficient of zero.</p>
-<div id="tbl-expanded" class="quarto-float anchored">
+<div id="tbl-expanded" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expanded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Expanded Hypotheses
 </figcaption>
 <div aria-describedby="tbl-expanded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -422,13 +422,13 @@ Table&nbsp;1: Expanded Hypotheses
 </figure>
 </div>
 <p>The contents in the right column of <a href="#tbl-expanded" class="quarto-xref">Table&nbsp;1</a> are referred to as contrasts. We will use the symbol <span class="math inline">\(\psi\)</span> to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. <strong>To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.</strong> We will often write coefficients used in a contrast as a set, in curly braces as shown in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a>. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.</p>
-<div id="tbl-coefficients" class="quarto-float anchored">
+<div id="tbl-coefficients" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefficients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Contrast Coefficients
 </figcaption>
 <div aria-describedby="tbl-coefficients-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 38%">
 <col style="width: 37%">
@@ -553,13 +553,13 @@ Table&nbsp;3: Toothbrush Experiment Results
 <div aria-describedby="tbl-brush_analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-brush_analysis" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-brush_analysis-1" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-brush_analysis-1" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-brush_analysis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Factor Level Means
 </figcaption>
 <div aria-describedby="tbl-brush_analysis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-brush_analysis-1" class="do-not-create-environment table">
+<table id="tbl-brush_analysis-1" class="do-not-create-environment caption-top table">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 11%">
@@ -598,13 +598,13 @@ Table&nbsp;3: Toothbrush Experiment Results
 </div>
 </figure>
 </div>
-<div id="tbl-brush_analysis-2" class="do-not-create-environment quarto-float anchored">
+<div id="tbl-brush_analysis-2" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-brush_analysis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) ANOVA Summary Table
 </figcaption>
 <div aria-describedby="tbl-brush_analysis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-brush_analysis-2" class="do-not-create-environment table">
+<table id="tbl-brush_analysis-2" class="do-not-create-environment caption-top table">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 6%">
@@ -780,13 +780,13 @@ Confidence level used: 0.95 </code></pre>
 <p>Two contrasts are orthogonal if the dot product of the coefficient vectors equals zero. The term “dot product” means that corresponding elements of a vector are multiplied, and then those products are summed together.</p>
 <p>Let’s determine if the contrasts listed in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> are orthogonal to one another. On the right hand side of <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> the coefficient vector of the contrast is listed. We will investigate 2 of the 6 pairs of contrasts.</p>
 <p>First, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{sonic}- \mu_{ultra}\)</span>.</p>
-<div id="tbl-first_pair" class="quarto-float anchored">
+<div id="tbl-first_pair" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-first_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts
 </figcaption>
 <div aria-describedby="tbl-first_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 14%">
@@ -837,13 +837,13 @@ Table&nbsp;4: First Pair of Contrasts Showing Orthogonal Contrasts
 </div>
 <p>In the last row of <a href="#tbl-first_pair" class="quarto-xref">Table&nbsp;4</a>, the product of the elements of the coefficient vectors are calculated. The sum of these products <span class="math inline">\(0 + 0 + 0 + 0 = 0\)</span>. Because the sum of the products is zero, we conclude the first two contrasts listed in <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a> are orthogonal.</p>
 <p>Next, we will assess whether the contrast <span class="math inline">\(\mu_{osc} - \mu_{man}\)</span> is orthogonal to <span class="math inline">\(\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}\)</span>.</p>
-<div id="tbl-second_pair" class="quarto-float anchored">
+<div id="tbl-second_pair" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-second_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts
 </figcaption>
 <div aria-describedby="tbl-second_pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 14%">
@@ -894,13 +894,13 @@ Table&nbsp;5: Comparing a Different Set of Contrasts that Are NOT Orthogonal Con
 </div>
 <p>In <a href="#tbl-second_pair" class="quarto-xref">Table&nbsp;5</a> the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is <span class="math inline">\(0 + 1 + 0 + 0 = 1\)</span>. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.</p>
 <p>It has been shown how to determine orthogonality for the contrasts contained in first two rows of <a href="#tbl-ortho" class="quarto-xref">Table&nbsp;6</a> below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.</p>
-<div id="tbl-ortho" class="quarto-float anchored">
+<div id="tbl-ortho" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ortho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;6: Orthogonality of Contrasts from <a href="#tbl-coefficients" class="quarto-xref">Table&nbsp;2</a>
 </figcaption>
 <div aria-describedby="tbl-ortho-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 36%">
 <col style="width: 43%">
@@ -1001,18 +1001,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1044,7 +1033,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1052,7 +1063,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

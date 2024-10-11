@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Math326 Notebook - BF[2]</title>
+<title>BF[2] – Math326 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics-of-design" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics of Design</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics-of-design">    
@@ -187,7 +187,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-specific-designs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Specific Designs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-specific-designs">    
@@ -234,7 +234,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-broad-topics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Broad Topics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-broad-topics">    
@@ -247,7 +247,7 @@ window.Quarto = {
  <span class="dropdown-text">Effects Model</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Anova_F-test.html">
+    <a class="dropdown-item" href="./anova_f_test.html">
  <span class="dropdown-text">ANOVA and the F-test</span></a>
   </li>  
         <li>
@@ -273,7 +273,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-instructions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">R Instructions</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-r-instructions">    
@@ -290,7 +290,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datasets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Datasets</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-datasets">    
@@ -306,7 +306,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -429,7 +429,7 @@ Tip
 <h2 class="anchored" data-anchor-id="factor-structure">Factor Structure</h2>
 <p>Based on the description above, the factor structure for this experiment is displayed in <a href="#fig-bf2_brush_factor_structure" class="quarto-xref">Figure&nbsp;1</a>:</p>
 <div class="page-columns page-full">
-<div id="fig-bf2_brush_factor_structure" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-bf2_brush_factor_structure" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-bf2_brush_factor_structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img column-page">
@@ -480,7 +480,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The BF[] designation refers to the design of the experiment. The reference to one- or two-way ANOVA refers to the analysis technique applied to the resulting data.</p>
-</div></div><table class="table">
+</div></div><table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 36%">
@@ -575,7 +575,7 @@ Important
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 18%">
@@ -754,7 +754,7 @@ Important
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(randomized_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 18%">
@@ -957,7 +957,7 @@ Tip
 <p>R code instructions to create interaction plots are at the bottom of the R Instructions&gt;<a href="docs/DescribeData.html">Descriptive Summaries</a> page.</p>
 </div></div><div class="cell">
 <div class="cell-output-display">
-<div id="fig-no-int" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-no-int" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-no-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-no-int-1.png" class="img-fluid figure-img" width="672">
@@ -986,7 +986,7 @@ Tip
 <p>So what does an interaction plot look like when there <em>is</em> an interaction present? The key things to notice is that the line segments in the plot are not parallel. <a href="#fig-int" class="quarto-xref">Figure&nbsp;3</a> contains 3 examples of interaction plots that show the presence of an potential interaction.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-int" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-int" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-int-1.png" class="img-fluid figure-img" width="672">
@@ -1025,7 +1025,7 @@ Interpreting Main Effects and Interactions
 <p>So far, we have been discussing the concept of interaction without doing any calculation or using specific numbers. Let’s return to our BF[2] experiment using toothbrush type and toothpaste brand as independent factors, and percent plaque coverage as the response. We will use this data to show how to calculate interaction effects, as well as main effects.</p>
 <p>We will then continue on to complete the decomposition of variance and preform an F-test.</p>
 <p>As was just mentioned, there are 2 controlled factors: toothbrush type (4 levels) and toothpaste brand (2 levels). A third factor, the interaction, is obtained by crossing the two controlled factors. In terms of the factor diagram, factors are crossed by overlaying the partition lines for the two factors to create new partitions that are also meaningful (see <a href="./factor_structure.html">Factor Structure</a> for a review). <a href="#fig-bf2-structural-factors" class="quarto-xref">Figure&nbsp;4</a> shows the 3 structural factors for a BF[2].</p>
-<div id="fig-bf2-structural-factors" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-bf2-structural-factors" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bf2-structural-factors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/BF2-structural-factors-toothbrush.PNG" class="img-fluid figure-img" width="600">
@@ -1036,7 +1036,7 @@ Figure&nbsp;4: Three structural factors
 </figure>
 </div>
 <p>To get a full structure diagram, as shown in <a href="#fig-bf2_full" class="quarto-xref">Figure&nbsp;5</a> we must also include the universal factors for the grand mean and residuals.</p>
-<div id="fig-bf2_full" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-bf2_full" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bf2_full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/toothbrush_bf2_factor_structure.JPG" class="img-fluid figure-img" width="900">
@@ -1094,7 +1094,7 @@ General Rule for Calculating Factor Level Effect
 <section id="factor-level-means" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="factor-level-means">Factor Level Means</h3>
 <p><a href="#fig-bf2_data_partition" class="quarto-xref">Figure&nbsp;6</a> shows our data set with partition lines for structural factors in place. We will now proceed to calculate the factor level means for each factor.</p>
-<div id="fig-bf2_data_partition" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-bf2_data_partition" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bf2_data_partition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/BF2-data-partition.PNG" class="img-fluid figure-img" width="450">
@@ -1141,7 +1141,7 @@ Figure&nbsp;6: Full data set with partitions
 <p>The means for the residual error factor levels is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
 <p><a href="#fig-factor-means" class="quarto-xref">Figure&nbsp;7</a> displays all the factor level means inside the factor structure.</p>
 <div class="page-columns page-full">
-<div id="fig-factor-means" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-factor-means" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-factor-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF2-toothbrush_means.PNG" class="img-fluid figure-img column-page">
@@ -1191,7 +1191,7 @@ Figure&nbsp;7: Factor level means
 <div aria-describedby="fig-crossed-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-crossed-interaction" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-brush" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-brush" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-brush-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/BF2-interaction-inside-brush.PNG" class="img-fluid figure-img" data-ref-parent="fig-crossed-interaction">
@@ -1203,7 +1203,7 @@ Figure&nbsp;7: Factor level means
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-crossed-interaction" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-paste" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-paste" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-paste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/BF2-interaction-inside-paste.PNG" class="img-fluid figure-img" data-ref-parent="fig-crossed-interaction">
@@ -1230,7 +1230,7 @@ Figure&nbsp;8: Interaction Effects
 <p>An observation from the “ultrasonic brush, name brand paste” group starts with the grand mean value of 22.76. The observation belongs to the ultrasonic group, where plaque tends to be higher, specifically 2.55 higher on average (2.55 is the effect of ultrasonic). <a href="#fig-brush-effect" class="quarto-xref">Figure&nbsp;9</a> show the starting point of the grand mean and the addition of the brush effect.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-brush-effect" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-brush-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brush-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-brush-effect-1.png" class="img-fluid figure-img" width="672">
@@ -1245,7 +1245,7 @@ Figure&nbsp;9: Grand mean + brush effect
 <p>At the next step, because the observation belongs to the Name Brand Toothpaste group we would tack on an additional 0.16 of plaque coverage, as shown in <a href="#fig-paste-effect" class="quarto-xref">Figure&nbsp;10</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-paste-effect" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-paste-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-paste-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-paste-effect-1.png" class="img-fluid figure-img" width="672">
@@ -1261,7 +1261,7 @@ Figure&nbsp;10: Grand mean + brush effect + paste effect
 <p>There is an old saying, “the whole is greater than the sum of its parts”. In a way, the interaction effect is the measure of how much greater. <a href="#fig-int-effect" class="quarto-xref">Figure&nbsp;11</a> shows that after summing the main effects of each controlled factor, the remaining distance to the mean of the factor level combination is the interaction effect. We calculated this above using the general rule and found the distance to be 0.15.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-int-effect" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-int-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-int-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-int-effect-1.png" class="img-fluid figure-img" width="672">
@@ -1281,7 +1281,7 @@ Figure&nbsp;11: Interaction effect is remaining distance to factor level mean
 <div aria-describedby="fig-side_by_each-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="quarto-layout-row page-full">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-side_by_each" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-side_by_each-1" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-side_by_each-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-side_by_each-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf2_files/figure-html/fig-side_by_each-1.png" id="fig-side_by_each-1" class="img-fluid figure-img column-screen-inset-shaded" data-ref-parent="fig-side_by_each" width="672">
@@ -1293,7 +1293,7 @@ Figure&nbsp;11: Interaction effect is remaining distance to factor level mean
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-side_by_each" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-side_by_each-2" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-side_by_each-2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-side_by_each-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf2_files/figure-html/fig-side_by_each-2.png" id="fig-side_by_each-2" class="img-fluid figure-img column-screen-inset-shaded" data-ref-parent="fig-side_by_each" width="672">
@@ -1305,7 +1305,7 @@ Figure&nbsp;11: Interaction effect is remaining distance to factor level mean
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-side_by_each" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-side_by_each-3" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full" width="672">
+<div id="fig-side_by_each-3" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" width="672">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-side_by_each-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf2_files/figure-html/fig-side_by_each-3.png" id="fig-side_by_each-3" class="img-fluid figure-img column-screen-inset-shaded" data-ref-parent="fig-side_by_each" width="672">
@@ -1333,7 +1333,7 @@ Figure&nbsp;12: Additive Effects
 \]</span></p>
 <p>All other residuals were similarly obtained. Ultimately, <a href="#fig-factor-effects" class="quarto-xref">Figure&nbsp;13</a> displays all the factor level effects that are summed to obtain each observation.</p>
 <div class="page-columns page-full">
-<div id="fig-factor-effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-factor-effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-factor-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF2-toothbrush_effects.PNG" class="img-fluid figure-img column-page">
@@ -1385,8 +1385,7 @@ General Rule for Degrees of Freedom
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1452,14 +1451,13 @@ General Rule for Degrees of Freedom
 
 </div>
 </div>
-</div>
 <p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects" class="quarto-xref">Figure&nbsp;13</a> shows the effects, while <a href="#fig-SQ-effects" class="quarto-xref">Figure&nbsp;14</a> shows the squared effects.</p>
 <!-- ::: {#fig-effects layout-nrow=2} -->
 <!-- ![Factor level effects](images/BF2-toothbrush_effects.PNG){#fig-factor-effects .column-page} -->
 <!-- ![Squared factor level effects](images/BF2-toothbrush_SQ_effects.PNG){#fig-SQ-effects .column-page} -->
 <!-- BF[2] Toothbrush x toothpaste example -->
 <!-- ::: -->
-<div id="fig-SQ-effects" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-SQ-effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-SQ-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="images/BF2-toothbrush_SQ_effects.PNG" class="img-fluid figure-img column-page">
@@ -1508,15 +1506,14 @@ SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82
 <p>You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in <a href="#eq-ss-obs" class="quarto-xref">Equation&nbsp;3</a>.</p>
 <p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-SS" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
-<div id="tbl-SS" class="cell quarto-float anchored">
+<div id="tbl-SS" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Sums of squares
 </figcaption>
 <div aria-describedby="tbl-SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1582,7 +1579,6 @@ Table&nbsp;1: Sums of squares
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1610,8 +1606,7 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1677,7 +1672,6 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 
 </div>
 </div>
-</div>
 <p>For each structural factor in the design there are a set of hypothesis we want to test using the <strong>F statistic</strong>.</p>
 <p>Specifically, we will want to test whether toothbrush type has an effect on plaque coverage, whether toothpaste brand has an effect on plaque coverage, and whether the interaction between brush and paste has an effect on plaque coverage.</p>
 <p>More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of <a href="#eq-bf2_2" class="quarto-xref">Equation&nbsp;2</a>.</p>
@@ -1711,8 +1705,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The completed ANOVA table for this BF[2] toothbrush and toothpaste example is shown in</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1778,7 +1771,6 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 
 </div>
 </div>
-</div>
 <p>Because the p-value for the interaction (p-value = 0.876) is much higher than any traditional level of significance threshold we might have chosen (0.01, 0.05, or 0.1), we fail to reject the null hypothesis. There is insufficient evidence to say the interaction effect has an effect on plaque coverage. Because the interaction is NOT significant, we can proceed to interpret the main effects test results.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1825,21 +1817,20 @@ Significant Interaction Effects
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-main_effects_numbers" class="cell quarto-float anchored">
+<div id="tbl-main_effects_numbers" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Numerical Summary for Each Factor
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Brush
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush</th>
@@ -1911,16 +1902,14 @@ Table&nbsp;2: Numerical Summary for Each Factor
 
 
 </div>
-</div>
 <div class="cell-output-display">
-<div>
-<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Toothpaste
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Toothpaste</th>
@@ -1969,7 +1958,6 @@ Table&nbsp;2: Numerical Summary for Each Factor
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -1984,15 +1972,14 @@ Table&nbsp;2: Numerical Summary for Each Factor
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-numerical" class="cell quarto-float anchored">
+<div id="tbl-numerical" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-numerical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Numerical Summary
 </figcaption>
 <div aria-describedby="tbl-numerical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush.Toothpaste</th>
@@ -2056,7 +2043,6 @@ Table&nbsp;3: Numerical Summary
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -2072,7 +2058,7 @@ Table&nbsp;3: Numerical Summary
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-summary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-summary-1.png" class="img-fluid figure-img" width="672">
@@ -2090,7 +2076,7 @@ Figure&nbsp;15: Graphical Summary
 <div aria-describedby="fig-by_factor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <div class="quarto-layout-row page-full">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-by_factor" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-by_factor-1" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-by_factor-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-by_factor-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf2_files/figure-html/fig-by_factor-1.png" class="img-fluid figure-img column-page" data-ref-parent="fig-by_factor" width="672">
@@ -2102,7 +2088,7 @@ Figure&nbsp;15: Graphical Summary
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell page-columns page-full" data-ref-parent="fig-by_factor" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-by_factor-2" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<div id="fig-by_factor-2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-subfloat-fig figure page-columns page-full">
 <div aria-describedby="fig-by_factor-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <img src="bf2_files/figure-html/fig-by_factor-2.png" class="img-fluid figure-img column-page" data-ref-parent="fig-by_factor" width="672">
@@ -2124,7 +2110,7 @@ Figure&nbsp;16: Data cut by one factor at a time
 <p>In <a href="#fig-tooth_int" class="quarto-xref">Figure&nbsp;17</a> the lines are not parallel. In fact, they cross twice. Though this seems to suggest an interaction is present, our ability to claim an interaction exists will depend on the results of a hypothesis test. The hypothesis test is greatly influenced by sample size and the variability at each of the factor level means presented in the plot.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-tooth_int" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tooth_int" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tooth_int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-tooth_int-1.png" class="img-fluid figure-img" width="672">
@@ -2191,7 +2177,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-constant_var" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-constant_var" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-constant_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-constant_var-1.png" class="img-fluid figure-img" width="672">
@@ -2212,8 +2198,7 @@ Figure&nbsp;18: Checking constant variance
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(bf2_aov) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2241,7 +2226,6 @@ Figure&nbsp;18: Checking constant variance
 
 </div>
 </div>
-</div>
 </section>
 <section id="normally-distributed-residuals" class="level3">
 <h3 class="anchored" data-anchor-id="normally-distributed-residuals">Normally Distributed Residuals</h3>
@@ -2252,7 +2236,7 @@ Figure&nbsp;18: Checking constant variance
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(bf2_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-qq-1.png" class="img-fluid figure-img" width="672">
@@ -2274,7 +2258,7 @@ Figure&nbsp;19: Checking normality of residuals
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-order" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-order" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bf2_files/figure-html/fig-order-1.png" class="img-fluid figure-img" width="672">
@@ -2402,18 +2386,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2445,7 +2418,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2453,7 +2448,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
