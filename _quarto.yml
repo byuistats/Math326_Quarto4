@@ -53,9 +53,7 @@ website:
         - text: "Effects Model"
           file: effects_model.qmd
         - text: "ANOVA and the F-test"
-          href: Anova_F-test.qmd
-        - text: "ANOVA and the F-test (alternate link)"
-          href: Anova_F-test.html
+          href: ANOVA_F-test.qmd
         - text: "Assumptions"
           href: assumptions.qmd
         - text: "Contrasts"
