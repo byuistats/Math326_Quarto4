@@ -52,9 +52,8 @@ website:
           file: factor_structure.qmd
         - text: "Effects Model"
           file: effects_model.qmd
-          #It is weird, it is capitalizing and uncampitalizing the ANOVA file without reason
         - text: "ANOVA and the F-test"
-          href: docs/ANOVA_F-test.html
+          href: anova_f_test.html
         - text: "Assumptions"
           href: assumptions.qmd
         - text: "Contrasts"
