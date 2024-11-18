@@ -1,0 +1,13 @@
+id,Region,Terrain,Sightings
+1,Pacific Northwest,Forested Area,15
+2,Pacific Northwest,Mountainous Area,12
+3,Pacific Northwest,Lakeside Area,8
+4,Rocky Mountains,Forested Area,10
+5,Rocky Mountains,Mountainous Area,18
+6,Rocky Mountains,Lakeside Area,6
+7,Appalachian Mountains,Forested Area,8
+8,Appalachian Mountains,Mountainous Area,14
+9,Appalachian Mountains,Lakeside Area,4
+10,Southeastern Swamps,Forested Area,5
+11,Southeastern Swamps,Mountainous Area,7
+12,Southeastern Swamps,Lakeside Area,3
