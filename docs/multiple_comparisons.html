@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9b8f6c33b8a184d254b5eaa30f9d0661.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e89341beafc15df96e2eb459d0c9c10f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -307,6 +309,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -326,11 +329,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#bonferroni" id="toc-bonferroni" class="nav-link" data-scroll-target="#bonferroni">Bonferroni</a></li>
   <li><a href="#scheffé" id="toc-scheffé" class="nav-link" data-scroll-target="#scheffé">Scheffé</a></li>
-  <li><a href="#methods-designed-for-all-pairwise-comparisons" id="toc-methods-designed-for-all-pairwise-comparisons" class="nav-link" data-scroll-target="#methods-designed-for-all-pairwise-comparisons">Methods Designed for All Pairwise Comparisons</a>
-  <ul class="collapse">
   <li><a href="#tukeys-hsd" id="toc-tukeys-hsd" class="nav-link" data-scroll-target="#tukeys-hsd">Tukey’s HSD</a></li>
-  <li><a href="#fishers-lsd" id="toc-fishers-lsd" class="nav-link" data-scroll-target="#fishers-lsd">Fisher’s LSD</a></li>
-  </ul></li>
+  <li><a href="#no-adjustment-1" id="toc-no-adjustment-1" class="nav-link" data-scroll-target="#no-adjustment-1">No Adjustment</a></li>
   </ul></li>
   <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table">Summary Table</a></li>
   <li><a href="#r-instructions" id="toc-r-instructions" class="nav-link" data-scroll-target="#r-instructions">R Instructions</a>
@@ -338,7 +338,7 @@ window.Quarto = {
   <li><a href="#bonferonni" id="toc-bonferonni" class="nav-link" data-scroll-target="#bonferonni">Bonferonni</a></li>
   <li><a href="#scheffé-1" id="toc-scheffé-1" class="nav-link" data-scroll-target="#scheffé-1">Scheffé</a></li>
   <li><a href="#tukey" id="toc-tukey" class="nav-link" data-scroll-target="#tukey">Tukey</a></li>
-  <li><a href="#sec-fisher" id="toc-sec-fisher" class="nav-link" data-scroll-target="#sec-fisher">Fisher</a></li>
+  <li><a href="#sec-no" id="toc-sec-no" class="nav-link" data-scroll-target="#sec-no">No Adjustment</a></li>
   <li><a href="#bonus-estimating-and-testing-effect-sizes" id="toc-bonus-estimating-and-testing-effect-sizes" class="nav-link" data-scroll-target="#bonus-estimating-and-testing-effect-sizes">Bonus: Estimating and Testing Effect Sizes</a></li>
   </ul></li>
   </ul>
@@ -382,12 +382,11 @@ window.Quarto = {
 </section>
 <section id="adjustment-techniques" class="level1 page-columns page-full">
 <h1>Adjustment Techniques</h1>
-<p>There is a range of scenarios where multiple contrasts are used. From just a few, pre-planned contrasts to a completely exploratory analysis, to somewhere in between. There are many techniques to choose from. Here we present just 4 adjustment techniques:</p>
+<p>There is a range of scenarios where multiple contrasts are used. From just a few, pre-planned contrasts to a completely exploratory analysis, to somewhere in between. There are many techniques to choose from. Here we present just 3 adjustment techniques:</p>
 <ul>
 <li>Bonferroni: for a few, pre-planned contrasts</li>
 <li>Scheffé: for contrasts resulting from data exploration, or “data snooping”</li>
 <li>Tukey: for testing all pairwise comparisons, which may be the result of pre-planned contrasts or from data exploration</li>
-<li>Fisher: for a less conservative approach in testing all pairwise comparisons</li>
 </ul>
 <section id="bonferroni" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="bonferroni">Bonferroni</h2>
@@ -406,14 +405,11 @@ window.Quarto = {
 F_\text{Scheffé} = (k-1)*F
 \]</span></p>
 <p>Where <span class="math inline">\(F\)</span> is the statistic for the F test of the factor as usual. <span class="math inline">\(k\)</span> is the number of levels in that factor. <span class="math inline">\(F_\text{Scheffé}\)</span> has <span class="math inline">\(df_\text{numerator} = k-1\)</span> and <span class="math inline">\(df_\text{denominator} = df_\text{residual}\)</span>. Scheffé’s test output is often in terms of a t test. <a href="./contrast.html">Recall</a> that the t statistic is simply the square root of the F statistic.</p>
-<p>If you are interested in only a specific set of hypotheses (all pairwise comparisons, or all treatment levels vs.&nbsp;control, or all levels compared to the “best” level, etc.) there may be another adjustment technique that will provide better statistical power. Two of which are mentioned below.</p>
+<p>If you are interested in only a specific set of hypotheses (all pairwise comparisons, or all treatment levels vs.&nbsp;control, or all levels compared to the “best” level, etc.) there may be another adjustment technique that will provide better statistical power. Specifically, a method for adjusting the type 1 error rate when comparing of all factor level means is presented.</p>
 </section>
-<section id="methods-designed-for-all-pairwise-comparisons" class="level2">
-<h2 class="anchored" data-anchor-id="methods-designed-for-all-pairwise-comparisons">Methods Designed for All Pairwise Comparisons</h2>
-<p>Whether it is an exploratory analysis or a pre-planned set of contrasts, many researchers want to test all factor level means against each other. This is usually referred to as testing all pairwise comparisons. Because this situation is so common, two approaches are described below.</p>
-<section id="tukeys-hsd" class="level3">
-<h3 class="anchored" data-anchor-id="tukeys-hsd">Tukey’s HSD</h3>
-<p>If a multiple comparison adjustment is desired for testing all pairwise comparisons, a standard approach is to apply Tukey’s Honest Significant Difference (HSD) technique. Occasionally, in the case of few factor levels, Bonferroni’s adjustment may result in more significant findings. If that is the case, use Bonferroni’s correction instead.</p>
+<section id="tukeys-hsd" class="level2">
+<h2 class="anchored" data-anchor-id="tukeys-hsd">Tukey’s HSD</h2>
+<p>Whether it is an exploratory analysis or a pre-planned set of contrasts, many researchers want to test all factor level means against each other. This is usually referred to as testing all pairwise comparisons. This situation is very common and the standard approach is to apply Tukey’s Honest Significant Difference (HSD) adjustment. Occasionally, in the case of few factor levels, Bonferroni’s adjustment may result in more significant findings. If that is the case, use Bonferroni’s correction instead.</p>
 <p>The calculation for this test is based on the distribution of <span class="math inline">\(Q\)</span>. The test statistic <span class="math inline">\(Q\)</span> is sometimes called the studentized range distribution. “Range” is a reference to the numerator where the difference between a maximum and a minimum is calculated. “Studentized” because we are dividing by the estimated standard error, a technique for standardizing famously employed by Student’s (a.k.a. William Gossett) t test. <span class="math inline">\(Q\)</span> is calculated as:</p>
 <p><span id="eq-q"><span class="math display">\[
 Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
@@ -425,22 +421,19 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <li>The distribution of <span class="math inline">\(Q\)</span> will depend on the number of treatments being compared, <span class="math inline">\(k\)</span>, and the number of degrees of freedom for error.</li>
 </ul>
 </section>
-<section id="fishers-lsd" class="level3">
-<h3 class="anchored" data-anchor-id="fishers-lsd">Fisher’s LSD</h3>
+<section id="no-adjustment-1" class="level2">
+<h2 class="anchored" data-anchor-id="no-adjustment-1">No Adjustment</h2>
 <p>Making adjustments for multiple contrasts is a conservative approach, meaning it is more difficult to claim significance compared to when no adjustment is made. Though these adjustments prevent understating the probability of Type I error, they increase the probability of Type II error for each individual contrast. In exploratory analysis where you are looking for hints of what to study further, a Type II error may be a greater concern than Type I.</p>
-<p>For example, consider a screening study intended to narrow down the number of factors studied in a future experiment. In this case, accidentally ruling out something early on that actually does have a significant impact on the response is more egregious than letting a non-significant factor through to the next experiment where it’s non-significance will be discovered.</p>
-<p>Fisher’s Least Significant Difference (LSD) employs no adjustment at all to the pairwise comparisons. However, before proceeding to test pairwise comparisons, the F test for the factor must be significant. Using the less powerful F test as a gatekeeper to the more powerful pairwise t tests serves as a partial protection against extreme Type I errors inflation.</p>
-<p>In summary, Fisher’s LSD is a two step process. First, verify the F test for the factor is significant. Second, if it is, proceed with all pairwise comparisons without any adjustment. Fisher’s LSD tends to be used in studies where many factors are present, especially screening/exploratory studies.</p>
-</section>
+<p>No adjustment tends to be used in studies where many factors are present, especially screening/exploratory studies. For example, consider a screening study intended to narrow down the number of factors studied in a future experiment. In this case, accidentally ruling out something early on that actually does have a significant impact on the response is more egregious than letting a non-significant factor through to the next experiment where it’s non-significance will be discovered.</p>
 </section>
 </section>
 <section id="summary-table" class="level1">
 <h1>Summary Table</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 43%">
-<col style="width: 37%">
+<col style="width: 23%">
+<col style="width: 40%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -466,7 +459,7 @@ Q = \frac{max(T_i) - min(T_i)}{\sqrt{\frac{MSE}{n}}}
 <td>A standard adjustment for all pairwise comparisons: pre-planned or post-hoc.</td>
 </tr>
 <tr class="even">
-<td>Fisher’s LSD</td>
+<td>No Adjustment</td>
 <td>When testing all pairwise comparisons and willing to accept higher Type I error, e.g.&nbsp;in a screening study</td>
 <td>Easier to find significance than if an adjustment is applied, but higher risk of Type I error.</td>
 </tr>
@@ -718,28 +711,13 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
 </div>
 </div>
 </section>
-<section id="sec-fisher" class="level2">
-<h2 class="anchored" data-anchor-id="sec-fisher">Fisher</h2>
-<p>First, look at the ANOVA summary table to see if the F test for brush is significant.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(plaque_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-Brush        3  86.31  28.769   3.822 0.0258 *
-Residuals   20 150.56   7.528                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-<p><br></p>
-<p>The p-value for <code>Brush</code> is significant at the 0.05 level. You can then proceed with an un-adjusted test of all pairwise comparisons for the <code>Brush</code> factor. The adjustment argument in the <code>contrast()</code> command in this case is <code>none</code>.</p>
+<section id="sec-no" class="level2">
+<h2 class="anchored" data-anchor-id="sec-no">No Adjustment</h2>
+<p>No adjustment is not always the default. For example, when using the <code>method = "pairwise"</code> argument in a contrast, the default value for the <code>adjust =</code> argument is tukey. To proceed with an un-adjusted test of all pairwise comparisons instead, the adjustment argument in the <code>contrast()</code> command in this case is <code>none</code>.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, <span class="at">method =</span> <span class="st">"pairwise"</span>, <span class="at">adjust =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(brush_means, <span class="at">method =</span> <span class="st">"pairwise"</span>, <span class="at">adjust =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast                 estimate   SE df t.ratio p.value
@@ -759,7 +737,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(effect_sizes <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(effect_sizes <span class="ot">&lt;-</span> <span class="fu">contrast</span>(brush_means)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast           estimate   SE df t.ratio p.value
@@ -773,12 +751,12 @@ P value adjustment: fdr method for 4 tests </code></pre>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Note the behavior of the defaults is a little different than what might be expected. “fdr” stands for “false detection rate”. It makes adjustments to keep the overall proportion of Type I errors fixed (e.g.&nbsp;5% of tests will be a Type I error). This is somewhat less stringent than keeping the family-wise Type I error rate fixed.</p>
+<p>Note the behavior of the defaults is a little different than what might be expected. “fdr” stands for “false detection rate”. It makes adjustments to keep the overall proportion of Type I errors fixed (e.g.&nbsp;5% of tests will be a Type I error). This is somewhat less stringent than keeping the family-wise Type I error rate fixed. You can always change the <code>adjust =</code> input argument.</p>
 </div></div><p>You can use <code>confint()</code> to get confidence intervals for the effects (with or without adjustments) as well.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(effect_sizes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(effect_sizes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast           estimate   SE df lower.CL upper.CL
@@ -817,6 +795,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -879,8 +1001,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -991,7 +1111,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1218,6 +1337,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright © 2024 Brigham Young University-Idaho. All rights reserved.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

@@ -16,13 +16,14 @@ format:
  }
 </script>
 ```
+
 # Introduction
 
 ## Models
 
 In science, statistics, mathematics, etc. we are interested in discovering and describing truth about the world we live in. We can use models to represent a phenomenon or system. The model's purpose may be to describe and explain something about the way things work and/or to make prediction. An ANOVA model is a model that uses mathematical terms and constructs, in the form of an equation. The ANOVA model quantifies the relationship between factor(s) and a response.
 
-If we were able to observe all items in a population we would be able to quantify with exactness how a factor variable is related to a response variable with an ANOVA model. This "true", or exact quantification of how the two variables relate is called a parameter. However, with rare exceptions, we cannot observe every item in a population. Instead, we must rely on a sample to calculate *estimates* of the parameter. 
+If we were able to observe all items in a population we would be able to quantify with exactness how a factor variable is related to a response variable with an ANOVA model. This "true", or exact quantification of how the two variables relate is called a parameter. However, with rare exceptions, we cannot observe every item in a population. Instead, we must rely on a sample to calculate *estimates* of the parameter.
 
 By the end of this section you should know how to interpret the terms in an ANOVA model (i.e. know what they mean), and also perform the calculations necessary to estimate ANOVA model parameters.
 
@@ -108,17 +109,23 @@ text(3-.21,y$yi[25], expression(y[3][","][5] == mu[3]+epsilon[3][","][5]), pos=2
 text(3-.1, (y$yi[25]+ai[3])/2, expression(epsilon[3][","][5]), pos=2, cex=0.8)
 ```
 
-In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model.[^1] However, it is limited in its ability to include more factors or more complicated designs.
+In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model. However, it is limited in its ability to include more factors or more complicated designs.
+
+::: callout-important
+## Cell Means Model
+
+This is the form of the model you have learned in previous statistics classes.
+
+The algebraic form of the cell means model is
+
+$$
+y_\text{ij} = \mu_i + \epsilon_\text{ij}
+$$
+
+Where $y_\text{ij}$ is an observation, $\mu_i$ is the mean of factor level $i$, and $\epsilon_\text{ij}$ is the residual for each observation. The ANOVA F-test hypothesis for this model is $H_0: \text{All means are equal to each other}$
+:::
 
 There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.
-
-[^1]: The algebraic form of the cell means model is
-
-    $$
-    y_\text{ij} = \mu_i + \epsilon_\text{ij}
-    $$
-
-    Where $y_\text{ij}$ is an observation, $\mu_i$ is the mean of factor level $i$, and $\epsilon_\text{ij}$ is the residual for each observation. The ANOVA F-test hypothesis for this model is $H_0: \text{All means are equal to each other}$.
 
 # Calculating Effect Sizes {#sec-effects}
 
@@ -184,9 +191,9 @@ text(4-.05, mean(c(mu[[4,2]], grandmean)), expression(effect[ultra]== 2.55), col
 
 ```
 
-The effect size of a factor level can be thought of as the difference between a factor level's mean and its partial fit[^2]. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.
+The effect size of a factor level can be thought of as the difference between a factor level's mean and its partial fit[^1]. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.
 
-[^2]: Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors. Often, in ANOVA, partial fit refers to a model or prediction estimated using just outside factors. Thus, for this model @eq-general-effects-rule could be restated as Factor level effect size = Factor level mean - partial fit.
+[^1]: Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors. Often, in ANOVA, partial fit refers to a model or prediction estimated using just outside factors. Thus, for this model @eq-general-effects-rule could be restated as Factor level effect size = Factor level mean - partial fit.
 
 ::: callout-tip
 ## General rule to calculate effect size
@@ -197,9 +204,11 @@ $$ {#eq-general-effects-rule}
 :::
 
 ### Effect of the Grand Mean Factor
+
 Using @eq-general-effects-rule we can also estimate the effect of the grand mean factor. Grand mean only has 1 level and it includes all the observations, so the factor level mean is the same as the mean of all the observations, 22.765. The "sum of effects of all outside factors" is 0 since there are no factors outside of grand mean. Therefore, the effect size for the grand mean factor is simply the grand mean. In this case, 22.765.
 
 ### Effects of the Residual Error Factor
+
 What about factor effects for various levels of residual error? We will show how this is done by working through an example for a specific observation. Let's consider the observation with a value of 17.62 from the oscillating group. As a reminder, toothbrush type and benchmark are both outside of residual error (see [Factor Structure](factor_structure.qmd) for a review of inside vs. outside factors).
 
 ::: column-page
@@ -214,9 +223,9 @@ $$ {#eq-obs1-effect}
 
 This means that this individual's plaque percent area was 2.357 lower than the average plaque percent area of those who used an oscillating brush. (Less plaque is a good thing!) We cannot tell exactly what caused the residual error. It could be a result of differences in how vigorously people brush, variations in the manufacture of the brushes, differences in how researchers assessed plaque from one person to another and an infinite number of other things. If the experiment implemented randomization properly and was designed and executed well, these residual error effects (i.e. the unexplained error) should behave randomly. In fact, they should behave like a normally distributed random variable...more on that in [the Assumptions section](assumptions.qmd).
 
-We will repeat the residual error[^3] calculation process for the outlying point in the ultrasonic level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the ultrasonic group. The estimation of the residual error is therefore contained in @eq-obs2-effect :
+We will repeat the residual error[^2] calculation process for the outlying point in the ultrasonic level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean's effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the ultrasonic group. The estimation of the residual error is therefore contained in @eq-obs2-effect :
 
-[^3]: You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.
+[^2]: You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.
 
 $$
 32.74 - (22.765 + 2.548) = 7.427
@@ -272,9 +281,9 @@ lines(c(4, 4+.21), rep(32.74,2), lty = 3, col = "darkgreen")
 text(4+.1, mean(c(mu[[4,2]], 32.74)), expression(y-bar(y)[ultra] == 7.43), col = "darkgreen",pos=4)
 ```
 
-Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb[^4] uses to explain this phenomenon is helpful in understanding how this all fits together.
+Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb[^3] uses to explain this phenomenon is helpful in understanding how this all fits together.
 
-[^4]: Cobb, George. *Introduction to Design and Analysis of Experiments*. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started -->
+[^3]: Cobb, George. *Introduction to Design and Analysis of Experiments*. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started -->
 
 ## Assembly Line Metaphor
 
@@ -359,9 +368,28 @@ $$
 Rather than writing "effect" and "observation", let's introduce symbols to represent the effects and observations. We will use a different symbol for each factor effect, and we will use y to represent an observation.
 
 -   $\mu$ is the effect for grand mean.
--   $\alpha_i$ refers to the effect of the factor that is varied in the experiment; in our case the factor is toothbrush. The subscript $i$ indicates which level of the factor the effect is for: $i=1$ is manual, $i=2$ is oscillating, $i=3$ is sonic, $i=4$ is ultrasonic.
--   $\epsilon_\text{ij}$ is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case $i$) to indicate which factor level the observation belongs to; plus another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number within a factor level combination).
--   $y_\text{ij}$ is an observation. Since each observation has a residual, $y$'s subscripts will match epsilon's ($\epsilon$) subscript. It will tell us exactly which replicate within a factor level is being referenced.
+
+-   $\alpha_i$ refers to the effect of the factor that is varied in the experiment; in our case the factor is toothbrush. The subscript
+
+    $i$ indicates which level of the factor the effect is for:
+
+    $i=1$ is manual,
+
+    $i=2$ is oscillating,
+
+    $i=3$ is sonic,
+
+    $i=4$ is ultrasonic.
+
+-   $\epsilon_\text{ij}$ is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case
+
+    $i$) to indicate which factor level the observation belongs to; plus another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number within a factor level combination).
+
+-   $y_\text{ij}$ is an observation. Since each observation has a residual,
+
+    $y$'s subscripts will match epsilon's (
+
+    $\epsilon$) subscript. It will tell us exactly which replicate within a factor level is being referenced.
 
 We can rewrite @eq-one-obs symbolically:
 
@@ -382,10 +410,10 @@ $$
 y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 $$ {#eq-general-form}
 
-This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs by adding a term to the model for each factor.[^5]
+This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs by adding a term to the model for each factor.[^4]
 :::
 
-[^5]: The model for the experiment that includes toothpaste brand and toothbrush type is
+[^4]: The model for the experiment that includes toothpaste brand and toothbrush type is
 
     $$
     y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
@@ -396,21 +424,43 @@ This is called an effects model (as opposed to a means model) because it shows h
     -   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
 
     -   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and Generic brand).
-    
-    -  $\alpha\beta)_\text{ij}$ is the interaction term. An interaction is discussed on the [BF[2]](bf2.qmd) page.
+
+    -   $\alpha\beta)_\text{ij}$ is the interaction term. An interaction is discussed on the [BF\[2\]](bf2.qmd) page.
 
     -   $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
 
 At this point you should begin to see how the factor structure diagram can help us put together a mathematical model. Each factor in the diagram corresponds to a different term in the mathematical model.
 
-We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter: $\hat{\mu}$, $\hat{\alpha}$, and $\hat{\epsilon}$. Commonly $\hat{\epsilon}$ is also expressed as $e$; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.
+We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter:
 
-You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over $y$ to represent a mean of observed values. You can use dots in the subscripts of $\bar{y}$ to indicate which values you are averaging over.
+$\hat{\mu}$,
 
-For example, the mean of the observations in the first level of a treatment factor would be represented as $\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example, $\bar{y}_{1\cdot}$ is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript $i$ value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.
+$\hat{\alpha}$, and
+
+$\hat{\epsilon}$. Commonly
+
+$\hat{\epsilon}$ is also expressed as
+
+$e$; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.
+
+You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over
+
+$y$ to represent a mean of observed values. You can use dots in the subscripts of
+
+$\bar{y}$ to indicate which values you are averaging over.
+
+For example, the mean of the observations in the first level of a treatment factor would be represented as
+
+$\bar{y}_{1\cdot}$. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the "." as meaning "include all the values of the subscript". In our toothbrush example,
+
+$\bar{y}_{1\cdot}$ is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript
+
+$i$ value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.
 
 $$
 \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
 $$ {#eq-ybar-1dot}
 
-Similarly, $\bar{y}_{\cdot\cdot}$ represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.
+Similarly,
+
+$\bar{y}_{\cdot\cdot}$ represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.

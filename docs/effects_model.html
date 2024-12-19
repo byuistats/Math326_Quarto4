@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9b8f6c33b8a184d254b5eaa30f9d0661.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e89341beafc15df96e2eb459d0c9c10f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -269,6 +271,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -351,7 +354,25 @@ Figure&nbsp;1: Brush means and grand mean
 </div>
 </div>
 </div>
-<p>In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> However, it is limited in its ability to include more factors or more complicated designs.</p>
+<p>In an earlier, introductory statistics class you most likely learned how to use sample means in order to test whether populations means for different groups are equal using analysis of variance (ANOVA). This hypothesis test of multiple population means is valid and works when you only have 1 factor. This is often called the cell means model. However, it is limited in its ability to include more factors or more complicated designs.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cell Means Model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the form of the model you have learned in previous statistics classes.</p>
+<p>The algebraic form of the cell means model is</p>
+<p><span class="math display">\[
+y_\text{ij} = \mu_i + \epsilon_\text{ij}
+\]</span></p>
+<p>Where <span class="math inline">\(y_\text{ij}\)</span> is an observation, <span class="math inline">\(\mu_i\)</span> is the mean of factor level <span class="math inline">\(i\)</span>, and <span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual for each observation. The ANOVA F-test hypothesis for this model is <span class="math inline">\(H_0: \text{All means are equal to each other}\)</span></p>
+</div>
+</div>
 <p>There is another metric we use to compare factor levels: the effect size. Reporting the effect of a factor level has the benefit of providing some context on how that factor level is influencing the response variable relative to other levels of the same factor. Using effect sizes (as opposed to factor level means) allows us to model and test much more complicated scenarios than a simple one factor experiment.</p>
 </section>
 </section>
@@ -387,7 +408,7 @@ Figure&nbsp;2: Effects illustrated for oscillating and ultrasonic brushes in blu
 </div>
 </div>
 </div>
-<p>The effect size of a factor level can be thought of as the difference between a factor level’s mean and its partial fit<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.</p>
+<p>The effect size of a factor level can be thought of as the difference between a factor level’s mean and its partial fit<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Or in other words, the difference between what you would predict for a given observation and what you would predict for that same observation without knowing which level of the factor it belongs to.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -427,7 +448,7 @@ Figure&nbsp;3: Factor Structure Diagram for Toothbrush Study with 1 Factor
 17.62 - (22.765 + -2.788) = -2.357
 \tag{6}\]</span></span></p>
 <p>This means that this individual’s plaque percent area was 2.357 lower than the average plaque percent area of those who used an oscillating brush. (Less plaque is a good thing!) We cannot tell exactly what caused the residual error. It could be a result of differences in how vigorously people brush, variations in the manufacture of the brushes, differences in how researchers assessed plaque from one person to another and an infinite number of other things. If the experiment implemented randomization properly and was designed and executed well, these residual error effects (i.e.&nbsp;the unexplained error) should behave randomly. In fact, they should behave like a normally distributed random variable…more on that in <a href="./assumptions.html">the Assumptions section</a>.</p>
-<p>We will repeat the residual error<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> calculation process for the outlying point in the ultrasonic level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean’s effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the ultrasonic group. The estimation of the residual error is therefore contained in <a href="#eq-obs2-effect" class="quarto-xref">Equation&nbsp;7</a> :</p>
+<p>We will repeat the residual error<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> calculation process for the outlying point in the ultrasonic level of toothbrush, which has a percent teeth area with plaque value of 32.74. The first step in applying the general rule is to find the factor level mean. In the residual error factor, each level only contains one observation, so the residual error factor level mean for this observation is just the observation itself, 32.74. The second step is to sum the effects of outside factors: grand mean and toothbrush. The grand mean’s effect is simply the grand mean, 22.765. The effect of toothbrush in this case is 2.548 because the observation belongs to the ultrasonic group. The estimation of the residual error is therefore contained in <a href="#eq-obs2-effect" class="quarto-xref">Equation&nbsp;7</a> :</p>
 <p><span id="eq-obs2-effect"><span class="math display">\[
 32.74 - (22.765 + 2.548) = 7.427
 \tag{7}\]</span></span></p>
@@ -446,7 +467,7 @@ Figure&nbsp;4: Residual error effects (rounded to two decimal places) in green, 
 </div>
 </div>
 </div>
-<p>Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> uses to explain this phenomenon is helpful in understanding how this all fits together.</p>
+<p>Hopefully you can see that if you have the effect for each of the factors in the factor structure diagram you can add them together to arrive at an individual observation. The assembly line metaphor that George Cobb<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> uses to explain this phenomenon is helpful in understanding how this all fits together.</p>
 </section>
 <section id="assembly-line-metaphor" class="level2">
 <h2 class="anchored" data-anchor-id="assembly-line-metaphor">Assembly Line Metaphor</h2>
@@ -535,10 +556,18 @@ observation = effect_\text{grand mean} + effect_\text{brush} + effect_\text{resi
 \]</span></p>
 <p>Rather than writing “effect” and “observation”, let’s introduce symbols to represent the effects and observations. We will use a different symbol for each factor effect, and we will use y to represent an observation.</p>
 <ul>
-<li><span class="math inline">\(\mu\)</span> is the effect for grand mean.</li>
-<li><span class="math inline">\(\alpha_i\)</span> refers to the effect of the factor that is varied in the experiment; in our case the factor is toothbrush. The subscript <span class="math inline">\(i\)</span> indicates which level of the factor the effect is for: <span class="math inline">\(i=1\)</span> is manual, <span class="math inline">\(i=2\)</span> is oscillating, <span class="math inline">\(i=3\)</span> is sonic, <span class="math inline">\(i=4\)</span> is ultrasonic.</li>
-<li><span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case <span class="math inline">\(i\)</span>) to indicate which factor level the observation belongs to; plus another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number within a factor level combination).</li>
-<li><span class="math inline">\(y_\text{ij}\)</span> is an observation. Since each observation has a residual, <span class="math inline">\(y\)</span>’s subscripts will match epsilon’s (<span class="math inline">\(\epsilon\)</span>) subscript. It will tell us exactly which replicate within a factor level is being referenced.</li>
+<li><p><span class="math inline">\(\mu\)</span> is the effect for grand mean.</p></li>
+<li><p><span class="math inline">\(\alpha_i\)</span> refers to the effect of the factor that is varied in the experiment; in our case the factor is toothbrush. The subscript</p>
+<p><span class="math inline">\(i\)</span> indicates which level of the factor the effect is for:</p>
+<p><span class="math inline">\(i=1\)</span> is manual,</p>
+<p><span class="math inline">\(i=2\)</span> is oscillating,</p>
+<p><span class="math inline">\(i=3\)</span> is sonic,</p>
+<p><span class="math inline">\(i=4\)</span> is ultrasonic.</p></li>
+<li><p><span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual for each observation. The residual term will have a matching subscript for each factor in the study (in this case</p>
+<p><span class="math inline">\(i\)</span>) to indicate which factor level the observation belongs to; plus another subscript to indicate the replicate number within that factor level (or in the case of multiple factors, it is the replicate number within a factor level combination).</p></li>
+<li><p><span class="math inline">\(y_\text{ij}\)</span> is an observation. Since each observation has a residual,</p>
+<p><span class="math inline">\(y\)</span>’s subscripts will match epsilon’s (</p>
+<p><span class="math inline">\(\epsilon\)</span>) subscript. It will tell us exactly which replicate within a factor level is being referenced.</p></li>
 </ul>
 <p>We can rewrite <a href="#eq-one-obs" class="quarto-xref">Equation&nbsp;8</a> symbolically:</p>
 <p><span class="math display">\[
@@ -570,17 +599,28 @@ General form of effects model with one structural factor
 <p><span id="eq-general-form"><span class="math display">\[
 y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 \tag{9}\]</span></span></p>
-<p>This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs by adding a term to the model for each factor.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>This is called an effects model (as opposed to a means model) because it shows how each observation is the sum of factor effects. This can be expanded to more complicated designs by adding a term to the model for each factor.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 </div>
 </div>
 <p>At this point you should begin to see how the factor structure diagram can help us put together a mathematical model. Each factor in the diagram corresponds to a different term in the mathematical model.</p>
-<p>We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter: <span class="math inline">\(\hat{\mu}\)</span>, <span class="math inline">\(\hat{\alpha}\)</span>, and <span class="math inline">\(\hat{\epsilon}\)</span>. Commonly <span class="math inline">\(\hat{\epsilon}\)</span> is also expressed as <span class="math inline">\(e\)</span>; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.</p>
-<p>You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over <span class="math inline">\(y\)</span> to represent a mean of observed values. You can use dots in the subscripts of <span class="math inline">\(\bar{y}\)</span> to indicate which values you are averaging over.</p>
-<p>For example, the mean of the observations in the first level of a treatment factor would be represented as <span class="math inline">\(\bar{y}_{1\cdot}\)</span>. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the “.” as meaning “include all the values of the subscript”. In our toothbrush example, <span class="math inline">\(\bar{y}_{1\cdot}\)</span> is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript <span class="math inline">\(i\)</span> value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.</p>
+<p>We represent the observations with lower case English letters because they are known values (we observed them!). Greek letters are used to represent unknown, population parameters. The data is used to estimate those parameters. To represent an estimate of the effect we will place a hat on the parameter:</p>
+<p><span class="math inline">\(\hat{\mu}\)</span>,</p>
+<p><span class="math inline">\(\hat{\alpha}\)</span>, and</p>
+<p><span class="math inline">\(\hat{\epsilon}\)</span>. Commonly</p>
+<p><span class="math inline">\(\hat{\epsilon}\)</span> is also expressed as</p>
+<p><span class="math inline">\(e\)</span>; we will use these interchangeably in this book. Other books may represent these quantities with different symbols.</p>
+<p>You can also see that calculating means is a crucial part of calculating effect estimates. As you already know, a bar is added over</p>
+<p><span class="math inline">\(y\)</span> to represent a mean of observed values. You can use dots in the subscripts of</p>
+<p><span class="math inline">\(\bar{y}\)</span> to indicate which values you are averaging over.</p>
+<p>For example, the mean of the observations in the first level of a treatment factor would be represented as</p>
+<p><span class="math inline">\(\bar{y}_{1\cdot}\)</span>. The 1 in the subscript indicates the mean only includes values from the first level of the treatment factor, and the dot indicates all the replicates are included. You can think of the “.” as meaning “include all the values of the subscript”. In our toothbrush example,</p>
+<p><span class="math inline">\(\bar{y}_{1\cdot}\)</span> is our estimate of the mean percent area covered by plaque after using a manual toothbrush, because a subscript</p>
+<p><span class="math inline">\(i\)</span> value of 1 corresponds to manual, and the dot indicates all (6) replicates of the manual brush are included in the mean.</p>
 <p><span id="eq-ybar-1dot"><span class="math display">\[
 \bar{y}_{1\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.09
 \tag{10}\]</span></span></p>
-<p>Similarly, <span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.</p>
+<p>Similarly,</p>
+<p><span class="math inline">\(\bar{y}_{\cdot\cdot}\)</span> represents an estimate of the grand mean. The dot in the first position indicates we should include all levels of the treatment factor (toothbrush) and the second dot indicates we should include all the replicates.</p>
 
 
 </section>
@@ -589,15 +629,10 @@ y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>The algebraic form of the cell means model is</p>
-<p><span class="math display">\[
-y_\text{ij} = \mu_i + \epsilon_\text{ij}
-\]</span></p>
-<p>Where <span class="math inline">\(y_\text{ij}\)</span> is an observation, <span class="math inline">\(\mu_i\)</span> is the mean of factor level <span class="math inline">\(i\)</span>, and <span class="math inline">\(\epsilon_\text{ij}\)</span> is the residual for each observation. The ANOVA F-test hypothesis for this model is <span class="math inline">\(H_0: \text{All means are equal to each other}\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors. Often, in ANOVA, partial fit refers to a model or prediction estimated using just outside factors. Thus, for this model <a href="#eq-general-effects-rule" class="quarto-xref">Equation&nbsp;5</a> could be restated as Factor level effect size = Factor level mean - partial fit.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Cobb, George. <em>Introduction to Design and Analysis of Experiments</em>. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started --><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>The model for the experiment that includes toothpaste brand and toothbrush type is</p>
+<li id="fn1"><p>Partial fit is a term that refers to an estimated model, or estimated prediction, using only some of the factors. Often, in ANOVA, partial fit refers to a model or prediction estimated using just outside factors. Thus, for this model <a href="#eq-general-effects-rule" class="quarto-xref">Equation&nbsp;5</a> could be restated as Factor level effect size = Factor level mean - partial fit.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>You can think of an effect as a deviation from a mean. Other synonyms for deviation are error and variance. When you calculate an effect, you are also calculating a deviation or error. Thus, residual error effect is a bit redundant. Residual error and residual effect may be used interchangeably.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Cobb, George. <em>Introduction to Design and Analysis of Experiments</em>. Wiley, 2014. <!-- used MLA formatting. I have no bibliography or list of sources for data started --><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The model for the experiment that includes toothpaste brand and toothbrush type is</p>
 <p><span class="math display">\[
 y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
 \]</span></p>
@@ -608,7 +643,7 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 <li><p><span class="math inline">\(\alpha\beta)_\text{ij}\)</span> is the interaction term. An interaction is discussed on the <a href="./bf2.html">BF[2]</a> page.</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span> is the residual error term, and <span class="math inline">\(k\)</span> is the replicate count within a factor level combination.</p></li>
 </ul>
-<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -631,6 +666,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -693,8 +872,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -805,7 +982,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1032,6 +1208,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright © 2024 Brigham Young University-Idaho. All rights reserved.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

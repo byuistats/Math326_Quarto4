@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Math326 Notebook"
+  page-footer: "Copyright © 2024 Brigham Young University-Idaho. All rights reserved."
   navbar:
     background: primary
     search: true
@@ -82,7 +83,9 @@ website:
 
 format:
   html:
-    theme: cerulean
+    theme: 
+      light: cerulean
+      dark: darkly
     css: styles.css
     toc: true
 

@@ -15,6 +15,7 @@ toc-depth: 4
  }
 </script>
 ```
+
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
@@ -32,6 +33,8 @@ Usually during the design of an experiment, the researcher has specific comparis
 When one factor level mean is compared to another, it is called a **pairwise comparison, or simple contrasts**. For example, in our toothbrush experiment we may be interested in comparing the oscillating brush to the control group (manual brush). Or we may be especially interested in comparing sonic to ultra sonic.
 
 Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the "treatment" toothbrushes vs. the control group (manual). When an average across groups is involved, this is called a **complex comparison**, or linear **contrast**.
+
+
 
 We can represent the null hypotheses of these 4 example contrasts as:
 
@@ -53,27 +56,50 @@ $\begin{aligned} H_0: \mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} +
 
 The above hypotheses can all be expressed as a sum, where each factor level mean is multiplied by a coefficient. When a factor level is not a part of the hypotheses, it has a coefficient of zero.
 
-| Four Null Hypotheses                                                                                               | Left Hand Side of Hypotheses Expressed as a Sum of Means and Coefficients                                        |
+| Four Null Hypotheses | Left Hand Side of Hypotheses Expressed as a Sum of Means and Coefficients |
 |------------------------------------|------------------------------------|
-| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$                                                 | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$                                 |
-| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$                                             | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$                                 |
-| $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$                  | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$            |
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$ | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$ |
+| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$ | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$ |
+| $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$ | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$ |
 | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}$ | $1*\mu_\text{man} + -\frac{1}{3}*\mu_\text{osc} + -\frac{1}{3}*\mu_\text{sonic} + -\frac{1}{3}*\mu_\text{ultra}$ |
 
 : Expanded Hypotheses {#tbl-expanded}
 
 The contents in the right column of @tbl-expanded are referred to as contrasts. We will use the symbol $\psi$ to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. **To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.** We will often write coefficients used in a contrast as a set, in curly braces as shown in @tbl-coefficients. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.
 
-| $H_0$                                                                                                              | Contrast ($\psi$) Tested in $H_0$                                                                                | Set of Contrast Coefficients                        |
-|----------------------------|---------------------------|-----------------|
-| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$                                                 | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$                                 | $\{ -1, 1, 0, 0 \}$                                 |
-| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$                                             | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$                                 | $\{ 0, 0, 1, -1 \}$                                 |
-| $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$                  | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$            | $\{ 0, 1, -\frac{1}{2}, -\frac{1}{2} \}$            |
+| $H_0$ | Contrast ($\psi$) Tested in $H_0$ | Set of Contrast Coefficients |
+|----------------------------|---------------------------|------------------|
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$ | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$ | $\{ -1, 1, 0, 0 \}$ |
+| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$ | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$ | $\{ 0, 0, 1, -1 \}$ |
+| $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$ | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$ | $\{ 0, 1, -\frac{1}{2}, -\frac{1}{2} \}$ |
 | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}$ | $1*\mu_\text{man} + -\frac{1}{3}*\mu_\text{osc} + -\frac{1}{3}*\mu_\text{sonic} + -\frac{1}{3}*\mu_\text{ultra}$ | $\{ 1, -\frac{1}{3}, -\frac{1}{3}, -\frac{1}{3} \}$ |
 
 : Contrast Coefficients {#tbl-coefficients}
 
 There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e. simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across certain factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple situations.
+
+::: callout-note
+## Contrasts of Means vs. Contrasts of Effects
+
+Though we have been working with the effects model up to this point, this page about contrasts is presented in terms of means because they are easier to talk about and to conceptualize. In reality, contrasts of means are identical to contrasts of effects and will always yield the same result. For example, look at the comparison of the means of the oscilatting brush to the manual brush.
+
+$\mu_\text{osc} - \mu_\text{man} = 0$
+
+This can be rewritten as
+
+$(\mu + \alpha_\text{osc}) - (\mu + \alpha_\text{man}) = 0$
+
+where $\mu$ without a subscript is the grand mean. The expression can be simplified further.
+
+$\mu + \alpha_\text{osc} - \mu - \alpha_\text{man} = 0$
+
+$\mu + \mu + \alpha_\text{osc} - \alpha_\text{man} = 0$
+
+$\alpha_\text{osc} - \alpha_\text{man} = 0$
+
+Thus, effects can be swapped in place of means and vice versa in all of these contrast equations
+:::
+
 
 ## Testing a Contrast
 
@@ -242,11 +268,11 @@ Let's determine if the contrasts listed in @tbl-coefficients are orthogonal to o
 
 First, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal to $\mu_{sonic}- \mu_{ultra}$.
 
-|                              Contrast                              | Set of Contrast Coefficients |    man. coef.     |    osc. coef.    |   sonic coef.    |    ultra coef.    |
-|:------------------:|:---------:|:---------:|:---------:|:---------:|:---------:|
-|   $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$   |     $\{ -1, 1, 0, 0 \}$      |        -1         |        1         |        0         |         0         |
-| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} \end{aligned}$ |     $\{ 0, 0, 1, -1 \}$      |         0         |        0         |        1         |        -1         |
-|                                                                    | **Product of Coefficients**  | $-1 \times 0 = 0$ | $1 \times 0 = 0$ | $0 \times 1 = 0$ | $0 \times -1 = 0$ |
+| Contrast | Set of Contrast Coefficients | man. coef. | osc. coef. | sonic coef. | ultra coef. |
+|:-----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$ | $\{ -1, 1, 0, 0 \}$ | -1 | 1 | 0 | 0 |
+| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} \end{aligned}$ | $\{ 0, 0, 1, -1 \}$ | 0 | 0 | 1 | -1 |
+|  | **Product of Coefficients** | $-1 \times 0 = 0$ | $1 \times 0 = 0$ | $0 \times 1 = 0$ | $0 \times -1 = 0$ |
 
 : First Pair of Contrasts Showing Orthogonal Contrasts {#tbl-first_pair}
 
@@ -254,11 +280,11 @@ In the last row of @tbl-first_pair, the product of the elements of the coefficie
 
 Next, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal to $\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}$.
 
-|                                   Contrast                                    |       Set of Contrast Coefficients       |    man. coef.     |    osc. coef.    |         sonic coef.         |         ultra coef.         |
-|:-----------------:|:---------:|:---------:|:---------:|:---------:|:---------:|
-|        $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$         |           $\{ -1, 1, 0, 0 \}$            |        -1         |        1         |              0              |              0              |
-| $\begin{aligned}\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2} \end{aligned}$ | { 0, 1, $-\frac{1}{2}$, $-\frac{1}{2}$ } |         0         |        1         |       $-\frac{1}{2}$        |       $-\frac{1}{2}$        |
-|                                                                               |       **Product of Coefficients**        | $-1 \times 0 = 0$ | $1 \times 1 = 1$ | $0 \times -\frac{1}{2} = 0$ | $0 \times -\frac{1}{2} = 0$ |
+| Contrast | Set of Contrast Coefficients | man. coef. | osc. coef. | sonic coef. | ultra coef. |
+|:-----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$ | $\{ -1, 1, 0, 0 \}$ | -1 | 1 | 0 | 0 |
+| $\begin{aligned}\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2} \end{aligned}$ | { 0, 1, $-\frac{1}{2}$, $-\frac{1}{2}$ } | 0 | 1 | $-\frac{1}{2}$ | $-\frac{1}{2}$ |
+|  | **Product of Coefficients** | $-1 \times 0 = 0$ | $1 \times 1 = 1$ | $0 \times -\frac{1}{2} = 0$ | $0 \times -\frac{1}{2} = 0$ |
 
 : Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts {#tbl-second_pair}
 
@@ -266,13 +292,13 @@ In @tbl-second_pair the product of the elements of the coefficient vectors are c
 
 It has been shown how to determine orthogonality for the contrasts contained in first two rows of @tbl-ortho below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.
 
-| Contrast Row \#'s from @tbl-coefficients                                                      |                                                                                                               | Orthogonality  |
-|--------------------------|-------------------------------|--------------|
-| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$                                 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$                                             | orthogonal     |
-| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$                                 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$                 | not orthogonal |
-| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$                                 | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | not orthogonal |
-| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$                             | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$                 | orthogonal     |
-| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$                             | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | orthogonal     |
+| Contrast Row \#'s from @tbl-coefficients |   | Orthogonality |
+|-------------------------|------------------------------|-----------------|
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$ | orthogonal |
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$ | not orthogonal |
+| $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | not orthogonal |
+| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$ | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$ | orthogonal |
+| $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | orthogonal |
 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | not orthogonal |
 
 : Orthogonality of Contrasts from @tbl-coefficients {#tbl-ortho}

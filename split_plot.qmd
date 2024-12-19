@@ -8,12 +8,14 @@ output:
     css: styles.css
 ---
 
+```{=html}
 <script type="text/javascript">
  function showhide(id) {
     var e = document.getElementById(id);
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
 </script>
+```
 
 ```{r}
 #| label: setup
@@ -157,7 +159,7 @@ $$
 ANOVA tests are appropriate for a split-plot analysis if the following requirements are satisfied:
 
 | Requirements | Method for Checking | What You Hope to See |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Constant variance across factor levels | Residual vs. Fitted Plot | No major disparity in vertical spread of point groupings |
 | The residuals are normally distributed | Normal Q-Q plot | Straight line, majority of points in boundaries |
 | Independent residuals | Order plot | No pattern/trend |
@@ -808,9 +810,26 @@ $$
 F_{1,2} = 0.2175
 $$
 
-The area under the $F_{1,2}$ distribution to the right of the F test statistic constitutes the p-value. In this case, it is **p=** **0.687**. With such a high p-value, we conclude there is insufficient evidence that fungicide effects yield.
+The area under the $F_{1,2}$ distribution to the right of the F test statistic constitutes the p-value. In this case, it is **p=** **0.687**. With such a high p-value, we conclude there is insufficient evidence that fungicide effects yield. The following code will get you the p-value:
 
-Though we calculated the correct p-value by-hand, there is other R code, not covered in this book, that will calculate the correct F test by default.[^4]
+```{r}
+#| eval: false
+
+pf(.2175, 1, 2, lower.tail = FALSE)
+
+```
+
+This is a more generic representation of the code, using description of the input arguments rather than actual numbers from this particular problem:
+
+```{r}
+#| eval: false
+
+pf(f_statistic, numerator_df, denominator_df, lower.tail = FALSE)
+```
+
+The `numerator_df` is the degrees of freedom associated with the mean squares values used in the numerator of the F statistic calculation. The `denominator_df` is the degrees of freedom associated with the mean squares value used in the denominator of the F statistic. The `lower.tail` argument tells the function whether you want to calculate the area under the F distribution (i.e. the probability) in the lower tail or the upper tail. Since we are calculating a p-value, we want the area under the curve in the upper tail of the distribution. (The definition of a p-value is the probability of getting a test statistic **more extreme** than the one observed, assuming the null hypothesis is true).
+
+Though we calculated the correct p-value manually, there is other R code, not covered in this book, that will calculate the correct F test by default.[^4]
 
 [^4]: For example, the following code gives the correct F test for fungicide and the other factors in the model
 
