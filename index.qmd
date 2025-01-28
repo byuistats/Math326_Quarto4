@@ -6,6 +6,18 @@ title: "BYU-Idaho Math326: Design and Analysis of Experiments"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Testimonials about Design and Analysis of Experiments
+
+> "Math326 \[Design and Analysis of Experiments\] was fundamental in preparing me for my doctorate. The course covered many topics (and covered them well) from my early graduate-level statistics courses and prepared me well for more advanced courses. Despite taking the course in 2019, I still recall (and use the knowledge from!) lectures. In fact, I recently referenced the lectures on ordering experimental treatments. \[The teachers\] excel in breaking down content into simple yet complete explanations. I highly recommend this course for anyone interested in advancing their statistical and research skillset, particularly if they are interested in a data- or science-focused career.
+
+\~Spencer Garcia, Industrial Organizational Psychology Ph.D. student at Georgia Institute of Technology (2025)
+
+------------------------------------------------------------------------
+
+"If you have room for this class in your schedule, I highly recommend taking \[Design and Analysis of Experiments\]. I graduated \[from BYU-Idaho\] in 2020 and still use the knowledge I gained from this class in my graduate program and research. The projects and homework, though difficult, are hands-on and helpful in learning the different designs. The designs apply to several fields (e.g., psychology) and types of analyses. The statistics knowledge (e.g., ANOVA) and software skills (e.g., R, Excel) transfer to other statistics classes. I wanted to retake this class last year and take better notes to help with my current work; I strongly suggest taking this class when you still can!
+
+\~Amanda Stephens, Industrial Organizational Psychology Ph.D. student at Oklahoma University (2025)
+
 ## A Customizable Textbook
 
 This book is meant to be a starting point for you to learn design and analysis of experiments. If you get the files used to create this website from your inctructor, you can edit the Quarto files so that the book becomes your own!
