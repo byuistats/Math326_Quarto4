@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ------------------------------------------------------------------------
 
-"If you have room for this class in your schedule, I highly recommend taking \[Design and Analysis of Experiments\]. I graduated \[from BYU-Idaho\] in 2020 and still use the knowledge I gained from this class in my graduate program and research. The projects and homework, though difficult, are hands-on and helpful in learning the different designs. The designs apply to several fields (e.g., psychology) and types of analyses. The statistics knowledge (e.g., ANOVA) and software skills (e.g., R, Excel) transfer to other statistics classes. I wanted to retake this class last year and take better notes to help with my current work; I strongly suggest taking this class when you still can!
+"I highly recommend taking \[Design and Analysis of Experiments\]. I graduated \[from BYU-Idaho\] in 2020 and still use the knowledge I gained from this class in my graduate program and research. The projects and homework, though difficult, are hands-on and helpful in learning the different designs. The designs apply to several fields ... and types of analyses. The statistics knowledge (e.g., ANOVA) and software skills (e.g., R, Excel) transfer to other statistics classes. I wanted to retake this class last year and take better notes to help with my current work; I strongly suggest taking this class when you still can!
 
 \~Amanda Stephens, Industrial Organizational Psychology Ph.D. student at Oklahoma University (2025)
 

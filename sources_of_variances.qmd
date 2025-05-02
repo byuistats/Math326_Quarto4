@@ -1,10 +1,22 @@
 ---
-title: "Sources of Variation - Factors and Conditions"
+title: "Types of Factors and Types of Variance"
 ---
 
 # Types of Factors
 
-Once the response variable is determined, it is important to identify all possible factors and conditions that could influence the data measurements. Factors are often referred to as explanatory variables because they explain the variation in the response variable. They are also called independent variables since the response variable is thought to depend on the value of the factor. For each factor you identify, determine how you want it to influence your experiment. List those factors that you will be controlling during the experiment. List those factors and conditions that you will purposely hold constant. List those factors and conditions that you cannot control and determine if the values of those factors can be measured or not. Each of these lists will now be discussed in further detail.
+Once the response variable is determined, it is important to identify all possible factors that could influence the data measurements. Factors are often referred to as explanatory variables because they explain the variation in the response variable. They are also called independent variables since the response variable is thought to depend on the value of the factor. For each factor you identify, determine how you want it to influence your experiment:
+
+-   Factors that you will be controlling and purposefully varying during the experiment.
+
+-   Factors that will be held constant.
+
+-   Factors that you cannot control. This group should be further categorized as
+
+    -   Factors than will be measured (but not controlled)
+
+    -   Factors that can/will not be measured nor controlled.
+
+Each of these types of factors are discussed in further detail.
 
 ## Factors Controlled During the Experiment
 
