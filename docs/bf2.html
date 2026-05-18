@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>BF[2] – Math326 Notebook</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,8 +24,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -64,17 +68,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b8f6c33b8a184d254b5eaa30f9d0661.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-e89341beafc15df96e2eb459d0c9c10f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0b04f98a4f1fa4158b738974c193e0b1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b82a8e178c632e86601320a4062c3b24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0b04f98a4f1fa4158b738974c193e0b1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -121,7 +128,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +147,169 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -377,6 +546,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">BF[2]</h1>
@@ -447,10 +617,8 @@ Figure&nbsp;1: Factor Structure Diagram
 </section>
 <section id="hypothesis-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
-<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-bf2_brush_factor_structure" class="quarto-xref">Figure&nbsp;1</a> corresponds to a term in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a>:</p>
-<p><span id="eq-bf2"><span class="math display">\[
-y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
-\tag{1}\]</span></span></p>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-bf2_brush_factor_structure" class="quarto-xref">Figure&nbsp;1</a> corresponds to a term in <strong>?@eq-bf2</strong>:</p>
+<p><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}\]</span> {#eq-bf2}</p>
 <p>Where</p>
 <ul>
 <li><span class="math inline">\(y_{ijk}\)</span> is the <span class="math inline">\(k^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>.</li>
@@ -468,12 +636,8 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 <p><span class="math display">\[H_0: \beta_\text{j} = 0 \text{ for all } j\]</span></p>
 <p><span class="math display">\[H_a: \beta_\text{j} \ne 0 \text{ for some } j\]</span></p>
 <p>A hypothesis for the interaction of toothbrush and toothpaste.</p>
-<p><span class="math display">\[
-H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
-\]</span></p>
-<p><span class="math display">\[
-H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
-\]</span></p>
+<p><span class="math display">\[H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij\]</span></p>
+<p><span class="math display">\[H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij\]</span></p>
 <p>When the interaction term is <em>not</em> significant a predicted value for an observation can be obtained by simply adding the grand mean to the main effects <span class="math inline">\(\hat{\alpha}_i\)</span> and <span class="math inline">\(\hat{\beta}_j\)</span>. This is equivalent to treating the effect of <span class="math inline">\((\alpha\beta)_\text{ij} = 0\)</span> for all values of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
 <p>When the interaction effect <em>is</em> significant reject the null hypothesis and accept the alternative hypothesis: at least one factor level combination has a none zero effect.</p>
 </section>
@@ -558,7 +722,7 @@ Important
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a sequence from 1 to 24</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a sequence from 1 to 24</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Paste the word "Subject " in front of each id #</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Subject"</span>, <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -566,7 +730,7 @@ Important
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>brush <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"manual"</span>, <span class="st">"oscillate"</span>, <span class="st">"sonic"</span>, <span class="st">"ultrasonic"</span>), <span class="at">each =</span> <span class="dv">6</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector with each paste repeated 12 times</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>paste <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"off"</span>), <span class="at">each =</span> <span class="dv">12</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>paste <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"off"</span>),<span class="at">each=</span><span class="dv">3</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector to represent order of taking measurement</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>order <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">24</span>)</span>
@@ -575,7 +739,7 @@ Important
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>assignment_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(Subject, brush, paste, order)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#print the table, pander() makes it look nice</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(assignment_table) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -615,19 +779,19 @@ Important
 <tr class="even">
 <td style="text-align: center;">Subject 4</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 5</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 6</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">6</td>
 </tr>
 <tr class="odd">
@@ -651,37 +815,37 @@ Important
 <tr class="even">
 <td style="text-align: center;">Subject 10</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 11</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">11</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 12</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 13</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">13</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 14</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">14</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 15</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">15</td>
 </tr>
 <tr class="even">
@@ -705,19 +869,19 @@ Important
 <tr class="odd">
 <td style="text-align: center;">Subject 19</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">19</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 20</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 21</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">21</td>
 </tr>
 <tr class="even">
@@ -746,7 +910,7 @@ Important
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">17</span>) <span class="co">#This is so that others can replicate your work and start with the same random seed.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">17</span>) <span class="co">#This is so that others can replicate your work and start with the same random seed.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Randomize the treatment assignment to subject</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>randomized_table <span class="ot">&lt;-</span> assignment_table <span class="sc">%&gt;%</span> </span>
@@ -754,7 +918,7 @@ Important
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order =</span> <span class="fu">sample</span>(order)) <span class="co">#you can also randomize the order of experimental runs if needed</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#print the table, pander() makes it look nice</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(randomized_table) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(randomized_table) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -794,19 +958,19 @@ Important
 <tr class="even">
 <td style="text-align: center;">Subject 12</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 15</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 7</td>
 <td style="text-align: center;">manual</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">1</td>
 </tr>
 <tr class="odd">
@@ -830,37 +994,37 @@ Important
 <tr class="even">
 <td style="text-align: center;">Subject 6</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">4</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 22</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 21</td>
 <td style="text-align: center;">oscillate</td>
-<td style="text-align: center;">name</td>
+<td style="text-align: center;">off</td>
 <td style="text-align: center;">10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 14</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 16</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 20</td>
 <td style="text-align: center;">sonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">20</td>
 </tr>
 <tr class="even">
@@ -884,19 +1048,19 @@ Important
 <tr class="odd">
 <td style="text-align: center;">Subject 11</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">9</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Subject 3</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">11</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Subject 9</td>
 <td style="text-align: center;">ultrasonic</td>
-<td style="text-align: center;">off</td>
+<td style="text-align: center;">name</td>
 <td style="text-align: center;">18</td>
 </tr>
 <tr class="even">
@@ -925,7 +1089,7 @@ Important
 <section id="interaction-effect" class="level1 page-columns page-full">
 <h1>Interaction Effect</h1>
 <p>The purpose of this section is to define an interaction, introduce interaction graphs, explain how to interpret interaction graphs to detect interactions, and provide helpful hints in working with interactions.</p>
-<p>The terms in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
+<p>The terms in <strong>?@eq-bf2</strong> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
 <p>The factor created by crossing toothbrush and toothpaste is called an interaction factor, and its term in the model, <span class="math inline">\(\alpha \beta\)</span>, is called an interaction effect.</p>
 <p>Compared to a BF[1], the novel piece of a BF[2] is the <strong>interaction factor</strong>. This factor allows us to estimate the interaction effect, which is the effect of belonging to a particular factor level <em>combination</em>. Stated another way, the interaction effect is the additional change in the response (positive or negative) when the two factor levels happen together, beyond the effect of each factor level in isolation.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1016,7 +1180,7 @@ Figure&nbsp;3: Scenarios Indicative of an Interaction
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Interpreting Main Effects and Interactions
+<span class="screen-reader-only">Caution</span>Interpreting Main Effects and Interactions
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1053,10 +1217,8 @@ Figure&nbsp;5: Factor structure diagram
 </figcaption>
 </figure>
 </div>
-<p>Each factor in the diagram corresponds to a term in <a href="#eq-bf2_2" class="quarto-xref">Equation&nbsp;2</a>:</p>
-<p><span id="eq-bf2_2"><span class="math display">\[
-y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
-\tag{2}\]</span></span></p>
+<p>Each factor in the diagram corresponds to a term in <strong>?@eq-bf2_2</strong>:</p>
+<p><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}\]</span> {#eq-bf2_2}</p>
 <p>Where</p>
 <ul>
 <li><span class="math inline">\(\mu\)</span> is the grand mean of all observatinos</li>
@@ -1073,7 +1235,7 @@ y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\te
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Balanced vs.&nbsp;Unbalanced Data
+<span class="screen-reader-only">Important</span>Balanced vs.&nbsp;Unbalanced Data
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1089,7 +1251,7 @@ Balanced vs.&nbsp;Unbalanced Data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-General Rule for Calculating Factor Level Effect
+<span class="screen-reader-only">Tip</span>General Rule for Calculating Factor Level Effect
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1112,39 +1274,20 @@ Figure&nbsp;6: Full data set with partitions
 </figure>
 </div>
 <p>The grand mean is the mean of all the observations:</p>
-<p><span class="math display">\[
-\hat{\mu} = \bar{y}_\cdots = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76
-\]</span></p>
+<p><span class="math display">\[\hat{\mu} = \bar{y}_\cdots = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76\]</span></p>
 <p>Now find the mean for each level of toothbrush type.</p>
-<p><span class="math display">\[
-\bar{y}_\text{manual} = \bar{y}_{1\cdot\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{oscillating} = \bar{y}_{2\cdot\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{sonic} = \bar{y}_{3\cdot\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
-\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{manual} = \bar{y}_{1\cdot\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{oscillating} = \bar{y}_{2\cdot\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{sonic} = \bar{y}_{3\cdot\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31\]</span></p>
 <p>Now find the mean for each level of toothpaste brand.</p>
+<p><span class="math display">\[\bar{y}_\text{name brand} = \bar{y}_{\cdot 1 \cdot} = \frac{19.12 + 18.56 + \cdots + 18.99 + 32.74}{12} = 22.93\]</span></p>
 <p><span class="math display">\[
-\bar{y}_\text{name brand} = \bar{y}_{\cdot 1 \cdot} = \frac{19.12 + 18.56 + \cdots + 18.99 + 32.74}{12} = 22.93
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{off brand} = \bar{y}_{\cdot 2 \cdot} = \frac{21.60 + 22.09 + \cdots + 21.27 + 23.42}{12} = 22.60
-\]</span></p>
+\bar{y}_\text{off brand} = \bar{y}_{\cdot 2 \cdot} = \frac{21.60 + 22.09 + \cdots + 21.27 + 23.42}{12} = 22.60 \]</span></p>
 <p>There are 8 different combinations of toothbrush type and toothpaste, so the interaction factor has 8 levels total. We calculate a mean for each one, but will only show the calculation for the first 3.</p>
-<p><span class="math display">\[
-\bar{y}_\text{manual and name brand} = \bar{y}_{11\cdot} = \frac{19.12 + 24.21 + 26.88}{3} = 23.40
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{manual and off brand} = \bar{y}_{12\cdot} = \frac{21.60 + 23.40 + 23.35}{3} = 22.78
-\]</span></p>
-<p><span class="math display">\[
-\bar{y}_\text{oscillating and name brand} = \bar{y}_{21\cdot} = \frac{18.56 + 20.00 + 19.87}{3} = 19.48
-\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{manual and name brand} = \bar{y}_{11\cdot} = \frac{19.12 + 24.21 + 26.88}{3} = 23.40\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{manual and off brand} = \bar{y}_{12\cdot} = \frac{21.60 + 23.40 + 23.35}{3} = 22.78\]</span></p>
+<p><span class="math display">\[\bar{y}_\text{oscillating and name brand} = \bar{y}_{21\cdot} = \frac{18.56 + 20.00 + 19.87}{3} = 19.48\]</span></p>
 <p>The means for the residual error factor levels is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.</p>
 <p><a href="#fig-factor-means" class="quarto-xref">Figure&nbsp;7</a> displays all the factor level means inside the factor structure.</p>
 <div class="page-columns page-full">
@@ -1170,9 +1313,7 @@ Figure&nbsp;7: Factor level means
 <section id="toothbrush-effects" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="toothbrush-effects">Toothbrush effects</h4>
 <p>The toothbrush factor has four levels: one for each brush type. We will use the general rule for calculating <a href="#factor-level-effects">factor level effects</a>. To calculate the effect of a toothbrush, take the toothbrush mean and subtract it from the grand mean factor’s effect. For the manual brush, this looks like:</p>
-<p><span class="math display">\[
-23.09 - 22.76 = 0.33
-\]</span></p>
+<p><span class="math display">\[23.09 - 22.76 = 0.33\]</span></p>
 <p>Using the manual brush has the effect of <em>increasing</em> a person’s plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> you can find the effect for the oscillating brush <span class="math inline">\(19.98 - 22.76 = -2.79\)</span>. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is <span class="math inline">\(22.68 - 22.76 = -0.09\)</span>. For an ultrasonic brush the effect is <span class="math inline">\(25.31 - 22.76 = 2.55\)</span>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -1181,13 +1322,9 @@ Figure&nbsp;7: Factor level means
 <section id="toothpaste-effects" class="level4">
 <h4 class="anchored" data-anchor-id="toothpaste-effects">Toothpaste effects</h4>
 <p>Calculating the effects for the second controlled factor in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Remember that toothbrush is not outside or inside of toothpaste, rather the two factors are crossed. To calculate the effect of using the name brand toothpaste, take the name brand mean and subtract it from the grand mean factor’s effect:</p>
-<p><span class="math display">\[
-22.93 - 22.76 = 0.16
-\]</span></p>
+<p><span class="math display">\[22.93 - 22.76 = 0.16\]</span></p>
 <p>A similar calculation is performed for off the brand toothpaste.</p>
-<p><span class="math display">\[
-22.60 - 22.76 = -0.16
-\]</span></p>
+<p><span class="math display">\[22.60 - 22.76 = -0.16\]</span></p>
 <p>With only two levels, it becomes obvious that <strong>the effects of a factor’s levels will always sum to zero</strong>. You may want to go back to the toothbrush level effects and verify this is true.</p>
 </section>
 <section id="interaction-effects" class="level4 page-columns page-full">
@@ -1230,9 +1367,7 @@ Figure&nbsp;8: Interaction Effects
 </div>
 <p>In <a href="#fig-brush" class="quarto-xref">Figure&nbsp;8 (a)</a> you can see that each level of the interaction will fit nicely within a level of toothbrush, this means toothbrush is outside of interaction (equivalently, interaction is inside of toothbrush). The same holds true for the relationship of toothpaste brand and interaction, as shown in <a href="#fig-paste" class="quarto-xref">Figure&nbsp;8 (b)</a>.</p>
 <p>Therefore, to calculate the interaction effect for using an ultrasonic brush with name brand toothpaste we will subtract the effects of the grand mean factor, ultrasonic brush, and name brand paste from the “ultrasonic, name brand” level mean.</p>
-<p><span class="math display">\[
-26.19 - (22.76 + 2.55 + 0.16) = .15
-\]</span></p>
+<p><span class="math display">\[26.19 - (22.76 + 2.55 + 0.16) = .15\]</span></p>
 <p>Let’s take a deeper look to understand why this works. It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.</p>
 <p>An observation from the “ultrasonic brush, name brand paste” group starts with the grand mean value of 22.76. The observation belongs to the ultrasonic group, where plaque tends to be higher, specifically 2.55 higher on average (2.55 is the effect of ultrasonic). <a href="#fig-brush-effect" class="quarto-xref">Figure&nbsp;9</a> show the starting point of the grand mean and the addition of the brush effect.</p>
 <div class="cell">
@@ -1335,9 +1470,7 @@ Figure&nbsp;12: Additive Effects
 </div>
 <p>Lastly, the residuals (or residual effects) need to be calculated. The mean for each level of residual is simply the observation itself. Effects associated with that observation’s factor levels are subtracted from the observed value. Whatever is left over is considered the residual. In other words, we have applied the general rule for calculating effect size. For the residual factor, the effect can concisely be stated as “observed value - predicted value”.</p>
 <p>As an example, the residual in the top left corner of the residual factor was obtained with this calculation:</p>
-<p><span class="math display">\[
-19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28
-\]</span></p>
+<p><span class="math display">\[19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28\]</span></p>
 <p>All other residuals were similarly obtained. Ultimately, <a href="#fig-factor-effects" class="quarto-xref">Figure&nbsp;13</a> displays all the factor level effects that are summed to obtain each observation.</p>
 <div class="page-columns page-full">
 <div id="fig-factor-effects" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
@@ -1363,7 +1496,7 @@ Figure&nbsp;13: Factor level effects
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-General Rule for Degrees of Freedom
+<span class="screen-reader-only">Tip</span>General Rule for Degrees of Freedom
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1392,7 +1525,7 @@ General Rule for Degrees of Freedom
 <p>In an ANOVA table, each factor and their associated degrees of freedom are listed on the left. Note: the total degrees of freedom are the total number of observations.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1454,8 +1587,6 @@ General Rule for Degrees of Freedom
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <p>To get the <strong>sum of squares (SS)</strong> of a factor, each value displayed in that particular factor first needs to be squared. <a href="#fig-factor-effects" class="quarto-xref">Figure&nbsp;13</a> shows the effects, while <a href="#fig-SQ-effects" class="quarto-xref">Figure&nbsp;14</a> shows the squared effects.</p>
@@ -1474,14 +1605,10 @@ Figure&nbsp;14: Squared factor level effects
 </figcaption>
 </figure>
 </div>
-<p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss-obs" class="quarto-xref">Equation&nbsp;3</a>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
-<p><span id="eq-ss-obs"><span class="math display">\[
-SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30
-\tag{3}\]</span></span></p>
+<p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <strong>?@eq-ss-obs</strong>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
+<p><span class="math display">\[SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30\]</span> {#eq-ss-obs}</p>
 <p>For <strong>grand mean</strong>, the squared effect of 518.2 is listed 24 times, once for each observation. Summing the squared effects gets:</p>
-<p><span class="math display">\[
-SS_\text{Grand Mean} = 518.2* 24 = 12,437.43
-\]</span></p>
+<p><span class="math display">\[SS_\text{Grand Mean} = 518.2* 24 = 12,437.43\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1496,21 +1623,13 @@ Note
 </div>
 </div>
 <p>The <strong>toothbrush factor</strong> has four different effects: one for each level of the factor. For each effect, the squared value is multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to toothbrush.</p>
-<p><span id="eq-ss-int"><span class="math display">\[
-SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31
-\tag{4}\]</span></span> <br></p>
-<p>The sum of squares is similarly calculated for toothpaste brand (<a href="#eq-ss-paste" class="quarto-xref">Equation&nbsp;5</a>) and brush by paste interaction (<a href="#eq-ss-int" class="quarto-xref">Equation&nbsp;4</a>).</p>
-<p><span id="eq-ss-paste"><span class="math display">\[
-SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62
-\tag{5}\]</span></span></p>
-<p><span class="math display">\[
-SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12
-\]</span></p>
-<p>The effect for the <strong>residual error factor</strong> has 24 unique values. The squared residuals are summed together in <a href="#eq-ss-resid" class="quarto-xref">Equation&nbsp;6</a>.</p>
-<p><span id="eq-ss-resid"><span class="math display">\[
-SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82
-\tag{6}\]</span></span></p>
-<p>You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in <a href="#eq-ss-obs" class="quarto-xref">Equation&nbsp;3</a>.</p>
+<p><span class="math display">\[SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31\]</span> {#eq-ss-int} <br></p>
+<p>The sum of squares is similarly calculated for toothpaste brand (<strong>?@eq-ss-paste</strong>) and brush by paste interaction (<strong>?@eq-ss-int</strong>).</p>
+<p><span class="math display">\[SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62\]</span> {#eq-ss-paste}</p>
+<p><span class="math display">\[SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12\]</span></p>
+<p>The effect for the <strong>residual error factor</strong> has 24 unique values. The squared residuals are summed together in <strong>?@eq-ss-resid</strong>.</p>
+<p><span class="math display">\[SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82\]</span> {#eq-ss-resid}</p>
+<p>You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in <strong>?@eq-ss-obs</strong>.</p>
 <p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-SS" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
 <div id="tbl-SS" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1520,7 +1639,7 @@ Table&nbsp;1: Sums of squares
 </figcaption>
 <div aria-describedby="tbl-SS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1582,8 +1701,6 @@ Table&nbsp;1: Sums of squares
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 </figure>
@@ -1591,29 +1708,19 @@ Table&nbsp;1: Sums of squares
 </div>
 <p>Recall that SS is a measure of total variability. Of the three structural factors (brush, toothpaste, and their interaction) it is clear to see that brush is contributing the most variability. Some of the difference in SS may be due to difference in number of levels for each factor. Adding levels to a factor allows more variability to be attributed to that factor. We will convert this total variability (sum of squares) into a mean variability (mean square) measure to properly account for differences in number of factor levels. This allows us to compare the factors’ variability on a standardized scale.</p>
 <p>To calculate a mean square (MS), simply divide SS by degrees of freedom for a factor. The mean square calculations are:</p>
-<p><span class="math display">\[
-MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43
-\]</span></p>
+<p><span class="math display">\[MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43\]</span></p>
 <p><br></p>
-<p><span class="math display">\[
-MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
-\]</span></p>
+<p><span class="math display">\[MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77\]</span></p>
 <p><br></p>
-<p><span class="math display">\[
-MS_\text{Toothpaste} = \frac{SS_\text{Toothpaste}}{df_\text{Toothpaste}} = \frac{0.62}{1} = 0.62
-\]</span></p>
+<p><span class="math display">\[MS_\text{Toothpaste} = \frac{SS_\text{Toothpaste}}{df_\text{Toothpaste}} = \frac{0.62}{1} = 0.62\]</span></p>
 <p><br></p>
-<p><span class="math display">\[
-MS_\text{Brush:Toothpaste} = \frac{SS_\text{Brush:Toothpaste}}{df_\text{Brush:Toothpaste}} = \frac{6.12}{3} = 2.04
-\]</span></p>
+<p><span class="math display">\[MS_\text{Brush:Toothpaste} = \frac{SS_\text{Brush:Toothpaste}}{df_\text{Brush:Toothpaste}} = \frac{6.12}{3} = 2.04\]</span></p>
 <p><br></p>
-<p><span class="math display">\[
-MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Error}} = \frac{143.82}{16} = 8.99
-\]</span></p>
+<p><span class="math display">\[MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Error}} = \frac{143.82}{16} = 8.99\]</span></p>
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1675,13 +1782,11 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <p>For each structural factor in the design there are a set of hypothesis we want to test using the <strong>F statistic</strong>.</p>
 <p>Specifically, we will want to test whether toothbrush type has an effect on plaque coverage, whether toothpaste brand has an effect on plaque coverage, and whether the interaction between brush and paste has an effect on plaque coverage.</p>
-<p>More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of <a href="#eq-bf2_2" class="quarto-xref">Equation&nbsp;2</a>.</p>
+<p>More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of <strong>?@eq-bf2_2</strong>.</p>
 <p>A hypothesis for the main effect of toothbrush type:</p>
 <p><span class="math display">\[H_0: \alpha_\text{i} = 0 \text{ for all } i\]</span></p>
 <p><span class="math display">\[H_a: \alpha_\text{i} \ne 0 \text{ for some } i\]</span></p>
@@ -1689,12 +1794,8 @@ MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Err
 <p><span class="math display">\[H_0: \beta_\text{j} = 0 \text{ for all } j\]</span></p>
 <p><span class="math display">\[H_a: \beta_\text{j} \ne 0 \text{ for some } j\]</span></p>
 <p>A hypothesis for the interaction of toothbrush and toothpaste.</p>
-<p><span class="math display">\[
-H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
-\]</span></p>
-<p><span class="math display">\[
-H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
-\]</span></p>
+<p><span class="math display">\[H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij\]</span></p>
+<p><span class="math display">\[H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij\]</span></p>
 <p>To test these hypotheses we need to compare the mean square (MS) for a factor to the mean square for residual error (abbreviated as MSE). The MSE is the estimate of unexplained, random error. If a factor’s MS is similar in size to the MSE, the variance in that factor may just be random error; and the effect of the factor levels are zero. On the other hand, if the variability in the factor, as measured by its MS, is much larger than the random error observed in the experiment (represented by MSE), then it is reasonable to believe the factor levels have a non-trivial contribution to the variability. In other words, the factor has a significant effect on the response.</p>
 <p>The F statistic is a ratio of these two errors and is obtained by dividing the factor’s mean square (MS) by the MSE. The F statistic calculations are</p>
 <ul>
@@ -1712,7 +1813,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <p>The completed ANOVA table for this BF[2] toothbrush and toothpaste example is shown in</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Source</th>
@@ -1774,8 +1875,6 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <p>Because the p-value for the interaction (p-value = 0.876) is much higher than any traditional level of significance threshold we might have chosen (0.01, 0.05, or 0.1), we fail to reject the null hypothesis. There is insufficient evidence to say the interaction effect has an effect on plaque coverage. Because the interaction is NOT significant, we can proceed to interpret the main effects test results.</p>
@@ -1785,7 +1884,7 @@ H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Significant Interaction Effects
+<span class="screen-reader-only">Warning</span>Significant Interaction Effects
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1808,21 +1907,21 @@ Significant Interaction Effects
 <div class="cell" data-cap="Read in / Wrangle Data">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bf2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/toothpaste_BF2.csv"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We then calculate summary statistics for each factor level separately.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Descriptive stats for levels of Brush</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Descriptive stats for levels of Brush</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Descriptive stats for levels of Toothpaste</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Toothpaste, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> </span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-main_effects_numbers" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1831,13 +1930,13 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-main_effects_numbers-1" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-main_effects_numbers-1" class="table quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Brush
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-1" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-1" class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush</th>
@@ -1906,17 +2005,15 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </div>
 </figure>
 </div>
-
-
 </div>
 <div class="cell-output-display">
-<div id="tbl-main_effects_numbers-2" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
+<div id="tbl-main_effects_numbers-2" class="table quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Toothpaste
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-main_effects_numbers-2" class="table do-not-create-environment caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table id="tbl-main_effects_numbers-2" class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Toothpaste</th>
@@ -1961,8 +2058,6 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </div>
 </figure>
 </div>
-
-
 </div>
 </div>
 </figure>
@@ -1974,10 +2069,10 @@ Table&nbsp;2: Numerical Summary for Each Factor
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush<span class="sc">+</span>Toothpaste, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Plaque<span class="sc">~</span>Brush<span class="sc">+</span>Toothpaste, <span class="at">data =</span> bf2) <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Brush.Toothpaste, mean, sd, n) <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="tbl-numerical" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1986,7 +2081,7 @@ Table&nbsp;3: Numerical Summary
 </figcaption>
 <div aria-describedby="tbl-numerical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Brush.Toothpaste</th>
@@ -2046,8 +2141,6 @@ Table&nbsp;3: Numerical Summary
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 </figure>
@@ -2060,9 +2153,9 @@ Table&nbsp;3: Numerical Summary
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note, I have to turn Brush into a factor because it started out as a character variable</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note, I have to turn Brush into a factor because it started out as a character variable</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(Plaque<span class="sc">~</span><span class="fu">factor</span>(Brush)<span class="sc">|</span><span class="fu">factor</span>(Toothpaste), <span class="at">data =</span> bf2, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2138,8 +2231,8 @@ Figure&nbsp;17: Interaction plot for Brush vs.&nbsp;Toothpaste
 <div class="no-row-height column-margin column-container"><div class="">
 <p><code>summary()</code> and <code>anova()</code> functions give the same output with some slight differences in formatting when called on a model created with <code>aov()</code>. The <code>summary()</code> function is more general; it can also take linear regression models created with <code>'lm()</code> as inputs. The output provided by <code>summary()</code> will change based on the type of object it is called on. This is discussed in more detail at the bottom of the <a href="./unbalanced.html">Unbalanced</a> page.</p>
 </div></div><div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1<span class="sc">*</span>X2, <span class="at">data=</span>YourDataSet)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1<span class="sc">*</span>X2, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><code>myaov</code> is the user defined name in which the results of the aov() model are stored</li>
@@ -2149,16 +2242,16 @@ Figure&nbsp;17: Interaction plot for Brush vs.&nbsp;Toothpaste
 </ul>
 <p>The <code>*</code> in the code above is a shortcut for writing out the whole model. It can be read as, “include each term by itself, and all possible interaction terms”. The long way of writing out the model uses a colon, <code>:</code>, to define interaction terms and is shown below. When writing it this way each term must be explicitly stated.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X1<span class="sc">:</span>X2, <span class="at">data=</span>YourDataSet)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>myaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X1<span class="sc">:</span>X2, <span class="at">data=</span>YourDataSet)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(myaov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Below are the results for the full BF[2] model using the toothbrush and toothpaste example. You should notice that these results match what we got when we performed the decomposition manually to build the ANOVA summary table. Even though the interaction plot showed crossing lines, we see the interaction between Brush and Toothpaste is not significant (p-value = .8763). This means we can interpret the hypothesis tests for each of the main effects.</p>
 <p>Toothpaste is not significant (p-value = .7966) and Brush is marginally significant (p-value = .0517, which is close to the traditional alpha level of 0.05). Our exploratory analysis showed that oscillating brush resulted in the lowest amount of plaque and the ultrasonic brush resulted in the highest plaque measure.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bf2_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste,<span class="at">data=</span>bf2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bf2_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bf2_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Plaque<span class="sc">~</span>Brush<span class="sc">*</span>Toothpaste,<span class="at">data=</span>bf2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bf2_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Df Sum Sq Mean Sq F value Pr(&gt;F)  
@@ -2181,7 +2274,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-constant_var" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2202,7 +2295,7 @@ Figure&nbsp;18: Checking constant variance
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(bf2_aov) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(bf2_aov) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -2238,7 +2331,7 @@ Figure&nbsp;18: Checking constant variance
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(bf2_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">qqPlot</span>(bf2_aov<span class="sc">$</span>residuals, <span class="at">id =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2260,7 +2353,7 @@ Figure&nbsp;19: Checking normality of residuals
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bf2_aov<span class="sc">$</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-order" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2283,7 +2376,7 @@ Figure&nbsp;20: Checking independent residuals assumption
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(bf2_aov, <span class="at">which =</span> <span class="st">"Brush"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(bf2_aov, <span class="at">which =</span> <span class="st">"Brush"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
@@ -2309,20 +2402,14 @@ Ultrasonic-Sonic        2.6383333 -2.314047  7.590714 0.4469155</code></pre>
 <h1>Appendix</h1>
 <section id="notation-for-estimated-effects" class="level2">
 <h2 class="anchored" data-anchor-id="notation-for-estimated-effects">Notation for Estimated Effects</h2>
-<p>Here are symbolic representations for the estimated effects in the BF[2] model, as shown in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a>.</p>
-<p><span class="math display">\[
-\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}
-\]</span></p>
-<p><span class="math display">\[
-\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
+<p>Here are symbolic representations for the estimated effects in the BF[2] model, as shown in <strong>?@eq-bf2</strong>.</p>
+<p><span class="math display">\[\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}\]</span></p>
+<p><span class="math display">\[\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}\]</span></p>
+<p><span class="math display">\[\begin{align}
 \hat{\alpha}\hat{\beta}_{ij} &amp; = \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + \hat{\alpha}_i  + \hat{\beta}_j ) \\
 &amp;= \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + (\bar{y}_{i \cdot \cdot} - \bar{y}_{\cdot \cdot \cdot})  + (\bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot}) ) \\
 &amp; = \bar{y}_{i j \cdot} - (\bar{y}_{i \cdot \cdot} + \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot})
-\end{align}
-\]</span></p>
+\end{align}\]</span></p>
 </section>
 <section id="unreplicated-or-single-observation-per-cell" class="level2">
 <h2 class="anchored" data-anchor-id="unreplicated-or-single-observation-per-cell">Unreplicated or Single Observation per Cell</h2>
@@ -2357,380 +2444,256 @@ Ultrasonic-Sonic        2.6383333 -2.314047  7.590714 0.4469155</code></pre>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2738,185 +2701,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

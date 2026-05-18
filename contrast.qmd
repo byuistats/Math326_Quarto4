@@ -34,8 +34,6 @@ When one factor level mean is compared to another, it is called a **pairwise com
 
 Less commonly, the comparison of interest may involve averages of two or more factor level means. This is most likely to occur when the factor levels lend themselves to natural groupings that may be of particular interest to compare. For example, we may want to compare the mean of the sonic and ultrasonic groups to the mean of the oscillating group. Another example might include a comparison of the average of all the "treatment" toothbrushes vs. the control group (manual). When an average across groups is involved, this is called a **complex comparison**, or linear **contrast**.
 
-
-
 We can represent the null hypotheses of these 4 example contrasts as:
 
 ::: column-margin
@@ -63,18 +61,18 @@ The above hypotheses can all be expressed as a sum, where each factor level mean
 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$ | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$ |
 | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}$ | $1*\mu_\text{man} + -\frac{1}{3}*\mu_\text{osc} + -\frac{1}{3}*\mu_\text{sonic} + -\frac{1}{3}*\mu_\text{ultra}$ |
 
-: Expanded Hypotheses {#tbl-expanded}
+: Expanded Hypotheses
 
 The contents in the right column of @tbl-expanded are referred to as contrasts. We will use the symbol $\psi$ to represent the contrast. A contrast is formed by multiplying each factor level mean by a coefficient. Simply put, it is a weighted sum. The above hypotheses are all examples of valid contrasts. **To be considered a valid contrast, the only restriction is that the sum of the coefficients must be zero.** We will often write coefficients used in a contrast as a set, in curly braces as shown in @tbl-coefficients. Thinking of a contrast in terms of its set of coefficients is helpful for identifying orthogonality of contrasts. Also, when calculating/testing a contrast with software, you are required to input the set (or vector) of coefficients to define the contrast.
 
 | $H_0$ | Contrast ($\psi$) Tested in $H_0$ | Set of Contrast Coefficients |
-|----------------------------|---------------------------|------------------|
+|---------------------------|--------------------------|-------------------|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man} = 0 \end{aligned}$ | $-1*\mu_\text{man} + 1*\mu_\text{osc} + 0*\mu_\text{sonic} + 0*\mu_\text{ultra}$ | $\{ -1, 1, 0, 0 \}$ |
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} = 0 \end{aligned}$ | $0*\mu_\text{man} + 0*\mu_\text{osc} + 1*\mu_\text{sonic} + -1*\mu_\text{ultra}$ | $\{ 0, 0, 1, -1 \}$ |
 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} = 0 \end{aligned}$ | $0*\mu_\text{man} + 1*\mu_\text{osc} + -\frac{1}{2}*\mu_\text{sonic} + -\frac{1}{2}*\mu_\text{ultra}$ | $\{ 0, 1, -\frac{1}{2}, -\frac{1}{2} \}$ |
 | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3} = 0 \end{aligned}$ | $1*\mu_\text{man} + -\frac{1}{3}*\mu_\text{osc} + -\frac{1}{3}*\mu_\text{sonic} + -\frac{1}{3}*\mu_\text{ultra}$ | $\{ 1, -\frac{1}{3}, -\frac{1}{3}, -\frac{1}{3} \}$ |
 
-: Contrast Coefficients {#tbl-coefficients}
+: Contrast Coefficients
 
 There are an infinite number of contrasts that could be tested. Realistically though, the contrasts that make sense to test are generally obvious and depend on your understanding/context of the experiment. Testing pairwise comparisons (i.e. simple contrasts where the coefficients are either -1, 0, or 1) is quite common; averaging across certain factor level means as part of the comparison is less common, but is still something you should be prepared to do. Contrasts can get quite complicated, especially for experiments with complicated designs. In this class though we will stick to relatively simple situations.
 
@@ -93,13 +91,12 @@ where $\mu$ without a subscript is the grand mean. The expression can be simplif
 
 $\mu + \alpha_\text{osc} - \mu - \alpha_\text{man} = 0$
 
-$\mu + \mu + \alpha_\text{osc} - \alpha_\text{man} = 0$
+$\mu - \mu + \alpha_\text{osc} - \alpha_\text{man} = 0$
 
 $\alpha_\text{osc} - \alpha_\text{man} = 0$
 
 Thus, effects can be swapped in place of means and vice versa in all of these contrast equations
 :::
-
 
 ## Testing a Contrast
 
@@ -109,9 +106,7 @@ Pairwise comparisons (i.e. simple contrasts) of means using a t-test is somethin
 
 Recall, that a t-test for one sample has the general form:
 
-$$
-t = \frac{\bar{y} - \mu_0}{s_\bar{y}}
-$$
+$$t = \frac{\bar{y} - \mu_0}{s_\bar{y}}$$
 
 Where $\bar{y}$ is the sample mean, $\mu_0$ is the value from the null hypothesis, and $s_\bar{y}$ is the standard error of the mean. We can expand this to test whether a difference of two means is zero, in other words an independent samples t-test of two means. Recall, that in ANOVA we assume constant variance across factor levels. (This is a slightly different assumption, resulting in a slightly different calculation than the independent samples t-tests presented in Math221 and Math325[^1]).
 
@@ -123,15 +118,11 @@ Standard error of the mean is equal to standard deviation of the individual obse
 
 In our toothbrush experiment, if we want to test whether the mean of manual brushes is equal to the mean of oscillating brushes we have for our null hypothesis:
 
-$$
-H_0: \mu_\text{man} - \mu_\text{osc} = 0
-$$
+$$H_0: \mu_\text{man} - \mu_\text{osc} = 0$$
 
 We use a t statistic:
 
-$$
-t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} + \frac{1}{n_2})}}
-$$ {#eq-diff2means}
+$$t = \frac{(\bar{y}_\text{man} - \bar{y}_\text{osc})}{\sqrt{s^2_p*(\frac{1}{n_1} + \frac{1}{n_2})}}$$ {#eq-diff2means}
 
 The difference in the numerator is calculated directly from the contrast (multiplying the set of coefficients by their respective factor level mean). In the denominator, the pooled variance ($s^2_p$) is identical to the mean squared error from the ANOVA summary table. The degrees of freedom for this t-test statistic are equal to the residual degrees of freedom.
 
@@ -141,16 +132,14 @@ Note, by using the MSE from the ANOVA summary table we are taking advantage of i
 
 For our study on toothbrushes we have the model:
 
-$$
-y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}
-$$ {#eq-model1}
+$$y_\text{ij} = \mu + \alpha_i + \epsilon_\text{ij}$$ {#eq-model1}
 
 Where
 
--   $y_\text{ij}$ is an observation
--   $\mu$ is the grand mean
--   $\alpha_i$ represents the effect of factor level $i$
--   $\epsilon_\text{ij}$ is the residual error for the $j^\text{th}$ observation in factor level $i$
+- $y_\text{ij}$ is an observation
+- $\mu$ is the grand mean
+- $\alpha_i$ represents the effect of factor level $i$
+- $\epsilon_\text{ij}$ is the residual error for the $j^\text{th}$ observation in factor level $i$
 
 Below is the table of factor level means and the ANOVA summary table.
 
@@ -187,9 +176,7 @@ pprob <- pt(q=tstat, df=brush_aov$df.resid, lower.tail=FALSE) * 2
 
 With that information we can proceed with our test of whether the mean of manual brushes is equal to the mean of oscillating brushes. Plugging the values from @tbl-brush_analysis into @eq-diff2means we can calculate the t statistic:
 
-$$
-t = \frac{ `r round(mean_man,2) - round(mean_osc,2)` }{\sqrt{ `r round(mse, 2)` * (\frac{1}{ `r nsize` } + \frac{1}{ `r nsize` })}} = `r round(tstat,2)`
-$$ {#eq-tvalue}
+$$t = \frac{ `r round(mean_man,2) - round(mean_osc,2)` }{\sqrt{ `r round(mse, 2)` * (\frac{1}{ `r nsize` } + \frac{1}{ `r nsize` })}} = `r round(tstat,2)`$$ {#eq-tvalue}
 
 A t statistic of `r round(tstat,2)` with 20 degrees of freedom, leads to a p-value of `r round(pprob,3)`(using a two-tailed alternative hypothesis of "not equal"). Since the p-value is greater than our traditional alpha of 0.05, we fail to reject the null hypothesis of equality. In other words, there is insufficient evidence to claim that the manual brush and the oscillating brush have different mean values for percent area of teeth with plaque.
 
@@ -197,16 +184,14 @@ A t statistic of `r round(tstat,2)` with 20 degrees of freedom, leads to a p-val
 
 This same t-test approach can be extended so that we can test any contrast, not just pairwise comparisons. To extend the approach, recognize that the $1's$ in @eq-tvalue appearing directly above each sample size actually represent the squared coefficient of the contrast (see @tbl-expanded). Thus, @eq-diff2means used to compare two factor level means, is actually just a special case of a more general formula, @eq-contrast, which allows us to perform a hypothesis test of any contrast. This equation continues with the general structure of a t statistic: the numerator contains a sample estimate of the difference, the denominator is the standard error of that difference.
 
-$$
-t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i / n_i)}}
-$$ {#eq-contrast}
+$$t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{\hat{\psi}}{\sqrt{MSE * \sum(c^2_i / n_i)}}$$ {#eq-contrast}
 
 Where,
 
--   $\hat{\psi}$ is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.
--   $MSE$ is the mean squares of residuals obtained from the ANOVA summary table
--   $c_i$ is the contrast coefficient for the $i^\text{th}$ factor level and
--   $n_i$ is the sample size of the $i^\text{th}$ factor level.
+- $\hat{\psi}$ is an estimate of the contrast, obtained by multiplying each factor level mean by its respective contrast coefficient. For a simple pairwise comparison, it is just the difference in means.
+- $MSE$ is the mean squares of residuals obtained from the ANOVA summary table
+- $c_i$ is the contrast coefficient for the $i^\text{th}$ factor level and
+- $n_i$ is the sample size of the $i^\text{th}$ factor level.
 
 The degrees of freedom for $t$ will be equal to the degrees of freedom for residual error in the ANOVA summary table.
 
@@ -214,17 +199,11 @@ Let's use this more general approach in @eq-contrast to test the fourth hypothes
 
 Plugging the values from @tbl-brush_analysis into @eq-contrast we can calculate the t statistic:
 
-Numerator: $$
-\hat{\psi} = 1 * `r round(means_tbl[[1,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[2,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[3,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[4,2]],2)` = 0.438
-$$
+Numerator: $$\hat{\psi} = 1 * `r round(means_tbl[[1,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[2,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[3,2]],2)` + -\frac{1}{3} * `r round(means_tbl[[4,2]],2)` = 0.438$$
 
-Denominator: $$
-s_\hat{\psi} = \sqrt{MSE * \sum(c^2_j / n_j)} = \sqrt{ `r round(mse, 2)` * \left( \frac{1^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} \right) } = 1.294
-$$
+Denominator: $$s_\hat{\psi} = \sqrt{MSE * \sum(c^2_j / n_j)} = \sqrt{ `r round(mse, 2)` * \left( \frac{1^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} + \frac{-\frac{1}{3}^2}{6} \right) } = 1.294$$
 
-t statistic: $$
-t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{0.438}{1.294} = .34
-$$ {#eq-contrast4}
+t statistic: $$t = \frac{\hat{\psi}}{s_\hat{\psi}} = \frac{0.438}{1.294} = .34$$ {#eq-contrast4}
 
 A test statistic $t_\text{20} = .34$ is not large enough to be significant.
 
@@ -238,9 +217,7 @@ We could have reached exactly the same conclusions by conducting an appropriate 
 
 [^2]: The appropriate F-test consists of calculating the mean squares of the contrast and dividing by the mean squared error. In most cases, the contrast has 1 degree of freedom, so the contrast sum of squares is equal to the contrast mean squares. The formula to calculate a contrast sum of squares is
 
-    $$
-    SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}
-    $$
+    $$SS_{\psi} = \frac{n*\hat{\psi}^2}{\sum{c_j^2}}$$
 
     The contrast has just 1 degree of freedom because it compares just two sets of observations. This is true even for complex comparisons: each set of observations may come from one factor level, or from a combination of factor levels.
 
@@ -269,31 +246,31 @@ Let's determine if the contrasts listed in @tbl-coefficients are orthogonal to o
 First, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal to $\mu_{sonic}- \mu_{ultra}$.
 
 | Contrast | Set of Contrast Coefficients | man. coef. | osc. coef. | sonic coef. | ultra coef. |
-|:-----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$ | $\{ -1, 1, 0, 0 \}$ | -1 | 1 | 0 | 0 |
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra} \end{aligned}$ | $\{ 0, 0, 1, -1 \}$ | 0 | 0 | 1 | -1 |
 |  | **Product of Coefficients** | $-1 \times 0 = 0$ | $1 \times 0 = 0$ | $0 \times 1 = 0$ | $0 \times -1 = 0$ |
 
-: First Pair of Contrasts Showing Orthogonal Contrasts {#tbl-first_pair}
+: First Pair of Contrasts Showing Orthogonal Contrasts
 
 In the last row of @tbl-first_pair, the product of the elements of the coefficient vectors are calculated. The sum of these products $0 + 0 + 0 + 0 = 0$. Because the sum of the products is zero, we conclude the first two contrasts listed in @tbl-coefficients are orthogonal.
 
 Next, we will assess whether the contrast $\mu_{osc} - \mu_{man}$ is orthogonal to $\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2}$.
 
 | Contrast | Set of Contrast Coefficients | man. coef. | osc. coef. | sonic coef. | ultra coef. |
-|:-----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man} \end{aligned}$ | $\{ -1, 1, 0, 0 \}$ | -1 | 1 | 0 | 0 |
 | $\begin{aligned}\mu_{osc}- \frac{\mu_{sonic} + \mu_{ultra}}{2} \end{aligned}$ | { 0, 1, $-\frac{1}{2}$, $-\frac{1}{2}$ } | 0 | 1 | $-\frac{1}{2}$ | $-\frac{1}{2}$ |
 |  | **Product of Coefficients** | $-1 \times 0 = 0$ | $1 \times 1 = 1$ | $0 \times -\frac{1}{2} = 0$ | $0 \times -\frac{1}{2} = 0$ |
 
-: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts {#tbl-second_pair}
+: Comparing a Different Set of Contrasts that Are NOT Orthogonal Contrasts
 
 In @tbl-second_pair the product of the elements of the coefficient vectors are calculated in the last row. The sum of these products is $0 + 1 + 0 + 0 = 1$. Because the sum of the products is NOT zero, we conclude that these two contrasts are NOT orthogonal.
 
 It has been shown how to determine orthogonality for the contrasts contained in first two rows of @tbl-ortho below. The orthogonality of the other contrast pairs is left to the reader to work through. However, the answers are displayed so that you may check your work.
 
 | Contrast Row \#'s from @tbl-coefficients |   | Orthogonality |
-|-------------------------|------------------------------|-----------------|
+|-------------------------|-----------------------------|------------------|
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$ | orthogonal |
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$ | not orthogonal |
 | $\begin{aligned}\mu_\text{osc} - \mu_\text{man}\end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | not orthogonal |
@@ -301,4 +278,4 @@ It has been shown how to determine orthogonality for the contrasts contained in 
 | $\begin{aligned}\mu_\text{sonic} - \mu_\text{ultra}\end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | orthogonal |
 | $\begin{aligned}\mu_\text{osc} - \frac{\mu_\text{sonic} + \mu_\text{ultra}}{2} \end{aligned}$ | $\begin{aligned}\mu_\text{man} - \frac{\mu_\text{osc} + \mu_\text{sonic} + \mu_\text{ultra}}{3}\end{aligned}$ | not orthogonal |
 
-: Orthogonality of Contrasts from @tbl-coefficients {#tbl-ortho}
+: Orthogonality of Contrasts from @tbl-coefficients

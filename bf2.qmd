@@ -14,6 +14,7 @@ toc-depth: 4
  }
 </script>
 ```
+
 ```{r}
 #| label: setup
 #| include: false
@@ -60,18 +61,17 @@ Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 facto
 
 Each factor (i.e. meaningful partition of the data) in @fig-bf2_brush_factor_structure corresponds to a term in @eq-bf2:
 
-$$
-y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
-$$ {#eq-bf2}
+$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$
+ {#eq-bf2}
 
 Where
 
--   $y_{ijk}$ is the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
--   $\mu$ is the grand mean of all the observations.
--   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
--   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
--   The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
--   $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
+- $y_{ijk}$ is the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
+- $\mu$ is the grand mean of all the observations.
+- $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
+- $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
+- The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
+- $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
 
 There are at least three hypotheses to test with this model. A hypothesis for each main effect, and a hypothesis for the interaction effect.
 
@@ -89,13 +89,9 @@ $$H_a: \beta_\text{j} \ne 0 \text{ for some } j$$
 
 A hypothesis for the interaction of toothbrush and toothpaste.
 
-$$
-H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
-$$
+$$H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij$$
 
-$$
-H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
-$$
+$$H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij$$
 
 When the interaction term is *not* significant a predicted value for an observation can be obtained by simply adding the grand mean to the main effects $\hat{\alpha}_i$ and $\hat{\beta}_j$. This is equivalent to treating the effect of $(\alpha\beta)_\text{ij} = 0$ for all values of $i$ and $j$.
 
@@ -109,13 +105,13 @@ A two-way ANOVA model may be used to analyze data from a BF\[2\] design if the f
 The BF\[\] designation refers to the design of the experiment. The reference to one- or two-way ANOVA refers to the analysis technique applied to the resulting data.
 :::
 
-| Requirements                           | Method for Checking                                     | What You Hope to See                                     |
+| Requirements | Method for Checking | What You Hope to See |
 |-------------------|--------------------------|---------------------------|
-| Constant variance across factor levels | Residual vs. Fitted Plot                                | No major disparity in vertical spread of point groupings |
-|                                        | Levene's Test                                           | Fail to reject $H_0$                                     |
-| Normally Distributed Residuals         | Normal Q-Q plot                                         | Straight line, majority of points in boundaries          |
-| Independent residuals                  | Order plot                                              | No pattern/trend                                         |
-|                                        | Familiarity with/critical thinking about the experiment | No potential source for bias                             |
+| Constant variance across factor levels | Residual vs. Fitted Plot | No major disparity in vertical spread of point groupings |
+|  | Levene's Test | Fail to reject $H_0$ |
+| Normally Distributed Residuals | Normal Q-Q plot | Straight line, majority of points in boundaries |
+| Independent residuals | Order plot | No pattern/trend |
+|  | Familiarity with/critical thinking about the experiment | No potential source for bias |
 
 # Design
 
@@ -156,7 +152,7 @@ Subject <- paste("Subject", seq(1:24), sep = " ")
 brush <- rep(c("manual", "oscillate", "sonic", "ultrasonic"), each = 6)
 
 #Create a vector with each paste repeated 12 times
-paste <- rep(c("name", "off"), each = 12)
+paste <- rep(rep(c("name", "off"),each=3), times = 4)
 
 #Create a vector to represent order of taking measurement
 order <- seq(1,24)
@@ -342,17 +338,16 @@ To get a full structure diagram, as shown in @fig-bf2_full we must also include 
 
 Each factor in the diagram corresponds to a term in @eq-bf2_2:
 
-$$
-y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}
-$$ {#eq-bf2_2}
+$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$
+ {#eq-bf2_2}
 
 Where
 
--   $\mu$ is the grand mean of all observatinos
--   $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
--   $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
--   The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
--   $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
+- $\mu$ is the grand mean of all observatinos
+- $\alpha$ is the effect of toothbrush, and $i$ goes from 1 to 4 since there are 4 toothbrush types
+- $\beta$ is the effect of toothpaste, and $j$ is either 1 or 2 since there are 2 levels (Name brand and off brand).
+- The $(\alpha\beta)_\text{ij}$ is called the interaction effect.
+- $\epsilon$ is the residual error term, and $k$ is the replicate count within a factor level combination.
 
 On the left side of the equation is $y_{ijk}$, which represents the $k^{th}$ observation from the factor level combination of $\alpha_i$ and $\beta_j$.
 
@@ -386,51 +381,32 @@ It is also important to recall that the grand mean factor is outside of all othe
 
 The grand mean is the mean of all the observations:
 
-$$
-\hat{\mu} = \bar{y}_\cdots = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76
-$$
+$$\hat{\mu} = \bar{y}_\cdots = \frac{19.12 + 18.56 + 25.58 + 24.39 + 24.21 + ... + 23.42}{24} = 22.76$$
 
 Now find the mean for each level of toothbrush type.
 
-$$
-\bar{y}_\text{manual} = \bar{y}_{1\cdot\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10
-$$
+$$\bar{y}_\text{manual} = \bar{y}_{1\cdot\cdot} = \frac{19.12 + 24.21 + 26.88 + 21.6 + 23.4 + 23.35}{6} = 23.10$$
 
-$$
-\bar{y}_\text{oscillating} = \bar{y}_{2\cdot\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98
-$$
+$$\bar{y}_\text{oscillating} = \bar{y}_{2\cdot\cdot} = \frac{18.56 + 20.00 + 19.87 + 22.09 + 17.62 + 21.72}{6} = 19.98$$
 
-$$
-\bar{y}_\text{sonic} = \bar{y}_{3\cdot\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68
-$$
+$$\bar{y}_\text{sonic} = \bar{y}_{3\cdot\cdot} = \frac{25.58 + 23.31 + 18.99 + 23.09 + 23.81 + 21.27}{6} = 22.68$$
 
-$$
-\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31
-$$
+$$\bar{y}_\text{ultrasonic} = \bar{y}_{4\cdot\cdot} = \frac{24.39 + 21.45 + 32.74 + 24.21 + 25.67 + 23.42}{6} = 25.31$$
 
 Now find the mean for each level of toothpaste brand.
 
-$$
-\bar{y}_\text{name brand} = \bar{y}_{\cdot 1 \cdot} = \frac{19.12 + 18.56 + \cdots + 18.99 + 32.74}{12} = 22.93
-$$
+$$\bar{y}_\text{name brand} = \bar{y}_{\cdot 1 \cdot} = \frac{19.12 + 18.56 + \cdots + 18.99 + 32.74}{12} = 22.93$$
 
 $$ 
-\bar{y}_\text{off brand} = \bar{y}_{\cdot 2 \cdot} = \frac{21.60 + 22.09 + \cdots + 21.27 + 23.42}{12} = 22.60 
-$$
+\bar{y}_\text{off brand} = \bar{y}_{\cdot 2 \cdot} = \frac{21.60 + 22.09 + \cdots + 21.27 + 23.42}{12} = 22.60 $$
 
 There are 8 different combinations of toothbrush type and toothpaste, so the interaction factor has 8 levels total. We calculate a mean for each one, but will only show the calculation for the first 3.
 
-$$
-\bar{y}_\text{manual and name brand} = \bar{y}_{11\cdot} = \frac{19.12 + 24.21 + 26.88}{3} = 23.40
-$$
+$$\bar{y}_\text{manual and name brand} = \bar{y}_{11\cdot} = \frac{19.12 + 24.21 + 26.88}{3} = 23.40$$
 
-$$
-\bar{y}_\text{manual and off brand} = \bar{y}_{12\cdot} = \frac{21.60 + 23.40 + 23.35}{3} = 22.78
-$$
+$$\bar{y}_\text{manual and off brand} = \bar{y}_{12\cdot} = \frac{21.60 + 23.40 + 23.35}{3} = 22.78$$
 
-$$
-\bar{y}_\text{oscillating and name brand} = \bar{y}_{21\cdot} = \frac{18.56 + 20.00 + 19.87}{3} = 19.48
-$$
+$$\bar{y}_\text{oscillating and name brand} = \bar{y}_{21\cdot} = \frac{18.56 + 20.00 + 19.87}{3} = 19.48$$
 
 The means for the residual error factor levels is the observed value itself since there is just 1 observation per level. Therefore, there are no calculations to show.
 
@@ -454,9 +430,7 @@ For the grand mean, there is only one level and there are no outside factors. Th
 
 The toothbrush factor has four levels: one for each brush type. We will use the general rule for calculating [factor level effects]. To calculate the effect of a toothbrush, take the toothbrush mean and subtract it from the grand mean factor's effect. For the manual brush, this looks like:
 
-$$
-23.09 - 22.76 = 0.33
-$$
+$$23.09 - 22.76 = 0.33$$
 
 Using the manual brush has the effect of *increasing* a person's plaque area percentage by 0.33 percentage points on average compared to the grand mean. In a similar way[^2] you can find the effect for the oscillating brush $19.98 - 22.76 = -2.79$. This means the amount of plaque decreased by 2.79 on average with this brush compared to the grand mean. For a sonic toothbrush, the effect is $22.68 - 22.76 = -0.09$. For an ultrasonic brush the effect is $25.31 - 22.76 = 2.55$.
 
@@ -470,15 +444,11 @@ It is interesting to note that the factor effects for brush type are the same, w
 
 Calculating the effects for the second controlled factor in the experiment follows a similar pattern and also uses the general rule for calculating effect sizes. Remember that toothbrush is not outside or inside of toothpaste, rather the two factors are crossed. To calculate the effect of using the name brand toothpaste, take the name brand mean and subtract it from the grand mean factor's effect:
 
-$$
-22.93 - 22.76 = 0.16
-$$
+$$22.93 - 22.76 = 0.16$$
 
 A similar calculation is performed for off the brand toothpaste.
 
-$$
-22.60 - 22.76 = -0.16
-$$
+$$22.60 - 22.76 = -0.16$$
 
 With only two levels, it becomes obvious that **the effects of a factor's levels will always sum to zero**. You may want to go back to the toothbrush level effects and verify this is true.
 
@@ -498,9 +468,7 @@ In @fig-brush you can see that each level of the interaction will fit nicely wit
 
 Therefore, to calculate the interaction effect for using an ultrasonic brush with name brand toothpaste we will subtract the effects of the grand mean factor, ultrasonic brush, and name brand paste from the "ultrasonic, name brand" level mean.
 
-$$
-26.19 - (22.76 + 2.55 + 0.16) = .15
-$$
+$$26.19 - (22.76 + 2.55 + 0.16) = .15$$
 
 Let's take a deeper look to understand why this works. It can be helpful to remember our assembly line analogy. We will walk through this assembly line, showing a graph to illustrate how the effects are added at each station.
 
@@ -650,8 +618,7 @@ lines(c(4-.2, 4+.1), c(27, 25.83), col = "red")
 
 The previous 3 figures are placed side by side below in the figure below so that the additive progression of the effects can more easily be seen.
 
-<div>
-
+::: {}
 ```{r}
 #| echo: false
 #| column: screen-inset-shaded
@@ -764,16 +731,13 @@ text(4 -.25, 27, TeX(r'($\hat{alpha} \hat{beta}_{Ultra,Name} = 0.15)'), col = "p
 ```
 
 Additive Effects
-
-</div>
+:::
 
 Lastly, the residuals (or residual effects) need to be calculated. The mean for each level of residual is simply the observation itself. Effects associated with that observation's factor levels are subtracted from the observed value. Whatever is left over is considered the residual. In other words, we have applied the general rule for calculating effect size. For the residual factor, the effect can concisely be stated as "observed value - predicted value".
 
 As an example, the residual in the top left corner of the residual factor was obtained with this calculation:
 
-$$
-19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28
-$$
+$$19.12 - (22.76 + 0.329 + 0.16 + 0.15) = -4.28$$
 
 All other residuals were similarly obtained. Ultimately, @fig-factor-effects displays all the factor level effects that are summed to obtain each observation.
 
@@ -855,15 +819,12 @@ To get the **sum of squares (SS)** of a factor, each value displayed in that par
 
 Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in @eq-ss-obs. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.
 
-$$
-SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30
-$$ {#eq-ss-obs}
+$$SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30$$
+ {#eq-ss-obs}
 
 For **grand mean**, the squared effect of 518.2 is listed 24 times, once for each observation. Summing the squared effects gets:
 
-$$
-SS_\text{Grand Mean} = 518.2* 24 = 12,437.43
-$$
+$$SS_\text{Grand Mean} = 518.2* 24 = 12,437.43$$
 
 ::: callout-note
 The rounded numbers are displayed throughout this section, but all calculations are done using the unrounded numbers.
@@ -871,25 +832,20 @@ The rounded numbers are displayed throughout this section, but all calculations 
 
 The **toothbrush factor** has four different effects: one for each level of the factor. For each effect, the squared value is multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to toothbrush.
 
-$$
-SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31
-$$ {#eq-ss-int} <br>
+$$SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31$$
+ {#eq-ss-int} <br>
 
 The sum of squares is similarly calculated for toothpaste brand (@eq-ss-paste) and brush by paste interaction (@eq-ss-int).
 
-$$
-SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62
-$$ {#eq-ss-paste}
+$$SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62$$
+ {#eq-ss-paste}
 
-$$
-SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12
-$$
+$$SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12$$
 
 The effect for the **residual error factor** has 24 unique values. The squared residuals are summed together in @eq-ss-resid.
 
-$$
-SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82
-$$ {#eq-ss-resid}
+$$SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82$$
+ {#eq-ss-resid}
 
 You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in @eq-ss-obs.
 
@@ -917,33 +873,23 @@ Recall that SS is a measure of total variability. Of the three structural factor
 
 To calculate a mean square (MS), simply divide SS by degrees of freedom for a factor. The mean square calculations are:
 
-$$
-MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43
-$$
+$$MS_\text{Grand Mean} = \frac{SS_\text{Grand Mean}}{df_\text{Grand Mean}} = \frac{12437.43}{1} = 12437.43$$
 
 <br>
 
-$$
-MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77
-$$
+$$MS_\text{Brush} = \frac{SS_\text{Brush}}{df_\text{Brush}} = \frac{86.31}{3} = 28.77$$
 
 <br>
 
-$$
-MS_\text{Toothpaste} = \frac{SS_\text{Toothpaste}}{df_\text{Toothpaste}} = \frac{0.62}{1} = 0.62
-$$
+$$MS_\text{Toothpaste} = \frac{SS_\text{Toothpaste}}{df_\text{Toothpaste}} = \frac{0.62}{1} = 0.62$$
 
 <br>
 
-$$
-MS_\text{Brush:Toothpaste} = \frac{SS_\text{Brush:Toothpaste}}{df_\text{Brush:Toothpaste}} = \frac{6.12}{3} = 2.04
-$$
+$$MS_\text{Brush:Toothpaste} = \frac{SS_\text{Brush:Toothpaste}}{df_\text{Brush:Toothpaste}} = \frac{6.12}{3} = 2.04$$
 
 <br>
 
-$$
-MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Error}} = \frac{143.82}{16} = 8.99
-$$
+$$MS_\text{Residual Error} = \frac{SS_\text{Residual Error}}{df_\text{Residual Error}} = \frac{143.82}{16} = 8.99$$
 
 <br>
 
@@ -978,30 +924,26 @@ $$H_a: \beta_\text{j} \ne 0 \text{ for some } j$$
 
 A hypothesis for the interaction of toothbrush and toothpaste.
 
-$$
-H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij
-$$
+$$H_0: (\alpha\beta)_\text{ij} = 0 \text{ for all } ij$$
 
-$$
-H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij
-$$
+$$H_a: (\alpha\beta)_\text{ij} \ne 0 \text{ for some } ij$$
 
 To test these hypotheses we need to compare the mean square (MS) for a factor to the mean square for residual error (abbreviated as MSE). The MSE is the estimate of unexplained, random error. If a factor's MS is similar in size to the MSE, the variance in that factor may just be random error; and the effect of the factor levels are zero. On the other hand, if the variability in the factor, as measured by its MS, is much larger than the random error observed in the experiment (represented by MSE), then it is reasonable to believe the factor levels have a non-trivial contribution to the variability. In other words, the factor has a significant effect on the response.
 
 The F statistic is a ratio of these two errors and is obtained by dividing the factor's mean square (MS) by the MSE. The F statistic calculations are
 
--   $F_\text{brush} = 28.77/8.99 = 3.20$
+- $F_\text{brush} = 28.77/8.99 = 3.20$
 
--   $F_\text{toothpaste} = 0.62/8.99 = 0.07$
+- $F_\text{toothpaste} = 0.62/8.99 = 0.07$
 
--   $F_\text{brush:toothpaste} = 2.04 / 8.99 = .23$
+- $F_\text{brush:toothpaste} = 2.04 / 8.99 = .23$
 
 This F statistic follows a well defined distribution, called the F distribution. The F distribution is defined by two values for degrees of freedom[^3]:
 
 [^3]: You can explore behavior of the F distribution for various combinations of degrees of freedom using [this applet](https://homepage.divms.uiowa.edu/~mbognar/applets/f.html)
 
--   the numerator degrees of freedom, which is the degrees of freedom for the factor being tested
--   the denominator degrees of freedom, which is the degrees of freedom for residual error
+- the numerator degrees of freedom, which is the degrees of freedom for the factor being tested
+- the denominator degrees of freedom, which is the degrees of freedom for residual error
 
 The area under this distribution curve to the right of our F statistic is called the p-value. The p-value represents the probability of getting an F statistic at least as large as the one obtained, assuming the null hypothesis (of no effect) is true.
 
@@ -1009,19 +951,19 @@ The F statistic, numerator degrees of freedom, and denominator degrees of freedo
 
 [^4]: This is the formula used in Excel to obtain the p-values for brush, toothpaste, and brush:toothpaste interaction respectively:
 
-    -   brush: `` `=f.dist.rt(3.20054, 3, 16) ``
+    - brush: `` `=f.dist.rt(3.20054, 3, 16) ``
 
-    -   toothpaste: `=f.dist.rt(0.06871, 1, 16)`
+    - toothpaste: `=f.dist.rt(0.06871, 1, 16)`
 
-    -   brush:toothpaste : `=f.dist.rt(.226924, 3, 16)`
+    - brush:toothpaste : `=f.dist.rt(.226924, 3, 16)`
 
 [^5]: This is the formula used in R to obtain the p-values for brush, toothpaste, and brush:toothpaste interaction respectively:
 
-    -   brush: `1-pf(3.2005, 3, 16)`
+    - brush: `1-pf(3.2005, 3, 16)`
 
-    -   toothpaste: `1-pf(0.06871, 1, 16)`
+    - toothpaste: `1-pf(0.06871, 1, 16)`
 
-    -   brush:toothpaste : `1-pf(0.2269, 3, 16)`
+    - brush:toothpaste : `1-pf(0.2269, 3, 16)`
 
 The completed ANOVA table for this BF\[2\] toothbrush and toothpaste example is shown in
 
@@ -1176,10 +1118,10 @@ myaov <- aov(Y ~ X1*X2, data=YourDataSet)
 summary(myaov)
 ```
 
--   `myaov` is the user defined name in which the results of the aov() model are stored
--   `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
--   `X1` and `X2` are names of qualitative variables in your dataset. They should have class(X) equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(X1)*...)` command.
--   `YourDataSet` is the name of your data set.
+- `myaov` is the user defined name in which the results of the aov() model are stored
+- `Y` is the name of a numeric variable in your dataset which represents the quantitative response variable.
+- `X1` and `X2` are names of qualitative variables in your dataset. They should have class(X) equal to factor or character. If that is not the case, use `factor(X)` inside the `aov(Y ~ factor(X1)*...)` command.
+- `YourDataSet` is the name of your data set.
 
 The `*` in the code above is a shortcut for writing out the whole model. It can be read as, "include each term by itself, and all possible interaction terms". The long way of writing out the model uses a colon, `:`, to define interaction terms and is shown below. When writing it this way each term must be explicitly stated.
 
@@ -1277,21 +1219,15 @@ In the above output results for all pairwise comparisons with Tukey's HSD adjust
 
 Here are symbolic representations for the estimated effects in the BF\[2\] model, as shown in @eq-bf2.
 
-$$
-\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}
-$$
+$$\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}$$
 
-$$
-\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}
-$$
+$$\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}$$
 
-$$
-\begin{align}
+$$\begin{align}
 \hat{\alpha}\hat{\beta}_{ij} & = \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + \hat{\alpha}_i  + \hat{\beta}_j ) \\
 &= \bar{y}_{i j \cdot} - (\bar{y}_{\cdot \cdot \cdot} + (\bar{y}_{i \cdot \cdot} - \bar{y}_{\cdot \cdot \cdot})  + (\bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot}) ) \\
 & = \bar{y}_{i j \cdot} - (\bar{y}_{i \cdot \cdot} + \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdot \cdot \cdot})
-\end{align}
-$$
+\end{align}$$
 
 ## Unreplicated or Single Observation per Cell
 
