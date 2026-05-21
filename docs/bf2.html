@@ -617,8 +617,8 @@ Figure&nbsp;1: Factor Structure Diagram
 </section>
 <section id="hypothesis-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-and-model">Hypothesis and Model</h2>
-<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-bf2_brush_factor_structure" class="quarto-xref">Figure&nbsp;1</a> corresponds to a term in <strong>?@eq-bf2</strong>:</p>
-<p><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}\]</span> {#eq-bf2}</p>
+<p>Each factor (i.e.&nbsp;meaningful partition of the data) in <a href="#fig-bf2_brush_factor_structure" class="quarto-xref">Figure&nbsp;1</a> corresponds to a term in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a>:</p>
+<p><span id="eq-bf2"><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk} \tag{1}\]</span></span></p>
 <p>Where</p>
 <ul>
 <li><span class="math inline">\(y_{ijk}\)</span> is the <span class="math inline">\(k^{th}\)</span> observation from the factor level combination of <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>.</li>
@@ -1089,7 +1089,7 @@ Important
 <section id="interaction-effect" class="level1 page-columns page-full">
 <h1>Interaction Effect</h1>
 <p>The purpose of this section is to define an interaction, introduce interaction graphs, explain how to interpret interaction graphs to detect interactions, and provide helpful hints in working with interactions.</p>
-<p>The terms in <strong>?@eq-bf2</strong> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
+<p>The terms in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a> that represent the marginal effects of the controlled factors in the experiment are referred to as <strong>main effects</strong>. In this case <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the main effects for toothbrush and toothpaste respectively.</p>
 <p>The factor created by crossing toothbrush and toothpaste is called an interaction factor, and its term in the model, <span class="math inline">\(\alpha \beta\)</span>, is called an interaction effect.</p>
 <p>Compared to a BF[1], the novel piece of a BF[2] is the <strong>interaction factor</strong>. This factor allows us to estimate the interaction effect, which is the effect of belonging to a particular factor level <em>combination</em>. Stated another way, the interaction effect is the additional change in the response (positive or negative) when the two factor levels happen together, beyond the effect of each factor level in isolation.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1217,8 +1217,8 @@ Figure&nbsp;5: Factor structure diagram
 </figcaption>
 </figure>
 </div>
-<p>Each factor in the diagram corresponds to a term in <strong>?@eq-bf2_2</strong>:</p>
-<p><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}\]</span> {#eq-bf2_2}</p>
+<p>Each factor in the diagram corresponds to a term in <a href="#eq-bf2_2" class="quarto-xref">Equation&nbsp;2</a>:</p>
+<p><span id="eq-bf2_2"><span class="math display">\[y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk} \tag{2}\]</span></span></p>
 <p>Where</p>
 <ul>
 <li><span class="math inline">\(\mu\)</span> is the grand mean of all observatinos</li>
@@ -1605,8 +1605,8 @@ Figure&nbsp;14: Squared factor level effects
 </figcaption>
 </figure>
 </div>
-<p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <strong>?@eq-ss-obs</strong>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
-<p><span class="math display">\[SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30\]</span> {#eq-ss-obs}</p>
+<p>Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in <a href="#eq-ss-obs" class="quarto-xref">Equation&nbsp;3</a>. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.</p>
+<p><span id="eq-ss-obs"><span class="math display">\[SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30 \tag{3}\]</span></span></p>
 <p>For <strong>grand mean</strong>, the squared effect of 518.2 is listed 24 times, once for each observation. Summing the squared effects gets:</p>
 <p><span class="math display">\[SS_\text{Grand Mean} = 518.2* 24 = 12,437.43\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1623,13 +1623,13 @@ Note
 </div>
 </div>
 <p>The <strong>toothbrush factor</strong> has four different effects: one for each level of the factor. For each effect, the squared value is multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to toothbrush.</p>
-<p><span class="math display">\[SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31\]</span> {#eq-ss-int} <br></p>
-<p>The sum of squares is similarly calculated for toothpaste brand (<strong>?@eq-ss-paste</strong>) and brush by paste interaction (<strong>?@eq-ss-int</strong>).</p>
-<p><span class="math display">\[SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62\]</span> {#eq-ss-paste}</p>
+<p><span id="eq-ss-int"><span class="math display">\[SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31 \tag{4}\]</span></span> <br></p>
+<p>The sum of squares is similarly calculated for toothpaste brand (<a href="#eq-ss-paste" class="quarto-xref">Equation&nbsp;5</a>) and brush by paste interaction (<a href="#eq-ss-int" class="quarto-xref">Equation&nbsp;4</a>).</p>
+<p><span id="eq-ss-paste"><span class="math display">\[SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62 \tag{5}\]</span></span></p>
 <p><span class="math display">\[SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12\]</span></p>
-<p>The effect for the <strong>residual error factor</strong> has 24 unique values. The squared residuals are summed together in <strong>?@eq-ss-resid</strong>.</p>
-<p><span class="math display">\[SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82\]</span> {#eq-ss-resid}</p>
-<p>You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in <strong>?@eq-ss-obs</strong>.</p>
+<p>The effect for the <strong>residual error factor</strong> has 24 unique values. The squared residuals are summed together in <a href="#eq-ss-resid" class="quarto-xref">Equation&nbsp;6</a>.</p>
+<p><span id="eq-ss-resid"><span class="math display">\[SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82 \tag{6}\]</span></span></p>
+<p>You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in <a href="#eq-ss-obs" class="quarto-xref">Equation&nbsp;3</a>.</p>
 <p>Putting this information into the ANOVA table gets us the result shown in <a href="#tbl-SS" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
 <div id="tbl-SS" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1786,7 +1786,7 @@ Table&nbsp;1: Sums of squares
 </div>
 <p>For each structural factor in the design there are a set of hypothesis we want to test using the <strong>F statistic</strong>.</p>
 <p>Specifically, we will want to test whether toothbrush type has an effect on plaque coverage, whether toothpaste brand has an effect on plaque coverage, and whether the interaction between brush and paste has an effect on plaque coverage.</p>
-<p>More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of <strong>?@eq-bf2_2</strong>.</p>
+<p>More specifically, for each factor we test whether the factor level effects are all equal to zero. We can express the hypotheses mathematically using the terms of <a href="#eq-bf2_2" class="quarto-xref">Equation&nbsp;2</a>.</p>
 <p>A hypothesis for the main effect of toothbrush type:</p>
 <p><span class="math display">\[H_0: \alpha_\text{i} = 0 \text{ for all } i\]</span></p>
 <p><span class="math display">\[H_a: \alpha_\text{i} \ne 0 \text{ for some } i\]</span></p>
@@ -1930,7 +1930,7 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </figcaption>
 <div aria-describedby="tbl-main_effects_numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-main_effects_numbers-1" class="table quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-1" class="table quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Brush
@@ -2007,7 +2007,7 @@ Table&nbsp;2: Numerical Summary for Each Factor
 </div>
 </div>
 <div class="cell-output-display">
-<div id="tbl-main_effects_numbers-2" class="table quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<div id="tbl-main_effects_numbers-2" class="table quarto-float quarto-figure quarto-figure-center anchored" style="margin-left: auto; margin-right: auto;" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-subfloat-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-main_effects_numbers-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Toothpaste
@@ -2402,7 +2402,7 @@ Ultrasonic-Sonic        2.6383333 -2.314047  7.590714 0.4469155</code></pre>
 <h1>Appendix</h1>
 <section id="notation-for-estimated-effects" class="level2">
 <h2 class="anchored" data-anchor-id="notation-for-estimated-effects">Notation for Estimated Effects</h2>
-<p>Here are symbolic representations for the estimated effects in the BF[2] model, as shown in <strong>?@eq-bf2</strong>.</p>
+<p>Here are symbolic representations for the estimated effects in the BF[2] model, as shown in <a href="#eq-bf2" class="quarto-xref">Equation&nbsp;1</a>.</p>
 <p><span class="math display">\[\hat{\alpha}_i = \bar{y}_{i \cdot \cdot} - \bar{y}_{\cdots}\]</span></p>
 <p><span class="math display">\[\hat{\beta}_j = \bar{y}_{\cdot j \cdot} - \bar{y}_{\cdots}\]</span></p>
 <p><span class="math display">\[\begin{align}

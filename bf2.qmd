@@ -61,8 +61,7 @@ Two levels of toothpaste multiplied by 4 levels of toothbrush results in 8 facto
 
 Each factor (i.e. meaningful partition of the data) in @fig-bf2_brush_factor_structure corresponds to a term in @eq-bf2:
 
-$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$
- {#eq-bf2}
+$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$ {#eq-bf2}
 
 Where
 
@@ -338,8 +337,7 @@ To get a full structure diagram, as shown in @fig-bf2_full we must also include 
 
 Each factor in the diagram corresponds to a term in @eq-bf2_2:
 
-$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$
- {#eq-bf2_2}
+$$y_\text{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_\text{ij} + \epsilon_\text{ijk}$$ {#eq-bf2_2}
 
 Where
 
@@ -819,8 +817,7 @@ To get the **sum of squares (SS)** of a factor, each value displayed in that par
 
 Then, for each factor, all the squared values are summed up to get the sum of squares. The total sum of squares is obtained by summing the squared observations as shown in @eq-ss-obs. This represents the total variability in the dataset that will then be allocated or partitioned to the various factors, starting with the grand mean.
 
-$$SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30$$
- {#eq-ss-obs}
+$$SS_\text{total} = 365.6 + 344.5 + 654.3 + ... + 452.4 + 548.2  = 12,674.30$${#eq-ss-obs}
 
 For **grand mean**, the squared effect of 518.2 is listed 24 times, once for each observation. Summing the squared effects gets:
 
@@ -832,20 +829,17 @@ The rounded numbers are displayed throughout this section, but all calculations 
 
 The **toothbrush factor** has four different effects: one for each level of the factor. For each effect, the squared value is multiplied by the number of observations within the level of the factor. Then, the results are added across all levels to get the sum of squares due to toothbrush.
 
-$$SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31$$
- {#eq-ss-int} <br>
+$$SS_\text{toothbrush} = 6*(0.11) + 6*(7.77) + 6*(0.01) + 6*(6.50) = 86.31$${#eq-ss-int} <br>
 
 The sum of squares is similarly calculated for toothpaste brand (@eq-ss-paste) and brush by paste interaction (@eq-ss-int).
 
-$$SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62$$
- {#eq-ss-paste}
+$$SS_\text{toothpaste} = 12*(0.03) + 12*(0.03) = 0.62$${#eq-ss-paste}
 
 $$SS_\text{brush x paste} = 3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52) +3*(0.02) + 3*(0.44) + 3*(0.04) + 3*(0.52)  = 6.12$$
 
 The effect for the **residual error factor** has 24 unique values. The squared residuals are summed together in @eq-ss-resid.
 
-$$SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82$$
- {#eq-ss-resid}
+$$SS_\text{residual} = 18.35 + 0.84 + 8.72 + ... + 2.11 + 1.03  = 143.82$${#eq-ss-resid}
 
 You can check that the sums of squares (SS) has been allocated to the factors correctly by adding up the SS for each factor and verifying that it also equals the result found in @eq-ss-obs.
 
